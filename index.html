@@ -9,74 +9,38 @@
         *{box-sizing:border-box;margin:0;padding:0;}
         body{background-color:#08140e;color:#fff;font-family:sans-serif;padding-bottom:80px;}
         
-        /* reCAPTCHA Oyna Dizayni */
+        /* reCAPTCHA Oyna */
         #captcha-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #08140e; z-index: 99999; display: flex;
             flex-direction: column; align-items: center; justify-content: center; padding: 20px;
         }
         .captcha-box {
-            background: #ffffff;
-            color: #000;
-            padding: 20px;
-            border-radius: 8px;
-            width: 100%;
-            max-width: 320px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            background: #ffffff; color: #000; padding: 20px; border-radius: 8px;
+            width: 100%; max-width: 320px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            display: flex; align-items: center; justify-content: space-between;
         }
-        .captcha-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .captcha-left { display: flex; align-items: center; gap: 12px; }
         .captcha-checkbox {
-            width: 28px;
-            height: 28px;
-            border: 2px solid #c1c1c1;
-            border-radius: 3px;
-            background: #f9f9f9;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            color: #46a1ff;
-            font-weight: bold;
+            width: 28px; height: 28px; border: 2px solid #c1c1c1; border-radius: 3px;
+            background: #f9f9f9; cursor: pointer; display: flex; align-items: center;
+            justify-content: center; font-size: 18px; color: #46a1ff; font-weight: bold;
         }
-        .captcha-text {
-            font-size: 14px;
-            font-weight: 500;
-            color: #222;
-        }
-        .captcha-right {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .captcha-logo {
-            font-size: 20px;
-            font-weight: bold;
-            color: #1a73e8;
-        }
-        .captcha-footer {
-            font-size: 9px;
-            color: #555;
-            margin-top: 2px;
-        }
+        .captcha-text { font-size: 14px; font-weight: 500; color: #222; }
+        .captcha-right { display: flex; flex-direction: column; align-items: center; }
+        .captcha-logo { font-size: 20px; font-weight: bold; color: #1a73e8; }
+        .captcha-footer { font-size: 9px; color: #555; margin-top: 2px; }
 
         /* Bank Interfeysi */
         .header{padding:20px;display:flex;justify-content:space-between;align-items:center;}
-        .brand{color:#d4af37;font-size:20px;font-weight:bold;}
+        .brand{color:#d4af37;font-size:20px;font-weight:bold;letter-spacing:1px;}
         .prof{width:36px;height:36px;background:#133321;border:1px solid #d4af37;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#d4af37;font-weight:bold;}
         .card-con{padding:0 16px;margin-top:10px;}
         .card{background:linear-gradient(135deg,#133321,#0b1d13);border:1px solid #d4af37;border-radius:20px;padding:24px;}
         .c-title{font-size:13px;color:#8b9a90;text-transform:uppercase;}
         .sum{font-size:32px;font-weight:bold;color:#fff;margin:8px 0 20px 0;}
         .acts{display:flex;gap:10px;}
-        .btn{flex:1;background:rgba(212,175,55,0.15);border:1px solid #d4af37;color:#d4af37;padding:10px;border-radius:10px;font-weight:bold;text-align:center;cursor:pointer;}
+        .btn{flex:1;background:rgba(212,175,55,0.15);border:1px solid #d4af37;color:#d4af37;padding:12px;border-radius:10px;font-weight:bold;text-align:center;cursor:pointer;font-size:14px;}
         .btn.prim{background:#d4af37;color:#08140e;border:none;}
         .page{display:none;padding:20px 16px;}
         .page.active{display:block;}
@@ -85,9 +49,10 @@
         .s-item{background:#133321;border:1px solid #1a442d;border-radius:14px;padding:14px 8px;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;}
         .s-ic{font-size:16px;margin-bottom:6px;color:#d4af37;font-weight:bold;}
         .s-tx{font-size:11px;color:#cbd5d0;}
-        .fg{margin-bottom:12px;}
-        .fg label{font-size:12px;color:#8b9a90;display:block;margin-bottom:5px;}
+        .fg{margin-bottom:14px;}
+        .fg label{font-size:12px;color:#d4af37;display:block;margin-bottom:6px;font-weight:600;}
         .fc{width:100%;padding:12px;background:#08140e;border:1px solid #1a442d;border-radius:10px;color:#fff;font-size:14px;outline:none;}
+        .fc:focus{border-color:#d4af37;}
         .nav{position:fixed;bottom:0;left:0;right:0;height:65px;background:#060e0a;border-top:1px solid #133321;display:flex;justify-content:space-around;align-items:center;z-index:1000;}
         .n-it{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#6c7c72;flex:1;height:100%;cursor:pointer;}
         .n-it.active{color:#d4af37;}
@@ -97,7 +62,7 @@
 </head>
 <body>
 
-    <!-- RE-CAPTCHA EKRANI -->
+    <!-- RE-CAPTCHA -->
     <div id="captcha-screen">
         <div class="captcha-box">
             <div class="captcha-left">
@@ -111,13 +76,13 @@
         </div>
     </div>
 
-    <!-- BANK INTERFEYSI -->
+    <!-- HEADER -->
     <div class="header">
         <div class="brand">TFERIES BANK</div>
         <div class="prof">T</div>
     </div>
 
-    <!-- 1. ASOSIY SAHIFA -->
+    <!-- 1. ASOSIY -->
     <div id="page-asosiy" class="page active page">
         <div class="card-con"><div class="card">
             <div class="c-title">Asosiy Hisob</div>
@@ -138,17 +103,17 @@
         </div>
     </div>
 
-    <!-- 2. O'TKAZMALAR SAHIFASI -->
+    <!-- 2. O'TKAZMALAR -->
     <div id="page-otkazmalar" class="page">
         <div class="sec-title">Pul o'tkazmalari</div>
         <div class="card">
             <input type="text" placeholder="8600 0000 0000 0000" class="fc" style="margin-bottom:12px;">
             <input type="number" placeholder="Summa (UZS)" class="fc" style="margin-bottom:16px;">
-            <button class="btn prim" style="width:100%;padding:12px;" onclick="alert('Hisobda mablag yoq')">O'tkazish</button>
+            <button class="btn prim" style="width:100%;" onclick="alert('Hisobda mablag yoq')">O'tkazish</button>
         </div>
     </div>
 
-    <!-- 3. TO'LOV SAHIFASI -->
+    <!-- 3. TO'LOV -->
     <div id="page-tolov" class="page">
         <div class="sec-title">To'lovlar</div>
         <div class="grid" style="grid-template-columns:repeat(2,1fr);">
@@ -157,33 +122,67 @@
         </div>
     </div>
 
-    <!-- 4. MONITORING SAHIFASI -->
+    <!-- 4. MONITORING -->
     <div id="page-monitoring" class="page">
         <div class="sec-title">Monitoring</div>
         <div class="card"><div class="c-title">Hisob ochildi: 0 UZS</div></div>
     </div>
 
-    <!-- 5. XIZMATLAR SAHIFASI -->
+    <!-- 5. XIZMATLAR -->
     <div id="page-xizmatlar" class="page">
         <div class="sec-title">Xizmatlar</div>
-        <div class="card" onclick="go('kredit')" style="cursor:pointer;"><div class="c-title">Onlayn Kredit (1-10 mln)</div></div>
+        <div class="card" onclick="go('kredit')" style="cursor:pointer;"><div class="c-title">Onlayn Kredit (1-10 mln UZS)</div></div>
     </div>
 
-    <!-- ONLAYN KREDIT ARIZA SAHIFASI -->
+    <!-- REAL KREDIT ARIZA SAHIFASI -->
     <div id="page-kredit" class="page">
-        <div class="sec-title">Onlayn Kredit (1-10 mln UZS)</div>
+        <div class="sec-title">Onlayn Mikroqarz (1 mln - 10 mln UZS)</div>
         <div class="card">
-            <div class="fg"><label>Kredit summasi (1,000,000 - 10,000,000 UZS):</label><input type="number" id="kSum" class="fc" placeholder="Masalan: 5000000"></div>
-            <div class="fg"><label>Kredit maqsadi:</label><input type="text" class="fc" placeholder="Masalan: Shaxsiy ehtiyoj uchun"></div>
-            <div class="fg"><label>Telefon raqam:</label><input type="tel" class="fc" placeholder="+998 90 123 45 67"></div>
-            <div class="fg"><label>Qaysi kartaga tushishi kerak:</label><input type="text" class="fc" placeholder="8600 ... ... ..."></div>
-            <div class="fg"><label>Pasport rasmini tanlang (Galereyadan):</label><input type="file" accept="image/*" class="fc"></div>
-            <button class="btn" style="width:100%;padding:10px;margin-bottom:10px;" onclick="alert('🔄 Yuz skanerlanmoqda...\n✅ Shaxsingiz tasdiqlandi!')">📸 Yuzni Skanerlash (Face ID)</button>
-            <button class="btn prim" style="width:100%;padding:12px;" onclick="submitCredit()">Kreditni Tasdiqlash</button>
+            <div class="fg">
+                <label>Kredit summasi (UZS):</label>
+                <input type="number" id="kSum" class="fc" placeholder="1,000,000 dan 10,000,000 gacha" min="1000000" max="10000000">
+            </div>
+            <div class="fg">
+                <label>Kredit muddati:</label>
+                <select id="kTerm" class="fc">
+                    <option value="6">6 oy (Yillik 26%)</option>
+                    <option value="12" selected>12 oy (Yillik 26%)</option>
+                    <option value="24">24 oy (Yillik 26%)</option>
+                </select>
+            </div>
+            <div class="fg">
+                <label>Kredit maqsadi:</label>
+                <input type="text" class="fc" placeholder="Shaxsiy ehtiyoj / Ta'mirlash">
+            </div>
+            <div class="fg">
+                <label>Pasport seriya va raqami:</label>
+                <input type="text" class="fc" placeholder="AA 1234567" style="text-transform: uppercase;">
+            </div>
+            <div class="fg">
+                <label>JShShIR (PINFL - 14 ta raqam):</label>
+                <input type="text" class="fc" placeholder="3010195..." maxlength="14">
+            </div>
+            <div class="fg">
+                <label>Oylik rasmiy daromad (UZS):</label>
+                <input type="number" class="fc" placeholder="Masalan: 4000000">
+            </div>
+            <div class="fg">
+                <label>Telefon raqam:</label>
+                <input type="tel" class="fc" placeholder="+998 90 123 45 67">
+            </div>
+            <div class="fg">
+                <label>Mablagʻ tushadigan karta raqami:</label>
+                <input type="text" class="fc" placeholder="8600 0000 0000 0000">
+            </div>
+            <div class="fg">
+                <label>Pasport nusxasi (Old va Orqa qismi):</label>
+                <input type="file" accept="image/*" class="fc" style="padding:8px;">
+            </div>
+            <button class="btn prim" style="width:100%;margin-top:10px;" onclick="submitCredit()">Kreditni Rasmiylashtirish</button>
         </div>
     </div>
 
-    <!-- PASTKI MENYU BAR -->
+    <!-- NAV BAR -->
     <div class="nav">
         <div class="n-it active" id="n-asosiy" onclick="go('asosiy')"><div class="n-ic">T</div><div class="n-lb">Asosiy</div></div>
         <div class="n-it" id="n-otkazmalar" onclick="go('otkazmalar')"><div class="n-ic">TR</div><div class="n-lb">O'tkazma</div></div>
@@ -201,25 +200,13 @@
             box.innerHTML = "✔";
             setTimeout(() => {
                 document.getElementById('captcha-screen').style.display = 'none';
-            }, 600);
+            }, 500);
         }
 
         function submitCredit() {
             let sum = document.getElementById('kSum').value;
             if(!sum || sum < 1000000 || sum > 10000000) {
-                alert('❌ Xatolik: Summa 1,000,000 dan 10,000,000 UZS gacha boʻlishi kerak!');
+                alert('❌ Xatolik: Kredit summasi 1,000,000 dan 10,000,000 UZS gacha boʻlishi shart!');
                 return;
             }
-            alert('🎉 Tabriklaymiz! Kredit arizangiz qabul qilindi va kartangizga oʻtkazib berildi.');
-            go('asosiy');
-        }
-
-        function go(name){
-            document.querySelectorAll('.page').forEach(e=>e.classList.remove('active'));
-            document.getElementById('page-'+name).classList.add('active');
-            document.querySelectorAll('.n-it').forEach(e=>e.classList.remove('active'));
-            let e=document.getElementById('n-'+name);if(e)e.classList.add('active');
-        }
-    </script>
-</body>
-</html>
+            alert('🎉 Tab
