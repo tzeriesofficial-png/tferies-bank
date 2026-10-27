@@ -9,7 +9,6 @@
         *{box-sizing:border-box;margin:0;padding:0;}
         body{background-color:#08140e;color:#fff;font-family:sans-serif;padding-bottom:80px;}
         
-        /* Bank Interfeysi */
         .header{padding:20px;display:flex;justify-content:space-between;align-items:center;}
         .brand{color:#d4af37;font-size:20px;font-weight:bold;letter-spacing:1px;}
         .prof{width:36px;height:36px;background:#133321;border:1px solid #d4af37;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#d4af37;font-weight:bold;}
@@ -23,10 +22,10 @@
         .page{display:none;padding:20px 16px;}
         .page.active{display:block;}
         .sec-title{font-size:16px;font-weight:bold;color:#d4af37;margin-bottom:15px;}
-        .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px;}
-        .s-item{background:#133321;border:1px solid #1a442d;border-radius:14px;padding:14px 8px;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;}
-        .s-ic{font-size:16px;margin-bottom:6px;color:#d4af37;font-weight:bold;}
-        .s-tx{font-size:11px;color:#cbd5d0;}
+        .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:10px;}
+        .s-item{background:#133321;border:1px solid #1a442d;border-radius:14px;padding:16px;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;}
+        .s-ic{font-size:22px;margin-bottom:8px;color:#d4af37;font-weight:bold;}
+        .s-tx{font-size:13px;color:#cbd5d0;font-weight:600;}
         .fg{margin-bottom:14px;}
         .fg label{font-size:12px;color:#d4af37;display:block;margin-bottom:6px;font-weight:600;}
         .fc{width:100%;padding:12px;background:#08140e;border:1px solid #1a442d;border-radius:10px;color:#fff;font-size:14px;outline:none;}
@@ -47,7 +46,7 @@
     </div>
 
     <!-- 1. ASOSIY -->
-    <div id="page-asosiy" class="page active page">
+    <div id="page-asosiy" class="page active">
         <div class="card-con"><div class="card">
             <div class="c-title">Asosiy Hisob</div>
             <div class="sum">0 UZS</div>
@@ -58,11 +57,11 @@
         </div></div>
         <div style="padding:0 16px;margin-top:25px;">
             <div class="sec-title">Tezkor xizmatlar</div>
-            <div class="grid">
-                <div class="s-item" onclick="go('otkazmalar')"><div class="s-ic">TR</div><div class="s-tx">O'tkazma</div></div>
-                <div class="s-item" onclick="go('tolov')"><div class="s-ic">TEL</div><div class="s-tx">Aloqa</div></div>
-                <div class="s-item" onclick="go('tolov')"><div class="s-ic">KOM</div><div class="s-tx">Kommunal</div></div>
-                <div class="s-item" onclick="go('kredit')"><div class="s-ic">KRED</div><div class="s-tx">Kredit</div></div>
+            <div class="grid" style="grid-template-columns:repeat(4,1fr);">
+                <div class="s-item" style="padding:14px 8px;" onclick="go('otkazmalar')"><div class="s-ic">TR</div><div class="s-tx" style="font-size:11px;">O'tkazma</div></div>
+                <div class="s-item" style="padding:14px 8px;" onclick="go('tolov')"><div class="s-ic">TEL</div><div class="s-tx" style="font-size:11px;">Aloqa</div></div>
+                <div class="s-item" style="padding:14px 8px;" onclick="go('tolov')"><div class="s-ic">KOM</div><div class="s-tx" style="font-size:11px;">Kommunal</div></div>
+                <div class="s-item" style="padding:14px 8px;" onclick="go('kredit')"><div class="s-ic">KRED</div><div class="s-tx" style="font-size:11px;">Kredit</div></div>
             </div>
         </div>
     </div>
@@ -77,12 +76,72 @@
         </div>
     </div>
 
-    <!-- 3. TO'LOV -->
+    <!-- 3. TO'LOVILAR ASOSIY MENYusi -->
     <div id="page-tolov" class="page">
         <div class="sec-title">To'lovlar</div>
-        <div class="grid" style="grid-template-columns:repeat(2,1fr);">
-            <div class="s-item" onclick="alert('Mobil aloqa toʻlovi')"><div class="s-ic">ALOQA</div><div class="s-tx">Mobil</div></div>
-            <div class="s-item" onclick="alert('Kommunal toʻlov')"><div class="s-ic">KOM</div><div class="s-tx">Kommunal</div></div>
+        <div class="grid">
+            <div class="s-item" onclick="go('mobil')">
+                <div class="s-ic">📱</div>
+                <div class="s-tx">Mobil aloqa</div>
+            </div>
+            <div class="s-item" onclick="go('kommunal')">
+                <div class="s-ic">🏠</div>
+                <div class="s-tx">Kommunal</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOBIL ALOQA TO'LOVI SAHIFASI -->
+    <div id="page-mobil" class="page">
+        <div class="sec-title">📲 Mobil aloqa to'lovi</div>
+        <div class="card">
+            <div class="fg">
+                <label>Operatorni tanlang:</label>
+                <select class="fc">
+                    <option>Ucell</option>
+                    <option>Beeline Uzbekistan</option>
+                    <option>Mobiuz</option>
+                    <option>Uzmobile (Ums)</option>
+                    <option>Humans</option>
+                </select>
+            </div>
+            <div class="fg">
+                <label>Telefon raqam:</label>
+                <input type="tel" class="fc" placeholder="+998 90 123 45 67">
+            </div>
+            <div class="fg">
+                <label>To'lov summasi (UZS):</label>
+                <input type="number" id="mSum" class="fc" placeholder="10000">
+            </div>
+            <button class="btn prim" style="width:100%;margin-top:10px;" onclick="alert('❌ Xatolik: Hisobda yetarli mablagʻ mavjud emas!')">To'lov qilish</button>
+            <button class="btn" style="width:100%;margin-top:10px;" onclick="go('tolov')">Orqaga</button>
+        </div>
+    </div>
+
+    <!-- KOMMUNAL TO'LOV SAHIFASI -->
+    <div id="page-kommunal" class="page">
+        <div class="sec-title">🏠 Kommunal to'lovlar</div>
+        <div class="card">
+            <div class="fg">
+                <label>Xizmat turini tanlang:</label>
+                <select class="fc" id="kType" onchange="changeKommunalLabel()">
+                    <option value="Elektr energiyasi">⚡ Elektr energiyasi (Hududiy elektr tarmoqlari)</option>
+                    <option value="Tabiiy gaz">🔥 Tabiiy gaz (Hududgazta'minot)</option>
+                    <option value="Ichimlik suvi">💧 Ichimlik suvi va oqova</option>
+                    <option value="Issiqlik ta'minoti">🌡️ Issiqlik ta'minoti (Veolia Energy)</option>
+                    <option value="Chiqindi to'lovi">🗑️ Maishiy chiqindi (Maxsustrans)</option>
+                </select>
+            </div>
+            <div class="fg">
+                <label id="accountLabel">Shaxsiy hisob raqam (10 ta raqam):</label>
+                <input type="text" class="fc" placeholder="Hisob raqamni kiriting">
+            </div>
+            <div class="fg">
+                <label>To'lov summasi (UZS):</label>
+                <input type="number" class="fc" placeholder="Masalan: 50000">
+            </div>
+            <button class="btn prim" style="width:100%;margin-top:10px;" onclick="alert('❌ Xatolik: Hisobda yetarli mablagʻ mavjud emas!')">To'lov qilish</button>
+            <button class="btn" style="width:100%;margin-top:10px;" onclick="go('tolov')">Orqaga</button>
         </div>
     </div>
 
@@ -98,7 +157,7 @@
         <div class="card" onclick="go('kredit')" style="cursor:pointer;"><div class="c-title">Onlayn Kredit (1-10 mln UZS)</div></div>
     </div>
 
-    <!-- REAL KREDIT ARIZA SAHIFASI -->
+    <!-- KREDIT ARIZA SAHIFASI -->
     <div id="page-kredit" class="page">
         <div class="sec-title">Onlayn Mikroqarz (1 mln - 10 mln UZS)</div>
         <div class="card">
@@ -159,6 +218,15 @@
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
 
+        function changeKommunalLabel() {
+            let type = document.getElementById('kType').value;
+            let label = document.getElementById('accountLabel');
+            if(type === 'Elektr energiyasi') label.innerText = "10 xonali abonent raqami (ID):";
+            else if(type === 'Tabiiy gaz') label.innerText = "Gaz hisob raqami:";
+            else if(type === 'Ichimlik suvi') label.innerText = "Suv shaxsiy hisob raqami:";
+            else label.innerText = "Shaxsiy hisob raqam:";
+        }
+
         function submitCredit() {
             let sum = document.getElementById('kSum').value;
             if(!sum || sum < 1000000 || sum > 10000000) {
@@ -173,7 +241,11 @@
             document.querySelectorAll('.page').forEach(e=>e.classList.remove('active'));
             document.getElementById('page-'+name).classList.add('active');
             document.querySelectorAll('.n-it').forEach(e=>e.classList.remove('active'));
-            let e=document.getElementById('n-'+name);if(e)e.classList.add('active');
+            let e=document.getElementById('n-'+name);
+            if(e) e.classList.add('active');
+            else if(name === 'mobil' || name === 'kommunal') {
+                document.getElementById('n-tolov').classList.add('active');
+            }
         }
     </script>
 </body>
