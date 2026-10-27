@@ -7,7 +7,7 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         *{box-sizing:border-box;margin:0;padding:0;}
-        body{background-color:#08140e;color:#fff;font-family:sans-serif;padding-bottom:80px;}
+        body{background-color:#08140e;color:#fff;font-family:sans-serif;padding-bottom:90px;}
         
         .header{padding:20px;display:flex;justify-content:space-between;align-items:center;}
         .brand{color:#d4af37;font-size:20px;font-weight:bold;letter-spacing:1px;}
@@ -22,10 +22,45 @@
         .page{display:none;padding:20px 16px;}
         .page.active{display:block;}
         .sec-title{font-size:16px;font-weight:bold;color:#d4af37;margin-bottom:15px;}
-        .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:10px;}
-        .s-item{background:#133321;border:1px solid #1a442d;border-radius:14px;padding:16px;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;}
-        .s-ic{font-size:22px;margin-bottom:8px;color:#d4af37;font-weight:bold;}
-        .s-tx{font-size:13px;color:#cbd5d0;font-weight:600;}
+        .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:15px;}
+        .s-item{background:#133321;border:1px solid #1a442d;border-radius:14px;padding:14px 8px;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;}
+        .s-ic{font-size:16px;margin-bottom:6px;color:#d4af37;font-weight:bold;}
+        .s-tx{font-size:11px;color:#cbd5d0;}
+        
+        /* Video Bloki Dizayni */
+        .video-container {
+            margin: 20px 16px 0 16px;
+            background: #133321;
+            border: 1px solid #d4af37;
+            border-radius: 16px;
+            overflow: hidden;
+            padding: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+        .video-title {
+            font-size: 13px;
+            color: #d4af37;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .video-frame-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #000;
+        }
+        .video-frame-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         .fg{margin-bottom:14px;}
         .fg label{font-size:12px;color:#d4af37;display:block;margin-bottom:6px;font-weight:600;}
         .fc{width:100%;padding:12px;background:#08140e;border:1px solid #1a442d;border-radius:10px;color:#fff;font-size:14px;outline:none;}
@@ -55,13 +90,22 @@
                 <button class="btn" onclick="alert('Hisobda mablag yoq')">To'ldirish</button>
             </div>
         </div></div>
-        <div style="padding:0 16px;margin-top:25px;">
+
+        <div style="padding:0 16px;margin-top:20px;">
             <div class="sec-title">Tezkor xizmatlar</div>
-            <div class="grid" style="grid-template-columns:repeat(4,1fr);">
-                <div class="s-item" style="padding:14px 8px;" onclick="go('otkazmalar')"><div class="s-ic">TR</div><div class="s-tx" style="font-size:11px;">O'tkazma</div></div>
-                <div class="s-item" style="padding:14px 8px;" onclick="go('tolov')"><div class="s-ic">TEL</div><div class="s-tx" style="font-size:11px;">Aloqa</div></div>
-                <div class="s-item" style="padding:14px 8px;" onclick="go('tolov')"><div class="s-ic">KOM</div><div class="s-tx" style="font-size:11px;">Kommunal</div></div>
-                <div class="s-item" style="padding:14px 8px;" onclick="go('kredit')"><div class="s-ic">KRED</div><div class="s-tx" style="font-size:11px;">Kredit</div></div>
+            <div class="grid">
+                <div class="s-item" onclick="go('otkazmalar')"><div class="s-ic">TR</div><div class="s-tx">O'tkazma</div></div>
+                <div class="s-item" onclick="go('tolov')"><div class="s-ic">TEL</div><div class="s-tx">Aloqa</div></div>
+                <div class="s-item" onclick="go('tolov')"><div class="s-ic">KOM</div><div class="s-tx">Kommunal</div></div>
+                <div class="s-item" onclick="go('kredit')"><div class="s-ic">KRED</div><div class="s-tx">Kredit</div></div>
+            </div>
+        </div>
+
+        <!-- SIZ SO'RAGAN BO'SH JOYDAGI YOUTUBE VIDEO -->
+        <div class="video-container">
+            <div class="video-title">💡 Bank yangiliklari va qo'llanma</div>
+            <div class="video-frame-wrapper">
+                <iframe src="https://www.youtube.com/embed/eKwBnVGwXLs" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -76,22 +120,16 @@
         </div>
     </div>
 
-    <!-- 3. TO'LOVILAR ASOSIY MENYusi -->
+    <!-- 3. TO'LOVILAR -->
     <div id="page-tolov" class="page">
         <div class="sec-title">To'lovlar</div>
-        <div class="grid">
-            <div class="s-item" onclick="go('mobil')">
-                <div class="s-ic">📱</div>
-                <div class="s-tx">Mobil aloqa</div>
-            </div>
-            <div class="s-item" onclick="go('kommunal')">
-                <div class="s-ic">🏠</div>
-                <div class="s-tx">Kommunal</div>
-            </div>
+        <div class="grid" style="grid-template-columns:repeat(2,1fr);">
+            <div class="s-item" style="padding:16px;" onclick="go('mobil')"><div class="s-ic">📱</div><div class="s-tx">Mobil aloqa</div></div>
+            <div class="s-item" style="padding:16px;" onclick="go('kommunal')"><div class="s-ic">🏠</div><div class="s-tx">Kommunal</div></div>
         </div>
     </div>
 
-    <!-- MOBIL ALOQA TO'LOVI SAHIFASI -->
+    <!-- MOBIL ALOQA TO'LOVI -->
     <div id="page-mobil" class="page">
         <div class="sec-title">📲 Mobil aloqa to'lovi</div>
         <div class="card">
@@ -111,29 +149,29 @@
             </div>
             <div class="fg">
                 <label>To'lov summasi (UZS):</label>
-                <input type="number" id="mSum" class="fc" placeholder="10000">
+                <input type="number" class="fc" placeholder="10000">
             </div>
             <button class="btn prim" style="width:100%;margin-top:10px;" onclick="alert('❌ Xatolik: Hisobda yetarli mablagʻ mavjud emas!')">To'lov qilish</button>
             <button class="btn" style="width:100%;margin-top:10px;" onclick="go('tolov')">Orqaga</button>
         </div>
     </div>
 
-    <!-- KOMMUNAL TO'LOV SAHIFASI -->
+    <!-- KOMMUNAL TO'LOV -->
     <div id="page-kommunal" class="page">
         <div class="sec-title">🏠 Kommunal to'lovlar</div>
         <div class="card">
             <div class="fg">
                 <label>Xizmat turini tanlang:</label>
                 <select class="fc" id="kType" onchange="changeKommunalLabel()">
-                    <option value="Elektr energiyasi">⚡ Elektr energiyasi (Hududiy elektr tarmoqlari)</option>
-                    <option value="Tabiiy gaz">🔥 Tabiiy gaz (Hududgazta'minot)</option>
-                    <option value="Ichimlik suvi">💧 Ichimlik suvi va oqova</option>
-                    <option value="Issiqlik ta'minoti">🌡️ Issiqlik ta'minoti (Veolia Energy)</option>
-                    <option value="Chiqindi to'lovi">🗑️ Maishiy chiqindi (Maxsustrans)</option>
+                    <option value="Elektr energiyasi">⚡ Elektr energiyasi</option>
+                    <option value="Tabiiy gaz">🔥 Tabiiy gaz</option>
+                    <option value="Ichimlik suvi">💧 Ichimlik suvi</option>
+                    <option value="Issiqlik ta'minoti">🌡️ Issiqlik ta'minoti</option>
+                    <option value="Chiqindi to'lovi">🗑️ Maishiy chiqindi</option>
                 </select>
             </div>
             <div class="fg">
-                <label id="accountLabel">Shaxsiy hisob raqam (10 ta raqam):</label>
+                <label id="accountLabel">Shaxsiy hisob raqam:</label>
                 <input type="text" class="fc" placeholder="Hisob raqamni kiriting">
             </div>
             <div class="fg">
@@ -163,44 +201,23 @@
         <div class="card">
             <div class="fg">
                 <label>Kredit summasi (UZS):</label>
-                <input type="number" id="kSum" class="fc" placeholder="1,000,000 dan 10,000,000 gacha" min="1000000" max="10000000">
+                <input type="number" id="kSum" class="fc" placeholder="1,000,000 - 10,000,000" min="1000000" max="10000000">
             </div>
             <div class="fg">
                 <label>Kredit muddati:</label>
-                <select id="kTerm" class="fc">
-                    <option value="6">6 oy (Yillik 26%)</option>
-                    <option value="12" selected>12 oy (Yillik 26%)</option>
-                    <option value="24">24 oy (Yillik 26%)</option>
+                <select class="fc">
+                    <option value="6">6 oy (26%)</option>
+                    <option value="12" selected>12 oy (26%)</option>
+                    <option value="24">24 oy (26%)</option>
                 </select>
             </div>
-            <div class="fg">
-                <label>Kredit maqsadi:</label>
-                <input type="text" class="fc" placeholder="Shaxsiy ehtiyoj / Ta'mirlash">
-            </div>
-            <div class="fg">
-                <label>Pasport seriya va raqami:</label>
-                <input type="text" class="fc" placeholder="AA 1234567" style="text-transform: uppercase;">
-            </div>
-            <div class="fg">
-                <label>JShShIR (PINFL - 14 ta raqam):</label>
-                <input type="text" class="fc" placeholder="3010195..." maxlength="14">
-            </div>
-            <div class="fg">
-                <label>Oylik rasmiy daromad (UZS):</label>
-                <input type="number" class="fc" placeholder="Masalan: 4000000">
-            </div>
-            <div class="fg">
-                <label>Telefon raqam:</label>
-                <input type="tel" class="fc" placeholder="+998 90 123 45 67">
-            </div>
-            <div class="fg">
-                <label>Mablagʻ tushadigan karta raqami:</label>
-                <input type="text" class="fc" placeholder="8600 0000 0000 0000">
-            </div>
-            <div class="fg">
-                <label>Pasport nusxasi (Old va Orqa qismi):</label>
-                <input type="file" accept="image/*" class="fc" style="padding:8px;">
-            </div>
+            <div class="fg"><label>Kredit maqsadi:</label><input type="text" class="fc" placeholder="Shaxsiy ehtiyoj"></div>
+            <div class="fg"><label>Pasport seriya va raqami:</label><input type="text" class="fc" placeholder="AA 1234567"></div>
+            <div class="fg"><label>JShShIR (PINFL - 14 ta raqam):</label><input type="text" class="fc" placeholder="3010195..." maxlength="14"></div>
+            <div class="fg"><label>Oylik rasmiy daromad:</label><input type="number" class="fc" placeholder="4000000"></div>
+            <div class="fg"><label>Telefon raqam:</label><input type="tel" class="fc" placeholder="+998 90 123 45 67"></div>
+            <div class="fg"><label>Karta raqami:</label><input type="text" class="fc" placeholder="8600 ..."></div>
+            <div class="fg"><label>Pasport nusxasi:</label><input type="file" accept="image/*" class="fc" style="padding:8px;"></div>
             <button class="btn prim" style="width:100%;margin-top:10px;" onclick="submitCredit()">Kreditni Rasmiylashtirish</button>
         </div>
     </div>
@@ -230,10 +247,10 @@
         function submitCredit() {
             let sum = document.getElementById('kSum').value;
             if(!sum || sum < 1000000 || sum > 10000000) {
-                alert('❌ Xatolik: Kredit summasi 1,000,000 dan 10,000,000 UZS gacha boʻlishi shart!');
+                alert('❌ Xatolik: Summa 1,000,000 dan 10,000,000 UZS gacha boʻlishi kerak!');
                 return;
             }
-            alert('🎉 Tabriklaymiz! Kredit arizangiz skoring tekshiruvidan muvaffaqiyatli oʻtdi va koʻrsatilgan kartaga pul oʻtkazib berildi.');
+            alert('🎉 Tabriklaymiz! Kredit arizangiz qabul qilindi.');
             go('asosiy');
         }
 
