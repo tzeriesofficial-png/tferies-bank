@@ -11,6 +11,7 @@
             margin: 0;
             padding: 0;
             user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
         body {
             background-color: #08140e;
@@ -20,7 +21,7 @@
             min-height: 100vh;
         }
 
-        /* --- IPHONE PIN-KOD EKRANI --- */
+        /* --- PIN-KOD EKRANI --- */
         #pin-screen {
             position: fixed;
             top: 0;
@@ -28,7 +29,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(180deg, #0b1d13 0%, #040906 100%);
-            z-index: 9999;
+            z-index: 99999;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -51,7 +52,6 @@
             text-align: center;
         }
 
-        /* PIN Dot (Nuqtalar) */
         .pin-dots {
             display: flex;
             gap: 16px;
@@ -71,11 +71,10 @@
             box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
         }
 
-        /* Keyboard (Klaviatura) */
         .keypad {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px 25px;
+            gap: 18px 22px;
             width: 100%;
             max-width: 280px;
         }
@@ -84,8 +83,8 @@
             width: 70px;
             height: 70px;
             border-radius: 50%;
-            background: rgba(19, 51, 33, 0.6);
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: rgba(19, 51, 33, 0.8);
+            border: 1px solid rgba(212, 175, 55, 0.4);
             color: #ffffff;
             font-size: 26px;
             font-weight: 600;
@@ -94,24 +93,25 @@
             justify-content: center;
             cursor: pointer;
             margin: 0 auto;
-            transition: background 0.15s, transform 0.1s;
+            outline: none;
+            transition: background 0.1s, transform 0.1s;
         }
 
         .key:active {
             background: #d4af37;
             color: #08140e;
-            transform: scale(0.92);
+            transform: scale(0.90);
         }
 
         .key-action {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: bold;
             color: #d4af37;
-            background: transparent;
-            border: none;
+            background: rgba(19, 51, 33, 0.4);
+            border: 1px solid rgba(212, 175, 55, 0.2);
         }
 
-        /* --- BANK ILOVASI DASTURI --- */
+        /* --- BANK INTERFEYSI --- */
         .header {
             padding: 20px 20px 10px 20px;
             display: flex;
@@ -304,7 +304,7 @@
 </head>
 <body>
 
-    <!-- IPHONE STYLE PIN-KOD EKRANI -->
+    <!-- PIN-KOD EKRANI -->
     <div id="pin-screen">
         <div class="pin-title" id="pin-title-text">PIN-KOD O'RNATING</div>
         <div class="pin-subtitle" id="pin-sub-text">Yangi 4 xonali PIN-kod o'ylab toping</div>
@@ -317,28 +317,27 @@
         </div>
 
         <div class="keypad">
-            <div class="key" onclick="pressKey('1')">1</div>
-            <div class="key" onclick="pressKey('2')">2</div>
-            <div class="key" onclick="pressKey('3')">3</div>
-            <div class="key" onclick="pressKey('4')">4</div>
-            <div class="key" onclick="pressKey('5')">5</div>
-            <div class="key" onclick="pressKey('6')">6</div>
-            <div class="key" onclick="pressKey('7')">7</div>
-            <div class="key" onclick="pressKey('8')">8</div>
-            <div class="key" onclick="pressKey('9')">9</div>
-            <div class="key key-action" onclick="resetPinInput()">Qayta</div>
-            <div class="key" onclick="pressKey('0')">0</div>
-            <div class="key key-action" onclick="deleteKey()">⌫</div>
+            <div class="key" ontouchend="pressKey('1')" onclick="pressKey('1')">1</div>
+            <div class="key" ontouchend="pressKey('2')" onclick="pressKey('2')">2</div>
+            <div class="key" ontouchend="pressKey('3')" onclick="pressKey('3')">3</div>
+            <div class="key" ontouchend="pressKey('4')" onclick="pressKey('4')">4</div>
+            <div class="key" ontouchend="pressKey('5')" onclick="pressKey('5')">5</div>
+            <div class="key" ontouchend="pressKey('6')" onclick="pressKey('6')">6</div>
+            <div class="key" ontouchend="pressKey('7')" onclick="pressKey('7')">7</div>
+            <div class="key" ontouchend="pressKey('8')" onclick="pressKey('8')">8</div>
+            <div class="key" ontouchend="pressKey('9')" onclick="pressKey('9')">9</div>
+            <div class="key key-action" ontouchend="resetPinInput()" onclick="resetPinInput()">Qayta</div>
+            <div class="key" ontouchend="pressKey('0')" onclick="pressKey('0')">0</div>
+            <div class="key key-action" ontouchend="deleteKey()" onclick="deleteKey()">⌫</div>
         </div>
     </div>
 
-    <!-- ASOSIY BANK INTERFEYSI -->
+    <!-- BANK INTERFEYSI -->
     <div class="header">
         <div class="brand">TFERIES BANK</div>
         <div class="profile-icon">T</div>
     </div>
 
-    <!-- 1. ASOSIY SAHIFA -->
     <div id="page-asosiy" class="page-content active">
         <div class="card-container">
             <div class="card">
@@ -374,7 +373,6 @@
         </div>
     </div>
 
-    <!-- 2. O'TKAZMALAR -->
     <div id="page-otkazmalar" class="page-content">
         <div class="section-title">Pul o'tkazmalari</div>
         <div class="card">
@@ -385,7 +383,6 @@
         </div>
     </div>
 
-    <!-- 3. TO'LOV -->
     <div id="page-tolov" class="page-content">
         <div class="section-title">To'lovlar</div>
         <div class="services-grid" style="grid-template-columns: repeat(2, 1fr); gap: 15px;">
@@ -395,18 +392,4 @@
             </div>
             <div class="service-item" style="padding: 20px;" onclick="alert('Kommunal')">
                 <div class="service-icon">KOMMUNAL</div>
-                <div class="service-text" style="font-size: 13px; margin-top: 5px;">Kommunal</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 4. MONITORING -->
-    <div id="page-monitoring" class="page-content">
-        <div class="section-title">Tranzaksiyalar tarixi</div>
-        <div class="transactions-list">
-            <div class="tx-item">
-                <div class="tx-info">
-                    <h4>Hisob ochildi</h4>
-                    <span>Bugun</span>
-                </div>
-                <div class="tx-amount" style="color: #8b9a90;">
+                <div class="service-text" style="font-size: 13px; margin-top: 
