@@ -11,10 +11,18 @@
             color: #ffffff;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: space-between;
+        }
+        .content {
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 20px;
+            flex: 1;
         }
         .card {
             background: linear-gradient(135deg, #133321, #0b1d13);
@@ -24,7 +32,7 @@
             width: 90%;
             max-width: 350px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-            margin-top: 30px;
+            margin-top: 20px;
         }
         .brand {
             color: #d4af37;
@@ -34,41 +42,4 @@
             text-align: center;
             margin-bottom: 15px;
         }
-        .balance-title {
-            font-size: 14px;
-            color: #a0b0a5;
-        }
-        .balance-amount {
-            font-size: 28px;
-            font-weight: bold;
-            color: #ffffff;
-            margin: 5px 0 20px 0;
-        }
-        .btn {
-            background: linear-gradient(45deg, #d4af37, #f3e5ab);
-            color: #0b1d13;
-            border: none;
-            padding: 12px 24px;
-            font-weight: bold;
-            border-radius: 8px;
-            width: 100%;
-            cursor: pointer;
-            font-size: 16px;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="card">
-        <div class="brand">T F E R I E S</div>
-        <div class="balance-title">Asosiy Hisob:</div>
-        <div class="balance-amount">5 000 000 UZS</div>
-        <button class="btn" onclick="tg.close()">Yopish</button>
-    </div>
-
-    <script>
-        const tg = window.Telegram.WebApp;
-        tg.expand();
-    </script>
-</body>
-</html>
+        .
