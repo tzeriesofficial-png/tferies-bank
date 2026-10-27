@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tferies Bank</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            background-color: #0b1d13;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .card {
+            background: linear-gradient(135deg, #133321, #0b1d13);
+            border: 1px solid #d4af37;
+            border-radius: 16px;
+            padding: 20px;
+            width: 90%;
+            max-width: 350px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            margin-top: 30px;
+        }
+        .brand {
+            color: #d4af37;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .balance-title {
+            font-size: 14px;
+            color: #a0b0a5;
+        }
+        .balance-amount {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+            margin: 5px 0 20px 0;
+        }
+        .btn {
+            background: linear-gradient(45deg, #d4af37, #f3e5ab);
+            color: #0b1d13;
+            border: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 8px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="brand">T F E R I E S</div>
+        <div class="balance-title">Asosiy Hisob:</div>
+        <div class="balance-amount">5 000 000 UZS</div>
+        <button class="btn" onclick="tg.close()">Yopish</button>
+    </div>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+    </script>
+</body>
+</html>
