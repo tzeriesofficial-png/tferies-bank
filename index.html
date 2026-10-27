@@ -2,7 +2,7 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tferies Bank</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
@@ -10,14 +10,321 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            user-select: none;
         }
         body {
             background-color: #08140e;
             color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: sans-serif;
             padding-bottom: 80px;
-            min-height: 100vh;
         }
         .header {
-            padding: 20px 20px 
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .brand {
+            color: #d4af37;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        .profile-icon {
+            width: 36px;
+            height: 36px;
+            background: #133321;
+            border: 1px solid #d4af37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d4af37;
+            font-weight: bold;
+        }
+        .card-container {
+            padding: 0 16px;
+            margin-top: 10px;
+        }
+        .card {
+            background: linear-gradient(135deg, #133321, #0b1d13);
+            border: 1px solid #d4af37;
+            border-radius: 20px;
+            padding: 24px;
+        }
+        .card-title {
+            font-size: 13px;
+            color: #8b9a90;
+            text-transform: uppercase;
+        }
+        .balance-amount {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ffffff;
+            margin: 8px 0 20px 0;
+        }
+        .card-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .card-btn {
+            flex: 1;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .card-btn.primary {
+            background: #d4af37;
+            color: #08140e;
+            border: none;
+        }
+        .page-content {
+            display: none;
+            padding: 20px 16px;
+        }
+        .page-content.active {
+            display: block;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .service-item {
+            background: #133321;
+            border: 1px solid #1a442d;
+            border-radius: 14px;
+            padding: 14px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+        }
+        .service-icon {
+            font-size: 20px;
+            margin-bottom: 6px;
+            color: #d4af37;
+            font-weight: bold;
+        }
+        .service-text {
+            font-size: 11px;
+            color: #cbd5d0;
+        }
+        .transactions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .tx-item {
+            background: #133321;
+            border-radius: 12px;
+            padding: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #1a442d;
+        }
+        .tx-info h4 {
+            font-size: 14px;
+            color: #ffffff;
+            margin-bottom: 3px;
+        }
+        .tx-info span {
+            font-size: 11px;
+            color: #8b9a90;
+        }
+        .tx-amount {
+            font-size: 14px;
+            font-weight: bold;
+            color: #d4af37;
+        }
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            background-color: #060e0a;
+            border-top: 1px solid #133321;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #6c7c72;
+            flex: 1;
+            height: 100%;
+            cursor: pointer;
+        }
+        .nav-item.active {
+            color: #d4af37;
+        }
+        .nav-icon {
+            font-size: 16px;
+            margin-bottom: 3px;
+            font-weight: bold;
+        }
+        .nav-label {
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="brand">TFERIES BANK</div>
+        <div class="profile-icon">T</div>
+    </div>
+
+    <!-- 1. ASOSIY -->
+    <div id="page-asosiy" class="page-content active">
+        <div class="card-container">
+            <div class="card">
+                <div class="card-title">Asosiy Hisob</div>
+                <div class="balance-amount">0 UZS</div>
+                <div class="card-actions">
+                    <button class="card-btn primary" onclick="switchTab('otkazmalar')">O'tkazish</button>
+                    <button class="card-btn" onclick="alert('Hisobda mablag yetarli emas')">To'ldirish</button>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding: 0 16px; margin-top: 25px;">
+            <div class="section-title">Tezkor xizmatlar</div>
+            <div class="services-grid">
+                <div class="service-item" onclick="switchTab('otkazmalar')">
+                    <div class="service-icon"> TR </div>
+                    <div class="service-text">O'tkazma</div>
+                </div>
+                <div class="service-item" onclick="switchTab('tolov')">
+                    <div class="service-icon"> TEL </div>
+                    <div class="service-text">Aloqa</div>
+                </div>
+                <div class="service-item" onclick="switchTab('tolov')">
+                    <div class="service-icon"> KOM </div>
+                    <div class="service-text">Kommunal</div>
+                </div>
+                <div class="service-item" onclick="switchTab('xizmatlar')">
+                    <div class="service-icon"> KRED </div>
+                    <div class="service-text">Kredit</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. O'TKAZMALAR -->
+    <div id="page-otkazmalar" class="page-content">
+        <div class="section-title">Pul o'tkazmalari</div>
+        <div class="card">
+            <p style="font-size: 13px; color: #8b9a90; margin-bottom: 12px;">Karta raqami bo'yicha</p>
+            <input type="text" placeholder="8600 0000 0000 0000" style="width: 100%; padding: 12px; background: #08140e; border: 1px solid #1a442d; border-radius: 10px; color: #fff; margin-bottom: 12px;">
+            <input type="number" placeholder="Summa (UZS)" style="width: 100%; padding: 12px; background: #08140e; border: 1px solid #1a442d; border-radius: 10px; color: #fff; margin-bottom: 16px;">
+            <button class="card-btn primary" style="width: 100%; padding: 12px;" onclick="alert('Hisobda mablag yoq')">O'tkazish</button>
+        </div>
+    </div>
+
+    <!-- 3. TO'LOV -->
+    <div id="page-tolov" class="page-content">
+        <div class="section-title">To'lovlar</div>
+        <div class="services-grid" style="grid-template-columns: repeat(2, 1fr); gap: 15px;">
+            <div class="service-item" style="padding: 20px;" onclick="alert('Mobil aloqa')">
+                <div class="service-icon">ALOQA</div>
+                <div class="service-text" style="font-size: 13px; margin-top: 5px;">Mobil aloqa</div>
+            </div>
+            <div class="service-item" style="padding: 20px;" onclick="alert('Kommunal')">
+                <div class="service-icon">KOMMUNAL</div>
+                <div class="service-text" style="font-size: 13px; margin-top: 5px;">Kommunal</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. MONITORING -->
+    <div id="page-monitoring" class="page-content">
+        <div class="section-title">Tranzaksiyalar tarixi</div>
+        <div class="transactions-list">
+            <div class="tx-item">
+                <div class="tx-info">
+                    <h4>Hisob ochildi</h4>
+                    <span>Bugun</span>
+                </div>
+                <div class="tx-amount" style="color: #8b9a90;">0 UZS</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. XIZMATLAR -->
+    <div id="page-xizmatlar" class="page-content">
+        <div class="section-title">Bank xizmatlari</div>
+        <div class="transactions-list">
+            <div class="tx-item" onclick="alert('Kreditlar mavjud emas')">
+                <div class="tx-info">
+                    <h4>Onlayn Kredit</h4>
+                    <span>Imtiyozli</span>
+                </div>
+                <div class="tx-amount">&gt;</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pastki menyu -->
+    <div class="nav-bar">
+        <div class="nav-item active" id="tab-asosiy" onclick="switchTab('asosiy')">
+            <div class="nav-icon">T</div>
+            <div class="nav-label">Asosiy</div>
+        </div>
+        <div class="nav-item" id="tab-otkazmalar" onclick="switchTab('otkazmalar')">
+            <div class="nav-icon">TR</div>
+            <div class="nav-label">O'tkazma</div>
+        </div>
+        <div class="nav-item" id="tab-tolov" onclick="switchTab('tolov')">
+            <div class="nav-icon">PAY</div>
+            <div class="nav-label">To'lov</div>
+        </div>
+        <div class="nav-item" id="tab-monitoring" onclick="switchTab('monitoring')">
+            <div class="nav-icon">HISOB</div>
+            <div class="nav-label">Monitoring</div>
+        </div>
+        <div class="nav-item" id="tab-xizmatlar" onclick="switchTab('xizmatlar')">
+            <div class="nav-icon">MENU</div>
+            <div class="nav-label">Xizmatlar</div>
+        </div>
+    </div>
+
+    <script>
+        window.Telegram.WebApp.ready();
+        window.Telegram.WebApp.expand();
+
+        function switchTab(tabName) {
+            var pages = document.querySelectorAll('.page-content');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active');
+            }
+            document.getElementById('page-' + tabName).classList.add('active');
+
+            var items = document.querySelectorAll('.nav-item');
+            for (var j = 0; j < items.length; j++) {
+                items[j].classList.remove('active');
+            }
+            document.getElementById('tab-' + tabName).classList.add('active');
+        }
+    </script>
+</body>
+</html>
