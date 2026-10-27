@@ -24,7 +24,7 @@
         .captcha-checkbox {
             width: 28px; height: 28px; border: 2px solid #c1c1c1; border-radius: 3px;
             background: #f9f9f9; cursor: pointer; display: flex; align-items: center;
-            justify-content: center; font-size: 18px; color: #46a1ff; font-weight: bold;
+            justify-content: center; font-size: 18px; color: #1a73e8; font-weight: bold;
         }
         .captcha-text { font-size: 14px; font-weight: 500; color: #222; }
         .captcha-right { display: flex; flex-direction: column; align-items: center; }
@@ -64,9 +64,9 @@
 
     <!-- RE-CAPTCHA -->
     <div id="captcha-screen">
-        <div class="captcha-box">
+        <div class="captcha-box" id="captcha-box-click">
             <div class="captcha-left">
-                <div class="captcha-checkbox" id="chk-box" onclick="verifyCaptcha()"></div>
+                <div class="captcha-checkbox" id="chk-box"></div>
                 <div class="captcha-text">Men robot emasman</div>
             </div>
             <div class="captcha-right">
@@ -98,115 +98,4 @@
                 <div class="s-item" onclick="go('otkazmalar')"><div class="s-ic">TR</div><div class="s-tx">O'tkazma</div></div>
                 <div class="s-item" onclick="go('tolov')"><div class="s-ic">TEL</div><div class="s-tx">Aloqa</div></div>
                 <div class="s-item" onclick="go('tolov')"><div class="s-ic">KOM</div><div class="s-tx">Kommunal</div></div>
-                <div class="s-item" onclick="go('kredit')"><div class="s-ic">KRED</div><div class="s-tx">Kredit</div></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 2. O'TKAZMALAR -->
-    <div id="page-otkazmalar" class="page">
-        <div class="sec-title">Pul o'tkazmalari</div>
-        <div class="card">
-            <input type="text" placeholder="8600 0000 0000 0000" class="fc" style="margin-bottom:12px;">
-            <input type="number" placeholder="Summa (UZS)" class="fc" style="margin-bottom:16px;">
-            <button class="btn prim" style="width:100%;" onclick="alert('Hisobda mablag yoq')">O'tkazish</button>
-        </div>
-    </div>
-
-    <!-- 3. TO'LOV -->
-    <div id="page-tolov" class="page">
-        <div class="sec-title">To'lovlar</div>
-        <div class="grid" style="grid-template-columns:repeat(2,1fr);">
-            <div class="s-item" onclick="alert('Mobil aloqa toʻlovi')"><div class="s-ic">ALOQA</div><div class="s-tx">Mobil</div></div>
-            <div class="s-item" onclick="alert('Kommunal toʻlov')"><div class="s-ic">KOM</div><div class="s-tx">Kommunal</div></div>
-        </div>
-    </div>
-
-    <!-- 4. MONITORING -->
-    <div id="page-monitoring" class="page">
-        <div class="sec-title">Monitoring</div>
-        <div class="card"><div class="c-title">Hisob ochildi: 0 UZS</div></div>
-    </div>
-
-    <!-- 5. XIZMATLAR -->
-    <div id="page-xizmatlar" class="page">
-        <div class="sec-title">Xizmatlar</div>
-        <div class="card" onclick="go('kredit')" style="cursor:pointer;"><div class="c-title">Onlayn Kredit (1-10 mln UZS)</div></div>
-    </div>
-
-    <!-- REAL KREDIT ARIZA SAHIFASI -->
-    <div id="page-kredit" class="page">
-        <div class="sec-title">Onlayn Mikroqarz (1 mln - 10 mln UZS)</div>
-        <div class="card">
-            <div class="fg">
-                <label>Kredit summasi (UZS):</label>
-                <input type="number" id="kSum" class="fc" placeholder="1,000,000 dan 10,000,000 gacha" min="1000000" max="10000000">
-            </div>
-            <div class="fg">
-                <label>Kredit muddati:</label>
-                <select id="kTerm" class="fc">
-                    <option value="6">6 oy (Yillik 26%)</option>
-                    <option value="12" selected>12 oy (Yillik 26%)</option>
-                    <option value="24">24 oy (Yillik 26%)</option>
-                </select>
-            </div>
-            <div class="fg">
-                <label>Kredit maqsadi:</label>
-                <input type="text" class="fc" placeholder="Shaxsiy ehtiyoj / Ta'mirlash">
-            </div>
-            <div class="fg">
-                <label>Pasport seriya va raqami:</label>
-                <input type="text" class="fc" placeholder="AA 1234567" style="text-transform: uppercase;">
-            </div>
-            <div class="fg">
-                <label>JShShIR (PINFL - 14 ta raqam):</label>
-                <input type="text" class="fc" placeholder="3010195..." maxlength="14">
-            </div>
-            <div class="fg">
-                <label>Oylik rasmiy daromad (UZS):</label>
-                <input type="number" class="fc" placeholder="Masalan: 4000000">
-            </div>
-            <div class="fg">
-                <label>Telefon raqam:</label>
-                <input type="tel" class="fc" placeholder="+998 90 123 45 67">
-            </div>
-            <div class="fg">
-                <label>Mablagʻ tushadigan karta raqami:</label>
-                <input type="text" class="fc" placeholder="8600 0000 0000 0000">
-            </div>
-            <div class="fg">
-                <label>Pasport nusxasi (Old va Orqa qismi):</label>
-                <input type="file" accept="image/*" class="fc" style="padding:8px;">
-            </div>
-            <button class="btn prim" style="width:100%;margin-top:10px;" onclick="submitCredit()">Kreditni Rasmiylashtirish</button>
-        </div>
-    </div>
-
-    <!-- NAV BAR -->
-    <div class="nav">
-        <div class="n-it active" id="n-asosiy" onclick="go('asosiy')"><div class="n-ic">T</div><div class="n-lb">Asosiy</div></div>
-        <div class="n-it" id="n-otkazmalar" onclick="go('otkazmalar')"><div class="n-ic">TR</div><div class="n-lb">O'tkazma</div></div>
-        <div class="n-it" id="n-tolov" onclick="go('tolov')"><div class="n-ic">PAY</div><div class="n-lb">To'lov</div></div>
-        <div class="n-it" id="n-monitoring" onclick="go('monitoring')"><div class="n-ic">HIS</div><div class="n-lb">Monitoring</div></div>
-        <div class="n-it" id="n-xizmatlar" onclick="go('xizmatlar')"><div class="n-ic">MEN</div><div class="n-lb">Xizmatlar</div></div>
-    </div>
-
-    <script>
-        window.Telegram.WebApp.ready();
-        window.Telegram.WebApp.expand();
-
-        function verifyCaptcha() {
-            let box = document.getElementById('chk-box');
-            box.innerHTML = "✔";
-            setTimeout(() => {
-                document.getElementById('captcha-screen').style.display = 'none';
-            }, 500);
-        }
-
-        function submitCredit() {
-            let sum = document.getElementById('kSum').value;
-            if(!sum || sum < 1000000 || sum > 10000000) {
-                alert('❌ Xatolik: Kredit summasi 1,000,000 dan 10,000,000 UZS gacha boʻlishi shart!');
-                return;
-            }
-            alert('🎉 Tab
+                <div class="s-item" onclick="go('kredit')"><div class="s-ic">KRED</div><div class="s-tx
