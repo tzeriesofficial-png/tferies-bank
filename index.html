@@ -2,275 +2,224 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tferies Bank</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
+        *{box-sizing:border-box;margin:0;padding:0;}
+        body{background-color:#08140e;color:#fff;font-family:sans-serif;padding-bottom:80px;}
+        
+        /* reCAPTCHA Oyna Dizayni */
+        #captcha-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #08140e; z-index: 99999; display: flex;
+            flex-direction: column; align-items: center; justify-content: center; padding: 20px;
         }
-        body {
-            background-color: #08140e;
-            color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            padding-bottom: 80px;
-            min-height: 100vh;
-        }
-
-        /* --- Katta T harfi chiqib keladigan Splash Ekrani --- */
-        #splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #08140e;
-            z-index: 999999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.5s ease;
-        }
-
-        .splash-logo {
-            font-size: 80px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #d4af37, #f3e5ab);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 4px;
-            animation: pulseLogo 1.2s infinite alternate;
-        }
-
-        .splash-text {
-            color: #8b9a90;
-            font-size: 14px;
-            margin-top: 15px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        @keyframes pulseLogo {
-            0% { transform: scale(0.9); opacity: 0.7; }
-            100% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5)); }
-        }
-
-        /* --- PIN-KOD EKRANI --- */
-        #pin-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, #0b1d13 0%, #040906 100%);
-            z-index: 99999;
-            display: none; /* Boshida yashirin, splashdan keyin chiqadi */
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        .captcha-box {
+            background: #ffffff;
+            color: #000;
             padding: 20px;
-        }
-
-        .pin-title {
-            color: #d4af37;
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-
-        .pin-subtitle {
-            color: #8b9a90;
-            font-size: 13px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .pin-dots {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 40px;
-        }
-
-        .dot {
-            width: 14px;
-            height: 14px;
-            border: 2px solid #d4af37;
-            border-radius: 50%;
-            transition: all 0.2s ease;
-        }
-
-        .dot.filled {
-            background-color: #d4af37;
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
-        }
-
-        .keypad {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px 22px;
+            border-radius: 8px;
             width: 100%;
-            max-width: 280px;
-        }
-
-        .key {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: rgba(19, 51, 33, 0.8);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            color: #ffffff;
-            font-size: 26px;
-            font-weight: 600;
+            max-width: 320px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             display: flex;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            margin: 0 auto;
-            outline: none;
-            transition: background 0.1s, transform 0.1s;
-        }
-
-        .key:active {
-            background: #d4af37;
-            color: #08140e;
-            transform: scale(0.90);
-        }
-
-        .key-action {
-            font-size: 15px;
-            font-weight: bold;
-            color: #d4af37;
-            background: rgba(19, 51, 33, 0.4);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        /* --- BANK INTERFEYSI --- */
-        .header {
-            padding: 20px 20px 10px 20px;
-            display: flex;
             justify-content: space-between;
+        }
+        .captcha-left {
+            display: flex;
             align-items: center;
+            gap: 12px;
         }
-        .brand {
-            color: #d4af37;
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: 2px;
-        }
-        .profile-icon {
-            width: 36px;
-            height: 36px;
-            background: #133321;
-            border: 1px solid #d4af37;
-            border-radius: 50%;
+        .captcha-checkbox {
+            width: 28px;
+            height: 28px;
+            border: 2px solid #c1c1c1;
+            border-radius: 3px;
+            background: #f9f9f9;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #d4af37;
+            font-size: 18px;
+            color: #46a1ff;
             font-weight: bold;
         }
-        .card-container {
-            padding: 0 16px;
-            margin-top: 10px;
-        }
-        .card {
-            background: linear-gradient(135deg, #133321, #0b1d13);
-            border: 1px solid #d4af37;
-            border-radius: 20px;
-            padding: 24px;
-        }
-        .card-title {
-            font-size: 13px;
-            color: #8b9a90;
-            text-transform: uppercase;
-        }
-        .balance-amount {
-            font-size: 32px;
-            font-weight: bold;
-            color: #ffffff;
-            margin: 8px 0 20px 0;
-        }
-        .card-actions {
-            display: flex;
-            gap: 10px;
-        }
-        .card-btn {
-            flex: 1;
-            background: rgba(212, 175, 55, 0.15);
-            border: 1px solid #d4af37;
-            color: #d4af37;
-            padding: 10px;
-            border-radius: 10px;
-            font-weight: bold;
+        .captcha-text {
             font-size: 14px;
-            cursor: pointer;
-            text-align: center;
+            font-weight: 500;
+            color: #222;
         }
-        .card-btn.primary {
-            background: #d4af37;
-            color: #08140e;
-            border: none;
-        }
-        .page-content {
-            display: none;
-            padding: 20px 16px;
-        }
-        .page-content.active {
-            display: block;
-        }
-        .section-title {
-            font-size: 16px;
-            font-weight: bold;
-            color: #d4af37;
-            margin-bottom: 15px;
-        }
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            margin-top: 20px;
-        }
-        .service-item {
-            background: #133321;
-            border: 1px solid #1a442d;
-            border-radius: 14px;
-            padding: 14px 8px;
+        .captcha-right {
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
-            cursor: pointer;
         }
-        .service-icon {
+        .captcha-logo {
             font-size: 20px;
-            margin-bottom: 6px;
-            color: #d4af37;
             font-weight: bold;
+            color: #1a73e8;
         }
-        .service-text {
-            font-size: 11px;
-            color: #cbd5d0;
+        .captcha-footer {
+            font-size: 9px;
+            color: #555;
+            margin-top: 2px;
         }
-        .form-group {
-            margin-bottom: 12px;
+
+        /* Bank Interfeysi */
+        .header{padding:20px;display:flex;justify-content:space-between;align-items:center;}
+        .brand{color:#d4af37;font-size:20px;font-weight:bold;}
+        .prof{width:36px;height:36px;background:#133321;border:1px solid #d4af37;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#d4af37;font-weight:bold;}
+        .card-con{padding:0 16px;margin-top:10px;}
+        .card{background:linear-gradient(135deg,#133321,#0b1d13);border:1px solid #d4af37;border-radius:20px;padding:24px;}
+        .c-title{font-size:13px;color:#8b9a90;text-transform:uppercase;}
+        .sum{font-size:32px;font-weight:bold;color:#fff;margin:8px 0 20px 0;}
+        .acts{display:flex;gap:10px;}
+        .btn{flex:1;background:rgba(212,175,55,0.15);border:1px solid #d4af37;color:#d4af37;padding:10px;border-radius:10px;font-weight:bold;text-align:center;cursor:pointer;}
+        .btn.prim{background:#d4af37;color:#08140e;border:none;}
+        .page{display:none;padding:20px 16px;}
+        .page.active{display:block;}
+        .sec-title{font-size:16px;font-weight:bold;color:#d4af37;margin-bottom:15px;}
+        .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px;}
+        .s-item{background:#133321;border:1px solid #1a442d;border-radius:14px;padding:14px 8px;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;}
+        .s-ic{font-size:16px;margin-bottom:6px;color:#d4af37;font-weight:bold;}
+        .s-tx{font-size:11px;color:#cbd5d0;}
+        .fg{margin-bottom:12px;}
+        .fg label{font-size:12px;color:#8b9a90;display:block;margin-bottom:5px;}
+        .fc{width:100%;padding:12px;background:#08140e;border:1px solid #1a442d;border-radius:10px;color:#fff;font-size:14px;outline:none;}
+        .nav{position:fixed;bottom:0;left:0;right:0;height:65px;background:#060e0a;border-top:1px solid #133321;display:flex;justify-content:space-around;align-items:center;z-index:1000;}
+        .n-it{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#6c7c72;flex:1;height:100%;cursor:pointer;}
+        .n-it.active{color:#d4af37;}
+        .n-ic{font-size:14px;margin-bottom:3px;font-weight:bold;}
+        .n-lb{font-size:10px;}
+    </style>
+</head>
+<body>
+
+    <!-- RE-CAPTCHA EKRANI -->
+    <div id="captcha-screen">
+        <div class="captcha-box">
+            <div class="captcha-left">
+                <div class="captcha-checkbox" id="chk-box" onclick="verifyCaptcha()"></div>
+                <div class="captcha-text">Men robot emasman</div>
+            </div>
+            <div class="captcha-right">
+                <div class="captcha-logo">♻</div>
+                <div class="captcha-footer">reCAPTCHA</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BANK INTERFEYSI -->
+    <div class="header">
+        <div class="brand">TFERIES BANK</div>
+        <div class="prof">T</div>
+    </div>
+
+    <!-- 1. ASOSIY SAHIFA -->
+    <div id="page-asosiy" class="page active page">
+        <div class="card-con"><div class="card">
+            <div class="c-title">Asosiy Hisob</div>
+            <div class="sum">0 UZS</div>
+            <div class="acts">
+                <button class="btn prim" onclick="go('otkazmalar')">O'tkazish</button>
+                <button class="btn" onclick="alert('Hisobda mablag yoq')">To'ldirish</button>
+            </div>
+        </div></div>
+        <div style="padding:0 16px;margin-top:25px;">
+            <div class="sec-title">Tezkor xizmatlar</div>
+            <div class="grid">
+                <div class="s-item" onclick="go('otkazmalar')"><div class="s-ic">TR</div><div class="s-tx">O'tkazma</div></div>
+                <div class="s-item" onclick="go('tolov')"><div class="s-ic">TEL</div><div class="s-tx">Aloqa</div></div>
+                <div class="s-item" onclick="go('tolov')"><div class="s-ic">KOM</div><div class="s-tx">Kommunal</div></div>
+                <div class="s-item" onclick="go('kredit')"><div class="s-ic">KRED</div><div class="s-tx">Kredit</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. O'TKAZMALAR SAHIFASI -->
+    <div id="page-otkazmalar" class="page">
+        <div class="sec-title">Pul o'tkazmalari</div>
+        <div class="card">
+            <input type="text" placeholder="8600 0000 0000 0000" class="fc" style="margin-bottom:12px;">
+            <input type="number" placeholder="Summa (UZS)" class="fc" style="margin-bottom:16px;">
+            <button class="btn prim" style="width:100%;padding:12px;" onclick="alert('Hisobda mablag yoq')">O'tkazish</button>
+        </div>
+    </div>
+
+    <!-- 3. TO'LOV SAHIFASI -->
+    <div id="page-tolov" class="page">
+        <div class="sec-title">To'lovlar</div>
+        <div class="grid" style="grid-template-columns:repeat(2,1fr);">
+            <div class="s-item" onclick="alert('Mobil aloqa toʻlovi')"><div class="s-ic">ALOQA</div><div class="s-tx">Mobil</div></div>
+            <div class="s-item" onclick="alert('Kommunal toʻlov')"><div class="s-ic">KOM</div><div class="s-tx">Kommunal</div></div>
+        </div>
+    </div>
+
+    <!-- 4. MONITORING SAHIFASI -->
+    <div id="page-monitoring" class="page">
+        <div class="sec-title">Monitoring</div>
+        <div class="card"><div class="c-title">Hisob ochildi: 0 UZS</div></div>
+    </div>
+
+    <!-- 5. XIZMATLAR SAHIFASI -->
+    <div id="page-xizmatlar" class="page">
+        <div class="sec-title">Xizmatlar</div>
+        <div class="card" onclick="go('kredit')" style="cursor:pointer;"><div class="c-title">Onlayn Kredit (1-10 mln)</div></div>
+    </div>
+
+    <!-- ONLAYN KREDIT ARIZA SAHIFASI -->
+    <div id="page-kredit" class="page">
+        <div class="sec-title">Onlayn Kredit (1-10 mln UZS)</div>
+        <div class="card">
+            <div class="fg"><label>Kredit summasi (1,000,000 - 10,000,000 UZS):</label><input type="number" id="kSum" class="fc" placeholder="Masalan: 5000000"></div>
+            <div class="fg"><label>Kredit maqsadi:</label><input type="text" class="fc" placeholder="Masalan: Shaxsiy ehtiyoj uchun"></div>
+            <div class="fg"><label>Telefon raqam:</label><input type="tel" class="fc" placeholder="+998 90 123 45 67"></div>
+            <div class="fg"><label>Qaysi kartaga tushishi kerak:</label><input type="text" class="fc" placeholder="8600 ... ... ..."></div>
+            <div class="fg"><label>Pasport rasmini tanlang (Galereyadan):</label><input type="file" accept="image/*" class="fc"></div>
+            <button class="btn" style="width:100%;padding:10px;margin-bottom:10px;" onclick="alert('🔄 Yuz skanerlanmoqda...\n✅ Shaxsingiz tasdiqlandi!')">📸 Yuzni Skanerlash (Face ID)</button>
+            <button class="btn prim" style="width:100%;padding:12px;" onclick="submitCredit()">Kreditni Tasdiqlash</button>
+        </div>
+    </div>
+
+    <!-- PASTKI MENYU BAR -->
+    <div class="nav">
+        <div class="n-it active" id="n-asosiy" onclick="go('asosiy')"><div class="n-ic">T</div><div class="n-lb">Asosiy</div></div>
+        <div class="n-it" id="n-otkazmalar" onclick="go('otkazmalar')"><div class="n-ic">TR</div><div class="n-lb">O'tkazma</div></div>
+        <div class="n-it" id="n-tolov" onclick="go('tolov')"><div class="n-ic">PAY</div><div class="n-lb">To'lov</div></div>
+        <div class="n-it" id="n-monitoring" onclick="go('monitoring')"><div class="n-ic">HIS</div><div class="n-lb">Monitoring</div></div>
+        <div class="n-it" id="n-xizmatlar" onclick="go('xizmatlar')"><div class="n-ic">MEN</div><div class="n-lb">Xizmatlar</div></div>
+    </div>
+
+    <script>
+        window.Telegram.WebApp.ready();
+        window.Telegram.WebApp.expand();
+
+        function verifyCaptcha() {
+            let box = document.getElementById('chk-box');
+            box.innerHTML = "✔";
+            setTimeout(() => {
+                document.getElementById('captcha-screen').style.display = 'none';
+            }, 600);
         }
-        .form-group label {
-            font-size: 12px;
-            color: #8b9a90;
-            display: block;
-            margin-bottom: 5px;
+
+        function submitCredit() {
+            let sum = document.getElementById('kSum').value;
+            if(!sum || sum < 1000000 || sum > 10000000) {
+                alert('❌ Xatolik: Summa 1,000,000 dan 10,000,000 UZS gacha boʻlishi kerak!');
+                return;
+            }
+            alert('🎉 Tabriklaymiz! Kredit arizangiz qabul qilindi va kartangizga oʻtkazib berildi.');
+            go('asosiy');
         }
-        .form-control {
-            width: 100%;
-            padding: 12px;
-            background: #08140e;
-            border: 1px solid #1a442d;
-            border-radius: 10px;
-            color: #fff;
-            font-size: 14px
+
+        function go(name){
+            document.querySelectorAll('.page').forEach(e=>e.classList.remove('active'));
+            document.getElementById('page-'+name).classList.add('active');
+            document.querySelectorAll('.n-it').forEach(e=>e.classList.remove('active'));
+            let e=document.getElementById('n-'+name);if(e)e.classList.add('active');
+        }
+    </script>
+</body>
+</html>
