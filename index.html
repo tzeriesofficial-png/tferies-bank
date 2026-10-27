@@ -2,7 +2,7 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Tferies Bank</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
@@ -10,15 +10,110 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            user-select: none;
         }
         body {
             background-color: #08140e;
             color: #ffffff;
-            font-family: sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             padding-bottom: 80px;
+            min-height: 100vh;
         }
-        .header {
+
+        /* --- IPHONE PIN-KOD EKRANI --- */
+        #pin-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #0b1d13 0%, #040906 100%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             padding: 20px;
+        }
+
+        .pin-title {
+            color: #d4af37;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .pin-subtitle {
+            color: #8b9a90;
+            font-size: 13px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* PIN Dot (Nuqtalar) */
+        .pin-dots {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border: 2px solid #d4af37;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .dot.filled {
+            background-color: #d4af37;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+        }
+
+        /* Keyboard (Klaviatura) */
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px 25px;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .key {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(19, 51, 33, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #ffffff;
+            font-size: 26px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin: 0 auto;
+            transition: background 0.15s, transform 0.1s;
+        }
+
+        .key:active {
+            background: #d4af37;
+            color: #08140e;
+            transform: scale(0.92);
+        }
+
+        .key-action {
+            font-size: 14px;
+            font-weight: bold;
+            color: #d4af37;
+            background: transparent;
+            border: none;
+        }
+
+        /* --- BANK ILOVASI DASTURI --- */
+        .header {
+            padding: 20px 20px 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -26,7 +121,7 @@
         .brand {
             color: #d4af37;
             font-size: 20px;
-            font-weight: bold;
+            font-weight: 800;
             letter-spacing: 2px;
         }
         .profile-icon {
@@ -123,6 +218,25 @@
             font-size: 11px;
             color: #cbd5d0;
         }
+        .form-group {
+            margin-bottom: 12px;
+        }
+        .form-group label {
+            font-size: 12px;
+            color: #8b9a90;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            background: #08140e;
+            border: 1px solid #1a442d;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+        }
         .transactions-list {
             display: flex;
             flex-direction: column;
@@ -136,6 +250,7 @@
             justify-content: space-between;
             align-items: center;
             border: 1px solid #1a442d;
+            cursor: pointer;
         }
         .tx-info h4 {
             font-size: 14px;
@@ -189,12 +304,41 @@
 </head>
 <body>
 
+    <!-- IPHONE STYLE PIN-KOD EKRANI -->
+    <div id="pin-screen">
+        <div class="pin-title" id="pin-title-text">PIN-KOD O'RNATING</div>
+        <div class="pin-subtitle" id="pin-sub-text">Yangi 4 xonali PIN-kod o'ylab toping</div>
+        
+        <div class="pin-dots">
+            <div class="dot" id="dot-1"></div>
+            <div class="dot" id="dot-2"></div>
+            <div class="dot" id="dot-3"></div>
+            <div class="dot" id="dot-4"></div>
+        </div>
+
+        <div class="keypad">
+            <div class="key" onclick="pressKey('1')">1</div>
+            <div class="key" onclick="pressKey('2')">2</div>
+            <div class="key" onclick="pressKey('3')">3</div>
+            <div class="key" onclick="pressKey('4')">4</div>
+            <div class="key" onclick="pressKey('5')">5</div>
+            <div class="key" onclick="pressKey('6')">6</div>
+            <div class="key" onclick="pressKey('7')">7</div>
+            <div class="key" onclick="pressKey('8')">8</div>
+            <div class="key" onclick="pressKey('9')">9</div>
+            <div class="key key-action" onclick="resetPinInput()">Qayta</div>
+            <div class="key" onclick="pressKey('0')">0</div>
+            <div class="key key-action" onclick="deleteKey()">⌫</div>
+        </div>
+    </div>
+
+    <!-- ASOSIY BANK INTERFEYSI -->
     <div class="header">
         <div class="brand">TFERIES BANK</div>
         <div class="profile-icon">T</div>
     </div>
 
-    <!-- 1. ASOSIY -->
+    <!-- 1. ASOSIY SAHIFA -->
     <div id="page-asosiy" class="page-content active">
         <div class="card-container">
             <div class="card">
@@ -222,7 +366,7 @@
                     <div class="service-icon"> KOM </div>
                     <div class="service-text">Kommunal</div>
                 </div>
-                <div class="service-item" onclick="switchTab('xizmatlar')">
+                <div class="service-item" onclick="switchTab('kredit')">
                     <div class="service-icon"> KRED </div>
                     <div class="service-text">Kredit</div>
                 </div>
@@ -235,8 +379,8 @@
         <div class="section-title">Pul o'tkazmalari</div>
         <div class="card">
             <p style="font-size: 13px; color: #8b9a90; margin-bottom: 12px;">Karta raqami bo'yicha</p>
-            <input type="text" placeholder="8600 0000 0000 0000" style="width: 100%; padding: 12px; background: #08140e; border: 1px solid #1a442d; border-radius: 10px; color: #fff; margin-bottom: 12px;">
-            <input type="number" placeholder="Summa (UZS)" style="width: 100%; padding: 12px; background: #08140e; border: 1px solid #1a442d; border-radius: 10px; color: #fff; margin-bottom: 16px;">
+            <input type="text" placeholder="8600 0000 0000 0000" class="form-control" style="margin-bottom: 12px;">
+            <input type="number" placeholder="Summa (UZS)" class="form-control" style="margin-bottom: 16px;">
             <button class="card-btn primary" style="width: 100%; padding: 12px;" onclick="alert('Hisobda mablag yoq')">O'tkazish</button>
         </div>
     </div>
@@ -265,66 +409,4 @@
                     <h4>Hisob ochildi</h4>
                     <span>Bugun</span>
                 </div>
-                <div class="tx-amount" style="color: #8b9a90;">0 UZS</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 5. XIZMATLAR -->
-    <div id="page-xizmatlar" class="page-content">
-        <div class="section-title">Bank xizmatlari</div>
-        <div class="transactions-list">
-            <div class="tx-item" onclick="alert('Kreditlar mavjud emas')">
-                <div class="tx-info">
-                    <h4>Onlayn Kredit</h4>
-                    <span>Imtiyozli</span>
-                </div>
-                <div class="tx-amount">&gt;</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Pastki menyu -->
-    <div class="nav-bar">
-        <div class="nav-item active" id="tab-asosiy" onclick="switchTab('asosiy')">
-            <div class="nav-icon">T</div>
-            <div class="nav-label">Asosiy</div>
-        </div>
-        <div class="nav-item" id="tab-otkazmalar" onclick="switchTab('otkazmalar')">
-            <div class="nav-icon">TR</div>
-            <div class="nav-label">O'tkazma</div>
-        </div>
-        <div class="nav-item" id="tab-tolov" onclick="switchTab('tolov')">
-            <div class="nav-icon">PAY</div>
-            <div class="nav-label">To'lov</div>
-        </div>
-        <div class="nav-item" id="tab-monitoring" onclick="switchTab('monitoring')">
-            <div class="nav-icon">HISOB</div>
-            <div class="nav-label">Monitoring</div>
-        </div>
-        <div class="nav-item" id="tab-xizmatlar" onclick="switchTab('xizmatlar')">
-            <div class="nav-icon">MENU</div>
-            <div class="nav-label">Xizmatlar</div>
-        </div>
-    </div>
-
-    <script>
-        window.Telegram.WebApp.ready();
-        window.Telegram.WebApp.expand();
-
-        function switchTab(tabName) {
-            var pages = document.querySelectorAll('.page-content');
-            for (var i = 0; i < pages.length; i++) {
-                pages[i].classList.remove('active');
-            }
-            document.getElementById('page-' + tabName).classList.add('active');
-
-            var items = document.querySelectorAll('.nav-item');
-            for (var j = 0; j < items.length; j++) {
-                items[j].classList.remove('active');
-            }
-            document.getElementById('tab-' + tabName).classList.add('active');
-        }
-    </script>
-</body>
-</html>
+                <div class="tx-amount" style="color: #8b9a90;">
