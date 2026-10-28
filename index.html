@@ -40,10 +40,10 @@
         .section-all { font-size: 13px; color: #ff3333; cursor: pointer; font-weight: 500; }
 
         /* Repertuar Bloki */
-        .show-card { margin: 0 16px; background: #1c1c24; border-radius: 20px; padding: 16px; position: relative; }
+        .show-card { margin: 0 16px; background: #1c1c24; border-radius: 20px; padding: 16px; position: relative; cursor: pointer; }
         .show-tag { background: #32213a; color: #ff6666; padding: 4px 10px; border-radius: 8px; font-size: 11px; display: inline-block; margin-bottom: 8px; font-weight: bold; }
         .show-title { font-size: 15px; font-weight: bold; margin-bottom: 12px; line-height: 1.3; color: #cc0000; }
-        .show-item { display: flex; align-items: center; justify-content: space-between; background: #252530; padding: 12px; border-radius: 14px; cursor: pointer; }
+        .show-item { display: flex; align-items: center; justify-content: space-between; background: #252530; padding: 12px; border-radius: 14px; }
         .show-item-left { display: flex; align-items: center; gap: 10px; }
         .num-circle { width: 24px; height: 24px; background: #cc0000; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
 
@@ -62,7 +62,7 @@
         .promo-text h4 { font-size: 14px; font-weight: bold; margin-bottom: 2px; color: #fff; }
         .promo-text p { font-size: 11px; opacity: 0.95; color: #ffcccc; }
 
-        /* Kurslar va Video Sahifalari */
+        /* Kurslar va Sahifalar */
         .page-header { padding: 16px; display: flex; align-items: center; gap: 12px; }
         .back-btn { width: 36px; height: 36px; background: #1c1c24; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; color: #cc0000; }
         .page-title { font-size: 22px; font-weight: bold; color: #cc0000; }
@@ -85,11 +85,16 @@
         .course-info h4 { font-size: 15px; font-weight: bold; color: #cc0000; }
         .course-action { font-size: 13px; color: #cc0000; font-weight: bold; }
 
-        /* Video pleyer konteyneri */
+        /* Video pleyer va Matn qismlari */
         .video-box { margin: 0 16px 16px 16px; background: #1c1c24; border-radius: 20px; overflow: hidden; border: 1px solid #330000; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
         .video-title-bar { padding: 12px 16px; font-size: 14px; font-weight: bold; color: #cc0000; background: #16161b; border-bottom: 1px solid #22222b; }
         .video-frame-wrap { position: relative; width: 100%; padding-top: 56.25%; background: #000; }
         .video-frame-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+        /* 12 Qismli Dars Matni Sahifasi Stilari */
+        .lesson-content-card { margin: 0 16px 16px 16px; background: #1c1c24; border-radius: 20px; padding: 20px; border: 1px solid #330000; }
+        .lesson-part-title { font-size: 16px; font-weight: bold; color: #cc0000; margin-bottom: 10px; }
+        .lesson-part-text { font-size: 13px; color: #ffcccc; line-height: 1.6; }
 
         /* O'yin interfeysi */
         .game-card { margin: 16px; background: #1c1c24; border-radius: 20px; padding: 20px; border: 1px solid #330000; box-shadow: 0 4px 15px rgba(204,0,0,0.15); }
@@ -181,13 +186,13 @@
             <div class="section-title">Repertuarlar</div>
             <div class="section-all" onclick="go('missiya')">Barchasi</div>
         </div>
-        <div class="show-card">
-            <div class="show-tag">Ertaklar</div>
-            <div class="show-title">"Zumrad va Qimmat" qo'g'irchoq spektakli</div>
-            <div class="show-item" onclick="alert('Spektakl boshlanish vaqti: 14:00')">
+        <div class="show-card" onclick="go('missiya')">
+            <div class="show-tag">Kichkintoylar uchun</div>
+            <div class="show-title">"Kinoteatr darsi" maxsus dasturi</div>
+            <div class="show-item">
                 <div class="show-item-left">
-                    <div class="num-circle">1</div>
-                    <span style="font-size:13px;font-weight:500;color:#cc0000;">Bosh rollarda: Rayhon va Lola</span>
+                    <div class="num-circle">12</div>
+                    <span style="font-size:13px;font-weight:500;color:#cc0000;">12 ta qismdan iborat qo'llanma</span>
                 </div>
                 <span style="color:#cc0000;">➔</span>
             </div>
@@ -310,22 +315,74 @@
         </div>
     </div>
 
-    <!-- 3. MISSIYA SAHIFASI -->
+    <!-- 3. MISSIYA SAHIFASI (12 QISMLI KINOTEATR DARSI) -->
     <div id="page-missiya" class="page">
-        <div class="section-header" style="margin-top:20px;"><div class="section-title">Teatr Spektakllari</div></div>
-        <div style="padding:16px;">
-            <div class="show-card" style="margin-bottom:12px;">
-                <div class="show-tag">Klassika</div>
-                <div class="show-title">"Alpomish" dostoni asosida sahna ko'rinishi</div>
-            </div>
-            <div class="show-card">
-                <div class="show-tag">Kichkintoylar uchun</div>
-                <div class="show-title">"Quvnoq Uloqcha" ertak-shousi</div>
-            </div>
+        <div class="section-header" style="margin-top:20px;">
+            <div class="section-title">Kinoteatr Darsi (12 Qism)</div>
+        </div>
+
+        <div class="lesson-content-card">
+            <div class="lesson-part-title">1-Qism: Kinoteatr va Teatr Asoslari</div>
+            <div class="lesson-part-text">Teatr va kino san'atining kelib chiqish tarixi, ularning bir-biridan farqi hamda sahna madaniyatining ilk tushunchalari bilan tanishishdan boshlaymiz.</div>
+        </div>
+
+        <div class="lesson-content-card">
+            <div class="lesson-part-title">2-Qism: Rejissura va Sahna Kompozitsiyasi</div>
+            <div class="lesson-part-text">Spektakl yoki kino sahna ko'rinishini to'g'ri tuzish, aktyorlarning sahna bo'ylab harakatlanishi va tomoshabin e'tiborini tortish sirlari.</div>
+        </div>
+
+        <div class="lesson-content-card">
+            <div class="lesson-part-title">3-Qism: Qo'g'irchoqqa Jon Kiritish Texnikasi</div>
+            <div class="lesson-part-text">Qo'g'irchoqbozlik san'atida qo'l harakatlari, nigoh va ritm orqali jonsiz matoga jon bag'ishlashning professional usullari.</div>
+        </div>
+
+        <div class="lesson-content-card">
+            <div class="lesson-part-title">4-Qism: Ssenariy Yozish va Dramaturgiya</div>
+            <div class="lesson-part-text">Qiziqarli ertak va sahna asarlari uchun syujet yaratish, konfliktni rivojlantirish hamda yakuniy g'oyani shakllantirish.</div>
+        </div>
+
+        <div class="lesson-content-card">
+            <div class="lesson-part-title">5-Qism: Sahna Nutqi va Ovoz Berish</div>
+            <div class="lesson-part-text">Aktyorning asosiy quroli bo'lgan ovoz balandligi, diksiya, nafas olish texnikasi va har bir qahramon uchun alohida ovoz topish.</div>
+        </div>
+
+        <div class="lesson-content-card">
+            <div class="lesson-part-title">6-Qism: Dekoratsiya va Sahna Dizayni</div>
+            <div class="lesson-part-text">Teatr sahnasini bezash, ranglar uyg'unligi, yorug'lik effektlari va tomoshabinda real muhit taassurotini uyg'otish sirlari.</div>
+        </div>
+
+        <div class="lesson-content-card">
+            <div class="lesson-part-title">7-Qism: Kostyum va Grimerlik San'ati</div>
+            <div class="lesson-part-text">Qahramonlarning xarakteriga mos kiyimlar tanlash, qo'g'irchoqlar uchun maxsus liboslar tikish va vizual obraz yaratish.</div>
+        </div>
+
+        <div class="lesson-content-card">
+            <div class="lesson-part-title">8-Qism: Musiqa va Ovozli O'yinlar</div>
+            <div class="lesson-part-text">Sahna ko'rinishlariga mos keluvchi fon musiqasini tanlash, ritmni ushlash va audio effektlar orqali ta'sir kuchini oshirish.</div>
+        </div>
+
+        <div class="lesson-content-card">
+            <div class="lesson-part-title">9-Qism: Improvizatsiya va Kutilmagan Vaziyatlar</div>
+            <div class="lesson-part-text">Jonli efir yoki sahnada yuzaga keladigan kutilmagan holatlarda tezkor qaror qabul qilish va vaziyatdan chiqib ketish mahorati.</div>
+        </div>
+
+        <div class="lesson-content-card">
+            <div class="lesson-part-title">10-Qism: Rejissyor va Aktyor Hamkorligi</div>
+            <div class="lesson-part-text">Jamoada ishlash madaniyati, sahna ortidagi muhit va umumiy maqsad sari birgalikda harakat qilish qoidalari.</div>
+        </div>
+
+        <div class="lesson-content-card">
+            <div class="lesson-part-title">11-Qism: Premyera va Tomoshabinlar Bilan Ishlash</div>
+            <div class="lesson-part-text">Tayyorlangan asarni ommaga namoyish etish, premyeraga tayyorgarlik ko'rish va tomoshabinlar olqishini qozonish sirlari.</div>
+        </div>
+
+        <div class="lesson-content-card" style="margin-bottom:30px;">
+            <div class="lesson-part-title">12-Qism: Yakuniy Xulosa va Ijodiy Parvoz</div>
+            <div class="lesson-part-text">Olingan bilimlarni amalda qo'llash, o'z ijodiy kanalingizni rivojlantirish va kelajakdagi katta loyihalar sari dadil qadam tashlash!</div>
         </div>
     </div>
 
-    <!-- 4. O'YINLAR SAHIFASI (O'YIN FAQAT SHU YERDA ISHLAYDI) -->
+    <!-- 4. O'YINLAR SAHIFASI -->
     <div id="page-oyinlar" class="page">
         <div class="section-header" style="margin-top:20px;"><div class="section-title">Teatr Viktorina (1-100 Bosqich)</div></div>
         <div class="game-card" id="gameContainer">
