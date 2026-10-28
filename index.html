@@ -7,138 +7,137 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: #121216; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; padding-bottom: 90px; }
+        body { background-color: #ffffff; color: #111111; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; padding-bottom: 90px; }
         
         /* Yuqori Panel */
-        .top-bar { padding: 16px; display: flex; justify-content: space-between; align-items: center; position: relative; }
-        .top-left { display: flex; align-items: center; gap: 6px; background: #1c1c24; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: 500; cursor: pointer; color: #cc0000; }
+        .top-bar { padding: 16px; display: flex; justify-content: space-between; align-items: center; position: relative; background: #ffffff; }
+        .top-left { display: flex; align-items: center; gap: 6px; background: #f0f0f4; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; color: #111111; }
         .top-right { display: flex; align-items: center; gap: 8px; }
-        .badge { background: #1c1c24; padding: 6px 12px; border-radius: 20px; font-size: 13px; display: flex; align-items: center; gap: 6px; font-weight: bold; }
-        .badge.gold { color: #cc0000; } /* Yulduz qizil */
-        .badge.fire { color: #cc0000; } /* Olov qizil */
+        .badge { background: #f0f0f4; padding: 6px 12px; border-radius: 20px; font-size: 13px; display: flex; align-items: center; gap: 6px; font-weight: bold; color: #111111; }
 
         /* Qizil tochkali 3 ta nuqta menyusi */
-        .menu-dots { width: 36px; height: 36px; background: #1c1c24; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; }
+        .menu-dots { width: 36px; height: 36px; background: #f0f0f4; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; }
         .red-dot-icon { width: 4px; height: 4px; background: #cc0000; border-radius: 50%; box-shadow: 0 6px 0 #cc0000, 0 -6px 0 #cc0000; }
         
         /* Ochiladigan menyu modal (Dropdown) */
-        .dropdown-menu { display: none; position: absolute; top: 60px; right: 16px; background: #1c1c24; border: 1px solid #330000; border-radius: 14px; width: 210px; box-shadow: 0 5px 20px rgba(0,0,0,0.5); z-index: 1000; overflow: hidden; }
-        .dropdown-item { padding: 14px 16px; font-size: 13px; font-weight: bold; color: #cc0000; cursor: pointer; border-bottom: 1px solid #252530; display: flex; align-items: center; gap: 8px; }
-        .dropdown-item:hover { background: #330000; }
+        .dropdown-menu { display: none; position: absolute; top: 60px; right: 16px; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 14px; width: 210px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 1000; overflow: hidden; }
+        .dropdown-item { padding: 14px 16px; font-size: 13px; font-weight: bold; color: #111111; cursor: pointer; border-bottom: 1px solid #f0f0f4; display: flex; align-items: center; gap: 8px; }
+        .dropdown-item:hover { background: #f5f5f7; }
 
         /* Modal Oyna (Hisobni to'ldirish uchun) */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
-        .modal-card { background: #1c1c24; border: 1px solid #cc0000; border-radius: 20px; padding: 24px; width: 100%; max-width: 340px; text-align: center; box-shadow: 0 10px 30px rgba(204,0,0,0.3); }
-        .modal-title { font-size: 18px; font-weight: bold; color: #cc0000; margin-bottom: 15px; }
-        .modal-text { font-size: 13px; color: #ffcccc; line-height: 1.5; margin-bottom: 15px; text-align: left; background: #252530; padding: 14px; border-radius: 12px; border: 1px dashed #cc0000; }
-        .modal-btn { background: #cc0000; color: #fff; border: none; padding: 12px; width: 100%; border-radius: 12px; font-weight: bold; font-size: 14px; cursor: pointer; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
+        .modal-card { background: #ffffff; border: 1px solid #e5e5ea; border-radius: 20px; padding: 24px; width: 100%; max-width: 340px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .modal-title { font-size: 18px; font-weight: bold; color: #111111; margin-bottom: 15px; }
+        .modal-text { font-size: 13px; color: #333333; line-height: 1.5; margin-bottom: 15px; text-align: left; background: #f5f5f7; padding: 14px; border-radius: 12px; border: 1px dashed #ccc; }
+        .modal-btn { background: #111111; color: #fff; border: none; padding: 12px; width: 100%; border-radius: 12px; font-weight: bold; font-size: 14px; cursor: pointer; }
 
         /* Yuqori Grid (2 ta karta) */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 16px; margin-top: 6px; }
-        .card-box { background: #1c1c24; border-radius: 20px; padding: 16px; position: relative; cursor: pointer; transition: transform 0.2s; height: 110px; display: flex; flex-direction: column; justify-content: space-between; }
+        .card-box { background: #f5f5f7; border-radius: 20px; padding: 16px; position: relative; cursor: pointer; transition: transform 0.2s; height: 110px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #e5e5ea; }
         .card-box:active { transform: scale(0.98); }
         .card-top { display: flex; align-items: center; }
         .card-icon-svg { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
         .card-icon-svg svg { width: 30px; height: 30px; }
-        .card-box h3 { font-size: 15px; margin-bottom: 2px; font-weight: 600; color: #cc0000; }
-        .card-box p { font-size: 12px; color: #cc0000; opacity: 0.8; }
-        .card-arrow { position: absolute; top: 16px; right: 16px; width: 26px; height: 26px; background: #272732; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #cc0000; }
+        .card-box h3 { font-size: 15px; margin-bottom: 2px; font-weight: bold; color: #111111; }
+        .card-box p { font-size: 12px; color: #666666; font-weight: 500; }
+        .card-arrow { position: absolute; top: 16px; right: 16px; width: 26px; height: 26px; background: #e5e5ea; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #111111; }
 
         /* Banner */
-        .banner { margin: 16px; background: linear-gradient(135deg, #5b247a, #1bcedf); border-radius: 20px; padding: 20px; display: flex; justify-content: space-between; align-items: center; overflow: hidden; position: relative; }
-        .banner-content h4 { font-size: 13px; opacity: 0.9; margin-bottom: 4px; font-weight: 500; color: #ffcccc; }
-        .banner-content h2 { font-size: 16px; font-weight: bold; margin-bottom: 12px; color: #ff3333; }
-        .banner-btn { background: #fff; color: #cc0000; padding: 6px 16px; border-radius: 14px; font-size: 12px; font-weight: bold; border: none; cursor: pointer; }
+        .banner { margin: 16px; background: linear-gradient(135deg, #6b11ff, #00d2ff); border-radius: 20px; padding: 20px; display: flex; justify-content: space-between; align-items: center; overflow: hidden; position: relative; }
+        .banner-content h4 { font-size: 13px; opacity: 0.9; margin-bottom: 4px; font-weight: 500; color: #ffffff; }
+        .banner-content h2 { font-size: 16px; font-weight: bold; margin-bottom: 12px; color: #ffffff; }
+        .banner-btn { background: #ffffff; color: #111111; padding: 8px 18px; border-radius: 14px; font-size: 12px; font-weight: bold; border: none; cursor: pointer; }
 
         /* Seksiyalar */
         .section-header { padding: 0 16px; display: flex; justify-content: space-between; align-items: center; margin-top: 22px; margin-bottom: 10px; }
-        .section-title { font-size: 16px; font-weight: bold; color: #cc0000; }
-        .section-all { font-size: 13px; color: #ff3333; cursor: pointer; font-weight: 500; }
+        .section-title { font-size: 16px; font-weight: bold; color: #111111; }
+        .section-all { font-size: 13px; color: #007aff; cursor: pointer; font-weight: 600; }
 
         /* Repertuar Bloki */
-        .show-card { margin: 0 16px; background: #1c1c24; border-radius: 20px; padding: 16px; position: relative; }
-        .show-tag { background: #32213a; color: #ff6666; padding: 4px 10px; border-radius: 8px; font-size: 11px; display: inline-block; margin-bottom: 8px; font-weight: bold; }
-        .show-title { font-size: 15px; font-weight: bold; margin-bottom: 12px; line-height: 1.3; color: #cc0000; }
-        .show-item { display: flex; align-items: center; justify-content: space-between; background: #252530; padding: 12px; border-radius: 14px; cursor: pointer; }
+        .show-card { margin: 0 16px; background: #f5f5f7; border-radius: 20px; padding: 16px; position: relative; border: 1px solid #e5e5ea; }
+        .show-tag { background: #e5e5ea; color: #111111; padding: 4px 10px; border-radius: 8px; font-size: 11px; display: inline-block; margin-bottom: 8px; font-weight: bold; }
+        .show-title { font-size: 15px; font-weight: bold; margin-bottom: 12px; line-height: 1.3; color: #111111; }
+        .show-item { display: flex; align-items: center; justify-content: space-between; background: #ffffff; padding: 12px; border-radius: 14px; cursor: pointer; border: 1px solid #e5e5ea; }
         .show-item-left { display: flex; align-items: center; gap: 10px; }
-        .num-circle { width: 24px; height: 24px; background: #cc0000; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
+        .num-circle { width: 24px; height: 24px; background: #111111; color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
 
-        /* 3 Talik Doira Tugmalar */
+        /* VIP 3 Talik Doira Tugmalar (Stiker o'rniga zamonaviy Vektor Ikonkalar) */
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 0 16px; margin-top: 16px; }
-        .circle-card { background: #1c1c24; border-radius: 20px; padding: 18px 10px; display: flex; flex-direction: column; align-items: center; text-align: center; cursor: pointer; transition: transform 0.2s; }
+        .circle-card { background: #f5f5f7; border-radius: 20px; padding: 18px 10px; display: flex; flex-direction: column; align-items: center; text-align: center; cursor: pointer; transition: transform 0.2s; border: 1px solid #e5e5ea; }
         .circle-card:active { transform: scale(0.98); }
-        .circle-icon { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-        .circle-icon.pink { background: linear-gradient(135deg, #ff758c, #ff7eb3); }
-        .circle-icon.green { background: linear-gradient(135deg, #43e97b, #38f9d7); }
-        .circle-icon.blue { background: linear-gradient(135deg, #4facfe, #00f2fe); }
-        .circle-card span { font-size: 13px; font-weight: bold; color: #cc0000; }
+        .circle-icon { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+        .circle-icon.pink { background: linear-gradient(135deg, #ff416c, #ff4b2b); }
+        .circle-icon.green { background: linear-gradient(135deg, #11998e, #38ef7d); }
+        .circle-icon.blue { background: linear-gradient(135deg, #00c6ff, #0072ff); }
+        .circle-icon svg { width: 26px; height: 26px; fill: #ffffff; }
+        .circle-card span { font-size: 13px; font-weight: bold; color: #111111; }
 
         /* VIP Promo Bar */
-        .promo-bar { margin: 16px 16px 30px 16px; background: linear-gradient(135deg, #990000, #cc0000); border-radius: 20px; padding: 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+        .promo-bar { margin: 16px 16px 30px 16px; background: linear-gradient(135deg, #111111, #333333); border-radius: 20px; padding: 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
         .promo-text h4 { font-size: 14px; font-weight: bold; margin-bottom: 2px; color: #fff; }
-        .promo-text p { font-size: 11px; opacity: 0.95; color: #ffcccc; }
+        .promo-text p { font-size: 11px; opacity: 0.8; color: #fff; }
 
         /* Kurslar va Sahifalar */
         .page-header { padding: 16px; display: flex; align-items: center; gap: 12px; }
-        .back-btn { width: 36px; height: 36px; background: #1c1c24; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; color: #cc0000; }
-        .page-title { font-size: 22px; font-weight: bold; color: #cc0000; }
+        .back-btn { width: 36px; height: 36px; background: #f0f0f4; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; color: #111111; }
+        .page-title { font-size: 22px; font-weight: bold; color: #111111; }
         
-        .pro-banner { margin: 0 16px 16px 16px; background: linear-gradient(135deg, #990000, #330000); border-radius: 20px; padding: 20px; display: flex; justify-content: space-between; align-items: center; position: relative; overflow: hidden; }
+        .pro-banner { margin: 0 16px 16px 16px; background: linear-gradient(135deg, #111111, #444444); border-radius: 20px; padding: 20px; display: flex; justify-content: space-between; align-items: center; position: relative; overflow: hidden; }
         .pro-banner-text h3 { font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 4px; }
         .pro-banner-text p { font-size: 12px; color: rgba(255,255,255,0.8); max-width: 180px; }
 
-        .course-card { margin: 0 16px 12px 16px; background: #1c1c24; border-radius: 20px; padding: 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: transform 0.2s; border: 1px solid #252530; }
+        .course-card { margin: 0 16px 12px 16px; background: #f5f5f7; border-radius: 20px; padding: 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: transform 0.2s; border: 1px solid #e5e5ea; }
         .course-card:active { transform: scale(0.98); }
         .course-left { display: flex; align-items: center; gap: 16px; }
         
-        .course-icon-wrap { width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .course-icon-wrap { width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
         .course-icon-wrap.red-grad { background: linear-gradient(135deg, #ff416c, #ff4b2b); }
         .course-icon-wrap.purple-grad { background: linear-gradient(135deg, #8e2de2, #4a00e0); }
         .course-icon-wrap.blue-grad { background: linear-gradient(135deg, #00c6ff, #0072ff); }
         .course-icon-wrap svg { width: 26px; height: 26px; fill: #fff; }
 
-        .course-info span { font-size: 12px; color: #ff6666; display: block; margin-bottom: 2px; font-weight: 500; }
-        .course-info h4 { font-size: 15px; font-weight: bold; color: #cc0000; }
-        .course-action { font-size: 13px; color: #cc0000; font-weight: bold; }
+        .course-info span { font-size: 12px; color: #666666; display: block; margin-bottom: 2px; font-weight: 500; }
+        .course-info h4 { font-size: 15px; font-weight: bold; color: #111111; }
+        .course-action { font-size: 13px; color: #111111; font-weight: bold; }
 
         /* Video pleyer konteyneri */
-        .video-box { margin: 0 16px 16px 16px; background: #1c1c24; border-radius: 20px; overflow: hidden; border: 1px solid #330000; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .video-title-bar { padding: 12px 16px; font-size: 14px; font-weight: bold; color: #cc0000; background: #16161b; border-bottom: 1px solid #22222b; }
+        .video-box { margin: 0 16px 16px 16px; background: #f5f5f7; border-radius: 20px; overflow: hidden; border: 1px solid #e5e5ea; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .video-title-bar { padding: 12px 16px; font-size: 14px; font-weight: bold; color: #111111; background: #ffffff; border-bottom: 1px solid #e5e5ea; }
         .video-frame-wrap { position: relative; width: 100%; padding-top: 56.25%; background: #000; }
         .video-frame-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
         /* 12 Qismli Dars Matni Sahifasi (Missiya) */
-        .lesson-content-card { margin: 0 16px 12px 16px; background: #1c1c24; border-radius: 20px; padding: 18px; border: 1px solid #330000; }
-        .lesson-part-title { font-size: 15px; font-weight: bold; color: #cc0000; margin-bottom: 6px; }
-        .lesson-part-text { font-size: 13px; color: #ffcccc; line-height: 1.5; }
+        .lesson-content-card { margin: 0 16px 12px 16px; background: #f5f5f7; border-radius: 20px; padding: 18px; border: 1px solid #e5e5ea; }
+        .lesson-part-title { font-size: 15px; font-weight: bold; color: #111111; margin-bottom: 6px; }
+        .lesson-part-text { font-size: 13px; color: #444444; line-height: 1.5; }
 
         /* O'yin interfeysi */
-        .game-card { margin: 16px; background: #1c1c24; border-radius: 20px; padding: 20px; border: 1px solid #330000; box-shadow: 0 4px 15px rgba(204,0,0,0.15); }
+        .game-card { margin: 16px; background: #f5f5f7; border-radius: 20px; padding: 20px; border: 1px solid #e5e5ea; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .game-header-flex { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; }
-        .level-badge { background: #330000; color: #ff3333; padding: 4px 12px; border-radius: 10px; font-size: 12px; font-weight: bold; }
-        .prize-info { font-size: 12px; color: #ff6666; font-weight: bold; }
-        .question-text { font-size: 16px; font-weight: bold; color: #cc0000; margin-bottom: 20px; line-height: 1.4; }
-        .option-btn { width: 100%; background: #252530; border: 1px solid #3d0000; color: #ffcccc; padding: 14px 16px; border-radius: 14px; font-size: 14px; font-weight: 600; text-align: left; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 10px; }
-        .option-btn:hover { background: #330000; border-color: #cc0000; }
-        .option-letter { width: 28px; height: 28px; background: #3d0000; color: #ff3333; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 13px; }
+        .level-badge { background: #111111; color: #ffffff; padding: 4px 12px; border-radius: 10px; font-size: 12px; font-weight: bold; }
+        .prize-info { font-size: 12px; color: #111111; font-weight: bold; }
+        .question-text { font-size: 16px; font-weight: bold; color: #111111; margin-bottom: 20px; line-height: 1.4; }
+        .option-btn { width: 100%; background: #ffffff; border: 1px solid #e5e5ea; color: #111111; padding: 14px 16px; border-radius: 14px; font-size: 14px; font-weight: 600; text-align: left; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 10px; }
+        .option-btn:hover { background: #e5e5ea; }
+        .option-letter { width: 28px; height: 28px; background: #111111; color: #ffffff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 13px; }
 
         .lock-box { text-align: center; padding: 30px 10px; }
         .lock-icon { font-size: 48px; margin-bottom: 12px; }
-        .lock-title { font-size: 18px; font-weight: bold; color: #cc0000; margin-bottom: 8px; }
-        .lock-desc { font-size: 13px; color: #ff6666; margin-bottom: 20px; line-height: 1.4; }
-        .timer-box { background: #330000; color: #ff3333; padding: 12px; border-radius: 12px; font-size: 16px; font-weight: bold; display: inline-block; }
+        .lock-title { font-size: 18px; font-weight: bold; color: #111111; margin-bottom: 8px; }
+        .lock-desc { font-size: 13px; color: #555555; margin-bottom: 20px; line-height: 1.4; }
+        .timer-box { background: #111111; color: #ffffff; padding: 12px; border-radius: 12px; font-size: 16px; font-weight: bold; display: inline-block; }
 
         /* Sahifalar boshqaruvi */
         .page { display: none; }
         .page.active { display: block; }
 
         /* Pastki Navigatsiya Bar */
-        .nav { position: fixed; bottom: 0; left: 0; right: 0; height: 70px; background: #16161b; border-top: 1px solid #22222b; display: flex; justify-content: space-around; align-items: center; z-index: 9999; padding-bottom: 6px; }
+        .nav { position: fixed; bottom: 0; left: 0; right: 0; height: 70px; background: #ffffff; border-top: 1px solid #e5e5ea; display: flex; justify-content: space-around; align-items: center; z-index: 9999; padding-bottom: 6px; }
         .n-it { display: flex; flex-direction: column; align-items: center; justify-content: center; color: #8e8e93; flex: 1; height: 100%; cursor: pointer; }
-        .n-it.active { color: #cc0000; }
+        .n-it.active { color: #111111; }
         .n-ic { width: 24px; height: 24px; margin-bottom: 3px; display: flex; align-items: center; justify-content: center; }
         .n-ic svg { width: 22px; height: 22px; fill: currentColor; }
-        .n-lb { font-size: 10px; font-weight: 500; }
+        .n-lb { font-size: 10px; font-weight: 600; }
     </style>
 </head>
 <body>
@@ -179,10 +178,10 @@
             <div class="card-box" onclick="go('organish')">
                 <div class="card-top">
                     <div class="card-icon-svg">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#cc0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M2 10s3-2 3-5c0-2-1-3-1-3s3 1 4 4c1-3 4-4 4-4s-1 1-1 3c0 3 3 5 3 5s-2 3-6 3-6-3-6-3z"></path>
-                            <circle cx="9" cy="10" r="1" fill="#cc0000"></circle>
-                            <circle cx="15" cy="10" r="1" fill="#cc0000"></circle>
+                            <circle cx="9" cy="10" r="1" fill="#111111"></circle>
+                            <circle cx="15" cy="10" r="1" fill="#111111"></circle>
                             <path d="M10 15c1 1 3 1 4 0"></path>
                         </svg>
                     </div>
@@ -197,9 +196,9 @@
             <div class="card-box" onclick="alert('VIP Spektakllar boʻlimi')">
                 <div class="card-top">
                     <div class="card-icon-svg">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#cc0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z" fill="rgba(204,0,0,0.2)"></path>
-                            <circle cx="12" cy="18" r="1" fill="#cc0000"></circle>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z" fill="rgba(17,17,17,0.1)"></path>
+                            <circle cx="12" cy="18" r="1" fill="#111111"></circle>
                         </svg>
                     </div>
                 </div>
@@ -230,23 +229,33 @@
             <div class="show-item">
                 <div class="show-item-left">
                     <div class="num-circle">12</div>
-                    <span style="font-size:13px;font-weight:500;color:#cc0000;">12 ta qismdan iborat qo'llanma</span>
+                    <span style="font-size:13px;font-weight:600;color:#111111;">12 ta qismdan iborat qo'llanma</span>
                 </div>
-                <span style="color:#cc0000;">➔</span>
+                <span style="color:#111111;font-weight:bold;">➔</span>
             </div>
         </div>
 
+        <!-- VIP 3 Talik Doira Tugmalar (Stikerlar o'rniga Zamonaviy Vektor Ikonkalar) -->
         <div class="grid-3">
             <div class="circle-card" onclick="alert('Qoʻgʻirchoqlar boʻlimi')">
-                <div class="circle-icon pink">🪆</div>
+                <div class="circle-icon pink">
+                    <!-- Qo'g'irchoq / Mask Vektor Ikonka -->
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.23-5.37 1.76 2.97 4.9 4.97 8.5 4.97 1.01 0 1.97-.16 2.87-.44.22.86.35 1.76.35 2.7 0 4.41-3.59 8-8 8z"/></svg>
+                </div>
                 <span>Qo'g'irchoqlar</span>
             </div>
             <div class="circle-card" onclick="alert('Muzey boʻlimi')">
-                <div class="circle-icon green">🏛️</div>
+                <div class="circle-icon green">
+                    <!-- Muzey / Bino Vektor Ikonka -->
+                    <svg viewBox="0 0 24 24"><path d="M12 1L2 6v2h20V6L12 1zm-7 9v8h3v-8H5zm6 0v8h3v-8h-3zm6 0v8h3v-8h-3zM2 20v2h20v-2H2z"/></svg>
+                </div>
                 <span>Muzey</span>
             </div>
             <div class="circle-card" onclick="alert('Atamalar boʻlimi')">
-                <div class="circle-icon blue">📖</div>
+                <div class="circle-icon blue">
+                    <!-- Kitob / Atamalar Vektor Ikonka -->
+                    <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+                </div>
                 <span>Atamalar</span>
             </div>
         </div>
@@ -299,7 +308,7 @@
                         <h4>Ovoz va aktyorlik</h4>
                     </div>
                 </div>
-                <div class="course-action" style="color:#ff6666;">Tez kunda</div>
+                <div class="course-action" style="color:#888888;">Tez kunda</div>
             </div>
 
             <div class="course-card" onclick="alert('Kinoteatr videolar boʻlimi ochilmoqda!')">
@@ -433,8 +442,8 @@
         <div class="section-header" style="margin-top:20px;"><div class="section-title">Shaxsiy Kabinet</div></div>
         <div style="padding:16px;">
             <div class="card-box" style="width:100%; height:auto;">
-                <h3 style="color:#cc0000;">👤 Foydalanuvchi</h3>
-                <p style="margin-top:6px; color:#ff6666;">Status: San'atsevar ⭐</p>
+                <h3 style="color:#111111;">👤 Foydalanuvchi</h3>
+                <p style="margin-top:6px; color:#666666;">Status: San'atsevar ⭐</p>
             </div>
         </div>
     </div>
@@ -487,7 +496,6 @@
             }
         }
 
-        // Bot ustozi bilan chatga o'tish (avtomatik matn bilan)
         function openBotMaster() {
             document.getElementById('dropdownMenu').style.display = 'none';
             let text = encodeURIComponent("Assalomu alaykum toʻlov qilishm uchun karta bering☺️");
@@ -547,8 +555,8 @@
                 container.innerHTML = `
                     <div style="text-align:center; padding:20px;">
                         <div style="font-size:40px; margin-bottom:10px;">🏆</div>
-                        <h3 style="color:#cc0000; margin-bottom:8px;">Tabriklaymiz! 100-bosqich yakunlandi!</h3>
-                        <p style="font-size:13px; color:#ff6666; margin-bottom:15px;">Siz 10 000 so'm pul mukofoti va 7 kunlik VIP darslikni yutib oldingiz!</p>
+                        <h3 style="color:#111111; margin-bottom:8px;">Tabriklaymiz! 100-bosqich yakunlandi!</h3>
+                        <p style="font-size:13px; color:#555555; margin-bottom:15px;">Siz 10 000 so'm pul mukofoti va 7 kunlik VIP darslikni yutib oldingiz!</p>
                     </div>
                 `;
                 return;
