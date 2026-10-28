@@ -3,266 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tferies Bank</title>
+    <title>Qo'g'irchoq Teatri</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         *{box-sizing:border-box;margin:0;padding:0;}
-        body{background-color:#08140e;color:#fff;font-family:sans-serif;padding-bottom:90px;}
+        body{background-color:#121216;color:#fff;font-family:sans-serif;padding-bottom:90px;}
         
-        .header{padding:20px;display:flex;justify-content:space-between;align-items:center;}
-        .brand{color:#d4af37;font-size:20px;font-weight:bold;letter-spacing:1px;}
-        .prof{width:36px;height:36px;background:#133321;border:1px solid #d4af37;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#d4af37;font-weight:bold;}
-        .card-con{padding:0 16px;margin-top:10px;}
-        .card{background:linear-gradient(135deg,#133321,#0b1d13);border:1px solid #d4af37;border-radius:20px;padding:24px;}
-        .c-title{font-size:13px;color:#8b9a90;text-transform:uppercase;}
-        .sum{font-size:32px;font-weight:bold;color:#fff;margin:8px 0 20px 0;}
-        .acts{display:flex;gap:10px;}
-        .btn{flex:1;background:rgba(212,175,55,0.15);border:1px solid #d4af37;color:#d4af37;padding:12px;border-radius:10px;font-weight:bold;text-align:center;cursor:pointer;font-size:14px;}
-        .btn.prim{background:#d4af37;color:#08140e;border:none;}
-        .page{display:none;padding:20px 16px;}
-        .page.active{display:block;}
-        .sec-title{font-size:16px;font-weight:bold;color:#d4af37;margin-bottom:15px;}
-        .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:15px;}
-        .s-item{background:#133321;border:1px solid #1a442d;border-radius:14px;padding:14px 8px;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;}
-        .s-ic{font-size:16px;margin-bottom:6px;color:#d4af37;font-weight:bold;}
-        .s-tx{font-size:11px;color:#cbd5d0;}
-        
-        /* Video Bloki Dizayni */
-        .video-container {
-            margin: 20px 16px 0 16px;
-            background: #133321;
-            border: 1px solid #d4af37;
-            border-radius: 16px;
-            overflow: hidden;
-            padding: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-        }
-        .video-title {
-            font-size: 13px;
-            color: #d4af37;
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .video-frame-wrapper {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%;
-            border-radius: 10px;
-            overflow: hidden;
-            background: #000;
-        }
-        .video-frame-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+        /* Yuqori Panel */
+        .top-bar{padding:16px;display:flex;justify-content:space-between;align-items:center;}
+        .top-left{display:flex;align-items:center;gap:8px;background:#1e1e24;padding:6px 12px;border-radius:20px;font-size:13px;}
+        .top-right{display:flex;align-items:center;gap:12px;}
+        .badge{background:#1e1e24;padding:6px 12px;border-radius:20px;font-size:13px;display:flex;align-items:center;gap:6px;font-weight:bold;}
+        .badge.gold{color:#ffd700;}
+        .badge.fire{color:#ff6b35;}
 
-        .fg{margin-bottom:14px;}
-        .fg label{font-size:12px;color:#d4af37;display:block;margin-bottom:6px;font-weight:600;}
-        .fc{width:100%;padding:12px;background:#08140e;border:1px solid #1a442d;border-radius:10px;color:#fff;font-size:14px;outline:none;}
-        .fc:focus{border-color:#d4af37;}
-        .nav{position:fixed;bottom:0;left:0;right:0;height:65px;background:#060e0a;border-top:1px solid #133321;display:flex;justify-content:space-around;align-items:center;z-index:1000;}
-        .n-it{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#6c7c72;flex:1;height:100%;cursor:pointer;}
-        .n-it.active{color:#d4af37;}
-        .n-ic{font-size:14px;margin-bottom:3px;font-weight:bold;}
+        /* Kartochkalar gridi */
+        .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px;margin-top:10px;}
+        .card-box{background:#1e1e24;border-radius:20px;padding:16px;position:relative;cursor:pointer;}
+        .card-box h3{font-size:15px;margin-top:10px;margin-bottom:4px;}
+        .card-box p{font-size:12px;color:#8e8e93;}
+        .card-arrow{position:absolute;top:16px;right:16px;width:24px;height:24px;background:#2c2c35;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;}
+
+        /* Banner */
+        .banner{margin:16px;background:linear-gradient(135deg,#6a11cb,#2575fc);border-radius:20px;padding:16px;display:flex;justify-content:space-between;align-items:center;overflow:hidden;position:relative;}
+        .banner-content h4{font-size:14px;opacity:0.9;margin-bottom:4px;}
+        .banner-content h2{font-size:16px;font-weight:bold;margin-bottom:10px;}
+        .banner-btn{background:#fff;color:#000;padding:6px 14px;border-radius:14px;font-size:12px;font-weight:bold;border:none;cursor:pointer;}
+
+        /* Seksiyalar */
+        .section-header{padding:0 16px;display:flex;justify-content:space-between;align-items:center;margin-top:20px;margin-bottom:10px;}
+        .section-title{font-size:16px;font-weight:bold;}
+        .section-all{font-size:13px;color:#0a84ff;cursor:pointer;}
+
+        /* Spektakl Bloki */
+        .show-card{margin:0 16px;background:#1e1e24;border-radius:20px;padding:16px;position:relative;}
+        .show-tag{background:#3a203f;color:#da70d6;padding:4px 10px;border-radius:8px;font-size:11px;display:inline-block;margin-bottom:8px;font-weight:bold;}
+        .show-title{font-size:15px;font-weight:bold;margin-bottom:12px;}
+        .show-item{display:flex;align-items:center;justify-content:space-between;background:#272730;padding:12px;border-radius:14px;cursor:pointer;}
+        .show-item-left{display:flex;align-items:center;gap:10px;}
+        .num-circle{width:24px;height:24px;background:#32d74b;color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:bold;}
+
+        /* Doira tugmalar */
+        .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:0 16px;margin-top:15px;}
+        .circle-card{background:#1e1e24;border-radius:20px;padding:20px 10px;display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;}
+        .circle-icon{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:8px;}
+        .circle-icon.pink{background:linear-gradient(135deg,#ff758c,#ff7eb3);}
+        .circle-icon.green{background:linear-gradient(135deg,#43e97b,#38f9d7);}
+        .circle-icon.blue{background:linear-gradient(135deg,#4facfe,#00f2fe);}
+        .circle-card span{font-size:13px;font-weight:600;}
+
+        /* VIP Promo Bar */
+        .promo-bar{margin:16px;background:linear-gradient(135deg,#ff9966,#ff5e62);border-radius:20px;padding:16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
+        .promo-text h4{font-size:14px;font-weight:bold;margin-bottom:2px;}
+        .promo-text p{font-size:11px;opacity:0.9;}
+
+        /* Sahifalar */
+        .page{display:none;}
+        .page.active{display:block;}
+
+        /* Pastki Navigatsiya Bar */
+        .nav{position:fixed;bottom:0;left:0;right:0;height:70px;background:#18181c;border-top:1px solid #25252d;display:flex;justify-content:space-around;align-items:center;z-index:1000;padding-bottom:10px;}
+        .n-it{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#8e8e93;flex:1;height:100%;cursor:pointer;}
+        .n-it.active{color:#ff9f0a;}
+        .n-ic{font-size:18px;margin-bottom:2px;}
         .n-lb{font-size:10px;}
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
-    <div class="header">
-        <div class="brand">TFERIES BANK</div>
-        <div class="prof">T</div>
-    </div>
-
-    <!-- 1. ASOSIY -->
+    <!-- 1. ASOSIY SAHIFA -->
     <div id="page-asosiy" class="page active">
-        <div class="card-con"><div class="card">
-            <div class="c-title">Asosiy Hisob</div>
-            <div class="sum">0 UZS</div>
-            <div class="acts">
-                <button class="btn prim" onclick="go('otkazmalar')">O'tkazish</button>
-                <button class="btn" onclick="alert('Hisobda mablag yoq')">To'ldirish</button>
-            </div>
-        </div></div>
-
-        <div style="padding:0 16px;margin-top:20px;">
-            <div class="sec-title">Tezkor xizmatlar</div>
-            <div class="grid">
-                <div class="s-item" onclick="go('otkazmalar')"><div class="s-ic">TR</div><div class="s-tx">O'tkazma</div></div>
-                <div class="s-item" onclick="go('tolov')"><div class="s-ic">TEL</div><div class="s-tx">Aloqa</div></div>
-                <div class="s-item" onclick="go('tolov')"><div class="s-ic">KOM</div><div class="s-tx">Kommunal</div></div>
-                <div class="s-item" onclick="go('kredit')"><div class="s-ic">KRED</div><div class="s-tx">Kredit</div></div>
+        <div class="top-bar">
+            <div class="top-left"><span>🇺🇿 O'z</span> ▾</div>
+            <div class="top-right">
+                <div class="badge fire">🔥 0</div>
+                <div class="badge gold">⭐ 10</div>
             </div>
         </div>
 
-        <!-- VIDEO BLOKI: TBC BANK DAN REKLAMA -->
-        <div class="video-container">
-            <div class="video-title">📢 TBC Bank dan reklama</div>
-            <div class="video-frame-wrapper">
-                <iframe src="https://www.youtube.com/embed/eKwBnVGwXLs" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="grid-2">
+            <div class="card-box" onclick="alert('Bepul master-klasslar tez kunda!')">
+                <div style="font-size:22px;">🎭</div>
+                <h3>Bepul darslar</h3>
+                <p>Teatr sirlari</p>
+                <div class="card-arrow">➔</div>
+            </div>
+            <div class="card-box" onclick="alert('VIP Spektakllar boʻlimi')">
+                <div style="font-size:22px;">👑</div>
+                <h3>VIP Sahna</h3>
+                <p>Maxsus shoular</p>
+                <div class="card-arrow">➔</div>
+            </div>
+        </div>
+
+        <div class="banner">
+            <div class="banner-content">
+                <h4>Yangi mavsum</h4>
+                <h2>Qo'g'irchoqlar Festivali</h2>
+                <button class="banner-btn" onclick="alert('Roʻyxatdan oʻtish boshlandi!')">Qatnashish</button>
+            </div>
+            <div style="font-size:50px;">🎪</div>
+        </div>
+
+        <div class="section-header">
+            <div class="section-title">Repertuarlar</div>
+            <div class="section-all" onclick="go('missiya')">Barchasi</div>
+        </div>
+        <div class="show-card">
+            <div class="show-tag">Ertaklar</div>
+            <div class="show-title">"Zumrad va Qimmat" qo'g'irchoq spektakli</div>
+            <div class="show-item" onclick="alert('Spektakl boshlanish vaqti: 14:00')">
+                <div class="show-item-left">
+                    <div class="num-circle">1</div>
+                    <span style="font-size:13px;font-weight:500;">Bosh rollarda: Rayhon va Lola</span>
+                </div>
+                <span>➔</span>
+            </div>
+        </div>
+
+        <div class="grid-3">
+            <div class="circle-card" onclick="alert('Sahna orti sirlari')">
+                <div class="circle-icon pink">🪆</div>
+                <span>Qo'g'irchoqlar</span>
+            </div>
+            <div class="circle-card" onclick="alert('Teatr tarixi va muzeyi')">
+                <div class="circle-icon green">🏛️</div>
+                <span>Muzey</span>
+            </div>
+            <div class="circle-card" onclick="alert('Lugʻat / Atamalar')">
+                <div class="circle-icon blue">📖</div>
+                <span>Atamalar</span>
+            </div>
+        </div>
+
+        <div class="promo-bar" onclick="alert('VIP chipta narxi: 50 000 soʻm')">
+            <div class="promo-text">
+                <h4>VIP Chipta - 50 000 so'm</h4>
+                <p>Birinchi qatordan joy oling!</p>
+            </div>
+            <div style="font-size:24px;">🎟️</div>
+        </div>
+    </div>
+
+    <!-- 2. O'RGANISH SAHIFASI -->
+    <div id="page-organish" class="page">
+        <div class="section-header" style="margin-top:20px;"><div class="section-title">O'quv kurslari</div></div>
+        <div style="padding:16px;">
+            <div class="card-box" style="margin-bottom:12px;" onclick="alert('Qoʻgʻirchoq yasash kursi')">
+                <h3>🧵 Qo'g'irchoq yasash kursi</h3>
+                <p>Mato va iplardan marionetka yasashni o'rganing.</p>
+            </div>
+            <div class="card-box" onclick="alert('Aktyorlik mahorati')">
+                <h3>🗣️ Ovoz va aktyorlik</h3>
+                <p>Qo'g'irchoqqa jon kiritish va ovoz berish sirlari.</p>
             </div>
         </div>
     </div>
 
-    <!-- 2. O'TKAZMALAR -->
-    <div id="page-otkazmalar" class="page">
-        <div class="sec-title">Pul o'tkazmalari</div>
-        <div class="card">
-            <input type="text" placeholder="8600 0000 0000 0000" class="fc" style="margin-bottom:12px;">
-            <input type="number" placeholder="Summa (UZS)" class="fc" style="margin-bottom:16px;">
-            <button class="btn prim" style="width:100%;" onclick="alert('Hisobda mablag yoq')">O'tkazish</button>
+    <!-- 3. MISSIYA SAHIFASI -->
+    <div id="page-missiya" class="page">
+        <div class="section-header" style="margin-top:20px;"><div class="section-title">Teatr Spektakllari</div></div>
+        <div style="padding:16px;">
+            <div class="show-card" style="margin-bottom:12px;">
+                <div class="show-tag">Klassika</div>
+                <div class="show-title">"Alpomish" dostoni asosida</div>
+            </div>
+            <div class="show-card">
+                <div class="show-tag">Kichkintoylar uchun</div>
+                <div class="show-title">"Quvnoq Uloqcha" ertak-shousi</div>
+            </div>
         </div>
     </div>
 
-    <!-- 3. TO'LOVILAR -->
-    <div id="page-tolov" class="page">
-        <div class="sec-title">To'lovlar</div>
-        <div class="grid" style="grid-template-columns:repeat(2,1fr);">
-            <div class="s-item" style="padding:16px;" onclick="go('mobil')"><div class="s-ic">📱</div><div class="s-tx">Mobil aloqa</div></div>
-            <div class="s-item" style="padding:16px;" onclick="go('kommunal')"><div class="s-ic">🏠</div><div class="s-tx">Kommunal</div></div>
+    <!-- 4. O'YINLAR SAHIFASI -->
+    <div id="page-oyinlar" class="page">
+        <div class="section-header" style="margin-top:20px;"><div class="section-title">Teatr Viktorinalari</div></div>
+        <div style="padding:16px;">
+            <div class="card-box" onclick="alert('Teatr boʻyicha viktorina boshlandi!')">
+                <div style="font-size:22px;">🎯</div>
+                <h3>Bilimingizni sinang</h3>
+                <p>Ertaklar va qo'g'irchoqlar bo'yicha savollar</p>
+            </div>
         </div>
     </div>
 
-    <!-- MOBIL ALOQA TO'LOVI -->
-    <div id="page-mobil" class="page">
-        <div class="sec-title">📲 Mobil aloqa to'lovi</div>
-        <div class="card">
-            <div class="fg">
-                <label>Operatorni tanlang:</label>
-                <select class="fc">
-                    <option>Ucell</option>
-                    <option>Beeline Uzbekistan</option>
-                    <option>Mobiuz</option>
-                    <option>Uzmobile (Ums)</option>
-                    <option>Humans</option>
-                </select>
+    <!-- 5. PROFIL SAHIFASI -->
+    <div id="page-profil" class="page">
+        <div class="section-header" style="margin-top:20px;"><div class="section-title">Shaxsiy Kabinet</div></div>
+        <div style="padding:16px;">
+            <div class="card-box">
+                <h3>Foydalanuvchi</h3>
+                <p style="margin-top:6px;">Status: San'atsevar ⭐</p>
+                <p style="margin-top:4px;">Sotib olingan chiptalar: 0 ta</p>
             </div>
-            <div class="fg">
-                <label>Telefon raqam:</label>
-                <input type="tel" class="fc" placeholder="+998 90 123 45 67">
-            </div>
-            <div class="fg">
-                <label>To'lov summasi (UZS):</label>
-                <input type="number" class="fc" placeholder="10000">
-            </div>
-            <button class="btn prim" style="width:100%;margin-top:10px;" onclick="alert('❌ Xatolik: Hisobda yetarli mablagʻ mavjud emas!')">To'lov qilish</button>
-            <button class="btn" style="width:100%;margin-top:10px;" onclick="go('tolov')">Orqaga</button>
         </div>
     </div>
 
-    <!-- KOMMUNAL TO'LOV -->
-    <div id="page-kommunal" class="page">
-        <div class="sec-title">🏠 Kommunal to'lovlar</div>
-        <div class="card">
-            <div class="fg">
-                <label>Xizmat turini tanlang:</label>
-                <select class="fc" id="kType" onchange="changeKommunalLabel()">
-                    <option value="Elektr energiyasi">⚡ Elektr energiyasi</option>
-                    <option value="Tabiiy gaz">🔥 Tabiiy gaz</option>
-                    <option value="Ichimlik suvi">💧 Ichimlik suvi</option>
-                    <option value="Issiqlik ta'minoti">🌡️ Issiqlik ta'minoti</option>
-                    <option value="Chiqindi to'lovi">🗑️ Maishiy chiqindi</option>
-                </select>
-            </div>
-            <div class="fg">
-                <label id="accountLabel">Shaxsiy hisob raqam:</label>
-                <input type="text" class="fc" placeholder="Hisob raqamni kiriting">
-            </div>
-            <div class="fg">
-                <label>To'lov summasi (UZS):</label>
-                <input type="number" class="fc" placeholder="Masalan: 50000">
-            </div>
-            <button class="btn prim" style="width:100%;margin-top:10px;" onclick="alert('❌ Xatolik: Hisobda yetarli mablagʻ mavjud emas!')">To'lov qilish</button>
-            <button class="btn" style="width:100%;margin-top:10px;" onclick="go('tolov')">Orqaga</button>
-        </div>
-    </div>
-
-    <!-- 4. MONITORING -->
-    <div id="page-monitoring" class="page">
-        <div class="sec-title">Monitoring</div>
-        <div class="card"><div class="c-title">Hisob ochildi: 0 UZS</div></div>
-    </div>
-
-    <!-- 5. XIZMATLAR -->
-    <div id="page-xizmatlar" class="page">
-        <div class="sec-title">Xizmatlar</div>
-        <div class="card" onclick="go('kredit')" style="cursor:pointer;"><div class="c-title">Onlayn Kredit (1-10 mln UZS)</div></div>
-    </div>
-
-    <!-- KREDIT ARIZA SAHIFASI -->
-    <div id="page-kredit" class="page">
-        <div class="sec-title">Onlayn Mikroqarz (1 mln - 10 mln UZS)</div>
-        <div class="card">
-            <div class="fg">
-                <label>Kredit summasi (UZS):</label>
-                <input type="number" id="kSum" class="fc" placeholder="1,000,000 - 10,000,000" min="1000000" max="10000000">
-            </div>
-            <div class="fg">
-                <label>Kredit muddati:</label>
-                <select class="fc">
-                    <option value="6">6 oy (26%)</option>
-                    <option value="12" selected>12 oy (26%)</option>
-                    <option value="24">24 oy (26%)</option>
-                </select>
-            </div>
-            <div class="fg"><label>Kredit maqsadi:</label><input type="text" class="fc" placeholder="Shaxsiy ehtiyoj"></div>
-            <div class="fg"><label>Pasport seriya va raqami:</label><input type="text" class="fc" placeholder="AA 1234567"></div>
-            <div class="fg"><label>JShShIR (PINFL - 14 ta raqam):</label><input type="text" class="fc" placeholder="3010195..." maxlength="14"></div>
-            <div class="fg"><label>Oylik rasmiy daromad:</label><input type="number" class="fc" placeholder="4000000"></div>
-            <div class="fg"><label>Telefon raqam:</label><input type="tel" class="fc" placeholder="+998 90 123 45 67"></div>
-            <div class="fg"><label>Karta raqami:</label><input type="text" class="fc" placeholder="8600 ..."></div>
-            <div class="fg"><label>Pasport nusxasi:</label><input type="file" accept="image/*" class="fc" style="padding:8px;"></div>
-            <button class="btn prim" style="width:100%;margin-top:10px;" onclick="submitCredit()">Kreditni Rasmiylashtirish</button>
-        </div>
-    </div>
-
-    <!-- NAV BAR -->
+    <!-- PASTKI MENYU BAR -->
     <div class="nav">
-        <div class="n-it active" id="n-asosiy" onclick="go('asosiy')"><div class="n-ic">T</div><div class="n-lb">Asosiy</div></div>
-        <div class="n-it" id="n-otkazmalar" onclick="go('otkazmalar')"><div class="n-ic">TR</div><div class="n-lb">O'tkazma</div></div>
-        <div class="n-it" id="n-tolov" onclick="go('tolov')"><div class="n-ic">PAY</div><div class="n-lb">To'lov</div></div>
-        <div class="n-it" id="n-monitoring" onclick="go('monitoring')"><div class="n-ic">HIS</div><div class="n-lb">Monitoring</div></div>
-        <div class="n-it" id="n-xizmatlar" onclick="go('xizmatlar')"><div class="n-ic">MEN</div><div class="n-lb">Xizmatlar</div></div>
+        <div class="n-it active" id="n-asosiy" onclick="go('asosiy')">
+            <div class="n-ic">🏠</div>
+            <div class="n-lb">Asosiy</div>
+        </div>
+        <div class="n-it" id="n-organish" onclick="go('organish')">
+            <div class="n-ic">📚</div>
+            <div class="n-lb">O'rganish</div>
+        </div>
+        <div class="n-it" id="n-missiya" onclick="go('missiya')">
+            <div class="n-ic">🎯</div>
+            <div class="n-lb">Missiya</div>
+        </div>
+        <div class="n-it" id="n-oyinlar" onclick="go('oyinlar')">
+            <div class="n-ic">🎮</div>
+            <div class="n-lb">O'yinlar</div>
+        </div>
+        <div class="n-it" id="n-profil" onclick="go('profil')">
+            <div class="n-ic">👤</div>
+            <div class="n-lb">Profil</div>
+        </div>
     </div>
 
     <script>
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand();
 
-        function changeKommunalLabel() {
-            let type = document.getElementById('kType').value;
-            let label = document.getElementById('accountLabel');
-            if(type === 'Elektr energiyasi') label.innerText = "10 xonali abonent raqami (ID):";
-            else if(type === 'Tabiiy gaz') label.innerText = "Gaz hisob raqami:";
-            else if(type === 'Ichimlik suvi') label.innerText = "Suv shaxsiy hisob raqami:";
-            else label.innerText = "Shaxsiy hisob raqam:";
-        }
-
-        function submitCredit() {
-            let sum = document.getElementById('kSum').value;
-            if(!sum || sum < 1000000 || sum > 10000000) {
-                alert('❌ Xatolik: Summa 1,000,000 dan 10,000,000 UZS gacha boʻlishi kerak!');
-                return;
-            }
-            alert('🎉 Tabriklaymiz! Kredit arizangiz qabul qilindi.');
-            go('asosiy');
-        }
-
         function go(name){
             document.querySelectorAll('.page').forEach(e=>e.classList.remove('active'));
             document.getElementById('page-'+name).classList.add('active');
             document.querySelectorAll('.n-it').forEach(e=>e.classList.remove('active'));
-            let e=document.getElementById('n-'+name);
+            let e = document.getElementById('n-'+name);
             if(e) e.classList.add('active');
-            else if(name === 'mobil' || name === 'kommunal') {
-                document.getElementById('n-tolov').classList.add('active');
-            }
         }
     </script>
 </body>
