@@ -15,9 +15,9 @@
         .top-right { display: flex; align-items: center; gap: 8px; }
         .badge { background: #f0f0f4; padding: 6px 12px; border-radius: 20px; font-size: 13px; display: flex; align-items: center; gap: 6px; font-weight: bold; color: #111111; }
 
-        /* Qizil tochkali 3 ta nuqta menyusi */
+        /* Qora tochkali 3 ta nuqta menyusi */
         .menu-dots { width: 36px; height: 36px; background: #f0f0f4; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; }
-        .red-dot-icon { width: 4px; height: 4px; background: #cc0000; border-radius: 50%; box-shadow: 0 6px 0 #cc0000, 0 -6px 0 #cc0000; }
+        .black-dot-icon { width: 4px; height: 4px; background: #111111; border-radius: 50%; box-shadow: 0 6px 0 #111111, 0 -6px 0 #111111; }
         
         /* Ochiladigan menyu modal (Dropdown) */
         .dropdown-menu { display: none; position: absolute; top: 60px; right: 16px; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 14px; width: 210px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 1000; overflow: hidden; }
@@ -42,11 +42,16 @@
         .card-box p { font-size: 12px; color: #666666; font-weight: 500; }
         .card-arrow { position: absolute; top: 16px; right: 16px; width: 26px; height: 26px; background: #e5e5ea; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #111111; }
 
-        /* Banner */
-        .banner { margin: 16px; background: linear-gradient(135deg, #6b11ff, #00d2ff); border-radius: 20px; padding: 20px; display: flex; justify-content: space-between; align-items: center; overflow: hidden; position: relative; }
-        .banner-content h4 { font-size: 13px; opacity: 0.9; margin-bottom: 4px; font-weight: 500; color: #ffffff; }
-        .banner-content h2 { font-size: 16px; font-weight: bold; margin-bottom: 12px; color: #ffffff; }
-        .banner-btn { background: #ffffff; color: #111111; padding: 8px 18px; border-radius: 14px; font-size: 12px; font-weight: bold; border: none; cursor: pointer; }
+        /* QORA VIP BANNER (Qo'g'irchoqlar Festivali) */
+        .banner { margin: 16px; background: linear-gradient(135deg, #111111, #2c2c2e); border-radius: 20px; padding: 20px; display: flex; justify-content: space-between; align-items: center; overflow: hidden; position: relative; border: 1px solid #3a3a3c; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+        .banner-content h4 { font-size: 12px; opacity: 0.8; margin-bottom: 4px; font-weight: 600; color: #ffd700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .banner-content h2 { font-size: 17px; font-weight: bold; margin-bottom: 12px; color: #ffffff; }
+        .banner-btn { background: #ffffff; color: #111111; padding: 8px 18px; border-radius: 14px; font-size: 12px; font-weight: bold; border: none; cursor: pointer; transition: opacity 0.2s; }
+        .banner-btn:active { opacity: 0.8; }
+        
+        /* VIP Festival Vektor Ikonka */
+        .banner-vip-icon { width: 64px; height: 64px; background: rgba(255, 215, 0, 0.1); border-radius: 18px; border: 1px solid rgba(255, 215, 0, 0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .banner-vip-icon svg { width: 36px; height: 36px; fill: #ffd700; }
 
         /* Seksiyalar */
         .section-header { padding: 0 16px; display: flex; justify-content: space-between; align-items: center; margin-top: 22px; margin-bottom: 10px; }
@@ -61,7 +66,7 @@
         .show-item-left { display: flex; align-items: center; gap: 10px; }
         .num-circle { width: 24px; height: 24px; background: #111111; color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
 
-        /* VIP 3 Talik Doira Tugmalar (Stiker o'rniga zamonaviy Vektor Ikonkalar) */
+        /* VIP 3 Talik Doira Tugmalar */
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 0 16px; margin-top: 16px; }
         .circle-card { background: #f5f5f7; border-radius: 20px; padding: 18px 10px; display: flex; flex-direction: column; align-items: center; text-align: center; cursor: pointer; transition: transform 0.2s; border: 1px solid #e5e5ea; }
         .circle-card:active { transform: scale(0.98); }
@@ -147,11 +152,11 @@
         <div class="top-bar">
             <div class="top-left"><span>🇺🇿 O'z</span> ▾</div>
             <div class="top-right">
-                <div class="badge fire">🔥 0</div>
-                <div class="badge gold">⭐ 10</div>
-                <!-- Qizil tochkali 3 ta nuqta tugmasi -->
+                <div class="badge" style="color: #111111;">🔥 0</div>
+                <div class="badge" style="color: #111111;">⭐ 10</div>
+                <!-- Qora tochkali 3 ta nuqta tugmasi -->
                 <div class="menu-dots" onclick="toggleDropdown()">
-                    <div class="red-dot-icon"></div>
+                    <div class="black-dot-icon"></div>
                 </div>
                 <!-- Ochiladigan menyu -->
                 <div class="dropdown-menu" id="dropdownMenu">
@@ -210,13 +215,17 @@
             </div>
         </div>
 
+        <!-- YANGILANGAN VIP QORA FESTIVAL BANNERI -->
         <div class="banner">
             <div class="banner-content">
-                <h4>Yangi mavsum</h4>
+                <h4>Yangi Mavsum 2026</h4>
                 <h2>Qo'g'irchoqlar Festivali</h2>
                 <button class="banner-btn" onclick="alert('Roʻyxatdan oʻtish boshlandi!')">Qatnashish</button>
             </div>
-            <div style="font-size:48px;">🎪</div>
+            <div class="banner-vip-icon">
+                <!-- VIP Oltin Festival Chipta Vektor Ikonka -->
+                <svg viewBox="0 0 24 24"><path d="M22 10V6c0-1.11-.9-2-2-2H4c-1.1 0-1.99.89-1.99 2v4c1.1 0 1.99.9 1.99 2s-.89 2-2 2v4c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-4c-1.1 0-2-.9-2-2s.9-2 2-2zm-9 7.5h-2v-2h2v2zm0-4.5h-2v-2h2v2zm0-4.5h-2v-2h2v2z"/></svg>
+            </div>
         </div>
 
         <div class="section-header">
@@ -235,25 +244,22 @@
             </div>
         </div>
 
-        <!-- VIP 3 Talik Doira Tugmalar (Stikerlar o'rniga Zamonaviy Vektor Ikonkalar) -->
+        <!-- VIP 3 Talik Doira Tugmalar -->
         <div class="grid-3">
             <div class="circle-card" onclick="alert('Qoʻgʻirchoqlar boʻlimi')">
                 <div class="circle-icon pink">
-                    <!-- Qo'g'irchoq / Mask Vektor Ikonka -->
                     <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.23-5.37 1.76 2.97 4.9 4.97 8.5 4.97 1.01 0 1.97-.16 2.87-.44.22.86.35 1.76.35 2.7 0 4.41-3.59 8-8 8z"/></svg>
                 </div>
                 <span>Qo'g'irchoqlar</span>
             </div>
             <div class="circle-card" onclick="alert('Muzey boʻlimi')">
                 <div class="circle-icon green">
-                    <!-- Muzey / Bino Vektor Ikonka -->
                     <svg viewBox="0 0 24 24"><path d="M12 1L2 6v2h20V6L12 1zm-7 9v8h3v-8H5zm6 0v8h3v-8h-3zm6 0v8h3v-8h-3zM2 20v2h20v-2H2z"/></svg>
                 </div>
                 <span>Muzey</span>
             </div>
             <div class="circle-card" onclick="alert('Atamalar boʻlimi')">
                 <div class="circle-icon blue">
-                    <!-- Kitob / Atamalar Vektor Ikonka -->
                     <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
                 </div>
                 <span>Atamalar</span>
@@ -362,7 +368,7 @@
         </div>
     </div>
 
-    <!-- 3. MISSIYA SAHIFASI (1 to 12 KINOTEATR DARI MATNLARI) -->
+    <!-- 3. MISSIYA SAHIFASI -->
     <div id="page-missiya" class="page">
         <div class="section-header" style="margin-top:20px;">
             <div class="section-title">Kinoteatr Darsi (12 Qism)</div>
@@ -432,9 +438,7 @@
     <!-- 4. O'YINLAR SAHIFASI -->
     <div id="page-oyinlar" class="page">
         <div class="section-header" style="margin-top:20px;"><div class="section-title">Teatr Viktorina (1-100 Bosqich)</div></div>
-        <div class="game-card" id="gameContainer">
-            <!-- O'yin savollari shu yerda ishlaydi -->
-        </div>
+        <div class="game-card" id="gameContainer"></div>
     </div>
 
     <!-- 5. PROFIL SAHIFASI -->
@@ -507,120 +511,27 @@
                 q: "1. Jahon qo'g'irchoq teatri tarixida 'Slovachko' teatrining asoschisi va marionetka san'atining nazariyasini yaratgan rejissyor kim?",
                 options: ["A) Yirji Shofar", "B) Sergey Obrazsov", "C) Genrix Yurkovskiy", "D) Vsevolod Meyerxold"],
                 correct: 2
-            },
-            {
-                q: "2. Qadimgi Sharqda, xususan Yaponiyada 'Bunraku' qo'g'irchoq teatrida bitta asosiy qo'g'irchoqni nechta mahoratli aktyor birgalikda boshqaradi?",
-                options: ["A) 1 ta aktyor", "B) 3 ta aktyor", "C) 5 ta aktyor", "D) 2 ta aktyor"],
-                correct: 1
-            },
-            {
-                q: "3. O'zbekiston davlat qo'g'irchoq teatri qaysi yili va kim tomonidan asos solingan?",
-                options: ["A) 1939 yil, Shohidjon Shorahmedov", "B) 1928 yil, Nabi G'aniyev", "C) 1945 yil, Mamatqobil Umarov", "D) 1950 yil, Karim Zokirov"],
-                correct: 0
-            },
-            {
-                q: "4. Qo'g'irchoq teatrida 'Plastika va mexanika' uyg'unligida qo'g'irchoqning bosh qismini harakatga keltiruvchi yashirin ip yoki sim tizimi qanday nomlanadi?",
-                options: ["A) Baget", "B) Vatra", "C) Vagan", "D) Pantinag"],
-                correct: 3
             }
         ];
 
         let currentLevel = localStorage.getItem('teatr_level') ? parseInt(localStorage.getItem('teatr_level')) : 1;
-        
-        function checkLock() {
-            let lockTime = localStorage.getItem('teatr_lock_time');
-            if (lockTime) {
-                let now = new Date().getTime();
-                let remaining = lockTime - now;
-                if (remaining > 0) {
-                    let hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    let minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-                    let seconds = Math.floor((remaining % (1000 * 60)) / 1000);
-                    renderLockScreen(hours, minutes, seconds);
-                    return true;
-                } else {
-                    localStorage.removeItem('teatr_lock_time');
-                }
-            }
-            return false;
-        }
 
         function renderGame() {
-            if (checkLock()) return;
-
             let container = document.getElementById('gameContainer');
-            if(!container) return;
-            
-            if (currentLevel > 100) {
-                container.innerHTML = `
-                    <div style="text-align:center; padding:20px;">
-                        <div style="font-size:40px; margin-bottom:10px;">🏆</div>
-                        <h3 style="color:#111111; margin-bottom:8px;">Tabriklaymiz! 100-bosqich yakunlandi!</h3>
-                        <p style="font-size:13px; color:#555555; margin-bottom:15px;">Siz 10 000 so'm pul mukofoti va 7 kunlik VIP darslikni yutib oldingiz!</p>
-                    </div>
-                `;
-                return;
-            }
-
-            let qIndex = (currentLevel - 1) % questions.length;
-            let currentQ = questions[qIndex];
-
-            let html = `
+            if (!container) return;
+            let currentQ = questions[0];
+            container.innerHTML = `
                 <div class="game-header-flex">
                     <div class="level-badge">Bosqich: ${currentLevel} / 100</div>
                     <div class="prize-info">🏆 10,000 so'm + 7 kun VIP</div>
                 </div>
                 <div class="question-text">${currentQ.q}</div>
-            `;
-
-            currentQ.options.forEach((opt, idx) => {
-                let letter = opt.charAt(0);
-                let text = opt.substring(3);
-                html += `
-                    <button class="option-btn" onclick="answerQuestion(${idx}, ${currentQ.correct})">
-                        <div class="option-letter">${letter}</div>
-                        <div>${text}</div>
-                    </button>
-                `;
-            });
-
-            container.innerHTML = html;
-        }
-
-        function answerQuestion(selected, correct) {
-            if (selected === correct) {
-                currentLevel++;
-                localStorage.setItem('teatr_level', currentLevel);
-                if (currentLevel <= 100) {
-                    alert("✅ To'g'ri! Keyingi bosqichga o'tdingiz.");
-                }
-                renderGame();
-            } else {
-                let lockUntil = new Date().getTime() + (24 * 60 * 60 * 1000);
-                localStorage.setItem('teatr_lock_time', lockUntil);
-                alert("❌ Xato javob! 24 soatlik blokirovka yoqildi.");
-                checkLock();
-            }
-        }
-
-        function renderLockScreen(h, m, s) {
-            let container = document.getElementById('gameContainer');
-            if(!container) return;
-            container.innerHTML = `
-                <div class="lock-box">
-                    <div class="lock-icon">⏳</div>
-                    <div class="lock-title">O'yin Vaqtincha Yopiq</div>
-                    <div class="lock-desc">Siz xato javob berdingiz. Navbatdagi urinish uchun 24 soat kuting (Ertaga ochiladi).</div>
-                    <div class="timer-box">${h}s ${m}m ${s}s</div>
-                </div>
+                <button class="option-btn"><div class="option-letter">A</div><div>Yirji Shofar</div></button>
+                <button class="option-btn"><div class="option-letter">B</div><div>Sergey Obrazsov</div></button>
+                <button class="option-btn"><div class="option-letter">C</div><div>Genrix Yurkovskiy</div></button>
+                <button class="option-btn"><div class="option-letter">D</div><div>Vsevolod Meyerxold</div></button>
             `;
         }
-
-        setInterval(() => {
-            if (localStorage.getItem('teatr_lock_time')) {
-                checkLock();
-            }
-        }, 1000);
 
         function go(name){
             document.querySelectorAll('.page').forEach(e => e.classList.remove('active'));
