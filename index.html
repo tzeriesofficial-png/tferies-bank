@@ -17,11 +17,14 @@
         .badge.gold { color: #ffd700; }
         .badge.fire { color: #ff6b35; }
 
-        /* Yuqori Grid (2 ta karta) */
+        /* Yuqori Grid (2 ta karta - Professional Vektor Ikonkalar bilan) */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 16px; margin-top: 6px; }
-        .card-box { background: #1c1c24; border-radius: 20px; padding: 16px; position: relative; cursor: pointer; transition: transform 0.2s; }
+        .card-box { background: #1c1c24; border-radius: 20px; padding: 16px; position: relative; cursor: pointer; transition: transform 0.2s; height: 110px; display: flex; flex-direction: column; justify-content: space-between; }
         .card-box:active { transform: scale(0.98); }
-        .card-box h3 { font-size: 15px; margin-top: 12px; margin-bottom: 2px; font-weight: 600; }
+        .card-top { display: flex; align-items: center; }
+        .card-icon-svg { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
+        .card-icon-svg svg { width: 30px; height: 30px; }
+        .card-box h3 { font-size: 15px; margin-bottom: 2px; font-weight: 600; }
         .card-box p { font-size: 12px; color: #8e8e93; }
         .card-arrow { position: absolute; top: 16px; right: 16px; width: 26px; height: 26px; background: #272732; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #aaa; }
 
@@ -63,7 +66,7 @@
         .page { display: none; }
         .page.active { display: block; }
 
-        /* Pastki Navigatsiya Bar (Professional SVG Ikonkalar bilan) */
+        /* Pastki Navigatsiya Bar */
         .nav { position: fixed; bottom: 0; left: 0; right: 0; height: 70px; background: #16161b; border-top: 1px solid #22222b; display: flex; justify-content: space-around; align-items: center; z-index: 1000; padding-bottom: 6px; }
         .n-it { display: flex; flex-direction: column; align-items: center; justify-content: center; color: #8e8e93; flex: 1; height: 100%; cursor: pointer; }
         .n-it.active { color: #ff9f0a; }
@@ -85,16 +88,39 @@
         </div>
 
         <div class="grid-2">
+            <!-- 1-Karta: Bepul darslar (Teatr maskalari vektori) -->
             <div class="card-box" onclick="alert('Bepul master-klasslar tez kunda ochiladi!')">
-                <div style="font-size:24px;">🎭</div>
-                <h3>Bepul darslar</h3>
-                <p>Teatr sirlari</p>
+                <div class="card-top">
+                    <div class="card-icon-svg">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#a259ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 10s3-2 3-5c0-2-1-3-1-3s3 1 4 4c1-3 4-4 4-4s-1 1-1 3c0 3 3 5 3 5s-2 3-6 3-6-3-6-3z"></path>
+                            <circle cx="9" cy="10" r="1" fill="#a259ff"></circle>
+                            <circle cx="15" cy="10" r="1" fill="#a259ff"></circle>
+                            <path d="M10 15c1 1 3 1 4 0"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div>
+                    <h3>Bepul darslar</h3>
+                    <p>Teatr sirlari</p>
+                </div>
                 <div class="card-arrow">➔</div>
             </div>
+
+            <!-- 2-Karta: VIP Sahna (Oltin toj vektori) -->
             <div class="card-box" onclick="alert('VIP Spektakllar boʻlimi')">
-                <div style="font-size:24px;">👑</div>
-                <h3>VIP Sahna</h3>
-                <p>Maxsus shoular</p>
+                <div class="card-top">
+                    <div class="card-icon-svg">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#ffaa00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z" fill="rgba(255,170,0,0.2)"></path>
+                            <circle cx="12" cy="18" r="1" fill="#ffaa00"></circle>
+                        </svg>
+                    </div>
+                </div>
+                <div>
+                    <h3>VIP Sahna</h3>
+                    <p>Maxsus shoular</p>
+                </div>
                 <div class="card-arrow">➔</div>
             </div>
         </div>
@@ -152,11 +178,11 @@
     <div id="page-organish" class="page">
         <div class="section-header" style="margin-top:20px;"><div class="section-title">O'quv kurslari</div></div>
         <div style="padding:16px;">
-            <div class="card-box" style="margin-bottom:12px; width:100%;" onclick="alert('Qoʻgʻirchoq yasash kursi')">
+            <div class="card-box" style="margin-bottom:12px; width:100%; height:auto;" onclick="alert('Qoʻgʻirchoq yasash kursi')">
                 <h3>🧵 Qo'g'irchoq yasash kursi</h3>
                 <p style="margin-top:4px;">Mato va iplardan marionetka yasashni o'rganing.</p>
             </div>
-            <div class="card-box" style="width:100%;" onclick="alert('Aktyorlik mahorati')">
+            <div class="card-box" style="width:100%; height:auto;" onclick="alert('Aktyorlik mahorati')">
                 <h3>🗣️ Ovoz va aktyorlik</h3>
                 <p style="margin-top:4px;">Qo'g'irchoqqa jon kiritish va ovoz berish sirlari.</p>
             </div>
@@ -182,71 +208,6 @@
     <div id="page-oyinlar" class="page">
         <div class="section-header" style="margin-top:20px;"><div class="section-title">Teatr Viktorinalari</div></div>
         <div style="padding:16px;">
-            <div class="card-box" style="width:100%;" onclick="alert('Teatr boʻyicha viktorina boshlandi!')">
-                <div style="font-size:24px;">🎯</div>
-                <h3>Bilimingizni sinang</h3>
-                <p style="margin-top:4px;">Ertaklar va qo'g'irchoqlar bo'yicha qiziqarli savollar</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- 5. PROFIL SAHIFASI -->
-    <div id="page-profil" class="page">
-        <div class="section-header" style="margin-top:20px;"><div class="section-title">Shaxsiy Kabinet</div></div>
-        <div style="padding:16px;">
-            <div class="card-box" style="width:100%;">
-                <h3>Foydalanuvchi</h3>
-                <p style="margin-top:6px;">Status: San'atsevar ⭐</p>
-                <p style="margin-top:4px;">Sotib olingan chiptalar: 0 ta</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- PASTKI MENYU BAR (SVG VEKTOR IKONKALAR BILAN) -->
-    <div class="nav">
-        <div class="n-it active" id="n-asosiy" onclick="go('asosiy')">
-            <div class="n-ic">
-                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-            </div>
-            <div class="n-lb">Asosiy</div>
-        </div>
-        <div class="n-it" id="n-organish" onclick="go('organish')">
-            <div class="n-ic">
-                <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
-            </div>
-            <div class="n-lb">O'rganish</div>
-        </div>
-        <div class="n-it" id="n-missiya" onclick="go('missiya')">
-            <div class="n-ic">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/></svg>
-            </div>
-            <div class="n-lb">Missiya</div>
-        </div>
-        <div class="n-it" id="n-oyinlar" onclick="go('oyinlar')">
-            <div class="n-ic">
-                <svg viewBox="0 0 24 24"><path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm3-3c-.83 0-1.5-.67-1.5-1.5S19.67 9 20.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
-            </div>
-            <div class="n-lb">O'yinlar</div>
-        </div>
-        <div class="n-it" id="n-profil" onclick="go('profil')">
-            <div class="n-ic">
-                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-            </div>
-            <div class="n-lb">Profil</div>
-        </div>
-    </div>
-
-    <script>
-        window.Telegram.WebApp.ready();
-        window.Telegram.WebApp.expand();
-
-        function go(name){
-            document.querySelectorAll('.page').forEach(e => e.classList.remove('active'));
-            document.getElementById('page-' + name).classList.add('active');
-            document.querySelectorAll('.n-it').forEach(e => e.classList.remove('active'));
-            let e = document.getElementById('n-' + name);
-            if(e) e.classList.add('active');
-        }
-    </script>
-</body>
-</html>
+            <div class="card-box" style="width:100%; height:auto;" onclick="alert('Teatr boʻyicha viktorina boshlandi!')">
+                <h3>🎯 Bilimingizni sinang</h3>
+                <p style="margin-top:4px;">Ertaklar va qo'g'
