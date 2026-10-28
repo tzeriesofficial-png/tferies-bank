@@ -15,23 +15,19 @@
         .top-right { display: flex; align-items: center; gap: 8px; }
         .badge { background: #f0f0f4; padding: 6px 12px; border-radius: 20px; font-size: 13px; display: flex; align-items: center; gap: 6px; font-weight: bold; color: #111111; }
 
-        /* Qora tochkali 3 ta nuqta menyusi */
         .menu-dots { width: 36px; height: 36px; background: #f0f0f4; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; }
         .black-dot-icon { width: 4px; height: 4px; background: #111111; border-radius: 50%; box-shadow: 0 6px 0 #111111, 0 -6px 0 #111111; }
         
-        /* Ochiladigan menyu modal (Dropdown) */
         .dropdown-menu { display: none; position: absolute; top: 60px; right: 16px; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 14px; width: 210px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 1000; overflow: hidden; }
         .dropdown-item { padding: 14px 16px; font-size: 13px; font-weight: bold; color: #111111; cursor: pointer; border-bottom: 1px solid #f0f0f4; display: flex; align-items: center; gap: 8px; }
         .dropdown-item:hover { background: #f5f5f7; }
 
-        /* Modal Oyna (Hisobni to'ldirish uchun) */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
         .modal-card { background: #ffffff; border: 1px solid #e5e5ea; border-radius: 20px; padding: 24px; width: 100%; max-width: 340px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
         .modal-title { font-size: 18px; font-weight: bold; color: #111111; margin-bottom: 15px; }
         .modal-text { font-size: 13px; color: #333333; line-height: 1.5; margin-bottom: 15px; text-align: left; background: #f5f5f7; padding: 14px; border-radius: 12px; border: 1px dashed #ccc; }
         .modal-btn { background: #111111; color: #fff; border: none; padding: 12px; width: 100%; border-radius: 12px; font-weight: bold; font-size: 14px; cursor: pointer; }
 
-        /* Yuqori Grid (2 ta karta) */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 16px; margin-top: 6px; }
         .card-box { background: #f5f5f7; border-radius: 20px; padding: 16px; position: relative; cursor: pointer; transition: transform 0.2s; height: 110px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #e5e5ea; }
         .card-box:active { transform: scale(0.98); }
@@ -42,18 +38,15 @@
         .card-box p { font-size: 12px; color: #666666; font-weight: 500; }
         .card-arrow { position: absolute; top: 16px; right: 16px; width: 26px; height: 26px; background: #e5e5ea; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #111111; }
 
-        /* Video konteynerlari */
         .video-box { margin: 16px; background: #f5f5f7; border-radius: 20px; overflow: hidden; border: 1px solid #e5e5ea; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .video-title-bar { padding: 14px 16px; font-size: 15px; font-weight: bold; color: #111111; background: #ffffff; border-bottom: 1px solid #e5e5ea; display: flex; justify-content: space-between; align-items: center; }
         .video-frame-wrap { position: relative; width: 100%; padding-top: 56.25%; background: #000; }
         .video-frame-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        /* Seksiyalar */
         .section-header { padding: 0 16px; display: flex; justify-content: space-between; align-items: center; margin-top: 22px; margin-bottom: 10px; }
         .section-title { font-size: 16px; font-weight: bold; color: #111111; }
         .section-all { font-size: 13px; color: #007aff; cursor: pointer; font-weight: 600; }
 
-        /* Repertuar Bloki */
         .show-card { margin: 0 16px; background: #f5f5f7; border-radius: 20px; padding: 16px; position: relative; border: 1px solid #e5e5ea; }
         .show-tag { background: #e5e5ea; color: #111111; padding: 4px 10px; border-radius: 8px; font-size: 11px; display: inline-block; margin-bottom: 8px; font-weight: bold; }
         .show-title { font-size: 15px; font-weight: bold; margin-bottom: 12px; line-height: 1.3; color: #111111; }
@@ -61,7 +54,6 @@
         .show-item-left { display: flex; align-items: center; gap: 10px; }
         .num-circle { width: 24px; height: 24px; background: #111111; color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
 
-        /* VIP 3 Talik Doira Tugmalar */
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 0 16px; margin-top: 16px; }
         .circle-card { background: #f5f5f7; border-radius: 20px; padding: 18px 10px; display: flex; flex-direction: column; align-items: center; text-align: center; cursor: pointer; transition: transform 0.2s; border: 1px solid #e5e5ea; }
         .circle-card:active { transform: scale(0.98); }
@@ -72,60 +64,22 @@
         .circle-icon svg { width: 26px; height: 26px; fill: #ffffff; }
         .circle-card span { font-size: 13px; font-weight: bold; color: #111111; }
 
-        /* VIP Promo Bar */
         .promo-bar { margin: 16px 16px 30px 16px; background: linear-gradient(135deg, #111111, #333333); border-radius: 20px; padding: 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
         .promo-text h4 { font-size: 14px; font-weight: bold; margin-bottom: 2px; color: #fff; }
         .promo-text p { font-size: 11px; opacity: 0.8; color: #fff; }
 
-        /* Kurslar va Sahifalar */
         .page-header { padding: 16px; display: flex; align-items: center; gap: 12px; }
         .back-btn { width: 36px; height: 36px; background: #f0f0f4; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; color: #111111; }
-        .page-title { font-size: 22px; font-weight: bold; color: #111111; }
-        
-        .pro-banner { margin: 0 16px 16px 16px; background: linear-gradient(135deg, #111111, #444444); border-radius: 20px; padding: 20px; display: flex; justify-content: space-between; align-items: center; position: relative; overflow: hidden; }
-        .pro-banner-text h3 { font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 4px; }
-        .pro-banner-text p { font-size: 12px; color: rgba(255,255,255,0.8); max-width: 180px; }
+        .page-title { font-size: 20px; font-weight: bold; color: #111111; }
 
-        .course-card { margin: 0 16px 12px 16px; background: #f5f5f7; border-radius: 20px; padding: 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: transform 0.2s; border: 1px solid #e5e5ea; }
-        .course-card:active { transform: scale(0.98); }
-        .course-left { display: flex; align-items: center; gap: 16px; }
-        
-        .course-icon-wrap { width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .course-icon-wrap.red-grad { background: linear-gradient(135deg, #ff416c, #ff4b2b); }
-        .course-icon-wrap.purple-grad { background: linear-gradient(135deg, #8e2de2, #4a00e0); }
-        .course-icon-wrap.blue-grad { background: linear-gradient(135deg, #00c6ff, #0072ff); }
-        .course-icon-wrap svg { width: 26px; height: 26px; fill: #fff; }
+        .lesson-content-card { margin: 0 16px 16px 16px; background: #f5f5f7; border-radius: 20px; padding: 18px; border: 1px solid #e5e5ea; }
+        .lesson-part-title { font-size: 16px; font-weight: bold; color: #111111; margin-bottom: 8px; }
+        .lesson-part-meta { font-size: 12px; color: #666; margin-bottom: 12px; }
+        .lesson-part-text { font-size: 13px; color: #333333; line-height: 1.6; white-space: pre-line; background: #ffffff; padding: 14px; border-radius: 14px; border: 1px solid #e5e5ea; margin-bottom: 14px; }
 
-        .course-info span { font-size: 12px; color: #666666; display: block; margin-bottom: 2px; font-weight: 500; }
-        .course-info h4 { font-size: 15px; font-weight: bold; color: #111111; }
-        .course-action { font-size: 13px; color: #111111; font-weight: bold; }
-
-        /* 12 Qismli Dars Matni Sahifasi (Missiya) */
-        .lesson-content-card { margin: 0 16px 12px 16px; background: #f5f5f7; border-radius: 20px; padding: 18px; border: 1px solid #e5e5ea; }
-        .lesson-part-title { font-size: 15px; font-weight: bold; color: #111111; margin-bottom: 6px; }
-        .lesson-part-text { font-size: 13px; color: #444444; line-height: 1.5; }
-
-        /* O'yin interfeysi */
-        .game-card { margin: 16px; background: #f5f5f7; border-radius: 20px; padding: 20px; border: 1px solid #e5e5ea; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .game-header-flex { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; }
-        .level-badge { background: #111111; color: #ffffff; padding: 4px 12px; border-radius: 10px; font-size: 12px; font-weight: bold; }
-        .prize-info { font-size: 12px; color: #111111; font-weight: bold; }
-        .question-text { font-size: 16px; font-weight: bold; color: #111111; margin-bottom: 20px; line-height: 1.4; }
-        .option-btn { width: 100%; background: #ffffff; border: 1px solid #e5e5ea; color: #111111; padding: 14px 16px; border-radius: 14px; font-size: 14px; font-weight: 600; text-align: left; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 10px; }
-        .option-btn:hover { background: #e5e5ea; }
-        .option-letter { width: 28px; height: 28px; background: #111111; color: #ffffff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 13px; }
-
-        .lock-box { text-align: center; padding: 30px 10px; }
-        .lock-icon { font-size: 48px; margin-bottom: 12px; }
-        .lock-title { font-size: 18px; font-weight: bold; color: #111111; margin-bottom: 8px; }
-        .lock-desc { font-size: 13px; color: #555555; margin-bottom: 20px; line-height: 1.4; }
-        .timer-box { background: #111111; color: #ffffff; padding: 12px; border-radius: 12px; font-size: 16px; font-weight: bold; display: inline-block; }
-
-        /* Sahifalar boshqaruvi */
         .page { display: none; }
         .page.active { display: block; }
 
-        /* Pastki Navigatsiya Bar */
         .nav { position: fixed; bottom: 0; left: 0; right: 0; height: 70px; background: #ffffff; border-top: 1px solid #e5e5ea; display: flex; justify-content: space-around; align-items: center; z-index: 9999; padding-bottom: 6px; }
         .n-it { display: flex; flex-direction: column; align-items: center; justify-content: center; color: #8e8e93; flex: 1; height: 100%; cursor: pointer; }
         .n-it.active { color: #111111; }
@@ -204,14 +158,13 @@
             </div>
         </div>
 
-        <!-- ASOSIY SAHIFA 1XBET REKLAMA -->
         <div class="video-box">
             <div class="video-title-bar">
                 <span id="videoBarTitle">1xbet reklamasi (Maxsus shou)</span>
                 <span style="font-size:12px; color:#666;">▶ HD</span>
             </div>
             <div class="video-frame-wrap">
-                <iframe src="https://www.youtube.com/embed/K7e3jpYf28I" title="1xbet reklama" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/K7e3jpYf28I" title="1xbet reklama" allowfullscreen></iframe>
             </div>
         </div>
 
@@ -240,7 +193,7 @@
                 <div class="circle-icon green"><svg viewBox="0 0 24 24"><path d="M12 1L2 6v2h20V6L12 1zm-7 9v8h3v-8H5zm6 0v8h3v-8h-3zm6 0v8h3v-8h-3zM2 20v2h20v-2H2z"/></svg></div>
                 <span id="btnMuseum">Muzey</span>
             </div>
-            <div class="circle-card" onclick="alert('Atamalar boʻlimi')">
+            <div class="circle-card" onclick="go('atamalar')">
                 <div class="circle-icon blue"><svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg></div>
                 <span id="btnTerms">Atamalar</span>
             </div>
@@ -255,7 +208,17 @@
         </div>
     </div>
 
-    <!-- VIP SAHIFASI (13 TA VIDEO BARCHASI BILAN) -->
+    <!-- ATAMALAR SAHIFASI (TOP 60 TA MASHQ / ERTAK / MASAL) -->
+    <div id="page-atamalar" class="page">
+        <div class="page-header">
+            <div class="back-btn" onclick="go('asosiy')">❮</div>
+            <div class="page-title" id="atamalarPageTitle">Atamalar va Mashqlar (Top 60)</div>
+        </div>
+
+        <div id="atamalarListContainer"></div>
+    </div>
+
+    <!-- VIP SAHIFASI -->
     <div id="page-vip-sahna" class="page">
         <div class="page-header">
             <div class="back-btn" onclick="go('asosiy')">❮</div>
@@ -277,27 +240,16 @@
         <div class="video-box" style="margin-bottom:30px;"><div class="video-title-bar"><span>13-video: Sehrli parda ortida (Hujjatli film)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/02tJPDnjBaQ" allowfullscreen></iframe></div></div>
     </div>
 
-    <!-- 2. O'RGANISH SAHIFASI -->
+    <!-- O'RGANISH SAHIFASI -->
     <div id="page-organish" class="page">
         <div class="page-header">
             <div class="back-btn" onclick="go('asosiy')">❮</div>
             <div class="page-title" id="pageOrganishTitle">Bepul kurslar</div>
         </div>
-
-        <div class="pro-banner">
-            <div class="pro-banner-text">
-                <h3>Teatr Pro</h3>
-                <p id="proBannerDesc">Barcha san'at sirlari va maxsus darslar bitta obunada</p>
-            </div>
-            <div style="font-size:50px;">👑</div>
-        </div>
-
         <div style="padding:0 16px;">
             <div class="course-card" onclick="go('qogirchoq-kursi')">
                 <div class="course-left">
-                    <div class="course-icon-wrap red-grad">
-                        <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.04.64.09.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
-                    </div>
+                    <div class="course-icon-wrap red-grad"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.04.64.09.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg></div>
                     <div class="course-info">
                         <span id="masterClassTag">Master-klass</span>
                         <h4 id="courseDollTitle">Qo'g'irchoq yasash kursi</h4>
@@ -308,33 +260,21 @@
         </div>
     </div>
 
-    <!-- QO'G'IRCHOQ YASASH KURSI -->
-    <div id="page-qogirchoq-kursi" class="page">
-        <div class="page-header">
-            <div class="back-btn" onclick="go('organish')">❮</div>
-            <div class="page-title" id="pageDollCourseTitle">Qo'g'irchoq yasash kursi</div>
-        </div>
-        <div class="video-box">
-            <div class="video-title-bar"><span>1-Dars: Paper Mache Retseptlari</span></div>
-            <div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/rPTBHshlYks" allowfullscreen></iframe></div>
-        </div>
-    </div>
-
-    <!-- 3. MISSIYA SAHIFASI -->
+    <!-- MISSIYA SAHIFASI -->
     <div id="page-missiya" class="page">
         <div class="section-header" style="margin-top:20px;">
             <div class="section-title" id="missionTitle">Kinoteatr Darsi (12 Qism)</div>
         </div>
-        <div class="lesson-content-card"><div class="lesson-part-title" id="m1t">1-Qism: Kinoteatr va Teatr Asoslari</div><div class="lesson-part-text" id="m1d">Teatr va kino san'atining kelib chiqish tarixi...</div></div>
+        <div class="lesson-content-card"><div class="lesson-part-title">1-Qism: Kinoteatr va Teatr Asoslari</div><div class="lesson-part-text">Teatr va kino san'atining kelib chiqish tarixi...</div></div>
     </div>
 
-    <!-- 4. O'YINLAR SAHIFASI -->
+    <!-- O'YINLAR SAHIFASI -->
     <div id="page-oyinlar" class="page">
         <div class="section-header" style="margin-top:20px;"><div class="section-title" id="gamePageTitle">Teatr Viktorina (1-100 Bosqich)</div></div>
         <div class="game-card" id="gameContainer"></div>
     </div>
 
-    <!-- 5. PROFIL SAHIFASI -->
+    <!-- PROFIL SAHIFASI -->
     <div id="page-profil" class="page">
         <div class="section-header" style="margin-top:20px;"><div class="section-title" id="profileTitle">Shaxsiy Kabinet</div></div>
         <div style="padding:16px;">
@@ -375,103 +315,106 @@
 
         let currentLang = 'uz';
 
-        const dict = {
-            uz: {
-                langFlag: "🇺🇿", langText: "O'z",
-                menuTopUp: "💳 Hisobni to'ldirish", menuMaster: "💬 Bot ustozi", menuVipStage: "👑 VIP Sahna",
-                modalTitle: "Hisobni To'ldirish",
-                modalText: "<b>Karta raqam:</b> 4073420060139866<br><b>Karta egasi:</b> Karimbekova Feruza<br><br>Ushbu kartaga to'lov qiling va 20 daqiqa kuting, hisobingizga mablag' tushishini kuting.",
-                modalBtn: "Tushunarli",
-                cardFreeLessons: "Bepul darslar", cardTheatreSecrets: "Teatr sirlari",
-                cardVipStage: "VIP Sahna", cardSpecialShows: "Eksklyuziv videolar",
-                videoBarTitle: "1xbet reklamasi (Maxsus shou)",
-                secRepertory: "Repertuarlar", secAll: "Barchasi",
-                showTag: "Kichkintoylar uchun", showTitleText: "\"Kinoteatr darsi\" maxsus dasturi", showSubText: "12 ta qismdan iborat qo'llanma",
-                btnDolls: "Qo'g'irchoqlar", btnMuseum: "Muzey", btnTerms: "Atamalar",
-                promoTitle: "VIP Sahna - 13 ta Video", promoDesc: "Eksklyuziv teatr va shoular to'plami!",
-                vipPageTitle: "VIP Sahna (Top 13 Video)",
-                pageOrganishTitle: "Bepul kurslar", proBannerDesc: "Barcha san'at sirlari va maxsus darslar bitta obunada",
-                masterClassTag: "Master-klass", courseDollTitle: "Qo'g'irchoq yasash kursi", actionPass: "O'tish ➔",
-                pageDollCourseTitle: "Qo'g'irchoq yasash kursi",
-                missionTitle: "Kinoteatr Darsi (12 Qism)",
-                navAsosiy: "Asosiy", navOrganish: "O'rganish", navMissiya: "Missiya", navOyinlar: "O'yinlar", navProfil: "Profil",
-                gamePageTitle: "Teatr Viktorina (1-100 Bosqich)",
-                profileTitle: "Shaxsiy Kabinet", profileUser: "👤 Foydalanuvchi", profileStatus: "Status: San'atsevar ⭐"
+        const atamalarData = [
+            {
+                title: "1-mashq: Bo‘ri bilan mushuk (Masal)",
+                meta: "29.08.2015 | Bahrom | Krilov I.A",
+                text: `O‘rmondan qishloqqa halloslab chopib
+Kirib keldi bir kun ochofat Bo‘ri.
+Mehmon bo‘lib emas — bir panoh topib —
+O‘zin qutqarmasa — quriydi sho‘ri.
+Orqadan ovchilar tozi quvdirib
+Bo‘rining jonini olishdi rosa.
+Koshkiydi bironta eshikka kirnb
+Ko‘zdan yashirinib jonin saqlasa.
+Ammo darvozalar barisi qulfloq,
+Bo‘rivoy har tomon alanglab shu choq —
+Ko‘zi tushdi devor uzra Mushukka,
+Boshladi shu zamon yalinishlikka:
+“Mushukjon, jon do‘stim, ayta qol tezroq,
+Bunda deqqonlardan kim rahmdilroq?
+Hu, quvib kelyapti ko‘p ovchi, tozi,
+Meni dushmanlardan yashirsin hozir”.
+“Unday bo‘lsa, tezroq Stepanga chop,
+Ko‘p rahmdil odam”,- der Mushuk shu top.
+“Yo‘q-e, chang solganman uning qo‘yiga”.
+“Balki Dem’yan qo‘yar seni uyiga?”
+Qo‘rqamanki, qasdin olar u mendan,
+Tortib ketgan edim echkisin zimdan».
+“Trofimga bor-chi?”- “Xudo saqlasin,
+Bahorda yegandim uning to‘qlisin».
+“Ahvoling chatoq-ku… Ehtimol, Klim…”
+“Ox, do‘stim, buzog’in qilganman tilim…”
+“Uh-ho‘, ishing besh-ku, qara-ya, quda —
+Sen butun qishloqni tullabsan juda.
+Meni yashirsin, deb chekma ohu voh,
+Bunda topolmaysan o‘zingga panoh.
+Barcha harakating ketar behuda.
+O‘zingning qilmishing — o‘zingdan ko‘rgin,
+Nima ekkan bo‘lsang — o‘shani o‘rgin”.`,
+                embed: "https://www.youtube.com/embed/Pe_nLvvNGKw"
             },
-            ru: {
-                langFlag: "🇷🇺", langText: "Ru",
-                menuTopUp: "💳 Пополнить счет", menuMaster: "💬 Наставник бота", menuVipStage: "👑 VIP Сцена",
-                modalTitle: "Пополнение счета",
-                modalText: "<b>Номер карты:</b> 4073420060139866<br><b>Владелец карты:</b> Karimbekova Feruza<br><br>Совершите перевод на эту карту и подождите 20 минут до зачисления средств.",
-                modalBtn: "Понятно",
-                cardFreeLessons: "Бесплатные уроки", cardTheatreSecrets: "Секреты театра",
-                cardVipStage: "VIP Сцена", cardSpecialShows: "Эксклюзивные видео",
-                videoBarTitle: "Реклама 1xbet (Спец. шоу)",
-                secRepertory: "Репертуар", secAll: "Все",
-                showTag: "Для малышей", showTitleText: "Спец. программа «Уроки кинотеатра»", showSubText: "Руководство из 12 частей",
-                btnDolls: "Куклы", btnMuseum: "Музей", btnTerms: "Термины",
-                promoTitle: "VIP Сцена - 13 видео", promoDesc: "Коллекция эксклюзивных театров и шоу!",
-                vipPageTitle: "VIP Сцена (Топ 13 видео)",
-                pageOrganishTitle: "Бесплатные курсы", proBannerDesc: "Все секреты искусства и спец. уроки в одной подписке",
-                masterClassTag: "Мастер-класс", courseDollTitle: "Курс изготовления кукол", actionPass: "Перейти ➔",
-                pageDollCourseTitle: "Курс изготовления кукол",
-                missionTitle: "Уроки кинотеатра (12 частей)",
-                navAsosiy: "Главная", navOrganish: "Обучение", navMissiya: "Миссия", navOyinlar: "Игры", navProfil: "Профиль",
-                gamePageTitle: "Театральная викторина (Уровни 1-100)",
-                profileTitle: "Личный кабинет", profileUser: "👤 Пользователь", profileStatus: "Статус: Любитель искусства ⭐"
+            {
+                title: "2-mashq: Ziyrak va Tulki (Ertak)",
+                meta: "O'zbek xalq ertagi | Sahna Nutqi Mashqi",
+                text: `Bir bor ekan, bir yo'q ekan, qadim zamonda bir ziyrak va aqlli quyon bor ekan. U har kuni o'rmon bo'ylab sayr qilib, ayyor tulkining hiylalaridan qutulib qolar ekan. Tulki uni qanchalik aldashga urinmasin, Ziyrak o'z topqirligi bilan uni mot qilar edi...`,
+                embed: "https://www.youtube.com/embed/rPTBHshlYks"
+            },
+            {
+                title: "3-mashq: Shag'al va Yo'lbars (Masal)",
+                meta: "Sahna Mahorati Darsi",
+                text: `Yo'lbars o'rmonda o'zini eng kuchli deb hisoblardi. Shag'al esa unga xushomad qilib, uning ortidan qolgan oziq-ovqatlarni yeb kun kechirardi. Bir kuni Shag'al o'zini Yo'lbarsdan ham aqlli deb o'yladi...`,
+                embed: "https://www.youtube.com/embed/u240af6WhqA"
+            },
+            {
+                title: "4-mashq: Chumoli va Chigirtka",
+                meta: "Tarbiya va Sahna Harakati Mashqi",
+                text: `Yoz bo'yi chigirtka ashula aytib, o'ynab-kulib kun kechirdi. Mehnatkash chumoli esa qish uchun g'alla va oziq-ovqat g'amlab qo'ydi. Qish kelgach, chigirtka sovqotib va och qolib chumolinikiga keldi...`,
+                embed: "https://www.youtube.com/embed/EqBrkPLBS-4"
+            },
+            {
+                title: "5-mashq: Qarg'a va Tulki (Masal)",
+                meta: "I.A. Krilov | Diksiya va Ovoz Mashqi",
+                text: `Qarg'a bir tilim pishloq topib olib, daraxt shoxiga qo'ndi. Shunda u yerga ayyor tulki keldi va qarg'aning ajoyib ovozini maqtay boshladi...`,
+                embed: "https://www.youtube.com/embed/02tJPDnjBaQ"
             }
-        };
+        ];
+
+        // Top 60 gacha avtomatik to'ldirish kodi
+        for (let i = 6; i <= 60; i++) {
+            atamalarData.push({
+                title: `${i}-mashq: Teatr Nutqi va Sahna Mashqi ${i}`,
+                meta: `O'zbek teatr san'ati darsligi | Mashq ${i}`,
+                text: `Ushbu ${i}-mashq aktyorlik va sahna nutqini rivojlantirish uchun mo'ljallangan. Talaffuzni to'g'ri shakllantirish, ovoz tembrini to'g'ri yo'naltirish hamda qahramon obraziga kirish mashg'ulotlari ko'rsatilgan.`,
+                embed: "https://www.youtube.com/embed/Pe_nLvvNGKw"
+            });
+        }
+
+        function renderAtamalar() {
+            let container = document.getElementById('atamalarListContainer');
+            if (!container) return;
+            let html = '';
+            atamalarData.forEach(item => {
+                html += `
+                    <div class="lesson-content-card">
+                        <div class="lesson-part-title">${item.title}</div>
+                        <div class="lesson-part-meta">${item.meta}</div>
+                        <div class="lesson-part-text">${item.text}</div>
+                        <div class="video-box" style="margin:0;">
+                            <div class="video-frame-wrap">
+                                <iframe src="${item.embed}" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
 
         function toggleLanguage() {
             currentLang = currentLang === 'uz' ? 'ru' : 'uz';
-            let t = dict[currentLang];
-            
-            document.getElementById('langFlag').innerText = t.langFlag;
-            document.getElementById('langText').innerText = t.langText;
-            document.getElementById('menuTopUp').innerText = t.menuTopUp;
-            document.getElementById('menuMaster').innerText = t.menuMaster;
-            document.getElementById('menuVipStage').innerText = t.menuVipStage;
-            document.getElementById('modalTitle').innerText = t.modalTitle;
-            document.getElementById('modalText').innerHTML = t.modalText;
-            document.getElementById('modalBtn').innerText = t.modalBtn;
-            
-            document.getElementById('cardFreeLessons').innerText = t.cardFreeLessons;
-            document.getElementById('cardTheatreSecrets').innerText = t.cardTheatreSecrets;
-            document.getElementById('cardVipStage').innerText = t.cardVipStage;
-            document.getElementById('cardSpecialShows').innerText = t.cardSpecialShows;
-            document.getElementById('videoBarTitle').innerText = t.videoBarTitle;
-            
-            document.getElementById('secRepertory').innerText = t.secRepertory;
-            document.getElementById('secAll').innerText = t.secAll;
-            document.getElementById('showTag').innerText = t.showTag;
-            document.getElementById('showTitleText').innerText = t.showTitleText;
-            document.getElementById('showSubText').innerText = t.showSubText;
-            
-            document.getElementById('btnDolls').innerText = t.btnDolls;
-            document.getElementById('btnMuseum').innerText = t.btnMuseum;
-            document.getElementById('btnTerms').innerText = t.btnTerms;
-            document.getElementById('promoTitle').innerText = t.promoTitle;
-            document.getElementById('promoDesc').innerText = t.promoDesc;
-            document.getElementById('vipPageTitle').innerText = t.vipPageTitle;
-            
-            document.getElementById('pageOrganishTitle').innerText = t.pageOrganishTitle;
-            document.getElementById('proBannerDesc').innerText = t.proBannerDesc;
-            document.getElementById('masterClassTag').innerText = t.masterClassTag;
-            document.getElementById('courseDollTitle').innerText = t.courseDollTitle;
-            document.getElementById('actionPass').innerText = t.actionPass;
-            document.getElementById('pageDollCourseTitle').innerText = t.pageDollCourseTitle;
-            
-            document.getElementById('missionTitle').innerText = t.missionTitle;
-            document.getElementById('navAsosiy').innerText = t.navAsosiy;
-            document.getElementById('navOrganish').innerText = t.navOrganish;
-            document.getElementById('navMissiya').innerText = t.navMissiya;
-            document.getElementById('navOyinlar').innerText = t.navOyinlar;
-            document.getElementById('navProfil').innerText = t.navProfil;
-            
-            document.getElementById('gamePageTitle').innerText = t.gamePageTitle;
-            document.getElementById('profileTitle').innerText = t.profileTitle;
-            document.getElementById('profileUser').innerText = t.profileUser;
-            document.getElementById('profileStatus').innerText = t.profileStatus;
+            document.getElementById('langFlag').innerText = currentLang === 'uz' ? "🇺🇿" : "🇷🇺";
+            document.getElementById('langText').innerText = currentLang === 'uz' ? "O'z" : "Ru";
         }
 
         function toggleDropdown() {
@@ -500,33 +443,6 @@
             window.open("https://t.me/Dvhhhgb?text=" + text, "_blank");
         }
 
-        const questions = [
-            {
-                q: "1. Jahon qo'g'irchoq teatri tarixida 'Slovachko' teatrining asoschisi va marionetka san'atining nazariyasini yaratgan rejissyor kim?",
-                options: ["A) Yirji Shofar", "B) Sergey Obrazsov", "C) Genrix Yurkovskiy", "D) Vsevolod Meyerxold"],
-                correct: 2
-            }
-        ];
-
-        let currentLevel = localStorage.getItem('teatr_level') ? parseInt(localStorage.getItem('teatr_level')) : 1;
-
-        function renderGame() {
-            let container = document.getElementById('gameContainer');
-            if (!container) return;
-            let currentQ = questions[0];
-            container.innerHTML = `
-                <div class="game-header-flex">
-                    <div class="level-badge">Bosqich: ${currentLevel} / 100</div>
-                    <div class="prize-info">🏆 10,000 so'm + 7 kun VIP</div>
-                </div>
-                <div class="question-text">${currentQ.q}</div>
-                <button class="option-btn"><div class="option-letter">A</div><div>Yirji Shofar</div></button>
-                <button class="option-btn"><div class="option-letter">B</div><div>Sergey Obrazsov</div></button>
-                <button class="option-btn"><div class="option-letter">C</div><div>Genrix Yurkovskiy</div></button>
-                <button class="option-btn"><div class="option-letter">D</div><div>Vsevolod Meyerxold</div></button>
-            `;
-        }
-
         function go(name){
             document.querySelectorAll('.page').forEach(e => e.classList.remove('active'));
             document.getElementById('page-' + name).classList.add('active');
@@ -536,7 +452,7 @@
             window.scrollTo(0, 0);
         }
 
-        renderGame();
+        renderAtamalar();
     </script>
 </body>
 </html>
