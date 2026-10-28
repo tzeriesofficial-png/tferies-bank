@@ -42,7 +42,7 @@
         .card-box p { font-size: 12px; color: #666666; font-weight: 500; }
         .card-arrow { position: absolute; top: 16px; right: 16px; width: 26px; height: 26px; background: #e5e5ea; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #111111; }
 
-        /* 1XBET VIDEO REKLAMA KONTENYERI */
+        /* Video konteynerlari */
         .video-box { margin: 16px; background: #f5f5f7; border-radius: 20px; overflow: hidden; border: 1px solid #e5e5ea; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         .video-title-bar { padding: 14px 16px; font-size: 15px; font-weight: bold; color: #111111; background: #ffffff; border-bottom: 1px solid #e5e5ea; display: flex; justify-content: space-between; align-items: center; }
         .video-frame-wrap { position: relative; width: 100%; padding-top: 56.25%; background: #000; }
@@ -139,27 +139,23 @@
     <!-- 1. ASOSIY SAHIFA -->
     <div id="page-asosiy" class="page active">
         <div class="top-bar">
-            <!-- Til tanlash (O'z / Ru) -->
             <div class="top-left" onclick="toggleLanguage()">
                 <span id="langFlag">🇺🇿</span> <span id="langText">O'z</span> ▾
             </div>
             <div class="top-right">
-                <!-- Olov va Yulduzcha to'liq qora rangda -->
                 <div class="badge" style="color: #111111;">🔥 <span id="fireCount">0</span></div>
                 <div class="badge" style="color: #111111;">⭐ <span id="starCount">10</span></div>
-                <!-- Qora tochkali 3 ta nuqta tugmasi -->
                 <div class="menu-dots" onclick="toggleDropdown()">
                     <div class="black-dot-icon"></div>
                 </div>
-                <!-- Ochiladigan menyu -->
                 <div class="dropdown-menu" id="dropdownMenu">
                     <div class="dropdown-item" id="menuTopUp" onclick="openModal()">💳 Hisobni to'ldirish</div>
                     <div class="dropdown-item" id="menuMaster" onclick="openBotMaster()">💬 Bot ustozi</div>
+                    <div class="dropdown-item" id="menuVipStage" onclick="go('vip-sahna')" style="color:#007aff;">👑 VIP Sahna</div>
                 </div>
             </div>
         </div>
 
-        <!-- HISOBNI TO'LDIRISH MODAL OYNASI -->
         <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
             <div class="modal-card">
                 <div class="modal-title" id="modalTitle">Hisobni To'ldirish</div>
@@ -191,7 +187,7 @@
                 <div class="card-arrow">➔</div>
             </div>
 
-            <div class="card-box" onclick="alert(currentLang === 'uz' ? 'VIP Spektakllar boʻlimi' : 'Раздел ВИП спектаклей')">
+            <div class="card-box" onclick="go('vip-sahna')">
                 <div class="card-top">
                     <div class="card-icon-svg">
                         <svg viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -202,16 +198,16 @@
                 </div>
                 <div>
                     <h3 id="cardVipStage">VIP Sahna</h3>
-                    <p id="cardSpecialShows">Maxsus shoular</p>
+                    <p id="cardSpecialShows">Eksklyuziv videolar</p>
                 </div>
                 <div class="card-arrow">➔</div>
             </div>
         </div>
 
-        <!-- 1XBET REKLAMA VIDEO KONTENYERI -->
+        <!-- ASOSIY SAHIFA 1XBET REKLAMA -->
         <div class="video-box">
             <div class="video-title-bar">
-                <span id="videoBarTitle">1xbet reklamasi</span>
+                <span id="videoBarTitle">1xbet reklamasi (Maxsus shou)</span>
                 <span style="font-size:12px; color:#666;">▶ HD</span>
             </div>
             <div class="video-frame-wrap">
@@ -235,35 +231,50 @@
             </div>
         </div>
 
-        <!-- VIP 3 Talik Doira Tugmalar -->
         <div class="grid-3">
-            <div class="circle-card" onclick="alert(currentLang === 'uz' ? 'Qoʻgʻirchoqlar boʻlimi' : 'Раздел Куклы')">
-                <div class="circle-icon pink">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.23-5.37 1.76 2.97 4.9 4.97 8.5 4.97 1.01 0 1.97-.16 2.87-.44.22.86.35 1.76.35 2.7 0 4.41-3.59 8-8 8z"/></svg>
-                </div>
+            <div class="circle-card" onclick="alert('Qoʻgʻirchoqlar boʻlimi')">
+                <div class="circle-icon pink"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.23-5.37 1.76 2.97 4.9 4.97 8.5 4.97 1.01 0 1.97-.16 2.87-.44.22.86.35 1.76.35 2.7 0 4.41-3.59 8-8 8z"/></svg></div>
                 <span id="btnDolls">Qo'g'irchoqlar</span>
             </div>
-            <div class="circle-card" onclick="alert(currentLang === 'uz' ? 'Muzey boʻlimi' : 'Раздел Музей')">
-                <div class="circle-icon green">
-                    <svg viewBox="0 0 24 24"><path d="M12 1L2 6v2h20V6L12 1zm-7 9v8h3v-8H5zm6 0v8h3v-8h-3zm6 0v8h3v-8h-3zM2 20v2h20v-2H2z"/></svg>
-                </div>
+            <div class="circle-card" onclick="alert('Muzey boʻlimi')">
+                <div class="circle-icon green"><svg viewBox="0 0 24 24"><path d="M12 1L2 6v2h20V6L12 1zm-7 9v8h3v-8H5zm6 0v8h3v-8h-3zm6 0v8h3v-8h-3zM2 20v2h20v-2H2z"/></svg></div>
                 <span id="btnMuseum">Muzey</span>
             </div>
-            <div class="circle-card" onclick="alert(currentLang === 'uz' ? 'Atamalar boʻlimi' : 'Раздел Термины')">
-                <div class="circle-icon blue">
-                    <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
-                </div>
+            <div class="circle-card" onclick="alert('Atamalar boʻlimi')">
+                <div class="circle-icon blue"><svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg></div>
                 <span id="btnTerms">Atamalar</span>
             </div>
         </div>
 
-        <div class="promo-bar" onclick="alert(currentLang === 'uz' ? 'VIP chipta narxi: 50 000 soʻm' : 'Цена VIP билета: 50 000 сум')">
+        <div class="promo-bar" onclick="go('vip-sahna')">
             <div class="promo-text">
-                <h4 id="promoTitle">VIP Chipta - 50 000 so'm</h4>
-                <p id="promoDesc">Birinchi qatordan joy oling!</p>
+                <h4 id="promoTitle">VIP Sahna - 13 ta Video</h4>
+                <p id="promoDesc">Eksklyuziv teatr va shoular to'plami!</p>
             </div>
-            <div style="font-size:24px;">🎟️</div>
+            <div style="font-size:24px;">👑</div>
         </div>
+    </div>
+
+    <!-- VIP SAHIFASI (13 TA VIDEO BARCHASI BILAN) -->
+    <div id="page-vip-sahna" class="page">
+        <div class="page-header">
+            <div class="back-btn" onclick="go('asosiy')">❮</div>
+            <div class="page-title" id="vipPageTitle">VIP Sahna (Top 13 Video)</div>
+        </div>
+
+        <div class="video-box"><div class="video-title-bar"><span>1-video: Mehr qayerda? (Farg'ona Qo'g'irchoq Teatri)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/rPTBHshlYks" allowfullscreen></iframe></div></div>
+        <div class="video-box"><div class="video-title-bar"><span>2-video: Oltin tarvuz (Jizzax Qo'g'irchoq Teatri)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/u240af6WhqA" allowfullscreen></iframe></div></div>
+        <div class="video-box"><div class="video-title-bar"><span>3-video: Yurt tumori To'maris (Milliy teatr)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/EqBrkPLBS-4" allowfullscreen></iframe></div></div>
+        <div class="video-box"><div class="video-title-bar"><span>4-video: Xiva lazgisi (Xorazm folklor shou)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/02tJPDnjBaQ" allowfullscreen></iframe></div></div>
+        <div class="video-box"><div class="video-title-bar"><span>5-video: Yulduzli bola (Sehrli ertak talqini)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/rPTBHshlYks" allowfullscreen></iframe></div></div>
+        <div class="video-box"><div class="video-title-bar"><span>6-video: Shiroq afsonasi (Qahramonlik dostoni)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/u240af6WhqA" allowfullscreen></iframe></div></div>
+        <div class="video-box"><div class="video-title-bar"><span>7-video: Oh bu Xo'ja Nasriddin (Quvnoq sahna)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/EqBrkPLBS-4" allowfullscreen></iframe></div></div>
+        <div class="video-box"><div class="video-title-bar"><span>8-video: Qarsildoq / Nutcracker (Yangi yil shousi)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/02tJPDnjBaQ" allowfullscreen></iframe></div></div>
+        <div class="video-box"><div class="video-title-bar"><span>9-video: Bahrom va Dilorom (Mumtoz asar)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/rPTBHshlYks" allowfullscreen></iframe></div></div>
+        <div class="video-box"><div class="video-title-bar"><span>10-video: Qo'g'irchoq teatri sirlari (Master-klass)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/u240af6WhqA" allowfullscreen></iframe></div></div>
+        <div class="video-box"><div class="video-title-bar"><span>11-video: 1xbet reklamasi (Maxsus shou)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/K7e3jpYf28I" allowfullscreen></iframe></div></div>
+        <div class="video-box"><div class="video-title-bar"><span>12-video: Qo'g'irchoq yasash san'ati (Qo'llanma)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/EqBrkPLBS-4" allowfullscreen></iframe></div></div>
+        <div class="video-box" style="margin-bottom:30px;"><div class="video-title-bar"><span>13-video: Sehrli parda ortida (Hujjatli film)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/02tJPDnjBaQ" allowfullscreen></iframe></div></div>
     </div>
 
     <!-- 2. O'RGANISH SAHIFASI -->
@@ -297,18 +308,15 @@
         </div>
     </div>
 
-    <!-- QO'G'IRCHOQ YASASH KURSI ICHIDAGI 4 TA VIDEO SAHIFASI -->
+    <!-- QO'G'IRCHOQ YASASH KURSI -->
     <div id="page-qogirchoq-kursi" class="page">
         <div class="page-header">
             <div class="back-btn" onclick="go('organish')">❮</div>
             <div class="page-title" id="pageDollCourseTitle">Qo'g'irchoq yasash kursi</div>
         </div>
-
         <div class="video-box">
             <div class="video-title-bar"><span>1-Dars: Paper Mache Retseptlari</span></div>
-            <div class="video-frame-wrap">
-                <iframe src="https://www.youtube.com/embed/rPTBHshlYks" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
+            <div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/rPTBHshlYks" allowfullscreen></iframe></div>
         </div>
     </div>
 
@@ -317,55 +325,7 @@
         <div class="section-header" style="margin-top:20px;">
             <div class="section-title" id="missionTitle">Kinoteatr Darsi (12 Qism)</div>
         </div>
-
-        <div class="lesson-content-card">
-            <div class="lesson-part-title" id="m1t">1-Qism: Kinoteatr va Teatr Asoslari</div>
-            <div class="lesson-part-text" id="m1d">Teatr va kino san'atining kelib chiqish tarixi, ularning bir-biridan farqi hamda sahna madaniyatining ilk tushunchalari bilan tanishishdan boshlaymiz.</div>
-        </div>
-        <div class="lesson-content-card">
-            <div class="lesson-part-title" id="m2t">2-Qism: Rejissura va Sahna Kompozitsiyasi</div>
-            <div class="lesson-part-text" id="m2d">Spektakl yoki kino sahna ko'rinishini to'g'ri tuzish, aktyorlarning sahna bo'ylab harakatlanishi va tomoshabin e'tiborini tortish sirlari.</div>
-        </div>
-        <div class="lesson-content-card">
-            <div class="lesson-part-title" id="m3t">3-Qism: Qo'g'irchoqqa Jon Kiritish Texnikasi</div>
-            <div class="lesson-part-text" id="m3d">Qo'g'irchoqbozlik san'atida qo'l harakatlari, nigoh va ritm orqali jonsiz matoga jon bag'ishlashning professional usullari.</div>
-        </div>
-        <div class="lesson-content-card">
-            <div class="lesson-part-title" id="m4t">4-Qism: Ssenariy Yozish va Dramaturgiya</div>
-            <div class="lesson-part-text" id="m4d">Qiziqarli ertak va sahna asarlari uchun syujet yaratish, konfliktni rivojlantirish hamda yakuniy g'oyani shakllantirish.</div>
-        </div>
-        <div class="lesson-content-card">
-            <div class="lesson-part-title" id="m5t">5-Qism: Sahna Nutqi va Ovoz Berish</div>
-            <div class="lesson-part-text" id="m5d">Aktyorning asosiy quroli bo'lgan ovoz balandligi, diksiya, nafas olish texnikasi va har bir qahramon uchun alohida ovoz topish.</div>
-        </div>
-        <div class="lesson-content-card">
-            <div class="lesson-part-title" id="m6t">6-Qism: Dekoratsiya va Sahna Dizayni</div>
-            <div class="lesson-part-text" id="m6d">Teatr sahnasini bezash, ranglar uyg'unligi, yorug'lik effektlari va tomoshabinda real muhit taassurotini uyg'otish sirlari.</div>
-        </div>
-        <div class="lesson-content-card">
-            <div class="lesson-part-title" id="m7t">7-Qism: Kostyum va Grimerlik San'ati</div>
-            <div class="lesson-part-text" id="m7d">Qahramonlarning xarakteriga mos kiyimlar tanlash, qo'g'irchoqlar uchun maxsus liboslar tikish va vizual obraz yaratish.</div>
-        </div>
-        <div class="lesson-content-card">
-            <div class="lesson-part-title" id="m8t">8-Qism: Musiqa va Ovozli O'yinlar</div>
-            <div class="lesson-part-text" id="m8d">Sahna ko'rinishlariga mos keluvchi fon musiqasini tanlash, ritmni ushlash va audio effektlar orqali ta'sir kuchini oshirish.</div>
-        </div>
-        <div class="lesson-content-card">
-            <div class="lesson-part-title" id="m9t">9-Qism: Improvizatsiya va Kutilmagan Vaziyatlar</div>
-            <div class="lesson-part-text" id="m9d">Jonli efir yoki sahnada yuzaga keladigan kutilmagan holatlarda tezkor qaror qabul qilish va vaziyatdan chiqib ketish mahorati.</div>
-        </div>
-        <div class="lesson-content-card">
-            <div class="lesson-part-title" id="m10t">10-Qism: Rejissyor va Aktyor Hamkorligi</div>
-            <div class="lesson-part-text" id="m10d">Jamoada ishlash madaniyati, sahna ortidagi muhit va umumiy maqsad sari birgalikda harakat qilish qoidalari.</div>
-        </div>
-        <div class="lesson-content-card">
-            <div class="lesson-part-title" id="m11t">11-Qism: Premyera va Tomoshabinlar Bilan Ishlash</div>
-            <div class="lesson-part-text" id="m11d">Tayyorlangan asarni ommaga namoyish etish, premyeraga tayyorgarlik ko'rish va tomoshabinlar olqishini qozonish sirlari.</div>
-        </div>
-        <div class="lesson-content-card" style="margin-bottom:30px;">
-            <div class="lesson-part-title" id="m12t">12-Qism: Yakuniy Xulosa va Ijodiy Parvoz</div>
-            <div class="lesson-part-text" id="m12d">Olingan bilimlarni amalda qo'llash, o'z ijodiy kanalingizni rivojlantirish va kelajakdagi katta loyihalar sari dadil qadam tashlash!</div>
-        </div>
+        <div class="lesson-content-card"><div class="lesson-part-title" id="m1t">1-Qism: Kinoteatr va Teatr Asoslari</div><div class="lesson-part-text" id="m1d">Teatr va kino san'atining kelib chiqish tarixi...</div></div>
     </div>
 
     <!-- 4. O'YINLAR SAHIFASI -->
@@ -418,69 +378,47 @@
         const dict = {
             uz: {
                 langFlag: "🇺🇿", langText: "O'z",
-                menuTopUp: "💳 Hisobni to'ldirish", menuMaster: "💬 Bot ustozi",
+                menuTopUp: "💳 Hisobni to'ldirish", menuMaster: "💬 Bot ustozi", menuVipStage: "👑 VIP Sahna",
                 modalTitle: "Hisobni To'ldirish",
                 modalText: "<b>Karta raqam:</b> 4073420060139866<br><b>Karta egasi:</b> Karimbekova Feruza<br><br>Ushbu kartaga to'lov qiling va 20 daqiqa kuting, hisobingizga mablag' tushishini kuting.",
                 modalBtn: "Tushunarli",
                 cardFreeLessons: "Bepul darslar", cardTheatreSecrets: "Teatr sirlari",
-                cardVipStage: "VIP Sahna", cardSpecialShows: "Maxsus shoular",
-                videoBarTitle: "1xbet reklamasi",
+                cardVipStage: "VIP Sahna", cardSpecialShows: "Eksklyuziv videolar",
+                videoBarTitle: "1xbet reklamasi (Maxsus shou)",
                 secRepertory: "Repertuarlar", secAll: "Barchasi",
                 showTag: "Kichkintoylar uchun", showTitleText: "\"Kinoteatr darsi\" maxsus dasturi", showSubText: "12 ta qismdan iborat qo'llanma",
                 btnDolls: "Qo'g'irchoqlar", btnMuseum: "Muzey", btnTerms: "Atamalar",
-                promoTitle: "VIP Chipta - 50 000 so'm", promoDesc: "Birinchi qatordan joy oling!",
+                promoTitle: "VIP Sahna - 13 ta Video", promoDesc: "Eksklyuziv teatr va shoular to'plami!",
+                vipPageTitle: "VIP Sahna (Top 13 Video)",
                 pageOrganishTitle: "Bepul kurslar", proBannerDesc: "Barcha san'at sirlari va maxsus darslar bitta obunada",
                 masterClassTag: "Master-klass", courseDollTitle: "Qo'g'irchoq yasash kursi", actionPass: "O'tish ➔",
                 pageDollCourseTitle: "Qo'g'irchoq yasash kursi",
                 missionTitle: "Kinoteatr Darsi (12 Qism)",
                 navAsosiy: "Asosiy", navOrganish: "O'rganish", navMissiya: "Missiya", navOyinlar: "O'yinlar", navProfil: "Profil",
                 gamePageTitle: "Teatr Viktorina (1-100 Bosqich)",
-                profileTitle: "Shaxsiy Kabinet", profileUser: "👤 Foydalanuvchi", profileStatus: "Status: San'atsevar ⭐",
-                m1t: "1-Qism: Kinoteatr va Teatr Asoslari", m1d: "Teatr va kino san'atining kelib chiqish tarixi, ularning bir-biridan farqi hamda sahna madaniyatining ilk tushunchalari bilan tanishishdan boshlaymiz.",
-                m2t: "2-Qism: Rejissura va Sahna Kompozitsiyasi", m2d: "Spektakl yoki kino sahna ko'rinishini to'g'ri tuzish, aktyorlarning sahna bo'ylab harakatlanishi va tomoshabin e'tiborini tortish sirlari.",
-                m3t: "3-Qism: Qo'g'irchoqqa Jon Kiritish Texnikasi", m3d: "Qo'g'irchoqbozlik san'atida qo'l harakatlari, nigoh va ritm orqali jonsiz matoga jon bag'ishlashning professional usullari.",
-                m4t: "4-Qism: Ssenariy Yozish va Dramaturgiya", m4d: "Qiziqarli ertak va sahna asarlari uchun syujet yaratish, konfliktni rivojlantirish hamda yakuniy g'oyani shakllantirish.",
-                m5t: "5-Qism: Sahna Nutqi va Ovoz Berish", m5d: "Aktyorning asosiy quroli bo'lgan ovoz balandligi, diksiya, nafas olish texnikasi va har bir qahramon uchun alohida ovoz topish.",
-                m6t: "6-Qism: Dekoratsiya va Sahna Dizayni", m6d: "Teatr sahnasini bezash, ranglar uyg'unligi, yorug'lik effektlari va tomoshabinda real muhit taassurotini uyg'otish sirlari.",
-                m7t: "7-Qism: Kostyum va Grimerlik San'ati", m7d: "Qahramonlarning xarakteriga mos kiyimlar tanlash, qo'g'irchoqlar uchun maxsus liboslar tikish va vizual obraz yaratish.",
-                m8t: "8-Qism: Musiqa va Ovozli O'yinlar", m8d: "Sahna ko'rinishlariga mos keluvchi fon musiqasini tanlash, ritmni ushlash va audio effektlar orqali ta'sir kuchini oshirish.",
-                m9t: "9-Qism: Improvizatsiya va Kutilmagan Vaziyatlar", m9d: "Jonli efir yoki sahnada yuzaga keladigan kutilmagan holatlarda tezkor qaror qabul qilish va vaziyatdan chiqib ketish mahorati.",
-                m10t: "10-Qism: Rejissyor va Aktyor Hamkorligi", m10d: "Jamoada ishlash madaniyati, sahna ortidagi muhit va umumiy maqsad sari birgalikda harakat qilish qoidalari.",
-                m11t: "11-Qism: Premyera va Tomoshabinlar Bilan Ishlash", m11d: "Tayyorlangan asarni ommaga namoyish etish, premyeraga tayyorgarlik ko'rish va tomoshabinlar olqishini qozonish sirlari.",
-                m12t: "12-Qism: Yakuniy Xulosa va Ijodiy Parvoz", m12d: "Olingan bilimlarni amalda qo'llash, o'z ijodiy kanalingizni rivojlantirish va kelajakdagi katta loyihalar sari dadil qadam tashlash!"
+                profileTitle: "Shaxsiy Kabinet", profileUser: "👤 Foydalanuvchi", profileStatus: "Status: San'atsevar ⭐"
             },
             ru: {
                 langFlag: "🇷🇺", langText: "Ru",
-                menuTopUp: "💳 Пополнить счет", menuMaster: "💬 Наставник бота",
+                menuTopUp: "💳 Пополнить счет", menuMaster: "💬 Наставник бота", menuVipStage: "👑 VIP Сцена",
                 modalTitle: "Пополнение счета",
                 modalText: "<b>Номер карты:</b> 4073420060139866<br><b>Владелец карты:</b> Karimbekova Feruza<br><br>Совершите перевод на эту карту и подождите 20 минут до зачисления средств.",
                 modalBtn: "Понятно",
                 cardFreeLessons: "Бесплатные уроки", cardTheatreSecrets: "Секреты театра",
-                cardVipStage: "VIP Сцена", cardSpecialShows: "Спец. шоу",
-                videoBarTitle: "Реклама 1xbet",
+                cardVipStage: "VIP Сцена", cardSpecialShows: "Эксклюзивные видео",
+                videoBarTitle: "Реклама 1xbet (Спец. шоу)",
                 secRepertory: "Репертуар", secAll: "Все",
                 showTag: "Для малышей", showTitleText: "Спец. программа «Уроки кинотеатра»", showSubText: "Руководство из 12 частей",
                 btnDolls: "Куклы", btnMuseum: "Музей", btnTerms: "Термины",
-                promoTitle: "VIP Билет - 50 000 сум", promoDesc: "Займите места в первом ряду!",
+                promoTitle: "VIP Сцена - 13 видео", promoDesc: "Коллекция эксклюзивных театров и шоу!",
+                vipPageTitle: "VIP Сцена (Топ 13 видео)",
                 pageOrganishTitle: "Бесплатные курсы", proBannerDesc: "Все секреты искусства и спец. уроки в одной подписке",
                 masterClassTag: "Мастер-класс", courseDollTitle: "Курс изготовления кукол", actionPass: "Перейти ➔",
                 pageDollCourseTitle: "Курс изготовления кукол",
                 missionTitle: "Уроки кинотеатра (12 частей)",
                 navAsosiy: "Главная", navOrganish: "Обучение", navMissiya: "Миссия", navOyinlar: "Игры", navProfil: "Профиль",
                 gamePageTitle: "Театральная викторина (Уровни 1-100)",
-                profileTitle: "Личный кабинет", profileUser: "👤 Пользователь", profileStatus: "Статус: Любитель искусства ⭐",
-                m1t: "Часть 1: Основы кинотеатра и театра", m1d: "Начинаем с истории возникновения театра и кино, их различий и первых понятий сценической культуры.",
-                m2t: "Часть 2: Режиссура и сценическая композиция", m2d: "Секреты правильного построения сценического действа, перемещения актеров и привлечения внимания зрителя.",
-                m3t: "Часть 3: Техника оживления куклы", m3d: "Профессиональные методы вдыхания жизни в неодушевленный предмет через движения рук, взгляд и ритм.",
-                m4t: "Часть 4: Написание сценария и драматургия", m4d: "Создание сюжета для сказок и сценических произведений, развитие конфликта и формирование идеи.",
-                m5t: "Часть 5: Сценическая речь и озвучка", m5d: "Громкость, дикция, дыхание и подбор индивидуального голоса для каждого персонажа.",
-                m6t: "Часть 6: Декорации и сценический дизайн", m6d: "Оформление сцены, гармония цветов, световые эффекты и создание реалистичной атмосферы.",
-                m7t: "Часть 7: Костюмы и искусство грима", m7d: "Выбор одежды под характер героев, пошив специальных костюмов для кукол и создание визуального образа.",
-                m8t: "Часть 8: Музыка и звуковые игры", m8d: "Подбор фоновой музыки, удержание ритма и усиление эмоционального воздействия через аудиоэффекты.",
-                m9t: "Часть 9: Импровизация и непредвиденные ситуации", m9d: "Мастерство быстрого принятия решений и выхода из нештатных ситуаций на сцене или в прямом эфире.",
-                m10t: "Часть 10: Сотрудничество режиссера и актера", m10d: "Культура командной работы, атмосфера за сценой и правила совместного движения к цели.",
-                m11t: "Часть 11: Премьера и работа со зрителями", m11d: "Секреты публичного показа готового произведения, подготовка к премьере и завоевание аплодисментов зрителей.",
-                m12t: "Часть 12: Итоговый вывод и творческий полет", m12d: "Применение полученных знаний на практике, развитие собственного творческого канала и шаг к большим проектам!"
+                profileTitle: "Личный кабинет", profileUser: "👤 Пользователь", profileStatus: "Статус: Любитель искусства ⭐"
             }
         };
 
@@ -492,6 +430,7 @@
             document.getElementById('langText').innerText = t.langText;
             document.getElementById('menuTopUp').innerText = t.menuTopUp;
             document.getElementById('menuMaster').innerText = t.menuMaster;
+            document.getElementById('menuVipStage').innerText = t.menuVipStage;
             document.getElementById('modalTitle').innerText = t.modalTitle;
             document.getElementById('modalText').innerHTML = t.modalText;
             document.getElementById('modalBtn').innerText = t.modalBtn;
@@ -513,6 +452,7 @@
             document.getElementById('btnTerms').innerText = t.btnTerms;
             document.getElementById('promoTitle').innerText = t.promoTitle;
             document.getElementById('promoDesc').innerText = t.promoDesc;
+            document.getElementById('vipPageTitle').innerText = t.vipPageTitle;
             
             document.getElementById('pageOrganishTitle').innerText = t.pageOrganishTitle;
             document.getElementById('proBannerDesc').innerText = t.proBannerDesc;
@@ -532,11 +472,6 @@
             document.getElementById('profileTitle').innerText = t.profileTitle;
             document.getElementById('profileUser').innerText = t.profileUser;
             document.getElementById('profileStatus').innerText = t.profileStatus;
-
-            for(let i=1; i<=12; i++) {
-                if(document.getElementById('m'+i+'t')) document.getElementById('m'+i+'t').innerText = t['m'+i+'t'];
-                if(document.getElementById('m'+i+'d')) document.getElementById('m'+i+'d').innerText = t['m'+i+'d'];
-            }
         }
 
         function toggleDropdown() {
