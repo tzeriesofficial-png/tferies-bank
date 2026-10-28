@@ -24,25 +24,25 @@
         .card-top { display: flex; align-items: center; }
         .card-icon-svg { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
         .card-icon-svg svg { width: 30px; height: 30px; }
-        .card-box h3 { font-size: 15px; margin-bottom: 2px; font-weight: 600; }
+        .card-box h3 { font-size: 15px; margin-bottom: 2px; font-weight: 600; color: #ffdf00; } /* Sariq matn */
         .card-box p { font-size: 12px; color: #8e8e93; }
         .card-arrow { position: absolute; top: 16px; right: 16px; width: 26px; height: 26px; background: #272732; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #aaa; }
 
         /* Banner */
         .banner { margin: 16px; background: linear-gradient(135deg, #5b247a, #1bcedf); border-radius: 20px; padding: 20px; display: flex; justify-content: space-between; align-items: center; overflow: hidden; position: relative; }
         .banner-content h4 { font-size: 13px; opacity: 0.9; margin-bottom: 4px; font-weight: 500; }
-        .banner-content h2 { font-size: 16px; font-weight: bold; margin-bottom: 12px; }
+        .banner-content h2 { font-size: 16px; font-weight: bold; margin-bottom: 12px; color: #ffdf00; }
         .banner-btn { background: #fff; color: #000; padding: 6px 16px; border-radius: 14px; font-size: 12px; font-weight: bold; border: none; cursor: pointer; }
 
         /* Seksiyalar */
         .section-header { padding: 0 16px; display: flex; justify-content: space-between; align-items: center; margin-top: 22px; margin-bottom: 10px; }
-        .section-title { font-size: 16px; font-weight: bold; }
+        .section-title { font-size: 16px; font-weight: bold; color: #ffdf00; } /* Sariq sarlavha */
         .section-all { font-size: 13px; color: #0a84ff; cursor: pointer; font-weight: 500; }
 
         /* Repertuar Bloki */
         .show-card { margin: 0 16px; background: #1c1c24; border-radius: 20px; padding: 16px; position: relative; }
         .show-tag { background: #32213a; color: #da70d6; padding: 4px 10px; border-radius: 8px; font-size: 11px; display: inline-block; margin-bottom: 8px; font-weight: bold; }
-        .show-title { font-size: 15px; font-weight: bold; margin-bottom: 12px; line-height: 1.3; }
+        .show-title { font-size: 15px; font-weight: bold; margin-bottom: 12px; line-height: 1.3; color: #ffdf00; }
         .show-item { display: flex; align-items: center; justify-content: space-between; background: #252530; padding: 12px; border-radius: 14px; cursor: pointer; }
         .show-item-left { display: flex; align-items: center; gap: 10px; }
         .num-circle { width: 24px; height: 24px; background: #32d74b; color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
@@ -55,21 +55,38 @@
         .circle-icon.pink { background: linear-gradient(135deg, #ff758c, #ff7eb3); }
         .circle-icon.green { background: linear-gradient(135deg, #43e97b, #38f9d7); }
         .circle-icon.blue { background: linear-gradient(135deg, #4facfe, #00f2fe); }
-        .circle-card span { font-size: 13px; font-weight: 600; }
+        .circle-card span { font-size: 13px; font-weight: 600; color: #ffdf00; }
 
         /* VIP Promo Bar */
         .promo-bar { margin: 16px 16px 30px 16px; background: linear-gradient(135deg, #ff9966, #ff5e62); border-radius: 20px; padding: 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
-        .promo-text h4 { font-size: 14px; font-weight: bold; margin-bottom: 2px; }
+        .promo-text h4 { font-size: 14px; font-weight: bold; margin-bottom: 2px; color: #fff; }
         .promo-text p { font-size: 11px; opacity: 0.95; }
+
+        /* Bepul Kurslar Sahifasidagi Elementlar (Ibrat style) */
+        .page-header { padding: 16px; display: flex; align-items: center; gap: 12px; }
+        .back-btn { width: 36px; height: 36px; background: #1c1c24; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; color: #ffdf00; }
+        .page-title { font-size: 22px; font-weight: bold; color: #ffdf00; }
+        
+        .pro-banner { margin: 0 16px 16px 16px; background: linear-gradient(135deg, #ff2e93, #7819ff); border-radius: 20px; padding: 20px; display: flex; justify-content: space-between; align-items: center; position: relative; overflow: hidden; }
+        .pro-banner-text h3 { font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 4px; }
+        .pro-banner-text p { font-size: 12px; color: rgba(255,255,255,0.8); max-width: 180px; }
+
+        .course-card { margin: 0 16px 12px 16px; background: #1c1c24; border-radius: 20px; padding: 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: transform 0.2s; }
+        .course-card:active { transform: scale(0.98); }
+        .course-left { display: flex; align-items: center; gap: 14px; }
+        .course-avatar { width: 50px; height: 50px; border-radius: 50%; background: #2c2c38; display: flex; align-items: center; justify-content: center; font-size: 24px; overflow: hidden; border: 2px solid #ffdf00; }
+        .course-info span { font-size: 12px; color: #8e8e93; display: block; margin-bottom: 2px; }
+        .course-info h4 { font-size: 15px; font-weight: bold; color: #ffdf00; }
+        .course-progress { font-size: 13px; font-weight: bold; color: #32d74b; }
 
         /* Sahifalar boshqaruvi */
         .page { display: none; }
         .page.active { display: block; }
 
-        /* Pastki Navigatsiya Bar - Doimiy Fiksirlangan */
+        /* Pastki Navigatsiya Bar */
         .nav { position: fixed; bottom: 0; left: 0; right: 0; height: 70px; background: #16161b; border-top: 1px solid #22222b; display: flex; justify-content: space-around; align-items: center; z-index: 9999; padding-bottom: 6px; }
         .n-it { display: flex; flex-direction: column; align-items: center; justify-content: center; color: #8e8e93; flex: 1; height: 100%; cursor: pointer; }
-        .n-it.active { color: #ff9f0a; }
+        .n-it.active { color: #ffdf00; } /* Aktiv menyu sariq */
         .n-ic { width: 24px; height: 24px; margin-bottom: 3px; display: flex; align-items: center; justify-content: center; }
         .n-ic svg { width: 22px; height: 22px; fill: currentColor; }
         .n-lb { font-size: 10px; font-weight: 500; }
@@ -88,13 +105,14 @@
         </div>
 
         <div class="grid-2">
-            <div class="card-box" onclick="alert('Bepul master-klasslar tez kunda ochiladi!')">
+            <!-- Bepul darslar tugmasi -->
+            <div class="card-box" onclick="go('organish')">
                 <div class="card-top">
                     <div class="card-icon-svg">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#a259ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#ffdf00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M2 10s3-2 3-5c0-2-1-3-1-3s3 1 4 4c1-3 4-4 4-4s-1 1-1 3c0 3 3 5 3 5s-2 3-6 3-6-3-6-3z"></path>
-                            <circle cx="9" cy="10" r="1" fill="#a259ff"></circle>
-                            <circle cx="15" cy="10" r="1" fill="#a259ff"></circle>
+                            <circle cx="9" cy="10" r="1" fill="#ffdf00"></circle>
+                            <circle cx="15" cy="10" r="1" fill="#ffdf00"></circle>
                             <path d="M10 15c1 1 3 1 4 0"></path>
                         </svg>
                     </div>
@@ -106,6 +124,7 @@
                 <div class="card-arrow">➔</div>
             </div>
 
+            <!-- VIP Sahna -->
             <div class="card-box" onclick="alert('VIP Spektakllar boʻlimi')">
                 <div class="card-top">
                     <div class="card-icon-svg">
@@ -142,7 +161,7 @@
             <div class="show-item" onclick="alert('Spektakl boshlanish vaqti: 14:00')">
                 <div class="show-item-left">
                     <div class="num-circle">1</div>
-                    <span style="font-size:13px;font-weight:500;">Bosh rollarda: Rayhon va Lola</span>
+                    <span style="font-size:13px;font-weight:500;color:#ffdf00;">Bosh rollarda: Rayhon va Lola</span>
                 </div>
                 <span style="color:#aaa;">➔</span>
             </div>
@@ -172,17 +191,56 @@
         </div>
     </div>
 
-    <!-- 2. O'RGANISH SAHIFASI -->
+    <!-- 2. O'RGANISH (BEPUL KURSLAR) SAHIFASI -->
     <div id="page-organish" class="page">
-        <div class="section-header" style="margin-top:20px;"><div class="section-title">O'quv kurslari</div></div>
-        <div style="padding:16px;">
-            <div class="card-box" style="margin-bottom:12px; width:100%; height:auto;" onclick="alert('Qoʻgʻirchoq yasash kursi')">
-                <h3>🧵 Qo'g'irchoq yasash kursi</h3>
-                <p style="margin-top:4px;">Mato va iplardan marionetka yasashni o'rganing.</p>
+        <div class="page-header">
+            <div class="back-btn" onclick="go('asosiy')">❮</div>
+            <div class="page-title">Bepul kurslar</div>
+        </div>
+
+        <div class="pro-banner">
+            <div class="pro-banner-text">
+                <h3>Teatr Pro</h3>
+                <p>Barcha san'at sirlari va maxsus darslar bitta obunada</p>
             </div>
-            <div class="card-box" style="width:100%; height:auto;" onclick="alert('Aktyorlik mahorati')">
-                <h3>🗣️ Ovoz va aktyorlik</h3>
-                <p style="margin-top:4px;">Qo'g'irchoqqa jon kiritish va ovoz berish sirlari.</p>
+            <div style="font-size:50px;">👑</div>
+        </div>
+
+        <div style="padding:0 16px;">
+            <!-- 1-kurs: Qo'g'irchoq yasash kursi -->
+            <div class="course-card" onclick="alert('Qoʻgʻirchoq yasash kursi darslari ochilmoqda!')">
+                <div class="course-left">
+                    <div class="course-avatar">🧵</div>
+                    <div class="course-info">
+                        <span>Ustoz: Botir Zokirov</span>
+                        <h4>Qo'g'irchoq yasash kursi</h4>
+                    </div>
+                </div>
+                <div class="course-progress">0%</div>
+            </div>
+
+            <!-- 2-kurs: Ovoz va aktyorlik -->
+            <div class="course-card" onclick="alert('Ovoz va aktyorlik kursi darslari ochilmoqda!')">
+                <div class="course-left">
+                    <div class="course-avatar">🗣️</div>
+                    <div class="course-info">
+                        <span>Ustoz: Dilnoza Rahimova</span>
+                        <h4>Ovoz va aktyorlik</h4>
+                    </div>
+                </div>
+                <div class="course-progress">0%</div>
+            </div>
+
+            <!-- 3-kurs: Kinoteatr videolar -->
+            <div class="course-card" onclick="alert('Kinoteatr videolar boʻlimi ochilmoqda!')">
+                <div class="course-left">
+                    <div class="course-avatar">🎬</div>
+                    <div class="course-info">
+                        <span>Teatr arxivi</span>
+                        <h4>Kinoteatr videolar</h4>
+                    </div>
+                </div>
+                <div style="font-size:13px;color:#0a84ff;font-weight:bold;">Ko'rish ➔</div>
             </div>
         </div>
     </div>
@@ -207,7 +265,7 @@
         <div class="section-header" style="margin-top:20px;"><div class="section-title">Teatr Viktorinalari</div></div>
         <div style="padding:16px;">
             <div class="card-box" style="width:100%; height:auto;" onclick="alert('Teatr boʻyicha viktorina boshlandi!')">
-                <h3>🎯 Bilimingizni sinang</h3>
+                <h3 style="color:#ffdf00;">🎯 Bilimingizni sinang</h3>
                 <p style="margin-top:4px;">Ertaklar va qo'g'irchoqlar bo'yicha qiziqarli savollar</p>
             </div>
         </div>
@@ -218,14 +276,14 @@
         <div class="section-header" style="margin-top:20px;"><div class="section-title">Shaxsiy Kabinet</div></div>
         <div style="padding:16px;">
             <div class="card-box" style="width:100%; height:auto;">
-                <h3>👤 Foydalanuvchi</h3>
+                <h3 style="color:#ffdf00;">👤 Foydalanuvchi</h3>
                 <p style="margin-top:6px;">Status: San'atsevar ⭐</p>
                 <p style="margin-top:4px;">Sotib olingan chiptalar: 0 ta</p>
             </div>
         </div>
     </div>
 
-    <!-- PASTKI NAVIGATSIYA BAR (FIKSIRLANGAN) -->
+    <!-- PASTKI NAVIGATSIYA BAR -->
     <div class="nav">
         <div class="n-it active" id="n-asosiy" onclick="go('asosiy')">
             <div class="n-ic">
