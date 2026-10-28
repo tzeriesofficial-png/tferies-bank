@@ -208,7 +208,7 @@
         </div>
     </div>
 
-    <!-- ATAMALAR SAHIFASI (TOP 60 TA MASHQ / ERTAK / MASAL) -->
+    <!-- ATAMALAR SAHIFASI (TOP 60 TA HAR XIL UYDA O'RGANISH MASHQLARI VA ERTAKLAR) -->
     <div id="page-atamalar" class="page">
         <div class="page-header">
             <div class="back-btn" onclick="go('asosiy')">❮</div>
@@ -296,7 +296,7 @@
             <div class="n-lb" id="navOrganish">O'rganish</div>
         </div>
         <div class="n-it" id="n-missiya" onclick="go('missiya')">
-            <div class="n-ic"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/></svg></div>
+            <div class="n-ic"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4 z"/></svg></div>
             <div class="n-lb" id="navMissiya">Missiya</div>
         </div>
         <div class="n-it" id="n-oyinlar" onclick="go('oyinlar')">
@@ -315,78 +315,46 @@
 
         let currentLang = 'uz';
 
-        const atamalarData = [
-            {
-                title: "1-mashq: Bo‘ri bilan mushuk (Masal)",
-                meta: "29.08.2015 | Bahrom | Krilov I.A",
-                text: `O‘rmondan qishloqqa halloslab chopib
-Kirib keldi bir kun ochofat Bo‘ri.
-Mehmon bo‘lib emas — bir panoh topib —
-O‘zin qutqarmasa — quriydi sho‘ri.
-Orqadan ovchilar tozi quvdirib
-Bo‘rining jonini olishdi rosa.
-Koshkiydi bironta eshikka kirnb
-Ko‘zdan yashirinib jonin saqlasa.
-Ammo darvozalar barisi qulfloq,
-Bo‘rivoy har tomon alanglab shu choq —
-Ko‘zi tushdi devor uzra Mushukka,
-Boshladi shu zamon yalinishlikka:
-“Mushukjon, jon do‘stim, ayta qol tezroq,
-Bunda deqqonlardan kim rahmdilroq?
-Hu, quvib kelyapti ko‘p ovchi, tozi,
-Meni dushmanlardan yashirsin hozir”.
-“Unday bo‘lsa, tezroq Stepanga chop,
-Ko‘p rahmdil odam”,- der Mushuk shu top.
-“Yo‘q-e, chang solganman uning qo‘yiga”.
-“Balki Dem’yan qo‘yar seni uyiga?”
-Qo‘rqamanki, qasdin olar u mendan,
-Tortib ketgan edim echkisin zimdan».
-“Trofimga bor-chi?”- “Xudo saqlasin,
-Bahorda yegandim uning to‘qlisin».
-“Ahvoling chatoq-ku… Ehtimol, Klim…”
-“Ox, do‘stim, buzog’in qilganman tilim…”
-“Uh-ho‘, ishing besh-ku, qara-ya, quda —
-Sen butun qishloqni tullabsan juda.
-Meni yashirsin, deb chekma ohu voh,
-Bunda topolmaysan o‘zingga panoh.
-Barcha harakating ketar behuda.
-O‘zingning qilmishing — o‘zingdan ko‘rgin,
-Nima ekkan bo‘lsang — o‘shani o‘rgin”.`,
-                embed: "https://www.youtube.com/embed/Pe_nLvvNGKw"
-            },
-            {
-                title: "2-mashq: Ziyrak va Tulki (Ertak)",
-                meta: "O'zbek xalq ertagi | Sahna Nutqi Mashqi",
-                text: `Bir bor ekan, bir yo'q ekan, qadim zamonda bir ziyrak va aqlli quyon bor ekan. U har kuni o'rmon bo'ylab sayr qilib, ayyor tulkining hiylalaridan qutulib qolar ekan. Tulki uni qanchalik aldashga urinmasin, Ziyrak o'z topqirligi bilan uni mot qilar edi...`,
-                embed: "https://www.youtube.com/embed/rPTBHshlYks"
-            },
-            {
-                title: "3-mashq: Shag'al va Yo'lbars (Masal)",
-                meta: "Sahna Mahorati Darsi",
-                text: `Yo'lbars o'rmonda o'zini eng kuchli deb hisoblardi. Shag'al esa unga xushomad qilib, uning ortidan qolgan oziq-ovqatlarni yeb kun kechirardi. Bir kuni Shag'al o'zini Yo'lbarsdan ham aqlli deb o'yladi...`,
-                embed: "https://www.youtube.com/embed/u240af6WhqA"
-            },
-            {
-                title: "4-mashq: Chumoli va Chigirtka",
-                meta: "Tarbiya va Sahna Harakati Mashqi",
-                text: `Yoz bo'yi chigirtka ashula aytib, o'ynab-kulib kun kechirdi. Mehnatkash chumoli esa qish uchun g'alla va oziq-ovqat g'amlab qo'ydi. Qish kelgach, chigirtka sovqotib va och qolib chumolinikiga keldi...`,
-                embed: "https://www.youtube.com/embed/EqBrkPLBS-4"
-            },
-            {
-                title: "5-mashq: Qarg'a va Tulki (Masal)",
-                meta: "I.A. Krilov | Diksiya va Ovoz Mashqi",
-                text: `Qarg'a bir tilim pishloq topib olib, daraxt shoxiga qo'ndi. Shunda u yerga ayyor tulki keldi va qarg'aning ajoyib ovozini maqtay boshladi...`,
-                embed: "https://www.youtube.com/embed/02tJPDnjBaQ"
-            }
+        // 60 ta turli xil mashqlar, ertaklar va uyda o'rganish darslari
+        const embedList = [
+            "https://www.youtube.com/embed/Pe_nLvvNGKw",
+            "https://www.youtube.com/embed/rPTBHshlYks",
+            "https://www.youtube.com/embed/u240af6WhqA",
+            "https://www.youtube.com/embed/EqBrkPLBS-4",
+            "https://www.youtube.com/embed/02tJPDnjBaQ"
         ];
 
-        // Top 60 gacha avtomatik to'ldirish kodi
-        for (let i = 6; i <= 60; i++) {
+        const titlesData = [
+            "Bo‘ri bilan mushuk (Masal)", "Ziyrak va Tulki (Ertak)", "Shag'al va Yo'lbars (Masal)", "Chumoli va Chigirtka", "Qarg'a va Tulki (Masal)",
+            "Bo'ri va Qo'zichoq", "Uch pahlavon ertagi", "Zumrad va Qimmat", "Yovvoyi o'rdaklar", "O'rmon konserti",
+            "Sahnada o'zini tutish sirlari", "Uyda ovoz mashq qilish", "Nafas olish texnikalari", "Qo'g'irchoqni harakatga keltirish", "Diksiya va nutq ravonligi",
+            "Teatrda improvizatsiya", "Bolalar uchun sahna ko'rinishi", "Aktyorlik mahorati asoslari", "Mimika va jestlar tili", "Qahramon obrazini yaratish",
+            "Sehrli sandiq ertagi", "Oltin baliqcha", "Zumrad buloq", "Qaysar echki", "Uch ayiq",
+            "Topqir dehqon", "Hofiz va cholg'u", "Donishmand kampir", "Qari qorovul hikoyasi", "Sehrgorning shogirdi",
+            "Teatr tarixi va arxitekturasi", "Dramaturgiya asoslari", "Sahna chiroqlari sirlari", "Kostyum va grimerlik", "Rejissyorlik mahorati",
+            "Uyda qo'g'irchoq yasash", "Qog'ozdan niqob tayyorlash", "Teatr uchun dekoratsiya", "Musiqiy sahna ritmlari", "Ovoz tembrini o'zgartirish",
+            "Quvnoq qushlar ertagi", "Bahor nafasi sahna ko'rinishi", "Qishki ertak", "Yozgi sarguzasht", "Sirli o'rmon sirlari",
+            "Yulduzli osmon ostida", "Qahramonning ichki dunyosi", "Sahna madaniyati", "Tomoshabin bilan muloqot", "Jonli ijro sirlari",
+            "Ijodiy parvoz mashqlari", "Xotirani rivojlantirish", "Diqqatni jamlash mashqi", "Ritm va harakat muvozanati", "Teatr aktyorining kun tartibi",
+            "Yangi mavsum premyerasi", "Katta sahna sirlari", "Repertuar tuzish tartibi", "Faxriy ustozlar saboqlari", "Xulosa va ijodiy reja"
+        ];
+
+        const textsData = [
+            `O‘rmondan qishloqqa halloslab chopib Kirib keldi bir kun ochofat Bo‘ri. Mehmon bo‘lib emas — bir panoh topib — O‘zin qutqarmasa — quriydi sho‘ri...\nUyda turib ovozni boshqarish va matnni ifodali o'qish uchun maxsus mashq.`,
+            `Bir bor ekan, bir yo'q ekan, qadim zamonda bir ziyrak quyon bor ekan. U o'rmondagi do'stlariga yordam berishni juda yaxshi ko'rardi...\nAktyorlikda obrazga kirish uchun uy sharoitida bajariladigan amaliy dars.`,
+            `Yo'lbars o'rmonda o'zini hukmdor deb bilar edi. Ammo bir kuni kichkina chumchuq unga saboq qo'ydi...\nUyda nutq va diksiyani rivojlantirish bo'yicha maxsus tavsiyalar.`,
+            `Yoz bo'yi ashula aytib yurgan chigirtka qishda qiynalib qoldi. Mehnatkash chumoli esa unga yordam qo'lini cho'zdi...\nSahna madaniyati va uyda sahna ko'rinishini tayyorlash bo'yicha qo'llanma.`,
+            `Qarg'a pishloq topib olgan edi, tulki uning ovozini maqtlab pishloqni olib qo'ydi...\nOvoz tembrini o'zgartirish va rollarni taqsimlash bo'yicha uyda o'qish mashqi.`
+        ];
+
+        let atamalarData = [];
+        for(let i=0; i<60; i++) {
+            let num = i + 1;
             atamalarData.push({
-                title: `${i}-mashq: Teatr Nutqi va Sahna Mashqi ${i}`,
-                meta: `O'zbek teatr san'ati darsligi | Mashq ${i}`,
-                text: `Ushbu ${i}-mashq aktyorlik va sahna nutqini rivojlantirish uchun mo'ljallangan. Talaffuzni to'g'ri shakllantirish, ovoz tembrini to'g'ri yo'naltirish hamda qahramon obraziga kirish mashg'ulotlari ko'rsatilgan.`,
-                embed: "https://www.youtube.com/embed/Pe_nLvvNGKw"
+                title: `${num}-mashq: ${titlesData[i] || 'Teatr va Sahna Mashqi'}`,
+                meta: `Uyda o'rganish darsligi | Mashq va Ertak #${num}`,
+                text: textsData[i % textsData.id] || `Ushbu ${num}-mashq uyda turib mustaqil ravishda aktyorlik mahorati, sahna nutqi va qo'g'irchoq teatri sirlarini o'rganish uchun mo'ljallangan maxsus video darslik va matnli qo'llanma hisoblanadi.`,
+                embed: embedList[i % embedList.length]
             });
         }
 
