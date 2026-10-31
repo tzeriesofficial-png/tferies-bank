@@ -1,207 +1,169 @@
-
 <!DOCTYPE html>
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GG SKINS</title>
+<title>GAME TOPUP</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#0b0b13;color:white;font-family:Arial,sans-serif}
-header{padding:20px;display:flex;justify-content:space-between;align-items:center;background:#151321;position:sticky;top:0;z-index:5}
-.logo{font-size:25px;font-weight:900;color:#b68aff}
-.balance{background:#282039;padding:10px 14px;border-radius:12px;color:#ffd45d;font-weight:bold}
-main{padding:16px;padding-bottom:100px}
-h2{font-size:19px}
-.hero{padding:22px;border-radius:20px;background:linear-gradient(135deg,#52258d,#171327);margin-bottom:22px}
-.hero h1{font-size:29px;margin:0 0 8px}
-.hero p{color:#ddd;font-size:13px}
-.tabs{display:flex;gap:8px;margin:15px 0;overflow:auto}
-.tabs button{flex:1;white-space:nowrap}
-button{border:0;border-radius:10px;padding:11px;background:#713ed0;color:white;font-weight:bold;cursor:pointer}
-button:active{transform:scale(.97)}
-button:disabled{opacity:.5}
-.cases{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.case{background:#191824;border:1px solid #30283f;border-radius:16px;padding:12px;text-align:center}
-.crate{height:110px;background:linear-gradient(145deg,#35234f,#171522);border-radius:12px;display:grid;place-items:center;margin-bottom:10px}
-.crate span{font-size:55px}
-.case h3{font-size:13px}
-.price{color:#ffd45d;font-weight:bold;margin:10px}
-.open{width:100%}
-.page{display:none}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#080f20;color:white;font-family:Arial,sans-serif;padding-bottom:85px}
+header{padding:22px 18px;font-size:23px;font-weight:bold}
+header span{color:#3285ff}
+.balance{margin:0 15px;background:linear-gradient(120deg,#1765e9,#368eff);padding:22px;border-radius:22px}
+.balance small{opacity:.8}
+.amount{font-size:30px;font-weight:bold;margin:10px 0 20px}
+.actions{display:flex;justify-content:space-between;gap:8px}
+.actions button{flex:1;border:0;border-radius:12px;padding:12px 5px;background:#ffffff25;color:white;font-size:12px}
+.actions button span{display:block;font-size:21px;margin-bottom:5px}
+.tabs{display:flex;gap:10px;padding:20px 15px}
+.tabs button{border:0;border-radius:20px;padding:10px 17px;background:#17243c;color:#aaa}
+.tabs button.active{background:#287cff;color:white}
+h3{padding:5px 17px 15px}
+.games{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:0 13px}
+.game{background:#121e34;border-radius:15px;overflow:hidden;cursor:pointer}
+.game img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.game p{text-align:center;font-size:12px;padding:10px 3px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#101b30;display:flex;justify-content:space-around;padding:14px 5px;border-top:1px solid #26334b}
+nav button{border:0;background:none;color:#9baac4;font-size:12px}
+nav button span{display:block;font-size:21px;margin-bottom:4px}
+.page{display:none;padding:15px}
 .page.active{display:block}
-.item{background:#191824;padding:14px;border-radius:12px;margin:10px 0;display:flex;justify-content:space-between;align-items:center}
-nav{position:fixed;bottom:0;left:0;right:0;background:#151321;border-top:1px solid #30283f;display:flex;justify-content:space-around;padding:12px 4px;z-index:10}
-nav button{background:transparent;color:#aaa;padding:7px 5px;font-size:11px}
-nav button.active{color:#c59aff;background:#302044}
-nav span{display:block;font-size:19px;margin-bottom:4px}
-.notice{background:#282039;padding:12px;border-radius:12px;margin:15px 0;color:#d9c6ff;font-size:13px}
-.profile{text-align:center;background:#191824;padding:25px;border-radius:18px}
-.avatar{font-size:55px}
-.small{font-size:12px;color:#999}
+.back{background:#1a2942;color:white;border:0;padding:12px 17px;border-radius:12px;margin-bottom:20px}
+.detail{text-align:center}
+.detail img{width:115px;height:115px;object-fit:cover;border-radius:20px}
+.detail h2{margin:12px}
+input{width:100%;padding:15px;border-radius:12px;border:1px solid #34435d;background:#121e34;color:white;margin:15px 0}
+.packages{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
+.package{background:#17243b;padding:17px;border-radius:14px;border:1px solid #293c5c;text-align:center;cursor:pointer}
+.package.selected{border:2px solid #368aff;background:#1c3153}
+.package strong{display:block;margin:8px 0}
+.buy{position:fixed;bottom:72px;left:15px;right:15px;padding:15px;background:#287cff;color:white;border:0;border-radius:13px;font-size:16px;font-weight:bold}
+#detailPage{padding-bottom:90px}
+.info{background:#121e34;padding:18px;border-radius:14px;margin-top:15px}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">GG SKINS</div>
-  <div class="balance">🪙 <span id="balance">2500</span></div>
-</header>
+<header>GAME <span>TOPUP</span></header>
 
-<main>
-<section id="home" class="page active">
-  <div class="hero">
-    <h1>GG SKINS</h1>
-    <p>Keys och. Omadingni sinab ko‘r. Virtual skinlar yut!</p>
-    <strong>⚡ CASE OPENING</strong>
-  </div>
+<section id="homePage" class="page active">
+<div class="balance">
+<small>💳 Mening balansim</small>
+<div class="amount">0 so'm</div>
+<div class="actions">
+<button onclick="alert('To‘lov tizimi hali ulanmagan')"><span>＋</span>Hisob to‘ldirish</button>
+<button onclick="alert('Bonus kodlar tez orada')"><span>🎁</span>Bonus kod</button>
+<button onclick="alert('Yordam xizmati')"><span>🎧</span>Yordam</button>
+</div>
+</div>
 
-  <h2>O‘YINNI TANLA</h2>
-  <div class="tabs">
-    <button onclick="selectGame(this,'Standoff 2')">Standoff 2</button>
-    <button onclick="selectGame(this,'PUBG Mobile')">PUBG</button>
-    <button onclick="selectGame(this,'CS2')">CS2</button>
-  </div>
-  <div class="small" id="gameName">Standoff 2 tanlangan</div>
+<div class="tabs">
+<button class="active" onclick="filterGames('all',this)">Hammasi</button>
+<button onclick="filterGames('game',this)">O'yinlar</button>
+<button onclick="filterGames('service',this)">Servislar</button>
+</div>
 
-  <h2>KEYSLAR</h2>
-  <div class="cases" id="cases"></div>
-  <div class="notice" id="notice">Xush kelibsan! Keys tanla va ochishni boshla.</div>
+<h3>🎮 O'yinlar va servislar</h3>
+<div class="games" id="games"></div>
 </section>
 
-<section id="inventory" class="page">
-  <h2>MY INVENTORY</h2>
-  <div id="inventoryList"></div>
+<section id="detailPage" class="page">
+<button class="back" onclick="showPage('homePage')">← Orqaga</button>
+<div class="detail">
+<img id="detailImg" src="images/pubg.jpg">
+<h2 id="detailName">PUBG Mobile</h2>
+</div>
+<div class="info">
+<b>Player ID</b>
+<input id="playerId" placeholder="O'yinchi ID raqamini kiriting">
+</div>
+<h3 style="padding:20px 0 10px">Paketni tanlang</h3>
+<div class="packages" id="packages"></div>
+<button class="buy" onclick="buy()">Sotib olish</button>
 </section>
 
-<section id="wallet" class="page">
-  <h2>HAMYON</h2>
-  <div class="hero">
-    <p>Virtual balansing</p>
-    <h1>🪙 <span id="walletBalance">2500</span></h1>
-  </div>
-  <h2>KUNLIK BONUS</h2>
-  <button id="bonusButton" onclick="dailyBonus()">500 COIN OLISH</button>
-  <div class="notice">Bu virtual tangalar. Haqiqiy pulga aylantirilmaydi va o‘yin hisobiga skin yuborilmaydi.</div>
+<section id="historyPage" class="page">
+<h2>📜 Xaridlar tarixi</h2>
+<div class="info">Hozircha xaridlar mavjud emas.</div>
 </section>
 
-<section id="history" class="page">
-  <h2>OCHILISH TARIXI</h2>
-  <div id="historyList"></div>
+<section id="settingsPage" class="page">
+<h2>⚙️ Sozlamalar</h2>
+<div class="info">GAME TOPUP<br><br>Versiya: 1.0<br><br>Yordam: Telegram</div>
 </section>
-
-<section id="profile" class="page">
-  <h2>PROFIL</h2>
-  <div class="profile">
-    <div class="avatar">👤</div>
-    <h2>GG PLAYER</h2>
-    <p>🟢 ONLINE</p>
-    <p>GG SKINS foydalanuvchisi</p>
-    <strong>🪙 <span id="profileBalance">2500</span></strong>
-  </div>
-</section>
-</main>
 
 <nav>
-  <button class="active" onclick="showPage('home',this)"><span>⌂</span>Bosh sahifa</button>
-  <button onclick="showPage('inventory',this)"><span>▣</span>Skinlar</button>
-  <button onclick="showPage('wallet',this)"><span>◈</span>Hamyon</button>
-  <button onclick="showPage('history',this)"><span>◷</span>Tarix</button>
-  <button onclick="showPage('profile',this)"><span>♙</span>Profil</button>
+<button onclick="showPage('homePage')"><span>⌂</span>Bosh sahifa</button>
+<button onclick="showPage('historyPage')"><span>◷</span>Tarix</button>
+<button onclick="showPage('settingsPage')"><span>⚙</span>Sozlamalar</button>
 </nav>
 
 <script>
-let coins=Number(localStorage.getItem("gg_coins"))||2500;
-let inventory=JSON.parse(localStorage.getItem("gg_inventory")||"[]");
-let history=JSON.parse(localStorage.getItem("gg_history")||"[]");
-let bonus=localStorage.getItem("gg_bonus")==="yes";
-let currentGame="Standoff 2";
-
-const cases=[
-{name:"STARTER CASE",price:200,skin:"AKR Carbon",rarity:"ODDIY",icon:"📦"},
-{name:"PRO CASE",price:500,skin:"M4 Neon",rarity:"RARE",icon:"🎁"},
-{name:"ELITE CASE",price:1000,skin:"Dragon Gold",rarity:"LEGENDARY",icon:"💎"},
-{name:"MYTHIC CASE",price:1500,skin:"Phantom Fire",rarity:"MYTHIC",icon:"👑"}
+const games=[
+{name:"PUBG Mobile",image:"images/pubg.jpg",type:"game",packages:["60 UC","325 UC","660 UC","1800 UC","3850 UC","8100 UC"]},
+{name:"Free Fire",image:"images/freefire.jpg",type:"game",packages:["100 Diamond","310 Diamond","520 Diamond","1060 Diamond"]},
+{name:"Standoff 2",image:"images/standoff2.jpg",type:"game",packages:["100 Gold","300 Gold","500 Gold","1000 Gold"]},
+{name:"Blood Strike",image:"images/bloodstrike.jpg",type:"game",packages:["100 Gold","300 Gold","500 Gold","1000 Gold"]},
+{name:"Mobile Legends",image:"images/ml.jpg",type:"game",packages:["86 Diamond","172 Diamond","257 Diamond","706 Diamond"]},
+{name:"Roblox",image:"images/roblox.jpg",type:"game",packages:["Robux 80","Robux 400","Robux 800"]},
+{name:"Telegram",image:"images/telegram.jpg",type:"service",packages:["50 Stars","100 Stars","250 Stars"]},
+{name:"YouTube",image:"images/youtube.jpg",type:"service",packages:["Obuna","Premium"]}
 ];
 
-function save(){
- localStorage.setItem("gg_coins",coins);
- localStorage.setItem("gg_inventory",JSON.stringify(inventory));
- localStorage.setItem("gg_history",JSON.stringify(history));
- update();
+let currentGame=null;
+let selectedPackage=null;
+
+function renderGames(list=games){
+document.getElementById("games").innerHTML=list.map((g,i)=>`
+<div class="game" onclick="openGame('${g.name}')">
+<img src="${g.image}" alt="${g.name}" onerror="this.style.background='#263b60'">
+<p>${g.name}</p>
+</div>`).join("");
 }
-function update(){
- document.getElementById("balance").textContent=coins;
- document.getElementById("walletBalance").textContent=coins;
- document.getElementById("profileBalance").textContent=coins;
- document.getElementById("bonusButton").disabled=bonus;
- document.getElementById("bonusButton").textContent=bonus?"BONUS OLINGAN":"500 COIN OLISH";
- renderInventory();
- renderHistory();
+
+function filterGames(type,btn){
+document.querySelectorAll(".tabs button").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+renderGames(type==="all"?games:games.filter(g=>g.type===type));
 }
-function renderCases(){
- document.getElementById("cases").innerHTML=cases.map((c,i)=>`
- <div class="case">
-   <div class="crate"><span>${c.icon}</span></div>
-   <h3>${c.name}</h3>
-   <div class="small">${c.rarity}</div>
-   <div class="price">🪙 ${c.price}</div>
-   <button class="open" onclick="openCase(${i})">OCHISH</button>
- </div>`).join("");
+
+function openGame(name){
+currentGame=games.find(g=>g.name===name);
+selectedPackage=null;
+document.getElementById("detailName").textContent=currentGame.name;
+document.getElementById("detailImg").src=currentGame.image;
+document.getElementById("playerId").value="";
+document.getElementById("packages").innerHTML=currentGame.packages.map((p,i)=>`
+<div class="package" onclick="selectPackage(this,'${p}')">
+🎁<strong>${p}</strong><small>Narx: tez orada</small>
+</div>`).join("");
+showPage("detailPage");
 }
-function openCase(i){
- const c=cases[i];
- if(coins<c.price){
-  message("Tangalar yetarli emas!");
-  return;
- }
- coins-=c.price;
- const skin=c.skin;
- inventory.unshift({skin,game:currentGame,rarity:c.rarity});
- history.unshift(currentGame+" — "+c.name+" → "+skin);
- save();
- message("🎉 Tabriklaymiz! "+skin+" yutding!");
+
+function selectPackage(el,name){
+document.querySelectorAll(".package").forEach(p=>p.classList.remove("selected"));
+el.classList.add("selected");
+selectedPackage=name;
 }
-function message(t){
- document.getElementById("notice").textContent=t;
+
+function buy(){
+if(!document.getElementById("playerId").value.trim()){
+alert("Player ID kiriting!");
+return;
 }
-function renderInventory(){
- const el=document.getElementById("inventoryList");
- if(!inventory.length){
-  el.innerHTML='<div class="notice">Inventaring hozircha bo‘sh. Keys ochib skin yut!</div>';
-  return;
- }
- el.innerHTML=inventory.map(x=>`
- <div class="item">
- <div><strong>💎 ${x.skin}</strong><div class="small">${x.game} • ${x.rarity}</div></div>
- <span>✓</span>
- </div>`).join("");
+if(!selectedPackage){
+alert("Paketni tanlang!");
+return;
 }
-function renderHistory(){
- const el=document.getElementById("historyList");
- el.innerHTML=history.length?history.map(x=>`<div class="item">◷ ${x}</div>`).join(""):'<div class="notice">Hali tarix yo‘q.</div>';
+alert("Bu demo versiya. Haqiqiy to‘lov va top-up tizimi hali ulanmagan.");
 }
-function dailyBonus(){
- if(bonus)return;
- coins+=500;
- bonus=true;
- save();
- message("500 virtual coin qo‘shildi!");
+
+function showPage(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
 }
-function selectGame(btn,name){
- currentGame=name;
- document.getElementById("gameName").textContent=name+" tanlangan";
- document.querySelectorAll(".tabs button").forEach(b=>b.style.background="#713ed0");
- btn.style.background="#a36aff";
-}
-function showPage(id,btn){
- document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
- document.getElementById(id).classList.add("active");
- document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
- btn.classList.add("active");
-}
-renderCases();
-update();
+
+renderGames();
 </script>
 </body>
-</html>
+  </html>
