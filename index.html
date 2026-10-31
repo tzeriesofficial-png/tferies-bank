@@ -3,326 +3,375 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#101426">
-<title>QUIZ BATTLE PRO</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>BILLIARD PRO</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at top,#27365c,#101426 65%);font-family:Arial,sans-serif;color:#fff;min-height:100vh}
-.app{max-width:520px;margin:auto;padding:16px 14px 35px}
-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
-.logo{font-size:22px;font-weight:1000;letter-spacing:1px}
-.logo span{color:#ffc65c}
-.badge{font-size:10px;color:#ffc65c;border:1px solid #ffc65c66;padding:7px 10px;border-radius:20px;font-weight:bold}
-.card{background:linear-gradient(145deg,#222e49,#192139);border:1px solid #ffffff17;border-radius:19px;padding:17px;margin-bottom:13px;box-shadow:0 9px 25px #0003}
-h2{font-size:21px;margin:5px 0 7px}
-.sub{font-size:12px;color:#aab5d0;line-height:1.5}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
-.mode{border:1px solid #ffffff20;background:#17213a;color:#fff;border-radius:15px;padding:17px 8px;text-align:center;cursor:pointer}
-.mode:active,.option:active{transform:scale(.98)}
-.mode .emoji{font-size:30px;display:block;margin-bottom:9px}
-.mode b{font-size:13px}
-.mode small{display:block;color:#aab5d0;margin-top:5px;font-size:10px}
-.btn{width:100%;border:0;border-radius:12px;padding:14px;background:linear-gradient(135deg,#ffdc87,#f0a93d);color:#35230b;font-weight:1000;font-size:13px;margin-top:12px;cursor:pointer}
-.secondary{background:#2c3a5a;color:white;border:1px solid #ffffff20}
-input,select{width:100%;padding:14px;border-radius:11px;background:#101a30;border:1px solid #ffffff24;color:#fff;margin-top:7px;outline:none}
-label{display:block;font-size:11px;color:#aab5d0;font-weight:bold;margin-top:14px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.stat{background:#121c32;padding:12px 5px;border-radius:12px;text-align:center}
-.stat small{font-size:9px;color:#aab5d0}
-.stat b{display:block;font-size:18px;color:#ffd477;margin-top:5px}
-.hidden{display:none!important}
-.topgame{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#bdc9df}
-.progress{height:7px;background:#0e172b;border-radius:20px;overflow:hidden;margin:14px 0}
-.bar{height:100%;background:linear-gradient(90deg,#f1a93f,#ffe08a);width:100%;transition:width 1s linear}
-.question{font-size:20px;line-height:1.4;font-weight:900;margin:22px 0}
-.option{width:100%;text-align:left;border:1px solid #ffffff20;background:#17233d;color:white;padding:15px;border-radius:12px;margin:5px 0;font-size:13px;font-weight:bold;cursor:pointer}
-.option.correct{background:#176b4a;border-color:#5ee6a8}
-.option.wrong{background:#7b293b;border-color:#ff8497}
-.option:disabled{cursor:default;opacity:.9}
-.feedback{text-align:center;font-size:13px;font-weight:bold;margin:13px 0;min-height:20px}
-.timer{font-size:22px;font-weight:1000;color:#ffd477}
-.coins{color:#ffd477;font-weight:1000}
-.listrow{display:flex;justify-content:space-between;padding:12px 3px;border-bottom:1px solid #ffffff13;font-size:12px}
-.footer{text-align:center;color:#7886a5;font-size:10px;margin-top:20px;line-height:1.6}
+body{
+ margin:0;background:#07101e;color:white;
+ font-family:Arial,sans-serif;overflow:hidden;
+ touch-action:none
+}
+#app{height:100dvh;display:flex;flex-direction:column}
+header{
+ height:85px;min-height:85px;
+ display:flex;align-items:center;justify-content:space-around;
+ background:linear-gradient(90deg,#101b32,#253653,#101b32);
+ border-bottom:2px solid #526b90;padding:5px
+}
+.player{text-align:center;min-width:100px}
+.name{font-weight:bold;font-size:14px}
+.level{color:#ffd34e;font-size:12px;margin-top:5px}
+.avatar{
+ width:37px;height:37px;border:3px solid #e8bd55;
+ border-radius:12px;margin:auto auto 3px;
+ background:linear-gradient(135deg,#14a6a1,#182b52);
+ display:grid;place-items:center;font-size:20px
+}
+.score{font-size:19px;color:#ffdc51;font-weight:bold}
+.logo{font-size:17px;font-weight:900;color:#ffdc51}
+#gameArea{
+ flex:1;min-height:0;display:flex;align-items:center;
+ justify-content:center;padding:8px
+}
+#table{
+ width:min(100%,1400px);
+ aspect-ratio:1.65;
+ position:relative;
+ background:linear-gradient(135deg,#164b88,#092957);
+ border:9px ridge #b4b9c1;
+ border-radius:35px;padding:27px;
+ box-shadow:0 0 25px #000, inset 0 0 20px #000;
+}
+#felt{
+ width:100%;height:100%;position:relative;
+ overflow:hidden;border:5px solid #d1d8df;
+ border-radius:12px;
+ background:
+ radial-gradient(ellipse at center,#e2edf2 0%,#b9ccd8 70%,#8ca7b9 100%);
+ box-shadow:inset 0 0 22px #344c5e;
+}
+.pocket{
+ width:6.5%;aspect-ratio:1;position:absolute;
+ background:radial-gradient(circle,#000 48%,#171018 65%,#49515d 72%);
+ border-radius:50%;z-index:5;
+ box-shadow:0 2px 5px #000
+}
+.pocket:nth-child(1){top:-3%;left:-2%}
+.pocket:nth-child(2){top:-3%;left:46.75%}
+.pocket:nth-child(3){top:-3%;right:-2%}
+.pocket:nth-child(4){bottom:-3%;left:-2%}
+.pocket:nth-child(5){bottom:-3%;left:46.75%}
+.pocket:nth-child(6){bottom:-3%;right:-2%}
+#balls{position:absolute;inset:0}
+.ball{
+ position:absolute;width:3.1%;aspect-ratio:1;
+ border-radius:50%;z-index:3;
+ box-shadow:inset -4px -5px 7px #0007,inset 3px 3px 5px #fff9,0 2px 3px #0008;
+ display:grid;place-items:center;
+ font-size:clamp(6px,1vw,12px);font-weight:bold;color:#111
+}
+.ball::after{
+ content:"";position:absolute;width:37%;height:37%;
+ background:#fff;border-radius:50%;
+ opacity:.9
+}
+.ball span{z-index:2;font-size:8px}
+#aim{
+ position:absolute;height:2px;background:#222;
+ transform-origin:left center;z-index:8;
+ pointer-events:none;opacity:.9;
+ box-shadow:0 0 2px white
+}
+#cue{
+ position:absolute;height:5px;width:35%;border-radius:4px;
+ background:linear-gradient(90deg,#222,#d9c6a0 12%,#a77a48 17%,#eee0bd 90%,#222);
+ transform-origin:left center;z-index:7;
+ box-shadow:0 2px 4px #0008;pointer-events:none
+}
+#controls{
+ min-height:100px;background:#101b30;
+ border-top:2px solid #344e72;
+ display:flex;align-items:center;justify-content:center;
+ gap:14px;padding:10px;flex-wrap:wrap
+}
+button{
+ background:linear-gradient(135deg,#168cba,#07517e);
+ border:1px solid #55b8e6;color:white;
+ border-radius:12px;padding:12px 17px;font-weight:bold;
+ cursor:pointer
+}
+button:active{transform:scale(.96)}
+.power{display:flex;align-items:center;gap:8px;font-size:13px}
+input{width:110px;accent-color:#ffc83d}
+#message{font-size:13px;color:#ffdf83;text-align:center}
+@media(max-width:600px){
+ header{height:66px;min-height:66px}
+ .avatar{width:29px;height:29px;font-size:15px}
+ .name{font-size:11px}.level{font-size:10px}
+ .logo{font-size:13px}
+ #table{padding:17px;border-width:6px;border-radius:20px}
+ #controls{gap:7px;min-height:95px}
+ button{padding:10px;font-size:11px}
+ .power{font-size:11px}
+ input{width:85px}
+}
 </style>
 </head>
 <body>
-<div class="app">
+<div id="app">
 <header>
-<div class="logo">QUIZ <span>BATTLE</span></div>
-<div class="badge">⚡ PRO ARENA</div>
+ <div class="player">
+  <div class="avatar">👤</div>
+  <div class="name">SIZ</div>
+  <div class="level">⭐ 43-daraja</div>
+  <div class="score" id="myScore">0</div>
+ </div>
+ <div class="logo">🎱 BILLIARD<br>PRO</div>
+ <div class="player">
+  <div class="avatar">🤖</div>
+  <div class="name">PRO BOT</div>
+  <div class="level">⭐ 46-daraja</div>
+  <div class="score" id="botScore">0</div>
+ </div>
 </header>
 
-<section id="home">
-<div class="card">
-<h2>Bilimingni sinab ko‘r! 🧠</h2>
-<div class="sub">Raqiblarni yeng, savollarga javob ber va virtual coin yig‘. Bu o‘yin faqat ko‘ngilochar maqsadda.</div>
-<div class="stats" style="margin-top:17px">
-<div class="stat"><small>🪙 COIN</small><b id="coins">500</b></div>
-<div class="stat"><small>🏆 BALL</small><b id="points">0</b></div>
-<div class="stat"><small>🎮 O‘YINLAR</small><b id="games">0</b></div>
-</div>
-</div>
+<main id="gameArea">
+ <div id="table">
+  <div id="felt">
+   <div class="pocket"></div><div class="pocket"></div>
+   <div class="pocket"></div><div class="pocket"></div>
+   <div class="pocket"></div><div class="pocket"></div>
+   <div id="balls"></div>
+   <div id="aim"></div>
+   <div id="cue"></div>
+  </div>
+ </div>
+</main>
 
-<div class="card">
-<h2>O‘yin turini tanlang</h2>
-<div class="grid">
-<button class="mode" onclick="startGame('bot')"><span class="emoji">🤖</span><b>PRO BOT</b><small>Bot bilan bellash</small></button>
-<button class="mode" onclick="show('friend')"><span class="emoji">👥</span><b>1 VS 1</b><small>Do‘st bilan o‘yna</small></button>
-<button class="mode" onclick="show('practice')"><span class="emoji">📚</span><b>MASHQ</b><small>O‘zingni sinab ko‘r</small></button>
-<button class="mode" onclick="show('rank')"><span class="emoji">🏆</span><b>REYTING</b><small>Natijalarni ko‘r</small></button>
+<div id="controls">
+ <div class="power">ZARBA KUCHI
+  <input id="power" type="range" min="5" max="100" value="55">
+  <span id="powerVal">55%</span>
+ </div>
+ <button id="hit">🎯 ZARBA BERISH</button>
+ <button id="reset">↻ QAYTA</button>
+ <button id="bot">🤖 BOT BILAN</button>
+ <div id="message">Oq sharni barmog‘ingiz bilan yo‘naltiring</div>
 </div>
-</div>
-<div class="card">
-<h2>📅 Kunlik bonus</h2>
-<div class="sub">Har kuni kirib 100 ta virtual coin ol!</div>
-<button class="btn" id="daily" onclick="claimDaily()">BONUSNI OLISH +100 🪙</button>
-</div>
-</section>
-
-<section id="friend" class="hidden">
-<div class="card">
-<h2>👥 Do‘st bilan o‘ynash</h2>
-<div class="sub">Raqib ID sini kiriting yoki demo stol yarating.</div>
-<label>SIZNING NIKNEYMINGIZ</label>
-<input id="nickname" placeholder="Masalan: Player123">
-<label>RAQIB PLAYER ID</label>
-<input id="opponent" placeholder="Masalan: QB-48291">
-<button class="btn" onclick="createRoom()">STOL YARATISH</button>
-<label>STOL ID</label>
-<input id="room" readonly placeholder="Stol ID shu yerda chiqadi">
-<button class="btn secondary" onclick="copyRoom()">ID NUSXALASH</button>
-<div class="sub" style="margin-top:13px">⚠️ Bu hozircha demo. Haqiqiy internet orqali ikki telefonni bog‘lash uchun server va real vaqtli ma’lumot almashish tizimi kerak.</div>
-<button class="btn secondary" onclick="show('home')">ORTGA</button>
-</div>
-</section>
-
-<section id="practice" class="hidden">
-<div class="card">
-<h2>📚 Mavzuni tanlang</h2>
-<select id="category">
-<option value="all">Aralash savollar</option>
-<option value="math">Matematika</option>
-<option value="history">Tarix</option>
-<option value="geo">Geografiya</option>
-<option value="science">Fan</option>
-</select>
-<button class="btn" onclick="startGame('practice')">BOSHLASH</button>
-<button class="btn secondary" onclick="show('home')">ORTGA</button>
-</div>
-</section>
-
-<section id="rank" class="hidden">
-<div class="card">
-<h2>🏆 Sening reytinging</h2>
-<div class="listrow"><span>Jami ball</span><b id="rankPoints">0</b></div>
-<div class="listrow"><span>Jami o‘yinlar</span><b id="rankGames">0</b></div>
-<div class="listrow"><span>Virtual coin</span><b id="rankCoins">500</b></div>
-<div class="sub" style="margin-top:14px">Bu reyting faqat shu qurilmada saqlanadi.</div>
-<button class="btn secondary" onclick="show('home')">ORTGA</button>
-</div>
-</section>
-
-<section id="game" class="hidden">
-<div class="card">
-<div class="topgame">
-<span id="gameMode">🤖 PRO BOT</span>
-<span>SAVOL <b id="qnum">1</b>/10</span>
-</div>
-<div class="progress"><div class="bar" id="timerbar"></div></div>
-<div class="topgame"><span>⏱️ Qolgan vaqt</span><span class="timer" id="timer">15</span></div>
-<div class="question" id="question">Savol yuklanmoqda...</div>
-<div id="options"></div>
-<div class="feedback" id="feedback"></div>
-<button class="btn hidden" id="next" onclick="nextQuestion()">KEYINGI SAVOL →</button>
-</div>
-</section>
-
-<section id="result" class="hidden">
-<div class="card" style="text-align:center">
-<div style="font-size:52px" id="resultEmoji">🏆</div>
-<h2 id="resultTitle">Ajoyib!</h2>
-<div class="sub" id="resultText"></div>
-<div class="stats" style="margin-top:18px">
-<div class="stat"><small>TO‘G‘RI</small><b id="rightCount">0</b></div>
-<div class="stat"><small>BALL</small><b id="finalPoints">0</b></div>
-<div class="stat"><small>COIN</small><b id="earned">0</b></div>
-</div>
-<button class="btn" onclick="startGame(gameType)">YANA O‘YNASH</button>
-<button class="btn secondary" onclick="show('home')">BOSH SAHIFA</button>
-</div>
-</section>
-
-<div class="footer">QUIZ BATTLE PRO · Faqat virtual coin<br>Pul tikish, pul yutish va pul yechish mavjud emas.</div>
 </div>
 
 <script>
-const questions=[
-{c:'math',q:'12 × 8 nechaga teng?',a:['86','96','108','92'],k:1},
-{c:'history',q:'Amir Temur qaysi yilda tug‘ilgan?',a:['1336','1405','1299','1450'],k:0},
-{c:'geo',q:'O‘zbekiston poytaxti qaysi shahar?',a:['Samarqand','Buxoro','Toshkent','Xiva'],k:2},
-{c:'science',q:'Suvning kimyoviy formulasi nima?',a:['CO2','H2O','O2','NaCl'],k:1},
-{c:'math',q:'144 ning kvadrat ildizi nechaga teng?',a:['10','11','12','14'],k:2},
-{c:'history',q:'Buyuk Ipak yo‘li asosan nimaga xizmat qilgan?',a:['Savdo','Faqat urush','Sport','Dengiz sayohati'],k:0},
-{c:'geo',q:'Dunyodagi eng katta okean qaysi?',a:['Atlantika','Hind','Shimoliy Muz','Tinch'],k:3},
-{c:'science',q:'Yerning tabiiy yo‘ldoshi nima?',a:['Quyosh','Oy','Mars','Venera'],k:1},
-{c:'math',q:'25 + 37 nechaga teng?',a:['52','62','72','63'],k:1},
-{c:'history',q:'O‘zbekiston mustaqilligi qachon e’lon qilingan?',a:['1990-yil','1991-yil 31-avgust','1992-yil','1989-yil'],k:1},
-{c:'geo',q:'Eng baland tog‘ cho‘qqisi qaysi?',a:['K2','Everest','Elbrus','Kilimanjaro'],k:1},
-{c:'science',q:'O‘simliklar fotosintez jarayonida qaysi gazni yutadi?',a:['Kislorod','Azot','Karbonat angidrid','Vodorod'],k:2},
-{c:'math',q:'9 × 9 nechaga teng?',a:['72','81','99','91'],k:1},
-{c:'history',q:'Qadimgi Misr hukmdorlari qanday atalgan?',a:['Imperator','Fir’avn','Sulton','Xon'],k:1},
-{c:'geo',q:'Yaponiya qaysi qit’ada joylashgan?',a:['Yevropa','Afrika','Osiyo','Amerika'],k:2},
-{c:'science',q:'Inson tanasida qonni qaysi a’zo haydaydi?',a:['O‘pka','Yurak','Jigar','Buyrak'],k:1},
-{c:'math',q:'100 ning 15 foizi nechaga teng?',a:['10','12','15','20'],k:2},
-{c:'history',q:'Samarqanddagi Registon qaysi davlatda?',a:['Qozog‘iston','O‘zbekiston','Tojikiston','Turkmaniston'],k:1},
-{c:'geo',q:'Nil daryosi qaysi qit’ada?',a:['Afrika','Osiyo','Yevropa','Janubiy Amerika'],k:0},
-{c:'science',q:'Quyoshga eng yaqin sayyora qaysi?',a:['Venera','Yer','Merkuriy','Mars'],k:2}
-];
+const felt=document.getElementById('felt');
+const layer=document.getElementById('balls');
+const cue=document.getElementById('cue');
+const aim=document.getElementById('aim');
+const power=document.getElementById('power');
+const message=document.getElementById('message');
+const W=1000,H=550,R=16;
+let balls=[],turn='you',moving=false,angle=0;
+let myScore=0,botScore=0,aiming=false;
+let start={x:300,y:275};
+let lastTime=0;
 
-let coins=Number(localStorage.qbCoins??500);
-let points=Number(localStorage.qbPoints??0);
-let games=Number(localStorage.qbGames??0);
-let gameType='bot',list=[],index=0,right=0,seconds=15,tick=null,locked=false,earnedNow=0;
-let botScore=0;
-
-function save(){
-localStorage.qbCoins=coins;
-localStorage.qbPoints=points;
-localStorage.qbGames=games;
+const colors={
+ 1:'#f6d23a',2:'#2468c8',3:'#d83232',4:'#713ba0',
+ 5:'#ed8b25',6:'#25954b',7:'#792d20',8:'#16191e',
+ 9:'#f6d23a',10:'#2468c8',11:'#d83232',
+ 12:'#713ba0',13:'#ed8b25',14:'#25954b',15:'#792d20'
+};
+function makeBall(n,x,y){
+ return {n,x,y,vx:0,vy:0,alive:true};
 }
-function update(){
-$('coins').textContent=coins;
-$('points').textContent=points;
-$('games').textContent=games;
-$('rankPoints').textContent=points;
-$('rankGames').textContent=games;
-$('rankCoins').textContent=coins;
+function setup(){
+ balls=[];
+ balls.push(makeBall(0,250,275));
+ let positions=[
+ [700,275],[728,258],[728,292],
+ [756,241],[756,275],[756,309],
+ [784,224],[784,258],[784,292],[784,326],
+ [812,207],[812,241],[812,275],[812,309],[812,343]
+ ];
+ positions.forEach((p,i)=>balls.push(makeBall(i+1,p[0],p[1])));
+ render();
 }
-function $(id){return document.getElementById(id)}
-function show(id){
-['home','friend','practice','rank','game','result'].forEach(x=>$(x).classList.add('hidden'));
-$(id).classList.remove('hidden');
-update();
+function render(){
+ layer.innerHTML='';
+ balls.forEach(b=>{
+  if(!b.alive)return;
+  let el=document.createElement('div');
+  el.className='ball';
+  el.style.left=(b.x/W*100)+'%';
+  el.style.top=(b.y/H*100)+'%';
+  el.style.background=b.n===0?
+   'radial-gradient(circle at 30% 25%,white,#ddd 65%,#777)':
+   `radial-gradient(circle at 30% 25%,white,${colors[b.n]} 30%,${colors[b.n]} 75%,#111)`;
+  if(b.n!==0){
+   el.innerHTML='<span>'+((b.n-1)%8+1)+'</span>';
+   if(b.n>8)el.style.background=
+    `linear-gradient(white 20%,${colors[b.n]} 20%,${colors[b.n]} 80%,white 80%)`;
+  }
+  layer.appendChild(el);
+ });
 }
-function shuffle(arr){
-let a=arr.slice();
-for(let i=a.length-1;i>0;i--){
-let j=Math.floor(Math.random()*(i+1));
-[a[i],a[j]]=[a[j],a[i]];
+function getWhite(){return balls.find(b=>b.n===0)}
+function setLine(x1,y1,x2,y2){
+ let dx=x2-x1,dy=y2-y1;
+ let len=Math.hypot(dx,dy);
+ let deg=Math.atan2(dy,dx)*180/Math.PI;
+ aim.style.left=x1/W*100+'%';
+ aim.style.top=y1/H*100+'%';
+ aim.style.width=(len/W*100)+'%';
+ aim.style.transform=`rotate(${deg}deg)`;
+ cue.style.left=(x1-dx/len*115)/W*100+'%';
+ cue.style.top=y1/H*100+'%';
+ cue.style.transform=`rotate(${deg}deg)`;
 }
-return a;
+function coords(e){
+ let rect=felt.getBoundingClientRect();
+ return {
+  x:(e.clientX-rect.left)/rect.width*W,
+  y:(e.clientY-rect.top)/rect.height*H
+ };
 }
-function startGame(type){
-gameType=type;
-let cat=$('category').value;
-list=shuffle(questions.filter(q=>type!=='practice'||cat==='all'||q.c===cat)).slice(0,10);
-if(!list.length){alert('Bu mavzuda savol topilmadi');return}
-index=0;right=0;botScore=0;earnedNow=0;
-$('gameMode').textContent=type==='bot'?'🤖 PRO BOT':type==='practice'?'📚 MASHQ':'🎮 QUIZ';
-show('game');
-renderQuestion();
-}
-function renderQuestion(){
-locked=false;
-let q=list[index];
-$('qnum').textContent=index+1;
-$('question').textContent=q.q;
-$('feedback').textContent='';
-$('next').classList.add('hidden');
-$('options').innerHTML='';
-q.a.forEach((a,i)=>{
-let b=document.createElement('button');
-b.className='option';
-b.textContent=String.fromCharCode(65+i)+'. '+a;
-b.onclick=()=>answer(i);
-$('options').appendChild(b);
+felt.addEventListener('pointerdown',e=>{
+ if(moving||turn!=='you')return;
+ aiming=true;
+ let p=coords(e),w=getWhite();
+ angle=Math.atan2(p.y-w.y,p.x-w.x);
+ setLine(w.x,w.y,p.x,p.y);
 });
-seconds=15;
-$('timer').textContent=seconds;
-$('timerbar').style.width='100%';
-clearInterval(tick);
-tick=setInterval(()=>{
-seconds--;
-$('timer').textContent=seconds;
-$('timerbar').style.width=(seconds/15*100)+'%';
-if(seconds<=0){clearInterval(tick);answer(-1)}
-},1000);
-}
-function answer(choice){
-if(locked)return;
-locked=true;clearInterval(tick);
-let q=list[index],buttons=[...$('options').children];
-buttons.forEach((b,i)=>{
-b.disabled=true;
-if(i===q.k)b.classList.add('correct');
-if(i===choice&&choice!==q.k)b.classList.add('wrong');
+felt.addEventListener('pointermove',e=>{
+ if(!aiming)return;
+ let p=coords(e),w=getWhite();
+ angle=Math.atan2(p.y-w.y,p.x-w.x);
+ setLine(w.x,w.y,p.x,p.y);
 });
-if(choice===q.k){
-right++;
-let pts=100+seconds*5;
-earnedNow+=pts;
-$('feedback').textContent='✅ To‘g‘ri! +'+pts+' ball';
-}else{
-$('feedback').textContent=choice===-1?'⏰ Vaqt tugadi!':'❌ Noto‘g‘ri javob!';
+felt.addEventListener('pointerup',()=>{
+ if(!aiming)return;
+ aiming=false;
+ shoot(angle,Number(power.value));
+});
+document.getElementById('power').oninput=e=>{
+ document.getElementById('powerVal').textContent=e.target.value+'%';
+};
+document.getElementById('hit').onclick=()=>{
+ if(moving||turn!=='you')return;
+ shoot(angle,Number(power.value));
+};
+function shoot(a,p){
+ if(moving||turn!=='you')return;
+ let w=getWhite();
+ w.vx=Math.cos(a)*p*.20;
+ w.vy=Math.sin(a)*p*.20;
+ moving=true;
+ cue.style.display='none';aim.style.display='none';
+ message.textContent='Sharlar harakatlanmoqda...';
 }
-if(gameType==='bot'&&Math.random()<(difficultyBotChance()))botScore++;
-$('next').classList.remove('hidden');
-$('next').textContent=index===list.length-1?'NATIJANI KO‘RISH':'KEYINGI SAVOL →';
+function pocketCheck(b){
+ const holes=[[0,0],[W/2,0],[W,0],[0,H],[W/2,H],[W,H]];
+ for(const h of holes){
+  if(Math.hypot(b.x-h[0],b.y-h[1])<43){
+   b.alive=false;
+   if(b.n!==0){
+    if(turn==='you')myScore++;else botScore++;
+    document.getElementById('myScore').textContent=myScore;
+    document.getElementById('botScore').textContent=botScore;
+   }else{
+    b.x=250;b.y=275;b.vx=0;b.vy=0;
+   }
+   return true;
+  }
+ }
+ return false;
 }
-function difficultyBotChance(){return .48}
-function nextQuestion(){
-if(!locked)return;
-index++;
-if(index>=list.length){finish();return}
-renderQuestion();
+function update(dt){
+ let active=false;
+ let friction=Math.pow(.988,dt/16.67);
+ for(let b of balls){
+  if(!b.alive)continue;
+  b.x+=b.vx*dt/16.67;
+  b.y+=b.vy*dt/16.67;
+  b.vx*=friction;b.vy*=friction;
+  if(Math.hypot(b.vx,b.vy)<.035){b.vx=0;b.vy=0}
+  if(b.vx||b.vy)active=true;
+  if(b.x<R+2){b.x=R+2;b.vx=Math.abs(b.vx)*.85}
+  if(b.x>W-R-2){b.x=W-R-2;b.vx=-Math.abs(b.vx)*.85}
+  if(b.y<R+2){b.y=R+2;b.vy=Math.abs(b.vy)*.85}
+  if(b.y>H-R-2){b.y=H-R-2;b.vy=-Math.abs(b.vy)*.85}
+  pocketCheck(b);
+ }
+ for(let i=0;i<balls.length;i++){
+  let a=balls[i];if(!a.alive)continue;
+  for(let j=i+1;j<balls.length;j++){
+   let b=balls[j];if(!b.alive)continue;
+   let dx=b.x-a.x,dy=b.y-a.y;
+   let d=Math.hypot(dx,dy);
+   if(d>0&&d<2*R){
+    let nx=dx/d,ny=dy/d;
+    let overlap=2*R-d;
+    a.x-=nx*overlap/2;a.y-=ny*overlap/2;
+    b.x+=nx*overlap/2;b.y+=ny*overlap/2;
+    let rel=(a.vx-b.vx)*nx+(a.vy-b.vy)*ny;
+    if(rel>0){
+     a.vx-=rel*nx*.96;a.vy-=rel*ny*.96;
+     b.vx+=rel*nx*.96;b.vy+=rel*ny*.96;
+    }
+   }
+  }
+ }
+ render();
+ return active;
 }
-function finish(){
-clearInterval(tick);
-let bonus=right*10;
-let reward=right*5+20;
-coins+=reward;
-points+=earnedNow;
-games++;
-save();update();
-$('rightCount').textContent=right+'/10';
-$('finalPoints').textContent=earnedNow;
-$('earned').textContent='+'+reward;
-$('resultEmoji').textContent=right>=8?'🏆':right>=5?'🥈':'💪';
-$('resultTitle').textContent=right>=8?'Ajoyib natija!':right>=5?'Yaxshi harakat!':'Yana urinib ko‘r!';
-$('resultText').textContent='Siz '+right+' ta savolga to‘g‘ri javob berdingiz. '+(gameType==='bot'?'Bot bilan o‘yiningiz yakunlandi.':'Mashq yakunlandi.');
-show('result');
+function loop(t){
+ let dt=Math.min(t-lastTime||16,30);lastTime=t;
+ if(moving){
+  if(!update(dt)){
+   moving=false;
+   if(turn==='you'){
+    turn='bot';
+    message.textContent='Bot o‘ylayapti...';
+    setTimeout(botTurn,700);
+   }else{
+    turn='you';message.textContent='Sizning navbatingiz!';
+    cue.style.display='block';aim.style.display='block';
+    let w=getWhite();setLine(w.x,w.y,w.x-150,w.y);
+   }
+  }
+ }
+ requestAnimationFrame(loop);
 }
-function claimDaily(){
-let today=new Date().toDateString();
-if(localStorage.qbDaily===today){alert('Bugungi bonusni olib bo‘lgansiz!');return}
-localStorage.qbDaily=today;
-coins+=100;save();update();
-$('daily').textContent='✅ BONUS OLINDI';
-$('daily').disabled=true;
+function botTurn(){
+ if(turn!=='bot'||moving)return;
+ let w=getWhite();
+ let targets=balls.filter(b=>b.alive&&b.n!==0);
+ if(!targets.length){turn='you';return}
+ let target=targets[Math.floor(Math.random()*targets.length)];
+ let a=Math.atan2(target.y-w.y,target.x-w.x);
+ shootBot(a);
 }
-function createRoom(){
-let opponent=$('opponent').value.trim();
-if(!opponent){alert('Raqib ID sini kiriting');return}
-let id='QB-'+Math.random().toString(36).slice(2,8).toUpperCase();
-$('room').value=id;
-alert('Demo stol yaratildi: '+id);
+function shootBot(a){
+ let w=getWhite();
+ w.vx=Math.cos(a)*8;
+ w.vy=Math.sin(a)*8;
+ moving=true;
 }
-function copyRoom(){
-let value=$('room').value;
-if(!value){alert('Avval stol yarating');return}
-if(navigator.clipboard){
-navigator.clipboard.writeText(value).then(()=>alert('ID nusxalandi'));
-}else{
-$('room').select();document.execCommand('copy');alert('ID nusxalandi');
-}
-}
-if(localStorage.qbDaily===new Date().toDateString()){
-$('daily').textContent='✅ BONUS OLINDI';
-$('daily').disabled=true;
-}
-update();
+document.getElementById('reset').onclick=()=>{
+ if(moving)return;
+ myScore=0;botScore=0;turn='you';
+ document.getElementById('myScore').textContent='0';
+ document.getElementById('botScore').textContent='0';
+ setup();cue.style.display='block';aim.style.display='block';
+ let w=getWhite();setLine(w.x,w.y,w.x-150,w.y);
+ message.textContent='Yangi o‘yin boshlandi!';
+};
+document.getElementById('bot').onclick=()=>{
+ if(moving)return;
+ if(turn==='you')message.textContent='Siz PRO BOT bilan o‘ynayapsiz!';
+};
+setup();
+setLine(250,275,100,275);
+requestAnimationFrame(loop);
 </script>
 </body>
 </html>
