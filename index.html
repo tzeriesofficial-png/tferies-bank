@@ -1,458 +1,375 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qo'g'irchoq Teatri</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: #ffffff; color: #111111; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; padding-bottom: 90px; }
-        
-        /* Yuqori Panel */
-        .top-bar { padding: 16px; display: flex; justify-content: space-between; align-items: center; position: relative; background: #ffffff; }
-        .top-left { display: flex; align-items: center; gap: 6px; background: #f0f0f4; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer; color: #111111; }
-        .top-right { display: flex; align-items: center; gap: 8px; }
-        .badge { background: #f0f0f4; padding: 6px 12px; border-radius: 20px; font-size: 13px; display: flex; align-items: center; gap: 6px; font-weight: bold; color: #111111; }
-
-        .menu-dots { width: 36px; height: 36px; background: #f0f0f4; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; }
-        .black-dot-icon { width: 4px; height: 4px; background: #111111; border-radius: 50%; box-shadow: 0 6px 0 #111111, 0 -6px 0 #111111; }
-        
-        .dropdown-menu { display: none; position: absolute; top: 60px; right: 16px; background: #ffffff; border: 1px solid #e5e5ea; border-radius: 14px; width: 210px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 1000; overflow: hidden; }
-        .dropdown-item { padding: 14px 16px; font-size: 13px; font-weight: bold; color: #111111; cursor: pointer; border-bottom: 1px solid #f0f0f4; display: flex; align-items: center; gap: 8px; }
-        .dropdown-item:hover { background: #f5f5f7; }
-
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
-        .modal-card { background: #ffffff; border: 1px solid #e5e5ea; border-radius: 20px; padding: 24px; width: 100%; max-width: 340px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
-        .modal-title { font-size: 18px; font-weight: bold; color: #111111; margin-bottom: 15px; }
-        .modal-text { font-size: 13px; color: #333333; line-height: 1.5; margin-bottom: 15px; text-align: left; background: #f5f5f7; padding: 14px; border-radius: 12px; border: 1px dashed #ccc; }
-        .modal-btn { background: #111111; color: #fff; border: none; padding: 12px; width: 100%; border-radius: 12px; font-weight: bold; font-size: 14px; cursor: pointer; }
-
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 16px; margin-top: 6px; }
-        .card-box { background: #f5f5f7; border-radius: 20px; padding: 16px; position: relative; cursor: pointer; transition: transform 0.2s; height: 110px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #e5e5ea; }
-        .card-box:active { transform: scale(0.98); }
-        .card-top { display: flex; align-items: center; }
-        .card-icon-svg { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
-        .card-icon-svg svg { width: 30px; height: 30px; }
-        .card-box h3 { font-size: 15px; margin-bottom: 2px; font-weight: bold; color: #111111; }
-        .card-box p { font-size: 12px; color: #666666; font-weight: 500; }
-        .card-arrow { position: absolute; top: 16px; right: 16px; width: 26px; height: 26px; background: #e5e5ea; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #111111; }
-
-        .video-box { margin: 16px; background: #f5f5f7; border-radius: 20px; overflow: hidden; border: 1px solid #e5e5ea; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .video-title-bar { padding: 14px 16px; font-size: 15px; font-weight: bold; color: #111111; background: #ffffff; border-bottom: 1px solid #e5e5ea; display: flex; justify-content: space-between; align-items: center; }
-        .video-frame-wrap { position: relative; width: 100%; padding-top: 56.25%; background: #000; }
-        .video-frame-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-
-        .section-header { padding: 0 16px; display: flex; justify-content: space-between; align-items: center; margin-top: 22px; margin-bottom: 10px; }
-        .section-title { font-size: 16px; font-weight: bold; color: #111111; }
-        .section-all { font-size: 13px; color: #007aff; cursor: pointer; font-weight: 600; }
-
-        .show-card { margin: 0 16px; background: #f5f5f7; border-radius: 20px; padding: 16px; position: relative; border: 1px solid #e5e5ea; }
-        .show-tag { background: #e5e5ea; color: #111111; padding: 4px 10px; border-radius: 8px; font-size: 11px; display: inline-block; margin-bottom: 8px; font-weight: bold; }
-        .show-title { font-size: 15px; font-weight: bold; margin-bottom: 12px; line-height: 1.3; color: #111111; }
-        .show-item { display: flex; align-items: center; justify-content: space-between; background: #ffffff; padding: 12px; border-radius: 14px; cursor: pointer; border: 1px solid #e5e5ea; }
-        .show-item-left { display: flex; align-items: center; gap: 10px; }
-        .num-circle { width: 24px; height: 24px; background: #111111; color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
-
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 0 16px; margin-top: 16px; }
-        .circle-card { background: #f5f5f7; border-radius: 20px; padding: 18px 10px; display: flex; flex-direction: column; align-items: center; text-align: center; cursor: pointer; transition: transform 0.2s; border: 1px solid #e5e5ea; }
-        .circle-card:active { transform: scale(0.98); }
-        .circle-icon { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
-        .circle-icon.pink { background: linear-gradient(135deg, #ff416c, #ff4b2b); }
-        .circle-icon.green { background: linear-gradient(135deg, #11998e, #38ef7d); }
-        .circle-icon.blue { background: linear-gradient(135deg, #00c6ff, #0072ff); }
-        .circle-icon svg { width: 26px; height: 26px; fill: #ffffff; }
-        .circle-card span { font-size: 13px; font-weight: bold; color: #111111; }
-
-        .promo-bar { margin: 16px 16px 30px 16px; background: linear-gradient(135deg, #111111, #333333); border-radius: 20px; padding: 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
-        .promo-text h4 { font-size: 14px; font-weight: bold; margin-bottom: 2px; color: #fff; }
-        .promo-text p { font-size: 11px; opacity: 0.8; color: #fff; }
-
-        .page-header { padding: 16px; display: flex; align-items: center; gap: 12px; }
-        .back-btn { width: 36px; height: 36px; background: #f0f0f4; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; color: #111111; }
-        .page-title { font-size: 20px; font-weight: bold; color: #111111; }
-
-        .lesson-content-card { margin: 0 16px 16px 16px; background: #f5f5f7; border-radius: 20px; padding: 18px; border: 1px solid #e5e5ea; }
-        .lesson-part-title { font-size: 16px; font-weight: bold; color: #111111; margin-bottom: 8px; }
-        .lesson-part-meta { font-size: 12px; color: #666; margin-bottom: 12px; }
-        .lesson-part-text { font-size: 13px; color: #333333; line-height: 1.6; white-space: pre-line; background: #ffffff; padding: 14px; border-radius: 14px; border: 1px solid #e5e5ea; margin-bottom: 14px; }
-
-        .page { display: none; }
-        .page.active { display: block; }
-
-        .nav { position: fixed; bottom: 0; left: 0; right: 0; height: 70px; background: #ffffff; border-top: 1px solid #e5e5ea; display: flex; justify-content: space-around; align-items: center; z-index: 9999; padding-bottom: 6px; }
-        .n-it { display: flex; flex-direction: column; align-items: center; justify-content: center; color: #8e8e93; flex: 1; height: 100%; cursor: pointer; }
-        .n-it.active { color: #111111; }
-        .n-ic { width: 24px; height: 24px; margin-bottom: 3px; display: flex; align-items: center; justify-content: center; }
-        .n-ic svg { width: 22px; height: 22px; fill: currentColor; }
-        .n-lb { font-size: 10px; font-weight: 600; }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#111827">
+<title>SHASHKA ARENA</title>
+<style>
+:root{--bg:#101521;--panel:#1a2434;--panel2:#202d40;--gold:#e7bd72;--cream:#f1e2c7;--dark:#344257;--red:#d94e58;--blue:#69a8ff;--muted:#a5b1c4}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#2a3c54,#101521 60%);color:#f4f6fb;font-family:Inter,system-ui,Arial,sans-serif;user-select:none;-webkit-tap-highlight-color:transparent}
+.app{max-width:520px;margin:auto;padding:14px 13px 30px;min-height:100dvh}
+.top{display:flex;justify-content:space-between;align-items:center;margin:3px 2px 14px}
+.logo{font-weight:1000;font-size:21px;letter-spacing:1.3px}
+.logo span{color:var(--gold)}
+.tag{font-size:9px;color:var(--gold);border:1px solid #e7bd7255;border-radius:20px;padding:6px 9px;letter-spacing:1px;font-weight:900}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:13px}
+.tabs button{border:1px solid #ffffff18;background:#172234;color:#9eabc0;border-radius:12px;padding:12px 5px;font-weight:900;font-size:11px}
+.tabs button.active{background:linear-gradient(135deg,#4b5c73,#26374d);border-color:#e7bd7277;color:#fff}
+.panel{background:linear-gradient(145deg,#202d40,#172131);border:1px solid #ffffff14;border-radius:17px;padding:13px;margin-bottom:12px}
+.hidden{display:none!important}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.player{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:800}
+.avatar{width:33px;height:33px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#f1d59a,#a77d45);color:#382914;font-size:17px}
+.avatar.red{background:linear-gradient(135deg,#ff9a9e,#b82d48);color:#fff}
+.vs{font-size:10px;color:var(--gold);font-weight:1000}
+.status{font-size:10px;color:#b8c4d7;text-align:center;margin:10px 0 12px;min-height:14px}
+.boardwrap{padding:8px;background:linear-gradient(145deg,#c69b5b,#79552f);border-radius:13px;box-shadow:0 9px 22px #0007,inset 0 2px 3px #fff7}
+.board{display:grid;grid-template-columns:repeat(8,1fr);aspect-ratio:1;border:2px solid #4c3928;overflow:hidden;border-radius:3px}
+.sq{position:relative;display:grid;place-items:center;aspect-ratio:1}
+.light{background:#e9d7b8}
+.dark{background:#536276}
+.sq.selected:after{content:"";position:absolute;inset:3px;border:3px solid #ffdf63;border-radius:3px;z-index:2}
+.sq.move:before{content:"";position:absolute;width:26%;height:26%;border-radius:50%;background:#c9ff7cbb;box-shadow:0 0 0 3px #c9ff7c44;z-index:1}
+.sq.capture:before{content:"";position:absolute;width:75%;height:75%;border:3px solid #ffcf5d;border-radius:50%;z-index:1}
+.piece{width:78%;height:78%;border-radius:50%;position:relative;z-index:3;box-shadow:0 4px 2px #0007,inset 0 3px 4px #ffffff8a,inset 0 -5px 5px #0005;transition:transform .16s;cursor:pointer}
+.piece:before{content:"";position:absolute;inset:12%;border-radius:50%;border:2px solid #ffffff66}
+.piece.red{background:radial-gradient(circle at 32% 25%,#ffb0a9,#e34c56 48%,#9e2639)}
+.piece.black{background:radial-gradient(circle at 32% 25%,#9daabd,#39485e 48%,#151e2d)}
+.piece.king:after{content:"♛";position:absolute;inset:0;display:grid;place-items:center;color:#ffdf8b;font-size:clamp(13px,4vw,24px);text-shadow:0 2px 3px #0009}
+.piece.moving{transform:scale(1.12)}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:11px}
+.btn{border:0;border-radius:11px;padding:12px 9px;background:linear-gradient(135deg,#f0d18f,#c89b58);color:#2d2112;font-weight:1000;font-size:11px}
+.btn.secondary{background:#29394f;color:#e6edf8;border:1px solid #ffffff17}
+.btn:disabled{opacity:.4}
+.smallnote{font-size:9px;color:#8f9eb3;line-height:1.5;text-align:center;margin:10px 5px}
+.heading{font-size:20px;font-weight:950;margin:7px 2px 4px}
+.sub{font-size:11px;color:var(--muted);margin:0 2px 13px}
+.field{margin:10px 0}
+.field label{display:block;color:#aebbd0;font-size:10px;font-weight:800;margin-bottom:6px}
+.field input{width:100%;background:#0e1725;border:1px solid #ffffff20;border-radius:10px;padding:13px;color:#fff;font-size:14px;outline:none}
+.field input:focus{border-color:#e7bd72}
+.botlevels{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.botlevels button{background:#121d2c;border:1px solid #ffffff1b;border-radius:11px;color:#b9c6d8;padding:11px 4px;font-size:10px;font-weight:900}
+.botlevels button.active{border-color:#e7bd72;color:#ffdf9a;background:#3b3429}
+.info{background:#101a29;border:1px solid #ffffff12;border-radius:12px;padding:12px;font-size:10px;color:#aab7ca;line-height:1.5;margin-top:10px}
+.score{display:flex;justify-content:space-around;text-align:center;font-size:10px;color:#aab7ca}
+.score b{display:block;color:white;font-size:17px;margin-top:3px}
+.toast{position:fixed;top:18px;left:50%;transform:translate(-50%,-12px);opacity:0;background:#f4d89e;color:#2b2114;border-radius:20px;padding:10px 15px;font-size:11px;font-weight:900;transition:.2s;z-index:9;white-space:nowrap}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+</style>
 </head>
 <body>
+<div class="app">
+<header class="top">
+<div class="logo">SHASHKA <span>ARENA</span></div>
+<div class="tag">PRO EDITION</div>
+</header>
 
-    <!-- 1. ASOSIY SAHIFA -->
-    <div id="page-asosiy" class="page active">
-        <div class="top-bar">
-            <div class="top-left" onclick="toggleLanguage()">
-                <span id="langFlag">🇺🇿</span> <span id="langText">O'z</span> ▾
-            </div>
-            <div class="top-right">
-                <div class="badge" style="color: #111111;">🔥 <span id="fireCount">0</span></div>
-                <div class="badge" style="color: #111111;">⭐ <span id="starCount">10</span></div>
-                <div class="menu-dots" onclick="toggleDropdown()">
-                    <div class="black-dot-icon"></div>
-                </div>
-                <div class="dropdown-menu" id="dropdownMenu">
-                    <div class="dropdown-item" id="menuTopUp" onclick="openModal()">💳 Hisobni to'ldirish</div>
-                    <div class="dropdown-item" id="menuMaster" onclick="openBotMaster()">💬 Bot ustozi</div>
-                    <div class="dropdown-item" id="menuVipStage" onclick="go('vip-sahna')" style="color:#007aff;">👑 VIP Sahna</div>
-                </div>
-            </div>
-        </div>
+<div class="tabs">
+<button id="botTab" class="active">🤖 PRO BOT</button>
+<button id="friendTab">👥 1 VS 1 ONLINE</button>
+</div>
 
-        <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
-            <div class="modal-card">
-                <div class="modal-title" id="modalTitle">Hisobni To'ldirish</div>
-                <div class="modal-text" id="modalText">
-                    <b>Karta raqam:</b> 4073420060139866<br>
-                    <b>Karta egasi:</b> Karimbekova Feruza<br><br>
-                    Ushbu kartaga to'lov qiling va 20 daqiqa kuting, hisobingizga mablag' tushishini kuting.
-                </div>
-                <button class="modal-btn" id="modalBtn" onclick="closeModal()">Tushunarli</button>
-            </div>
-        </div>
+<section id="botSetup" class="panel">
+<div class="heading">Pro bot bilan o‘ynang</div>
+<div class="sub">Kuchli raqibni tanlang. Bot bir necha yurishni oldindan hisoblaydi.</div>
+<div class="botlevels">
+<button data-level="easy">🟢 OSON</button>
+<button data-level="medium">🟡 O‘RTA</button>
+<button data-level="pro" class="active">🔴 PRO</button>
+</div>
+<div class="info">PRO rejimida bot pozitsiya, urish imkoniyatlari, dama, markaz nazorati va xavfsizlikni baholaydi. Kuchli o‘yinchi ham yutqazishi mumkin, ammo natija hech qachon kafolatlanmaydi.</div>
+<button class="btn" style="width:100%;margin-top:12px" id="startBot">O‘YINNI BOSHLASH</button>
+</section>
 
-        <div class="grid-2">
-            <div class="card-box" onclick="go('organish')">
-                <div class="card-top">
-                    <div class="card-icon-svg">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M2 10s3-2 3-5c0-2-1-3-1-3s3 1 4 4c1-3 4-4 4-4s-1 1-1 3c0 3 3 5 3 5s-2 3-6 3-6-3-6-3z"></path>
-                            <circle cx="9" cy="10" r="1" fill="#111111"></circle>
-                            <circle cx="15" cy="10" r="1" fill="#111111"></circle>
-                            <path d="M10 15c1 1 3 1 4 0"></path>
-                        </svg>
-                    </div>
-                </div>
-                <div>
-                    <h3 id="cardFreeLessons">Bepul darslar</h3>
-                    <p id="cardTheatreSecrets">Teatr sirlari</p>
-                </div>
-                <div class="card-arrow">➔</div>
-            </div>
+<section id="friendSetup" class="panel hidden">
+<div class="heading">Do‘st bilan 1v1 stol</div>
+<div class="sub">Raqibingizning o‘yin ID sini kiriting yoki stol ID sini ulashing.</div>
+<div class="field">
+<label>RAQIBNING PLAYER ID SI</label>
+<input id="opponentId" placeholder="Masalan: PLAYER-4821" maxlength="40">
+</div>
+<button class="btn" style="width:100%" id="createTable">STOL YARATISH</button>
+<div class="field">
+<label>YARATILGAN STOL ID SI</label>
+<input id="tableId" placeholder="Stol ID shu yerda chiqadi" readonly>
+</div>
+<button class="btn secondary" style="width:100%" id="copyTable">STOL ID NUSXALASH</button>
+<div class="info">Eslatma: bu HTML faylning o‘zi ikki telefonni internet orqali bog‘lay olmaydi. Haqiqiy onlayn 1v1 uchun Telegram bot backend yoki WebSocket server kerak. Hozircha stol ID yaratish interfeysi demo rejimida.</div>
+</section>
 
-            <div class="card-box" onclick="go('vip-sahna')">
-                <div class="card-top">
-                    <div class="card-icon-svg">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z" fill="rgba(17,17,17,0.1)"></path>
-                            <circle cx="12" cy="18" r="1" fill="#111111"></circle>
-                        </svg>
-                    </div>
-                </div>
-                <div>
-                    <h3 id="cardVipStage">VIP Sahna</h3>
-                    <p id="cardSpecialShows">Eksklyuziv videolar</p>
-                </div>
-                <div class="card-arrow">➔</div>
-            </div>
-        </div>
+<section id="gamePanel" class="hidden">
+<div class="panel">
+<div class="row">
+<div class="player"><div class="avatar red">♟</div><span id="topName">PRO BOT</span></div>
+<span class="vs">VS</span>
+<div class="player"><span id="bottomName">SIZ</span><div class="avatar">♟</div></div>
+</div>
+<div class="status" id="status">Sizning yurishingiz</div>
+<div class="boardwrap"><div class="board" id="board"></div></div>
+<div class="controls">
+<button class="btn secondary" id="undo">↶ ORQAGA</button>
+<button class="btn secondary" id="newGame">⟳ QAYTA BOSHLASH</button>
+</div>
+<div class="smallnote">Qizil donalar — siz. Qora donalar — raqib. Donani bosing, so‘ng yashil belgilangan katakka yuring. Urish majburiy emas. Dama uzun diagonal bo‘ylab yuradi.</div>
+</div>
+<div class="panel score">
+<div>QIZIL<b id="redCount">12</b></div>
+<div>QORA<b id="blackCount">12</b></div>
+<div>YURISHLAR<b id="moveCount">0</b></div>
+</div>
+</section>
 
-        <div class="video-box">
-            <div class="video-title-bar">
-                <span id="videoBarTitle">1xbet reklamasi (Maxsus shou)</span>
-                <span style="font-size:12px; color:#666;">▶ HD</span>
-            </div>
-            <div class="video-frame-wrap">
-                <iframe src="https://www.youtube.com/embed/K7e3jpYf28I" title="1xbet reklama" allowfullscreen></iframe>
-            </div>
-        </div>
+<p class="smallnote">O‘yin ichidagi donalar va taxta 2D ko‘rinishda chiziladi. Animatsiyalar vizual effekt; haqiqiy mexanik fizika simulyatsiyasi emas. Qoidalar: 8×8 flying-king uslubidagi variant.</p>
+</div>
+<div class="toast" id="toast"></div>
 
-        <div class="section-header">
-            <div class="section-title" id="secRepertory">Repertuarlar</div>
-            <div class="section-all" id="secAll" onclick="go('missiya')">Barchasi</div>
-        </div>
-        <div class="show-card" onclick="go('missiya')">
-            <div class="show-tag" id="showTag">Kichkintoylar uchun</div>
-            <div class="show-title" id="showTitleText">"Kinoteatr darsi" maxsus dasturi</div>
-            <div class="show-item">
-                <div class="show-item-left">
-                    <div class="num-circle">12</div>
-                    <span style="font-size:13px;font-weight:600;color:#111111;" id="showSubText">12 ta qismdan iborat qo'llanma</span>
-                </div>
-                <span style="color:#111111;font-weight:bold;">➔</span>
-            </div>
-        </div>
+<script>
+const $=id=>document.getElementById(id);
+let mode='bot',difficulty='pro',board=[],turn=1,selected=null,legal=[],history=[],moves=0,botBusy=false,gameOver=false,tableDemoId='';
+const dirs=[[-1,-1],[-1,1],[1,-1],[1,1]];
 
-        <div class="grid-3">
-            <div class="circle-card" onclick="alert('Qoʻgʻirchoqlar boʻlimi')">
-                <div class="circle-icon pink"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-.29.02-.58.05-.86 2.36-1.05 4.23-2.98 5.23-5.37 1.76 2.97 4.9 4.97 8.5 4.97 1.01 0 1.97-.16 2.87-.44.22.86.35 1.76.35 2.7 0 4.41-3.59 8-8 8z"/></svg></div>
-                <span id="btnDolls">Qo'g'irchoqlar</span>
-            </div>
-            <div class="circle-card" onclick="alert('Muzey boʻlimi')">
-                <div class="circle-icon green"><svg viewBox="0 0 24 24"><path d="M12 1L2 6v2h20V6L12 1zm-7 9v8h3v-8H5zm6 0v8h3v-8h-3zm6 0v8h3v-8h-3zM2 20v2h20v-2H2z"/></svg></div>
-                <span id="btnMuseum">Muzey</span>
-            </div>
-            <div class="circle-card" onclick="go('atamalar')">
-                <div class="circle-icon blue"><svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg></div>
-                <span id="btnTerms">Atamalar</span>
-            </div>
-        </div>
+function initial(){
+let b=Array.from({length:8},()=>Array(8).fill(0));
+for(let r=0;r<3;r++)for(let c=0;c<8;c++)if((r+c)%2===1)b[r][c]=-1;
+for(let r=5;r<8;r++)for(let c=0;c<8;c++)if((r+c)%2===1)b[r][c]=1;
+return b;
+}
+function clone(b){return b.map(r=>r.slice())}
+function inside(r,c){return r>=0&&r<8&&c>=0&&c<8}
+function side(p){return Math.sign(p)}
 
-        <div class="promo-bar" onclick="go('vip-sahna')">
-            <div class="promo-text">
-                <h4 id="promoTitle">VIP Sahna - 13 ta Video</h4>
-                <p id="promoDesc">Eksklyuziv teatr va shoular to'plami!</p>
-            </div>
-            <div style="font-size:24px;">👑</div>
-        </div>
-    </div>
+function movesFor(b,r,c,onlyCapture=false){
+let p=b[r][c],s=side(p);
+if(!p)return[];
+let king=Math.abs(p)===2,out=[];
+if(king){
+for(let [dr,dc] of dirs){
+let rr=r+dr,cc=c+dc,enemy=null;
+while(inside(rr,cc)){
+if(b[rr][cc]===0){
+if(enemy)out.push({from:[r,c],to:[rr,cc],captures:[enemy]});
+else if(!onlyCapture)out.push({from:[r,c],to:[rr,cc],captures:[]});
+}else{
+if(side(b[rr][cc])===s||enemy)break;
+enemy=[rr,cc];
+}
+rr+=dr;cc+=dc;
+}
+}
+}else{
+for(let [dr,dc] of dirs){
+let rr=r+dr,cc=c+dc;
+if(inside(rr,cc)&&b[rr][cc]===0&&!onlyCapture&&((s===1&&dr===-1)||(s===-1&&dr===1)))
+out.push({from:[r,c],to:[rr,cc],captures:[]});
+let er=r+dr,ec=c+dc,lr=r+2*dr,lc=c+2*dc;
+if(inside(lr,lc)&&b[er]?.[ec]&&side(b[er][ec])===-s&&b[lr][lc]===0)
+out.push({from:[r,c],to:[lr,lc],captures:[[er,ec]]});
+}
+}
+return out;
+}
 
-    <!-- ATAMALAR SAHIFASI (TOP 60 TA MASHQ / ERTAK / MASAL) -->
-    <div id="page-atamalar" class="page">
-        <div class="page-header">
-            <div class="back-btn" onclick="go('asosiy')">❮</div>
-            <div class="page-title" id="atamalarPageTitle">Atamalar va Mashqlar (Top 60)</div>
-        </div>
+function allMoves(b,s){
+let out=[];
+for(let r=0;r<8;r++)for(let c=0;c<8;c++)
+if(side(b[r][c])===s)out.push(...movesFor(b,r,c));
+return out;
+}
 
-        <div id="atamalarListContainer"></div>
-    </div>
+function apply(b,m){
+let n=clone(b),[r,c]=m.from,[rr,cc]=m.to,p=n[r][c];
+n[r][c]=0;
+for(let [x,y] of m.captures)n[x][y]=0;
+if(Math.abs(p)===1&&((p>0&&rr===0)||(p<0&&rr===7)))p=2*p;
+n[rr][cc]=p;
+return n;
+}
 
-    <!-- VIP SAHIFASI -->
-    <div id="page-vip-sahna" class="page">
-        <div class="page-header">
-            <div class="back-btn" onclick="go('asosiy')">❮</div>
-            <div class="page-title" id="vipPageTitle">VIP Sahna (Top 13 Video)</div>
-        </div>
+function evaluate(b){
+let v=0;
+for(let r=0;r<8;r++)for(let c=0;c<8;c++){
+let p=b[r][c];if(!p)continue;
+let sign=side(p),king=Math.abs(p)===2;
+v+=sign*(king?185:100);
+if(!king)v+=sign*(7-Math.abs(3.5-r))*4;
+let center=3.5-Math.abs(3.5-c);
+v+=sign*center*2;
+let mobility=movesFor(b,r,c).length;
+v+=sign*mobility*1.4;
+}
+return v;
+}
 
-        <div class="video-box"><div class="video-title-bar"><span>1-video: Mehr qayerda? (Farg'ona Qo'g'irchoq Teatri)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/rPTBHshlYks" allowfullscreen></iframe></div></div>
-        <div class="video-box"><div class="video-title-bar"><span>2-video: Oltin tarvuz (Jizzax Qo'g'irchoq Teatri)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/u240af6WhqA" allowfullscreen></iframe></div></div>
-        <div class="video-box"><div class="video-title-bar"><span>3-video: Yurt tumori To'maris (Milliy teatr)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/EqBrkPLBS-4" allowfullscreen></iframe></div></div>
-        <div class="video-box"><div class="video-title-bar"><span>4-video: Xiva lazgisi (Xorazm folklor shou)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/02tJPDnjBaQ" allowfullscreen></iframe></div></div>
-        <div class="video-box"><div class="video-title-bar"><span>5-video: Yulduzli bola (Sehrli ertak talqini)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/rPTBHshlYks" allowfullscreen></iframe></div></div>
-        <div class="video-box"><div class="video-title-bar"><span>6-video: Shiroq afsonasi (Qahramonlik dostoni)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/u240af6WhqA" allowfullscreen></iframe></div></div>
-        <div class="video-box"><div class="video-title-bar"><span>7-video: Oh bu Xo'ja Nasriddin (Quvnoq sahna)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/EqBrkPLBS-4" allowfullscreen></iframe></div></div>
-        <div class="video-box"><div class="video-title-bar"><span>8-video: Qarsildoq / Nutcracker (Yangi yil shousi)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/02tJPDnjBaQ" allowfullscreen></iframe></div></div>
-        <div class="video-box"><div class="video-title-bar"><span>9-video: Bahrom va Dilorom (Mumtoz asar)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/rPTBHshlYks" allowfullscreen></iframe></div></div>
-        <div class="video-box"><div class="video-title-bar"><span>10-video: Qo'g'irchoq teatri sirlari (Master-klass)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/u240af6WhqA" allowfullscreen></iframe></div></div>
-        <div class="video-box"><div class="video-title-bar"><span>11-video: 1xbet reklamasi (Maxsus shou)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/K7e3jpYf28I" allowfullscreen></iframe></div></div>
-        <div class="video-box"><div class="video-title-bar"><span>12-video: Qo'g'irchoq yasash san'ati (Qo'llanma)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/EqBrkPLBS-4" allowfullscreen></iframe></div></div>
-        <div class="video-box" style="margin-bottom:30px;"><div class="video-title-bar"><span>13-video: Sehrli parda ortida (Hujjatli film)</span></div><div class="video-frame-wrap"><iframe src="https://www.youtube.com/embed/02tJPDnjBaQ" allowfullscreen></iframe></div></div>
-    </div>
+function minimax(b,depth,alpha,beta,s,maxDepth){
+let ms=allMoves(b,s);
+if(depth===0||!ms.length)
+return {score:evaluate(b)+(ms.length?0:-s*10000)};
+let maximizing=s===-1;
+let best={score:maximizing?-Infinity:Infinity,move:null};
+for(let m of orderMoves(b,ms,s)){
+let child=apply(b,m);
+let next=minimax(child,depth-1,alpha,beta,-s,maxDepth);
+if(maximizing?next.score>best.score:next.score<best.score)
+best={score:next.score,move:m};
+if(maximizing)alpha=Math.max(alpha,best.score);
+else beta=Math.min(beta,best.score);
+if(beta<=alpha)break;
+}
+return best;
+}
 
-    <!-- O'RGANISH SAHIFASI -->
-    <div id="page-organish" class="page">
-        <div class="page-header">
-            <div class="back-btn" onclick="go('asosiy')">❮</div>
-            <div class="page-title" id="pageOrganishTitle">Bepul kurslar</div>
-        </div>
-        <div style="padding:0 16px;">
-            <div class="course-card" onclick="go('qogirchoq-kursi')">
-                <div class="course-left">
-                    <div class="course-icon-wrap red-grad"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.04.64.09.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg></div>
-                    <div class="course-info">
-                        <span id="masterClassTag">Master-klass</span>
-                        <h4 id="courseDollTitle">Qo'g'irchoq yasash kursi</h4>
-                    </div>
-                </div>
-                <div class="course-action" id="actionPass">O'tish ➔</div>
-            </div>
-        </div>
-    </div>
+function orderMoves(b,ms,s){
+return ms.map(m=>({
+m,
+score:(m.captures.length*500)+
+(Math.abs(b[m.from[0]][m.from[1]])===1&&
+((s===1&&m.to[0]===0)||(s===-1&&m.to[0]===7))?150:0)+
+Math.random()*2
+})).sort((a,b)=>s===-1?b.score-a.score:a.score-b.score).map(x=>x.m);
+}
 
-    <!-- MISSIYA SAHIFASI -->
-    <div id="page-missiya" class="page">
-        <div class="section-header" style="margin-top:20px;">
-            <div class="section-title" id="missionTitle">Kinoteatr Darsi (12 Qism)</div>
-        </div>
-        <div class="lesson-content-card"><div class="lesson-part-title">1-Qism: Kinoteatr va Teatr Asoslari</div><div class="lesson-part-text">Teatr va kino san'atining kelib chiqish tarixi...</div></div>
-    </div>
+function legalFor(r,c){return movesFor(board,r,c)}
 
-    <!-- O'YINLAR SAHIFASI -->
-    <div id="page-oyinlar" class="page">
-        <div class="section-header" style="margin-top:20px;"><div class="section-title" id="gamePageTitle">Teatr Viktorina (1-100 Bosqich)</div></div>
-        <div class="game-card" id="gameContainer"></div>
-    </div>
+function render(){
+let el=$('board');el.innerHTML='';
+for(let r=0;r<8;r++)for(let c=0;c<8;c++){
+let sq=document.createElement('div');
+sq.className='sq '+((r+c)%2?'dark':'light');
+sq.dataset.r=r;sq.dataset.c=c;
+if(selected&&selected[0]===r&&selected[1]===c)sq.classList.add('selected');
+let target=legal.find(m=>m.to[0]===r&&m.to[1]===c);
+if(target)sq.classList.add(target.captures.length?'capture':'move');
+let p=board[r][c];
+if(p){
+let piece=document.createElement('div');
+piece.className='piece '+(p>0?'red':'black')+(Math.abs(p)===2?' king':'');
+sq.appendChild(piece);
+}
+sq.onclick=()=>clickSquare(r,c);
+el.appendChild(sq);
+}
+$('redCount').textContent=board.flat().filter(p=>p>0).length;
+$('blackCount').textContent=board.flat().filter(p=>p<0).length;
+$('moveCount').textContent=moves;
+}
 
-    <!-- PROFIL SAHIFASI -->
-    <div id="page-profil" class="page">
-        <div class="section-header" style="margin-top:20px;"><div class="section-title" id="profileTitle">Shaxsiy Kabinet</div></div>
-        <div style="padding:16px;">
-            <div class="card-box" style="width:100%; height:auto;">
-                <h3 style="color:#111111;" id="profileUser">👤 Foydalanuvchi</h3>
-                <p style="margin-top:6px; color:#666666;" id="profileStatus">Status: San'atsevar ⭐</p>
-            </div>
-        </div>
-    </div>
+function clickSquare(r,c){
+if((mode==='bot'&&turn===-1)||botBusy||gameOver)return;
+let p=board[r][c];
+if(selected){
+let m=legal.find(x=>x.to[0]===r&&x.to[1]===c);
+if(m){makeMove(m);return;}
+}
+if(side(p)===turn){
+selected=[r,c];legal=legalFor(r,c);render();
+}else{
+selected=null;legal=[];render();
+}
+}
 
-    <!-- PASTKI NAVIGATSIYA BAR -->
-    <div class="nav">
-        <div class="n-it active" id="n-asosiy" onclick="go('asosiy')">
-            <div class="n-ic"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div>
-            <div class="n-lb" id="navAsosiy">Asosiy</div>
-        </div>
-        <div class="n-it" id="n-organish" onclick="go('organish')">
-            <div class="n-ic"><svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg></div>
-            <div class="n-lb" id="navOrganish">O'rganish</div>
-        </div>
-        <div class="n-it" id="n-missiya" onclick="go('missiya')">
-            <div class="n-ic"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/></svg></div>
-            <div class="n-lb" id="navMissiya">Missiya</div>
-        </div>
-        <div class="n-it" id="n-oyinlar" onclick="go('oyinlar')">
-            <div class="n-ic"><svg viewBox="0 0 24 24"><path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm3-3c-.83 0-1.5-.67-1.5-1.5S19.67 9 20.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div>
-            <div class="n-lb" id="navOyinlar">O'yinlar</div>
-        </div>
-        <div class="n-it" id="n-profil" onclick="go('profil')">
-            <div class="n-ic"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
-            <div class="n-lb" id="navProfil">Profil</div>
-        </div>
-    </div>
+function makeMove(m){
+history.push({board:clone(board),turn,moves});
+board=apply(board,m);turn=-turn;moves++;
+selected=null;legal=[];render();checkEnd();
+if(!gameOver&&mode==='bot'&&turn===-1){
+botBusy=true;$('status').textContent='PRO BOT hisoblamoqda…';
+setTimeout(botMove,400);
+}else if(!gameOver)$('status').textContent=turn===1?'Sizning yurishingiz':'Raqib yurishi';
+}
 
-    <script>
-        window.Telegram.WebApp.ready();
-        window.Telegram.WebApp.expand();
+function botMove(){
+if(gameOver)return;
+let ms=allMoves(board,-1);
+if(!ms.length){endGame(1);return;}
+let depth=difficulty==='easy'?2:difficulty==='medium'?4:6;
+if(difficulty==='pro'&&moves<12)depth=5;
+let choice=minimax(board,depth,-Infinity,Infinity,-1,depth).move;
+if(!choice)choice=ms[Math.floor(Math.random()*ms.length)];
+botBusy=false;makeMove(choice);
+}
 
-        let currentLang = 'uz';
+function checkEnd(){
+let red=allMoves(board,1),black=allMoves(board,-1);
+if(!red.length)endGame(-1);
+else if(!black.length)endGame(1);
+}
 
-        const atamalarData = [
-            {
-                title: "1-mashq: Bo‘ri bilan mushuk (Masal)",
-                meta: "29.08.2015 | Bahrom | Krilov I.A",
-                text: `O‘rmondan qishloqqa halloslab chopib
-Kirib keldi bir kun ochofat Bo‘ri.
-Mehmon bo‘lib emas — bir panoh topib —
-O‘zin qutqarmasa — quriydi sho‘ri.
-Orqadan ovchilar tozi quvdirib
-Bo‘rining jonini olishdi rosa.
-Koshkiydi bironta eshikka kirnb
-Ko‘zdan yashirinib jonin saqlasa.
-Ammo darvozalar barisi qulfloq,
-Bo‘rivoy har tomon alanglab shu choq —
-Ko‘zi tushdi devor uzra Mushukka,
-Boshladi shu zamon yalinishlikka:
-“Mushukjon, jon do‘stim, ayta qol tezroq,
-Bunda deqqonlardan kim rahmdilroq?
-Hu, quvib kelyapti ko‘p ovchi, tozi,
-Meni dushmanlardan yashirsin hozir”.
-“Unday bo‘lsa, tezroq Stepanga chop,
-Ko‘p rahmdil odam”,- der Mushuk shu top.
-“Yo‘q-e, chang solganman uning qo‘yiga”.
-“Balki Dem’yan qo‘yar seni uyiga?”
-Qo‘rqamanki, qasdin olar u mendan,
-Tortib ketgan edim echkisin zimdan».
-“Trofimga bor-chi?”- “Xudo saqlasin,
-Bahorda yegandim uning to‘qlisin».
-“Ahvoling chatoq-ku… Ehtimol, Klim…”
-“Ox, do‘stim, buzog’in qilganman tilim…”
-“Uh-ho‘, ishing besh-ku, qara-ya, quda —
-Sen butun qishloqni tullabsan juda.
-Meni yashirsin, deb chekma ohu voh,
-Bunda topolmaysan o‘zingga panoh.
-Barcha harakating ketar behuda.
-O‘zingning qilmishing — o‘zingdan ko‘rgin,
-Nima ekkan bo‘lsang — o‘shani o‘rgin”.`,
-                embed: "https://www.youtube.com/embed/Pe_nLvvNGKw"
-            },
-            {
-                title: "2-mashq: Ziyrak va Tulki (Ertak)",
-                meta: "O'zbek xalq ertagi | Sahna Nutqi Mashqi",
-                text: `Bir bor ekan, bir yo'q ekan, qadim zamonda bir ziyrak va aqlli quyon bor ekan. U har kuni o'rmon bo'ylab sayr qilib, ayyor tulkining hiylalaridan qutulib qolar ekan. Tulki uni qanchalik aldashga urinmasin, Ziyrak o'z topqirligi bilan uni mot qilar edi...`,
-                embed: "https://www.youtube.com/embed/rPTBHshlYks"
-            },
-            {
-                title: "3-mashq: Shag'al va Yo'lbars (Masal)",
-                meta: "Sahna Mahorati Darsi",
-                text: `Yo'lbars o'rmonda o'zini eng kuchli deb hisoblardi. Shag'al esa unga xushomad qilib, uning ortidan qolgan oziq-ovqatlarni yeb kun kechirardi. Bir kuni Shag'al o'zini Yo'lbarsdan ham aqlli deb o'yladi...`,
-                embed: "https://www.youtube.com/embed/u240af6WhqA"
-            },
-            {
-                title: "4-mashq: Chumoli va Chigirtka",
-                meta: "Tarbiya va Sahna Harakati Mashqi",
-                text: `Yoz bo'yi chigirtka ashula aytib, o'ynab-kulib kun kechirdi. Mehnatkash chumoli esa qish uchun g'alla va oziq-ovqat g'amlab qo'ydi. Qish kelgach, chigirtka sovqotib va och qolib chumolinikiga keldi...`,
-                embed: "https://www.youtube.com/embed/EqBrkPLBS-4"
-            },
-            {
-                title: "5-mashq: Qarg'a va Tulki (Masal)",
-                meta: "I.A. Krilov | Diksiya va Ovoz Mashqi",
-                text: `Qarg'a bir tilim pishloq topib olib, daraxt shoxiga qo'ndi. Shunda u yerga ayyor tulki keldi va qarg'aning ajoyib ovozini maqtay boshladi...`,
-                embed: "https://www.youtube.com/embed/02tJPDnjBaQ"
-            }
-        ];
+function endGame(w){
+gameOver=true;
+$('status').textContent=w===1?'🏆 SIZ G‘ALABA QOZONDINGIZ!':'🤖 PRO BOT G‘ALABA QOZONDI';
+toast(w===1?'Tabriklaymiz!':'Bu safar bot yutdi. Yana urinib ko‘ring!');
+}
 
-        // Top 60 gacha avtomatik to'ldirish kodi
-        for (let i = 6; i <= 60; i++) {
-            atamalarData.push({
-                title: `${i}-mashq: Teatr Nutqi va Sahna Mashqi ${i}`,
-                meta: `O'zbek teatr san'ati darsligi | Mashq ${i}`,
-                text: `Ushbu ${i}-mashq aktyorlik va sahna nutqini rivojlantirish uchun mo'ljallangan. Talaffuzni to'g'ri shakllantirish, ovoz tembrini to'g'ri yo'naltirish hamda qahramon obraziga kirish mashg'ulotlari ko'rsatilgan.`,
-                embed: "https://www.youtube.com/embed/Pe_nLvvNGKw"
-            });
-        }
+function start(){
+board=initial();turn=1;selected=null;legal=[];history=[];
+moves=0;gameOver=false;botBusy=false;
+$('gamePanel').classList.remove('hidden');
+$('botSetup').classList.toggle('hidden',mode!=='bot');
+$('friendSetup').classList.toggle('hidden',mode!=='friend');
+$('topName').textContent=mode==='bot'?'PRO BOT':'RAQIB';
+$('bottomName').textContent='SIZ';
+$('status').textContent='Siz qizil donalar bilan boshlaysiz';
+render();
+}
 
-        function renderAtamalar() {
-            let container = document.getElementById('atamalarListContainer');
-            if (!container) return;
-            let html = '';
-            atamalarData.forEach(item => {
-                html += `
-                    <div class="lesson-content-card">
-                        <div class="lesson-part-title">${item.title}</div>
-                        <div class="lesson-part-meta">${item.meta}</div>
-                        <div class="lesson-part-text">${item.text}</div>
-                        <div class="video-box" style="margin:0;">
-                            <div class="video-frame-wrap">
-                                <iframe src="${item.embed}" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-        }
+$('startBot').onclick=()=>{mode='bot';start()};
+$('newGame').onclick=start;
 
-        function toggleLanguage() {
-            currentLang = currentLang === 'uz' ? 'ru' : 'uz';
-            document.getElementById('langFlag').innerText = currentLang === 'uz' ? "🇺🇿" : "🇷🇺";
-            document.getElementById('langText').innerText = currentLang === 'uz' ? "O'z" : "Ru";
-        }
+$('undo').onclick=()=>{
+if(!history.length||botBusy)return;
+let last=history.pop();
+board=last.board;turn=last.turn;moves=last.moves;
+gameOver=false;selected=null;legal=[];
+render();$('status').textContent='Yurish bekor qilindi';
+};
 
-        function toggleDropdown() {
-            let menu = document.getElementById('dropdownMenu');
-            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-        }
+document.querySelectorAll('[data-level]').forEach(b=>b.onclick=()=>{
+difficulty=b.dataset.level;
+document.querySelectorAll('[data-level]').forEach(x=>x.classList.toggle('active',x===b));
+});
 
-        function openModal() {
-            document.getElementById('dropdownMenu').style.display = 'none';
-            document.getElementById('modalOverlay').style.display = 'flex';
-        }
+$('botTab').onclick=()=>{
+mode='bot';
+$('botTab').classList.add('active');
+$('friendTab').classList.remove('active');
+$('botSetup').classList.remove('hidden');
+$('friendSetup').classList.add('hidden');
+$('gamePanel').classList.add('hidden');
+};
 
-        function closeModal() {
-            document.getElementById('modalOverlay').style.display = 'none';
-        }
+$('friendTab').onclick=()=>{
+mode='friend';
+$('friendTab').classList.add('active');
+$('botTab').classList.remove('active');
+$('botSetup').classList.add('hidden');
+$('friendSetup').classList.remove('hidden');
+$('gamePanel').classList.add('hidden');
+};
 
-        function closeModalOutside(event) {
-            if (event.target === document.getElementById('modalOverlay')) {
-                closeModal();
-            }
-        }
+$('createTable').onclick=()=>{
+let opp=$('opponentId').value.trim();
+if(!opp){toast('Raqib ID sini kiriting');return;}
+tableDemoId='CHK-'+Math.random().toString(36).slice(2,8).toUpperCase();
+$('tableId').value=tableDemoId;
+toast('Demo stol ID yaratildi');
+};
 
-        function openBotMaster() {
-            document.getElementById('dropdownMenu').style.display = 'none';
-            let text = encodeURIComponent("Assalomu alaykum toʻlov qilishm uchun karta bering☺️");
-            window.open("https://t.me/Dvhhhgb?text=" + text, "_blank");
-        }
+$('copyTable').onclick=()=>{
+if(!$('tableId').value){toast('Avval stol yarating');return;}
+if(navigator.clipboard)
+navigator.clipboard.writeText($('tableId').value).then(()=>toast('Stol ID nusxalandi'));
+else toast($('tableId').value);
+};
 
-        function go(name){
-            document.querySelectorAll('.page').forEach(e => e.classList.remove('active'));
-            document.getElementById('page-' + name).classList.add('active');
-            document.querySelectorAll('.n-it').forEach(e => e.classList.remove('active'));
-            let e = document.getElementById('n-' + name);
-            if(e) e.classList.add('active');
-            window.scrollTo(0, 0);
-        }
-
-        renderAtamalar();
-    </script>
+function toast(t){
+$('toast').textContent=t;
+$('toast').classList.add('show');
+setTimeout(()=>$('toast').classList.remove('show'),1900);
+}
+</script>
 </body>
 </html>
