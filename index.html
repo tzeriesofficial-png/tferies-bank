@@ -3,375 +3,549 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>BILLIARD PRO</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#080d18">
+<title>TAP TAP SWAP PRO</title>
 <style>
+:root{
+ --bg:#080d18;--panel:#111a2b;--panel2:#17243a;
+ --gold:#ffd45a;--green:#35e5a0;--muted:#8190a8;
+ --line:#25334a;--blue:#4c8dff;
+}
 *{box-sizing:border-box}
 body{
- margin:0;background:#07101e;color:white;
- font-family:Arial,sans-serif;overflow:hidden;
- touch-action:none
+ margin:0;background:var(--bg);color:#fff;
+ font-family:Inter,Arial,sans-serif;
+ min-height:100dvh;overflow-x:hidden;
 }
-#app{height:100dvh;display:flex;flex-direction:column}
+button{font:inherit;color:inherit;cursor:pointer}
+#app{max-width:520px;margin:auto;min-height:100dvh;padding-bottom:88px}
 header{
- height:85px;min-height:85px;
- display:flex;align-items:center;justify-content:space-around;
- background:linear-gradient(90deg,#101b32,#253653,#101b32);
- border-bottom:2px solid #526b90;padding:5px
+ height:68px;padding:0 19px;display:flex;align-items:center;
+ justify-content:space-between;border-bottom:1px solid var(--line);
+ background:#0b1220;
 }
-.player{text-align:center;min-width:100px}
-.name{font-weight:bold;font-size:14px}
-.level{color:#ffd34e;font-size:12px;margin-top:5px}
-.avatar{
- width:37px;height:37px;border:3px solid #e8bd55;
- border-radius:12px;margin:auto auto 3px;
- background:linear-gradient(135deg,#14a6a1,#182b52);
- display:grid;place-items:center;font-size:20px
-}
-.score{font-size:19px;color:#ffdc51;font-weight:bold}
-.logo{font-size:17px;font-weight:900;color:#ffdc51}
-#gameArea{
- flex:1;min-height:0;display:flex;align-items:center;
- justify-content:center;padding:8px
-}
-#table{
- width:min(100%,1400px);
- aspect-ratio:1.65;
- position:relative;
- background:linear-gradient(135deg,#164b88,#092957);
- border:9px ridge #b4b9c1;
- border-radius:35px;padding:27px;
- box-shadow:0 0 25px #000, inset 0 0 20px #000;
-}
-#felt{
- width:100%;height:100%;position:relative;
- overflow:hidden;border:5px solid #d1d8df;
- border-radius:12px;
- background:
- radial-gradient(ellipse at center,#e2edf2 0%,#b9ccd8 70%,#8ca7b9 100%);
- box-shadow:inset 0 0 22px #344c5e;
-}
-.pocket{
- width:6.5%;aspect-ratio:1;position:absolute;
- background:radial-gradient(circle,#000 48%,#171018 65%,#49515d 72%);
- border-radius:50%;z-index:5;
- box-shadow:0 2px 5px #000
-}
-.pocket:nth-child(1){top:-3%;left:-2%}
-.pocket:nth-child(2){top:-3%;left:46.75%}
-.pocket:nth-child(3){top:-3%;right:-2%}
-.pocket:nth-child(4){bottom:-3%;left:-2%}
-.pocket:nth-child(5){bottom:-3%;left:46.75%}
-.pocket:nth-child(6){bottom:-3%;right:-2%}
-#balls{position:absolute;inset:0}
-.ball{
- position:absolute;width:3.1%;aspect-ratio:1;
- border-radius:50%;z-index:3;
- box-shadow:inset -4px -5px 7px #0007,inset 3px 3px 5px #fff9,0 2px 3px #0008;
+.brand{display:flex;align-items:center;gap:10px}
+.brand-mark{
+ width:36px;height:36px;border-radius:12px;
  display:grid;place-items:center;
- font-size:clamp(6px,1vw,12px);font-weight:bold;color:#111
+ background:linear-gradient(145deg,#ffe88a,#eaa91f);
+ box-shadow:0 4px 18px #e8aa3344;
 }
-.ball::after{
- content:"";position:absolute;width:37%;height:37%;
- background:#fff;border-radius:50%;
- opacity:.9
+.brand-mark svg{width:23px;height:23px}
+.brand-name{font-size:15px;font-weight:900;letter-spacing:1px}
+.brand-name span{color:var(--gold)}
+.header-right{display:flex;align-items:center;gap:8px}
+.status{
+ border:1px solid #254c42;background:#102b26;color:var(--green);
+ border-radius:20px;padding:7px 10px;font-size:10px;font-weight:800;
 }
-.ball span{z-index:2;font-size:8px}
-#aim{
- position:absolute;height:2px;background:#222;
- transform-origin:left center;z-index:8;
- pointer-events:none;opacity:.9;
- box-shadow:0 0 2px white
+.avatar{
+ width:35px;height:35px;border-radius:50%;
+ background:linear-gradient(145deg,#344d71,#15233b);
+ border:1px solid #59708f;display:grid;place-items:center;
 }
-#cue{
- position:absolute;height:5px;width:35%;border-radius:4px;
- background:linear-gradient(90deg,#222,#d9c6a0 12%,#a77a48 17%,#eee0bd 90%,#222);
- transform-origin:left center;z-index:7;
- box-shadow:0 2px 4px #0008;pointer-events:none
+.avatar svg{width:19px;height:19px}
+.page{display:none;padding:20px 17px;animation:fade .22s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.greeting{font-size:13px;color:var(--muted)}
+h1{font-size:24px;margin:6px 0 18px;font-weight:900;letter-spacing:-.5px}
+.balance-card{
+ position:relative;overflow:hidden;padding:20px;border-radius:23px;
+ background:linear-gradient(125deg,#253c63,#172844 55%,#102039);
+ border:1px solid #3b5274;box-shadow:0 12px 35px #0004;
 }
-#controls{
- min-height:100px;background:#101b30;
- border-top:2px solid #344e72;
- display:flex;align-items:center;justify-content:center;
- gap:14px;padding:10px;flex-wrap:wrap
+.balance-card:after{
+ content:"";position:absolute;width:190px;height:190px;border-radius:50%;
+ right:-65px;top:-90px;border:1px solid #ffffff17;
+ box-shadow:0 0 0 18px #ffffff08,0 0 0 38px #ffffff05;
 }
-button{
- background:linear-gradient(135deg,#168cba,#07517e);
- border:1px solid #55b8e6;color:white;
- border-radius:12px;padding:12px 17px;font-weight:bold;
- cursor:pointer
+.small-label{font-size:11px;color:#bdcbe0;letter-spacing:1px}
+.balance-row{display:flex;align-items:center;gap:12px;margin-top:10px}
+.coin-icon{
+ width:43px;height:43px;border-radius:50%;display:grid;place-items:center;
+ background:linear-gradient(145deg,#fff2a7,#ffbd36 55%,#d88412);
+ box-shadow:inset 0 2px 5px #fff9,0 4px 12px #0005;
+ border:2px solid #ffe9a0;
 }
-button:active{transform:scale(.96)}
-.power{display:flex;align-items:center;gap:8px;font-size:13px}
-input{width:110px;accent-color:#ffc83d}
-#message{font-size:13px;color:#ffdf83;text-align:center}
-@media(max-width:600px){
- header{height:66px;min-height:66px}
- .avatar{width:29px;height:29px;font-size:15px}
- .name{font-size:11px}.level{font-size:10px}
- .logo{font-size:13px}
- #table{padding:17px;border-width:6px;border-radius:20px}
- #controls{gap:7px;min-height:95px}
- button{padding:10px;font-size:11px}
- .power{font-size:11px}
- input{width:85px}
+.coin-icon svg{width:25px;height:25px}
+.balance{font-size:30px;font-weight:900;letter-spacing:-1px}
+.balance-unit{font-size:12px;color:#f6d985;margin-top:3px}
+.card-bottom{display:flex;justify-content:space-between;margin-top:20px;gap:10px}
+.mini-stat{font-size:11px;color:#b5c5dc}
+.mini-stat b{display:block;color:#fff;font-size:14px;margin-top:4px}
+.tap-section{text-align:center;padding:23px 0 12px}
+.tap-hint{font-size:12px;color:var(--muted);margin-bottom:17px}
+.tap-button{
+ position:relative;width:210px;height:210px;border-radius:50%;
+ border:0;margin:auto;display:grid;place-items:center;
+ background:radial-gradient(circle at 36% 25%,#fff4bd 0%,#ffdc71 12%,#f6b92e 47%,#bd7413 76%,#75420b 100%);
+ box-shadow:0 0 0 9px #e7a82c18,0 0 0 18px #e7a82c0c,
+ 0 15px 30px #0009,inset 0 5px 9px #fff9,inset 0 -9px 15px #6c3b0b88;
+ transition:transform .08s;
+ touch-action:manipulation;
+}
+.tap-button:active{transform:scale(.94)}
+.tap-inner{
+ width:160px;height:160px;border-radius:50%;
+ border:2px solid #fff6;background:linear-gradient(145deg,#ffe99b,#e9a51e);
+ display:grid;place-items:center;box-shadow:inset 0 3px 9px #fff9,inset 0 -8px 15px #9a5b0c55;
+}
+.tap-inner svg{width:82px;height:82px;filter:drop-shadow(0 5px 3px #8b570c66)}
+.tap-text{font-size:12px;font-weight:900;letter-spacing:2px;color:#5e3b0a;margin-top:-13px}
+.energy-box{
+ background:var(--panel);border:1px solid var(--line);
+ border-radius:17px;padding:14px 15px;margin-top:16px;
+}
+.energy-head{display:flex;justify-content:space-between;font-size:12px}
+.energy-head span:last-child{color:var(--gold);font-weight:bold}
+.energy-track{height:8px;background:#26344a;border-radius:10px;margin-top:11px;overflow:hidden}
+.energy-fill{height:100%;width:100%;background:linear-gradient(90deg,#e9a72c,#ffe27c);border-radius:10px;transition:width .2s}
+.section-title{font-size:16px;font-weight:800;margin:24px 0 12px}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat-card{
+ background:var(--panel);border:1px solid var(--line);
+ border-radius:16px;padding:15px;
+}
+.stat-card small{font-size:11px;color:var(--muted)}
+.stat-card strong{display:block;font-size:20px;margin-top:7px}
+.stat-card .green{color:var(--green)}
+.panel{
+ background:var(--panel);border:1px solid var(--line);
+ border-radius:18px;padding:16px;margin-bottom:12px;
+}
+.panel-title{font-weight:800;font-size:14px}
+.muted{color:var(--muted);font-size:12px;line-height:1.5}
+.action{
+ width:100%;padding:13px;border:0;border-radius:12px;
+ background:linear-gradient(100deg,#ffda6b,#e9a52a);
+ color:#342307;font-size:13px;font-weight:900;margin-top:12px;
+}
+.secondary{
+ background:#1d2c43;border:1px solid #354b69;color:white;
+}
+.field{
+ width:100%;border:1px solid #34445d;background:#0c1525;
+ color:#fff;padding:13px;border-radius:11px;outline:none;margin-top:10px;
+}
+.swap-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.swap-value{font-size:22px;font-weight:900;margin-top:8px}
+.task{display:flex;align-items:center;gap:12px}
+.task-icon{
+ width:42px;height:42px;border-radius:13px;background:#203653;
+ display:grid;place-items:center;flex-shrink:0;color:#83b4ff;
+}
+.task-icon svg{width:21px;height:21px}
+.task-info{flex:1;min-width:0}
+.task-info b{font-size:13px}
+.task-info small{display:block;color:var(--muted);font-size:11px;margin-top:5px}
+.task button{
+ border:1px solid #3c5677;background:#1d3552;
+ border-radius:10px;padding:9px 11px;font-size:11px;
+}
+.task button.done{color:var(--green);border-color:#28664e}
+.profile-top{text-align:center;padding:15px 0 23px}
+.profile-avatar{
+ width:76px;height:76px;border-radius:25px;margin:auto;
+ display:grid;place-items:center;background:linear-gradient(145deg,#344e76,#14243c);
+ border:2px solid #6b85a8;
+}
+.profile-avatar svg{width:37px;height:37px}
+.profile-name{font-weight:900;font-size:19px;margin-top:12px}
+.profile-id{font-size:11px;color:var(--muted);margin-top:5px}
+.menu-row{
+ display:flex;align-items:center;justify-content:space-between;
+ padding:13px 0;border-bottom:1px solid var(--line);font-size:13px;
+}
+.menu-row:last-child{border:0}
+.bottom-nav{
+ position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+ width:100%;max-width:520px;height:76px;
+ background:#0c1422f5;backdrop-filter:blur(18px);
+ border-top:1px solid #29364c;display:grid;
+ grid-template-columns:repeat(5,1fr);z-index:20;
+ padding-bottom:env(safe-area-inset-bottom);
+}
+.nav-item{
+ border:0;background:transparent;color:#77869e;
+ display:flex;flex-direction:column;align-items:center;
+ justify-content:center;gap:5px;font-size:10px;font-weight:700;
+}
+.nav-item svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.nav-item.active{color:var(--gold)}
+.nav-item.active svg{filter:drop-shadow(0 0 5px #ffd45a66)}
+.notice{
+ position:fixed;top:80px;left:50%;transform:translateX(-50%);
+ background:#20334c;border:1px solid #526b8b;padding:11px 16px;
+ border-radius:12px;font-size:12px;z-index:50;
+ opacity:0;pointer-events:none;transition:.2s;white-space:nowrap;
+}
+.notice.show{opacity:1}
+@media(max-width:360px){
+ .tap-button{width:185px;height:185px}
+ .tap-inner{width:140px;height:140px}
+ .balance{font-size:25px}
 }
 </style>
 </head>
 <body>
 <div id="app">
 <header>
- <div class="player">
-  <div class="avatar">👤</div>
-  <div class="name">SIZ</div>
-  <div class="level">⭐ 43-daraja</div>
-  <div class="score" id="myScore">0</div>
+ <div class="brand">
+  <div class="brand-mark">
+   <svg viewBox="0 0 24 24" fill="none" stroke="#51360b" stroke-width="2.5" stroke-linecap="round">
+    <path d="M13 2 5 13h6l-1 9 9-13h-6l1-7z"/>
+   </svg>
+  </div>
+  <div class="brand-name">TAP TAP <span>SWAP</span></div>
  </div>
- <div class="logo">🎱 BILLIARD<br>PRO</div>
- <div class="player">
-  <div class="avatar">🤖</div>
-  <div class="name">PRO BOT</div>
-  <div class="level">⭐ 46-daraja</div>
-  <div class="score" id="botScore">0</div>
+ <div class="header-right">
+  <div class="status">● ONLINE</div>
+  <div class="avatar">
+   <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.7">
+    <circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/>
+   </svg>
+  </div>
  </div>
 </header>
 
-<main id="gameArea">
- <div id="table">
-  <div id="felt">
-   <div class="pocket"></div><div class="pocket"></div>
-   <div class="pocket"></div><div class="pocket"></div>
-   <div class="pocket"></div><div class="pocket"></div>
-   <div id="balls"></div>
-   <div id="aim"></div>
-   <div id="cue"></div>
+<!-- HOME -->
+<section class="page active" id="home">
+ <div class="greeting">Xush kelibsiz 👋</div>
+ <h1>Asosiy sahifa</h1>
+ <div class="balance-card">
+  <div class="small-label">UMUMIY BALANS</div>
+  <div class="balance-row">
+   <div class="coin-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#80500a" stroke-width="1.8">
+     <circle cx="12" cy="12" r="9"/><path d="M15 8.5c-.6-1-1.6-1.5-3-1.5-1.6 0-2.7.8-2.7 2s1 1.8 2.8 2.2 2.9 1 2.9 2.4-1.2 2.4-3 2.4c-1.4 0-2.5-.6-3.2-1.7M12 5v14"/>
+    </svg>
+   </div>
+   <div>
+    <div class="balance" id="balance">0</div>
+    <div class="balance-unit">TTS COINS</div>
+   </div>
+  </div>
+  <div class="card-bottom">
+   <div class="mini-stat">Bugungi daromad<b id="today">0 TTS</b></div>
+   <div class="mini-stat">Jami bosishlar<b id="totalTaps">0</b></div>
+   <div class="mini-stat">Daraja<b>1 LEVEL</b></div>
   </div>
  </div>
-</main>
 
-<div id="controls">
- <div class="power">ZARBA KUCHI
-  <input id="power" type="range" min="5" max="100" value="55">
-  <span id="powerVal">55%</span>
+ <div class="tap-section">
+  <div class="tap-hint">Tangalarni yig‘ish uchun markazni bosing</div>
+  <button class="tap-button" id="tapButton" aria-label="Tap">
+   <div class="tap-inner">
+    <div>
+     <svg viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="38" stroke="#8d5a10" stroke-width="3"/>
+      <path d="M57 16 32 53h17l-5 31 27-42H53l4-26z" fill="#fff2b5" stroke="#9a650e" stroke-width="2"/>
+     </svg>
+     <div class="tap-text">TAP NOW</div>
+    </div>
+   </div>
+  </button>
  </div>
- <button id="hit">🎯 ZARBA BERISH</button>
- <button id="reset">↻ QAYTA</button>
- <button id="bot">🤖 BOT BILAN</button>
- <div id="message">Oq sharni barmog‘ingiz bilan yo‘naltiring</div>
-</div>
+
+ <div class="energy-box">
+  <div class="energy-head"><span>ENERGIYA</span><span id="energyText">1000 / 1000</span></div>
+  <div class="energy-track"><div class="energy-fill" id="energyFill"></div></div>
+ </div>
+
+ <div class="section-title">Sizning ko‘rsatkichlaringiz</div>
+ <div class="stats-grid">
+  <div class="stat-card"><small>JAMI TANGALAR</small><strong id="statCoins">0</strong></div>
+  <div class="stat-card"><small>JAMI TAP</small><strong id="statTaps">0</strong></div>
+  <div class="stat-card"><small>ENERGIYA</small><strong class="green" id="statEnergy">1000</strong></div>
+  <div class="stat-card"><small>REFERALLAR</small><strong id="statFriends">0</strong></div>
+ </div>
+</section>
+
+<!-- SWAP -->
+<section class="page" id="swap">
+ <div class="greeting">TTS EXCHANGE</div>
+ <h1>Swap almashuv</h1>
+ <div class="panel">
+  <div class="panel-title">Tangalarni almashtirish</div>
+  <p class="muted">Demo almashuv kursi: 1000 TTS = 1 SWAP POINT.</p>
+  <div class="swap-row">
+   <div>
+    <div class="small-label">SIZDA BOR</div>
+    <div class="swap-value" id="swapBalance">0</div>
+    <div class="muted">TTS COINS</div>
+   </div>
+   <div>
+    <div class="small-label">OLASIZ</div>
+    <div class="swap-value" id="swapResult">0</div>
+    <div class="muted">SWAP POINT</div>
+   </div>
+  </div>
+  <input class="field" type="number" id="swapAmount" min="1000" step="1000" placeholder="Almashtirish miqdori">
+  <button class="action" id="swapButton">ALMASHTIRISH</button>
+ </div>
+ <div class="panel">
+  <div class="panel-title">Almashuv tarixi</div>
+  <div class="muted" id="swapHistory">Hozircha almashuv mavjud emas.</div>
+ </div>
+ <p class="muted">Bu ichki demo ballar. Haqiqiy pul, kripto yoki yechib olish xizmati ulanmagan.</p>
+</section>
+
+<!-- EARN -->
+<section class="page" id="earn">
+ <div class="greeting">BONUS VA MUKOFOTLAR</div>
+ <h1>Daromad olish</h1>
+ <div class="panel">
+  <div class="task">
+   <div class="task-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/></svg>
+   </div>
+   <div class="task-info"><b>Kundalik bonus</b><small>Har kuni bir marta mukofot oling</small></div>
+   <button id="dailyButton">+500</button>
+  </div>
+ </div>
+ <div class="panel">
+  <div class="task">
+   <div class="task-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>
+   </div>
+   <div class="task-info"><b>100 marta tap qiling</b><small>Vazifani bajaring va bonus oling</small></div>
+   <button id="tapTaskButton">+250</button>
+  </div>
+  <div class="energy-track"><div class="energy-fill" id="taskProgress" style="width:0%"></div></div>
+  <div class="muted" id="taskProgressText" style="margin-top:8px">0 / 100 tap</div>
+ </div>
+ <div class="panel">
+  <div class="task">
+   <div class="task-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM20 8v6m-3-3h6"/></svg>
+   </div>
+   <div class="task-info"><b>Do‘stlarni taklif qiling</b><small>Har bir taklif uchun 1000 TTS demo bonus</small></div>
+   <button onclick="showPage('friends')">OCHISH</button>
+  </div>
+ </div>
+</section>
+
+<!-- FRIENDS -->
+<section class="page" id="friends">
+ <div class="greeting">TAKLIF VA HAMKORLIK</div>
+ <h1>Do‘stlar</h1>
+ <div class="balance-card">
+  <div class="small-label">SIZNING REFERAL KODINGIZ</div>
+  <div class="balance-row"><div class="balance" style="font-size:27px" id="refCode">TTS0001</div></div>
+  <button class="action" id="copyRef">KODNI NUSXALASH</button>
+ </div>
+ <div class="section-title">Do‘stlarni taklif qilish</div>
+ <div class="panel">
+  <div class="panel-title">Har bir do‘st uchun bonus</div>
+  <p class="muted">Do‘stlaringizni taklif qiling. Hozircha bu lokal demo referal tizimi hisoblanadi.</p>
+  <button class="action secondary" id="shareButton">TAKLIFNI ULASHISH</button>
+ </div>
+ <div class="stats-grid">
+  <div class="stat-card"><small>DO‘STLAR</small><strong id="friendCount">0</strong></div>
+  <div class="stat-card"><small>REFERAL BONUS</small><strong>0 TTS</strong></div>
+ </div>
+</section>
+
+<!-- PROFILE -->
+<section class="page" id="profile">
+ <div class="greeting">SHAXSIY KABINET</div>
+ <h1>Profil</h1>
+ <div class="profile-top">
+  <div class="profile-avatar">
+   <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+  </div>
+  <div class="profile-name">TAP PLAYER</div>
+  <div class="profile-id">ID: <span id="playerId">TTS-000001</span></div>
+ </div>
+ <div class="panel">
+  <div class="menu-row"><span>Hisob balansi</span><b id="profileBalance">0 TTS</b></div>
+  <div class="menu-row"><span>Jami bosishlar</span><b id="profileTaps">0</b></div>
+  <div class="menu-row"><span>Daraja</span><b>1</b></div>
+  <div class="menu-row"><span>Hisob turi</span><b style="color:var(--green)">DEMO</b></div>
+ </div>
+ <div class="panel">
+  <div class="menu-row"><span>Ovoz effektlari</span><button id="soundButton" class="secondary" style="padding:7px 12px">YOQILGAN</button></div>
+  <div class="menu-row"><span>Ma’lumotlar</span><b>LOCAL</b></div>
+  <button class="action secondary" id="resetButton">DEMO HISOBNI QAYTA BOSHLASH</button>
+ </div>
+</section>
+
+<nav class="bottom-nav">
+ <button class="nav-item active" data-page="home">
+  <svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>
+  HOME
+ </button>
+ <button class="nav-item" data-page="swap">
+  <svg viewBox="0 0 24 24"><path d="M4 7h15l-3-3m4 13H5l3 3M19 7l-3-3M5 17l3 3"/></svg>
+  SWAP
+ </button>
+ <button class="nav-item" data-page="earn">
+  <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9a3 3 0 0 0 0 6h6a3 3 0 0 1 0 6H6"/></svg>
+  EARN
+ </button>
+ <button class="nav-item" data-page="friends">
+  <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM20 8v6m-3-3h6"/></svg>
+  FRIENDS
+ </button>
+ <button class="nav-item" data-page="profile">
+  <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+  PROFILE
+ </button>
+</nav>
+<div class="notice" id="notice"></div>
 </div>
 
 <script>
-const felt=document.getElementById('felt');
-const layer=document.getElementById('balls');
-const cue=document.getElementById('cue');
-const aim=document.getElementById('aim');
-const power=document.getElementById('power');
-const message=document.getElementById('message');
-const W=1000,H=550,R=16;
-let balls=[],turn='you',moving=false,angle=0;
-let myScore=0,botScore=0,aiming=false;
-let start={x:300,y:275};
-let lastTime=0;
-
-const colors={
- 1:'#f6d23a',2:'#2468c8',3:'#d83232',4:'#713ba0',
- 5:'#ed8b25',6:'#25954b',7:'#792d20',8:'#16191e',
- 9:'#f6d23a',10:'#2468c8',11:'#d83232',
- 12:'#713ba0',13:'#ed8b25',14:'#25954b',15:'#792d20'
+const defaults={
+ coins:0,taps:0,energy:1000,today:0,
+ dailyDate:"",taskDone:false,swaps:0,
+ friends:0,sound:true,lastEnergy:Date.now()
 };
-function makeBall(n,x,y){
- return {n,x,y,vx:0,vy:0,alive:true};
+let data={...defaults};
+try{
+ const saved=JSON.parse(localStorage.getItem("tts_pro_data"));
+ if(saved)data={...defaults,...saved};
+}catch(e){}
+let toastTimer;
+function save(){
+ data.lastEnergy=Date.now();
+ localStorage.setItem("tts_pro_data",JSON.stringify(data));
 }
-function setup(){
- balls=[];
- balls.push(makeBall(0,250,275));
- let positions=[
- [700,275],[728,258],[728,292],
- [756,241],[756,275],[756,309],
- [784,224],[784,258],[784,292],[784,326],
- [812,207],[812,241],[812,275],[812,309],[812,343]
- ];
- positions.forEach((p,i)=>balls.push(makeBall(i+1,p[0],p[1])));
- render();
+function fmt(n){return Math.floor(n).toLocaleString("en-US")}
+function notice(msg){
+ const el=document.getElementById("notice");
+ el.textContent=msg;el.classList.add("show");
+ clearTimeout(toastTimer);
+ toastTimer=setTimeout(()=>el.classList.remove("show"),1900);
 }
-function render(){
- layer.innerHTML='';
- balls.forEach(b=>{
-  if(!b.alive)return;
-  let el=document.createElement('div');
-  el.className='ball';
-  el.style.left=(b.x/W*100)+'%';
-  el.style.top=(b.y/H*100)+'%';
-  el.style.background=b.n===0?
-   'radial-gradient(circle at 30% 25%,white,#ddd 65%,#777)':
-   `radial-gradient(circle at 30% 25%,white,${colors[b.n]} 30%,${colors[b.n]} 75%,#111)`;
-  if(b.n!==0){
-   el.innerHTML='<span>'+((b.n-1)%8+1)+'</span>';
-   if(b.n>8)el.style.background=
-    `linear-gradient(white 20%,${colors[b.n]} 20%,${colors[b.n]} 80%,white 80%)`;
-  }
-  layer.appendChild(el);
+function update(){
+ document.getElementById("balance").textContent=fmt(data.coins);
+ document.getElementById("today").textContent=fmt(data.today)+" TTS";
+ document.getElementById("totalTaps").textContent=fmt(data.taps);
+ document.getElementById("energyText").textContent=fmt(data.energy)+" / 1000";
+ document.getElementById("energyFill").style.width=(data.energy/10)+"%";
+ document.getElementById("statCoins").textContent=fmt(data.coins);
+ document.getElementById("statTaps").textContent=fmt(data.taps);
+ document.getElementById("statEnergy").textContent=fmt(data.energy);
+ document.getElementById("statFriends").textContent=data.friends;
+ document.getElementById("swapBalance").textContent=fmt(data.coins);
+ document.getElementById("profileBalance").textContent=fmt(data.coins)+" TTS";
+ document.getElementById("profileTaps").textContent=fmt(data.taps);
+ document.getElementById("friendCount").textContent=data.friends;
+ document.getElementById("taskProgress").style.width=Math.min(100,data.taps%100)+"%";
+ document.getElementById("taskProgressText").textContent=Math.min(100,data.taps%100)+" / 100 tap";
+ document.getElementById("dailyButton").textContent=
+ data.dailyDate===new Date().toDateString()?"OLINDI":"+500";
+ document.getElementById("dailyButton").disabled=
+ data.dailyDate===new Date().toDateString();
+ document.getElementById("tapTaskButton").textContent=data.taskDone?"OLINDI":"+250";
+ document.getElementById("tapTaskButton").disabled=data.taskDone;
+ document.getElementById("soundButton").textContent=data.sound?"YOQILGAN":"O‘CHIRILGAN";
+ document.getElementById("swapResult").textContent=
+ fmt((Number(document.getElementById("swapAmount").value)||0)/1000);
+}
+function showPage(name){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ document.getElementById(name).classList.add("active");
+ document.querySelectorAll(".nav-item").forEach(b=>{
+  b.classList.toggle("active",b.dataset.page===name);
  });
+ update();
 }
-function getWhite(){return balls.find(b=>b.n===0)}
-function setLine(x1,y1,x2,y2){
- let dx=x2-x1,dy=y2-y1;
- let len=Math.hypot(dx,dy);
- let deg=Math.atan2(dy,dx)*180/Math.PI;
- aim.style.left=x1/W*100+'%';
- aim.style.top=y1/H*100+'%';
- aim.style.width=(len/W*100)+'%';
- aim.style.transform=`rotate(${deg}deg)`;
- cue.style.left=(x1-dx/len*115)/W*100+'%';
- cue.style.top=y1/H*100+'%';
- cue.style.transform=`rotate(${deg}deg)`;
-}
-function coords(e){
- let rect=felt.getBoundingClientRect();
- return {
-  x:(e.clientX-rect.left)/rect.width*W,
-  y:(e.clientY-rect.top)/rect.height*H
- };
-}
-felt.addEventListener('pointerdown',e=>{
- if(moving||turn!=='you')return;
- aiming=true;
- let p=coords(e),w=getWhite();
- angle=Math.atan2(p.y-w.y,p.x-w.x);
- setLine(w.x,w.y,p.x,p.y);
+document.querySelectorAll(".nav-item").forEach(b=>{
+ b.addEventListener("click",()=>showPage(b.dataset.page));
 });
-felt.addEventListener('pointermove',e=>{
- if(!aiming)return;
- let p=coords(e),w=getWhite();
- angle=Math.atan2(p.y-w.y,p.x-w.x);
- setLine(w.x,w.y,p.x,p.y);
+function tap(){
+ if(data.energy<=0){notice("Energiya tugadi. Qayta to‘lishini kuting.");return}
+ data.coins+=1;data.today+=1;data.taps++;data.energy--;
+ save();update();
+ const btn=document.getElementById("tapButton");
+ btn.style.transform="scale(.94)";
+ setTimeout(()=>btn.style.transform="",75);
+ if(data.sound){
+  try{
+   const ctx=new (window.AudioContext||window.webkitAudioContext)();
+   const osc=ctx.createOscillator(),gain=ctx.createGain();
+   osc.type="sine";osc.frequency.value=650;
+   gain.gain.value=.025;
+   osc.connect(gain);gain.connect(ctx.destination);
+   osc.start();osc.stop(ctx.currentTime+.045);
+  }catch(e){}
+ }
+ const pop=document.createElement("div");
+ pop.textContent="+1";
+ pop.style.cssText="position:fixed;z-index:40;left:50%;top:42%;font-size:24px;font-weight:900;color:#ffe17b;pointer-events:none;animation:floatup .7s forwards";
+ document.body.appendChild(pop);setTimeout(()=>pop.remove(),750);
+}
+document.getElementById("tapButton").addEventListener("pointerdown",e=>{
+ e.preventDefault();tap();
 });
-felt.addEventListener('pointerup',()=>{
- if(!aiming)return;
- aiming=false;
- shoot(angle,Number(power.value));
-});
-document.getElementById('power').oninput=e=>{
- document.getElementById('powerVal').textContent=e.target.value+'%';
+document.getElementById("dailyButton").onclick=()=>{
+ if(data.dailyDate===new Date().toDateString())return;
+ data.coins+=500;data.today+=500;
+ data.dailyDate=new Date().toDateString();
+ save();update();notice("+500 TTS kundalik bonus!");
 };
-document.getElementById('hit').onclick=()=>{
- if(moving||turn!=='you')return;
- shoot(angle,Number(power.value));
+document.getElementById("tapTaskButton").onclick=()=>{
+ if(data.taskDone||data.taps<100){notice("Avval 100 marta tap qiling!");return}
+ data.taskDone=true;data.coins+=250;data.today+=250;
+ save();update();notice("+250 TTS bonus olindi!");
 };
-function shoot(a,p){
- if(moving||turn!=='you')return;
- let w=getWhite();
- w.vx=Math.cos(a)*p*.20;
- w.vy=Math.sin(a)*p*.20;
- moving=true;
- cue.style.display='none';aim.style.display='none';
- message.textContent='Sharlar harakatlanmoqda...';
-}
-function pocketCheck(b){
- const holes=[[0,0],[W/2,0],[W,0],[0,H],[W/2,H],[W,H]];
- for(const h of holes){
-  if(Math.hypot(b.x-h[0],b.y-h[1])<43){
-   b.alive=false;
-   if(b.n!==0){
-    if(turn==='you')myScore++;else botScore++;
-    document.getElementById('myScore').textContent=myScore;
-    document.getElementById('botScore').textContent=botScore;
-   }else{
-    b.x=250;b.y=275;b.vx=0;b.vy=0;
-   }
-   return true;
-  }
- }
- return false;
-}
-function update(dt){
- let active=false;
- let friction=Math.pow(.988,dt/16.67);
- for(let b of balls){
-  if(!b.alive)continue;
-  b.x+=b.vx*dt/16.67;
-  b.y+=b.vy*dt/16.67;
-  b.vx*=friction;b.vy*=friction;
-  if(Math.hypot(b.vx,b.vy)<.035){b.vx=0;b.vy=0}
-  if(b.vx||b.vy)active=true;
-  if(b.x<R+2){b.x=R+2;b.vx=Math.abs(b.vx)*.85}
-  if(b.x>W-R-2){b.x=W-R-2;b.vx=-Math.abs(b.vx)*.85}
-  if(b.y<R+2){b.y=R+2;b.vy=Math.abs(b.vy)*.85}
-  if(b.y>H-R-2){b.y=H-R-2;b.vy=-Math.abs(b.vy)*.85}
-  pocketCheck(b);
- }
- for(let i=0;i<balls.length;i++){
-  let a=balls[i];if(!a.alive)continue;
-  for(let j=i+1;j<balls.length;j++){
-   let b=balls[j];if(!b.alive)continue;
-   let dx=b.x-a.x,dy=b.y-a.y;
-   let d=Math.hypot(dx,dy);
-   if(d>0&&d<2*R){
-    let nx=dx/d,ny=dy/d;
-    let overlap=2*R-d;
-    a.x-=nx*overlap/2;a.y-=ny*overlap/2;
-    b.x+=nx*overlap/2;b.y+=ny*overlap/2;
-    let rel=(a.vx-b.vx)*nx+(a.vy-b.vy)*ny;
-    if(rel>0){
-     a.vx-=rel*nx*.96;a.vy-=rel*ny*.96;
-     b.vx+=rel*nx*.96;b.vy+=rel*ny*.96;
-    }
-   }
-  }
- }
- render();
- return active;
-}
-function loop(t){
- let dt=Math.min(t-lastTime||16,30);lastTime=t;
- if(moving){
-  if(!update(dt)){
-   moving=false;
-   if(turn==='you'){
-    turn='bot';
-    message.textContent='Bot o‘ylayapti...';
-    setTimeout(botTurn,700);
-   }else{
-    turn='you';message.textContent='Sizning navbatingiz!';
-    cue.style.display='block';aim.style.display='block';
-    let w=getWhite();setLine(w.x,w.y,w.x-150,w.y);
-   }
-  }
- }
- requestAnimationFrame(loop);
-}
-function botTurn(){
- if(turn!=='bot'||moving)return;
- let w=getWhite();
- let targets=balls.filter(b=>b.alive&&b.n!==0);
- if(!targets.length){turn='you';return}
- let target=targets[Math.floor(Math.random()*targets.length)];
- let a=Math.atan2(target.y-w.y,target.x-w.x);
- shootBot(a);
-}
-function shootBot(a){
- let w=getWhite();
- w.vx=Math.cos(a)*8;
- w.vy=Math.sin(a)*8;
- moving=true;
-}
-document.getElementById('reset').onclick=()=>{
- if(moving)return;
- myScore=0;botScore=0;turn='you';
- document.getElementById('myScore').textContent='0';
- document.getElementById('botScore').textContent='0';
- setup();cue.style.display='block';aim.style.display='block';
- let w=getWhite();setLine(w.x,w.y,w.x-150,w.y);
- message.textContent='Yangi o‘yin boshlandi!';
+document.getElementById("swapAmount").addEventListener("input",update);
+document.getElementById("swapButton").onclick=()=>{
+ const amount=Math.floor(Number(document.getElementById("swapAmount").value));
+ if(!amount||amount<1000||amount%1000!==0){notice("Miqdor 1000 ga karrali bo‘lsin.");return}
+ if(amount>data.coins){notice("Balans yetarli emas.");return}
+ data.coins-=amount;data.swaps++;
+ document.getElementById("swapHistory").textContent=
+ "Oxirgi almashuv: "+fmt(amount)+" TTS → "+fmt(amount/1000)+" SWAP POINT (demo)";
+ document.getElementById("swapAmount").value="";
+ save();update();notice("Demo almashuv bajarildi!");
 };
-document.getElementById('bot').onclick=()=>{
- if(moving)return;
- if(turn==='you')message.textContent='Siz PRO BOT bilan o‘ynayapsiz!';
+document.getElementById("copyRef").onclick=async()=>{
+ try{
+  await navigator.clipboard.writeText("TTS0001");
+  notice("Referal kod nusxalandi!");
+ }catch(e){notice("Referal kod: TTS0001")}
 };
-setup();
-setLine(250,275,100,275);
-requestAnimationFrame(loop);
+document.getElementById("shareButton").onclick=async()=>{
+ const msg="TAP TAP SWAP PRO ga qo‘shiling! Mening kodim: TTS0001";
+ if(navigator.share){
+  try{await navigator.share({title:"TAP TAP SWAP",text:msg})}catch(e){}
+ }else{
+  try{await navigator.clipboard.writeText(msg);notice("Taklif matni nusxalandi!")}
+  catch(e){notice(msg)}
+ }
+};
+document.getElementById("soundButton").onclick=()=>{
+ data.sound=!data.sound;save();update();
+};
+document.getElementById("resetButton").onclick=()=>{
+ if(!confirm("Barcha demo hisob ma’lumotlari o‘chirilsinmi?"))return;
+ data={...defaults,lastEnergy:Date.now()};save();update();notice("Demo hisob yangilandi");
+};
+function recoverEnergy(){
+ const now=Date.now();
+ const minutes=Math.floor((now-(data.lastEnergy||now))/60000);
+ if(minutes>0)data.energy=Math.min(1000,data.energy+minutes*2);
+ data.lastEnergy=now;save();update();
+}
+setInterval(()=>{
+ if(data.energy<1000){
+  data.energy=Math.min(1000,data.energy+1);
+  save();update();
+ }
+},30000);
+document.getElementById("refCode").textContent="TTS0001";
+recoverEnergy();update();
 </script>
+<style>
+@keyframes floatup{
+ 0%{opacity:1;transform:translate(-50%,0) scale(.8)}
+ 100%{opacity:0;transform:translate(-50%,-65px) scale(1.3)}
+}
+</style>
 </body>
 </html>
