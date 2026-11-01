@@ -3,426 +3,286 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NEBULIX — Cosmic Tap Game</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEBULIX — Cosmic Tap</title>
 <style>
 *{box-sizing:border-box}
 body{
- margin:0;color:white;font-family:Arial,sans-serif;
- background:radial-gradient(ellipse at 50% 30%,#28205c,#100e29 65%,#090817);
- min-height:100vh;
+ margin:0;background:radial-gradient(circle at top,#30205e,#100d25 65%,#080713);
+ color:white;font-family:Arial,sans-serif;min-height:100vh
 }
-button{font:inherit;cursor:pointer;border:0;color:white}
-.app{max-width:440px;margin:auto;padding:15px 17px 95px}
-header{text-align:center;padding:14px}
-.logo{
- font-size:34px;font-weight:1000;letter-spacing:5px;
- color:#a9a5ff;text-shadow:0 0 20px #8774ff;
+button{border:0;color:white;font-weight:bold;cursor:pointer}
+.app{max-width:440px;margin:auto;padding:15px 17px 100px}
+header{text-align:center;padding:15px}
+.logo{font-size:35px;font-weight:1000;letter-spacing:5px;color:#b9a6ff;text-shadow:0 0 22px #8b65ff}
+.tag{font-size:10px;letter-spacing:4px;color:#aaa;margin-top:5px}
+.profile,.energybox,.card,.stat{
+ background:#ffffff0c;border:1px solid #ffffff18;border-radius:17px;padding:14px
 }
-.tag{font-size:10px;letter-spacing:4px;color:#938cb9;margin-top:5px}
-.profile{
- display:flex;align-items:center;justify-content:space-between;
- background:#ffffff0c;border:1px solid #ffffff16;
- border-radius:17px;padding:13px;margin:12px 0;
-}
-.avatar{font-size:28px}
-.profile small{color:#aaa4c9}
-.rank{color:#d4a6ff;font-size:12px}
+.profile{display:flex;justify-content:space-between;align-items:center;margin:12px 0}
+.profile small,.muted{color:#aaa2c9}
+.rank{color:#d9b4ff;font-size:12px}
 .balance{text-align:center;padding:15px}
-.balance small{color:#aaa4c9;letter-spacing:2px}
-.coins{font-size:42px;font-weight:900;color:#ffe18b;margin:8px}
-.coinicon{font-size:27px}
-.level{color:#b4a8e4;font-size:12px}
-.xp{height:7px;background:#ffffff20;border-radius:20px;margin:12px auto;width:80%;overflow:hidden}
-.xp div{height:100%;background:linear-gradient(90deg,#a66bff,#56eaff);width:0%}
+.balance small{color:#aaa;letter-spacing:2px}
+.coins{font-size:39px;font-weight:900;color:#ffe18b;margin:9px}
+.level{font-size:12px;color:#c3b5ed}
+.xp,.energybar{height:9px;background:#ffffff20;border-radius:20px;overflow:hidden;margin:10px auto}
+.xp{width:80%}
+.xp div,.energybar div{height:100%;background:linear-gradient(90deg,#a45cff,#52eaff);width:0%}
 .arena{
- position:relative;margin:10px auto 15px;width:280px;height:280px;
+ position:relative;margin:15px auto;width:280px;height:280px;border-radius:50%;
  display:flex;align-items:center;justify-content:center;
- border-radius:50%;
- background:radial-gradient(circle,#32236e 0%,#1d1749 55%,#11102c 70%);
- border:2px solid #8272ee;
- box-shadow:0 0 45px #7657ff55,inset 0 0 35px #9975ff30;
- touch-action:manipulation;user-select:none;
- transition:transform .08s;
+ background:radial-gradient(circle,#463078,#201747 65%,#11102c);
+ border:2px solid #8873ef;box-shadow:0 0 45px #7657ff66;
+ touch-action:manipulation;user-select:none;cursor:pointer
 }
-.arena:active{transform:scale(.95)}
-.orbit{
- position:absolute;width:235px;height:235px;border:1px dashed #aaa0ff66;
- border-radius:50%;animation:spin 15s linear infinite;
-}
-.orbit:after{
- content:"✦";position:absolute;top:15px;left:30px;color:#fff0a5;
-}
+.arena:active{transform:scale(.96)}
+.orbit{position:absolute;width:235px;height:235px;border:1px dashed #aaa0ff66;border-radius:50%;animation:spin 15s linear infinite}
+.orbit:after{content:"✦";position:absolute;top:15px;left:30px;color:#fff0a5}
 @keyframes spin{to{transform:rotate(360deg)}}
 .mascot{
- font-size:120px;z-index:2;
- filter:drop-shadow(0 0 20px #8c78ff);
- animation:float 2.5s ease-in-out infinite;
+ width:190px;height:190px;object-fit:contain;z-index:2;
+ filter:drop-shadow(0 0 20px #a18aff);
+ animation:float 2.5s ease-in-out infinite;pointer-events:none
 }
 @keyframes float{50%{transform:translateY(-9px)}}
 .taplabel{text-align:center;color:#aaa4c9;font-size:12px}
-.energybox{
- margin:22px 0;background:#ffffff0c;padding:14px;border-radius:15px;
-}
+.energybox{margin:22px 0}
 .energyhead{display:flex;justify-content:space-between;font-size:13px}
-.energybar{height:10px;background:#ffffff20;border-radius:20px;margin-top:10px;overflow:hidden}
-.energybar div{height:100%;background:linear-gradient(90deg,#4adfff,#8877ff);width:100%}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.stat{
- padding:13px;border-radius:15px;background:#ffffff0c;
- border:1px solid #ffffff12;text-align:center;
-}
-.stat small{color:#a9a2c9}
-.stat b{display:block;margin-top:7px;font-size:19px}
+.energybar{margin-bottom:0}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.stat{text-align:center}
+.stat small{color:#aaa}
+.stat b{display:block;margin-top:7px;font-size:20px}
 .section{display:none;margin-top:18px}
 .section.active{display:block}
-.heading{font-size:19px;font-weight:800;margin:18px 0 12px}
-.card{
- padding:15px;background:#ffffff0c;border:1px solid #ffffff18;
- border-radius:17px;margin-bottom:12px;
-}
+.heading{font-size:20px;font-weight:800;margin:18px 0 12px}
+.card{margin-bottom:12px}
 .item{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .iteminfo{flex:1}
 .iteminfo b{font-size:14px}
-.iteminfo p{font-size:11px;color:#aaa4c9;margin:6px 0}
+.iteminfo p{font-size:11px;color:#aaa;margin:6px 0}
 .price{font-size:12px;color:#ffdf88}
-.action{
- background:linear-gradient(110deg,#7854dd,#a16be9);
- border-radius:11px;padding:11px 13px;font-size:11px;font-weight:bold;
-}
-.action:disabled{opacity:.4;cursor:not-allowed}
+.action{background:linear-gradient(110deg,#7854dd,#a16be9);border-radius:11px;padding:11px 13px;font-size:12px}
+.action:disabled{opacity:.4}
 .tabs{
- position:fixed;bottom:0;left:0;right:0;margin:auto;
- max-width:440px;background:#15112d;
- border-top:1px solid #ffffff20;
+ position:fixed;bottom:0;left:0;right:0;margin:auto;max-width:440px;
+ background:#15112d;border-top:1px solid #ffffff20;
  display:grid;grid-template-columns:repeat(4,1fr);
- padding:10px 5px calc(10px + env(safe-area-inset-bottom));
- z-index:10;
+ padding:10px 5px calc(10px + env(safe-area-inset-bottom));z-index:10
 }
 .tab{background:transparent;color:#928bac;font-size:11px;padding:8px 2px}
 .tab span{display:block;font-size:22px;margin-bottom:5px}
 .tab.active{color:#c8a4ff}
-.float{
- position:fixed;pointer-events:none;z-index:20;
- font-weight:900;color:#ffe18b;font-size:23px;
- animation:fly .8s forwards;
-}
+.float{position:fixed;pointer-events:none;z-index:20;font-weight:900;color:#ffe18b;font-size:23px;animation:fly .8s forwards}
 @keyframes fly{to{transform:translateY(-90px) scale(1.3);opacity:0}}
-.notice{
- text-align:center;color:#d6baff;font-size:12px;
- min-height:22px;margin:8px;
-}
-.dailybig{text-align:center;font-size:60px;padding:15px}
-footer{text-align:center;color:#77718e;font-size:10px;margin:20px}
+.notice{text-align:center;color:#aaa;font-size:11px;margin:12px}
 </style>
 </head>
 <body>
 <div class="app">
+
 <header>
  <div class="logo">NEBULIX</div>
- <div class="tag">ENTER THE COSMOS</div>
+ <div class="tag">COSMIC TAP UNIVERSE</div>
 </header>
 
 <div class="profile">
- <div style="display:flex;align-items:center;gap:10px">
-  <div class="avatar">👾</div>
-  <div><b>Space Explorer</b><br><small>Cosmic player</small></div>
- </div>
- <div class="rank" id="rank">⭐ NOVICE</div>
+ <div><b>👤 Space Player</b><br><small>Galactic explorer</small></div>
+ <div class="rank" id="rank">⭐ Rookie</div>
 </div>
 
 <div class="balance">
- <small>YOUR STAR BALANCE</small>
- <div class="coins"><span id="coins">0</span> <span class="coinicon">🌟</span></div>
- <div class="level">LEVEL <b id="level">1</b> · <span id="xptext">0 / 100 XP</span></div>
+ <small>YOUR COSMIC POINTS</small>
+ <div class="coins">🪙 <span id="coins">0</span></div>
+ <div class="level">LEVEL <span id="level">1</span> · <span id="xptext">0 / 100 XP</span></div>
  <div class="xp"><div id="xpbar"></div></div>
 </div>
 
-<div class="arena" id="arena">
+<div class="arena" id="tapArea">
  <div class="orbit"></div>
- <div class="mascot">👾</div>
+ <img class="mascot"
+ src="Screenshot_20261101_122346_ChatGPT.jpg"
+ alt="NEBULIX sariq maxluqcha">
 </div>
-<div class="taplabel">✦ TAP THE NEBULIX ✦</div>
+<div class="taplabel">✨ MAXLUQCHANI BOS — POINT YIG‘! ✨</div>
 
 <div class="energybox">
  <div class="energyhead">
   <b>⚡ ENERGY</b>
-  <span id="energytext">1000 / 1000</span>
+  <span><span id="energy">1000</span> / 1000</span>
  </div>
  <div class="energybar"><div id="energybar"></div></div>
 </div>
 
 <div class="stats">
- <div class="stat">
-  <small>👆 TAP POWER</small>
-  <b id="power">+1</b>
+ <div class="stat"><small>👆 TAP POWER</small><b id="power">+1</b></div>
+ <div class="stat"><small>🚀 PASSIVE / SEC</small><b id="passive">0</b></div>
+</div>
+
+<div class="section active" id="home">
+ <div class="heading">🌌 Cosmic universe</div>
+ <div class="card">
+  <b>Welcome to NEBULIX!</b>
+  <p class="muted">Har bir bosishda cosmic point yig‘. Yangilanishlarni sotib ol va darajangni oshir!</p>
  </div>
- <div class="stat">
-  <small>🚀 PASSIVE / HOUR</small>
-  <b id="income">0</b>
+ <div class="card">
+  <b>🎁 Daily reward</b>
+  <p class="muted">Har kuni kirib bonus ol.</p>
+  <button class="action" id="dailyBtn">CLAIM +500</button>
  </div>
 </div>
 
-<div class="notice" id="notice"></div>
+<div class="section" id="upgrade">
+ <div class="heading">🚀 Upgrades</div>
+ <div class="card item">
+  <div class="iteminfo"><b>⚡ Strong finger</b><p>Har bosishda ko‘proq point</p><div class="price">Narxi: <span id="powerPrice">100</span></div></div>
+  <button class="action" id="buyPower">BUY</button>
+ </div>
+ <div class="card item">
+  <div class="iteminfo"><b>🛸 Auto collector</b><p>Har soniyada avtomatik point</p><div class="price">Narxi: <span id="autoPrice">250</span></div></div>
+  <button class="action" id="buyAuto">BUY</button>
+ </div>
+ <div class="card item">
+  <div class="iteminfo"><b>🔋 Energy boost</b><p>Energiya hajmini oshiradi</p><div class="price">Narxi: <span id="energyPrice">300</span></div></div>
+  <button class="action" id="buyEnergy">BUY</button>
+ </div>
+</div>
 
-<section class="section active" id="home">
- <div class="heading">⚡ Cosmic Boost</div>
+<div class="section" id="missions">
+ <div class="heading">🎯 Missions</div>
  <div class="card">
-  <div class="item">
-   <div class="iteminfo">
-    <b>🔋 ENERGY REFILL</b>
-    <p>Energiya to‘liq tiklanadi</p>
-    <span class="price">Bepul · 60 soniyada bir marta</span>
-   </div>
-   <button class="action" id="boostbtn" onclick="boost()">BOOST</button>
-  </div>
+  <b>First contact</b><p class="muted">100 marta maxluqchani bos.</p>
+  <div class="price" id="tapMission">0 / 100</div>
  </div>
- <div class="heading">🌌 Your Universe</div>
  <div class="card">
-  <div class="item">
-   <div class="iteminfo">
-    <b>✨ Cosmic status</b>
-    <p>Yulduzlar yig‘ing va darajangizni oshiring.</p>
-   </div>
-   <span>🌠</span>
-  </div>
+  <b>Space collector</b><p class="muted">1000 point yig‘.</p>
+  <div class="price" id="coinMission">0 / 1000</div>
  </div>
-</section>
+ <div class="card">
+  <b>Mission reward</b><p class="muted">Har bir vazifa uchun 200 bonus point.</p>
+  <button class="action" id="missionBtn">CLAIM REWARD</button>
+ </div>
+</div>
 
-<section class="section" id="upgrade">
- <div class="heading">🚀 Upgrade Station</div>
- <div class="card">
-  <div class="item">
-   <div class="iteminfo">
-    <b>👆 Super Tap</b>
-    <p>Har bosishda ko‘proq tanga oling</p>
-    <span class="price" id="tapcost">100 🌟</span>
-   </div>
-   <button class="action" onclick="buy('tap')">UPGRADE</button>
-  </div>
- </div>
- <div class="card">
-  <div class="item">
-   <div class="iteminfo">
-    <b>🪐 Star Generator</b>
-    <p>Vaqt o‘tishi bilan avtomatik daromad</p>
-    <span class="price" id="incomecost">250 🌟</span>
-   </div>
-   <button class="action" onclick="buy('income')">UPGRADE</button>
-  </div>
- </div>
- <div class="card">
-  <div class="item">
-   <div class="iteminfo">
-    <b>🔋 Energy Core</b>
-    <p>Energiya sig‘imini oshirish</p>
-    <span class="price" id="energycost">200 🌟</span>
-   </div>
-   <button class="action" onclick="buy('energy')">UPGRADE</button>
-  </div>
- </div>
-</section>
+<div class="section" id="profile">
+ <div class="heading">👤 Player profile</div>
+ <div class="card"><b>🚀 NEBULIX explorer</b><p class="muted">Your cosmic journey starts here.</p></div>
+ <div class="card">Total taps: <b id="totalTaps">0</b></div>
+ <div class="card">Total points earned: <b id="totalEarned">0</b></div>
+ <div class="card">Current level: <b id="profileLevel">1</b></div>
+ <div class="notice">NEBULIX — virtual game points only. Real money deposits and withdrawals are not available.</div>
+</div>
 
-<section class="section" id="tasks">
- <div class="heading">📋 Missions</div>
- <div class="card">
-  <div class="item">
-   <div class="iteminfo">
-    <b>🌟 First Explorer</b>
-    <p>50 marta tap qiling</p>
-    <span id="task1progress" class="price">0 / 50</span>
-   </div>
-   <button class="action" onclick="claim(1)">CLAIM</button>
-  </div>
- </div>
- <div class="card">
-  <div class="item">
-   <div class="iteminfo">
-    <b>🚀 Space Master</b>
-    <p>250 marta tap qiling</p>
-    <span id="task2progress" class="price">0 / 250</span>
-   </div>
-   <button class="action" onclick="claim(2)">CLAIM</button>
-  </div>
- </div>
- <div class="card">
-  <div class="item">
-   <div class="iteminfo">
-    <b>🪐 Million Star</b>
-    <p>5000 tanga yig‘ing</p>
-    <span id="task3progress" class="price">0 / 5000</span>
-   </div>
-   <button class="action" onclick="claim(3)">CLAIM</button>
-  </div>
- </div>
-</section>
-
-<section class="section" id="daily">
- <div class="heading">🎁 Daily Galaxy Gift</div>
- <div class="card">
-  <div class="dailybig">🎁</div>
-  <h3 style="text-align:center">Daily Reward</h3>
-  <p style="text-align:center;color:#aaa4c9;font-size:13px">
-   Har kuni o‘yinga kirib 500 ta yulduz oling!
-  </p>
-  <button class="action" style="width:100%" id="dailybtn" onclick="daily()">COLLECT 500 🌟</button>
- </div>
-</section>
-
-<footer>NEBULIX © 2026 · VIRTUAL GAME ONLY</footer>
 </div>
 
 <nav class="tabs">
- <button class="tab active" onclick="nav('home',this)"><span>🌌</span>Home</button>
- <button class="tab" onclick="nav('upgrade',this)"><span>🚀</span>Upgrade</button>
- <button class="tab" onclick="nav('tasks',this)"><span>📋</span>Tasks</button>
- <button class="tab" onclick="nav('daily',this)"><span>🎁</span>Daily</button>
+ <button class="tab active" data-tab="home"><span>🏠</span>Home</button>
+ <button class="tab" data-tab="upgrade"><span>🚀</span>Upgrade</button>
+ <button class="tab" data-tab="missions"><span>🎯</span>Missions</button>
+ <button class="tab" data-tab="profile"><span>👤</span>Profile</button>
 </nav>
 
 <script>
-const initial={
- coins:0,energy:1000,maxEnergy:1000,power:1,
- tapCost:100,income:0,incomeCost:250,energyCost:200,
- taps:0,xp:0,level:1,boostTime:0,
- dailyDate:"",claimed:[false,false,false]
+const defaults={
+ coins:0,energy:1000,maxEnergy:1000,power:1,passive:0,
+ level:1,xp:0,taps:0,totalEarned:0,
+ powerPrice:100,autoPrice:250,energyPrice:300,
+ dailyDate:"",missionClaimed:false
 };
-
-let s;
+let game={...defaults};
 try{
- s={...initial,...JSON.parse(localStorage.getItem("nebulixSave"))};
-}catch(e){s={...initial};}
+ const saved=JSON.parse(localStorage.getItem("nebulixSave"));
+ if(saved) game={...defaults,...saved};
+}catch(e){}
 
-function save(){
- localStorage.setItem("nebulixSave",JSON.stringify(s));
-}
-function note(t){
- document.getElementById("notice").textContent=t;
-}
-function rank(){
- if(s.level>=20)return "🌌 GALAXY LEGEND";
- if(s.level>=10)return "💎 STAR MASTER";
- if(s.level>=5)return "🚀 SPACE HERO";
- return "⭐ NOVICE";
+const $=id=>document.getElementById(id);
+function save(){localStorage.setItem("nebulixSave",JSON.stringify(game))}
+function number(n){return Math.floor(n).toLocaleString("en-US")}
+function addPoints(n){
+ game.coins+=n;game.totalEarned+=n;game.xp+=n;
+ while(game.xp>=game.level*100){
+  game.xp-=game.level*100;game.level++;
+ }
 }
 function render(){
- document.getElementById("coins").textContent=Math.floor(s.coins).toLocaleString();
- document.getElementById("energytext").textContent=s.energy+" / "+s.maxEnergy;
- document.getElementById("energybar").style.width=(s.energy/s.maxEnergy*100)+"%";
- document.getElementById("power").textContent="+"+s.power;
- document.getElementById("income").textContent=s.income;
- document.getElementById("level").textContent=s.level;
- document.getElementById("rank").textContent=rank();
- let needed=s.level*100;
- document.getElementById("xptext").textContent=s.xp+" / "+needed+" XP";
- document.getElementById("xpbar").style.width=(s.xp/needed*100)+"%";
- document.getElementById("tapcost").textContent=s.tapCost+" 🌟";
- document.getElementById("incomecost").textContent=s.incomeCost+" 🌟";
- document.getElementById("energycost").textContent=s.energyCost+" 🌟";
- document.getElementById("task1progress").textContent=Math.min(s.taps,50)+" / 50";
- document.getElementById("task2progress").textContent=Math.min(s.taps,250)+" / 250";
- document.getElementById("task3progress").textContent=Math.min(s.coins,5000)+" / 5000";
- [1,2,3].forEach(i=>{
-  const b=document.querySelector('button[onclick="claim('+i+')"]');
-  if(b){
-   b.disabled=s.claimed[i-1];
-   b.textContent=s.claimed[i-1]?"DONE ✓":"CLAIM";
-  }
- });
- let today=new Date().toDateString();
- let done=s.dailyDate===today;
- document.getElementById("dailybtn").disabled=done;
- document.getElementById("dailybtn").textContent=done?"COLLECTED ✓":"COLLECT 500 🌟";
- document.getElementById("boostbtn").disabled=Date.now()<s.boostTime;
- document.getElementById("boostbtn").textContent=Date.now()<s.boostTime?"WAIT":"BOOST";
- save();
+ $("coins").textContent=number(game.coins);
+ $("energy").textContent=number(game.energy);
+ $("energybar").style.width=(game.energy/game.maxEnergy*100)+"%";
+ $("power").textContent="+"+game.power;
+ $("passive").textContent=game.passive;
+ $("level").textContent=game.level;
+ $("xptext").textContent=number(game.xp)+" / "+number(game.level*100)+" XP";
+ $("xpbar").style.width=(game.xp/(game.level*100)*100)+"%";
+ $("rank").textContent=game.level>=10?"💎 Cosmic Master":game.level>=5?"🌟 Explorer":"⭐ Rookie";
+ $("powerPrice").textContent=number(game.powerPrice);
+ $("autoPrice").textContent=number(game.autoPrice);
+ $("energyPrice").textContent=number(game.energyPrice);
+ $("buyPower").disabled=game.coins<game.powerPrice;
+ $("buyAuto").disabled=game.coins<game.autoPrice;
+ $("buyEnergy").disabled=game.coins<game.energyPrice;
+ $("tapMission").textContent=Math.min(game.taps,100)+" / 100";
+ $("coinMission").textContent=Math.min(game.totalEarned,1000)+" / 1000";
+ $("totalTaps").textContent=number(game.taps);
+ $("totalEarned").textContent=number(game.totalEarned);
+ $("profileLevel").textContent=game.level;
+ $("missionBtn").disabled=game.missionClaimed||game.taps<100||game.totalEarned<1000;
+ $("dailyBtn").disabled=game.dailyDate===new Date().toDateString();
 }
-
-function addXP(n){
- s.xp+=n;
- while(s.xp>=s.level*100){
-  s.xp-=s.level*100;
-  s.level++;
-  note("🎉 LEVEL UP! Yangi daraja!");
- }
+function floatText(x,y,text){
+ const el=document.createElement("div");
+ el.className="float";el.textContent=text;
+ el.style.left=x+"px";el.style.top=y+"px";
+ document.body.appendChild(el);
+ setTimeout(()=>el.remove(),850);
 }
-document.getElementById("arena").addEventListener("pointerdown",e=>{
- if(s.energy<s.power){
-  note("⚡ Energiya tiklanishini kuting!");
-  return;
- }
- s.energy-=s.power;
- s.coins+=s.power;
- s.taps++;
- addXP(s.power);
- let f=document.createElement("div");
- f.className="float";
- f.textContent="+"+s.power+" 🌟";
- f.style.left=e.clientX+"px";
- f.style.top=e.clientY+"px";
- document.body.appendChild(f);
- setTimeout(()=>f.remove(),800);
- render();
+$("tapArea").addEventListener("pointerdown",e=>{
+ if(game.energy<1)return;
+ game.energy=Math.max(0,game.energy-1);
+ addPoints(game.power);game.taps++;
+ floatText(e.clientX,e.clientY,"+"+game.power);
+ render();save();
 });
-
-function buy(type){
- let cost,success;
- if(type==="tap"){
-  cost=s.tapCost;
-  if(s.coins<cost)return note("Tanga yetarli emas!");
-  s.coins-=cost;s.power++;s.tapCost=Math.floor(cost*1.6);
-  success="👆 TAP POWER oshdi!";
- }
- if(type==="income"){
-  cost=s.incomeCost;
-  if(s.coins<cost)return note("Tanga yetarli emas!");
-  s.coins-=cost;s.income++;s.incomeCost=Math.floor(cost*1.8);
-  success="🪐 Generator kuchaydi!";
- }
- if(type==="energy"){
-  cost=s.energyCost;
-  if(s.coins<cost)return note("Tanga yetarli emas!");
-  s.coins-=cost;s.maxEnergy+=250;s.energy=s.maxEnergy;
-  s.energyCost=Math.floor(cost*1.7);
-  success="🔋 ENERGY oshdi!";
- }
- note(success);
- render();
-}
-function boost(){
- if(Date.now()<s.boostTime)return note("Boost hali tayyor emas!");
- s.energy=s.maxEnergy;
- s.boostTime=Date.now()+60000;
- note("⚡ ENERGY TO‘LDIRILDI!");
- render();
-}
-function claim(id){
- if(s.claimed[id-1])return;
- let ok=id===1?s.taps>=50:id===2?s.taps>=250:s.coins>=5000;
- if(!ok)return note("Vazifa hali bajarilmadi!");
- let reward=id===1?250:id===2?1000:2000;
- s.coins+=reward;
- s.claimed[id-1]=true;
- note("🎉 "+reward+" tanga mukofot!");
- render();
-}
-function daily(){
- let today=new Date().toDateString();
- if(s.dailyDate===today)return;
- s.coins+=500;
- s.dailyDate=today;
- note("🎁 500 yulduz olindi!");
- render();
-}
-function nav(id,btn){
- document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));
- document.getElementById(id).classList.add("active");
- document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
- btn.classList.add("active");
-}
+$("buyPower").onclick=()=>{
+ if(game.coins<game.powerPrice)return;
+ game.coins-=game.powerPrice;game.power++;
+ game.powerPrice=Math.ceil(game.powerPrice*1.7);
+ render();save();
+};
+$("buyAuto").onclick=()=>{
+ if(game.coins<game.autoPrice)return;
+ game.coins-=game.autoPrice;game.passive+=1;
+ game.autoPrice=Math.ceil(game.autoPrice*1.8);
+ render();save();
+};
+$("buyEnergy").onclick=()=>{
+ if(game.coins<game.energyPrice)return;
+ game.coins-=game.energyPrice;game.maxEnergy+=250;
+ game.energy=game.maxEnergy;
+ game.energyPrice=Math.ceil(game.energyPrice*1.8);
+ render();save();
+};
+$("dailyBtn").onclick=()=>{
+ if(game.dailyDate===new Date().toDateString())return;
+ game.dailyDate=new Date().toDateString();
+ addPoints(500);render();save();
+};
+$("missionBtn").onclick=()=>{
+ if(game.missionClaimed||game.taps<100||game.totalEarned<1000)return;
+ game.missionClaimed=true;addPoints(200);render();save();
+};
+document.querySelectorAll(".tab").forEach(btn=>{
+ btn.onclick=()=>{
+  document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+  btn.classList.add("active");
+  $(btn.dataset.tab).classList.add("active");
+ };
+});
 setInterval(()=>{
- if(s.energy<s.maxEnergy)s.energy=Math.min(s.maxEnergy,s.energy+5);
- if(s.income>0)s.coins+=s.income/3600;
- render();
+ if(game.energy<game.maxEnergy)game.energy=Math.min(game.maxEnergy,game.energy+5);
+ if(game.passive>0)addPoints(game.passive);
+ render();save();
 },1000);
 render();
 </script>
