@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>acazes uz</title>
     
-    <!-- FontAwesome 6 Ikonkalari -->
+    <!-- FontAwesome 6 Pro ikonkalari -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Leaflet CSS (Xarita) -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <!-- Telegram Web App SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     
     <style>
         :root {
@@ -71,7 +71,7 @@
             }
         }
 
-        /* Top Header */
+        /* Header */
         .header {
             padding: 14px 20px;
             display: flex;
@@ -114,20 +114,7 @@
             gap: 5px;
         }
 
-        .icon-btn {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--card-border);
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        /* Screens */
+        /* Ekranlar */
         .screen {
             display: none;
             flex: 1;
@@ -140,255 +127,44 @@
             display: flex;
         }
 
-        /* Onboarding Form */
-        .step-progress {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 20px;
-        }
-
-        .progress-bar {
-            height: 4px;
-            flex: 1;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            width: 16.6%;
-            transition: width 0.4s ease;
-        }
-
-        .onboarding-card {
+        /* Qidiruv Profili */
+        .match-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: var(--radius-lg);
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .step-header-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .step-title {
-            font-size: 19px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-main);
-        }
-
-        .step-title i {
-            color: var(--primary);
-        }
-
-        .step-desc {
-            font-size: 13px;
-            color: var(--text-sub);
-            line-height: 1.4;
-        }
-
-        .grid-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .option-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-md);
-            padding: 14px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .option-card.selected {
-            border-color: var(--primary);
-            background: rgba(139, 92, 246, 0.15);
-        }
-
-        .flag-icon {
-            font-size: 22px;
-        }
-
-        .gender-options {
-            display: flex;
-            gap: 10px;
-        }
-
-        .gender-card {
-            flex: 1;
-            padding: 16px;
-            border-radius: var(--radius-md);
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--card-border);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-        }
-
-        .gender-card i {
-            font-size: 24px;
-            color: var(--text-sub);
-        }
-
-        .gender-card.selected {
-            border-color: var(--accent);
-            background: rgba(236, 72, 153, 0.15);
-        }
-
-        .gender-card.selected i {
-            color: var(--accent);
-        }
-
-        .age-slider-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            padding: 5px 0;
-        }
-
-        .age-display {
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        input[type=range] {
-            width: 100%;
-            accent-color: var(--primary);
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 3px;
-        }
-
-        .photo-upload-box {
-            width: 100%;
-            height: 150px;
-            border: 2px dashed rgba(139, 92, 246, 0.4);
-            border-radius: var(--radius-md);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            cursor: pointer;
-            background: rgba(139, 92, 246, 0.05);
-            position: relative;
             overflow: hidden;
-        }
-
-        .photo-preview {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            display: none;
-        }
-
-        #map {
-            width: 100%;
-            height: 150px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--card-border);
-            z-index: 1;
-        }
-
-        .regions-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            max-height: 150px;
-            overflow-y: auto;
-            padding-right: 4px;
-        }
-
-        .region-chip {
-            padding: 8px 10px;
-            font-size: 11px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--card-border);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            cursor: pointer;
-        }
-
-        .region-chip.selected {
-            background: rgba(139, 92, 246, 0.2);
-            border-color: var(--primary);
-        }
-
-        .btn-primary {
-            width: 100%;
-            padding: 14px;
-            border-radius: var(--radius-md);
-            border: none;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
-            font-weight: 700;
-            font-size: 15px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
-        }
-
-        /* Discover Screen */
-        .search-radar-container {
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            flex: 1;
-            gap: 18px;
-            text-align: center;
         }
 
-        .radar-spinner {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
-            border: 1px solid rgba(139, 92, 246, 0.3);
+        .match-card-image {
+            width: 100%;
+            height: 310px;
+            object-fit: cover;
+        }
+
+        .match-card-info {
+            padding: 18px;
+            background: linear-gradient(180deg, rgba(22, 27, 38, 0.9) 0%, rgba(9, 11, 16, 0.95) 100%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .match-name-age {
+            font-size: 22px;
+            font-weight: 800;
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 8px;
         }
 
-        .radar-icon {
-            font-size: 32px;
-            color: var(--primary);
-        }
-
-        /* Live Stream Screen */
-        .start-live-btn {
-            background: linear-gradient(135deg, #EF4444, #EC4899);
+        .btn-tg-chat {
+            background: linear-gradient(135deg, #0088cc, #00b2ff);
             color: white;
             border: none;
-            padding: 14px;
+            padding: 13px;
             border-radius: var(--radius-md);
             font-weight: 700;
             font-size: 14px;
@@ -397,67 +173,131 @@
             justify-content: center;
             gap: 10px;
             cursor: pointer;
-            margin-bottom: 14px;
-            box-shadow: 0 5px 20px rgba(239, 68, 68, 0.4);
+            text-decoration: none;
+            margin-top: 8px;
+            box-shadow: 0 6px 20px rgba(0, 136, 204, 0.4);
         }
 
-        .live-streams-grid {
+        /* SMS (Yozishmalar) Ekrani */
+        .chat-list {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
-        .live-card {
+        .chat-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: var(--radius-md);
-            padding: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        .chat-item:active {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .chat-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+        }
+
+        .chat-info {
+            flex: 1;
+        }
+
+        .chat-name {
+            font-weight: 700;
+            font-size: 15px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
         }
 
-        .live-user-info {
+        .chat-time {
+            font-size: 11px;
+            color: var(--text-sub);
+        }
+
+        .chat-last-msg {
+            font-size: 13px;
+            color: var(--text-sub);
+            margin-top: 4px;
+        }
+
+        /* Profil Ekrani */
+        .profile-hero {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             gap: 12px;
         }
 
-        .live-avatar {
-            width: 45px;
-            height: 45px;
+        .user-avatar {
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--accent);
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 20px var(--primary-glow);
         }
 
-        .btn-join-live {
-            background: rgba(236, 72, 153, 0.2);
-            border: 1px solid var(--accent);
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
+        .user-name-title {
+            font-size: 20px;
+            font-weight: 800;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
         }
 
-        /* Navbar */
+        .tg-badge {
+            color: #38BDF8;
+            font-size: 18px;
+            filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.5));
+        }
+
+        /* Bank orqali Premium sotib olish tugmasi */
+        .premium-buy-card {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(236, 72, 153, 0.2));
+            border: 1px solid rgba(245, 158, 11, 0.5);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
+            transition: var(--transition);
+        }
+
+        .premium-buy-card:active {
+            transform: scale(0.98);
+        }
+
+        /* Pastki 4 ta Ikonkali Menyu */
         .navbar {
-            display: none;
-            padding: 10px 16px;
+            display: flex;
+            padding: 12px 16px;
             background: rgba(13, 17, 23, 0.95);
             border-top: 1px solid var(--card-border);
             justify-content: space-around;
             align-items: center;
             z-index: 10;
-        }
-
-        .navbar.active {
-            display: flex;
         }
 
         .nav-item {
@@ -467,42 +307,22 @@
             gap: 3px;
             color: var(--text-sub);
             font-size: 10px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
+            transition: var(--transition);
         }
 
         .nav-item i {
-            font-size: 18px;
+            font-size: 20px;
         }
 
         .nav-item.active {
             color: var(--primary);
         }
 
-        .filter-chips {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding-bottom: 8px;
-            margin-bottom: 10px;
-        }
-
-        .filter-chip {
-            padding: 6px 14px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            white-space: nowrap;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--text-sub);
-            cursor: pointer;
-        }
-
-        .filter-chip.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
+        .nav-item.active i {
+            filter: drop-shadow(0 0 10px var(--primary-glow));
+            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -513,272 +333,140 @@
     <!-- Top Header -->
     <header class="header">
         <div class="brand-logo">
-            <i class="fa-solid fa-fire"></i>
+            <i class="fa-solid fa-fire-flame-curved"></i>
             <span>acazes uz</span>
         </div>
         <div class="header-center-info">
             <i class="fa-solid fa-circle" style="font-size: 7px;"></i> Online: 1
         </div>
-        <button class="icon-btn"><i class="fa-solid fa-bell"></i></button>
     </header>
 
-    <!-- ONBOARDING EKRANI -->
-    <div id="screen-onboarding" class="screen active">
-        <div class="step-progress">
-            <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
-        </div>
-
-        <div class="onboarding-card">
-            <!-- 1-qadam -->
-            <div class="step-content" id="step-1">
-                <div class="step-header-group">
-                    <div class="step-title"><i class="fa-solid fa-globe"></i> Tilni tanlang</div>
-                    <p class="step-desc">Ilovadan foydalanish uchun qulay tilni tanlang</p>
+    <!-- 1. QIDIRUV EKRANI -->
+    <div id="screen-discover" class="screen active">
+        <div class="match-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500" class="match-card-image" alt="Profile">
+            <div class="match-card-info">
+                <div class="match-name-age">
+                    <span>Qizaloq, 18</span>
+                    <i class="fa-solid fa-circle-check" style="color: #38BDF8; font-size: 16px;"></i>
                 </div>
-                <div class="grid-options" style="margin-top: 10px;">
-                    <div class="option-card selected" onclick="selectOption(this)"><span class="flag-icon">🇺🇿</span> Uzbek</div>
-                    <div class="option-card" onclick="selectOption(this)"><span class="flag-icon">🇺🇸</span> USA</div>
-                    <div class="option-card" onclick="selectOption(this)"><span class="flag-icon">🇷🇺</span> Russia</div>
-                    <div class="option-card" onclick="selectOption(this)"><span class="flag-icon">🇹🇯</span> Tajik</div>
-                </div>
-            </div>
-
-            <!-- 2-qadam -->
-            <div class="step-content" id="step-2" style="display: none;">
-                <div class="step-header-group">
-                    <div class="step-title"><i class="fa-solid fa-venus-mars"></i> Jinsingiz</div>
-                    <p class="step-desc">O'zingizga mos profil turini tanlang</p>
-                </div>
-                <div class="gender-options" style="margin-top: 10px;">
-                    <div class="gender-card selected" onclick="selectGender(this)">
-                        <i class="fa-solid fa-mars"></i>
-                        <span>Erkak</span>
-                    </div>
-                    <div class="gender-card" onclick="selectGender(this)">
-                        <i class="fa-solid fa-venus"></i>
-                        <span>Ayol</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3-qadam -->
-            <div class="step-content" id="step-3" style="display: none;">
-                <div class="step-header-group">
-                    <div class="step-title"><i class="fa-solid fa-cake-candles"></i> Yoshingiz</div>
-                    <p class="step-desc">Yoshingizni belgilang</p>
-                </div>
-                <div class="age-slider-container">
-                    <div class="age-display" id="age-val">22</div>
-                    <input type="range" min="18" max="60" value="22" id="age-input" oninput="document.getElementById('age-val').innerText = this.value">
-                </div>
-            </div>
-
-            <!-- 4-qadam -->
-            <div class="step-content" id="step-4" style="display: none;">
-                <div class="step-header-group">
-                    <div class="step-title"><i class="fa-solid fa-camera"></i> Rasm yuklang</div>
-                    <p class="step-desc">Galereyangizdan rasmingizni tanlang</p>
-                </div>
-                <div class="photo-upload-box" onclick="document.getElementById('file-input').click()">
-                    <i class="fa-solid fa-cloud-arrow-up" style="font-size: 26px; color: var(--primary);"></i>
-                    <span style="font-size: 11px; color: var(--text-sub);">Rasm tanlash uchun bosing</span>
-                    <img id="preview-img" class="photo-preview" src="" alt="Preview">
-                </div>
-                <input type="file" id="file-input" accept="image/*" style="display: none;" onchange="handleImageUpload(this)">
-            </div>
-
-            <!-- 5-qadam -->
-            <div class="step-content" id="step-5" style="display: none;">
-                <div class="step-header-group">
-                    <div class="step-title"><i class="fa-solid fa-location-dot"></i> Joylashuv</div>
-                    <p class="step-desc">Xaritadan yashash joyingizni belgilang</p>
-                </div>
-                <div id="map"></div>
-            </div>
-
-            <!-- 6-qadam -->
-            <div class="step-content" id="step-6" style="display: none;">
-                <div class="step-header-group">
-                    <div class="step-title"><i class="fa-solid fa-map-location-dot"></i> Qaysi viloyat?</div>
-                    <p class="step-desc">Kimlar bilan yozishmoqchisiz?</p>
-                </div>
-                <div class="regions-grid">
-                    <div class="region-chip selected" onclick="toggleChip(this)"><i class="fa-solid fa-globe"></i> Ommaviy</div>
-                    <div class="region-chip" onclick="toggleChip(this)"><i class="fa-solid fa-city"></i> Toshkent sh.</div>
-                    <div class="region-chip" onclick="toggleChip(this)">Buxoro</div>
-                    <div class="region-chip" onclick="toggleChip(this)">Samarqand</div>
-                    <div class="region-chip" onclick="toggleChip(this)">Andijon</div>
-                    <div class="region-chip" onclick="toggleChip(this)">Farg'ona</div>
-                    <div class="region-chip" onclick="toggleChip(this)">Namangan</div>
-                    <div class="region-chip" onclick="toggleChip(this)">Xorazm</div>
-                </div>
-            </div>
-
-            <button class="btn-primary" onclick="nextStep()">
-                <span>Davom etish</span>
-                <i class="fa-solid fa-arrow-right"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- ASOSIY QIDIRUV EKRANI -->
-    <div id="screen-discover" class="screen">
-        <div class="filter-chips">
-            <div class="filter-chip active"><i class="fa-solid fa-bolt"></i> Ommaviy</div>
-            <div class="filter-chip">Buxoro</div>
-            <div class="filter-chip">Samarqand</div>
-            <div class="filter-chip">Toshkent</div>
-        </div>
-
-        <div class="search-radar-container">
-            <div class="radar-spinner">
-                <i class="fa-solid fa-radar radar-icon"></i>
-            </div>
-            <div>
-                <h3 style="font-size: 17px; font-weight: 700; margin-bottom: 5px;">Foydalanuvchilar qidirilmoqda...</h3>
-                <p style="font-size: 11px; color: var(--text-sub); max-width: 240px; margin: 0 auto;">
-                    Hudud bo'yicha boshqa profillar tez orada chiqadi.
+                <p style="font-size: 13px; color: var(--text-sub);">
+                    <i class="fa-solid fa-location-dot" style="color: var(--accent);"></i> Toshkent shahri
                 </p>
+                <p style="font-size: 13px; color: var(--text-main);">
+                    Salom! Samimiy insonlar bilan tanishaman ✨
+                </p>
+                <a href="https://t.me/dxx_qizaloq" target="_blank" class="btn-tg-chat">
+                    <i class="fa-paper-plane fa-solid"></i>
+                    <span>Telegram Lichka (@dxx_qizaloq)</span>
+                </a>
             </div>
         </div>
     </div>
 
-    <!-- JONLI EFIRLAR EKRANI -->
-    <div id="screen-live" class="screen">
-        <button class="start-live-btn" onclick="startLiveStream()">
-            <i class="fa-solid fa-video"></i> O'z Efiringizni Boshlash
-        </button>
-
-        <h3 style="font-size: 15px; margin-bottom: 10px; font-weight: 700;">Hozirgi faol efirlar:</h3>
-        
-        <div class="live-streams-grid" id="live-list">
-            <div class="live-card">
-                <div class="live-user-info">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="live-avatar" alt="Live">
-                    <div>
-                        <h4 style="font-size: 13px;">Malika, 21</h4>
-                        <p style="font-size: 10px; color: var(--text-sub);"><i class="fa-solid fa-eye" style="color: var(--accent);"></i> 14 tomoshabin</p>
+    <!-- 2. SMS (YOZISHMALAR) EKRANI - Faqat odamlar o'rtasida -->
+    <div id="screen-chats" class="screen">
+        <h2 style="font-size: 18px; margin-bottom: 14px; font-weight: 700;">
+            <i class="fa-solid fa-comments" style="color: var(--primary);"></i> SMS Yozishuvlar
+        </h2>
+        <div class="chat-list">
+            <a href="https://t.me/dxx_qizaloq" target="_blank" class="chat-item">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="chat-avatar" alt="User">
+                <div class="chat-info">
+                    <div class="chat-name">
+                        <span>Qizaloq, 18</span>
+                        <span class="chat-time">Hozir</span>
                     </div>
+                    <div class="chat-last-msg">Salom! Yozishaylikmi? 😊</div>
                 </div>
-                <button class="btn-join-live" onclick="joinLive('Malika')"><i class="fa-solid fa-play"></i> Ko'rish</button>
-            </div>
-
-            <div class="live-card">
-                <div class="live-user-info">
-                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150" class="live-avatar" alt="Live">
-                    <div>
-                        <h4 style="font-size: 13px;">Madina, 23</h4>
-                        <p style="font-size: 10px; color: var(--text-sub);"><i class="fa-solid fa-eye" style="color: var(--accent);"></i> 28 tomoshabin</p>
-                    </div>
-                </div>
-                <button class="btn-join-live" onclick="joinLive('Madina')"><i class="fa-solid fa-play"></i> Ko'rish</button>
-            </div>
+            </a>
         </div>
     </div>
 
-    <!-- PROFIL EKRANI -->
+    <!-- 3. BALANS EKRANI -->
+    <div id="screen-balance" class="screen">
+        <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 24px; text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center;">
+            <i class="fa-solid fa-coins" style="font-size: 46px; color: var(--gold); filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.4));"></i>
+            <span style="font-size: 13px; color: var(--text-sub);">Sizning Balansingiz</span>
+            <div style="font-size: 34px; font-weight: 800; color: var(--gold);">150 Tangalar</div>
+        </div>
+    </div>
+
+    <!-- 4. PROFIL EKRANI -->
     <div id="screen-profile" class="screen">
-        <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 18px; text-align: center;">
-            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200" style="width: 75px; height: 75px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); margin-bottom: 8px;" alt="Avatar">
-            <h3 style="font-size: 17px; font-weight: 700;">Shohruz <i class="fa-solid fa-circle-check" style="color: #38BDF8; font-size: 13px;"></i></h3>
-            <p style="font-size: 11px; color: var(--text-sub); margin-top: 3px;">Paxtakor, Jizzax</p>
+        <div class="profile-hero">
+            <img id="user-avatar-img" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200" class="user-avatar" alt="Avatar">
+            <div class="user-name-title">
+                <span id="user-display-name">Foydalanuvchi</span>
+                <i class="fa-solid fa-circle-check tg-badge" id="tg-verified-icon"></i>
+            </div>
+            <p style="font-size: 13px; color: var(--text-sub);" id="user-nickname-display">@user_shohruz</p>
         </div>
+
+        <!-- Bank Orqali Premium Sotib Olish (Sizning lichkangizga avto-xabar bilan o'tadi) -->
+        <a href="https://t.me/acazes?text=Salom%20menga%20premium%20kerak%20singlm%20qaysi%20bank%20kartaga%20to%CA%BBlov%20qilay" target="_blank" class="premium-buy-card">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <i class="fa-solid fa-crown" style="font-size: 24px; color: var(--gold);"></i>
+                <div>
+                    <h4 style="font-size: 14px; font-weight: 800;">Bank orqali Premium sotib olish</h4>
+                    <p style="font-size: 11px; color: rgba(255,255,255,0.7);">Ko'k belgi va VIP imkoniyatlar</p>
+                </div>
+            </div>
+            <i class="fa-solid fa-arrow-right-to-bracket" style="color: var(--gold); font-size: 16px;"></i>
+        </a>
     </div>
 
-    <!-- PASTKI MENYU -->
-    <nav id="navbar" class="navbar">
+    <!-- PASTKI 4 TA PREMIUM MENYU -->
+    <nav class="navbar">
         <div class="nav-item active" onclick="switchTab('discover', this)">
-            <i class="fa-solid fa-fire"></i>
+            <i class="fa-solid fa-compass"></i>
             <span>Qidiruv</span>
         </div>
-        <div class="nav-item" onclick="switchTab('live', this)">
-            <i class="fa-solid fa-tower-broadcast" style="color: var(--accent);"></i>
-            <span>Efirlar</span>
+        <div class="nav-item" onclick="switchTab('chats', this)">
+            <i class="fa-solid fa-comments"></i>
+            <span>SMS</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('balance', this)">
+            <i class="fa-solid fa-wallet"></i>
+            <span>Balans</span>
         </div>
         <div class="nav-item" onclick="switchTab('profile', this)">
-            <i class="fa-solid fa-user"></i>
+            <i class="fa-solid fa-circle-user"></i>
             <span>Profil</span>
         </div>
     </nav>
 </div>
 
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
 <script>
-    let currentStep = 1;
-    const totalSteps = 6;
-    let mapInitialized = false;
+    // Telegram WebApp API orqali foydalanuvchi ma'lumotlarini olish
+    const tg = window.Telegram?.WebApp;
+    if (tg) {
+        tg.ready();
+        tg.expand();
 
-    function nextStep() {
-        if(currentStep < totalSteps) {
-            document.getElementById(`step-${currentStep}`).style.display = 'none';
-            currentStep++;
-            document.getElementById(`step-${currentStep}`).style.display = 'block';
+        const user = tg.initDataUnsafe?.user;
+        if (user) {
+            document.getElementById('user-display-name').innerText = user.first_name + (user.last_name ? ' ' + user.last_name : '');
             
-            document.getElementById('progress').style.width = `${(currentStep / totalSteps) * 100}%`;
-
-            if(currentStep === 5 && !mapInitialized) {
-                setTimeout(initMap, 200);
-                mapInitialized = true;
+            let username = user.username || 'user_acazes';
+            if(username.length < 7) {
+                username = username + '_vip';
             }
-        } else {
-            document.getElementById('screen-onboarding').classList.remove('active');
-            document.getElementById('screen-discover').classList.add('active');
-            document.getElementById('navbar').classList.add('active');
+            document.getElementById('user-nickname-display').innerText = '@' + username;
+
+            if (user.photo_url) {
+                document.getElementById('user-avatar-img').src = user.photo_url;
+            }
         }
     }
 
-    function selectOption(el) {
-        el.parentElement.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-        el.classList.add('selected');
-    }
-
-    function selectGender(el) {
-        el.parentElement.querySelectorAll('.gender-card').forEach(c => c.classList.remove('selected'));
-        el.classList.add('selected');
-    }
-
-    function toggleChip(el) {
-        el.classList.toggle('selected');
-    }
-
-    function handleImageUpload(input) {
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = document.getElementById('preview-img');
-                img.src = e.target.result;
-                img.style.display = 'block';
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    function initMap() {
-        const map = L.map('map').setView([41.2995, 69.2401], 10);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }).addTo(map);
-        L.marker([41.2995, 69.2401], {draggable: true}).addTo(map);
-    }
-
+    // Menyu almashtirish
     function switchTab(screenId, navEl) {
-        document.querySelectorAll('.screen').forEach(s => s.classList.clear('active'));
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
         
         document.getElementById(`screen-${screenId}`).classList.add('active');
         navEl.classList.add('active');
-    }
-
-    function startLiveStream() {
-        // Bepul Jitsi Meet orqali kamera va efir ochish funksiyasi
-        const roomName = "acazes_live_" + Math.floor(Math.random() * 10000);
-        window.open(`https://meet.jit.si/${roomName}`, '_blank');
-    }
-
-    function joinLive(name) {
-        alert(`${name} ning jonli efiriga ulanilmoqda...`);
-        const roomName = "acazes_live_room";
-        window.open(`https://meet.jit.si/${roomName}`, '_blank');
     }
 </script>
 </body>
