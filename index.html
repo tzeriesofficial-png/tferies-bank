@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>acazes uz</title>
     
-    <!-- FontAwesome 6 Pro ikonkalari -->
+    <!-- FontAwesome 6 Pro -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS (Xarita) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
     <!-- Telegram Web App SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     
@@ -127,7 +129,190 @@
             display: flex;
         }
 
-        /* Qidiruv Profili va Tugmalar */
+        /* ONBOARDING STYLES */
+        .step-progress {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .progress-bar {
+            height: 4px;
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 16.6%;
+            transition: width 0.4s ease;
+        }
+
+        .onboarding-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .step-header-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-main);
+        }
+
+        .step-title i { color: var(--primary); }
+        .step-desc { font-size: 12px; color: var(--text-sub); }
+
+        .grid-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .option-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .option-card.selected {
+            border-color: var(--primary);
+            background: rgba(139, 92, 246, 0.15);
+        }
+
+        .gender-options { display: flex; gap: 10px; }
+        .gender-card {
+            flex: 1;
+            padding: 16px;
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .gender-card.selected {
+            border-color: var(--accent);
+            background: rgba(236, 72, 153, 0.15);
+        }
+
+        .age-slider-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .age-display { font-size: 32px; font-weight: 800; color: var(--primary); }
+
+        input[type=range] {
+            width: 100%;
+            accent-color: var(--primary);
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .photo-upload-box {
+            width: 100%;
+            height: 140px;
+            border: 2px dashed rgba(139, 92, 246, 0.4);
+            border-radius: var(--radius-md);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            background: rgba(139, 92, 246, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-preview {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+
+        #map {
+            width: 100%;
+            height: 140px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--card-border);
+            z-index: 1;
+        }
+
+        .regions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            max-height: 140px;
+            overflow-y: auto;
+        }
+
+        .region-chip {
+            padding: 8px;
+            font-size: 11px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .region-chip.selected {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: var(--primary);
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            border-radius: var(--radius-md);
+            border: none;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        /* QIDIRUV CARD */
         .match-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -152,14 +337,6 @@
             gap: 8px;
         }
 
-        .match-name-age {
-            font-size: 20px;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
         .btn-tg-chat {
             background: linear-gradient(135deg, #0088cc, #00b2ff);
             color: white;
@@ -174,49 +351,15 @@
             gap: 8px;
             cursor: pointer;
             text-decoration: none;
-            box-shadow: 0 5px 15px rgba(0, 136, 204, 0.4);
         }
 
-        /* ❤️ Yurakcha va ❌ Yoqmadi Tugmalari */
-        .action-buttons-grid {
-            display: flex;
-            gap: 10px;
-            margin-top: 4px;
+        .action-buttons-grid { display: flex; gap: 10px; margin-top: 4px; }
+        .btn-action-dislike, .btn-action-like {
+            flex: 1; padding: 10px; border-radius: var(--radius-md); font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
         }
+        .btn-action-dislike { background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); color: #EF4444; }
+        .btn-action-like { background: rgba(236, 72, 153, 0.2); border: 1px solid rgba(236, 72, 153, 0.5); color: var(--accent); }
 
-        .btn-action-dislike {
-            flex: 1;
-            background: rgba(239, 68, 68, 0.15);
-            border: 1px solid rgba(239, 68, 68, 0.4);
-            color: #EF4444;
-            padding: 10px;
-            border-radius: var(--radius-md);
-            font-weight: 700;
-            font-size: 14px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        .btn-action-like {
-            flex: 1;
-            background: rgba(236, 72, 153, 0.2);
-            border: 1px solid rgba(236, 72, 153, 0.5);
-            color: var(--accent);
-            padding: 10px;
-            border-radius: var(--radius-md);
-            font-weight: 700;
-            font-size: 14px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        /* Ariza Topshirish Premium Kartochkasi */
         .ariza-card {
             background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
             border: 1px solid rgba(139, 92, 246, 0.5);
@@ -226,183 +369,33 @@
             align-items: center;
             justify-content: space-between;
             margin-top: 12px;
-            cursor: pointer;
             text-decoration: none;
             color: white;
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
         }
 
-        /* SHORTS EKRANI STYLES */
-        .shorts-container {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
+        /* SHORTS STYLES */
+        .shorts-container { display: flex; flex-direction: column; gap: 16px; }
+        .short-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); overflow: hidden; }
+        .short-player { width: 100%; height: 380px; border: none; }
 
-        .short-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-        }
+        /* SMS STYLES */
+        .chat-list { display: flex; flex-direction: column; gap: 10px; }
+        .chat-item { display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md); text-decoration: none; color: var(--text-main); }
+        .chat-avatar { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
 
-        .short-player {
-            width: 100%;
-            height: 380px;
-            border: none;
-        }
+        /* PROFIL STYLES */
+        .profile-hero { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .user-avatar { width: 85px; height: 85px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary); }
 
-        /* SMS Ekrani */
-        .chat-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+        .premium-buy-card { background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(236, 72, 153, 0.2)); border: 1px solid rgba(245, 158, 11, 0.5); border-radius: var(--radius-md); padding: 14px; display: flex; align-items: center; justify-content: space-between; margin-top: 12px; text-decoration: none; color: white; }
+        .humo-buy-card { background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(139, 92, 246, 0.2)); border: 1px solid rgba(56, 189, 248, 0.5); border-radius: var(--radius-md); padding: 14px; display: flex; align-items: center; justify-content: space-between; margin-top: 10px; text-decoration: none; color: white; }
 
-        .chat-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            text-decoration: none;
-            color: var(--text-main);
-        }
-
-        .chat-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--primary);
-        }
-
-        .chat-info {
-            flex: 1;
-        }
-
-        .chat-name {
-            font-weight: 700;
-            font-size: 15px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .chat-time {
-            font-size: 11px;
-            color: var(--text-sub);
-        }
-
-        .chat-last-msg {
-            font-size: 13px;
-            color: var(--text-sub);
-            margin-top: 4px;
-        }
-
-        /* Profil Ekrani */
-        .profile-hero {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .user-avatar {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--primary);
-            box-shadow: 0 0 20px var(--primary-glow);
-        }
-
-        .user-name-title {
-            font-size: 20px;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .tg-badge {
-            color: #38BDF8;
-            font-size: 18px;
-            filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.5));
-        }
-
-        .premium-buy-card {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(236, 72, 153, 0.2));
-            border: 1px solid rgba(245, 158, 11, 0.5);
-            border-radius: var(--radius-md);
-            padding: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 14px;
-            cursor: pointer;
-            text-decoration: none;
-            color: white;
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
-        }
-
-        .humo-buy-card {
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(139, 92, 246, 0.2));
-            border: 1px solid rgba(56, 189, 248, 0.5);
-            border-radius: var(--radius-md);
-            padding: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 10px;
-            cursor: pointer;
-            text-decoration: none;
-            color: white;
-            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.2);
-        }
-
-        /* Pastki Menyu (5 ta Premium Ikonka) */
-        .navbar {
-            display: flex;
-            padding: 10px 12px;
-            background: rgba(13, 17, 23, 0.95);
-            border-top: 1px solid var(--card-border);
-            justify-content: space-around;
-            align-items: center;
-            z-index: 10;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-            color: var(--text-sub);
-            font-size: 9px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .nav-item i {
-            font-size: 18px;
-        }
-
-        .nav-item.active {
-            color: var(--primary);
-        }
-
-        .nav-item.active i {
-            filter: drop-shadow(0 0 10px var(--primary-glow));
-            transform: translateY(-2px);
-        }
+        /* NAVBAR */
+        .navbar { display: none; padding: 10px 12px; background: rgba(13, 17, 23, 0.95); border-top: 1px solid var(--card-border); justify-content: space-around; align-items: center; z-index: 10; }
+        .navbar.active { display: flex; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; color: var(--text-sub); font-size: 9px; font-weight: 700; cursor: pointer; }
+        .nav-item i { font-size: 18px; }
+        .nav-item.active { color: var(--primary); }
     </style>
 </head>
 <body>
@@ -420,14 +413,102 @@
         </div>
     </header>
 
+    <!-- 0. ONBOARDING EKRANI -->
+    <div id="screen-onboarding" class="screen">
+        <div class="step-progress">
+            <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+        </div>
+
+        <div class="onboarding-card">
+            <!-- 1-qadam: Til -->
+            <div class="step-content" id="step-1">
+                <div class="step-header-group">
+                    <div class="step-title"><i class="fa-solid fa-globe"></i> Tilni tanlang</div>
+                    <p class="step-desc">Qaysi tilda muloqot qilmoqchisiz?</p>
+                </div>
+                <div class="grid-options" style="margin-top: 10px;">
+                    <div class="option-card selected" onclick="selectOption(this)">🇺🇿 Uzbek</div>
+                    <div class="option-card" onclick="selectOption(this)">🇺🇸 English</div>
+                    <div class="option-card" onclick="selectOption(this)">🇷🇺 Русский</div>
+                </div>
+            </div>
+
+            <!-- 2-qadam: Jins -->
+            <div class="step-content" id="step-2" style="display: none;">
+                <div class="step-header-group">
+                    <div class="step-title"><i class="fa-solid fa-venus-mars"></i> Jinsingiz</div>
+                    <p class="step-desc">Jinsingizni belgilang</p>
+                </div>
+                <div class="gender-options" style="margin-top: 10px;">
+                    <div class="gender-card selected" onclick="selectGender(this)"><i class="fa-solid fa-mars" style="font-size: 22px;"></i> Erkak</div>
+                    <div class="gender-card" onclick="selectGender(this)"><i class="fa-solid fa-venus" style="font-size: 22px;"></i> Ayol</div>
+                </div>
+            </div>
+
+            <!-- 3-qadam: Yil/Yosh -->
+            <div class="step-content" id="step-3" style="display: none;">
+                <div class="step-header-group">
+                    <div class="step-title"><i class="fa-solid fa-cake-candles"></i> Yoshingiz</div>
+                    <p class="step-desc">Tug'ilgan yilingizga mos yoshingiz</p>
+                </div>
+                <div class="age-slider-container">
+                    <div class="age-display" id="age-val">20</div>
+                    <input type="range" min="18" max="60" value="20" id="age-input" oninput="document.getElementById('age-val').innerText = this.value">
+                </div>
+            </div>
+
+            <!-- 4-qadam: Rasm -->
+            <div class="step-content" id="step-4" style="display: none;">
+                <div class="step-header-group">
+                    <div class="step-title"><i class="fa-solid fa-camera"></i> Rasm yuklang</div>
+                    <p class="step-desc">Profil uchun rasmingizni tanlang</p>
+                </div>
+                <div class="photo-upload-box" onclick="document.getElementById('file-input').click()">
+                    <i class="fa-solid fa-cloud-arrow-up" style="font-size: 24px; color: var(--primary);"></i>
+                    <span style="font-size: 11px; color: var(--text-sub);">Rasm tanlash</span>
+                    <img id="preview-img" class="photo-preview" src="" alt="Preview">
+                </div>
+                <input type="file" id="file-input" accept="image/*" style="display: none;" onchange="handleImageUpload(this)">
+            </div>
+
+            <!-- 5-qadam: Google Harita / Joylashuv -->
+            <div class="step-content" id="step-5" style="display: none;">
+                <div class="step-header-group">
+                    <div class="step-title"><i class="fa-solid fa-location-dot"></i> Joylashuv</div>
+                    <p class="step-desc">Xaritadan joylashuvingizni belgilang</p>
+                </div>
+                <div id="map"></div>
+            </div>
+
+            <!-- 6-qadam: Qaysi viloyat -->
+            <div class="step-content" id="step-6" style="display: none;">
+                <div class="step-header-group">
+                    <div class="step-title"><i class="fa-solid fa-map-location-dot"></i> Viloyat</div>
+                    <p class="step-desc">Yashaydigan viloyatingizni tanlang</p>
+                </div>
+                <div class="regions-grid" style="margin-top: 10px;">
+                    <div class="region-chip selected" onclick="toggleChip(this)">Toshkent</div>
+                    <div class="region-chip" onclick="toggleChip(this)">Samarqand</div>
+                    <div class="region-chip" onclick="toggleChip(this)">Buxoro</div>
+                    <div class="region-chip" onclick="toggleChip(this)">Andijon</div>
+                    <div class="region-chip" onclick="toggleChip(this)">Farg'ona</div>
+                    <div class="region-chip" onclick="toggleChip(this)">Jizzax</div>
+                </div>
+            </div>
+
+            <button class="btn-primary" onclick="nextStep()">
+                <span>Davom etish</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
     <!-- 1. QIDIRUV EKRANI -->
-    <div id="screen-discover" class="screen active">
+    <div id="screen-discover" class="screen">
         <div class="match-card">
-            <!-- Telegram profilga ulangan dinamik rasm -->
             <img id="profile-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500" class="match-card-image" alt="Profile">
-            
             <div class="match-card-info">
-                <div class="match-name-age">
+                <div style="font-size: 20px; font-weight: 800; display: flex; align-items: center; gap: 8px;">
                     <span id="profile-name-age">dxx_qizaloq, 18</span>
                     <i class="fa-solid fa-circle-check" style="color: #38BDF8; font-size: 16px;"></i>
                 </div>
@@ -443,22 +524,16 @@
                     <span id="profile-tg-text">Telegram Lichka (@dxx_qizaloq)</span>
                 </a>
 
-                <!-- ❤️ Yurakcha va ❌ Yoqmadi Tugmalari -->
                 <div class="action-buttons-grid">
-                    <button class="btn-action-dislike" onclick="nextProfile()">
-                        <i class="fa-solid fa-xmark"></i> Yoqmadi
-                    </button>
-                    <button class="btn-action-like" onclick="nextProfile()">
-                        <i class="fa-solid fa-heart"></i> Yoqdi
-                    </button>
+                    <button class="btn-action-dislike" onclick="nextProfile()"><i class="fa-solid fa-xmark"></i> Yoqmadi</button>
+                    <button class="btn-action-like" onclick="nextProfile()"><i class="fa-solid fa-heart"></i> Yoqdi</button>
                 </div>
             </div>
         </div>
 
-        <!-- Ariza Topshirish Bo'limi -->
         <a href="https://t.me/acazes?text=Ariza%20topshirmoqchiman%20rasmimni%20shu%20joyga%20chiqaring" target="_blank" class="ariza-card">
             <div style="display: flex; align-items: center; gap: 12px;">
-                <i class="fa-solid fa-user-plus" style="font-size: 22px; color: var(--accent);"></i>
+                <i class="fa-solid fa-user-plus" style="font-size: 20px; color: var(--accent);"></i>
                 <div>
                     <h4 style="font-size: 13px; font-weight: 800;">O'z profilingizni chiqarish</h4>
                     <p style="font-size: 11px; color: rgba(255,255,255,0.7);">Admin lichkasiga ariza topshirish</p>
@@ -468,10 +543,10 @@
         </a>
     </div>
 
-    <!-- 2. SHORTS EKRANI (YouTube Shorts Videolari) -->
+    <!-- 2. SHORTS EKRANI -->
     <div id="screen-shorts" class="screen">
-        <h2 style="font-size: 18px; margin-bottom: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px;">
-            <i class="fa-solid fa-bolt" style="color: var(--accent);"></i> YouTube Shorts
+        <h2 style="font-size: 17px; margin-bottom: 12px; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-bolt" style="color: var(--accent);"></i> Shorts Videolar
         </h2>
         <div class="shorts-container">
             <div class="short-card"><iframe class="short-player" src="https://www.youtube.com/embed/-Ot5uFaf2ec" allowfullscreen></iframe></div>
@@ -489,28 +564,22 @@
 
     <!-- 3. SMS EKRANI -->
     <div id="screen-chats" class="screen">
-        <h2 style="font-size: 18px; margin-bottom: 14px; font-weight: 700;">
+        <h2 style="font-size: 17px; margin-bottom: 12px; font-weight: 700;">
             <i class="fa-solid fa-comments" style="color: var(--primary);"></i> SMS Yozishuvlar
         </h2>
         <div class="chat-list">
             <a href="https://t.me/dxx_qizaloq" target="_blank" class="chat-item">
                 <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="chat-avatar" alt="User">
-                <div class="chat-info">
-                    <div class="chat-name">
-                        <span>dxx_qizaloq, 18</span>
-                        <span class="chat-time">Hozir</span>
-                    </div>
-                    <div class="chat-last-msg">Salom! Yozishaylikmi? 😊</div>
+                <div>
+                    <div style="font-weight: 700; font-size: 14px;">dxx_qizaloq, 18</div>
+                    <div style="font-size: 12px; color: var(--text-sub);">Salom! Yozishaylikmi? 😊</div>
                 </div>
             </a>
             <a href="https://t.me/To1rov_creator" target="_blank" class="chat-item">
                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" class="chat-avatar" alt="User">
-                <div class="chat-info">
-                    <div class="chat-name">
-                        <span>To1rov_creator, 60</span>
-                        <span class="chat-time">Kecha</span>
-                    </div>
-                    <div class="chat-last-msg">Salomatmisiz?</div>
+                <div>
+                    <div style="font-weight: 700; font-size: 14px;">To1rov_creator, 60</div>
+                    <div style="font-size: 12px; color: var(--text-sub);">Salomatmisiz?</div>
                 </div>
             </a>
         </div>
@@ -519,9 +588,9 @@
     <!-- 4. BALANS EKRANI -->
     <div id="screen-balance" class="screen">
         <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 24px; text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center;">
-            <i class="fa-solid fa-coins" style="font-size: 46px; color: var(--gold); filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.4));"></i>
+            <i class="fa-solid fa-coins" style="font-size: 42px; color: var(--gold);"></i>
             <span style="font-size: 13px; color: var(--text-sub);">Sizning Balansingiz</span>
-            <div style="font-size: 34px; font-weight: 800; color: var(--gold);">150 Tangalar</div>
+            <div style="font-size: 32px; font-weight: 800; color: var(--gold);">150 Tangalar</div>
         </div>
     </div>
 
@@ -529,38 +598,38 @@
     <div id="screen-profile" class="screen">
         <div class="profile-hero">
             <img id="user-avatar-img" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200" class="user-avatar" alt="Avatar">
-            <div class="user-name-title">
+            <div style="font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 6px;">
                 <span id="user-display-name">Foydalanuvchi</span>
-                <i class="fa-solid fa-circle-check tg-badge"></i>
+                <i class="fa-solid fa-circle-check" style="color: #38BDF8;"></i>
             </div>
-            <p style="font-size: 13px; color: var(--text-sub);" id="user-nickname-display">@user_shohruz</p>
+            <p style="font-size: 12px; color: var(--text-sub);" id="user-nickname-display">@user_shohruz</p>
         </div>
 
         <a href="https://t.me/acazes?text=Salom%20menga%20premium%20kerak%20singlm%20qaysi%20bank%20kartaga%20to%CA%BBlov%20qilay" target="_blank" class="premium-buy-card">
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <i class="fa-solid fa-crown" style="font-size: 24px; color: var(--gold);"></i>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fa-solid fa-crown" style="font-size: 22px; color: var(--gold);"></i>
                 <div>
-                    <h4 style="font-size: 14px; font-weight: 800;">Bank orqali Premium sotib olish</h4>
+                    <h4 style="font-size: 13px; font-weight: 800;">Bank orqali Premium sotib olish</h4>
                     <p style="font-size: 11px; color: rgba(255,255,255,0.7);">Ko'k belgi va VIP imkoniyatlar</p>
                 </div>
             </div>
-            <i class="fa-solid fa-arrow-right-to-bracket" style="color: var(--gold); font-size: 16px;"></i>
+            <i class="fa-solid fa-arrow-right-to-bracket" style="color: var(--gold);"></i>
         </a>
 
         <a href="#" target="_blank" class="humo-buy-card" id="humo-link-btn">
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <i class="fa-solid fa-credit-card" style="font-size: 24px; color: #38BDF8;"></i>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fa-solid fa-credit-card" style="font-size: 22px; color: #38BDF8;"></i>
                 <div>
-                    <h4 style="font-size: 14px; font-weight: 800;">Humo orqali to'ldirish</h4>
+                    <h4 style="font-size: 13px; font-weight: 800;">Humo orqali to'ldirish</h4>
                     <p style="font-size: 11px; color: rgba(255,255,255,0.7);">9860 6067 5865 7385 • Turayeva Sabina</p>
                 </div>
             </div>
-            <i class="fa-solid fa-arrow-right-to-bracket" style="color: #38BDF8; font-size: 16px;"></i>
+            <i class="fa-solid fa-arrow-right-to-bracket" style="color: #38BDF8;"></i>
         </a>
     </div>
 
-    <!-- PASTKI 5 TA PREMIUM MENYU -->
-    <nav class="navbar">
+    <!-- PASTKI MENYU -->
+    <nav class="navbar" id="main-navbar">
         <div class="nav-item active" onclick="switchTab('discover', this)">
             <i class="fa-solid fa-compass"></i>
             <span>Qidiruv</span>
@@ -584,14 +653,87 @@
     </nav>
 </div>
 
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
 <script>
-    // Dinamik profillar bazasi (Telegram akkaunt rasmlari real vaqtda yangilanadi)
+    let currentStep = 1;
+    const totalSteps = 6;
+    let mapInitialized = false;
+
+    // Dastur ochilganda foydalanuvchi allaqachon so'rovnomadan o'tganligini tekshirish
+    window.addEventListener('DOMContentLoaded', () => {
+        const isRegistered = localStorage.getItem('acazes_registered');
+        if (isRegistered === 'true') {
+            // Agar oldin to'ldirgan bo'lsa, so'rovnomani o'tkazib yuborish
+            document.getElementById('screen-onboarding').classList.remove('active');
+            document.getElementById('screen-discover').classList.add('active');
+            document.getElementById('main-navbar').classList.add('active');
+        } else {
+            // Agar birinchi marta kirayotgan bo'lsa, 1-qadamni ko'rsatish
+            document.getElementById('screen-onboarding').classList.add('active');
+        }
+    });
+
+    function nextStep() {
+        if(currentStep < totalSteps) {
+            document.getElementById(`step-${currentStep}`).style.display = 'none';
+            currentStep++;
+            document.getElementById(`step-${currentStep}`).style.display = 'block';
+            document.getElementById('progress').style.width = `${(currentStep / totalSteps) * 100}%`;
+
+            if(currentStep === 5 && !mapInitialized) {
+                setTimeout(initMap, 200);
+                mapInitialized = true;
+            }
+        } else {
+            // So'rovnoma oxirida xotiraga saqlab qo'yish
+            localStorage.setItem('acazes_registered', 'true');
+
+            document.getElementById('screen-onboarding').classList.remove('active');
+            document.getElementById('screen-discover').classList.add('active');
+            document.getElementById('main-navbar').classList.add('active');
+        }
+    }
+
+    function selectOption(el) {
+        el.parentElement.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+    }
+
+    function selectGender(el) {
+        el.parentElement.querySelectorAll('.gender-card').forEach(c => c.classList.remove('selected'));
+        el.classList.add('selected');
+    }
+
+    function toggleChip(el) {
+        el.classList.toggle('selected');
+    }
+
+    function handleImageUpload(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = document.getElementById('preview-img');
+                img.src = e.target.result;
+                img.style.display = 'block';
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function initMap() {
+        const map = L.map('map').setView([41.2995, 69.2401], 10);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }).addTo(map);
+        L.marker([41.2995, 69.2401], {draggable: true}).addTo(map);
+    }
+
+    // Profillar bazasi
     const profiles = [
         {
             name: "dxx_qizaloq",
             age: 18,
             getImg: function() {
-                // Agar Telegram WebApp orqali ochilsa va foydalanuvchi foto yuklagan bo'lsa shuni oladi, aks holda default rasm
                 return window.Telegram?.WebApp?.initDataUnsafe?.user?.photo_url || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500";
             },
             bio: "Salom! Samimiy insonlar bilan tanishaman ✨",
@@ -637,7 +779,7 @@
         updateProfileCard();
     }
 
-    // Telegram WebApp orqali foydalanuvchi profilini sozlash
+    // Telegram SDK
     const tg = window.Telegram?.WebApp;
     if (tg) {
         tg.ready();
@@ -654,16 +796,14 @@
         }
     }
 
-    // Humo tugmasi avto-xabari
+    // Humo link
     const humoText = "Salom! Humo orqali hisobni to'ldirmoqchiman:\nKarta: 9860 6067 5865 7385\nEgasi: Turayeva Sabina\nSana: 05.28";
     document.getElementById('humo-link-btn').href = `https://t.me/acazes?text=${encodeURIComponent(humoText)}`;
 
-    // Online soni har 30 sekundda o'zgarishi
-    function updateOnlineCount() {
-        const randomCount = Math.floor(Math.random() * 8) + 20;
-        document.getElementById('online-count').innerText = randomCount;
-    }
-    setInterval(updateOnlineCount, 30000);
+    // Online
+    setInterval(() => {
+        document.getElementById('online-count').innerText = Math.floor(Math.random() * 8) + 20;
+    }, 30000);
 
     // Menyu almashtirish
     function switchTab(screenId, navEl) {
