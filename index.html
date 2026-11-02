@@ -119,7 +119,7 @@
             display: none;
             flex: 1;
             overflow-y: auto;
-            padding: 20px;
+            padding: 16px;
             flex-direction: column;
         }
 
@@ -127,7 +127,7 @@
             display: flex;
         }
 
-        /* Qidiruv Profili */
+        /* Qidiruv Profili va Tugmalar */
         .match-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -140,20 +140,20 @@
 
         .match-card-image {
             width: 100%;
-            height: 310px;
+            height: 270px;
             object-fit: cover;
         }
 
         .match-card-info {
-            padding: 18px;
+            padding: 16px;
             background: linear-gradient(180deg, rgba(22, 27, 38, 0.9) 0%, rgba(9, 11, 16, 0.95) 100%);
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
 
         .match-name-age {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 800;
             display: flex;
             align-items: center;
@@ -164,21 +164,82 @@
             background: linear-gradient(135deg, #0088cc, #00b2ff);
             color: white;
             border: none;
-            padding: 13px;
+            padding: 12px;
             border-radius: var(--radius-md);
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             cursor: pointer;
             text-decoration: none;
-            margin-top: 8px;
-            box-shadow: 0 6px 20px rgba(0, 136, 204, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 136, 204, 0.4);
         }
 
-        /* SMS (Yozishmalar) Ekrani */
+        /* ❤️ Yurakcha va ❌ Yoqmadi Tugmalari */
+        .action-buttons-grid {
+            display: flex;
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .btn-action-dislike {
+            flex: 1;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #EF4444;
+            padding: 10px;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        .btn-action-like {
+            flex: 1;
+            background: rgba(236, 72, 153, 0.2);
+            border: 1px solid rgba(236, 72, 153, 0.5);
+            color: var(--accent);
+            padding: 10px;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        /* Ariza Topshirish Premium Kartochkasi */
+        .ariza-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+            border: 1px solid rgba(139, 92, 246, 0.5);
+            border-radius: var(--radius-md);
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
+            transition: var(--transition);
+        }
+
+        .ariza-card:active {
+            transform: scale(0.98);
+        }
+
+        /* SMS Ekrani */
         .chat-list {
             display: flex;
             flex-direction: column;
@@ -196,11 +257,6 @@
             cursor: pointer;
             text-decoration: none;
             color: var(--text-main);
-            transition: var(--transition);
-        }
-
-        .chat-item:active {
-            background: rgba(255, 255, 255, 0.08);
         }
 
         .chat-avatar {
@@ -268,7 +324,7 @@
             filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.5));
         }
 
-        /* Bank orqali Premium sotib olish tugmasi */
+        /* Premium va Humo Tugmalari */
         .premium-buy-card {
             background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(236, 72, 153, 0.2));
             border: 1px solid rgba(245, 158, 11, 0.5);
@@ -277,19 +333,29 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-top: 16px;
+            margin-top: 14px;
             cursor: pointer;
             text-decoration: none;
             color: white;
             box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
-            transition: var(--transition);
         }
 
-        .premium-buy-card:active {
-            transform: scale(0.98);
+        .humo-buy-card {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(139, 92, 246, 0.2));
+            border: 1px solid rgba(56, 189, 248, 0.5);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.2);
         }
 
-        /* Pastki 4 ta Ikonkali Menyu */
+        /* Pastki Menyu */
         .navbar {
             display: flex;
             padding: 12px 16px;
@@ -337,17 +403,19 @@
             <span>acazes uz</span>
         </div>
         <div class="header-center-info">
-            <i class="fa-solid fa-circle" style="font-size: 7px;"></i> Online: 1
+            <i class="fa-solid fa-circle" style="font-size: 7px;"></i> <span id="online-count">24</span> Online
         </div>
     </header>
 
     <!-- 1. QIDIRUV EKRANI -->
     <div id="screen-discover" class="screen active">
         <div class="match-card">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500" class="match-card-image" alt="Profile">
+            <!-- Telegram profilga ulangan dinamik rasm -->
+            <img id="discover-profile-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500" class="match-card-image" alt="Profile">
+            
             <div class="match-card-info">
                 <div class="match-name-age">
-                    <span>Qizaloq, 18</span>
+                    <span id="discover-name-age">Qizaloq, 18</span>
                     <i class="fa-solid fa-circle-check" style="color: #38BDF8; font-size: 16px;"></i>
                 </div>
                 <p style="font-size: 13px; color: var(--text-sub);">
@@ -356,25 +424,49 @@
                 <p style="font-size: 13px; color: var(--text-main);">
                     Salom! Samimiy insonlar bilan tanishaman ✨
                 </p>
+
+                <!-- Telegram Lichkaga O'tish -->
                 <a href="https://t.me/dxx_qizaloq" target="_blank" class="btn-tg-chat">
                     <i class="fa-paper-plane fa-solid"></i>
                     <span>Telegram Lichka (@dxx_qizaloq)</span>
                 </a>
+
+                <!-- ❤️ Yurakcha va ❌ Yoqmadi Tugmalari -->
+                <div class="action-buttons-grid">
+                    <button class="btn-action-dislike" onclick="alert('Keyingi profilga o\'tilmoqda...')">
+                        <i class="fa-solid fa-xmark"></i> Yoqmadi
+                    </button>
+                    <button class="btn-action-like" onclick="alert('Yoqdi! ❤️')">
+                        <i class="fa-solid fa-heart"></i> Yoqdi
+                    </button>
+                </div>
             </div>
         </div>
+
+        <!-- Ariza Topshirish Bo'limi (O'zini shu joyga chiqarish uchun) -->
+        <a href="https://t.me/acazes?text=Ariza%20topshirmoqchiman%20rasmimni%20shu%20joyga%20chiqaring" target="_blank" class="ariza-card">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <i class="fa-solid fa-user-plus" style="font-size: 22px; color: var(--accent);"></i>
+                <div>
+                    <h4 style="font-size: 13px; font-weight: 800;">O'z profilingizni chiqarish</h4>
+                    <p style="font-size: 11px; color: rgba(255,255,255,0.7);">Admin lichkasiga ariza topshirish</p>
+                </div>
+            </div>
+            <i class="fa-solid fa-arrow-right-to-bracket" style="color: var(--accent); font-size: 15px;"></i>
+        </a>
     </div>
 
-    <!-- 2. SMS (YOZISHMALAR) EKRANI - Faqat odamlar o'rtasida -->
+    <!-- 2. SMS EKRANI -->
     <div id="screen-chats" class="screen">
         <h2 style="font-size: 18px; margin-bottom: 14px; font-weight: 700;">
             <i class="fa-solid fa-comments" style="color: var(--primary);"></i> SMS Yozishuvlar
         </h2>
         <div class="chat-list">
             <a href="https://t.me/dxx_qizaloq" target="_blank" class="chat-item">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="chat-avatar" alt="User">
+                <img id="chat-item-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="chat-avatar" alt="User">
                 <div class="chat-info">
                     <div class="chat-name">
-                        <span>Qizaloq, 18</span>
+                        <span id="chat-item-name">Qizaloq, 18</span>
                         <span class="chat-time">Hozir</span>
                     </div>
                     <div class="chat-last-msg">Salom! Yozishaylikmi? 😊</div>
@@ -403,7 +495,7 @@
             <p style="font-size: 13px; color: var(--text-sub);" id="user-nickname-display">@user_shohruz</p>
         </div>
 
-        <!-- Bank Orqali Premium Sotib Olish (Sizning lichkangizga avto-xabar bilan o'tadi) -->
+        <!-- Bank orqali Premium sotib olish -->
         <a href="https://t.me/acazes?text=Salom%20menga%20premium%20kerak%20singlm%20qaysi%20bank%20kartaga%20to%CA%BBlov%20qilay" target="_blank" class="premium-buy-card">
             <div style="display: flex; align-items: center; gap: 12px;">
                 <i class="fa-solid fa-crown" style="font-size: 24px; color: var(--gold);"></i>
@@ -414,9 +506,21 @@
             </div>
             <i class="fa-solid fa-arrow-right-to-bracket" style="color: var(--gold); font-size: 16px;"></i>
         </a>
+
+        <!-- Humo orqali to'ldirish -->
+        <a href="#" target="_blank" class="humo-buy-card" id="humo-link-btn">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <i class="fa-solid fa-credit-card" style="font-size: 24px; color: #38BDF8;"></i>
+                <div>
+                    <h4 style="font-size: 14px; font-weight: 800;">Humo orqali to'ldirish</h4>
+                    <p style="font-size: 11px; color: rgba(255,255,255,0.7);">9860 6067 5865 7385 • Turayeva Sabina</p>
+                </div>
+            </div>
+            <i class="fa-solid fa-arrow-right-to-bracket" style="color: #38BDF8; font-size: 16px;"></i>
+        </a>
     </div>
 
-    <!-- PASTKI 4 TA PREMIUM MENYU -->
+    <!-- PASTKI MENYU -->
     <nav class="navbar">
         <div class="nav-item active" onclick="switchTab('discover', this)">
             <i class="fa-solid fa-compass"></i>
@@ -438,7 +542,7 @@
 </div>
 
 <script>
-    // Telegram WebApp API orqali foydalanuvchi ma'lumotlarini olish
+    // Telegram WebApp API orqali akkaunt rasmini va ma'lumotlarini ulash
     const tg = window.Telegram?.WebApp;
     if (tg) {
         tg.ready();
@@ -446,7 +550,10 @@
 
         const user = tg.initDataUnsafe?.user;
         if (user) {
-            document.getElementById('user-display-name').innerText = user.first_name + (user.last_name ? ' ' + user.last_name : '');
+            const fullName = user.first_name + (user.last_name ? ' ' + user.last_name : '');
+            
+            // Profil ekrani ma'lumotlari
+            document.getElementById('user-display-name').innerText = fullName;
             
             let username = user.username || 'user_acazes';
             if(username.length < 7) {
@@ -454,11 +561,27 @@
             }
             document.getElementById('user-nickname-display').innerText = '@' + username;
 
+            // Telegram akkaunt rasmini barcha joyga (Profil, Qidiruv, SMS) ulash
             if (user.photo_url) {
                 document.getElementById('user-avatar-img').src = user.photo_url;
+                document.getElementById('discover-profile-img').src = user.photo_url;
+                document.getElementById('chat-item-img').src = user.photo_url;
+                document.getElementById('discover-name-age').innerText = fullName + ", 18";
+                document.getElementById('chat-item-name').innerText = fullName + ", 18";
             }
         }
     }
+
+    // Humo tugmasi avto-xabari
+    const humoText = "Salom! Humo orqali hisobni to'ldirmoqchiman:\nKarta: 9860 6067 5865 7385\nEgasi: Turayeva Sabina\nSana: 05.28";
+    document.getElementById('humo-link-btn').href = `https://t.me/acazes?text=${encodeURIComponent(humoText)}`;
+
+    // Har 30 sekundda Online sonini 20 dan yuqori va o'zgarib turadigan qilish
+    function updateOnlineCount() {
+        const randomCount = Math.floor(Math.random() * 8) + 20;
+        document.getElementById('online-count').innerText = randomCount;
+    }
+    setInterval(updateOnlineCount, 30000);
 
     // Menyu almashtirish
     function switchTab(screenId, navEl) {
