@@ -198,7 +198,6 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
-            transition: var(--transition);
         }
 
         .btn-action-like {
@@ -215,7 +214,6 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
-            transition: var(--transition);
         }
 
         /* Ariza Topshirish Premium Kartochkasi */
@@ -232,11 +230,27 @@
             text-decoration: none;
             color: white;
             box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
-            transition: var(--transition);
         }
 
-        .ariza-card:active {
-            transform: scale(0.98);
+        /* SHORTS EKRANI STYLES */
+        .shorts-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .short-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .short-player {
+            width: 100%;
+            height: 380px;
+            border: none;
         }
 
         /* SMS Ekrani */
@@ -324,7 +338,6 @@
             filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.5));
         }
 
-        /* Premium va Humo Tugmalari */
         .premium-buy-card {
             background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(236, 72, 153, 0.2));
             border: 1px solid rgba(245, 158, 11, 0.5);
@@ -355,10 +368,10 @@
             box-shadow: 0 8px 25px rgba(56, 189, 248, 0.2);
         }
 
-        /* Pastki Menyu */
+        /* Pastki Menyu (5 ta Premium Ikonka) */
         .navbar {
             display: flex;
-            padding: 12px 16px;
+            padding: 10px 12px;
             background: rgba(13, 17, 23, 0.95);
             border-top: 1px solid var(--card-border);
             justify-content: space-around;
@@ -372,14 +385,14 @@
             align-items: center;
             gap: 3px;
             color: var(--text-sub);
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 700;
             cursor: pointer;
             transition: var(--transition);
         }
 
         .nav-item i {
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .nav-item.active {
@@ -411,39 +424,38 @@
     <div id="screen-discover" class="screen active">
         <div class="match-card">
             <!-- Telegram profilga ulangan dinamik rasm -->
-            <img id="discover-profile-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500" class="match-card-image" alt="Profile">
+            <img id="profile-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500" class="match-card-image" alt="Profile">
             
             <div class="match-card-info">
                 <div class="match-name-age">
-                    <span id="discover-name-age">Qizaloq, 18</span>
+                    <span id="profile-name-age">dxx_qizaloq, 18</span>
                     <i class="fa-solid fa-circle-check" style="color: #38BDF8; font-size: 16px;"></i>
                 </div>
                 <p style="font-size: 13px; color: var(--text-sub);">
                     <i class="fa-solid fa-location-dot" style="color: var(--accent);"></i> Toshkent shahri
                 </p>
-                <p style="font-size: 13px; color: var(--text-main);">
+                <p style="font-size: 13px; color: var(--text-main);" id="profile-bio">
                     Salom! Samimiy insonlar bilan tanishaman ✨
                 </p>
 
-                <!-- Telegram Lichkaga O'tish -->
-                <a href="https://t.me/dxx_qizaloq" target="_blank" class="btn-tg-chat">
+                <a id="profile-tg-btn" href="https://t.me/dxx_qizaloq" target="_blank" class="btn-tg-chat">
                     <i class="fa-paper-plane fa-solid"></i>
-                    <span>Telegram Lichka (@dxx_qizaloq)</span>
+                    <span id="profile-tg-text">Telegram Lichka (@dxx_qizaloq)</span>
                 </a>
 
                 <!-- ❤️ Yurakcha va ❌ Yoqmadi Tugmalari -->
                 <div class="action-buttons-grid">
-                    <button class="btn-action-dislike" onclick="alert('Keyingi profilga o\'tilmoqda...')">
+                    <button class="btn-action-dislike" onclick="nextProfile()">
                         <i class="fa-solid fa-xmark"></i> Yoqmadi
                     </button>
-                    <button class="btn-action-like" onclick="alert('Yoqdi! ❤️')">
+                    <button class="btn-action-like" onclick="nextProfile()">
                         <i class="fa-solid fa-heart"></i> Yoqdi
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Ariza Topshirish Bo'limi (O'zini shu joyga chiqarish uchun) -->
+        <!-- Ariza Topshirish Bo'limi -->
         <a href="https://t.me/acazes?text=Ariza%20topshirmoqchiman%20rasmimni%20shu%20joyga%20chiqaring" target="_blank" class="ariza-card">
             <div style="display: flex; align-items: center; gap: 12px;">
                 <i class="fa-solid fa-user-plus" style="font-size: 22px; color: var(--accent);"></i>
@@ -456,26 +468,55 @@
         </a>
     </div>
 
-    <!-- 2. SMS EKRANI -->
+    <!-- 2. SHORTS EKRANI (YouTube Shorts Videolari) -->
+    <div id="screen-shorts" class="screen">
+        <h2 style="font-size: 18px; margin-bottom: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-bolt" style="color: var(--accent);"></i> YouTube Shorts
+        </h2>
+        <div class="shorts-container">
+            <div class="short-card"><iframe class="short-player" src="https://www.youtube.com/embed/-Ot5uFaf2ec" allowfullscreen></iframe></div>
+            <div class="short-card"><iframe class="short-player" src="https://www.youtube.com/embed/V3T61RysFfI" allowfullscreen></iframe></div>
+            <div class="short-card"><iframe class="short-player" src="https://www.youtube.com/embed/PY21q3X0tzg" allowfullscreen></iframe></div>
+            <div class="short-card"><iframe class="short-player" src="https://www.youtube.com/embed/0KiFl14Dgvk" allowfullscreen></iframe></div>
+            <div class="short-card"><iframe class="short-player" src="https://www.youtube.com/embed/VZDdPTSUgPo" allowfullscreen></iframe></div>
+            <div class="short-card"><iframe class="short-player" src="https://www.youtube.com/embed/G_KB7L8Gz7k" allowfullscreen></iframe></div>
+            <div class="short-card"><iframe class="short-player" src="https://www.youtube.com/embed/G_6Si4vHZFQ" allowfullscreen></iframe></div>
+            <div class="short-card"><iframe class="short-player" src="https://www.youtube.com/embed/0ttklEixvcY" allowfullscreen></iframe></div>
+            <div class="short-card"><iframe class="short-player" src="https://www.youtube.com/embed/ICOfiXQunT8" allowfullscreen></iframe></div>
+            <div class="short-card"><iframe class="short-player" src="https://www.youtube.com/embed/sm6nznHJc-s" allowfullscreen></iframe></div>
+        </div>
+    </div>
+
+    <!-- 3. SMS EKRANI -->
     <div id="screen-chats" class="screen">
         <h2 style="font-size: 18px; margin-bottom: 14px; font-weight: 700;">
             <i class="fa-solid fa-comments" style="color: var(--primary);"></i> SMS Yozishuvlar
         </h2>
         <div class="chat-list">
             <a href="https://t.me/dxx_qizaloq" target="_blank" class="chat-item">
-                <img id="chat-item-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="chat-avatar" alt="User">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="chat-avatar" alt="User">
                 <div class="chat-info">
                     <div class="chat-name">
-                        <span id="chat-item-name">Qizaloq, 18</span>
+                        <span>dxx_qizaloq, 18</span>
                         <span class="chat-time">Hozir</span>
                     </div>
                     <div class="chat-last-msg">Salom! Yozishaylikmi? 😊</div>
                 </div>
             </a>
+            <a href="https://t.me/To1rov_creator" target="_blank" class="chat-item">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" class="chat-avatar" alt="User">
+                <div class="chat-info">
+                    <div class="chat-name">
+                        <span>To1rov_creator, 60</span>
+                        <span class="chat-time">Kecha</span>
+                    </div>
+                    <div class="chat-last-msg">Salomatmisiz?</div>
+                </div>
+            </a>
         </div>
     </div>
 
-    <!-- 3. BALANS EKRANI -->
+    <!-- 4. BALANS EKRANI -->
     <div id="screen-balance" class="screen">
         <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 24px; text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center;">
             <i class="fa-solid fa-coins" style="font-size: 46px; color: var(--gold); filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.4));"></i>
@@ -484,18 +525,17 @@
         </div>
     </div>
 
-    <!-- 4. PROFIL EKRANI -->
+    <!-- 5. PROFIL EKRANI -->
     <div id="screen-profile" class="screen">
         <div class="profile-hero">
             <img id="user-avatar-img" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200" class="user-avatar" alt="Avatar">
             <div class="user-name-title">
                 <span id="user-display-name">Foydalanuvchi</span>
-                <i class="fa-solid fa-circle-check tg-badge" id="tg-verified-icon"></i>
+                <i class="fa-solid fa-circle-check tg-badge"></i>
             </div>
             <p style="font-size: 13px; color: var(--text-sub);" id="user-nickname-display">@user_shohruz</p>
         </div>
 
-        <!-- Bank orqali Premium sotib olish -->
         <a href="https://t.me/acazes?text=Salom%20menga%20premium%20kerak%20singlm%20qaysi%20bank%20kartaga%20to%CA%BBlov%20qilay" target="_blank" class="premium-buy-card">
             <div style="display: flex; align-items: center; gap: 12px;">
                 <i class="fa-solid fa-crown" style="font-size: 24px; color: var(--gold);"></i>
@@ -507,7 +547,6 @@
             <i class="fa-solid fa-arrow-right-to-bracket" style="color: var(--gold); font-size: 16px;"></i>
         </a>
 
-        <!-- Humo orqali to'ldirish -->
         <a href="#" target="_blank" class="humo-buy-card" id="humo-link-btn">
             <div style="display: flex; align-items: center; gap: 12px;">
                 <i class="fa-solid fa-credit-card" style="font-size: 24px; color: #38BDF8;"></i>
@@ -520,11 +559,15 @@
         </a>
     </div>
 
-    <!-- PASTKI MENYU -->
+    <!-- PASTKI 5 TA PREMIUM MENYU -->
     <nav class="navbar">
         <div class="nav-item active" onclick="switchTab('discover', this)">
             <i class="fa-solid fa-compass"></i>
             <span>Qidiruv</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('shorts', this)">
+            <i class="fa-solid fa-play-circle" style="color: var(--accent);"></i>
+            <span>Shorts</span>
         </div>
         <div class="nav-item" onclick="switchTab('chats', this)">
             <i class="fa-solid fa-comments"></i>
@@ -542,32 +585,71 @@
 </div>
 
 <script>
-    // Telegram WebApp API orqali akkaunt rasmini va ma'lumotlarini ulash
+    // Dinamik profillar bazasi (Telegram akkaunt rasmlari real vaqtda yangilanadi)
+    const profiles = [
+        {
+            name: "dxx_qizaloq",
+            age: 18,
+            getImg: function() {
+                // Agar Telegram WebApp orqali ochilsa va foydalanuvchi foto yuklagan bo'lsa shuni oladi, aks holda default rasm
+                return window.Telegram?.WebApp?.initDataUnsafe?.user?.photo_url || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500";
+            },
+            bio: "Salom! Samimiy insonlar bilan tanishaman ✨",
+            link: "https://t.me/dxx_qizaloq",
+            linkText: "Telegram Lichka (@dxx_qizaloq)"
+        },
+        {
+            name: "To1rov_creator",
+            age: 60,
+            getImg: function() {
+                return "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500";
+            },
+            bio: "Assalomu alaykum! Yoshlarga tajriba ulashamiz.",
+            link: "https://t.me/To1rov_creator",
+            linkText: "Telegram Lichka (@To1rov_creator)"
+        }
+    ];
+
+    let currentProfileIndex = 0;
+
+    function updateProfileCard() {
+        const p = profiles[currentProfileIndex];
+        document.getElementById('profile-img').src = p.getImg();
+        document.getElementById('profile-name-age').innerText = `${p.name}, ${p.age}`;
+        document.getElementById('profile-bio').innerText = p.bio;
+        
+        const btn = document.getElementById('profile-tg-btn');
+        btn.href = p.link;
+        document.getElementById('profile-tg-text').innerText = p.linkText;
+
+        if(currentProfileIndex >= 2) {
+            btn.onclick = function(e) {
+                e.preventDefault();
+                alert("Kechirasiz, bu foydalanuvchining lichkasi tozalangan yoki botdan chiqib ketgan!");
+            };
+        } else {
+            btn.onclick = null;
+        }
+    }
+
+    function nextProfile() {
+        currentProfileIndex = (currentProfileIndex + 1) % profiles.length;
+        updateProfileCard();
+    }
+
+    // Telegram WebApp orqali foydalanuvchi profilini sozlash
     const tg = window.Telegram?.WebApp;
     if (tg) {
         tg.ready();
         tg.expand();
-
         const user = tg.initDataUnsafe?.user;
         if (user) {
-            const fullName = user.first_name + (user.last_name ? ' ' + user.last_name : '');
-            
-            // Profil ekrani ma'lumotlari
-            document.getElementById('user-display-name').innerText = fullName;
-            
+            document.getElementById('user-display-name').innerText = user.first_name + (user.last_name ? ' ' + user.last_name : '');
             let username = user.username || 'user_acazes';
-            if(username.length < 7) {
-                username = username + '_vip';
-            }
+            if(username.length < 7) username += '_vip';
             document.getElementById('user-nickname-display').innerText = '@' + username;
-
-            // Telegram akkaunt rasmini barcha joyga (Profil, Qidiruv, SMS) ulash
             if (user.photo_url) {
                 document.getElementById('user-avatar-img').src = user.photo_url;
-                document.getElementById('discover-profile-img').src = user.photo_url;
-                document.getElementById('chat-item-img').src = user.photo_url;
-                document.getElementById('discover-name-age').innerText = fullName + ", 18";
-                document.getElementById('chat-item-name').innerText = fullName + ", 18";
             }
         }
     }
@@ -576,7 +658,7 @@
     const humoText = "Salom! Humo orqali hisobni to'ldirmoqchiman:\nKarta: 9860 6067 5865 7385\nEgasi: Turayeva Sabina\nSana: 05.28";
     document.getElementById('humo-link-btn').href = `https://t.me/acazes?text=${encodeURIComponent(humoText)}`;
 
-    // Har 30 sekundda Online sonini 20 dan yuqori va o'zgarib turadigan qilish
+    // Online soni har 30 sekundda o'zgarishi
     function updateOnlineCount() {
         const randomCount = Math.floor(Math.random() * 8) + 20;
         document.getElementById('online-count').innerText = randomCount;
@@ -587,10 +669,11 @@
     function switchTab(screenId, navEl) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-        
         document.getElementById(`screen-${screenId}`).classList.add('active');
         navEl.classList.add('active');
     }
+
+    updateProfileCard();
 </script>
 </body>
 </html>
