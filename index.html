@@ -4,161 +4,385 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090b16">
 <title>MONETA BANK</title>
+
 <style>
 *{box-sizing:border-box}
 body{
- margin:0;background:#100d20;color:#fff;
- font-family:Arial,sans-serif;padding:18px;
+  margin:0;
+  padding:0 14px 100px;
+  background:#090b16;
+  color:#fff;
+  font-family:Arial,sans-serif;
 }
-.container{max-width:520px;margin:auto}
-.header{
- text-align:center;padding:24px 15px;
- border:1px solid #5b4a83;border-radius:22px;
- background:linear-gradient(135deg,#24183e,#111b31);
- box-shadow:0 8px 30px #0007;
+.app{max-width:480px;margin:auto}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:22px 3px;
 }
-.logo{font-size:27px;font-weight:900;letter-spacing:2px}
-.logo span{color:#e6c477}
-.subtitle{color:#bcb3d0;font-size:12px;margin-top:7px}
+.logo{font-size:22px;font-weight:900;letter-spacing:1px}
+.logo span{color:#b58aff}
+.avatar{
+  width:43px;height:43px;border-radius:15px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,#a66cff,#35205f);
+  font-weight:900;font-size:18px;
+}
 .balance{
- margin-top:18px;padding:18px;border-radius:18px;
- background:linear-gradient(120deg,#30234c,#183b42);
- border:1px solid #6e5a91;
+  padding:23px;
+  border-radius:23px;
+  background:linear-gradient(120deg,#382365,#171b38 70%,#28345e);
+  border:1px solid #68509b;
+  box-shadow:0 12px 35px #0008;
 }
-.balance small{color:#c8c0d9}
-.amount{font-size:30px;font-weight:bold;margin-top:8px}
-.section-title{margin:27px 2px 15px;font-size:18px}
-.apps{
- display:grid;grid-template-columns:1fr 1fr;gap:13px;
+.small{font-size:12px;color:#d0c2ed}
+.amount{font-size:31px;font-weight:900;margin:12px 0}
+.balance p{font-size:12px;color:#d4c9e8;margin:0}
+.notice{
+  margin:17px 0;
+  padding:16px;
+  border-radius:17px;
+  background:#171a2b;
+  border:1px solid #292e48;
+  color:#c7c9dc;
+  font-size:13px;
+  line-height:1.6;
 }
-.app{
- background:linear-gradient(145deg,#211a35,#17182b);
- border:1px solid #40345d;border-radius:19px;
- padding:13px;text-align:center;cursor:pointer;
- transition:.2s;
+.filters{
+  display:flex;gap:9px;overflow-x:auto;
+  padding:2px 0 15px;
 }
-.app:active{transform:scale(.97)}
-.app img{
- width:100%;height:125px;object-fit:contain;
- border-radius:14px;background:#fff;
+.chip{
+  white-space:nowrap;
+  border:1px solid #34364e;
+  background:#171a2b;
+  color:#bfc0d1;
+  padding:10px 16px;
+  border-radius:30px;
+  font-size:12px;
 }
-.placeholder{
- width:100%;height:125px;border-radius:14px;
- display:flex;align-items:center;justify-content:center;
- font-size:38px;font-weight:900;color:white;
- background:linear-gradient(135deg,#4c3974,#17616a);
+.chip.active{
+  background:#7951c7;color:white;
+  border-color:#a27ae8;
 }
-.app h3{font-size:15px;margin:12px 0 7px}
-.price{font-size:12px;color:#e6c477}
-.info{
- margin-top:22px;padding:18px;border-radius:18px;
- background:#1b1830;border:1px solid #44385f;
- text-align:center;line-height:1.7;
+.search{
+  width:100%;
+  padding:15px;
+  border:1px solid #30344d;
+  border-radius:14px;
+  background:#15182a;
+  color:white;
+  outline:none;
+  font-size:13px;
 }
-.info a{color:#e6c477;text-decoration:none;font-weight:bold}
-.footer{text-align:center;color:#827a98;font-size:11px;margin:24px 0 10px}
+.search::placeholder{color:#85899f}
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:25px 2px 15px;
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+.section-title span{
+  color:#a9a1c2;
+  font-size:11px;
+  font-weight:400;
+  letter-spacing:0;
+}
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
+}
+.card{
+  min-width:0;
+  padding:11px;
+  border-radius:20px;
+  border:1px solid #30334b;
+  background:linear-gradient(145deg,#20233a,#111422);
+  cursor:pointer;
+  transition:.2s;
+}
+.card:active{transform:scale(.97)}
+.image{
+  height:125px;
+  width:100%;
+  overflow:hidden;
+  border-radius:15px;
+  background:#25213e;
+  display:grid;
+  place-items:center;
+}
+.image img{
+  width:100%;height:100%;
+  object-fit:contain;
+  padding:12px;
+}
+.name{
+  font-size:15px;
+  font-weight:900;
+  margin:13px 2px 6px;
+}
+.desc{
+  font-size:11px;
+  color:#a9acc1;
+  min-height:27px;
+  line-height:1.4;
+}
+.price{
+  font-size:11px;
+  color:#c9aaff;
+  margin:9px 2px;
+}
+.choose{
+  display:block;
+  text-align:center;
+  padding:12px 5px;
+  border-radius:12px;
+  background:linear-gradient(90deg,#a06bfa,#6841c5);
+  font-size:12px;
+  font-weight:900;
+  margin-top:10px;
+}
+.empty{
+  display:none;
+  text-align:center;
+  color:#a9acc1;
+  padding:30px 10px;
+  font-size:13px;
+}
+.bottom{
+  position:fixed;
+  bottom:0;left:0;right:0;
+  background:#101323f5;
+  border-top:1px solid #292d42;
+  display:flex;
+  justify-content:space-around;
+  padding:13px 4px 16px;
+  backdrop-filter:blur(15px);
+  z-index:3;
+}
+.nav{
+  flex:1;
+  text-align:center;
+  color:#999db5;
+  font-size:10px;
+  cursor:pointer;
+}
+.nav b{
+  display:block;
+  font-size:19px;
+  margin-bottom:5px;
+}
+.nav.active{color:#b99aff}
+.modal-bg{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000c;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:10;
+}
 .modal{
- display:none;position:fixed;inset:0;background:#000b;
- align-items:center;justify-content:center;padding:20px;
+  width:100%;
+  max-width:390px;
+  background:linear-gradient(145deg,#24203d,#141727);
+  border:1px solid #66508e;
+  border-radius:23px;
+  padding:23px;
+  box-shadow:0 20px 60px #000b;
+  animation:appear .2s ease;
 }
-.modal-box{
- width:100%;max-width:380px;background:#211a35;
- border:1px solid #8068a8;border-radius:20px;padding:22px;
- text-align:center;
+@keyframes appear{
+  from{transform:translateY(15px);opacity:0}
+  to{transform:translateY(0);opacity:1}
 }
-.modal-box h2{margin-top:0}
-.modal-box p{color:#c8c0d9;line-height:1.6}
+.modal h2{margin:0 0 12px;font-size:21px}
+.modal p{
+  color:#c2c3d5;
+  font-size:13px;
+  line-height:1.7;
+}
+.admin{
+  margin:17px 0;
+  padding:15px;
+  border-radius:14px;
+  background:#30264b;
+  color:#d5baff;
+  text-align:center;
+  font-size:15px;
+  font-weight:900;
+}
+.admin a{color:inherit;text-decoration:none}
 .close{
- border:0;background:#e6c477;color:#211a35;
- padding:12px 25px;border-radius:12px;font-weight:bold;
+  width:100%;
+  border:0;
+  padding:14px;
+  border-radius:13px;
+  background:linear-gradient(90deg,#9d6af2,#6842c4);
+  color:white;
+  font-weight:900;
+  font-size:14px;
+  cursor:pointer;
+}
+footer{
+  text-align:center;
+  color:#777b91;
+  font-size:10px;
+  padding:25px 0;
 }
 </style>
 </head>
+
 <body>
-<div class="container">
+<div class="app">
 
- <header class="header">
+<header>
   <div class="logo">MONETA <span>BANK</span></div>
-  <div class="subtitle">DIGITAL SERVICES CENTER</div>
-  <div class="balance">
-   <small>HISOBDAGI BALANS</small>
-   <div class="amount">0 so‘m</div>
-  </div>
- </header>
+  <div class="avatar">M</div>
+</header>
 
- <h2 class="section-title">Ilovalar katalogi</h2>
+<section class="balance">
+  <div class="small">SIZNING HISOBINGIZ</div>
+  <div class="amount">0 so‘m</div>
+  <p>MONETA BANK — xizmatlar markazi</p>
+</section>
 
- <div class="apps">
-  <div class="app" onclick="showInfo('Poppo Live')">
-   <img src="images/poppo.png" alt="Poppo Live"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-   <div class="placeholder" style="display:none">P</div>
-   <h3>Poppo Live</h3>
-   <div class="price">Narx: Admin bilan aniqlanadi</div>
-  </div>
-
-  <div class="app" onclick="showInfo('Yalla Live')">
-   <img src="images/yalla.png" alt="Yalla Live"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-   <div class="placeholder" style="display:none">Y</div>
-   <h3>Yalla Live</h3>
-   <div class="price">Narx: Admin bilan aniqlanadi</div>
-  </div>
-
-  <div class="app" onclick="showInfo('WePlay')">
-   <img src="images/weplay.png" alt="WePlay"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-   <div class="placeholder" style="display:none">W</div>
-   <h3>WePlay</h3>
-   <div class="price">Narx: Admin bilan aniqlanadi</div>
-  </div>
-
-  <div class="app" onclick="showInfo('BIGO LIVE')">
-   <img src="images/bigo.png" alt="BIGO LIVE"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-   <div class="placeholder" style="display:none">B</div>
-   <h3>BIGO LIVE</h3>
-   <div class="price">Narx: Admin bilan aniqlanadi</div>
-  </div>
-
-  <div class="app" onclick="showInfo('Likee')">
-   <img src="images/likee.png" alt="Likee"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-   <div class="placeholder" style="display:none">L</div>
-   <h3>Likee</h3>
-   <div class="price">Narx: Admin bilan aniqlanadi</div>
-  </div>
- </div>
-
- <div class="info">
-  <b>MONETA BANK</b><br>
-  Ma’lumot uchun admin:<br>
-  <a href="https://t.me/monetabankuz">@monetabankuz</a>
- </div>
-
- <div class="footer">MONETA BANK © 2026</div>
+<div class="notice">
+  O‘zingizga kerakli xizmatni tanlang va uning narxi hamda buyurtma tafsilotlari haqida admin orqali ma’lumot oling.
 </div>
 
-<div class="modal" id="modal" onclick="closeOutside(event)">
- <div class="modal-box">
-  <h2 id="modalTitle"></h2>
-  <p>Ushbu ilova haqida ma’lumot bo‘limi.</p>
-  <p>Narxlar va xizmatlar hozircha faqat ma’lumot uchun ko‘rsatiladi. Bu sahifa to‘lov yoki buyurtma qabul qilmaydi.</p>
-  <button class="close" onclick="closeModal()">Yopish</button>
- </div>
+<div class="filters">
+  <button class="chip active" onclick="filterCards('all',this)">Barchasi</button>
+  <button class="chip" onclick="filterCards('live',this)">Jonli efir</button>
+</div>
+
+<input
+  class="search"
+  id="search"
+  type="search"
+  placeholder="Xizmat nomini qidiring..."
+  oninput="searchCards()"
+>
+
+<div class="section-title">
+  XIZMATLAR <span id="count">2 ta xizmat</span>
+</div>
+
+<div class="grid" id="serviceGrid">
+
+  <div class="card" data-name="poppo live" data-type="live"
+       onclick="showInfo('Poppo Live')">
+    <div class="image">
+      <img
+        src="https://play-lh.googleusercontent.com/uxMEM4LC3Z-HMeReIkBNZ1wlpxRcBkwOZ-xIRH2IxsuNmezceugiPWOANSipi2JKXrIfVhSPaN4RPreWhJnX6A=w240-h240"
+        alt="Poppo Live logotipi"
+      >
+    </div>
+    <div class="name">Poppo Live</div>
+    <div class="desc">Jonli efir xizmati</div>
+    <div class="price">Narx admin orqali aniqlanadi</div>
+    <div class="choose">TANLASH →</div>
+  </div>
+
+  <div class="card" data-name="yalla live" data-type="live"
+       onclick="showInfo('Yalla Live')">
+    <div class="image">
+      <div style="font-size:38px;font-weight:900;color:#63e5d0">Y</div>
+    </div>
+    <div class="name">Yalla Live</div>
+    <div class="desc">Jonli efir xizmati</div>
+    <div class="price">Narx admin orqali aniqlanadi</div>
+    <div class="choose">TANLASH →</div>
+  </div>
+
+</div>
+
+<div class="empty" id="empty">Xizmat topilmadi</div>
+
+<footer>MONETA BANK © 2026</footer>
+</div>
+
+<nav class="bottom">
+  <div class="nav active" onclick="setNav(this)"><b>⌂</b>Asosiy</div>
+  <div class="nav" onclick="focusSearch()"><b>⌕</b>Qidiruv</div>
+  <div class="nav" onclick="showGeneral()"><b>▤</b>Ma’lumot</div>
+  <div class="nav" onclick="showGeneral()"><b>☆</b>Reyting</div>
+  <div class="nav" onclick="showGeneral()"><b>♙</b>Profil</div>
+</nav>
+
+<div class="modal-bg" id="modalBg" onclick="closeOutside(event)">
+  <div class="modal">
+    <h2 id="modalTitle">Xizmat</h2>
+    <p>
+      Ushbu xizmat bo‘yicha narx va boshqa ma’lumotlarni admin orqali bilib olishingiz mumkin.
+    </p>
+    <p><b>To‘lov tartibi:</b> To‘lov masalalari admin orqali kelishiladi. Ushbu saytda haqiqiy to‘lov yoki pul o‘tkazish amalga oshirilmaydi.</p>
+    <div class="admin">
+      Admin:
+      <a href="https://t.me/monetabankuz" target="_blank">@monetabankuz</a>
+    </div>
+    <button class="close" onclick="closeModal()">YOPISH</button>
+  </div>
 </div>
 
 <script>
 function showInfo(name){
- document.getElementById('modalTitle').textContent=name;
- document.getElementById('modal').style.display='flex';
+  document.getElementById('modalTitle').textContent=name;
+  document.getElementById('modalBg').style.display='flex';
 }
+
 function closeModal(){
- document.getElementById('modal').style.display='none';
+  document.getElementById('modalBg').style.display='none';
 }
+
 function closeOutside(event){
- if(event.target.id==='modal') closeModal();
+  if(event.target.id==='modalBg') closeModal();
+}
+
+function filterCards(type,button){
+  document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
+  button.classList.add('active');
+
+  document.querySelectorAll('.card').forEach(card=>{
+    card.style.display=(type==='all'||card.dataset.type===type)?'block':'none';
+  });
+  updateCount();
+}
+
+function searchCards(){
+  const value=document.getElementById('search').value.toLowerCase().trim();
+  document.querySelectorAll('.card').forEach(card=>{
+    card.style.display=card.dataset.name.includes(value)?'block':'none';
+  });
+  updateCount();
+}
+
+function updateCount(){
+  const cards=[...document.querySelectorAll('.card')];
+  const visible=cards.filter(card=>card.style.display!=='none').length;
+  document.getElementById('count').textContent=visible+' ta xizmat';
+  document.getElementById('empty').style.display=visible===0?'block':'none';
+}
+
+function focusSearch(){
+  document.getElementById('search').focus();
+}
+
+function setNav(element){
+  document.querySelectorAll('.nav').forEach(x=>x.classList.remove('active'));
+  element.classList.add('active');
+}
+
+function showGeneral(){
+  showInfo('MONETA BANK');
 }
 </script>
 </body>
