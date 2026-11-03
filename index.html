@@ -1,243 +1,73 @@
-
 <!DOCTYPE html>
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090b16">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090914">
 <title>MONETA BANK</title>
 
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0;
-  padding:0 14px 100px;
-  background:#090b16;
-  color:#fff;
-  font-family:Arial,sans-serif;
+body{margin:0;background:#080811;color:#fff;font-family:Arial,sans-serif}
+.app{
+ max-width:520px;margin:auto;min-height:100vh;padding:20px 15px 100px;
+ background:radial-gradient(ellipse at 5% 5%,#351052,transparent 35%),
+ radial-gradient(ellipse at 100% 45%,#063b35,transparent 32%),#080811
 }
-.app{max-width:480px;margin:auto}
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:22px 3px;
+header{display:flex;align-items:center;justify-content:space-between;margin:8px 0 24px;gap:8px}
+.brand{display:flex;align-items:center;gap:11px}
+.logo{
+ width:45px;height:45px;border-radius:13px;
+ background:linear-gradient(140deg,#e5caff,#7b32d4);
+ display:grid;place-items:center;color:#241039;font-size:25px;font-weight:900;
+ box-shadow:0 0 18px #9b45d955
 }
-.logo{font-size:22px;font-weight:900;letter-spacing:1px}
-.logo span{color:#b58aff}
-.avatar{
-  width:43px;height:43px;border-radius:15px;
-  display:grid;place-items:center;
-  background:linear-gradient(135deg,#a66cff,#35205f);
-  font-weight:900;font-size:18px;
+.brand h1{font-size:19px;margin:0;background:linear-gradient(90deg,#fff,#d4a7ff);color:transparent;background-clip:text}
+.brand small{font-size:9px;color:#b9a9d4;letter-spacing:1px}
+.balance{border:1px solid #8750c4;background:#211333;border-radius:30px;padding:12px;color:#ffe28a;font-weight:bold;white-space:nowrap;font-size:13px}
+.banner{
+ border:1px solid #a64cff;border-radius:21px;padding:22px;
+ background:linear-gradient(115deg,#411077,#210b42,#100d25);
+ box-shadow:0 0 25px #8e32db55
 }
-.balance{
-  padding:23px;
-  border-radius:23px;
-  background:linear-gradient(120deg,#382365,#171b38 70%,#28345e);
-  border:1px solid #68509b;
-  box-shadow:0 12px 35px #0008;
-}
-.small{font-size:12px;color:#d0c2ed}
-.amount{font-size:31px;font-weight:900;margin:12px 0}
-.balance p{font-size:12px;color:#d4c9e8;margin:0}
-.notice{
-  margin:17px 0;
-  padding:16px;
-  border-radius:17px;
-  background:#171a2b;
-  border:1px solid #292e48;
-  color:#c7c9dc;
-  font-size:13px;
-  line-height:1.6;
-}
-.filters{
-  display:flex;gap:9px;overflow-x:auto;
-  padding:2px 0 15px;
-}
-.chip{
-  white-space:nowrap;
-  border:1px solid #34364e;
-  background:#171a2b;
-  color:#bfc0d1;
-  padding:10px 16px;
-  border-radius:30px;
-  font-size:12px;
-}
-.chip.active{
-  background:#7951c7;color:white;
-  border-color:#a27ae8;
-}
-.search{
-  width:100%;
-  padding:15px;
-  border:1px solid #30344d;
-  border-radius:14px;
-  background:#15182a;
-  color:white;
-  outline:none;
-  font-size:13px;
-}
-.search::placeholder{color:#85899f}
-.section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:25px 2px 15px;
-  font-size:14px;
-  font-weight:900;
-  letter-spacing:1px;
-}
-.section-title span{
-  color:#a9a1c2;
-  font-size:11px;
-  font-weight:400;
-  letter-spacing:0;
-}
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:13px;
-}
-.card{
-  min-width:0;
-  padding:11px;
-  border-radius:20px;
-  border:1px solid #30334b;
-  background:linear-gradient(145deg,#20233a,#111422);
-  cursor:pointer;
-  transition:.2s;
-}
+.banner h2{font-size:25px;font-style:italic;margin:0 0 9px}
+.banner p{color:#e1c9fa;font-size:13px;line-height:1.5}
+.main-btn{border:0;border-radius:30px;padding:13px 19px;background:linear-gradient(#fff1a4,#ffb52c);color:#351900;font-weight:900}
+.tabs{display:flex;gap:9px;margin:20px 0;overflow-x:auto}
+.tab{padding:12px 17px;border-radius:25px;border:1px solid #47335c;background:#191522;color:#d5c8e8;font-weight:bold;white-space:nowrap}
+.tab.active{background:linear-gradient(110deg,#a900ff,#562bff);color:white}
+.search{width:100%;padding:14px 16px;border-radius:13px;border:1px solid #57406f;background:#151020;color:#fff;font-size:14px;margin-bottom:18px;outline:none}
+.heading{display:flex;justify-content:space-between;margin:20px 3px 13px;font-weight:bold}
+.heading small{color:#aaa;font-weight:normal}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.card{border:1px solid #7545a4;border-radius:19px;overflow:hidden;background:#171522;min-width:0;box-shadow:0 5px 18px #0009;cursor:pointer;transition:.2s}
 .card:active{transform:scale(.97)}
-.image{
-  height:125px;
-  width:100%;
-  overflow:hidden;
-  border-radius:15px;
-  background:#25213e;
-  display:grid;
-  place-items:center;
-}
-.image img{
-  width:100%;height:100%;
-  object-fit:contain;
-  padding:12px;
-}
-.name{
-  font-size:15px;
-  font-weight:900;
-  margin:13px 2px 6px;
-}
-.desc{
-  font-size:11px;
-  color:#a9acc1;
-  min-height:27px;
-  line-height:1.4;
-}
-.price{
-  font-size:11px;
-  color:#c9aaff;
-  margin:9px 2px;
-}
-.choose{
-  display:block;
-  text-align:center;
-  padding:12px 5px;
-  border-radius:12px;
-  background:linear-gradient(90deg,#a06bfa,#6841c5);
-  font-size:12px;
-  font-weight:900;
-  margin-top:10px;
-}
-.empty{
-  display:none;
-  text-align:center;
-  color:#a9acc1;
-  padding:30px 10px;
-  font-size:13px;
-}
-.bottom{
-  position:fixed;
-  bottom:0;left:0;right:0;
-  background:#101323f5;
-  border-top:1px solid #292d42;
-  display:flex;
-  justify-content:space-around;
-  padding:13px 4px 16px;
-  backdrop-filter:blur(15px);
-  z-index:3;
-}
-.nav{
-  flex:1;
-  text-align:center;
-  color:#999db5;
-  font-size:10px;
-  cursor:pointer;
-}
-.nav b{
-  display:block;
-  font-size:19px;
-  margin-bottom:5px;
-}
-.nav.active{color:#b99aff}
-.modal-bg{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:#000c;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  z-index:10;
-}
-.modal{
-  width:100%;
-  max-width:390px;
-  background:linear-gradient(145deg,#24203d,#141727);
-  border:1px solid #66508e;
-  border-radius:23px;
-  padding:23px;
-  box-shadow:0 20px 60px #000b;
-  animation:appear .2s ease;
-}
-@keyframes appear{
-  from{transform:translateY(15px);opacity:0}
-  to{transform:translateY(0);opacity:1}
-}
-.modal h2{margin:0 0 12px;font-size:21px}
-.modal p{
-  color:#c2c3d5;
-  font-size:13px;
-  line-height:1.7;
-}
-.admin{
-  margin:17px 0;
-  padding:15px;
-  border-radius:14px;
-  background:#30264b;
-  color:#d5baff;
-  text-align:center;
-  font-size:15px;
-  font-weight:900;
-}
-.admin a{color:inherit;text-decoration:none}
-.close{
-  width:100%;
-  border:0;
-  padding:14px;
-  border-radius:13px;
-  background:linear-gradient(90deg,#9d6af2,#6842c4);
-  color:white;
-  font-weight:900;
-  font-size:14px;
-  cursor:pointer;
-}
-footer{
-  text-align:center;
-  color:#777b91;
-  font-size:10px;
-  padding:25px 0;
-}
+.art{height:145px;overflow:hidden;position:relative;display:grid;place-items:center;background:linear-gradient(135deg,var(--a),var(--b))}
+.art img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
+.art .fallback{font-size:25px;font-weight:900;letter-spacing:1px;text-align:center;padding:10px;text-shadow:0 3px 10px #0008}
+.info{padding:12px}
+.info h3{font-size:14px;margin:0 0 6px}
+.info p{font-size:11px;color:#c0b4d0;margin:0 0 12px;min-height:25px;line-height:1.4}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:5px}
+.price{font-size:10px;color:#ffdc80;font-weight:bold;line-height:1.4}
+.go{border:0;border-radius:22px;padding:8px 10px;background:linear-gradient(#fff1a4,#ffb52c);color:#351900;font-weight:900;font-size:10px;white-space:nowrap}
+.empty{grid-column:1/-1;text-align:center;padding:35px 10px;color:#b9a9d4}
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,520px);display:flex;justify-content:space-around;background:#110d20ed;border:1px solid #7843b1;border-bottom:0;border-radius:20px 20px 0 0;padding:13px 4px 17px;backdrop-filter:blur(15px);z-index:5}
+nav button{background:none;border:0;color:#b9add0;font-size:10px;display:flex;flex-direction:column;align-items:center;gap:5px}
+nav svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+nav button.selected{color:#dba7ff}
+.overlay{display:none;position:fixed;inset:0;background:#05040cf5;z-index:10;overflow:auto;padding:18px 12px}
+.modal{max-width:460px;margin:25px auto;background:linear-gradient(150deg,#241333,#11111f);border:1px solid #9854ce;border-radius:21px;padding:20px}
+.close{float:right;background:#392747;border:0;color:white;border-radius:50%;width:33px;height:33px;font-size:20px}
+.modal h2{font-size:23px;margin:12px 0}
+.muted{color:#b7aac9;font-size:12px;line-height:1.5}
+.option{display:flex;justify-content:space-between;align-items:center;padding:13px;margin:9px 0;border:1px solid #514064;border-radius:12px;background:#211b30;font-size:13px;gap:8px}
+.field{width:100%;padding:14px;border-radius:11px;border:1px solid #63477e;background:#0d0b16;color:white;margin:8px 0 13px;font-size:16px;outline:none}
+.wide{width:100%;padding:14px;border:0;border-radius:13px;background:linear-gradient(100deg,#a52cff,#5e37ff);color:white;font-weight:900;margin-top:10px}
+.note{font-size:11px;color:#ffdf9a;background:#302310;border:1px solid #735324;padding:11px;border-radius:10px;margin-top:12px;line-height:1.5}
+.method{width:100%;border:1px solid #665080;border-radius:13px;padding:15px;margin:10px 0;background:#1c1729;color:white;text-align:left;font-weight:bold}
+.order-item{padding:12px;border:1px solid #514064;border-radius:12px;margin:9px 0;background:#211b30;font-size:12px;line-height:1.7}
+@media(max-width:360px){.brand h1{font-size:16px}.balance{font-size:11px;padding:10px}.art{height:120px}.info{padding:9px}}
 </style>
 </head>
 
@@ -245,145 +75,434 @@ footer{
 <div class="app">
 
 <header>
-  <div class="logo">MONETA <span>BANK</span></div>
-  <div class="avatar">M</div>
+ <div class="brand">
+  <div class="logo">M</div>
+  <div>
+   <h1>MONETA BANK</h1>
+   <small>RAQAMLI XIZMATLAR MARKAZI</small>
+  </div>
+ </div>
+ <div class="balance">0 so‘m</div>
 </header>
 
-<section class="balance">
-  <div class="small">SIZNING HISOBINGIZ</div>
-  <div class="amount">0 so‘m</div>
-  <p>MONETA BANK — xizmatlar markazi</p>
+<section class="banner">
+ <h2>HISOBNI TO‘LDIRING</h2>
+ <p>O‘zingizga kerakli xizmatni tanlang va buyurtma tafsilotlarini yuboring.</p>
+ <button class="main-btn" onclick="topup()">HISOBNI TO‘LDIRISH →</button>
 </section>
 
-<div class="notice">
-  O‘zingizga kerakli xizmatni tanlang va uning narxi hamda buyurtma tafsilotlari haqida admin orqali ma’lumot oling.
+<div class="tabs">
+ <button class="tab active" onclick="filter('All',this)">Barchasi</button>
+ <button class="tab" onclick="filter('Live',this)">Jonli efir</button>
+ <button class="tab" onclick="filter('Games',this)">O‘yinlar</button>
 </div>
 
-<div class="filters">
-  <button class="chip active" onclick="filterCards('all',this)">Barchasi</button>
-  <button class="chip" onclick="filterCards('live',this)">Jonli efir</button>
+<input class="search" id="search" placeholder="Xizmat nomini qidiring..." oninput="render()">
+
+<div class="heading">
+ <span id="headingTitle">XIZMATLAR</span>
+ <small id="serviceCount">12 ta xizmat</small>
 </div>
 
-<input
-  class="search"
-  id="search"
-  type="search"
-  placeholder="Xizmat nomini qidiring..."
-  oninput="searchCards()"
->
-
-<div class="section-title">
-  XIZMATLAR <span id="count">2 ta xizmat</span>
+<div class="cards" id="cards"></div>
 </div>
 
-<div class="grid" id="serviceGrid">
-
-  <div class="card" data-name="poppo live" data-type="live"
-       onclick="showInfo('Poppo Live')">
-    <div class="image">
-      <img
-        src="https://play-lh.googleusercontent.com/uxMEM4LC3Z-HMeReIkBNZ1wlpxRcBkwOZ-xIRH2IxsuNmezceugiPWOANSipi2JKXrIfVhSPaN4RPreWhJnX6A=w240-h240"
-        alt="Poppo Live logotipi"
-      >
-    </div>
-    <div class="name">Poppo Live</div>
-    <div class="desc">Jonli efir xizmati</div>
-    <div class="price">Narx admin orqali aniqlanadi</div>
-    <div class="choose">TANLASH →</div>
-  </div>
-
-  <div class="card" data-name="yalla live" data-type="live"
-       onclick="showInfo('Yalla Live')">
-    <div class="image">
-      <div style="font-size:38px;font-weight:900;color:#63e5d0">Y</div>
-    </div>
-    <div class="name">Yalla Live</div>
-    <div class="desc">Jonli efir xizmati</div>
-    <div class="price">Narx admin orqali aniqlanadi</div>
-    <div class="choose">TANLASH →</div>
-  </div>
-
-</div>
-
-<div class="empty" id="empty">Xizmat topilmadi</div>
-
-<footer>MONETA BANK © 2026</footer>
-</div>
-
-<nav class="bottom">
-  <div class="nav active" onclick="setNav(this)"><b>⌂</b>Asosiy</div>
-  <div class="nav" onclick="focusSearch()"><b>⌕</b>Qidiruv</div>
-  <div class="nav" onclick="showGeneral()"><b>▤</b>Ma’lumot</div>
-  <div class="nav" onclick="showGeneral()"><b>☆</b>Reyting</div>
-  <div class="nav" onclick="showGeneral()"><b>♙</b>Profil</div>
+<nav>
+ <button class="selected" onclick="showPage('Home',this)">
+  <svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V21h-6v-7H9v7H3z"/></svg>
+  Asosiy
+ </button>
+ <button onclick="showPage('Discover',this)">
+  <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5M9 9l5-2-2 5-5 2z"/></svg>
+  Qidiruv
+ </button>
+ <button onclick="showPage('Orders',this)">
+  <svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+  Buyurtmalar
+ </button>
+ <button onclick="showPage('Ranking',this)">
+  <svg viewBox="0 0 24 24"><path d="M8 21V4h8v17M4 8h4M16 8h4M4 8v5h4M20 8v5h-4M5 21h14"/></svg>
+  Reyting
+ </button>
+ <button onclick="showPage('Profile',this)">
+  <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-5 3-8 8-8s8 3 8 8"/></svg>
+  Profil
+ </button>
 </nav>
 
-<div class="modal-bg" id="modalBg" onclick="closeOutside(event)">
-  <div class="modal">
-    <h2 id="modalTitle">Xizmat</h2>
-    <p>
-      Ushbu xizmat bo‘yicha narx va boshqa ma’lumotlarni admin orqali bilib olishingiz mumkin.
-    </p>
-    <p><b>To‘lov tartibi:</b> To‘lov masalalari admin orqali kelishiladi. Ushbu saytda haqiqiy to‘lov yoki pul o‘tkazish amalga oshirilmaydi.</p>
-    <div class="admin">
-      Admin:
-      <a href="https://t.me/monetabankuz" target="_blank">@monetabankuz</a>
-    </div>
-    <button class="close" onclick="closeModal()">YOPISH</button>
-  </div>
+<div class="overlay" id="overlay">
+ <div class="modal">
+  <button class="close" onclick="closeModal()">×</button>
+  <div id="modalContent"></div>
+ </div>
 </div>
 
 <script>
-function showInfo(name){
-  document.getElementById('modalTitle').textContent=name;
-  document.getElementById('modalBg').style.display='flex';
+const TELEGRAM="https://t.me/monetabankuz";
+
+const services=[
+ {
+  name:"Poppo Live",type:"Live",unit:"tanga",packageSize:1,rate:19,
+  display:"1 tanga = 19 so‘m",
+  img:"https://fastly.mwm-storage.mwmcdn.com/raw_files/ed48f009-f6cb-4c76-8936-51c6ec48804e",
+  a:"#ff00a8",b:"#ffb000",label:"POPPO"
+ },
+ {
+  name:"Yalla Live",type:"Live",unit:"tanga",packageSize:1,rate:null,
+  display:"Narx admin bilan kelishiladi",
+  img:"https://khalaspay.net/catalog/%E7%82%B9%E5%8D%A1/Diablo%20IV/Yalla%20live.jpg",
+  a:"#00c9b8",b:"#007baf",label:"YALLA"
+ },
+ {
+  name:"PUBG Mobile",type:"Games",unit:"UC",packageSize:60,rate:12000,
+  display:"60 UC = 12 000 so‘m",
+  img:"https://cdn.simpleicons.org/pubg/ffffff",
+  a:"#135c9b",b:"#e2a34a",label:"PUBG MOBILE"
+ },
+ {
+  name:"Free Fire",type:"Games",unit:"olmos",packageSize:100,rate:15000,
+  display:"100 olmos = 15 000 so‘m",
+  img:"https://cdn.simpleicons.org/garena/ffffff",
+  a:"#a31537",b:"#ff8a23",label:"FREE FIRE"
+ },
+ {
+  name:"Mobile Legends",type:"Games",unit:"olmos",packageSize:86,rate:18000,
+  display:"86 olmos = 18 000 so‘m",
+  img:"https://cdn.simpleicons.org/moonton/ffffff",
+  a:"#2937a4",b:"#a24cdb",label:"MOBILE LEGENDS"
+ },
+ {
+  name:"Roblox",type:"Games",unit:"Robux",packageSize:80,rate:20000,
+  display:"80 Robux = 20 000 so‘m",
+  img:"https://cdn.simpleicons.org/roblox/ffffff",
+  a:"#25365d",b:"#11121c",label:"ROBLOX"
+ },
+ {
+  name:"Minecraft",type:"Games",unit:"paket",packageSize:1,rate:25000,
+  display:"1 paket = 25 000 so‘m",
+  img:"https://cdn.simpleicons.org/minecraft/ffffff",
+  a:"#347e35",b:"#8d5b31",label:"MINECRAFT"
+ },
+ {
+  name:"Standoff 2",type:"Games",unit:"oltin",packageSize:100,rate:20000,
+  display:"100 oltin = 20 000 so‘m",
+  img:"",
+  a:"#a51b22",b:"#252a43",label:"STANDOFF 2"
+ },
+ {
+  name:"Blood Strike",type:"Games",unit:"oltin",packageSize:100,rate:18000,
+  display:"100 oltin = 18 000 so‘m",
+  img:"",
+  a:"#092d77",b:"#09a5bb",label:"BLOOD STRIKE"
+ },
+ {
+  name:"Call of Duty Mobile",type:"Games",unit:"CP",packageSize:80,rate:15000,
+  display:"80 CP = 15 000 so‘m",
+  img:"https://cdn.simpleicons.org/callofduty/ffffff",
+  a:"#44433b",b:"#9a7541",label:"CALL OF DUTY"
+ },
+ {
+  name:"Brawl Stars",type:"Games",unit:"olmos",packageSize:30,rate:15000,
+  display:"30 olmos = 15 000 so‘m",
+  img:"https://cdn.simpleicons.org/brawlstars/ffffff",
+  a:"#134dc5",b:"#f0a71b",label:"BRAWL STARS"
+ },
+ {
+  name:"Clash of Clans",type:"Games",unit:"olmos",packageSize:80,rate:15000,
+  display:"80 olmos = 15 000 so‘m",
+  img:"https://cdn.simpleicons.org/clashofclans/ffffff",
+  a:"#aa4b12",b:"#e8b34d",label:"CLASH OF CLANS"
+ }
+];
+
+let orders=[];
+try{
+ orders=JSON.parse(localStorage.getItem("monetaOrders")||"[]");
+ if(!Array.isArray(orders))orders=[];
+}catch(e){orders=[]}
+
+let currentFilter="All";
+
+function render(){
+ const cards=document.getElementById("cards");
+ const search=document.getElementById("search").value.toLowerCase().trim();
+ cards.innerHTML="";
+
+ const list=services.filter(s=>{
+  const category=currentFilter==="All"||s.type===currentFilter;
+  const matches=s.name.toLowerCase().includes(search);
+  return category&&matches;
+ });
+
+ document.getElementById("serviceCount").textContent=list.length+" ta xizmat";
+
+ if(!list.length){
+  cards.innerHTML='<div class="empty">Xizmat topilmadi.</div>';
+  return;
+ }
+
+ list.forEach(s=>{
+  const el=document.createElement("div");
+  el.className="card";
+
+  const art=document.createElement("div");
+  art.className="art";
+  art.style.setProperty("--a",s.a);
+  art.style.setProperty("--b",s.b);
+
+  const fallback=document.createElement("div");
+  fallback.className="fallback";
+  fallback.textContent=s.label;
+  art.appendChild(fallback);
+
+  if(s.img){
+   const img=document.createElement("img");
+   img.src=s.img;
+   img.alt=s.name+" logotipi";
+   img.onerror=()=>img.remove();
+   art.appendChild(img);
+  }
+
+  const info=document.createElement("div");
+  info.className="info";
+  info.innerHTML=`
+   <h3>${s.name}</h3>
+   <p>${s.type==="Live"?"Jonli efir xizmati":"O‘yin xizmati"}</p>
+   <div class="foot">
+    <span class="price">${s.display}</span>
+    <button class="go">Tanlash →</button>
+   </div>
+  `;
+
+  el.appendChild(art);
+  el.appendChild(info);
+  el.onclick=()=>openService(s);
+  cards.appendChild(el);
+ });
+}
+
+function filter(type,button){
+ currentFilter=type;
+ document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
+ button.classList.add("active");
+ render();
+}
+
+function modal(html){
+ document.getElementById("modalContent").innerHTML=html;
+ document.getElementById("overlay").style.display="block";
 }
 
 function closeModal(){
-  document.getElementById('modalBg').style.display='none';
+ document.getElementById("overlay").style.display="none";
 }
 
-function closeOutside(event){
-  if(event.target.id==='modalBg') closeModal();
+function openService(s){
+ const isPackage=s.packageSize>1;
+
+ modal(`
+  <div style="color:#c79aff;font-size:10px;letter-spacing:2px">MONETA BANK • BUYURTMA</div>
+  <h2>${s.name}</h2>
+  <p class="muted">${s.display}</p>
+
+  <label class="muted">${isPackage?"Nechta paket olmoqchisiz?":"Qancha "+s.unit+" olmoqchisiz?"}</label>
+  <input class="field" id="quantity" type="number" min="1" step="1" placeholder="${isPackage?"Paketlar sonini kiriting":"Miqdorni kiriting"}">
+
+  <div class="option">
+   <span>${isPackage?"Bir paket":"Bir birlik"} narxi</span>
+   <b>${s.rate===null?"Admin bilan kelishiladi":s.rate.toLocaleString("uz-UZ")+" so‘m"}</b>
+  </div>
+
+  <div class="option">
+   <span>Olinadigan miqdor</span>
+   <b id="amount">0 ${s.unit}</b>
+  </div>
+
+  <div class="option">
+   <span>Jami narx</span>
+   <b id="total">0 so‘m</b>
+  </div>
+
+  <label class="muted">Foydalanuvchi ID raqami</label>
+  <input class="field" id="uid" placeholder="ID raqamingizni kiriting">
+
+  <button class="wide" id="orderBtn">BUYURTMA SO‘ROVINI YUBORISH</button>
+
+  <div class="note">
+   Bu demo buyurtma oynasi. Buyurtma tafsilotlari Telegram orqali admin bilan kelishiladi. Haqiqiy to‘lov bu sahifada amalga oshirilmaydi.
+  </div>
+ `);
+
+ const q=document.getElementById("quantity");
+ const total=document.getElementById("total");
+ const amount=document.getElementById("amount");
+
+ q.addEventListener("input",()=>{
+  const n=Number(q.value);
+
+  if(!Number.isInteger(n)||n<1){
+   total.textContent="0 so‘m";
+   amount.textContent="0 "+s.unit;
+   return;
+  }
+
+  const itemCount=n*s.packageSize;
+  amount.textContent=itemCount.toLocaleString("uz-UZ")+" "+s.unit;
+
+  if(s.rate===null){
+   total.textContent="Admin tasdiqlaydi";
+  }else{
+   total.textContent=(n*s.rate).toLocaleString("uz-UZ")+" so‘m";
+  }
+ });
+
+ document.getElementById("orderBtn").onclick=()=>{
+  const n=Number(q.value);
+  const id=document.getElementById("uid").value.trim();
+
+  if(!Number.isInteger(n)||n<1){
+   alert("Miqdorni to‘g‘ri kiriting.");
+   return;
+  }
+
+  if(!id){
+   alert("Foydalanuvchi ID raqamini kiriting.");
+   return;
+  }
+
+  const itemCount=n*s.packageSize;
+  const price=s.rate===null
+   ?"Admin tasdiqlaydi"
+   :(n*s.rate).toLocaleString("uz-UZ")+" so‘m";
+
+  const message=
+`Salom! Buyurtma haqida ma’lumot olmoqchiman.
+
+Xizmat: ${s.name}
+Paketlar soni: ${n}
+Jami miqdor: ${itemCount} ${s.unit}
+Foydalanuvchi ID: ${id}
+Hisoblangan narx: ${price}
+
+Iltimos, buyurtma shartlarini tushuntirib bering.`;
+
+  const order={
+   name:s.name,
+   quantity:n,
+   amount:itemCount,
+   unit:s.unit,
+   id:id,
+   price:price,
+   date:new Date().toLocaleString("uz-UZ")
+  };
+
+  orders.unshift(order);
+
+  try{
+   localStorage.setItem("monetaOrders",JSON.stringify(orders));
+  }catch(e){}
+
+  window.open(TELEGRAM+"?text="+encodeURIComponent(message),"_blank");
+ };
 }
 
-function filterCards(type,button){
-  document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
-  button.classList.add('active');
+function topup(){
+ modal(`
+  <h2>Hisobni to‘ldirish</h2>
+  <p class="muted">To‘lov bo‘yicha ma’lumot olish uchun admin bilan bog‘laning.</p>
 
-  document.querySelectorAll('.card').forEach(card=>{
-    card.style.display=(type==='all'||card.dataset.type===type)?'block':'none';
-  });
-  updateCount();
+  <button class="method" onclick="payment('HUMO')">HUMO bo‘yicha ma’lumot →</button>
+  <button class="method" onclick="payment('UZCARD')">UZCARD bo‘yicha ma’lumot →</button>
+
+  <div class="note">
+   Bu tugmalar faqat ma’lumot olish uchun Telegram suhbatini ochadi. Karta PIN-kodi, SMS-kod yoki maxfiy ma’lumotlarni hech kimga yubormang.
+  </div>
+ `);
 }
 
-function searchCards(){
-  const value=document.getElementById('search').value.toLowerCase().trim();
-  document.querySelectorAll('.card').forEach(card=>{
-    card.style.display=card.dataset.name.includes(value)?'block':'none';
-  });
-  updateCount();
+function payment(method){
+ const message="Salom! MONETA BANK bo‘yicha "+method+" to‘lov tizimi haqida ma’lumot olmoqchiman.";
+ window.open(TELEGRAM+"?text="+encodeURIComponent(message),"_blank");
 }
 
-function updateCount(){
-  const cards=[...document.querySelectorAll('.card')];
-  const visible=cards.filter(card=>card.style.display!=='none').length;
-  document.getElementById('count').textContent=visible+' ta xizmat';
-  document.getElementById('empty').style.display=visible===0?'block':'none';
+function showPage(name,button){
+ document.querySelectorAll("nav button").forEach(b=>b.classList.remove("selected"));
+ button.classList.add("selected");
+
+ const cards=document.getElementById("cards");
+ const tabs=document.querySelector(".tabs");
+ const search=document.getElementById("search");
+ const title=document.getElementById("headingTitle");
+
+ cards.style.display="grid";
+ tabs.style.display="flex";
+ search.style.display="block";
+
+ if(name==="Home"){
+  currentFilter="All";
+  document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(".tab")[0].classList.add("active");
+  title.textContent="XIZMATLAR";
+  render();
+  return;
+ }
+
+ if(name==="Discover"){
+  title.textContent="XIZMATLARNI QIDIRISH";
+  search.focus();
+  render();
+  return;
+ }
+
+ tabs.style.display="none";
+ search.style.display="none";
+
+ if(name==="Orders"){
+  title.textContent="BUYURTMALAR";
+  cards.innerHTML="";
+
+  if(!orders.length){
+   cards.innerHTML='<div class="empty">Hozircha buyurtmalar yo‘q.</div>';
+  }else{
+   orders.forEach(o=>{
+    const el=document.createElement("div");
+    el.className="order-item";
+    el.innerHTML=`
+     <b>${o.name}</b><br>
+     Miqdor: ${o.amount} ${o.unit}<br>
+     Narx: ${o.price}<br>
+     ID: ${o.id}<br>
+     <span style="color:#b9a9d4">${o.date||""}</span>
+    `;
+    cards.appendChild(el);
+   });
+  }
+ }
+
+ if(name==="Profile"){
+  title.textContent="PROFIL";
+  cards.innerHTML=`
+   <div class="empty">
+    <div style="font-size:30px;margin-bottom:10px">M</div>
+    <b>MONETA BANK</b>
+    <p>Raqamli xizmatlar markazi</p>
+    <p>Balans: 0 so‘m</p>
+    <button class="main-btn" onclick="window.open('${TELEGRAM}','_blank')">ADMIN BILAN BOG‘LANISH</button>
+   </div>
+  `;
+ }
+
+ if(name==="Ranking"){
+  title.textContent="REYTING";
+  cards.innerHTML='<div class="empty">Reyting bo‘limi keyingi bosqichda ulanadi.</div>';
+ }
 }
 
-function focusSearch(){
-  document.getElementById('search').focus();
-}
+document.getElementById("overlay").addEventListener("click",e=>{
+ if(e.target===e.currentTarget)closeModal();
+});
 
-function setNav(element){
-  document.querySelectorAll('.nav').forEach(x=>x.classList.remove('active'));
-  element.classList.add('active');
-}
-
-function showGeneral(){
-  showInfo('MONETA BANK');
-}
+render();
 </script>
 </body>
-</html>
+  </html>
