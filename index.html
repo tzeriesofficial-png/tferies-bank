@@ -4,113 +4,227 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#090914">
+<meta name="theme-color" content="#100b20">
 <title>MONETA BANK</title>
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#080811;color:#fff;font-family:Arial,sans-serif}
-.app{
- max-width:520px;margin:auto;min-height:100vh;padding:20px 15px 100px;
- background:radial-gradient(ellipse at 5% 5%,#351052,transparent 35%),
- radial-gradient(ellipse at 100% 45%,#063b35,transparent 32%),#080811
+body{
+ margin:0;background:#080811;color:white;
+ font-family:Arial,sans-serif
 }
-header{display:flex;align-items:center;justify-content:space-between;margin:8px 0 24px;gap:8px}
+.app{
+ max-width:520px;min-height:100vh;margin:auto;
+ padding:20px 15px 105px;
+ background:
+ radial-gradient(ellipse at 0% 10%,#42105c,transparent 38%),
+ radial-gradient(ellipse at 100% 65%,#034b43,transparent 35%),
+ #080811
+}
+header{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:8px;margin:8px 0 24px
+}
 .brand{display:flex;align-items:center;gap:11px}
 .logo{
- width:45px;height:45px;border-radius:13px;
- background:linear-gradient(140deg,#e5caff,#7b32d4);
- display:grid;place-items:center;color:#241039;font-size:25px;font-weight:900;
- box-shadow:0 0 18px #9b45d955
+ width:45px;height:45px;border-radius:14px;
+ display:grid;place-items:center;
+ background:linear-gradient(140deg,#f4d5ff,#8534d4);
+ color:#27113b;font-size:26px;font-weight:900;
+ box-shadow:0 0 20px #a34aff55
 }
-.brand h1{font-size:19px;margin:0;background:linear-gradient(90deg,#fff,#d4a7ff);color:transparent;background-clip:text}
+.brand h1{
+ margin:0;font-size:19px;
+ background:linear-gradient(90deg,#fff,#d4a7ff);
+ color:transparent;background-clip:text
+}
 .brand small{font-size:9px;color:#b9a9d4;letter-spacing:1px}
-.balance{border:1px solid #8750c4;background:#211333;border-radius:30px;padding:12px;color:#ffe28a;font-weight:bold;white-space:nowrap;font-size:13px}
+.balance{
+ padding:12px;border-radius:30px;
+ border:1px solid #8750c4;background:#211333;
+ color:#ffe28a;font-weight:bold;font-size:13px;
+ white-space:nowrap
+}
 .banner{
- border:1px solid #a64cff;border-radius:21px;padding:22px;
- background:linear-gradient(115deg,#411077,#210b42,#100d25);
- box-shadow:0 0 25px #8e32db55
+ border:1px solid #a64cff;border-radius:22px;
+ padding:22px;background:linear-gradient(115deg,#411077,#210b42,#100d25);
+ box-shadow:0 0 25px #8e32db44
 }
 .banner h2{font-size:25px;font-style:italic;margin:0 0 9px}
-.banner p{color:#e1c9fa;font-size:13px;line-height:1.5}
-.main-btn{border:0;border-radius:30px;padding:13px 19px;background:linear-gradient(#fff1a4,#ffb52c);color:#351900;font-weight:900}
-.tabs{display:flex;gap:9px;margin:20px 0;overflow-x:auto}
-.tab{padding:12px 17px;border-radius:25px;border:1px solid #47335c;background:#191522;color:#d5c8e8;font-weight:bold;white-space:nowrap}
+.banner p{color:#e1c9fa;font-size:13px;line-height:1.6}
+.main-btn{
+ border:0;border-radius:30px;padding:14px 19px;
+ background:linear-gradient(#fff1a4,#ffb52c);
+ color:#351900;font-weight:900
+}
+.tabs{display:flex;gap:9px;margin:22px 0;overflow-x:auto}
+.tab{
+ padding:12px 17px;border-radius:25px;
+ border:1px solid #47335c;background:#191522;
+ color:#d5c8e8;font-weight:bold;white-space:nowrap
+}
 .tab.active{background:linear-gradient(110deg,#a900ff,#562bff);color:white}
-.search{width:100%;padding:14px 16px;border-radius:13px;border:1px solid #57406f;background:#151020;color:#fff;font-size:14px;margin-bottom:18px;outline:none}
-.heading{display:flex;justify-content:space-between;margin:20px 3px 13px;font-weight:bold}
+.search{
+ width:100%;padding:15px 16px;border-radius:14px;
+ border:1px solid #57406f;background:#151020;
+ color:white;font-size:14px;margin-bottom:20px;outline:none
+}
+.heading{
+ display:flex;justify-content:space-between;
+ margin:20px 3px 14px;font-weight:bold
+}
 .heading small{color:#aaa;font-weight:normal}
-.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-.card{border:1px solid #7545a4;border-radius:19px;overflow:hidden;background:#171522;min-width:0;box-shadow:0 5px 18px #0009;cursor:pointer;transition:.2s}
+.cards{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px
+}
+.card{
+ border:1px solid #7545a4;border-radius:20px;overflow:hidden;
+ background:#171522;min-width:0;
+ box-shadow:0 5px 18px #0009;cursor:pointer;transition:.2s
+}
 .card:active{transform:scale(.97)}
 
-/* PREMIUM XIZMAT KARTALARI */
+/* RASM QISMI: MATN YO‘Q, TASHQI RASM KERAK EMAS */
 .art{
- height:145px;overflow:hidden;position:relative;
- display:grid;place-items:center;isolation:isolate;
+ height:155px;position:relative;overflow:hidden;
+ display:block;isolation:isolate;
  background:linear-gradient(135deg,var(--a),var(--b))
 }
-.art::before{
- content:"";position:absolute;width:170px;height:170px;
- border:1px solid #ffffff35;border-radius:50%;
- right:-65px;top:-65px;
- box-shadow:0 0 0 18px #ffffff0b,0 0 0 38px #ffffff08;
- z-index:0
+.art:before{
+ content:"";position:absolute;
+ width:190px;height:190px;border-radius:50%;
+ right:-60px;top:-75px;
+ border:2px solid #ffffff35;
+ box-shadow:0 0 0 18px #ffffff0c,0 0 0 38px #ffffff08;
 }
-.art::after{
- content:"";position:absolute;width:110px;height:110px;
- border-radius:28px;transform:rotate(35deg);
- background:linear-gradient(135deg,#ffffff20,#ffffff03);
- left:-42px;bottom:-60px;z-index:0
+.art:after{
+ content:"";position:absolute;
+ width:125px;height:125px;border-radius:35px;
+ left:-40px;bottom:-75px;
+ transform:rotate(35deg);
+ background:linear-gradient(135deg,#ffffff35,#ffffff05)
 }
-.art img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
-.art .fallback{
- position:relative;z-index:1;font-size:25px;font-weight:900;
- letter-spacing:1.5px;text-align:center;padding:10px;
- text-shadow:0 3px 12px #0009
+.art .orb{
+ position:absolute;width:90px;height:90px;border-radius:50%;
+ left:50%;top:50%;transform:translate(-50%,-50%);
+ background:radial-gradient(circle at 35% 30%,#ffffff99,#ffffff15 55%,transparent 70%);
+ box-shadow:0 0 45px #ffffff33;
 }
-
-/* O‘YINLAR UCHUN MAXSUS FONLAR */
-.art[data-skin="pubg"]{
- background:radial-gradient(circle at 75% 25%,#f7c66b,#8b4b20 38%,#152c50 100%)
+.art .ring{
+ position:absolute;width:125px;height:125px;border-radius:50%;
+ border:2px solid #ffffff45;
+ left:50%;top:50%;transform:translate(-50%,-50%);
 }
-.art[data-skin="freefire"]{
- background:radial-gradient(circle at 75% 25%,#ffd36b,#e64a20 40%,#68122d 100%)
+.art .shape{
+ position:absolute;width:65px;height:65px;
+ border-radius:22px;left:50%;top:50%;
+ transform:translate(-50%,-50%) rotate(35deg);
+ background:linear-gradient(135deg,#ffffff50,#ffffff10);
+ border:1px solid #ffffff55;
 }
-.art[data-skin="standoff"]{
- background:radial-gradient(circle at 75% 25%,#e6b7a0,#923b43 38%,#171d35 100%)
+.art.poppo{
+ background:
+ radial-gradient(circle at 20% 20%,#ff9be9,transparent 35%),
+ linear-gradient(135deg,#f000a8,#7a00c9,#ff9b00)
 }
-.art[data-skin="bloodstrike"]{
- background:radial-gradient(circle at 75% 25%,#64e8ed,#087eaa 38%,#071b52 100%)
+.art.yalla{
+ background:
+ radial-gradient(circle at 80% 15%,#b9fff7,transparent 35%),
+ linear-gradient(135deg,#00c9b8,#00a8bb,#0874a9)
 }
-.art[data-skin] .fallback{
- font-size:23px;letter-spacing:2px;text-transform:uppercase
+.art.room1{
+ background:radial-gradient(circle at 50% 40%,#ffc8f1,#a32ed0 42%,#32105d)
 }
-.info{padding:12px}
-.info h3{font-size:14px;margin:0 0 6px}
-.info p{font-size:11px;color:#c0b4d0;margin:0 0 12px;min-height:25px;line-height:1.4}
-.foot{display:flex;align-items:center;justify-content:space-between;gap:5px}
-.price{font-size:10px;color:#ffdc80;font-weight:bold;line-height:1.4}
-.go{border:0;border-radius:22px;padding:8px 10px;background:linear-gradient(#fff1a4,#ffb52c);color:#351900;font-weight:900;font-size:10px;white-space:nowrap}
+.art.room2{
+ background:radial-gradient(circle at 50% 40%,#ffe2a0,#d57a24 42%,#5b1836)
+}
+.art.room3{
+ background:radial-gradient(circle at 50% 40%,#9fffe5,#159c9a 42%,#073b52)
+}
+.art.room4{
+ background:radial-gradient(circle at 50% 40%,#c9b5ff,#6240c8 42%,#20124d)
+}
+.info{padding:13px}
+.info h3{font-size:14px;margin:0 0 7px}
+.info p{
+ font-size:11px;color:#c0b4d0;
+ margin:0 0 12px;min-height:25px;line-height:1.4
+}
+.foot{
+ display:flex;align-items:center;justify-content:space-between;gap:5px
+}
+.price{font-size:10px;color:#ffdc80;font-weight:bold;line-height:1.5}
+.go{
+ border:0;border-radius:22px;padding:9px 11px;
+ background:linear-gradient(#fff1a4,#ffb52c);
+ color:#351900;font-weight:900;font-size:10px;white-space:nowrap
+}
 .empty{grid-column:1/-1;text-align:center;padding:35px 10px;color:#b9a9d4}
-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,520px);display:flex;justify-content:space-around;background:#110d20ed;border:1px solid #7843b1;border-bottom:0;border-radius:20px 20px 0 0;padding:13px 4px 17px;backdrop-filter:blur(15px);z-index:5}
-nav button{background:none;border:0;color:#b9add0;font-size:10px;display:flex;flex-direction:column;align-items:center;gap:5px}
-nav svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+nav{
+ position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+ width:min(100%,520px);display:flex;justify-content:space-around;
+ background:#110d20ed;border:1px solid #7843b1;border-bottom:0;
+ border-radius:20px 20px 0 0;padding:13px 4px 17px;
+ backdrop-filter:blur(15px);z-index:5
+}
+nav button{
+ background:none;border:0;color:#b9add0;font-size:10px;
+ display:flex;flex-direction:column;align-items:center;gap:5px
+}
+nav svg{
+ width:23px;height:23px;stroke:currentColor;fill:none;
+ stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round
+}
 nav button.selected{color:#dba7ff}
-.overlay{display:none;position:fixed;inset:0;background:#05040cf5;z-index:10;overflow:auto;padding:18px 12px}
-.modal{max-width:460px;margin:25px auto;background:linear-gradient(150deg,#241333,#11111f);border:1px solid #9854ce;border-radius:21px;padding:20px}
-.close{float:right;background:#392747;border:0;color:white;border-radius:50%;width:33px;height:33px;font-size:20px}
+
+.overlay{
+ display:none;position:fixed;inset:0;background:#05040cf5;
+ z-index:10;overflow:auto;padding:18px 12px
+}
+.modal{
+ max-width:460px;margin:25px auto;
+ background:linear-gradient(150deg,#241333,#11111f);
+ border:1px solid #9854ce;border-radius:21px;padding:20px
+}
+.close{
+ float:right;background:#392747;border:0;color:white;
+ border-radius:50%;width:33px;height:33px;font-size:20px
+}
 .modal h2{font-size:23px;margin:12px 0}
 .muted{color:#b7aac9;font-size:12px;line-height:1.5}
-.option{display:flex;justify-content:space-between;align-items:center;padding:13px;margin:9px 0;border:1px solid #514064;border-radius:12px;background:#211b30;font-size:13px;gap:8px}
-.field{width:100%;padding:14px;border-radius:11px;border:1px solid #63477e;background:#0d0b16;color:white;margin:8px 0 13px;font-size:16px;outline:none}
-.wide{width:100%;padding:14px;border:0;border-radius:13px;background:linear-gradient(100deg,#a52cff,#5e37ff);color:white;font-weight:900;margin-top:10px}
-.note{font-size:11px;color:#ffdf9a;background:#302310;border:1px solid #735324;padding:11px;border-radius:10px;margin-top:12px;line-height:1.5}
-.method{width:100%;border:1px solid #665080;border-radius:13px;padding:15px;margin:10px 0;background:#1c1729;color:white;text-align:left;font-weight:bold}
-.order-item{padding:12px;border:1px solid #514064;border-radius:12px;margin:9px 0;background:#211b30;font-size:12px;line-height:1.7}
+.option{
+ display:flex;justify-content:space-between;align-items:center;
+ padding:13px;margin:9px 0;border:1px solid #514064;
+ border-radius:12px;background:#211b30;font-size:13px;gap:8px
+}
+.field{
+ width:100%;padding:14px;border-radius:11px;
+ border:1px solid #63477e;background:#0d0b16;
+ color:white;margin:8px 0 13px;font-size:16px;outline:none
+}
+.wide{
+ width:100%;padding:14px;border:0;border-radius:13px;
+ background:linear-gradient(100deg,#a52cff,#5e37ff);
+ color:white;font-weight:900;margin-top:10px
+}
+.note{
+ font-size:11px;color:#ffdf9a;background:#302310;
+ border:1px solid #735324;padding:11px;border-radius:10px;
+ margin-top:12px;line-height:1.5
+}
+.method{
+ width:100%;border:1px solid #665080;border-radius:13px;
+ padding:15px;margin:10px 0;background:#1c1729;
+ color:white;text-align:left;font-weight:bold
+}
+.order-item{
+ padding:12px;border:1px solid #514064;border-radius:12px;
+ margin:9px 0;background:#211b30;font-size:12px;line-height:1.7
+}
 @media(max-width:360px){
  .brand h1{font-size:16px}.balance{font-size:11px;padding:10px}
- .art{height:120px}.info{padding:9px}
+ .art{height:125px}.info{padding:9px}
 }
 </style>
 </head>
@@ -137,15 +251,15 @@ nav button.selected{color:#dba7ff}
 
 <div class="tabs">
  <button class="tab active" onclick="filter('All',this)">Barchasi</button>
- <button class="tab" onclick="filter('Live',this)">Jonli efir</button>
- <button class="tab" onclick="filter('Games',this)">O‘yinlar</button>
+ <button class="tab" onclick="filter('Live',this)">Ilovalar</button>
+ <button class="tab" onclick="filter('Rooms',this)">Voice chat</button>
 </div>
 
 <input class="search" id="search" placeholder="Xizmat nomini qidiring..." oninput="render()">
 
 <div class="heading">
  <span id="headingTitle">XIZMATLAR</span>
- <small id="serviceCount">12 ta xizmat</small>
+ <small id="serviceCount">6 ta xizmat</small>
 </div>
 
 <div class="cards" id="cards"></div>
@@ -163,10 +277,6 @@ nav button.selected{color:#dba7ff}
  <button onclick="showPage('Orders',this)">
   <svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
   Buyurtmalar
- </button>
- <button onclick="showPage('Ranking',this)">
-  <svg viewBox="0 0 24 24"><path d="M8 21V4h8v17M4 8h4M16 8h4M4 8v5h4M20 8v5h-4M5 21h14"/></svg>
-  Reyting
  </button>
  <button onclick="showPage('Profile',this)">
   <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-5 3-8 8-8s8 3 8 8"/></svg>
@@ -186,76 +296,40 @@ const TELEGRAM="https://t.me/monetabankuz";
 
 const services=[
  {
-  name:"Poppo Live",type:"Live",unit:"tanga",packageSize:1,rate:19,
-  display:"1 tanga = 19 so‘m",
-  img:"https://fastly.mwm-storage.mwmcdn.com/raw_files/ed48f009-f6cb-4c76-8936-51c6ec48804e",
-  a:"#ff00a8",b:"#ffb000",label:"POPPO"
+  name:"Poppo Live",type:"Live",unit:"tanga",
+  packageSize:1,rate:9,
+  display:"1 tanga = 9 so‘m",
+  art:"poppo",label:"Poppo Live"
  },
  {
-  name:"Yalla Live",type:"Live",unit:"tanga",packageSize:1,rate:null,
+  name:"Yalla Live",type:"Live",unit:"tanga",
+  packageSize:1,rate:null,
   display:"Narx admin bilan kelishiladi",
-  img:"https://khalaspay.net/catalog/%E7%82%B9%E5%8D%A1/Diablo%20IV/Yalla%20live.jpg",
-  a:"#00c9b8",b:"#007baf",label:"YALLA"
+  art:"yalla",label:"Yalla Live"
  },
  {
-  name:"PUBG Mobile",type:"Games",unit:"UC",packageSize:60,rate:12000,
-  display:"60 UC = 12 000 so‘m",
-  img:"",skin:"pubg",
-  a:"#135c9b",b:"#e2a34a",label:"PUBG MOBILE"
+  name:"Lounge Room",type:"Rooms",unit:"xizmat",
+  packageSize:1,rate:5000,
+  display:"5 000 so‘mdan",
+  art:"room1",label:"Lounge Room"
  },
  {
-  name:"Free Fire",type:"Games",unit:"olmos",packageSize:100,rate:15000,
-  display:"100 olmos = 15 000 so‘m",
-  img:"",skin:"freefire",
-  a:"#a31537",b:"#ff8a23",label:"FREE FIRE"
+  name:"Music Room",type:"Rooms",unit:"xizmat",
+  packageSize:1,rate:7000,
+  display:"7 000 so‘mdan",
+  art:"room2",label:"Music Room"
  },
  {
-  name:"Mobile Legends",type:"Games",unit:"olmos",packageSize:86,rate:18000,
-  display:"86 olmos = 18 000 so‘m",
-  img:"https://cdn.simpleicons.org/moonton/ffffff",
-  a:"#2937a4",b:"#a24cdb",label:"MOBILE LEGENDS"
+  name:"Friends Room",type:"Rooms",unit:"xizmat",
+  packageSize:1,rate:9000,
+  display:"9 000 so‘mdan",
+  art:"room3",label:"Friends Room"
  },
  {
-  name:"Roblox",type:"Games",unit:"Robux",packageSize:80,rate:20000,
-  display:"80 Robux = 20 000 so‘m",
-  img:"https://cdn.simpleicons.org/roblox/ffffff",
-  a:"#25365d",b:"#11121c",label:"ROBLOX"
- },
- {
-  name:"Minecraft",type:"Games",unit:"paket",packageSize:1,rate:25000,
-  display:"1 paket = 25 000 so‘m",
-  img:"https://cdn.simpleicons.org/minecraft/ffffff",
-  a:"#347e35",b:"#8d5b31",label:"MINECRAFT"
- },
- {
-  name:"Standoff 2",type:"Games",unit:"oltin",packageSize:100,rate:20000,
-  display:"100 oltin = 20 000 so‘m",
-  img:"",skin:"standoff",
-  a:"#a51b22",b:"#252a43",label:"STANDOFF 2"
- },
- {
-  name:"Blood Strike",type:"Games",unit:"oltin",packageSize:100,rate:18000,
-  display:"100 oltin = 18 000 so‘m",
-  img:"",skin:"bloodstrike",
-  a:"#092d77",b:"#09a5bb",label:"BLOOD STRIKE"
- },
- {
-  name:"Call of Duty Mobile",type:"Games",unit:"CP",packageSize:80,rate:15000,
-  display:"80 CP = 15 000 so‘m",
-  img:"https://cdn.simpleicons.org/callofduty/ffffff",
-  a:"#44433b",b:"#9a7541",label:"CALL OF DUTY"
- },
- {
-  name:"Brawl Stars",type:"Games",unit:"olmos",packageSize:30,rate:15000,
-  display:"30 olmos = 15 000 so‘m",
-  img:"https://cdn.simpleicons.org/brawlstars/ffffff",
-  a:"#134dc5",b:"#f0a71b",label:"BRAWL STARS"
- },
- {
-  name:"Clash of Clans",type:"Games",unit:"olmos",packageSize:80,rate:15000,
-  display:"80 olmos = 15 000 so‘m",
-  img:"https://cdn.simpleicons.org/clashofclans/ffffff",
-  a:"#aa4b12",b:"#e8b34d",label:"CLASH OF CLANS"
+  name:"VIP Room",type:"Rooms",unit:"xizmat",
+  packageSize:1,rate:12000,
+  display:"12 000 so‘mdan",
+  art:"room4",label:"VIP Room"
  }
 ];
 
@@ -274,8 +348,7 @@ function render(){
 
  const list=services.filter(s=>{
   const category=currentFilter==="All"||s.type===currentFilter;
-  const matches=s.name.toLowerCase().includes(search);
-  return category&&matches;
+  return category&&s.name.toLowerCase().includes(search);
  });
 
  document.getElementById("serviceCount").textContent=list.length+" ta xizmat";
@@ -290,37 +363,35 @@ function render(){
   el.className="card";
 
   const art=document.createElement("div");
-  art.className="art";
-  art.style.setProperty("--a",s.a);
-  art.style.setProperty("--b",s.b);
-  if(s.skin)art.dataset.skin=s.skin;
+  art.className="art "+s.art;
 
-  const fallback=document.createElement("div");
-  fallback.className="fallback";
-  fallback.textContent=s.label;
-  art.appendChild(fallback);
-
-  if(s.img){
-   const img=document.createElement("img");
-   img.src=s.img;
-   img.alt=s.name+" logotipi";
-   img.onerror=()=>img.remove();
-   art.appendChild(img);
-  }
+  /* Rasm ustida hech qanday yozuv yo‘q */
+  art.innerHTML='<div class="orb"></div><div class="ring"></div><div class="shape"></div>';
 
   const info=document.createElement("div");
   info.className="info";
-  info.innerHTML=`
-   <h3>${s.name}</h3>
-   <p>${s.type==="Live"?"Jonli efir xizmati":"O‘yin xizmati"}</p>
-   <div class="foot">
-    <span class="price">${s.display}</span>
-    <button class="go">Tanlash →</button>
-   </div>
-  `;
 
-  el.appendChild(art);
-  el.appendChild(info);
+  const heading=document.createElement("h3");
+  heading.textContent=s.name;
+
+  const description=document.createElement("p");
+  description.textContent=s.type==="Live"?"Jonli efir ilovasi":"Voice chat xonasi";
+
+  const foot=document.createElement("div");
+  foot.className="foot";
+
+  const price=document.createElement("span");
+  price.className="price";
+  price.textContent=s.display;
+
+  const button=document.createElement("button");
+  button.className="go";
+  button.textContent="Tanlash →";
+
+  foot.append(price,button);
+  info.append(heading,description,foot);
+  el.append(art,info);
+
   el.onclick=()=>openService(s);
   cards.appendChild(el);
  });
@@ -350,25 +421,25 @@ function openService(s){
   <h2>${s.name}</h2>
   <p class="muted">${s.display}</p>
 
-  <label class="muted">${isPackage?"Nechta paket olmoqchisiz?":"Qancha "+s.unit+" olmoqchisiz?"}</label>
-  <input class="field" id="quantity" type="number" min="1" step="1" placeholder="${isPackage?"Paketlar sonini kiriting":"Miqdorni kiriting"}">
+  <label class="muted">${s.type==="Rooms"?"Nechta xona xizmati kerak?":"Qancha "+s.unit+" olmoqchisiz?"}</label>
+  <input class="field" id="quantity" type="number" min="1" step="1" value="1">
 
   <div class="option">
-   <span>${isPackage?"Bir paket":"Bir birlik"} narxi</span>
+   <span>Bir birlik narxi</span>
    <b>${s.rate===null?"Admin bilan kelishiladi":s.rate.toLocaleString("uz-UZ")+" so‘m"}</b>
   </div>
 
   <div class="option">
-   <span>Olinadigan miqdor</span>
-   <b id="amount">0 ${s.unit}</b>
+   <span>Jami miqdor</span>
+   <b id="amount">1 ${s.unit}</b>
   </div>
 
   <div class="option">
    <span>Jami narx</span>
-   <b id="total">0 so‘m</b>
+   <b id="total">${s.rate===null?"Admin tasdiqlaydi":s.rate.toLocaleString("uz-UZ")+" so‘m"}</b>
   </div>
 
-  <label class="muted">Foydalanuvchi ID raqami</label>
+  <label class="muted">Foydalanuvchi ID yoki aloqa ma’lumoti</label>
   <input class="field" id="uid" placeholder="ID raqamingizni kiriting">
 
   <button class="wide" id="orderBtn">BUYURTMA SO‘ROVINI YUBORISH</button>
@@ -391,14 +462,10 @@ function openService(s){
    return;
   }
 
-  const itemCount=n*s.packageSize;
-  amount.textContent=itemCount.toLocaleString("uz-UZ")+" "+s.unit;
-
-  if(s.rate===null){
-   total.textContent="Admin tasdiqlaydi";
-  }else{
-   total.textContent=(n*s.rate).toLocaleString("uz-UZ")+" so‘m";
-  }
+  amount.textContent=(n*s.packageSize).toLocaleString("uz-UZ")+" "+s.unit;
+  total.textContent=s.rate===null
+   ?"Admin tasdiqlaydi"
+   :(n*s.rate).toLocaleString("uz-UZ")+" so‘m";
  });
 
  document.getElementById("orderBtn").onclick=()=>{
@@ -411,7 +478,7 @@ function openService(s){
   }
 
   if(!id){
-   alert("Foydalanuvchi ID raqamini kiriting.");
+   alert("ID yoki aloqa ma’lumotini kiriting.");
    return;
   }
 
@@ -421,23 +488,26 @@ function openService(s){
    :(n*s.rate).toLocaleString("uz-UZ")+" so‘m";
 
   const message=
-`Salom! Buyurtma haqida ma’lumot olmoqchiman.
+`Salom! MONETA BANK buyurtmasi haqida ma’lumot olmoqchiman.
 
 Xizmat: ${s.name}
-Paketlar soni: ${n}
-Jami miqdor: ${itemCount} ${s.unit}
-Foydalanuvchi ID: ${id}
+Soni: ${n}
+Miqdor: ${itemCount} ${s.unit}
+ID yoki aloqa: ${id}
 Hisoblangan narx: ${price}
 
-Iltimos, buyurtma shartlarini tushuntirib bering.`;
+Iltimos, xizmat shartlarini tushuntirib bering.`;
 
   const order={
-   name:s.name,quantity:n,amount:itemCount,unit:s.unit,
-   id:id,price:price,date:new Date().toLocaleString("uz-UZ")
+   name:s.name,quantity:n,amount:itemCount,
+   unit:s.unit,id:id,price:price,
+   date:new Date().toLocaleString("uz-UZ")
   };
 
   orders.unshift(order);
-  try{localStorage.setItem("monetaOrders",JSON.stringify(orders))}catch(e){}
+  try{
+   localStorage.setItem("monetaOrders",JSON.stringify(orders));
+  }catch(e){}
 
   window.open(TELEGRAM+"?text="+encodeURIComponent(message),"_blank");
  };
@@ -447,11 +517,13 @@ function topup(){
  modal(`
   <h2>Hisobni to‘ldirish</h2>
   <p class="muted">To‘lov bo‘yicha ma’lumot olish uchun admin bilan bog‘laning.</p>
+
   <button class="method" onclick="payment('HUMO')">HUMO bo‘yicha ma’lumot →</button>
   <button class="method" onclick="payment('UZCARD')">UZCARD bo‘yicha ma’lumot →</button>
+
   <div class="note">
    Bu tugmalar faqat ma’lumot olish uchun Telegram suhbatini ochadi.
-   Karta PIN-kodi, SMS-kod yoki maxfiy ma’lumotlarni hech kimga yubormang.
+   Karta PIN-kodi yoki SMS-kodni hech kimga yubormang.
   </div>
  `);
 }
@@ -528,10 +600,6 @@ function showPage(name,button){
   `;
  }
 
- if(name==="Ranking"){
-  title.textContent="REYTING";
-  cards.innerHTML='<div class="empty">Reyting bo‘limi keyingi bosqichda ulanadi.</div>';
- }
 }
 
 document.getElementById("overlay").addEventListener("click",e=>{
