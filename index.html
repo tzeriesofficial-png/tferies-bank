@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="uz">
 <head>
@@ -42,9 +43,49 @@ header{display:flex;align-items:center;justify-content:space-between;margin:8px 
 .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
 .card{border:1px solid #7545a4;border-radius:19px;overflow:hidden;background:#171522;min-width:0;box-shadow:0 5px 18px #0009;cursor:pointer;transition:.2s}
 .card:active{transform:scale(.97)}
-.art{height:145px;overflow:hidden;position:relative;display:grid;place-items:center;background:linear-gradient(135deg,var(--a),var(--b))}
+
+/* PREMIUM XIZMAT KARTALARI */
+.art{
+ height:145px;overflow:hidden;position:relative;
+ display:grid;place-items:center;isolation:isolate;
+ background:linear-gradient(135deg,var(--a),var(--b))
+}
+.art::before{
+ content:"";position:absolute;width:170px;height:170px;
+ border:1px solid #ffffff35;border-radius:50%;
+ right:-65px;top:-65px;
+ box-shadow:0 0 0 18px #ffffff0b,0 0 0 38px #ffffff08;
+ z-index:0
+}
+.art::after{
+ content:"";position:absolute;width:110px;height:110px;
+ border-radius:28px;transform:rotate(35deg);
+ background:linear-gradient(135deg,#ffffff20,#ffffff03);
+ left:-42px;bottom:-60px;z-index:0
+}
 .art img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
-.art .fallback{font-size:25px;font-weight:900;letter-spacing:1px;text-align:center;padding:10px;text-shadow:0 3px 10px #0008}
+.art .fallback{
+ position:relative;z-index:1;font-size:25px;font-weight:900;
+ letter-spacing:1.5px;text-align:center;padding:10px;
+ text-shadow:0 3px 12px #0009
+}
+
+/* O‘YINLAR UCHUN MAXSUS FONLAR */
+.art[data-skin="pubg"]{
+ background:radial-gradient(circle at 75% 25%,#f7c66b,#8b4b20 38%,#152c50 100%)
+}
+.art[data-skin="freefire"]{
+ background:radial-gradient(circle at 75% 25%,#ffd36b,#e64a20 40%,#68122d 100%)
+}
+.art[data-skin="standoff"]{
+ background:radial-gradient(circle at 75% 25%,#e6b7a0,#923b43 38%,#171d35 100%)
+}
+.art[data-skin="bloodstrike"]{
+ background:radial-gradient(circle at 75% 25%,#64e8ed,#087eaa 38%,#071b52 100%)
+}
+.art[data-skin] .fallback{
+ font-size:23px;letter-spacing:2px;text-transform:uppercase
+}
 .info{padding:12px}
 .info h3{font-size:14px;margin:0 0 6px}
 .info p{font-size:11px;color:#c0b4d0;margin:0 0 12px;min-height:25px;line-height:1.4}
@@ -67,7 +108,10 @@ nav button.selected{color:#dba7ff}
 .note{font-size:11px;color:#ffdf9a;background:#302310;border:1px solid #735324;padding:11px;border-radius:10px;margin-top:12px;line-height:1.5}
 .method{width:100%;border:1px solid #665080;border-radius:13px;padding:15px;margin:10px 0;background:#1c1729;color:white;text-align:left;font-weight:bold}
 .order-item{padding:12px;border:1px solid #514064;border-radius:12px;margin:9px 0;background:#211b30;font-size:12px;line-height:1.7}
-@media(max-width:360px){.brand h1{font-size:16px}.balance{font-size:11px;padding:10px}.art{height:120px}.info{padding:9px}}
+@media(max-width:360px){
+ .brand h1{font-size:16px}.balance{font-size:11px;padding:10px}
+ .art{height:120px}.info{padding:9px}
+}
 </style>
 </head>
 
@@ -156,13 +200,13 @@ const services=[
  {
   name:"PUBG Mobile",type:"Games",unit:"UC",packageSize:60,rate:12000,
   display:"60 UC = 12 000 so‘m",
-  img:"https://cdn.simpleicons.org/pubg/ffffff",
+  img:"",skin:"pubg",
   a:"#135c9b",b:"#e2a34a",label:"PUBG MOBILE"
  },
  {
   name:"Free Fire",type:"Games",unit:"olmos",packageSize:100,rate:15000,
   display:"100 olmos = 15 000 so‘m",
-  img:"https://cdn.simpleicons.org/garena/ffffff",
+  img:"",skin:"freefire",
   a:"#a31537",b:"#ff8a23",label:"FREE FIRE"
  },
  {
@@ -186,13 +230,13 @@ const services=[
  {
   name:"Standoff 2",type:"Games",unit:"oltin",packageSize:100,rate:20000,
   display:"100 oltin = 20 000 so‘m",
-  img:"",
+  img:"",skin:"standoff",
   a:"#a51b22",b:"#252a43",label:"STANDOFF 2"
  },
  {
   name:"Blood Strike",type:"Games",unit:"oltin",packageSize:100,rate:18000,
   display:"100 oltin = 18 000 so‘m",
-  img:"",
+  img:"",skin:"bloodstrike",
   a:"#092d77",b:"#09a5bb",label:"BLOOD STRIKE"
  },
  {
@@ -249,6 +293,7 @@ function render(){
   art.className="art";
   art.style.setProperty("--a",s.a);
   art.style.setProperty("--b",s.b);
+  if(s.skin)art.dataset.skin=s.skin;
 
   const fallback=document.createElement("div");
   fallback.className="fallback";
@@ -329,7 +374,7 @@ function openService(s){
   <button class="wide" id="orderBtn">BUYURTMA SO‘ROVINI YUBORISH</button>
 
   <div class="note">
-   Bu demo buyurtma oynasi. Buyurtma tafsilotlari Telegram orqali admin bilan kelishiladi. Haqiqiy to‘lov bu sahifada amalga oshirilmaydi.
+   Buyurtma admin tomonidan tasdiqlanadi. Yakuniy narx va xizmat mavjudligi Telegram orqali kelishiladi.
   </div>
  `);
 
@@ -387,20 +432,12 @@ Hisoblangan narx: ${price}
 Iltimos, buyurtma shartlarini tushuntirib bering.`;
 
   const order={
-   name:s.name,
-   quantity:n,
-   amount:itemCount,
-   unit:s.unit,
-   id:id,
-   price:price,
-   date:new Date().toLocaleString("uz-UZ")
+   name:s.name,quantity:n,amount:itemCount,unit:s.unit,
+   id:id,price:price,date:new Date().toLocaleString("uz-UZ")
   };
 
   orders.unshift(order);
-
-  try{
-   localStorage.setItem("monetaOrders",JSON.stringify(orders));
-  }catch(e){}
+  try{localStorage.setItem("monetaOrders",JSON.stringify(orders))}catch(e){}
 
   window.open(TELEGRAM+"?text="+encodeURIComponent(message),"_blank");
  };
@@ -410,12 +447,11 @@ function topup(){
  modal(`
   <h2>Hisobni to‘ldirish</h2>
   <p class="muted">To‘lov bo‘yicha ma’lumot olish uchun admin bilan bog‘laning.</p>
-
   <button class="method" onclick="payment('HUMO')">HUMO bo‘yicha ma’lumot →</button>
   <button class="method" onclick="payment('UZCARD')">UZCARD bo‘yicha ma’lumot →</button>
-
   <div class="note">
-   Bu tugmalar faqat ma’lumot olish uchun Telegram suhbatini ochadi. Karta PIN-kodi, SMS-kod yoki maxfiy ma’lumotlarni hech kimga yubormang.
+   Bu tugmalar faqat ma’lumot olish uchun Telegram suhbatini ochadi.
+   Karta PIN-kodi, SMS-kod yoki maxfiy ma’lumotlarni hech kimga yubormang.
   </div>
  `);
 }
@@ -449,8 +485,8 @@ function showPage(name,button){
 
  if(name==="Discover"){
   title.textContent="XIZMATLARNI QIDIRISH";
-  search.focus();
   render();
+  search.focus();
   return;
  }
 
@@ -505,4 +541,4 @@ document.getElementById("overlay").addEventListener("click",e=>{
 render();
 </script>
 </body>
- </html>
+</html>
