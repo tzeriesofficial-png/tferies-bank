@@ -43,7 +43,6 @@
             text-align: center;
         }
 
-        /* Qora Premium Sarlavha */
         .title-glow {
             font-size: 26px;
             font-weight: 900;
@@ -67,7 +66,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Oq/Och kulrang Kartochkalar */
         .card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -95,7 +93,6 @@
             line-height: 1.5;
         }
 
-        /* VIP Badge ikonka ramkasi */
         .vip-badge {
             display: inline-flex;
             align-items: center;
@@ -114,7 +111,6 @@
             fill: #0f172a;
         }
 
-        /* Qora Tugmalar */
         .btn-premium {
             background: #000000;
             color: #ffffff;
@@ -128,11 +124,20 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             transition: transform 0.1s ease, background-color 0.2s;
             margin-top: 12px;
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             text-align: center;
             text-decoration: none;
             box-sizing: border-box;
             letter-spacing: 0.5px;
+        }
+
+        .btn-premium svg {
+            width: 20px;
+            height: 20px;
+            fill: #ffffff;
         }
 
         .btn-premium:active {
@@ -140,9 +145,9 @@
             background: #1e293b;
         }
 
-        /* TAP Tugmasi (Qora va Oq Stil) */
+        /* TAP TUGMASI VA ENERGIYA */
         .tap-circle-container {
-            margin: 30px auto;
+            margin: 25px auto;
             width: 180px;
             height: 180px;
             display: flex;
@@ -156,10 +161,11 @@
             background: #000000;
             border-radius: 50%;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: transform 0.08s ease;
+            transition: transform 0.08s ease, background-color 0.2s;
             border: 4px solid #e2e8f0;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             outline: none;
@@ -170,14 +176,27 @@
             background: #1e293b;
         }
 
-        .tap-main-text {
-            font-size: 36px;
-            font-weight: 900;
-            color: #ffffff;
-            letter-spacing: 4px;
+        .tap-circle.disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            border-color: #cbd5e1;
+            box-shadow: none;
         }
 
-        /* Pastki Menyu Bar */
+        .tap-main-text {
+            font-size: 32px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 3px;
+        }
+
+        .energy-subtext {
+            font-size: 11px;
+            color: #cbd5e1;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
         .nav-bar {
             position: fixed;
             bottom: 0;
@@ -196,7 +215,7 @@
             background: none;
             border: none;
             color: #94a3b8;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             display: flex;
             flex-direction: column;
@@ -237,7 +256,6 @@
 <body>
 
 <div class="container">
-    <!-- SARLAVHA -->
     <div class="title-glow">ACAZES NOMERLARI</div>
 
     <!-- 1. BOSH SAHIFA -->
@@ -262,11 +280,12 @@
             <p style="margin:0; font-size:13px; color:#475569;">Har bir bosish uchun: <span id="clickPower" style="color: #000000; font-weight: 800;">+1</span> tanga</p>
         </div>
 
-        <!-- TAP TUGMASI -->
+        <!-- TAP TUGMASI VA ENERGIYA -->
         <div class="tap-circle-container">
-            <div class="tap-circle" id="tapBtn">
-                <span class="tap-main-text">TAP</span>
-            </div>
+            <button class="tap-circle" id="tapBtn">
+                <span class="tap-main-text" id="tapText">TAP</span>
+                <span class="energy-subtext" id="energyText">300 / 300</span>
+            </button>
         </div>
 
         <!-- BUSTER BO'LIMI -->
@@ -278,8 +297,11 @@
                 Buster (Kuchaytirgich)
             </h3>
             <p>Bosish quvvatini oshirish: <strong style="color: #000;">+1</strong></p>
-            <p>Narxi: <span id="busterCost" style="color: #000000; font-weight: 800;">100</span> tanga</p>
-            <button class="btn-premium" id="buyBusterBtn">Buster sotib olish</button>
+            <p>Narxi: <span id="busterCost" style="color: #000000; font-weight: 800;">500</span> tanga</p>
+            <button class="btn-premium" id="buyBusterBtn">
+                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+                Buster sotib olish
+            </button>
         </div>
     </div>
 
@@ -292,75 +314,61 @@
             Mavjud raqamlar katalogi:
         </div>
         
+        <p style="font-size: 12px; color: #475569; text-align: left; margin-bottom: 12px; line-height: 1.4;">
+            ⚠️ <em>Bu nomerlar faqat Telegram'da ishlaydi, simkarta bilan sotib olinmaydi.</em>
+        </p>
+
         <div class="card">
-            <h3>
-                <span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> 
-                +1 111 890 12 12
-            </h3>
-            <p style="display:flex; align-items:center; gap:6px;">
-                <span class="vip-badge" style="width:22px; height:22px;"><svg viewBox="0 0 24 24" style="width:14px; height:14px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></span> 
-                Narxi: <strong style="color: #000000;">1200 tanga</strong>
-            </p>
+            <h3><span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> +77 777 77 77</h3>
+            <p>Narxi: <strong style="color: #000;">10,000 tanga</strong></p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
 
         <div class="card">
-            <h3>
-                <span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> 
-                +1 000 00 01
-            </h3>
-            <p style="display:flex; align-items:center; gap:6px;">
-                <span class="vip-badge" style="width:22px; height:22px;"><svg viewBox="0 0 24 24" style="width:14px; height:14px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></span> 
-                Narxi: <strong style="color: #000000;">2300 tanga</strong>
-            </p>
+            <h3><span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> 98 640 40 40</h3>
+            <p>Narxi: <strong style="color: #000;">15,000 tanga</strong></p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
 
         <div class="card">
-            <h3>
-                <span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> 
-                +92 000 00 90
-            </h3>
-            <p style="display:flex; align-items:center; gap:6px;">
-                <span class="vip-badge" style="width:22px; height:22px;"><svg viewBox="0 0 24 24" style="width:14px; height:14px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></span> 
-                Narxi: <strong style="color: #000000;">3500 tanga</strong>
-            </p>
+            <h3><span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> 93 222 22 22</h3>
+            <p>Narxi: <strong style="color: #000;">20,000 tanga</strong></p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
 
         <div class="card">
-            <h3>
-                <span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> 
-                +98 800 00 00
-            </h3>
-            <p style="display:flex; align-items:center; gap:6px;">
-                <span class="vip-badge" style="width:22px; height:22px;"><svg viewBox="0 0 24 24" style="width:14px; height:14px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></span> 
-                Narxi: <strong style="color: #000000;">4800 tanga</strong>
-            </p>
+            <h3><span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> +1 111 890 12 12</h3>
+            <p>Narxi: <strong style="color: #000;">12,000 tanga</strong></p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
 
         <div class="card">
-            <h3>
-                <span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> 
-                +91 000 00 00
-            </h3>
-            <p style="display:flex; align-items:center; gap:6px;">
-                <span class="vip-badge" style="width:22px; height:22px;"><svg viewBox="0 0 24 24" style="width:14px; height:14px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></span> 
-                Narxi: <strong style="color: #000000;">6200 tanga</strong>
-            </p>
+            <h3><span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> +1 000 00 01</h3>
+            <p>Narxi: <strong style="color: #000;">25,000 tanga</strong></p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
 
         <div class="card">
-            <h3>
-                <span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> 
-                +79700
-            </h3>
-            <p style="display:flex; align-items:center; gap:6px;">
-                <span class="vip-badge" style="width:22px; height:22px;"><svg viewBox="0 0 24 24" style="width:14px; height:14px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></span> 
-                Narxi: <strong style="color: #000000;">8000 tanga</strong>
-            </p>
+            <h3><span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> +92 000 00 90</h3>
+            <p>Narxi: <strong style="color: #000;">45,000 tanga</strong></p>
+            <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
+        </div>
+
+        <div class="card">
+            <h3><span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> +98 800 00 00</h3>
+            <p>Narxi: <strong style="color: #000;">70,000 tanga</strong></p>
+            <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
+        </div>
+
+        <div class="card">
+            <h3><span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> +91 000 00 00</h3>
+            <p>Narxi: <strong style="color: #000;">100,000 tanga</strong></p>
+            <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
+        </div>
+
+        <div class="card">
+            <h3><span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> +79700</h3>
+            <p>Narxi: <strong style="color: #000;">150,000 tanga</strong></p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
     </div>
@@ -378,14 +386,45 @@
             <hr style="border:0; border-top:1px solid #e2e8f0; margin: 15px 0;">
             <p style="font-weight: 800; margin-bottom: 12px; color: #000000;">Qaysi usulda to'ldirmoqchisiz?</p>
             
-            <a href="https://t.me/acazes" target="_blank" class="btn-premium" style="margin-bottom: 10px; display: block;">P2P orqali to'ldirish</a>
-            <a href="https://t.me/acazes" target="_blank" class="btn-premium" style="display: block;">Bank orqali to'ldirish</a>
+            <a href="https://t.me/acazes" target="_blank" class="btn-premium" style="margin-bottom: 10px;">P2P orqali to'ldirish</a>
+            <a href="https://t.me/acazes" target="_blank" class="btn-premium">Bank orqali to'ldirish</a>
+        </div>
+    </div>
+
+    <!-- 5. HAMKORLIK SAHIFASI (KANAL, CHAT VA TUGMALAR) -->
+    <div id="page-partner" class="section">
+        <div class="card" style="text-align: center;">
+            <h3>
+                <span class="vip-badge">
+                    <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                </span> 
+                Hamkorlik bo'limi
+            </h3>
+            <p style="word-break: break-all; color: #475569; margin: 15px 0; font-size: 13px;">
+                <a href="https://tzeriesofficial-png.github.io/tferies-bank/" target="_blank" style="color: #000; font-weight: bold; text-decoration: underline;">https://tzeriesofficial-png.github.io/tferies-bank/</a>
+            </p>
+            
+            <!-- Kanal va Chatga o'tish tugmalari (Premium SVG bilan) -->
+            <a href="https://t.me/acazes_kanali" target="_blank" class="btn-premium">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.25.38-.51 1.05-.78 4.11-1.79 6.85-2.97 8.22-3.55 3.91-1.67 4.72-1.96 5.25-1.97.12 0 .39.03.56.17.14.12.18.28.2.45-.02.07-.02.13-.04.2z"/></svg>
+                Bizning Kanal
+            </a>
+            
+            <a href="https://t.me/acazes_chati" target="_blank" class="btn-premium">
+                <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+                Bizning Chat
+            </a>
+
+            <a href="https://t.me/acazes?text=Hamkorlik%20qilmoqchiman%20batafsil%20tushintrb%20bering" target="_blank" class="btn-premium" style="background: #2563eb; margin-top: 15px;">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                Hamkorlik qilish
+            </a>
         </div>
     </div>
 
 </div>
 
-<!-- PASTKI MENYU -->
+<!-- PASTKI 5 TA MENYU BAR -->
 <div class="nav-bar">
     <button class="nav-item active" onclick="switchPage('home', this)">
         <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
@@ -403,6 +442,10 @@
         <svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
         Hamyon
     </button>
+    <button class="nav-item" onclick="switchPage('partner', this)">
+        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+        Hamkorlik
+    </button>
 </div>
 
 <script>
@@ -417,44 +460,98 @@
         element.classList.add('active');
     }
 
-    // Birinchi kirganda 0 bo'ladi, saqlangan bo'lsa o'sha joydan davom etadi
-    let coins = parseInt(localStorage.getItem('acazes_coins_v2'));
+    let coins = parseInt(localStorage.getItem('acazes_coins_v3'));
     if (isNaN(coins)) {
         coins = 0;
     }
 
-    let clickPower = parseInt(localStorage.getItem('acazes_power_v2')) || 1;
-    let busterCost = parseInt(localStorage.getItem('acazes_cost_v2')) || 100;
+    let clickPower = parseInt(localStorage.getItem('acazes_power_v3')) || 1;
+    let busterCost = parseInt(localStorage.getItem('acazes_cost_v3')) || 500;
+
+    const MAX_ENERGY = 300;
+    let energy = parseInt(localStorage.getItem('acazes_energy_v3'));
+    if (isNaN(energy)) {
+        energy = MAX_ENERGY;
+    }
+
+    let rechargeEndTime = parseInt(localStorage.getItem('acazes_recharge_time_v3')) || 0;
 
     const coinCountEl = document.getElementById('coinCount');
     const clickPowerEl = document.getElementById('clickPower');
     const busterCostEl = document.getElementById('busterCost');
+    const tapBtn = document.getElementById('tapBtn');
+    const tapText = document.getElementById('tapText');
+    const energyText = document.getElementById('energyText');
 
     function updateUI() {
         coinCountEl.innerText = coins;
         clickPowerEl.innerText = "+" + clickPower;
         busterCostEl.innerText = busterCost;
-    }
-    updateUI();
 
-    // Bosganda +1 tanga qo'shish
-    document.getElementById('tapBtn').addEventListener('click', (e) => {
+        if (energy > 0) {
+            tapText.innerText = "TAP";
+            energyText.innerText = energy + " / " + MAX_ENERGY;
+            tapBtn.classList.remove('disabled');
+        }
+    }
+
+    function checkEnergyTimer() {
+        let now = Date.now();
+        if (energy <= 0) {
+            if (now < rechargeEndTime) {
+                let timeLeft = Math.ceil((rechargeEndTime - now) / 1000);
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                tapText.innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                energyText.innerText = "Tiklanmoqda...";
+                tapBtn.classList.add('disabled');
+            } else {
+                energy = MAX_ENERGY;
+                localStorage.setItem('acazes_energy_v3', energy);
+                updateUI();
+            }
+        }
+    }
+
+    let now = Date.now();
+    if (rechargeEndTime > 0 && now >= rechargeEndTime) {
+        energy = MAX_ENERGY;
+        localStorage.setItem('acazes_energy_v3', energy);
+    } else if (energy <= 0 && rechargeEndTime === 0) {
+        rechargeEndTime = now + (30 * 60 * 1000);
+        localStorage.setItem('acazes_recharge_time_v3', rechargeEndTime);
+    }
+
+    updateUI();
+    setInterval(checkEnergyTimer, 1000);
+
+    tapBtn.addEventListener('click', (e) => {
         e.preventDefault();
+        let now = Date.now();
+        if (energy <= 0) return;
+
         coins += clickPower;
-        localStorage.setItem('acazes_coins_v2', coins);
+        energy -= 1;
+
+        if (energy <= 0) {
+            rechargeEndTime = now + (30 * 60 * 1000);
+            localStorage.setItem('acazes_recharge_time_v3', rechargeEndTime);
+        }
+
+        localStorage.setItem('acazes_coins_v3', coins);
+        localStorage.setItem('acazes_energy_v3', energy);
         updateUI();
     });
 
-    // Buster sotib olish
     document.getElementById('buyBusterBtn').addEventListener('click', () => {
         if (coins >= busterCost) {
             coins -= busterCost;
             clickPower += 1;
             busterCost = Math.round(busterCost * 1.8);
             
-            localStorage.setItem('acazes_coins_v2', coins);
-            localStorage.setItem('acazes_power_v2', clickPower);
-            localStorage.setItem('acazes_cost_v2', busterCost);
+            localStorage.setItem('acazes_coins_v3', coins);
+            localStorage.setItem('acazes_power_v3', clickPower);
+            localStorage.setItem('acazes_cost_v3', busterCost);
             updateUI();
             alert("Buster muvaffaqiyatli oshirildi! 🚀");
         } else {
