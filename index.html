@@ -85,7 +85,7 @@
             font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .card p {
@@ -95,18 +95,25 @@
             line-height: 1.5;
         }
 
-        /* Premium Stiker/Emblema dizayni card ichida */
+        /* Professional SVG Vektor Emblemalar */
         .vip-badge {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 34px;
-            height: 34px;
+            width: 36px;
+            height: 36px;
             border-radius: 12px;
             background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(37, 99, 235, 0.3));
             border: 1px solid rgba(56, 189, 248, 0.4);
-            font-size: 18px;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+            flex-shrink: 0;
+        }
+
+        .vip-badge svg {
+            width: 20px;
+            height: 20px;
+            fill: #38bdf8;
+            filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.6));
         }
 
         /* VIP Premium Tugmalar */
@@ -135,7 +142,7 @@
             box-shadow: 0 2px 10px rgba(37, 99, 235, 0.6);
         }
 
-        /* O'ta chiroyli 3D Tap Tugmasi */
+        /* Katta va Premium TAP Tugmasi (Tangasiz, kattaroq yozuv) */
         .tap-circle-container {
             position: relative;
             margin: 35px auto;
@@ -146,7 +153,6 @@
             justify-content: center;
         }
 
-        /* Orqa fon porlashi */
         .tap-glow-bg {
             position: absolute;
             width: 100%;
@@ -168,7 +174,6 @@
             background: linear-gradient(145deg, #1e3a8a, #0f172a);
             border-radius: 50%;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             cursor: pointer;
@@ -180,28 +185,16 @@
 
         .tap-circle:active {
             transform: scale(0.90);
-            border-color: #facc15;
-            box-shadow: 0 5px 20px rgba(250, 204, 21, 0.4), inset 0 2px 5px rgba(255, 255, 255, 0.3);
+            border-color: #38bdf8;
+            box-shadow: 0 5px 20px rgba(56, 189, 248, 0.5), inset 0 2px 5px rgba(255, 255, 255, 0.3);
         }
 
-        .coin-icon-3d {
-            font-size: 50px;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
-            animation: floatCoin 3s ease-in-out infinite;
-        }
-
-        @keyframes floatCoin {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .tap-text {
-            font-size: 16px;
-            font-weight: 800;
-            color: #facc15;
-            letter-spacing: 2px;
-            margin-top: 5px;
-            text-shadow: 0 0 10px rgba(250, 204, 21, 0.6);
+        .tap-main-text {
+            font-size: 36px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.9), 0 2px 4px rgba(0,0,0,0.8);
         }
 
         /* Professional SVG Pastki Menyubari */
@@ -282,7 +275,12 @@
     <!-- 1. BOSH SAHIFA -->
     <div id="page-home" class="section active">
         <div class="card" style="text-align: center;">
-            <h3><span class="vip-badge">🏠</span> Xush kelibsiz!</h3>
+            <h3>
+                <span class="vip-badge">
+                    <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                </span> 
+                Xush kelibsiz!
+            </h3>
             <p style="color: #cbd5e1;">Bu yerda siz TapSwap orqali tanga ishlab yoki hisobni to'ldirib eksklyuziv raqamlarni xarid qilishingiz mumkin.</p>
             <p style="margin-top: 15px; color: var(--accent-blue); font-weight: 600;">Pastdagi menyular orqali bo'limlarga o'ting 👇</p>
         </div>
@@ -296,18 +294,22 @@
             <p style="margin:0; font-size:12px; color:#64748b;">Har bir bosish uchun: <span id="clickPower" style="color: #38bdf8; font-weight: 700;">0.0001</span> tanga</p>
         </div>
 
-        <!-- 3D O'ta chiroyli Tanga bosish tugmasi -->
+        <!-- Tangasiz, Katta va Premium TAP Tugmasi -->
         <div class="tap-circle-container">
             <div class="tap-glow-bg"></div>
             <div class="tap-circle" id="tapBtn">
-                <div class="coin-icon-3d">🪙</div>
-                <div class="tap-text">TAP</div>
+                <span class="tap-main-text">TAP</span>
             </div>
         </div>
 
         <!-- Buster bo'limi -->
         <div class="card" style="margin-top: 20px;">
-            <h3><span class="vip-badge">⚡</span> Buster (Kuchaytirgich)</h3>
+            <h3>
+                <span class="vip-badge">
+                    <svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+                </span> 
+                Buster (Kuchaytirgich)
+            </h3>
             <p>Bosish quvvatini oshirish: <strong style="color: #fff;">+0.0001</strong></p>
             <p>Narxi: <span id="busterCost" style="color: #facc15; font-weight: 700;">50</span> tanga</p>
             <button class="btn-premium" id="buyBusterBtn">Buster sotib olish</button>
@@ -317,41 +319,62 @@
     <!-- 3. SOTIB OLISH SAHIFASI -->
     <div id="page-shop" class="section">
         <div style="text-align: left; margin-bottom: 14px; font-size: 14px; color: var(--accent-blue); font-weight: 600; display: flex; align-items: center; gap: 8px;">
-            <span class="vip-badge" style="width: 28px; height: 28px; font-size: 14px;">🛍️</span> Mavjud raqamlar katalogi:
+            <span class="vip-badge" style="width: 30px; height: 30px;">
+                <svg style="width:16px; height:16px;" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+            </span> 
+            Mavjud raqamlar katalogi:
         </div>
         
         <div class="card">
-            <h3><span class="vip-badge">📞</span> +1 111 890 12 12</h3>
+            <h3>
+                <span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> 
+                +1 111 890 12 12
+            </h3>
             <p>💰 Narxi: <strong style="color: #facc15;">1200 tanga</strong></p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
 
         <div class="card">
-            <h3><span class="vip-badge">📞</span> +1 000 00 01</h3>
+            <h3>
+                <span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> 
+                +1 000 00 01
+            </h3>
             <p>💰 Narxi: <strong style="color: #facc15;">2300 tanga</strong></p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
 
         <div class="card">
-            <h3><span class="vip-badge">📞</span> +92 000 00 90</h3>
+            <h3>
+                <span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> 
+                +92 000 00 90
+            </h3>
             <p>💰 Narxi: <strong style="color: #facc15;">3500 tanga</strong></p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
 
         <div class="card">
-            <h3><span class="vip-badge">📞</span> +98 800 00 00</h3>
+            <h3>
+                <span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> 
+                +98 800 00 00
+            </h3>
             <p>💰 Narxi: <strong style="color: #facc15;">4800 tanga</strong></p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
 
         <div class="card">
-            <h3><span class="vip-badge">📞</span> +91 000 00 00</h3>
+            <h3>
+                <span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> 
+                +91 000 00 00
+            </h3>
             <p>💰 Narxi: <strong style="color: #facc15;">6200 tanga</strong></p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
 
         <div class="card">
-            <h3><span class="vip-badge">📞</span> +79700</h3>
+            <h3>
+                <span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> 
+                +79700
+            </h3>
             <p>💰 Narxi: <strong style="color: #facc15;">8000 tanga</strong></p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
@@ -360,7 +383,10 @@
     <!-- 4. HAMYON SAHIFASI -->
     <div id="page-wallet" class="section">
         <div class="card">
-            <h3><span class="vip-badge">💳</span> Hamyon & Hisobni to'ldirish</h3>
+            <h3>
+                <span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></span> 
+                Hamyon & Hisobni to'ldirish
+            </h3>
             <p style="margin-bottom: 15px; font-size: 13px; line-height: 1.6; color: #cbd5e1;">
                 TapSwap bosib noʻmer olmoqchi boʻlmasangiz hisob toʻldirish orqali noʻmer oling.
             </p>
@@ -406,7 +432,7 @@
         element.classList.add('active');
     }
 
-    // Tangalar va quvvat (0.0001 qilib qiyinlashtirildi)
+    // Balans 0 dan boshlanadi, LocalStorage orqali chiqib kirganda o'chib ketmaydi
     let coins = parseFloat(localStorage.getItem('acazes_coins')) || 0.0;
     let clickPower = parseFloat(localStorage.getItem('acazes_power')) || 0.0001;
     let busterCost = parseInt(localStorage.getItem('acazes_cost')) || 50;
