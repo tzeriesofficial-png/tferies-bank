@@ -2,30 +2,37 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Acazes Nomerlari</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         :root {
-            --bg-color: #070b19;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --card-border: rgba(255, 255, 255, 0.12);
-            --accent-blue: #38bdf8;
-            --text-main: #ffffff;
-            --text-secondary: #94a3b8;
+            --bg-color: #ffffff;
+            --card-bg: #f8fafc;
+            --card-border: #e2e8f0;
+            --text-main: #0f172a;
+            --text-secondary: #475569;
+            --accent-black: #000000;
+        }
+
+        * {
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         body {
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: radial-gradient(circle at 50% 0%, #0f172a 0%, #070b19 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
             padding: 0;
-            padding-bottom: 100px;
+            padding-bottom: 90px;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            touch-action: manipulation;
         }
 
         .container {
@@ -36,22 +43,19 @@
             text-align: center;
         }
 
-        /* VIP Neon Sarlavha */
+        /* Qora Premium Sarlavha */
         .title-glow {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 900;
-            margin: 25px 0 15px 0;
-            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
+            margin: 20px 0 15px 0;
+            color: var(--accent-black);
             letter-spacing: 1.5px;
             text-transform: uppercase;
         }
 
         .section {
             display: none;
-            animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: fadeIn 0.25s ease-in-out;
         }
 
         .section.active {
@@ -59,33 +63,29 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* VIP Glassmorphism Kartochkalar */
+        /* Oq/Och kulrang Kartochkalar */
         .card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 22px;
-            padding: 22px;
+            border-radius: 20px;
+            padding: 20px;
             margin-bottom: 16px;
-            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             text-align: left;
-            position: relative;
-            overflow: hidden;
         }
 
         .card h3 {
             margin: 0 0 10px 0;
-            color: var(--accent-blue);
-            font-size: 19px;
-            font-weight: 700;
+            color: var(--accent-black);
+            font-size: 18px;
+            font-weight: 800;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .card p {
@@ -95,40 +95,38 @@
             line-height: 1.5;
         }
 
-        /* Professional SVG Vektor Emblemalar */
+        /* VIP Badge ikonka ramkasi */
         .vip-badge {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 36px;
-            height: 36px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(37, 99, 235, 0.3));
-            border: 1px solid rgba(56, 189, 248, 0.4);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            background: #e2e8f0;
+            border: 1px solid #cbd5e1;
             flex-shrink: 0;
         }
 
         .vip-badge svg {
-            width: 20px;
-            height: 20px;
-            fill: #38bdf8;
-            filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.6));
+            width: 18px;
+            height: 18px;
+            fill: #0f172a;
         }
 
-        /* VIP Premium Tugmalar */
+        /* Qora Tugmalar */
         .btn-premium {
-            background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+            background: #000000;
             color: #ffffff;
             border: none;
             padding: 14px 22px;
             font-size: 15px;
             font-weight: 700;
-            border-radius: 16px;
+            border-radius: 14px;
             cursor: pointer;
             width: 100%;
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
-            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.1s ease, background-color 0.2s;
             margin-top: 12px;
             display: inline-block;
             text-align: center;
@@ -138,55 +136,38 @@
         }
 
         .btn-premium:active {
-            transform: scale(0.96);
-            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.6);
+            transform: scale(0.97);
+            background: #1e293b;
         }
 
-        /* Katta va Premium TAP Tugmasi (Tangasiz, kattaroq yozuv) */
+        /* TAP Tugmasi (Qora va Oq Stil) */
         .tap-circle-container {
-            position: relative;
-            margin: 35px auto;
-            width: 200px;
-            height: 200px;
+            margin: 30px auto;
+            width: 180px;
+            height: 180px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .tap-glow-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(56,189,248,0.4) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: pulseGlow 2s infinite alternate;
-        }
-
-        @keyframes pulseGlow {
-            from { transform: scale(0.9); opacity: 0.6; }
-            to { transform: scale(1.15); opacity: 1; }
-        }
-
         .tap-circle {
-            position: relative;
-            width: 175px;
-            height: 175px;
-            background: linear-gradient(145deg, #1e3a8a, #0f172a);
+            width: 170px;
+            height: 170px;
+            background: #000000;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            user-select: none;
-            transition: transform 0.08s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 4px solid rgba(56, 189, 248, 0.5);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 5px 15px rgba(255, 255, 255, 0.2), inset 0 -5px 15px rgba(0, 0, 0, 0.8);
+            transition: transform 0.08s ease;
+            border: 4px solid #e2e8f0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            outline: none;
         }
 
         .tap-circle:active {
-            transform: scale(0.90);
-            border-color: #38bdf8;
-            box-shadow: 0 5px 20px rgba(56, 189, 248, 0.5), inset 0 2px 5px rgba(255, 255, 255, 0.3);
+            transform: scale(0.92);
+            background: #1e293b;
         }
 
         .tap-main-text {
@@ -194,66 +175,54 @@
             font-weight: 900;
             color: #ffffff;
             letter-spacing: 4px;
-            text-shadow: 0 0 20px rgba(56, 189, 248, 0.9), 0 2px 4px rgba(0,0,0,0.8);
         }
 
-        /* Professional SVG Pastki Menyubari */
+        /* Pastki Menyu Bar */
         .nav-bar {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            background: rgba(7, 11, 25, 0.9);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            background: #ffffff;
+            border-top: 1px solid #e2e8f0;
             display: flex;
             justify-content: space-around;
-            padding: 12px 0 16px 0;
+            padding: 10px 0 14px 0;
             z-index: 1000;
-            box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
         }
 
         .nav-item {
             background: none;
             border: none;
-            color: #64748b;
+            color: #94a3b8;
             font-size: 12px;
-            font-weight: 500;
+            font-weight: 600;
             display: flex;
             flex-direction: column;
             align-items: center;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: color 0.2s;
             flex: 1;
         }
 
         .nav-item svg {
-            width: 24px;
-            height: 24px;
-            margin-bottom: 5px;
+            width: 22px;
+            height: 22px;
+            margin-bottom: 4px;
             fill: currentColor;
-            transition: all 0.25s ease;
         }
 
         .nav-item.active {
-            color: #38bdf8;
-            font-weight: 700;
-            text-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
-        }
-
-        .nav-item.active svg {
-            filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.8));
-            transform: translateY(-2px);
+            color: #000000;
+            font-weight: 800;
         }
 
         .coin-display {
-            font-size: 32px;
+            font-size: 34px;
             font-weight: 900;
-            color: #facc15;
+            color: #000000;
             margin: 10px 0;
-            text-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
-            letter-spacing: 1px;
         }
 
         .balance-box {
@@ -262,14 +231,13 @@
             border-radius: 20px;
             padding: 20px;
             margin-bottom: 20px;
-            backdrop-filter: blur(15px);
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- VIP SARLAVHA -->
+    <!-- SARLAVHA -->
     <div class="title-glow">ACAZES NOMERLARI</div>
 
     <!-- 1. BOSH SAHIFA -->
@@ -281,28 +249,27 @@
                 </span> 
                 Xush kelibsiz!
             </h3>
-            <p style="color: #cbd5e1;">Bu yerda siz TapSwap orqali tanga ishlab yoki hisobni to'ldirib eksklyuziv raqamlarni xarid qilishingiz mumkin.</p>
-            <p style="margin-top: 15px; color: var(--accent-blue); font-weight: 600;">Pastdagi menyular orqali bo'limlarga o'ting 👇</p>
+            <p>Bu yerda siz TapSwap orqali tanga ishlab yoki hisobni to'ldirib eksklyuziv raqamlarni xarid qilishingiz mumkin.</p>
+            <p style="margin-top: 15px; color: #000000; font-weight: 700;">Pastdagi menyular orqali bo'limlarga o'ting 👇</p>
         </div>
     </div>
 
     <!-- 2. TAPSWAP SAHIFASI -->
     <div id="page-tapswap" class="section">
         <div class="balance-box">
-            <p style="margin:0; font-size:13px; color:#94a3b8;">Sizning balansingiz:</p>
-            <div class="coin-display" id="coinCount">0.0000</div>
-            <p style="margin:0; font-size:12px; color:#64748b;">Har bir bosish uchun: <span id="clickPower" style="color: #38bdf8; font-weight: 700;">0.0001</span> tanga</p>
+            <p style="margin:0; font-size:13px; color:#64748b;">Sizning balansingiz:</p>
+            <div class="coin-display" id="coinCount">0</div>
+            <p style="margin:0; font-size:13px; color:#475569;">Har bir bosish uchun: <span id="clickPower" style="color: #000000; font-weight: 800;">+1</span> tanga</p>
         </div>
 
-        <!-- Tangasiz, Katta va Premium TAP Tugmasi -->
+        <!-- TAP TUGMASI -->
         <div class="tap-circle-container">
-            <div class="tap-glow-bg"></div>
             <div class="tap-circle" id="tapBtn">
                 <span class="tap-main-text">TAP</span>
             </div>
         </div>
 
-        <!-- Buster bo'limi -->
+        <!-- BUSTER BO'LIMI -->
         <div class="card" style="margin-top: 20px;">
             <h3>
                 <span class="vip-badge">
@@ -310,16 +277,16 @@
                 </span> 
                 Buster (Kuchaytirgich)
             </h3>
-            <p>Bosish quvvatini oshirish: <strong style="color: #fff;">+0.0001</strong></p>
-            <p>Narxi: <span id="busterCost" style="color: #facc15; font-weight: 700;">50</span> tanga</p>
+            <p>Bosish quvvatini oshirish: <strong style="color: #000;">+1</strong></p>
+            <p>Narxi: <span id="busterCost" style="color: #000000; font-weight: 800;">100</span> tanga</p>
             <button class="btn-premium" id="buyBusterBtn">Buster sotib olish</button>
         </div>
     </div>
 
     <!-- 3. SOTIB OLISH SAHIFASI -->
     <div id="page-shop" class="section">
-        <div style="text-align: left; margin-bottom: 14px; font-size: 14px; color: var(--accent-blue); font-weight: 600; display: flex; align-items: center; gap: 8px;">
-            <span class="vip-badge" style="width: 30px; height: 30px;">
+        <div style="text-align: left; margin-bottom: 14px; font-size: 14px; color: #000000; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+            <span class="vip-badge" style="width: 28px; height: 28px;">
                 <svg style="width:16px; height:16px;" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
             </span> 
             Mavjud raqamlar katalogi:
@@ -330,7 +297,10 @@
                 <span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> 
                 +1 111 890 12 12
             </h3>
-            <p>💰 Narxi: <strong style="color: #facc15;">1200 tanga</strong></p>
+            <p style="display:flex; align-items:center; gap:6px;">
+                <span class="vip-badge" style="width:22px; height:22px;"><svg viewBox="0 0 24 24" style="width:14px; height:14px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></span> 
+                Narxi: <strong style="color: #000000;">1200 tanga</strong>
+            </p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
 
@@ -339,7 +309,10 @@
                 <span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> 
                 +1 000 00 01
             </h3>
-            <p>💰 Narxi: <strong style="color: #facc15;">2300 tanga</strong></p>
+            <p style="display:flex; align-items:center; gap:6px;">
+                <span class="vip-badge" style="width:22px; height:22px;"><svg viewBox="0 0 24 24" style="width:14px; height:14px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></span> 
+                Narxi: <strong style="color: #000000;">2300 tanga</strong>
+            </p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
 
@@ -348,7 +321,10 @@
                 <span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> 
                 +92 000 00 90
             </h3>
-            <p>💰 Narxi: <strong style="color: #facc15;">3500 tanga</strong></p>
+            <p style="display:flex; align-items:center; gap:6px;">
+                <span class="vip-badge" style="width:22px; height:22px;"><svg viewBox="0 0 24 24" style="width:14px; height:14px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></span> 
+                Narxi: <strong style="color: #000000;">3500 tanga</strong>
+            </p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
 
@@ -357,7 +333,10 @@
                 <span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> 
                 +98 800 00 00
             </h3>
-            <p>💰 Narxi: <strong style="color: #facc15;">4800 tanga</strong></p>
+            <p style="display:flex; align-items:center; gap:6px;">
+                <span class="vip-badge" style="width:22px; height:22px;"><svg viewBox="0 0 24 24" style="width:14px; height:14px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></span> 
+                Narxi: <strong style="color: #000000;">4800 tanga</strong>
+            </p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
 
@@ -366,7 +345,10 @@
                 <span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> 
                 +91 000 00 00
             </h3>
-            <p>💰 Narxi: <strong style="color: #facc15;">6200 tanga</strong></p>
+            <p style="display:flex; align-items:center; gap:6px;">
+                <span class="vip-badge" style="width:22px; height:22px;"><svg viewBox="0 0 24 24" style="width:14px; height:14px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></span> 
+                Narxi: <strong style="color: #000000;">6200 tanga</strong>
+            </p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
 
@@ -375,7 +357,10 @@
                 <span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span> 
                 +79700
             </h3>
-            <p>💰 Narxi: <strong style="color: #facc15;">8000 tanga</strong></p>
+            <p style="display:flex; align-items:center; gap:6px;">
+                <span class="vip-badge" style="width:22px; height:22px;"><svg viewBox="0 0 24 24" style="width:14px; height:14px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></span> 
+                Narxi: <strong style="color: #000000;">8000 tanga</strong>
+            </p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
     </div>
@@ -387,20 +372,20 @@
                 <span class="vip-badge"><svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></span> 
                 Hamyon & Hisobni to'ldirish
             </h3>
-            <p style="margin-bottom: 15px; font-size: 13px; line-height: 1.6; color: #cbd5e1;">
+            <p style="margin-bottom: 15px; font-size: 13px; line-height: 1.6; color: #475569;">
                 TapSwap bosib noʻmer olmoqchi boʻlmasangiz hisob toʻldirish orqali noʻmer oling.
             </p>
-            <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin: 15px 0;">
-            <p style="font-weight: 700; margin-bottom: 12px; color: var(--accent-blue);">Qaysi usulda to'ldirmoqchisiz?</p>
+            <hr style="border:0; border-top:1px solid #e2e8f0; margin: 15px 0;">
+            <p style="font-weight: 800; margin-bottom: 12px; color: #000000;">Qaysi usulda to'ldirmoqchisiz?</p>
             
             <a href="https://t.me/acazes" target="_blank" class="btn-premium" style="margin-bottom: 10px; display: block;">P2P orqali to'ldirish</a>
-            <a href="https://t.me/acazes" target="_blank" class="btn-premium" style="background: linear-gradient(135deg, #059669 0%, #047857 100%); display: block; box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);">Bank orqali to'ldirish</a>
+            <a href="https://t.me/acazes" target="_blank" class="btn-premium" style="display: block;">Bank orqali to'ldirish</a>
         </div>
     </div>
 
 </div>
 
-<!-- PROFESSIONAL SVG IKONKALI PASTKI MENYU -->
+<!-- PASTKI MENYU -->
 <div class="nav-bar">
     <button class="nav-item active" onclick="switchPage('home', this)">
         <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
@@ -432,37 +417,44 @@
         element.classList.add('active');
     }
 
-    // Balans 0 dan boshlanadi, LocalStorage orqali chiqib kirganda o'chib ketmaydi
-    let coins = parseFloat(localStorage.getItem('acazes_coins')) || 0.0;
-    let clickPower = parseFloat(localStorage.getItem('acazes_power')) || 0.0001;
-    let busterCost = parseInt(localStorage.getItem('acazes_cost')) || 50;
+    // Birinchi kirganda 0 bo'ladi, saqlangan bo'lsa o'sha joydan davom etadi
+    let coins = parseInt(localStorage.getItem('acazes_coins_v2'));
+    if (isNaN(coins)) {
+        coins = 0;
+    }
+
+    let clickPower = parseInt(localStorage.getItem('acazes_power_v2')) || 1;
+    let busterCost = parseInt(localStorage.getItem('acazes_cost_v2')) || 100;
 
     const coinCountEl = document.getElementById('coinCount');
     const clickPowerEl = document.getElementById('clickPower');
     const busterCostEl = document.getElementById('busterCost');
 
     function updateUI() {
-        coinCountEl.innerText = coins.toFixed(4);
-        clickPowerEl.innerText = clickPower.toFixed(4);
+        coinCountEl.innerText = coins;
+        clickPowerEl.innerText = "+" + clickPower;
         busterCostEl.innerText = busterCost;
     }
     updateUI();
 
-    document.getElementById('tapBtn').addEventListener('click', () => {
+    // Bosganda +1 tanga qo'shish
+    document.getElementById('tapBtn').addEventListener('click', (e) => {
+        e.preventDefault();
         coins += clickPower;
-        localStorage.setItem('acazes_coins', coins);
+        localStorage.setItem('acazes_coins_v2', coins);
         updateUI();
     });
 
+    // Buster sotib olish
     document.getElementById('buyBusterBtn').addEventListener('click', () => {
         if (coins >= busterCost) {
             coins -= busterCost;
-            clickPower += 0.0001;
+            clickPower += 1;
             busterCost = Math.round(busterCost * 1.8);
             
-            localStorage.setItem('acazes_coins', coins);
-            localStorage.setItem('acazes_power', clickPower);
-            localStorage.setItem('acazes_cost', busterCost);
+            localStorage.setItem('acazes_coins_v2', coins);
+            localStorage.setItem('acazes_power_v2', clickPower);
+            localStorage.setItem('acazes_cost_v2', busterCost);
             updateUI();
             alert("Buster muvaffaqiyatli oshirildi! 🚀");
         } else {
