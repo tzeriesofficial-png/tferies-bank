@@ -7,19 +7,22 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         :root {
-            --tg-theme-bg-color: #1a1a2e;
-            --tg-theme-text-color: #ffffff;
-            --tg-theme-button-color: #2481cc;
-            --tg-theme-button-text-color: #ffffff;
+            --bg-color: #070b19;
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --accent-blue: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.4);
+            --text-main: #ffffff;
+            --text-secondary: #94a3b8;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(135deg, #0b132b, #1c2541, #3a506b);
-            color: #ffffff;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: radial-gradient(circle at 50% 0%, #0f172a 0%, #070b19 100%);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
-            padding-bottom: 90px; /* Pastki menyu uchun joy */
+            padding-bottom: 100px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -29,28 +32,27 @@
         .container {
             width: 100%;
             max-width: 480px;
-            padding: 16px;
+            padding: 20px;
             box-sizing: border-box;
             text-align: center;
         }
 
-        /* Rang-barang yorqin sarlavha */
+        /* VIP Rang-barang neon sarlavha */
         .title-glow {
-            font-size: 26px;
-            font-weight: 800;
-            margin: 20px 0;
-            background: linear-gradient(45deg, #00f2fe, #4facfe, #00c6ff, #0072ff);
+            font-size: 28px;
+            font-weight: 900;
+            margin: 25px 0 15px 0;
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 25px rgba(0, 198, 255, 0.6);
-            letter-spacing: 1px;
+            text-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
+            letter-spacing: 1.5px;
             text-transform: uppercase;
         }
 
-        /* Bo'limlar */
         .section {
             display: none;
-            animation: fadeIn 0.3s ease-in-out;
+            animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .section.active {
@@ -58,212 +60,243 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Premium kartochkalar */
+        /* VIP Glassmorphism kartochkalar */
         .card {
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(16px);
-            border-radius: 18px;
-            padding: 18px;
-            margin-bottom: 14px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 22px;
+            padding: 22px;
+            margin-bottom: 16px;
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
             text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
         }
 
         .card h3 {
-            margin: 0 0 8px 0;
-            color: #60a5fa;
-            font-size: 18px;
+            margin: 0 0 10px 0;
+            color: var(--accent-blue);
+            font-size: 19px;
+            font-weight: 700;
             letter-spacing: 0.5px;
         }
 
         .card p {
-            margin: 4px 0;
+            margin: 6px 0;
             font-size: 14px;
-            color: #ffffff;
+            color: var(--text-secondary);
+            line-height: 1.5;
         }
 
-        /* Premium tugmalar */
+        /* VIP Premium Tugmalar */
         .btn-premium {
-            background: linear-gradient(135deg, #2481cc, #1d4ed8);
+            background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
             color: #ffffff;
             border: none;
-            padding: 13px 20px;
+            padding: 14px 22px;
             font-size: 15px;
-            font-weight: 600;
-            border-radius: 14px;
+            font-weight: 700;
+            border-radius: 16px;
             cursor: pointer;
             width: 100%;
-            box-shadow: 0 4px 15px rgba(36, 129, 204, 0.4);
-            transition: all 0.2s ease;
-            margin-top: 10px;
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+            transition: all 0.25s ease;
+            margin-top: 12px;
             display: inline-block;
             text-align: center;
             text-decoration: none;
             box-sizing: border-box;
+            letter-spacing: 0.5px;
         }
 
         .btn-premium:active {
-            transform: scale(0.97);
-            box-shadow: 0 2px 8px rgba(36, 129, 204, 0.6);
+            transform: scale(0.96);
+            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.6);
         }
 
-        /* TapSwap doirasi */
+        /* TapSwap doirasi (VIP dizayn) */
         .tap-circle {
-            width: 170px;
-            height: 170px;
-            background: radial-gradient(circle, #3b82f6, #1d4ed8, #1e3a8a);
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, #38bdf8 0%, #1d4ed8 70%, #0f172a 100%);
             border-radius: 50%;
-            margin: 25px auto;
+            margin: 30px auto;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 30px;
-            font-weight: bold;
+            font-size: 32px;
+            font-weight: 900;
             color: #ffffff;
-            box-shadow: 0 0 35px rgba(59, 130, 246, 0.7);
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.3);
             cursor: pointer;
             user-select: none;
-            transition: transform 0.08s ease;
-            border: 4px solid rgba(255, 255, 255, 0.35);
+            transition: transform 0.08s ease, box-shadow 0.2s ease;
+            border: 3px solid rgba(255, 255, 255, 0.25);
         }
 
         .tap-circle:active {
-            transform: scale(0.90);
+            transform: scale(0.91);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.8);
         }
 
-        /* Pastki menyu bar (Premium) */
+        /* Professional SVG Pastki Menyubari */
         .nav-bar {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            background: rgba(15, 23, 42, 0.92);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(7, 11, 25, 0.85);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
             display: flex;
             justify-content: space-around;
-            padding: 10px 0;
+            padding: 12px 0 16px 0;
             z-index: 1000;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
         }
 
         .nav-item {
             background: none;
             border: none;
-            color: #94a3b8;
-            font-size: 11px;
+            color: #64748b;
+            font-size: 12px;
+            font-weight: 500;
             display: flex;
             flex-direction: column;
             align-items: center;
             cursor: pointer;
-            transition: color 0.2s;
+            transition: all 0.25s ease;
             flex: 1;
         }
 
-        .nav-item span.icon {
-            font-size: 22px;
-            margin-bottom: 3px;
+        .nav-item svg {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 5px;
+            fill: currentColor;
+            transition: all 0.25s ease;
         }
 
         .nav-item.active {
-            color: #60a5fa;
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+            color: #38bdf8;
+            font-weight: 700;
+            text-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+        }
+
+        .nav-item.active svg {
+            filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.8));
+            transform: translateY(-2px);
         }
 
         .coin-display {
-            font-size: 26px;
-            font-weight: bold;
+            font-size: 30px;
+            font-weight: 900;
             color: #facc15;
             margin: 10px 0;
-            text-shadow: 0 0 12px rgba(250, 204, 21, 0.5);
+            text-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
+            letter-spacing: 1px;
         }
 
         .balance-box {
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(15px);
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- RANG-BARANG SARLAVHA -->
+    <!-- VIP SARLAVHA -->
     <div class="title-glow">ACAZES NOMERLARI</div>
 
     <!-- 1. BOSH SAHIFA -->
     <div id="page-home" class="section active">
         <div class="card" style="text-align: center;">
             <h3>Xush kelibsiz!</h3>
-            <p>Bu yerda siz TapSwap orqali tanga ishlab yoki hisobni to'ldirib eksklyuziv raqamlarni xarid qilishingiz mumkin.</p>
-            <p style="margin-top: 15px; color: #60a5fa;">Pastdagi menyular orqali bo'limlarga o'ting 👇</p>
+            <p style="color: #cbd5e1;">Bu yerda siz TapSwap orqali tanga ishlab yoki hisobni to'ldirib eksklyuziv raqamlarni xarid qilishingiz mumkin.</p>
+            <p style="margin-top: 15px; color: var(--accent-blue); font-weight: 600;">Pastdagi menyular orqali bo'limlarga o'ting 👇</p>
         </div>
     </div>
 
     <!-- 2. TAPSWAP SAHIFASI -->
     <div id="page-tapswap" class="section">
         <div class="balance-box">
-            <p style="margin:0; font-size:13px; color:#cbd5e1;">Sizning balansingiz:</p>
+            <p style="margin:0; font-size:13px; color:#94a3b8;">Sizning balansingiz:</p>
             <div class="coin-display" id="coinCount">0.0</div>
-            <p style="margin:0; font-size:12px; color:#94a3b8;">Har bir bosish uchun: <span id="clickPower">0.1</span> tanga</p>
+            <p style="margin:0; font-size:12px; color:#64748b;">Har bir bosish uchun: <span id="clickPower" style="color: #38bdf8; font-weight: 700;">0.1</span> tanga</p>
         </div>
 
         <!-- Tanga bosish tugmasi -->
-        <div class="tap-circle" id="tapBtn">🪙 TAP</div>
+        <div class="tap-circle" id="tapBtn">
+            <span>🪙</span>
+            <span style="font-size: 15px; margin-top: 4px; font-weight: 600; color: #e2e8f0;">TAP</span>
+        </div>
 
         <!-- Buster bo'limi -->
         <div class="card" style="margin-top: 20px;">
             <h3>⚡ Buster (Kuchaytirgich)</h3>
-            <p>Bosish quvvatini oshirish: <strong>+0.1</strong></p>
-            <p>Narxi: <span id="busterCost">100</span> tanga</p>
-            <button class="btn-premium" id="buyBusterBtn">Buster sotib olish (Kuchaytirish)</button>
+            <p>Bosish quvvatini oshirish: <strong style="color: #fff;">+0.1</strong></p>
+            <p>Narxi: <span id="busterCost" style="color: #facc15; font-weight: 700;">100</span> tanga</p>
+            <button class="btn-premium" id="buyBusterBtn">Buster sotib olish</button>
         </div>
     </div>
 
     <!-- 3. SOTIB OLISH SAHIFASI -->
     <div id="page-shop" class="section">
-        <div style="text-align: left; margin-bottom: 12px; font-size: 14px; color: #93c5fd;">Mavjud raqamlar katalogi:</div>
+        <div style="text-align: left; margin-bottom: 14px; font-size: 14px; color: var(--accent-blue); font-weight: 600;">Mavjud raqamlar katalogi:</div>
         
         <div class="card">
             <h3>+1 111 890 12 12</h3>
-            <p>💰 Narxi: 1200 tanga</p>
+            <p>💰 Narxi: <strong style="color: #facc15;">1200 tanga</strong></p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
 
         <div class="card">
             <h3>+1 000 00 01</h3>
-            <p>💰 Narxi: 2300 tanga</p>
+            <p>💰 Narxi: <strong style="color: #facc15;">2300 tanga</strong></p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
 
         <div class="card">
             <h3>+92 000 00 90</h3>
-            <p>💰 Narxi: 3500 tanga</p>
+            <p>💰 Narxi: <strong style="color: #facc15;">3500 tanga</strong></p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
 
         <div class="card">
             <h3>+98 800 00 00</h3>
-            <p>💰 Narxi: 4800 tanga</p>
+            <p>💰 Narxi: <strong style="color: #facc15;">4800 tanga</strong></p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
 
         <div class="card">
             <h3>+91 000 00 00</h3>
-            <p>💰 Narxi: 6200 tanga</p>
+            <p>💰 Narxi: <strong style="color: #facc15;">6200 tanga</strong></p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
 
         <div class="card">
             <h3>+79700</h3>
-            <p>💰 Narxi: 8000 tanga</p>
+            <p>💰 Narxi: <strong style="color: #facc15;">8000 tanga</strong></p>
             <a href="https://t.me/acazes" target="_blank" class="btn-premium">Sotib olish</a>
         </div>
     </div>
@@ -272,35 +305,35 @@
     <div id="page-wallet" class="section">
         <div class="card">
             <h3>💳 Hamyon & Hisobni to'ldirish</h3>
-            <p style="margin-bottom: 15px; font-size: 13px; line-height: 1.5; color: #cbd5e1;">
+            <p style="margin-bottom: 15px; font-size: 13px; line-height: 1.6; color: #cbd5e1;">
                 TapSwap bosib noʻmer olmoqchi boʻlmasangiz hisob toʻldirish orqali noʻmer oling.
             </p>
-            <hr style="border:0; border-top:1px solid rgba(255,255,255,0.15); margin: 15px 0;">
-            <p style="font-weight: bold; margin-bottom: 12px; color: #93c5fd;">Qaysi usulda to'ldirmoqchisiz?</p>
+            <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin: 15px 0;">
+            <p style="font-weight: 700; margin-bottom: 12px; color: var(--accent-blue);">Qaysi usulda to'ldirmoqchisiz?</p>
             
             <a href="https://t.me/acazes" target="_blank" class="btn-premium" style="margin-bottom: 10px; display: block;">P2P orqali to'ldirish</a>
-            <a href="https://t.me/acazes" target="_blank" class="btn-premium" style="background: linear-gradient(135deg, #059669, #047857); display: block;">Bank orqali to'ldirish</a>
+            <a href="https://t.me/acazes" target="_blank" class="btn-premium" style="background: linear-gradient(135deg, #059669 0%, #047857 100%); display: block; box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);">Bank orqali to'ldirish</a>
         </div>
     </div>
 
 </div>
 
-<!-- PASTKI 4 TA IKONKALI MENYU -->
+<!-- PROFESSIONAL SVG IKONKALI PASTKI MENYU -->
 <div class="nav-bar">
     <button class="nav-item active" onclick="switchPage('home', this)">
-        <span class="icon">🏠</span>
+        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
         Bosh sahifa
     </button>
     <button class="nav-item" onclick="switchPage('tapswap', this)">
-        <span class="icon">🪙</span>
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
         TapSwap
     </button>
     <button class="nav-item" onclick="switchPage('shop', this)">
-        <span class="icon">🛍️</span>
+        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
         Sotib olish
     </button>
     <button class="nav-item" onclick="switchPage('wallet', this)">
-        <span class="icon">💳</span>
+        <svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
         Hamyon
     </button>
 </div>
@@ -309,7 +342,6 @@
     let tg = window.Telegram.WebApp;
     tg.expand();
 
-    // Sahifalarni almashtirish funksiyasi
     function switchPage(pageId, element) {
         document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
         document.getElementById('page-' + pageId).classList.add('active');
@@ -318,7 +350,6 @@
         element.classList.add('active');
     }
 
-    // TapSwap mantiqi (LocalStorage orqali tangalarni saqlab qolish)
     let coins = parseFloat(localStorage.getItem('acazes_coins')) || 0.0;
     let clickPower = parseFloat(localStorage.getItem('acazes_power')) || 0.1;
     let busterCost = parseInt(localStorage.getItem('acazes_cost')) || 100;
@@ -334,14 +365,12 @@
     }
     updateUI();
 
-    // Tanga bosish hodisasi
     document.getElementById('tapBtn').addEventListener('click', () => {
         coins += clickPower;
         localStorage.setItem('acazes_coins', coins);
         updateUI();
     });
 
-    // Buster sotib olish
     document.getElementById('buyBusterBtn').addEventListener('click', () => {
         if (coins >= busterCost) {
             coins -= busterCost;
