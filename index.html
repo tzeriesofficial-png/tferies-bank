@@ -6,7 +6,7 @@
     <title>ACAZES TERRORIZM</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@600;800;900&display=swap');
 
         * {
             margin: 0;
@@ -26,17 +26,17 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            padding: 20px;
+            padding: 15px;
         }
 
-        /* Fon uchun chuqur qorong'ulik effekti */
+        /* Chuqur qorong'ulik va nurlanish effekti */
         .overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(20, 0, 0, 0.4) 0%, rgba(0, 0, 0, 1) 85%);
+            background: radial-gradient(circle, rgba(25, 0, 0, 0.45) 0%, rgba(0, 0, 0, 1) 90%);
             z-index: 1;
         }
 
@@ -49,40 +49,43 @@
             justify-content: center;
             text-align: center;
             width: 100%;
+            max-width: 400px;
         }
 
-        /* Asosiy matnlar */
+        /* Sarlavhalar va to'g'ri ketma-ketlik */
         .title-acazes {
-            font-size: 28px;
-            letter-spacing: 14px;
+            font-size: 24px;
+            letter-spacing: 10px;
             color: #8b0000;
-            text-shadow: 0 0 12px rgba(139, 0, 0, 0.7), 0 0 25px rgba(100, 0, 0, 0.4);
-            margin-bottom: 8px;
+            text-shadow: 0 0 10px rgba(139, 0, 0, 0.7), 0 0 20px rgba(100, 0, 0, 0.4);
+            margin-bottom: 6px;
             text-transform: uppercase;
             font-weight: 900;
+            width: 100%;
         }
 
         .title-terrorizm {
-            font-size: 32px;
-            letter-spacing: 10px;
+            font-size: 26px;
+            letter-spacing: 6px;
             color: #ab0000;
-            text-shadow: 0 0 15px rgba(171, 0, 0, 0.8), 0 0 30px rgba(139, 0, 0, 0.5);
+            text-shadow: 0 0 12px rgba(171, 0, 0, 0.8), 0 0 25px rgba(139, 0, 0, 0.5);
             text-transform: uppercase;
             font-weight: 900;
-            margin-bottom: 60px;
+            margin-bottom: 35px;
+            width: 100%;
         }
 
         /* SVG Loader container */
         .loader-container {
-            width: 80px;
-            height: 80px;
+            width: 55px;
+            height: 55px;
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-bottom: 20px;
         }
 
-        /* Premium SVG Spinner */
         .loader-svg {
             width: 100%;
             height: 100%;
@@ -109,28 +112,66 @@
             filter: drop-shadow(0px 0px 6px #ff0000);
         }
 
+        /* Uzun chiziqli progress bar */
+        .progress-bar-container {
+            width: 100%;
+            background-color: #110000;
+            border: 1px solid #5a0000;
+            border-radius: 4px;
+            height: 8px;
+            padding: 1px;
+            margin-bottom: 12px;
+            box-shadow: 0 0 10px rgba(139, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #8b0000, #ff0000);
+            border-radius: 2px;
+            box-shadow: 0 0 8px #ff0000;
+            transition: width 0.05s linear;
+        }
+
+        /* Foiz va sonlar matni */
+        .progress-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+            color: #ff3333;
+            letter-spacing: 2px;
+            text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+            margin-bottom: 18px;
+        }
+
+        /* Ma'lumot / Izoh qismi (DXX va Ichki ishlar haqida) */
+        .security-info {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: #d12e2e;
+            line-height: 1.5;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 6px rgba(209, 46, 46, 0.5);
+            border-left: 2px solid #ff0000;
+            padding-left: 10px;
+            text-align: left;
+            opacity: 0.9;
+        }
+
         @keyframes rotate {
-            100% {
-                transform: rotate(360deg);
-            }
+            100% { transform: rotate(360deg); }
         }
 
         @keyframes rotate-reverse {
-            100% {
-                transform: rotate(-360deg);
-            }
+            100% { transform: rotate(-360deg); }
         }
 
         @keyframes dash {
-            0% {
-                stroke-dashoffset: 150;
-            }
-            50% {
-                stroke-dashoffset: 35;
-            }
-            100% {
-                stroke-dashoffset: 150;
-            }
+            0% { stroke-dashoffset: 150; }
+            50% { stroke-dashoffset: 35; }
+            100% { stroke-dashoffset: 150; }
         }
     </style>
 </head>
@@ -139,26 +180,63 @@
     <div class="overlay"></div>
 
     <div class="container">
+        <!-- To'g'ri ketma-ketlikdagi sarlavhalar -->
         <div class="title-acazes">A C A Z E S</div>
-        <div class="title-terrorizm">T E R R O R I Z M</div>
+        <div class="title-terrorizm">TERRORIZM</div>
 
         <!-- Premium SVG Loader -->
         <div class="loader-container">
             <svg class="loader-svg" viewBox="0 0 50 50">
-                <!-- Tashqi to'q qizil aylana -->
                 <circle class="loader-outer" cx="25" cy="25" r="20"></circle>
-                <!-- Ichki yorqin qizil nur sochuvchi aylana -->
                 <circle class="loader-inner" cx="25" cy="25" r="12" stroke-dasharray="40" stroke-dashoffset="10"></circle>
             </svg>
+        </div>
+
+        <!-- Uzun chiziqli zagruzka (1000 gacha) -->
+        <div class="progress-bar-container">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <!-- Sanash raqami (0 / 1000) -->
+        <div class="progress-text" id="progressText">SHIFrlash: 0 / 1000</div>
+
+        <!-- DXX va Ichki ishlar haqidagi maxfiy izoh -->
+        <div class="security-info">
+            ⚠️ TERRORIZM ilovasi haqiqiy maxfiy platforma hisoblanadi. Ma'lumotlar xavfsizligini ta'minlash va DXX hamda Ichki Ishlar organlarining raqamli kuzatuvidan yashirinish uchun tizim 1000 bosqichli shifrlash protokolini bajarmoqda.
         </div>
     </div>
 
     <script>
-        // Telegram Mini App’ni to'liq ekranga yoyish
+        // Telegram WebApp ni kengaytirish
         if (window.Telegram && window.Telegram.WebApp) {
             window.Telegram.WebApp.ready();
             window.Telegram.WebApp.expand();
         }
+
+        // 1000 gacha asta-sekin to'lish logikasi
+        let currentCount = 0;
+        const maxCount = 1000;
+        const fillElement = document.getElementById('progressFill');
+        const textElement = document.getElementById('progressText');
+
+        // Sekinroq va realistik chiqishi uchun interval (umumiy vaqt ~4-5 sekund)
+        const intervalTime = 4.5; 
+        const incrementStep = 4;
+
+        const timer = setInterval(() => {
+            currentCount += incrementStep;
+            if (currentCount >= maxCount) {
+                currentCount = maxCount;
+                clearInterval(timer);
+                textElement.innerHTML = "TIZIMGA ULANISH MUVAFFAQIYATLI YAKUNLANDI";
+                textElement.style.color = "#ff0000";
+            }
+            
+            // Chiziq kengligi va matnni yangilash
+            let percentage = (currentCount / maxCount) * 100;
+            fillElement.style.width = percentage + '%';
+            textElement.innerHTML = `SHIFRLASH BOSQICHI: ${currentCount} / ${maxCount}`;
+        }, 20);
     </script>
 </body>
 </html>
