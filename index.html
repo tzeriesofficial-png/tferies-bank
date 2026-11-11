@@ -6,7 +6,7 @@
     <title>ACAZES TERRORIZM</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@600;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@600;700;800;900&display=swap');
 
         * {
             margin: 0;
@@ -19,14 +19,14 @@
         body {
             background-color: #000000;
             color: #8b0000;
-            font-family: 'Cinzel', 'Montserrat', serif;
+            font-family: 'Cinzel', 'Montserrat', sans-serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             overflow-x: hidden;
-            padding: 20px;
+            padding: 15px 15px 85px 15px; /* Pastki menyu uchun bo'shliq */
         }
 
         .overlay {
@@ -40,7 +40,8 @@
             pointer-events: none;
         }
 
-        .container {
+        /* 1. KANALDAGI ZAGRUZKA EKRANI */
+        .loader-container-wrapper {
             position: relative;
             z-index: 2;
             display: flex;
@@ -50,9 +51,9 @@
             text-align: center;
             width: 100%;
             max-width: 400px;
+            margin: auto 0;
         }
 
-        /* Sarlavhalar */
         .title-acazes {
             font-size: 24px;
             letter-spacing: 10px;
@@ -75,7 +76,6 @@
             width: 100%;
         }
 
-        /* Loader */
         .loader-container {
             width: 55px;
             height: 55px;
@@ -157,7 +157,7 @@
             opacity: 0.9;
         }
 
-        .svg-icon {
+        .svg-warning {
             width: 14px;
             height: 14px;
             vertical-align: middle;
@@ -167,20 +167,35 @@
             display: inline-block;
         }
 
-        /* Asosiy Menyu va Interfeys qismi */
-        .main-menu {
-            display: none;
+        /* 2. ASOSIY EKRAN BO'LIMLARI */
+        .content-area {
+            position: relative;
+            z-index: 2;
             width: 100%;
+            max-width: 400px;
+            display: none;
             flex-direction: column;
             gap: 15px;
-            animation: fadeIn 0.8s ease-in-out;
+            margin: auto 0;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        .tab-content {
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .tab-content.active {
+            display: flex;
         }
 
         .info-card {
-            background-color: #100000;
+            background-color: #0e0000;
             border: 1px solid #5a0000;
-            border-radius: 6px;
-            padding: 18px;
+            border-radius: 8px;
+            padding: 20px;
             text-align: center;
             box-shadow: 0 0 15px rgba(139, 0, 0, 0.4);
             font-family: 'Montserrat', sans-serif;
@@ -190,11 +205,11 @@
             line-height: 1.6;
         }
 
-        .menu-btn {
+        .action-btn {
             background: linear-gradient(135deg, #5a0000 0%, #8b0000 100%);
             color: #ffffff;
             border: 1px solid #ff0000;
-            padding: 15px 20px;
+            padding: 15px;
             font-family: 'Montserrat', sans-serif;
             font-size: 13px;
             font-weight: 900;
@@ -212,15 +227,61 @@
             width: 100%;
         }
 
-        .menu-btn:hover {
+        .action-btn:hover {
             background: linear-gradient(135deg, #8b0000 0%, #ff0000 100%);
             box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
         }
 
-        .menu-btn .svg-icon {
-            fill: #ffffff;
-            width: 18px;
-            height: 18px;
+        /* 3. PASTKI SVG PREMIUM NAVIGATSIYA MENYUSI */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background-color: #050000;
+            border-top: 1px solid #5a0000;
+            box-shadow: 0 -4px 20px rgba(139, 0, 0, 0.5);
+            display: none;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 10;
+            padding: 0 5px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #770000;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        .nav-item svg {
+            width: 22px;
+            height: 22px;
+            fill: #770000;
+            margin-bottom: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item.active {
+            color: #ff0000;
+            text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+        }
+
+        .nav-item.active svg {
+            fill: #ff0000;
+            filter: drop-shadow(0 0 8px #ff0000);
+            transform: translateY(-2px);
         }
 
         @keyframes rotate {
@@ -247,7 +308,8 @@
 
     <div class="overlay"></div>
 
-    <div class="container" id="loaderScreen">
+    <!-- ZAGRUZKA EKRANI (A C A Z E S TERRORIZM faqat bu yerda chiqadi) -->
+    <div class="loader-container-wrapper" id="loaderScreen">
         <div class="title-acazes">A C A Z E S</div>
         <div class="title-terrorizm">TERRORIZM</div>
 
@@ -265,48 +327,87 @@
         <div class="progress-text" id="progressText">SHIFRLASH BOSQICHI: 0 / 1000</div>
 
         <div class="security-info">
-            <svg class="svg-icon" viewBox="0 0 24 24">
+            <svg class="svg-warning" viewBox="0 0 24 24">
                 <path d="M12 2L1 21h22L12 2zm1 16h-2v-2h2v2zm1-4H10V7h4v7z"/>
             </svg>
             TERRORIZM ilovasi haqiqiy maxfiy platforma hisoblanadi. Ma'lumotlar xavfsizligini ta'minlash va DXX hamda Ichki Ishlar organlarining raqamli kuzatuvidan yashirinish uchun tizim 1000 bosqichli shifrlash protokolini bajarmoqda.
         </div>
     </div>
 
-    <!-- Asosiy Menyu (1000 gacha to'lib bo'lgach ochiladi) -->
-    <div class="container" id="mainMenu" style="display: none;">
-        <div class="title-acazes">A C A Z E S</div>
-        <div class="title-terrorizm">TERRORIZM</div>
+    <!-- ASOSIY BO'LIMLAR (ASOSIY EKRAN) -->
+    <div class="content-area" id="mainContent">
+        
+        <!-- 1. TJQ BO'LISH (Bosh sahifa) -->
+        <div class="tab-content active" id="tab-tjq">
+            <div class="info-card">
+                TIZIMGA MUVAFFAQIYATLI ULANGANDINGIZ.<br><br>
+                TJQ BO'LIMI VA TERRORIZM PLATFORMASI PROTOKOLI FAOL HOLATDA.
+            </div>
+        </div>
 
-        <div class="main-menu" id="menuContent" style="display: flex;">
+        <!-- 2. AGENT BO'LIMI -->
+        <div class="tab-content" id="tab-agent">
+            <div class="info-card">
+                AGENT BILAN BOG'LANISH TARMOQ TIZIMI.
+            </div>
+            <button class="action-btn">AGENTGA XABAR YUBORISH</button>
+        </div>
+
+        <!-- 3. ADMIN BO'LIMI -->
+        <div class="tab-content" id="tab-admin">
+            <div class="info-card">
+                MAXFIY ADMINstratsiya NAZORAT PANELLI.
+            </div>
+        </div>
+
+        <!-- 4. KANALLAR BO'LIMI -->
+        <div class="tab-content" id="tab-kanallar">
             <div class="info-card">
                 Bizning yopiq Telegram TERRORIZM kanalimiz.
             </div>
-
-            <!-- 1. Kanalga o'tish tugmasi -->
-            <a href="https://t.me/acazes" target="_blank" class="menu-btn">
-                <svg class="svg-icon" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/>
-                </svg>
+            <a href="https://t.me/acazes" target="_blank" class="action-btn">
                 KANALGA O'TISH
             </a>
-
-            <!-- 2. Terrorizm darsi tugmasi -->
-            <button class="menu-btn" onclick="openSection('lesson')">
-                <svg class="svg-icon" viewBox="0 0 24 24">
-                    <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
-                </svg>
-                TERRORIZM DARSI
-            </button>
-
-            <!-- 3. Agent bilan bog'lanish tugmasi -->
-            <button class="menu-btn" onclick="openSection('agent')">
-                <svg class="svg-icon" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-                </svg>
-                AGENT BILAN BOG'LANISH
-            </button>
         </div>
+
     </div>
+
+    <!-- PASTKI PREMIUM SVG NAVIGATSIYA MENYUSI -->
+    <nav class="bottom-nav" id="bottomNav">
+        
+        <!-- TJQ BO'LISH -->
+        <div class="nav-item active" onclick="switchTab('tjq', this)">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-5.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8s0 0 0 0z"/>
+            </svg>
+            <span>TJQ BO'LISH</span>
+        </div>
+
+        <!-- AGENT -->
+        <div class="nav-item" onclick="switchTab('agent', this)">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+            </svg>
+            <span>AGENT</span>
+        </div>
+
+        <!-- ADMIN -->
+        <div class="nav-item" onclick="switchTab('admin', this)">
+            <svg viewBox="0 0 24 24">
+                <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+            </svg>
+            <span>ADMIN</span>
+        </div>
+
+        <!-- KANALLAR -->
+        <div class="nav-item" onclick="switchTab('kanallar', this)">
+            <svg viewBox="0 0 24 24">
+                <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
+            </svg>
+            <span>KANALLAR</span>
+        </div>
+
+    </nav>
 
     <script>
         if (window.Telegram && window.Telegram.WebApp) {
@@ -315,20 +416,22 @@
         }
 
         const loaderScreen = document.getElementById('loaderScreen');
-        const mainMenu = document.getElementById('mainMenu');
+        const mainContent = document.getElementById('mainContent');
+        const bottomNav = document.getElementById('bottomNav');
 
-        // Foydalanuvchi oldin kirganligini tekshirish (Faqat 1-chi kirganda 2 daqiqa ishlashi uchun)
+        // Birinchi marta kirganligini tekshirish
         const isFirstTime = localStorage.getItem('acazes_loaded') !== 'true';
 
         if (!isFirstTime) {
-            // Agar oldin kirgan bo'lsa, zagruzkani o'tkazib yuborib to'g'ridan-to'g'ri menyuni ko'rsatamiz
+            // Oldin kirgan bo'lsa darhol bo'limlarni va pastki menyuni ochamiz
             loaderScreen.style.display = 'none';
-            mainMenu.style.display = 'flex';
+            mainContent.style.display = 'flex';
+            bottomNav.style.display = 'flex';
         } else {
-            // Birinchi marta kirish - aniq 2 daqiqa (120000 ms) davom etadi
+            // Birinchi marta kirganda 2 daqiqa shifrlash zagruzkasi
             let currentCount = 0;
             const maxCount = 1000;
-            const totalDurationMs = 120 * 1000; 
+            const totalDurationMs = 120 * 1000; // 2 daqiqa
             const intervalTime = totalDurationMs / maxCount; 
 
             const fillElement = document.getElementById('progressFill');
@@ -340,12 +443,11 @@
                     currentCount = maxCount;
                     clearInterval(timer);
                     
-                    // Holatni saqlab qo'yamiz (keyingi safar zagruzkasiz ochiladi)
                     localStorage.setItem('acazes_loaded', 'true');
 
-                    // Loader ekranini yashirib, asosiy menyuni chiqaramiz
                     loaderScreen.style.display = 'none';
-                    mainMenu.style.display = 'flex';
+                    mainContent.style.display = 'flex';
+                    bottomNav.style.display = 'flex';
                     return;
                 }
                 
@@ -355,13 +457,19 @@
             }, intervalTime);
         }
 
-        // Bo'limlarga o'tish funksiyasi (hech narsa qo'shilmagan toza holatda o'tadi)
-        function openSection(type) {
-            if (type === 'lesson') {
-                alert("Terrorizm darsi bo'limi tez orada ochiladi.");
-            } else if (type === 'agent') {
-                alert("Agent bilan bog'lanish tarmog'i faollashmoqda.");
-            }
+        // Pastki menyu orqali bo'limlarni almashtirish
+        function switchTab(tabId, element) {
+            // Hamma kontentlarni yashirish
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Hamma menyu tugmalaridan active klassini olib tashlash
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+
+            // Tanlangan bo'limni va tugmani aktivlashtirish
+            document.getElementById('tab-' + tabId).classList.add('active');
+            element.classList.add('active');
         }
     </script>
 </body>
