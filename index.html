@@ -25,19 +25,19 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            padding: 15px;
+            overflow-x: hidden;
+            padding: 20px;
         }
 
-        /* Chuqur qorong'ulik va nurlanish effekti */
         .overlay {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: radial-gradient(circle, rgba(25, 0, 0, 0.45) 0%, rgba(0, 0, 0, 1) 90%);
             z-index: 1;
+            pointer-events: none;
         }
 
         .container {
@@ -52,7 +52,7 @@
             max-width: 400px;
         }
 
-        /* Sarlavhalar va to'g'ri ketma-ketlik */
+        /* Sarlavhalar */
         .title-acazes {
             font-size: 24px;
             letter-spacing: 10px;
@@ -75,7 +75,7 @@
             width: 100%;
         }
 
-        /* SVG Loader container */
+        /* Loader */
         .loader-container {
             width: 55px;
             height: 55px;
@@ -112,7 +112,6 @@
             filter: drop-shadow(0px 0px 6px #ff0000);
         }
 
-        /* Uzun chiziqli progress bar */
         .progress-bar-container {
             width: 100%;
             background-color: #110000;
@@ -134,7 +133,6 @@
             transition: width 0.12s linear;
         }
 
-        /* Foiz va sonlar matni */
         .progress-text {
             font-family: 'Montserrat', sans-serif;
             font-size: 13px;
@@ -145,7 +143,6 @@
             margin-bottom: 18px;
         }
 
-        /* Ma'lumot / Izoh qismi va SVG Premium Icon */
         .security-info {
             font-family: 'Montserrat', sans-serif;
             font-size: 11px;
@@ -160,15 +157,70 @@
             opacity: 0.9;
         }
 
-        /* SVG Premium Warning Icon */
-        .svg-warning {
+        .svg-icon {
             width: 14px;
             height: 14px;
             vertical-align: middle;
-            margin-right: 4px;
+            margin-right: 6px;
             fill: #ff0000;
             filter: drop-shadow(0 0 5px #ff0000);
             display: inline-block;
+        }
+
+        /* Asosiy Menyu va Interfeys qismi */
+        .main-menu {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            gap: 15px;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .info-card {
+            background-color: #100000;
+            border: 1px solid #5a0000;
+            border-radius: 6px;
+            padding: 18px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(139, 0, 0, 0.4);
+            font-family: 'Montserrat', sans-serif;
+            color: #ff3333;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.6;
+        }
+
+        .menu-btn {
+            background: linear-gradient(135deg, #5a0000 0%, #8b0000 100%);
+            color: #ffffff;
+            border: 1px solid #ff0000;
+            padding: 15px 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 900;
+            cursor: pointer;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 0 12px rgba(255, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .menu-btn:hover {
+            background: linear-gradient(135deg, #8b0000 0%, #ff0000 100%);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+        }
+
+        .menu-btn .svg-icon {
+            fill: #ffffff;
+            width: 18px;
+            height: 18px;
         }
 
         @keyframes rotate {
@@ -184,18 +236,21 @@
             50% { stroke-dashoffset: 35; }
             100% { stroke-dashoffset: 150; }
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
     </style>
 </head>
 <body>
 
     <div class="overlay"></div>
 
-    <div class="container">
-        <!-- To'g'ri ketma-ketlikdagi sarlavhalar -->
+    <div class="container" id="loaderScreen">
         <div class="title-acazes">A C A Z E S</div>
         <div class="title-terrorizm">TERRORIZM</div>
 
-        <!-- Premium SVG Loader -->
         <div class="loader-container">
             <svg class="loader-svg" viewBox="0 0 50 50">
                 <circle class="loader-outer" cx="25" cy="25" r="20"></circle>
@@ -203,52 +258,111 @@
             </svg>
         </div>
 
-        <!-- Uzun chiziqli zagruzka (1000 gacha) -->
         <div class="progress-bar-container">
             <div class="progress-fill" id="progressFill"></div>
         </div>
 
-        <!-- Sanash raqami -->
         <div class="progress-text" id="progressText">SHIFRLASH BOSQICHI: 0 / 1000</div>
 
-        <!-- DXX va Ichki ishlar haqidagi maxfiy izoh (SVG Icon bilan) -->
         <div class="security-info">
-            <svg class="svg-warning" viewBox="0 0 24 24">
+            <svg class="svg-icon" viewBox="0 0 24 24">
                 <path d="M12 2L1 21h22L12 2zm1 16h-2v-2h2v2zm1-4H10V7h4v7z"/>
             </svg>
             TERRORIZM ilovasi haqiqiy maxfiy platforma hisoblanadi. Ma'lumotlar xavfsizligini ta'minlash va DXX hamda Ichki Ishlar organlarining raqamli kuzatuvidan yashirinish uchun tizim 1000 bosqichli shifrlash protokolini bajarmoqda.
         </div>
     </div>
 
+    <!-- Asosiy Menyu (1000 gacha to'lib bo'lgach ochiladi) -->
+    <div class="container" id="mainMenu" style="display: none;">
+        <div class="title-acazes">A C A Z E S</div>
+        <div class="title-terrorizm">TERRORIZM</div>
+
+        <div class="main-menu" id="menuContent" style="display: flex;">
+            <div class="info-card">
+                Bizning yopiq Telegram TERRORIZM kanalimiz.
+            </div>
+
+            <!-- 1. Kanalga o'tish tugmasi -->
+            <a href="https://t.me/acazes" target="_blank" class="menu-btn">
+                <svg class="svg-icon" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/>
+                </svg>
+                KANALGA O'TISH
+            </a>
+
+            <!-- 2. Terrorizm darsi tugmasi -->
+            <button class="menu-btn" onclick="openSection('lesson')">
+                <svg class="svg-icon" viewBox="0 0 24 24">
+                    <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+                </svg>
+                TERRORIZM DARSI
+            </button>
+
+            <!-- 3. Agent bilan bog'lanish tugmasi -->
+            <button class="menu-btn" onclick="openSection('agent')">
+                <svg class="svg-icon" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                </svg>
+                AGENT BILAN BOG'LANISH
+            </button>
+        </div>
+    </div>
+
     <script>
-        // Telegram WebApp ni kengaytirish
         if (window.Telegram && window.Telegram.WebApp) {
             window.Telegram.WebApp.ready();
             window.Telegram.WebApp.expand();
         }
 
-        // 1000 gacha aniq 2 daqiqa (120000 ms) davomida asta-sekin to'lish logikasi
-        let currentCount = 0;
-        const maxCount = 1000;
-        const totalDurationMs = 120 * 1000; // 2 daqiqa
-        const intervalTime = totalDurationMs / maxCount; // Har bir qadam uchun vaqt (~120ms)
+        const loaderScreen = document.getElementById('loaderScreen');
+        const mainMenu = document.getElementById('mainMenu');
 
-        const fillElement = document.getElementById('progressFill');
-        const textElement = document.getElementById('progressText');
+        // Foydalanuvchi oldin kirganligini tekshirish (Faqat 1-chi kirganda 2 daqiqa ishlashi uchun)
+        const isFirstTime = localStorage.getItem('acazes_loaded') !== 'true';
 
-        const timer = setInterval(() => {
-            currentCount += 1;
-            if (currentCount >= maxCount) {
-                currentCount = maxCount;
-                clearInterval(timer);
-                textElement.innerHTML = "TIZIMGA ULANISH MUVAFFAQIYATLI YAKUNLANDI";
-                textElement.style.color = "#ff0000";
+        if (!isFirstTime) {
+            // Agar oldin kirgan bo'lsa, zagruzkani o'tkazib yuborib to'g'ridan-to'g'ri menyuni ko'rsatamiz
+            loaderScreen.style.display = 'none';
+            mainMenu.style.display = 'flex';
+        } else {
+            // Birinchi marta kirish - aniq 2 daqiqa (120000 ms) davom etadi
+            let currentCount = 0;
+            const maxCount = 1000;
+            const totalDurationMs = 120 * 1000; 
+            const intervalTime = totalDurationMs / maxCount; 
+
+            const fillElement = document.getElementById('progressFill');
+            const textElement = document.getElementById('progressText');
+
+            const timer = setInterval(() => {
+                currentCount += 1;
+                if (currentCount >= maxCount) {
+                    currentCount = maxCount;
+                    clearInterval(timer);
+                    
+                    // Holatni saqlab qo'yamiz (keyingi safar zagruzkasiz ochiladi)
+                    localStorage.setItem('acazes_loaded', 'true');
+
+                    // Loader ekranini yashirib, asosiy menyuni chiqaramiz
+                    loaderScreen.style.display = 'none';
+                    mainMenu.style.display = 'flex';
+                    return;
+                }
+                
+                let percentage = (currentCount / maxCount) * 100;
+                fillElement.style.width = percentage + '%';
+                textElement.innerHTML = `SHIFRLASH BOSQICHI: ${currentCount} / ${maxCount}`;
+            }, intervalTime);
+        }
+
+        // Bo'limlarga o'tish funksiyasi (hech narsa qo'shilmagan toza holatda o'tadi)
+        function openSection(type) {
+            if (type === 'lesson') {
+                alert("Terrorizm darsi bo'limi tez orada ochiladi.");
+            } else if (type === 'agent') {
+                alert("Agent bilan bog'lanish tarmog'i faollashmoqda.");
             }
-            
-            let percentage = (currentCount / maxCount) * 100;
-            fillElement.style.width = percentage + '%';
-            textElement.innerHTML = `SHIFRLASH BOSQICHI: ${currentCount} / ${maxCount}`;
-        }, intervalTime);
+        }
     </script>
 </body>
 </html>
