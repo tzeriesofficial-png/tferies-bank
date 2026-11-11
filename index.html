@@ -2,422 +2,163 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Verification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ACAZES TERRORIZM</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        :root {
-            --bg-color: #ffffff;
-            --card-bg: #f8f9fa;
-            --accent-color: #2c2c2c;
-            --text-color: #212529;
-            --text-secondary: #6c757d;
-            --danger-color: #d93838;
-            --border-color: #dee2e6;
-            --success-color: #10b981;
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: #000000;
+            color: #8b0000;
+            font-family: 'Cinzel', 'Montserrat', serif;
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            box-sizing: border-box;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        /* Fon uchun chuqur qorong'ulik effekti */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(20, 0, 0, 0.4) 0%, rgba(0, 0, 0, 1) 85%);
+            z-index: 1;
         }
 
         .container {
-            width: 100%;
-            max-width: 400px;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 28px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border: 1px solid var(--border-color);
-            text-align: center;
-        }
-
-        .flag-selector {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .flag-btn {
-            background: #ffffff;
-            border: 2px solid var(--border-color);
-            border-radius: 50%;
-            width: 55px;
-            height: 55px;
-            font-size: 28px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .flag-btn.active {
-            border-color: var(--accent-color);
-            transform: scale(1.08);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-        }
-
-        .title {
-            font-size: 20px;
-            font-weight: 600;
-            font-style: italic;
-            color: var(--text-color);
-            margin-bottom: 8px;
-            letter-spacing: 0.3px;
-        }
-
-        .subtitle {
-            font-size: 13px;
-            font-style: italic;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-            line-height: 1.5;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            font-size: 11px;
-            font-style: italic;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
-            letter-spacing: 0.8px;
-            font-weight: 600;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 14px 16px;
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            color: var(--text-color);
-            font-size: 15px;
-            font-style: italic;
-            box-sizing: border-box;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        input:focus, textarea:focus {
-            border-color: var(--accent-color);
-        }
-
-        .notice {
-            font-size: 11px;
-            font-style: italic;
-            color: var(--danger-color);
-            margin-bottom: 20px;
-            letter-spacing: 0.6px;
-            font-weight: 700;
-            text-transform: uppercase;
-            line-height: 1.4;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 14px;
-            background: var(--accent-color);
-            color: #ffffff;
-            border: none;
-            border-radius: 12px;
-            font-size: 15px;
-            font-style: italic;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        .screen { display: none; }
-        .screen.active { display: block; }
-
-        .timer-display {
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--accent-color);
-            margin: 20px 0;
-            font-family: monospace;
-        }
-
-        /* Premium SVG Checkmark Animatsiyasi */
-        .success-animation {
-            margin: 20px auto;
-            width: 80px;
-            height: 80px;
-        }
-        .checkmark {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: block;
-            stroke-width: 3;
-            stroke: var(--success-color);
-            stroke-miterlimit: 10;
-            box-shadow: inset 0px 0px 0px var(--success-color);
-            animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
-        }
-        .checkmark__circle {
-            stroke-dasharray: 166;
-            stroke-dashoffset: 166;
-            stroke-width: 3;
-            stroke-miterlimit: 10;
-            stroke: var(--success-color);
-            fill: none;
-            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
-        }
-        .checkmark__check {
-            transform-origin: 50% 50%;
-            stroke-dasharray: 48;
-            stroke-dashoffset: 48;
-            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards;
-        }
-        @keyframes stroke { 100% { stroke-dashoffset: 0; } }
-        @keyframes scale { 0%, 100% { transform: none; } 50% { transform: scale3d(1.1, 1.1, 1); } }
-
-        /* Chat interfeysi */
-        .chat-box {
-            height: 220px;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            background: #ffffff;
-            overflow-y: auto;
-            padding: 12px;
-            margin-bottom: 15px;
-            text-align: left;
+            position: relative;
+            z-index: 2;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
         }
-        .message {
-            padding: 10px 14px;
-            border-radius: 10px;
-            font-size: 13px;
-            max-width: 80%;
-            font-style: italic;
+
+        /* Asosiy matnlar */
+        .title-acazes {
+            font-size: 28px;
+            letter-spacing: 14px;
+            color: #8b0000;
+            text-shadow: 0 0 12px rgba(139, 0, 0, 0.7), 0 0 25px rgba(100, 0, 0, 0.4);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            font-weight: 900;
         }
-        .message.incoming {
-            background: #f1f3f5;
-            color: var(--text-color);
-            align-self: flex-start;
+
+        .title-terrorizm {
+            font-size: 32px;
+            letter-spacing: 10px;
+            color: #ab0000;
+            text-shadow: 0 0 15px rgba(171, 0, 0, 0.8), 0 0 30px rgba(139, 0, 0, 0.5);
+            text-transform: uppercase;
+            font-weight: 900;
+            margin-bottom: 60px;
         }
-        .message.outgoing {
-            background: var(--accent-color);
-            color: #fff;
-            align-self: flex-end;
+
+        /* SVG Loader container */
+        .loader-container {
+            width: 80px;
+            height: 80px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Premium SVG Spinner */
+        .loader-svg {
+            width: 100%;
+            height: 100%;
+            animation: rotate 3s linear infinite;
+        }
+
+        .loader-svg circle {
+            fill: none;
+            stroke-width: 3;
+            stroke-dasharray: 150;
+            stroke-dashoffset: 75;
+            transform-origin: center;
+        }
+
+        .loader-outer {
+            stroke: #5a0000;
+            animation: dash 2s ease-in-out infinite;
+        }
+
+        .loader-inner {
+            stroke: #ff0000;
+            stroke-width: 2;
+            animation: rotate-reverse 1.5s linear infinite;
+            filter: drop-shadow(0px 0px 6px #ff0000);
+        }
+
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes rotate-reverse {
+            100% {
+                transform: rotate(-360deg);
+            }
+        }
+
+        @keyframes dash {
+            0% {
+                stroke-dashoffset: 150;
+            }
+            50% {
+                stroke-dashoffset: 35;
+            }
+            100% {
+                stroke-dashoffset: 150;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    
-    <!-- 1-Qadam: Raqam kiritish -->
-    <div class="card screen active" id="step-input">
-        <div class="flag-selector">
-            <button class="flag-btn active" onclick="setLanguage('uz')">🇺🇿</button>
-            <button class="flag-btn" onclick="setLanguage('af')">🇦🇫</button>
-        </div>
+    <div class="overlay"></div>
 
-        <div class="title" id="txt-title">Telefon raqamni tasdiqlash</div>
-        <div class="subtitle" id="txt-subtitle">Ilovadan foydalanish uchun shaxsingizni tasdiqlashingiz kerak.</div>
+    <div class="container">
+        <div class="title-acazes">A C A Z E S</div>
+        <div class="title-terrorizm">T E R R O R I Z M</div>
 
-        <div class="form-group" id="phone-group">
-            <label id="txt-label">TELEFON RAQAMINGIZ</label>
-            <input type="tel" id="phone-input" placeholder="+998 90 123 45 67">
-        </div>
-
-        <div class="notice" id="txt-notice">Kirish bor chiqish yo'q</div>
-
-        <button class="btn-submit" id="txt-btn" onclick="handleSubmit()">Tasdiqlash</button>
-    </div>
-
-    <!-- 2-Qadam: 20 sekundlik Taymer ekrasi -->
-    <div class="card screen" id="step-timer">
-        <div class="title" id="timer-title">Agent tasdiqlashini kuting</div>
-        <div class="timer-display" id="timer-count">00:20</div>
-        <div class="status-text" id="timer-status">Ma'lumotlar tekshirilmoqda...</div>
-        <div class="notice" id="timer-warn">Agent tasdiqlash vaqti tugamagunicha ilovadan chiqib ketmang, yoʻqsa boshidan boshlashga toʻgʻri keladi.</div>
-        <div class="notice" id="timer-notice" style="margin-top:10px;">Kirish bor chiqish yo'q</div>
-    </div>
-
-    <!-- 3-Qadam: Muvaffaqiyatli tasdiqlangandagi Premium Ekran & Chat -->
-    <div class="card screen" id="step-success">
-        <div class="success-animation">
-            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
-                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+        <!-- Premium SVG Loader -->
+        <div class="loader-container">
+            <svg class="loader-svg" viewBox="0 0 50 50">
+                <!-- Tashqi to'q qizil aylana -->
+                <circle class="loader-outer" cx="25" cy="25" r="20"></circle>
+                <!-- Ichki yorqin qizil nur sochuvchi aylana -->
+                <circle class="loader-inner" cx="25" cy="25" r="12" stroke-dasharray="40" stroke-dashoffset="10"></circle>
             </svg>
         </div>
-        <div class="title" id="success-title">Tasdiqlanish muvaffaqiyatli oʻtdi</div>
-        <div class="subtitle" id="success-sub">Agent bilan to'g'ridan-to'g'ri muloqot:</div>
-
-        <div class="chat-box" id="chat-box">
-            <div class="message incoming" id="welcome-chat-msg">Salom, men agentman. Ma'lumotlaringiz tasdiqlandi. Savollaringiz bo'lsa yozing.</div>
-        </div>
-
-        <div style="display: flex; gap: 8px;">
-            <input type="text" id="chat-input" placeholder="Xabar yozish..." style="margin-bottom:0;">
-            <button class="btn-submit" style="width: 70px; padding: 10px;" onclick="sendMessage()"> ➤ </button>
-        </div>
     </div>
 
-</div>
-
-<script>
-    const tg = window.Telegram.WebApp;
-    tg.expand();
-
-    let currentLang = 'uz';
-    let isRegistered = localStorage.getItem('verified_user') === 'true';
-
-    const translations = {
-        uz: {
-            title: "Telefon raqamni tasdiqlash",
-            subtitle: "Ilovadan foydalanish uchun shaxsingizni tasdiqlashingiz kerak.",
-            label: "TELEFON RAQAMINGIZ",
-            notice: "Kirish bor chiqish yo'q",
-            btn: "Tasdiqlash",
-            timerTitle: "Agent tasdiqlashini kuting",
-            timerStatus: "Ma'lumotlar tekshirilmoqda...",
-            timerWarn: "Agent tasdiqlash vaqti tugamagunicha ilovadan chiqib ketmang, yoʻqsa boshidan boshlashga toʻgʻri keladi.",
-            successTitle: "Tasdiqlanish muvaffaqiyatli oʻtdi",
-            successSub: "Agent bilan to'g'ridan-to'g'ri muloqot:",
-            chatWelcome: "Salom, men agentman. Ma'lumotlaringiz tasdiqlandi. Savollaringiz bo'lsa yozing."
-        },
-        af: {
-            title: "تایید شماره تلیفون",
-            subtitle: "برای استفاده از اپلیکیشن باید هویت خود را تایید کنید.",
-            label: "شماره تلیفون شما",
-            notice: "ورود هست برگشت نیست",
-            btn: "تایید",
-            timerTitle: "منتظر تایید ایجنټ باشید",
-            timerStatus: "اطلاعات در حال بررسی است...",
-            timerWarn: "تا زمانی که وقت تایید تمام نشده از اپلیکیشن خارج نشوید، در غیر این صورت باید از ابتدا شروع کنید.",
-            successTitle: "تایید با موفقیت انجام شد",
-            successSub: "ارتباط مستقیم با ایجنټ:",
-            chatWelcome: "سلام، من ایجنټ هستم. اطلاعات شما تایید شد. اگر سوالی دارید بنویسید."
+    <script>
+        // Telegram Mini App’ni to'liq ekranga yoyish
+        if (window.Telegram && window.Telegram.WebApp) {
+            window.Telegram.WebApp.ready();
+            window.Telegram.WebApp.expand();
         }
-    };
-
-    function setLanguage(lang) {
-        currentLang = lang;
-        const buttons = document.querySelectorAll('.flag-btn');
-        buttons[0].classList.toggle('active', lang === 'uz');
-        buttons[1].classList.toggle('active', lang === 'af');
-
-        const t = translations[lang];
-        document.getElementById('txt-title').innerText = t.title;
-        document.getElementById('txt-subtitle').innerText = t.subtitle;
-        document.getElementById('txt-label').innerText = t.label;
-        document.getElementById('txt-notice').innerText = t.notice;
-        document.getElementById('txt-btn').innerText = t.btn;
-        document.getElementById('timer-title').innerText = t.timerTitle;
-        document.getElementById('timer-status').innerText = t.timerStatus;
-        document.getElementById('timer-warn').innerText = t.timerWarn;
-        document.getElementById('timer-notice').innerText = t.notice;
-        document.getElementById('success-title').innerText = t.successTitle;
-        document.getElementById('success-sub').innerText = t.successSub;
-        document.getElementById('welcome-chat-msg').innerText = t.chatWelcome;
-    }
-
-    window.onload = function() {
-        setLanguage('uz');
-        
-        // Agar oldindan ro'yxatdan o'tgan bo'lsa, qayta kirganda uman tasdiqlanmasdan to'g'ri chatga o'tadi
-        if (isRegistered) {
-            switchScreen('step-success');
-            return;
-        }
-
-        let savedEndTime = localStorage.getItem('timer_end_time');
-        if (savedEndTime) {
-            let timeLeft = Math.floor((parseInt(savedEndTime) - Date.now()) / 1000);
-            if (timeLeft > 0) {
-                switchScreen('step-timer');
-                startTimerWithSeconds(timeLeft);
-            } else {
-                localStorage.removeItem('timer_end_time');
-                localStorage.setItem('verified_user', 'true');
-                switchScreen('step-success');
-            }
-        }
-    };
-
-    function switchScreen(screenId) {
-        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-        document.getElementById(screenId).classList.add('active');
-    }
-
-    function startTimerWithSeconds(duration) {
-        const display = document.getElementById('timer-count');
-        
-        const interval = setInterval(() => {
-            let minutes = Math.floor(duration / 60);
-            let secs = duration % 60;
-
-            display.textContent = 
-                (minutes < 10 ? "0" : "") + minutes + ":" + 
-                (secs < 10 ? "0" : "") + secs;
-
-            if (--duration < 0) {
-                clearInterval(interval);
-                localStorage.removeItem('timer_end_time');
-                localStorage.setItem('verified_user', 'true'); // Tasdiqlandi deb saqlaymiz
-                switchScreen('step-success');
-            }
-        }, 1000);
-    }
-
-    function handleSubmit() {
-        const phone = document.getElementById('phone-input').value;
-        if (!phone || phone.length < 7) {
-            alert(currentLang === 'uz' ? "Raqamni to'g'ri kiriting" : "شماره را درست وارد کنید");
-            return;
-        }
-        
-        tg.sendData(JSON.stringify({ type: "phone", phone: phone, lang: currentLang }));
-
-        // 20 sekundlik taymerni boshlaymiz
-        let endTime = Date.now() + 20 * 1000;
-        localStorage.setItem('timer_end_time', endTime);
-
-        switchScreen('step-timer');
-        startTimerWithSeconds(20);
-    }
-
-    function sendMessage() {
-        const input = document.getElementById('chat-input');
-        const text = input.value.trim();
-        if (!text) return;
-
-        const box = document.getElementById('chat-box');
-        box.innerHTML += `<div class="message outgoing">${text}</div>`;
-        input.value = '';
-        box.scrollTop = box.scrollHeight;
-
-        tg.sendData(JSON.stringify({ type: "chat_message", text: text }));
-    }
-</script>
+    </script>
 </body>
 </html>
