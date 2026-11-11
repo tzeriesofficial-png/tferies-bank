@@ -57,7 +57,7 @@
             font-size: 24px;
             letter-spacing: 10px;
             color: #8b0000;
-            text-shadow: 0 0 10px rgba(139, 0, 0, 0.7), 0 0 20px rgba(100, 0, 0, 0.4);
+            text-shadow: 0 0 12px rgba(139, 0, 0, 0.9), 0 0 25px rgba(255, 0, 0, 0.5);
             margin-bottom: 6px;
             text-transform: uppercase;
             font-weight: 900;
@@ -68,7 +68,7 @@
             font-size: 26px;
             letter-spacing: 6px;
             color: #ab0000;
-            text-shadow: 0 0 12px rgba(171, 0, 0, 0.8), 0 0 25px rgba(139, 0, 0, 0.5);
+            text-shadow: 0 0 14px rgba(171, 0, 0, 0.9), 0 0 30px rgba(255, 0, 0, 0.6);
             text-transform: uppercase;
             font-weight: 900;
             margin-bottom: 35px;
@@ -131,7 +131,7 @@
             background: linear-gradient(90deg, #8b0000, #ff0000);
             border-radius: 2px;
             box-shadow: 0 0 8px #ff0000;
-            transition: width 0.05s linear;
+            transition: width 0.12s linear;
         }
 
         /* Foiz va sonlar matni */
@@ -145,7 +145,7 @@
             margin-bottom: 18px;
         }
 
-        /* Ma'lumot / Izoh qismi (DXX va Ichki ishlar haqida) */
+        /* Ma'lumot / Izoh qismi va SVG Premium Icon */
         .security-info {
             font-family: 'Montserrat', sans-serif;
             font-size: 11px;
@@ -158,6 +158,17 @@
             padding-left: 10px;
             text-align: left;
             opacity: 0.9;
+        }
+
+        /* SVG Premium Warning Icon */
+        .svg-warning {
+            width: 14px;
+            height: 14px;
+            vertical-align: middle;
+            margin-right: 4px;
+            fill: #ff0000;
+            filter: drop-shadow(0 0 5px #ff0000);
+            display: inline-block;
         }
 
         @keyframes rotate {
@@ -197,12 +208,15 @@
             <div class="progress-fill" id="progressFill"></div>
         </div>
 
-        <!-- Sanash raqami (0 / 1000) -->
-        <div class="progress-text" id="progressText">SHIFrlash: 0 / 1000</div>
+        <!-- Sanash raqami -->
+        <div class="progress-text" id="progressText">SHIFRLASH BOSQICHI: 0 / 1000</div>
 
-        <!-- DXX va Ichki ishlar haqidagi maxfiy izoh -->
+        <!-- DXX va Ichki ishlar haqidagi maxfiy izoh (SVG Icon bilan) -->
         <div class="security-info">
-            ⚠️ TERRORIZM ilovasi haqiqiy maxfiy platforma hisoblanadi. Ma'lumotlar xavfsizligini ta'minlash va DXX hamda Ichki Ishlar organlarining raqamli kuzatuvidan yashirinish uchun tizim 1000 bosqichli shifrlash protokolini bajarmoqda.
+            <svg class="svg-warning" viewBox="0 0 24 24">
+                <path d="M12 2L1 21h22L12 2zm1 16h-2v-2h2v2zm1-4H10V7h4v7z"/>
+            </svg>
+            TERRORIZM ilovasi haqiqiy maxfiy platforma hisoblanadi. Ma'lumotlar xavfsizligini ta'minlash va DXX hamda Ichki Ishlar organlarining raqamli kuzatuvidan yashirinish uchun tizim 1000 bosqichli shifrlash protokolini bajarmoqda.
         </div>
     </div>
 
@@ -213,18 +227,17 @@
             window.Telegram.WebApp.expand();
         }
 
-        // 1000 gacha asta-sekin to'lish logikasi
+        // 1000 gacha aniq 2 daqiqa (120000 ms) davomida asta-sekin to'lish logikasi
         let currentCount = 0;
         const maxCount = 1000;
+        const totalDurationMs = 120 * 1000; // 2 daqiqa
+        const intervalTime = totalDurationMs / maxCount; // Har bir qadam uchun vaqt (~120ms)
+
         const fillElement = document.getElementById('progressFill');
         const textElement = document.getElementById('progressText');
 
-        // Sekinroq va realistik chiqishi uchun interval (umumiy vaqt ~4-5 sekund)
-        const intervalTime = 4.5; 
-        const incrementStep = 4;
-
         const timer = setInterval(() => {
-            currentCount += incrementStep;
+            currentCount += 1;
             if (currentCount >= maxCount) {
                 currentCount = maxCount;
                 clearInterval(timer);
@@ -232,11 +245,10 @@
                 textElement.style.color = "#ff0000";
             }
             
-            // Chiziq kengligi va matnni yangilash
             let percentage = (currentCount / maxCount) * 100;
             fillElement.style.width = percentage + '%';
             textElement.innerHTML = `SHIFRLASH BOSQICHI: ${currentCount} / ${maxCount}`;
-        }, 20);
+        }, intervalTime);
     </script>
 </body>
 </html>
