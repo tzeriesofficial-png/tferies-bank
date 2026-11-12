@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>acazesbot — Kalkulyator</title>
+    <title>ACAZES — Kalkulyator</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@600;700;800;900&display=swap');
@@ -17,8 +17,8 @@
         }
 
         body {
-            background-color: #0d0208;
-            color: #ff69b4;
+            background-color: #080808;
+            color: #ffffff;
             font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
             display: flex;
@@ -28,20 +28,10 @@
             overflow: hidden;
             padding: 15px;
             position: relative;
+            transition: background-color 0.4s ease;
         }
 
-        /* Professional SVG Pushti fon */
-        .svg-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-            background: radial-gradient(circle at center, rgba(255, 20, 147, 0.2) 0%, rgba(13, 2, 8, 0.98) 85%);
-        }
-
+        /* Orqa fon SVG naqshlari */
         .bg-pattern {
             position: fixed;
             top: 0;
@@ -50,10 +40,10 @@
             height: 100%;
             z-index: 1;
             pointer-events: none;
-            opacity: 0.25;
+            transition: opacity 0.4s ease;
         }
 
-        /* 1. KIRISH QISMI (acazesbot) */
+        /* ================= 1. KIRISH VA TANLOV EKRANI (ACAZES) ================= */
         .splash-screen {
             position: relative;
             z-index: 2;
@@ -63,37 +53,99 @@
             justify-content: center;
             text-align: center;
             width: 100%;
-            max-width: 400px;
-            transition: opacity 0.5s ease;
+            max-width: 380px;
+            animation: fadeIn 0.6s ease;
         }
 
-        .title-acazesbot {
+        .title-acazes {
             font-family: 'Cinzel', serif;
-            font-size: 32px;
-            letter-spacing: 8px;
-            color: #ff69b4;
-            text-shadow: 0 0 15px rgba(255, 105, 180, 0.9), 0 0 35px rgba(255, 20, 147, 0.6);
-            margin-bottom: 25px;
-            text-transform: lowercase;
+            font-size: 36px;
+            letter-spacing: 12px;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            margin-bottom: 10px;
+            text-transform: uppercase;
             font-weight: 900;
         }
 
-        .loader-ring {
-            width: 50px;
-            height: 50px;
-            animation: rotate 2s linear infinite;
+        .subtitle-select {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: #888888;
+            text-transform: uppercase;
+            margin-bottom: 35px;
+            font-weight: 700;
         }
 
-        .loader-ring circle {
+        .gender-cards {
+            display: flex;
+            gap: 18px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .gender-card {
+            flex: 1;
+            max-width: 165px;
+            padding: 25px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gender-card:active {
+            transform: scale(0.95);
+        }
+
+        /* Mujiskoy tanlov kartasi */
+        .gender-card.male-card {
+            background: linear-gradient(145deg, #ffffff 0%, #e6e6e6 100%);
+            border: 2px solid #000000;
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+            color: #000000;
+        }
+
+        .gender-card.male-card svg {
+            width: 54px;
+            height: 54px;
+            fill: none;
+            stroke: #000000;
+            stroke-width: 2.2;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
+        }
+
+        /* Jenskiy tanlov kartasi */
+        .gender-card.female-card {
+            background: linear-gradient(145deg, #1f0514 0%, #0d0208 100%);
+            border: 2px solid #ff1493;
+            box-shadow: 0 10px 25px rgba(255, 20, 147, 0.35);
+            color: #ff69b4;
+        }
+
+        .gender-card.female-card svg {
+            width: 54px;
+            height: 54px;
             fill: none;
             stroke: #ff1493;
-            stroke-width: 3;
-            stroke-dasharray: 120;
-            stroke-dashoffset: 40;
-            filter: drop-shadow(0 0 8px #ff1493);
+            stroke-width: 2.2;
+            filter: drop-shadow(0 0 10px #ff1493);
         }
 
-        /* 2. KATTA KALKULYATOR EKRANI */
+        .card-label {
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ================= 2. KALKULYATOR UMUMIY TUZILISHI ================= */
         .calculator-wrapper {
             position: relative;
             z-index: 2;
@@ -101,34 +153,55 @@
             flex-direction: column;
             width: 100%;
             max-width: 380px;
-            background: rgba(26, 5, 17, 0.9);
-            border: 1.5px solid #ff1493;
-            border-radius: 20px;
+            border-radius: 22px;
             padding: 20px;
-            box-shadow: 0 0 30px rgba(255, 20, 147, 0.35);
-            animation: fadeIn 0.5s ease-out;
+            animation: fadeIn 0.4s ease-out;
+            transition: all 0.3s ease;
+        }
+
+        .calc-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
         }
 
         .calc-header {
             font-family: 'Cinzel', serif;
-            font-size: 14px;
+            font-size: 15px;
             letter-spacing: 4px;
-            color: #ff69b4;
-            text-align: center;
-            margin-bottom: 15px;
-            opacity: 0.8;
+            font-weight: 900;
         }
 
+        .switch-mode-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            padding: 6px 10px;
+            border-radius: 8px;
+            text-transform: uppercase;
+        }
+
+        .switch-mode-btn svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Displey ekrani - balandligi qat'iy o'zgarmaydi */
         .display-screen {
             width: 100%;
-            background-color: #0d0208;
-            border: 1px solid #8b0046;
-            border-radius: 12px;
-            padding: 18px 15px;
-            margin-bottom: 20px;
+            height: 98px; /* Qat'iy balandlik - pastga tushib ketmaydi */
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin-bottom: 18px;
             text-align: right;
-            box-shadow: inset 0 0 15px rgba(255, 20, 147, 0.2);
-            min-height: 95px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -136,18 +209,32 @@
         }
 
         .prev-operand {
-            font-size: 15px;
-            color: #b34781;
-            min-height: 20px;
-            word-wrap: break-word;
+            font-size: 14px;
+            height: 20px;
+            line-height: 20px;
+            white-space: nowrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: none;
+        }
+
+        .prev-operand::-webkit-scrollbar {
+            display: none;
         }
 
         .curr-operand {
             font-size: 34px;
+            height: 44px;
+            line-height: 44px;
             font-weight: 800;
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
-            word-wrap: break-word;
+            white-space: nowrap; /* Hech qachon yangi qatorga tushmaydi */
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: none;
+        }
+
+        .curr-operand::-webkit-scrollbar {
+            display: none;
         }
 
         .buttons-grid {
@@ -157,92 +244,225 @@
         }
 
         .calc-btn {
-            background-color: #1f0614;
-            border: 1px solid #8b0046;
             border-radius: 14px;
             height: 62px;
             font-family: 'Montserrat', sans-serif;
             font-size: 22px;
             font-weight: 700;
-            color: #ffb6c1;
             cursor: pointer;
-            transition: all 0.15s ease;
+            transition: transform 0.12s ease, background-color 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
         }
 
         .calc-btn:active {
             transform: scale(0.94);
-            background-color: #3d0c27;
         }
 
-        /* Amallar (+, -, *, /) tugmalari */
-        .calc-btn.operator {
+        .calc-btn.equals {
+            grid-column: span 2;
+            font-size: 28px;
+        }
+
+        /* ================= JENSKIY TEMA (PUSHTI & QORA) ================= */
+        body.theme-female {
+            background-color: #0d0208;
+        }
+
+        body.theme-female .calculator-wrapper {
+            background: rgba(26, 5, 17, 0.94);
+            border: 1.5px solid #ff1493;
+            box-shadow: 0 0 30px rgba(255, 20, 147, 0.35);
+        }
+
+        body.theme-female .calc-header {
+            color: #ff69b4;
+        }
+
+        body.theme-female .switch-mode-btn {
+            color: #ff69b4;
+            border: 1px solid #8b0046;
+            background: rgba(255, 20, 147, 0.1);
+        }
+
+        body.theme-female .switch-mode-btn svg {
+            stroke: #ff69b4;
+            fill: none;
+        }
+
+        body.theme-female .display-screen {
+            background-color: #0d0208;
+            border: 1px solid #8b0046;
+            box-shadow: inset 0 0 15px rgba(255, 20, 147, 0.2);
+        }
+
+        body.theme-female .prev-operand {
+            color: #b34781;
+        }
+
+        body.theme-female .curr-operand {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
+        }
+
+        body.theme-female .calc-btn {
+            background-color: #1f0614;
+            border: 1px solid #8b0046;
+            color: #ffb6c1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        body.theme-female .calc-btn.operator {
             background-color: #360921;
             border-color: #ff1493;
             color: #ff1493;
             font-size: 26px;
         }
 
-        /* Tozalash (C va DEL) tugmalari */
-        .calc-btn.clear {
+        body.theme-female .calc-btn.clear {
             background-color: #2b071a;
             color: #ff69b4;
             font-size: 18px;
         }
 
-        /* Teng (=) tugmasi */
-        .calc-btn.equals {
-            grid-column: span 2;
+        body.theme-female .calc-btn.equals {
             background: linear-gradient(135deg, #c70067 0%, #ff1493 100%);
             border: 1px solid #ff69b4;
             color: #ffffff;
-            font-size: 28px;
             box-shadow: 0 0 15px rgba(255, 20, 147, 0.6);
         }
 
-        .calc-btn.equals:active {
-            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+        /* ================= MUJISKOY TEMA (OQ FON & QORA TUGMALAR) ================= */
+        body.theme-male {
+            background-color: #ffffff;
         }
 
-        @keyframes rotate {
-            100% { transform: rotate(360deg); }
+        body.theme-male .calculator-wrapper {
+            background: #f5f5f7;
+            border: 2px solid #000000;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+        }
+
+        body.theme-male .calc-header {
+            color: #000000;
+        }
+
+        body.theme-male .switch-mode-btn {
+            color: #000000;
+            border: 1.5px solid #000000;
+            background: #ffffff;
+        }
+
+        body.theme-male .switch-mode-btn svg {
+            stroke: #000000;
+            fill: none;
+        }
+
+        body.theme-male .display-screen {
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        body.theme-male .prev-operand {
+            color: #555555;
+            font-weight: 700;
+        }
+
+        body.theme-male .curr-operand {
+            color: #000000;
+        }
+
+        body.theme-male .calc-btn {
+            background-color: #0a0a0a;
+            border: 1px solid #000000;
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        body.theme-male .calc-btn:active {
+            background-color: #2b2b2b;
+        }
+
+        body.theme-male .calc-btn.operator {
+            background-color: #1c1c1e;
+            border: 1.5px solid #000000;
+            color: #ffffff;
+            font-size: 26px;
+        }
+
+        body.theme-male .calc-btn.clear {
+            background-color: #262626;
+            color: #e0e0e0;
+            font-size: 18px;
+        }
+
+        body.theme-male .calc-btn.equals {
+            background: #000000;
+            border: 1.5px solid #000000;
+            color: #ffffff;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <div class="svg-bg"></div>
-
-    <!-- SVG Pushti Setka Fon -->
-    <svg class="bg-pattern" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+    <!-- SVG Orqa fon naqshlari -->
+    <svg class="bg-pattern" id="bgSvg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
         <defs>
-            <pattern id="pinkGrid" width="35" height="35" patternUnits="userSpaceOnUse">
-                <path d="M 35 0 L 0 0 0 35" fill="none" stroke="#ff1493" stroke-width="0.6" stroke-opacity="0.25"/>
-                <circle cx="0" cy="0" r="1.2" fill="#ff69b4" fill-opacity="0.4"/>
+            <pattern id="gridPattern" width="35" height="35" patternUnits="userSpaceOnUse">
+                <path d="M 35 0 L 0 0 0 35" fill="none" stroke="#ffffff" stroke-width="0.6" stroke-opacity="0.1"/>
+                <circle cx="0" cy="0" r="1.2" fill="#ffffff" fill-opacity="0.2"/>
             </pattern>
         </defs>
-        <rect width="100%" height="100%" fill="url(#pinkGrid)" />
+        <rect width="100%" height="100%" fill="url(#gridPattern)" />
     </svg>
 
-    <!-- 1. KIRISH QISMI -->
+    <!-- 1. KIRISH VA TANLOV EKRANI (ACAZES) -->
     <div class="splash-screen" id="splashScreen">
-        <div class="title-acazesbot">acazesbot</div>
-        <svg class="loader-ring" viewBox="0 0 50 50">
-            <circle cx="25" cy="25" r="20"></circle>
-        </svg>
+        <div class="title-acazes">ACAZES</div>
+        <div class="subtitle-select">Rejimni tanlang</div>
+
+        <div class="gender-cards">
+            <!-- Mujiskoy SVG Premium tugma -->
+            <div class="gender-card male-card" onclick="selectMode('male')">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="10" cy="14" r="6"></circle>
+                    <line x1="14.5" y1="9.5" x2="20" y2="4"></line>
+                    <polyline points="15 4 20 4 20 9"></polyline>
+                </svg>
+                <span class="card-label">MUJISKOY</span>
+            </div>
+
+            <!-- Jenskiy SVG Premium tugma -->
+            <div class="gender-card female-card" onclick="selectMode('female')">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="9" r="6"></circle>
+                    <line x1="12" y1="15" x2="12" y2="22"></line>
+                    <line x1="9" y1="19" x2="15" y2="19"></line>
+                </svg>
+                <span class="card-label">JENSKIY</span>
+            </div>
+        </div>
     </div>
 
-    <!-- 2. KATTA KALKULYATOR -->
+    <!-- 2. KALKULYATOR EKRANI -->
     <div class="calculator-wrapper" id="calcApp">
-        <div class="calc-header">acazesbot</div>
+        <div class="calc-top-bar">
+            <div class="calc-header">ACAZES</div>
+            <button class="switch-mode-btn" onclick="goBackToSelection()">
+                <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+                <span>REJIM</span>
+            </button>
+        </div>
         
         <div class="display-screen">
             <div class="prev-operand" id="prevOperand"></div>
@@ -251,7 +471,13 @@
 
         <div class="buttons-grid">
             <button class="calc-btn clear" onclick="clearDisplay()">AC</button>
-            <button class="calc-btn clear" onclick="deleteLast()">⌫</button>
+            <button class="calc-btn clear" onclick="deleteLast()">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path>
+                    <line x1="18" y1="9" x2="12" y2="15"></line>
+                    <line x1="12" y1="9" x2="18" y2="15"></line>
+                </svg>
+            </button>
             <button class="calc-btn operator" onclick="chooseOperation('÷')">÷</button>
             <button class="calc-btn operator" onclick="chooseOperation('×')">×</button>
 
@@ -282,11 +508,42 @@
             window.Telegram.WebApp.expand();
         }
 
-        // Kirish ekranidan keyin kalkulyatorni ochish (2 soniya)
-        setTimeout(() => {
-            document.getElementById('splashScreen').style.display = 'none';
-            document.getElementById('calcApp').style.display = 'flex';
-        }, 2000);
+        const splashScreen = document.getElementById('splashScreen');
+        const calcApp = document.getElementById('calcApp');
+        const gridPattern = document.getElementById('gridPattern');
+
+        // Rejimni tanlash (Mujiskoy yoki Jenskiy)
+        function selectMode(mode) {
+            document.body.classList.remove('theme-male', 'theme-female');
+            
+            if (mode === 'male') {
+                document.body.classList.add('theme-male');
+                gridPattern.innerHTML = `
+                    <path d="M 35 0 L 0 0 0 35" fill="none" stroke="#000000" stroke-width="0.6" stroke-opacity="0.1"/>
+                    <circle cx="0" cy="0" r="1.2" fill="#000000" fill-opacity="0.2"/>
+                `;
+            } else {
+                document.body.classList.add('theme-female');
+                gridPattern.innerHTML = `
+                    <path d="M 35 0 L 0 0 0 35" fill="none" stroke="#ff1493" stroke-width="0.6" stroke-opacity="0.2"/>
+                    <circle cx="0" cy="0" r="1.2" fill="#ff69b4" fill-opacity="0.35"/>
+                `;
+            }
+
+            splashScreen.style.display = 'none';
+            calcApp.style.display = 'flex';
+        }
+
+        // Orqaga rejim tanlashga qaytish
+        function goBackToSelection() {
+            document.body.classList.remove('theme-male', 'theme-female');
+            gridPattern.innerHTML = `
+                <path d="M 35 0 L 0 0 0 35" fill="none" stroke="#ffffff" stroke-width="0.6" stroke-opacity="0.1"/>
+                <circle cx="0" cy="0" r="1.2" fill="#ffffff" fill-opacity="0.2"/>
+            `;
+            calcApp.style.display = 'none';
+            splashScreen.style.display = 'flex';
+        }
 
         // Kalkulyator logikasi
         let currentOperand = '0';
@@ -296,8 +553,22 @@
         const currDisplay = document.getElementById('currOperand');
         const prevDisplay = document.getElementById('prevOperand');
 
+        function adjustFontSize() {
+            const len = currentOperand.toString().length;
+            if (len > 15) {
+                currDisplay.style.fontSize = '20px';
+            } else if (len > 11) {
+                currDisplay.style.fontSize = '26px';
+            } else {
+                currDisplay.style.fontSize = '34px';
+            }
+        }
+
         function updateDisplay() {
             currDisplay.innerText = currentOperand;
+            adjustFontSize();
+            currDisplay.scrollLeft = currDisplay.scrollWidth;
+
             if (operation != null) {
                 prevDisplay.innerText = `${previousOperand} ${operation}`;
             } else {
@@ -306,7 +577,7 @@
         }
 
         function appendNumber(number) {
-            if (number === '.' && currentOperand.includes('.')) return;
+            if (number === '.' && currentOperand.toString().includes('.')) return;
             if (currentOperand === '0' && number !== '.') {
                 if (number === '00') return;
                 currentOperand = number.toString();
@@ -357,7 +628,6 @@
                     return;
             }
 
-            // O'nlik kasrlarni chiroyli yaxlitlash
             currentOperand = Math.round(computation * 100000000) / 100000000;
             operation = undefined;
             previousOperand = '';
