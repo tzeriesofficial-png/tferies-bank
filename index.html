@@ -26,7 +26,7 @@
             justify-content: space-between;
             align-items: center;
             overflow-x: hidden;
-            padding: 15px 15px 85px 15px; /* Pastki menyu uchun bo'shliq */
+            padding: 15px 15px 85px 15px;
         }
 
         .overlay {
@@ -40,7 +40,7 @@
             pointer-events: none;
         }
 
-        /* 1. KANALDAGI ZAGRUZKA EKRANI */
+        /* ZAGRUZKA EKRANI */
         .loader-container-wrapper {
             position: relative;
             z-index: 2;
@@ -167,7 +167,7 @@
             display: inline-block;
         }
 
-        /* 2. ASOSIY EKRAN BO'LIMLARI */
+        /* ASOSIY EKRAN BO'LIMLARI */
         .content-area {
             position: relative;
             z-index: 2;
@@ -195,23 +195,75 @@
             background-color: #0e0000;
             border: 1px solid #5a0000;
             border-radius: 8px;
-            padding: 20px;
+            padding: 18px;
             text-align: center;
-            box-shadow: 0 0 15px rgba(139, 0, 0, 0.4);
+            box-shadow: 0 0 18px rgba(139, 0, 0, 0.4);
             font-family: 'Montserrat', sans-serif;
             color: #ff3333;
             font-size: 13px;
             font-weight: 700;
             line-height: 1.6;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        /* SVG Stikerlar konteyneri */
+        .choice-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 2px;
+            margin-bottom: 5px;
+        }
+
+        .choice-btn {
+            background: #110000;
+            border: 2px solid #5a0000;
+            border-radius: 12px;
+            width: 65px;
+            height: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(139, 0, 0, 0.3);
+        }
+
+        .choice-btn svg {
+            width: 28px;
+            height: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .choice-btn.yes svg {
+            fill: #00ff66;
+            filter: drop-shadow(0 0 8px #00ff66);
+        }
+        .choice-btn.yes:hover, .choice-btn.yes.selected {
+            border-color: #00ff66;
+            background: rgba(0, 255, 102, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.6);
+        }
+
+        .choice-btn.no svg {
+            fill: #ff0000;
+            filter: drop-shadow(0 0 8px #ff0000);
+        }
+        .choice-btn.no:hover, .choice-btn.no.selected {
+            border-color: #ff0000;
+            background: rgba(255, 0, 0, 0.15);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
         }
 
         .action-btn {
             background: linear-gradient(135deg, #5a0000 0%, #8b0000 100%);
             color: #ffffff;
             border: 1px solid #ff0000;
-            padding: 15px;
+            padding: 14px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 900;
             cursor: pointer;
             border-radius: 6px;
@@ -232,7 +284,49 @@
             box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
         }
 
-        /* 3. PASTKI SVG PREMIUM NAVIGATSIYA MENYUSI */
+        .action-btn .svg-icon {
+            width: 16px;
+            height: 16px;
+            fill: #ffffff;
+        }
+
+        /* TJQ QUROL (AK-47) SIMULYATORI STILISHI */
+        .weapon-box {
+            background-color: #0c0000;
+            border: 1px solid #ff0000;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        }
+
+        .weapon-display {
+            width: 100%;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            background: #050000;
+            border-radius: 6px;
+            border: 1px dashed #5a0000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .weapon-svg {
+            width: 220px;
+            height: 80px;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            filter: drop-shadow(0 0 10px #ff0000);
+        }
+
+        .weapon-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* PASTKI PREMIUM SVG NAVIGATSIYA MENYUSI */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -308,7 +402,7 @@
 
     <div class="overlay"></div>
 
-    <!-- ZAGRUZKA EKRANI (A C A Z E S TERRORIZM faqat bu yerda chiqadi) -->
+    <!-- ZAGRUZKA EKRANI -->
     <div class="loader-container-wrapper" id="loaderScreen">
         <div class="title-acazes">A C A Z E S</div>
         <div class="title-terrorizm">TERRORIZM</div>
@@ -334,45 +428,120 @@
         </div>
     </div>
 
-    <!-- ASOSIY BO'LIMLAR (ASOSIY EKRAN) -->
+    <!-- ASOSIY BO'LIMLAR -->
     <div class="content-area" id="mainContent">
         
         <!-- 1. TJQ BO'LISH (Bosh sahifa) -->
         <div class="tab-content active" id="tab-tjq">
             <div class="info-card">
-                TIZIMGA MUVAFFAQIYATLI ULANGANDINGIZ.<br><br>
-                TJQ BO'LIMI VA TERRORIZM PLATFORMASI PROTOKOLI FAOL HOLATDA.
+                Terrorizm bo'lish uchun. Yaqinlardan voz kecha olasanmi?
+            </div>
+            
+            <div class="choice-container">
+                <div class="choice-btn yes" onclick="makeChoice('yes', this)" title="Ha">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                    </svg>
+                </div>
+                <div class="choice-btn no" onclick="makeChoice('no', this)" title="Yo'q">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="info-card">
+                Terrorizm bo'lishni nima uchun xohlayapsan?
+            </div>
+
+            <div class="choice-container">
+                <div class="choice-btn yes" onclick="makeChoice('reason-yes', this)" title="Tasdiqlash">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                    </svg>
+                </div>
+                <div class="choice-btn no" onclick="makeChoice('reason-no', this)" title="Rad etish">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <a href="https://t.me/tjq_agent?text=Acazes%20Bot%20ichidagi%20Terrorizm%20nima%20uchun%20kirmoqchisz%20savoliga%20javob%20bermoqchiman." target="_blank" class="action-btn">
+                <svg class="svg-icon" viewBox="0 0 24 24">
+                    <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/>
+                </svg>
+                AGENTGA AYTISH
+            </a>
+        </div>
+
+        <!-- 2. TJQ QUROL (AK-47 Sochish va Yig'ish Simulyatori) -->
+        <div class="tab-content" id="tab-weapon">
+            <div class="weapon-box">
+                <div class="info-card" style="margin-bottom: 12px; font-size: 11px;">
+                    AK-47 QUROL PROTOKOLI (SOCHISH VA YIG'ISH)
+                </div>
+                
+                <div class="weapon-display">
+                    <!-- AK-47 Premium SVG Vektor Chizmasi -->
+                    <svg class="weapon-svg" id="akSvg" viewBox="0 0 200 70">
+                        <!-- Qo'ndoq (Qizil yog'och tusli) -->
+                        <path d="M10 40 L35 30 L35 55 L10 50 Z" fill="#8b0000" stroke="#ff0000" stroke-width="1.5"/>
+                        <!-- Korpus va Barrel -->
+                        <rect x="35" y="32" width="90" height="20" rx="3" fill="#1a0000" stroke="#ff0000" stroke-width="1.5"/>
+                        <rect x="125" y="38" width="55" height="8" rx="2" fill="#2a0000" stroke="#ff0000" stroke-width="1.5"/>
+                        <!-- Magazin (O'qdon) -->
+                        <path d="M75 52 L90 52 L80 72 L65 72 Z" fill="#5a0000" stroke="#ff0000" stroke-width="1.5" id="magazinePart"/>
+                        <!-- Dudama vanishona -->
+                        <path d="M180 37 L190 39 L180 41 Z" fill="#ff0000"/>
+                        <!-- Tepkisi (Trigger) -->
+                        <path d="M95 52 L98 62 L102 60" fill="none" stroke="#ff0000" stroke-width="2"/>
+                    </svg>
+                </div>
+
+                <div class="weapon-controls">
+                    <button class="action-btn" onclick="disassembleWeapon()">SOCHISH</button>
+                    <button class="action-btn" onclick="assembleWeapon()">YIG'ISH</button>
+                </div>
             </div>
         </div>
 
-        <!-- 2. AGENT BO'LIMI -->
+        <!-- 3. AGENT BO'LIMI -->
         <div class="tab-content" id="tab-agent">
             <div class="info-card">
                 AGENT BILAN BOG'LANISH TARMOQ TIZIMI.
             </div>
-            <button class="action-btn">AGENTGA XABAR YUBORISH</button>
+            <a href="https://t.me/tjq_agent" target="_blank" class="action-btn">
+                <svg class="svg-icon" viewBox="0 0 24 24">
+                    <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/>
+                </svg>
+                AGENTGA XABAR YUBORISH
+            </a>
         </div>
 
-        <!-- 3. ADMIN BO'LIMI -->
+        <!-- 4. ADMIN BO'LIMI -->
         <div class="tab-content" id="tab-admin">
             <div class="info-card">
                 MAXFIY ADMINstratsiya NAZORAT PANELLI.
             </div>
         </div>
 
-        <!-- 4. KANALLAR BO'LIMI -->
+        <!-- 5. KANALLAR BO'LIMI -->
         <div class="tab-content" id="tab-kanallar">
             <div class="info-card">
                 Bizning yopiq Telegram TERRORIZM kanalimiz.
             </div>
             <a href="https://t.me/acazes" target="_blank" class="action-btn">
+                <svg class="svg-icon" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/>
+                </svg>
                 KANALGA O'TISH
             </a>
         </div>
 
     </div>
 
-    <!-- PASTKI PREMIUM SVG NAVIGATSIYA MENYUSI -->
+    <!-- PASTKI PREMIUM SVG NAVIGATSIYA MENYUSI (5 ta bo'lim) -->
     <nav class="bottom-nav" id="bottomNav">
         
         <!-- TJQ BO'LISH -->
@@ -381,6 +550,14 @@
                 <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-5.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8s0 0 0 0z"/>
             </svg>
             <span>TJQ BO'LISH</span>
+        </div>
+
+        <!-- TJQ QUROL (AK-47) -->
+        <div class="nav-item" onclick="switchTab('weapon', this)">
+            <svg viewBox="0 0 24 24">
+                <path d="M21 6h-2v2h-2V6h-2V4h2V2h2v2h2v2zm-8 4H3c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h10v-6zm5.5 8H16v-2h-3v4h5.5l1.5-2-1.5-2z"/>
+            </svg>
+            <span>TJQ</span>
         </div>
 
         <!-- AGENT -->
@@ -419,19 +596,16 @@
         const mainContent = document.getElementById('mainContent');
         const bottomNav = document.getElementById('bottomNav');
 
-        // Birinchi marta kirganligini tekshirish
         const isFirstTime = localStorage.getItem('acazes_loaded') !== 'true';
 
         if (!isFirstTime) {
-            // Oldin kirgan bo'lsa darhol bo'limlarni va pastki menyuni ochamiz
             loaderScreen.style.display = 'none';
             mainContent.style.display = 'flex';
             bottomNav.style.display = 'flex';
         } else {
-            // Birinchi marta kirganda 2 daqiqa shifrlash zagruzkasi
             let currentCount = 0;
             const maxCount = 1000;
-            const totalDurationMs = 120 * 1000; // 2 daqiqa
+            const totalDurationMs = 120 * 1000; 
             const intervalTime = totalDurationMs / maxCount; 
 
             const fillElement = document.getElementById('progressFill');
@@ -457,19 +631,39 @@
             }, intervalTime);
         }
 
-        // Pastki menyu orqali bo'limlarni almashtirish
         function switchTab(tabId, element) {
-            // Hamma kontentlarni yashirish
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => tab.classList.remove('active'));
 
-            // Hamma menyu tugmalaridan active klassini olib tashlash
             const navItems = document.querySelectorAll('.nav-item');
             navItems.forEach(item => item.classList.remove('active'));
 
-            // Tanlangan bo'limni va tugmani aktivlashtirish
             document.getElementById('tab-' + tabId).classList.add('active');
             element.classList.add('active');
+        }
+
+        function makeChoice(type, element) {
+            element.parentElement.querySelectorAll('.choice-btn').forEach(btn => btn.classList.remove('selected'));
+            element.classList.add('selected');
+            
+            if (type === 'yes' || type === 'reason-yes') {
+                setTimeout(() => alert("Tanlovingiz qabul qilindi."), 200);
+            } else {
+                setTimeout(() => alert("Rad etildi."), 200);
+            }
+        }
+
+        /* AK-47 Sochish va Yig'ish funksiyalari */
+        function disassembleWeapon() {
+            const mag = document.getElementById('magazinePart');
+            mag.style.transform = "translateY(25px) rotate(15deg)";
+            mag.style.opacity = "0.4";
+        }
+
+        function assembleWeapon() {
+            const mag = document.getElementById('magazinePart');
+            mag.style.transform = "translateY(0px) rotate(0deg)";
+            mag.style.opacity = "1";
         }
     </script>
 </body>
