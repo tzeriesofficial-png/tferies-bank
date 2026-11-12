@@ -18,8 +18,8 @@
         }
 
         body {
-            background-color: #0d0208;
-            color: #ffffff;
+            background-color: #ffffff;
+            color: #000000;
             font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
             display: flex;
@@ -32,7 +32,7 @@
             transition: background-color 0.4s ease;
         }
 
-        /* ================= 1. KIRISH EKRANI (CHAP OQ / O'NG PUSHTI SVG SPLIT) ================= */
+        /* ================= 1. KIRISH EKRANI (IKKALA TARAFI OQ SVG SPLIT) ================= */
         .split-bg-svg {
             position: fixed;
             top: 0;
@@ -63,11 +63,8 @@
             font-weight: 900;
             margin-bottom: 8px;
             text-transform: uppercase;
-            /* Chap tarafi qora, o'ng tarafi pushti-oq gradient matn */
-            background: linear-gradient(90deg, #000000 0%, #000000 48%, #ffffff 52%, #ff69b4 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.25));
+            color: #000000;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
         }
 
         .subtitle-select {
@@ -76,9 +73,7 @@
             text-transform: uppercase;
             margin-bottom: 35px;
             font-weight: 800;
-            background: linear-gradient(90deg, #222222 0%, #222222 48%, #ff69b4 52%, #ff1493 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #333333;
         }
 
         .gender-cards {
@@ -106,37 +101,20 @@
             transform: scale(0.94);
         }
 
-        /* Mujiskoy (Oq fonda qora karta) */
-        .gender-card.male-card {
+        /* Ikkala karta ham oq fonda qora dizaynda */
+        .gender-card.male-card, .gender-card.female-card {
             background: #ffffff;
             border: 2.5px solid #000000;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
             color: #000000;
         }
 
-        .gender-card.male-card svg {
+        .gender-card.male-card svg, .gender-card.female-card svg {
             width: 54px;
             height: 54px;
             fill: none;
             stroke: #000000;
             stroke-width: 2.3;
-        }
-
-        /* Jenskiy (Pushti fonda to'q pushti-qora karta) */
-        .gender-card.female-card {
-            background: linear-gradient(145deg, #240416 0%, #0d0208 100%);
-            border: 2.5px solid #ff1493;
-            box-shadow: 0 12px 28px rgba(255, 20, 147, 0.45);
-            color: #ff69b4;
-        }
-
-        .gender-card.female-card svg {
-            width: 54px;
-            height: 54px;
-            fill: none;
-            stroke: #ff1493;
-            stroke-width: 2.3;
-            filter: drop-shadow(0 0 10px #ff1493);
         }
 
         .card-label {
@@ -217,7 +195,6 @@
             height: 14px;
         }
 
-        /* Displey ekrani */
         .display-screen {
             width: 100%;
             height: 98px;
@@ -283,7 +260,6 @@
             transform: scale(0.91);
         }
 
-        /* 0 va = tugmalari 2 katakdan joy oladi (00 olib tashlandi) */
         .calc-btn.zero-btn {
             grid-column: span 2;
         }
@@ -361,7 +337,7 @@
 
         body.theme-female .calc-btn.equals {
             background: linear-gradient(135deg, #c70067 0%, #ff1493 100%);
-            border: 1px solid #ff69b4;
+            border: 1px solid #ff1493;
             color: #ffffff;
             box-shadow: 0 0 15px rgba(255, 20, 147, 0.6);
         }
@@ -447,33 +423,26 @@
 </head>
 <body>
 
-    <!-- Kirish ekrani uchun bir cheti OQ, bir cheti PUSHTI SVG fon -->
+    <!-- Kirish ekrani uchun ikkala tarafi ham OQ rangdagi SVG split fon -->
     <svg class="split-bg-svg" id="splitBgSvg" viewBox="0 0 100 100" preserveAspectRatio="none">
         <defs>
-            <linearGradient id="pinkSideGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#2b0419"/>
-                <stop offset="50%" stop-color="#8b0046"/>
-                <stop offset="100%" stop-color="#ff1493"/>
-            </linearGradient>
             <linearGradient id="whiteSideGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stop-color="#ffffff"/>
-                <stop offset="100%" stop-color="#e8e8ed"/>
+                <stop offset="100%" stop-color="#f0f0f5"/>
             </linearGradient>
             <pattern id="splitDots" width="5" height="5" patternUnits="userSpaceOnUse">
-                <circle cx="1" cy="1" r="0.25" fill="#888888" fill-opacity="0.25"/>
+                <circle cx="1" cy="1" r="0.25" fill="#000000" fill-opacity="0.12"/>
             </pattern>
         </defs>
-        <!-- Chap tarafi toza Oq -->
-        <polygon points="0,0 50,0 50,100 0,100" fill="url(#whiteSideGrad)"/>
-        <!-- O'ng tarafi premium Pushti -->
-        <polygon points="50,0 100,0 100,100 50,100" fill="url(#pinkSideGrad)"/>
-        <!-- Nozik SVG nuqtali tekstura -->
+        <!-- Ikkala tomoni ham toza Oq -->
+        <polygon points="0,0 100,0 100,100 0,100" fill="url(#whiteSideGrad)"/>
+        <!-- Nozik nuqtali tekstura -->
         <rect width="100" height="100" fill="url(#splitDots)"/>
-        <!-- Markaziy ajratuvchi chiziq -->
-        <line x1="50" y1="0" x2="50" y2="100" stroke="#ff1493" stroke-width="0.4" stroke-opacity="0.6"/>
+        <!-- Markaziy yupqa ajratuvchi chiziq -->
+        <line x1="50" y1="0" x2="50" y2="100" stroke="#000000" stroke-width="0.3" stroke-opacity="0.2"/>
     </svg>
 
-    <!-- Kalkulyator ochilganda ko'rinadigan SVG fon naqshlari -->
+    <!-- Kalkulyator ochilganda ko'rinadigan fon naqshlari -->
     <svg class="bg-pattern" id="bgSvg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
         <defs>
             <pattern id="gridPattern" width="35" height="35" patternUnits="userSpaceOnUse">
@@ -585,7 +554,7 @@
             window.Telegram.WebApp.expand();
         }
 
-        // ================= ASMR "CHILP" OVOZ SINTEZATORI =================
+        // ================= ASMR "SUV BULQ" OVOZ SINTEZATORI =================
         let audioCtx = null;
         let isSoundEnabled = true;
         let currentThemeMode = 'female';
@@ -604,10 +573,11 @@
             isSoundEnabled = !isSoundEnabled;
             document.getElementById('soundIconOn').style.display = isSoundEnabled ? 'block' : 'none';
             document.getElementById('soundIconOff').style.display = isSoundEnabled ? 'none' : 'block';
-            if (isSoundEnabled) playAsmrChilp('normal');
+            if (isSoundEnabled) playWaterBubble('normal');
         }
 
-        function playAsmrChilp(type = 'normal') {
+        // Real suvning "bulq" (water bubble / drop pop) ASMR tovushi
+        function playWaterBubble(type = 'normal') {
             if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.HapticFeedback) {
                 window.Telegram.WebApp.HapticFeedback.impactOccurred(type === 'equals' ? 'medium' : 'light');
             }
@@ -620,56 +590,53 @@
             const gain = audioCtx.createGain();
 
             osc.type = 'sine';
-            const randomShift = (Math.random() - 0.5) * 60;
 
             if (type === 'equals') {
-                const base = currentThemeMode === 'female' ? 780 : 520;
-                osc.frequency.setValueAtTime(base, now);
-                osc.frequency.exponentialRampToValueAtTime(base * 1.5, now + 0.08);
-                osc.frequency.exponentialRampToValueAtTime(base * 1.8, now + 0.16);
+                // Teng (=) bosilganda suv tomchisi va qo'shaloq "bulq" akkordi
+                osc.frequency.setValueAtTime(440, now);
+                osc.frequency.exponentialRampToValueAtTime(880, now + 0.08);
+                osc.frequency.exponentialRampToValueAtTime(1100, now + 0.15);
 
                 gain.gain.setValueAtTime(0.001, now);
-                gain.gain.linearRampToValueAtTime(0.28, now + 0.015);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+                gain.gain.linearRampToValueAtTime(0.3, now + 0.02);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
 
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
                 osc.start(now);
-                osc.stop(now + 0.19);
+                osc.stop(now + 0.22);
                 return;
             }
 
             if (type === 'clear') {
-                const startFreq = currentThemeMode === 'female' ? 650 : 450;
-                osc.frequency.setValueAtTime(startFreq, now);
-                osc.frequency.exponentialRampToValueAtTime(220, now + 0.075);
+                // Tozalash (AC / Backspace) yumshoq suv oqimi tovushi
+                osc.frequency.setValueAtTime(500, now);
+                osc.frequency.exponentialRampToValueAtTime(180, now + 0.09);
 
                 gain.gain.setValueAtTime(0.001, now);
-                gain.gain.linearRampToValueAtTime(0.22, now + 0.01);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+                gain.gain.linearRampToValueAtTime(0.25, now + 0.015);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
             } else {
-                if (currentThemeMode === 'female') {
-                    const startFreq = 620 + randomShift;
-                    const endFreq = 1480 + randomShift;
-                    osc.frequency.setValueAtTime(startFreq, now);
-                    osc.frequency.exponentialRampToValueAtTime(endFreq, now + 0.055);
-                } else {
-                    const startFreq = 380 + randomShift;
-                    const endFreq = 960 + randomShift;
-                    osc.frequency.setValueAtTime(startFreq, now);
-                    osc.frequency.exponentialRampToValueAtTime(endFreq, now + 0.06);
-                }
+                // Suvning o'ziga xos chuqur va yoqimli "bulq" (bubble pop) effekti
+                // Frekans pastdan yuqoriga tez ko'tarilib tushadi (suv pufakchasi yorilishi)
+                const startFreq = currentThemeMode === 'female' ? 420 : 320;
+                const peakFreq = currentThemeMode === 'female' ? 980 : 760;
+                const endFreq = currentThemeMode === 'female' ? 600 : 450;
+
+                osc.frequency.setValueAtTime(startFreq, now);
+                osc.frequency.exponentialRampToValueAtTime(peakFreq, now + 0.04);
+                osc.frequency.exponentialRampToValueAtTime(endFreq, now + 0.08);
 
                 gain.gain.setValueAtTime(0.001, now);
-                gain.gain.linearRampToValueAtTime(0.28, now + 0.008);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.065);
+                gain.gain.linearRampToValueAtTime(0.32, now + 0.01);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.085);
             }
 
             osc.connect(gain);
             gain.connect(audioCtx.destination);
 
             osc.start(now);
-            osc.stop(now + 0.075);
+            osc.stop(now + 0.09);
         }
 
         // ================= REJIM VA EKRAN BOSHQARUVI =================
@@ -681,7 +648,7 @@
 
         function selectMode(mode) {
             currentThemeMode = mode;
-            playAsmrChilp('equals');
+            playWaterBubble('equals');
 
             document.body.classList.remove('theme-male', 'theme-female');
             splitBgSvg.style.display = 'none';
@@ -706,7 +673,7 @@
         }
 
         function goBackToSelection() {
-            playAsmrChilp('clear');
+            playWaterBubble('clear');
             document.body.classList.remove('theme-male', 'theme-female');
             bgSvg.style.display = 'none';
             splitBgSvg.style.display = 'block';
@@ -746,7 +713,7 @@
         }
 
         function appendNumber(number) {
-            playAsmrChilp('normal');
+            playWaterBubble('normal');
             if (number === '.' && currentOperand.toString().includes('.')) return;
             if (currentOperand === '0' && number !== '.') {
                 currentOperand = number.toString();
@@ -757,7 +724,7 @@
         }
 
         function chooseOperation(op) {
-            playAsmrChilp('normal');
+            playWaterBubble('normal');
             if (currentOperand === '') return;
             if (previousOperand !== '') {
                 compute(false);
@@ -769,7 +736,7 @@
         }
 
         function compute(playSound = true) {
-            if (playSound) playAsmrChilp('equals');
+            if (playSound) playWaterBubble('equals');
             let computation;
             const prev = parseFloat(previousOperand);
             const current = parseFloat(currentOperand);
@@ -806,7 +773,7 @@
         }
 
         function clearDisplay() {
-            playAsmrChilp('clear');
+            playWaterBubble('clear');
             currentOperand = '0';
             previousOperand = '';
             operation = undefined;
@@ -814,7 +781,7 @@
         }
 
         function deleteLast() {
-            playAsmrChilp('clear');
+            playWaterBubble('clear');
             if (currentOperand === 'Xato') {
                 clearDisplay();
                 return;
