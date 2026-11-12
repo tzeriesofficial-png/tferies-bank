@@ -336,7 +336,7 @@
             border-left: 3px solid #000000;
         }
 
-        /* Play Market uslubidagi 6 ta yulduzcha */
+        /* 6 ta yulduzcha */
         .stars-container {
             display: flex;
             justify-content: center;
@@ -412,6 +412,13 @@
         .modal-btn.confirm {
             background: #000000;
             color: #ffffff;
+        }
+
+        .modal-btn.disabled {
+            background: #cccccc;
+            border-color: #999999;
+            color: #666666;
+            cursor: not-allowed;
         }
 
         /* ================= JENSKIY TEMA (PUSHTI) ================= */
@@ -719,14 +726,14 @@
         <div class="modal-card">
             <div class="modal-title">ILOVANI BAHOLANG</div>
             
-            <!-- 6 ta Play Market uslubidagi SVG yulduzcha -->
+            <!-- Boshlang'ichda sariq bo'lmagan 6 ta yulduzcha -->
             <div class="stars-container" id="starsContainer">
-                <svg class="star-svg active" viewBox="0 0 24 24" onclick="setRating(1)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg class="star-svg active" viewBox="0 0 24 24" onclick="setRating(2)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg class="star-svg active" viewBox="0 0 24 24" onclick="setRating(3)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg class="star-svg active" viewBox="0 0 24 24" onclick="setRating(4)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg class="star-svg active" viewBox="0 0 24 24" onclick="setRating(5)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg class="star-svg active" viewBox="0 0 24 24" onclick="setRating(6)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg class="star-svg" viewBox="0 0 24 24" onclick="setRating(1)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg class="star-svg" viewBox="0 0 24 24" onclick="setRating(2)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg class="star-svg" viewBox="0 0 24 24" onclick="setRating(3)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg class="star-svg" viewBox="0 0 24 24" onclick="setRating(4)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg class="star-svg" viewBox="0 0 24 24" onclick="setRating(5)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <svg class="star-svg" viewBox="0 0 24 24" onclick="setRating(6)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
             </div>
 
             <textarea class="review-textarea" id="reviewText" maxlength="500" placeholder="Fikr va mulohazalaringizni yozing..." oninput="updateCharCount()"></textarea>
@@ -734,7 +741,7 @@
 
             <div class="modal-btns">
                 <button class="modal-btn cancel" onclick="closeModal('reviewModal')">Bekor qilish</button>
-                <button class="modal-btn confirm" onclick="submitReview()">Tasdiqlash</button>
+                <button class="modal-btn confirm" id="submitReviewBtn" onclick="submitReview()">Tasdiqlash</button>
             </div>
         </div>
     </div>
@@ -900,8 +907,9 @@
             window.location.href = `https://t.me/FarzonaTurayeva?text=${message}`;
         }
 
-        // Sharh yulduzchalari va matn
-        let selectedRating = 6;
+        // Sharh yulduzchalari va 5 minutlik cheklov (Cooldown)
+        let selectedRating = 0; // Boshlang'ichda hech qaysi yulduzcha tanlanmagan
+
         function setRating(rating) {
             playWaterBubble('normal');
             selectedRating = rating;
@@ -924,7 +932,29 @@
         }
 
         function submitReview() {
+            // 5 daqiqalik cheklovni tekshirish
+            const lastReviewTime = localStorage.getItem('last_review_time');
+            const now = Date.now();
+            const coolDownTime = 5 * 60 * 1000; // 5 minut
+
+            if (lastReviewTime && (now - lastReviewTime < coolDownTime)) {
+                const remainingSec = Math.ceil((coolDownTime - (now - lastReviewTime)) / 1000);
+                const minutes = Math.floor(remainingSec / 60);
+                const seconds = remainingSec % 60;
+                alert(`Iltimos, yana sharh yozish uchun ${minutes} daqiqa ${seconds} soniya kuting!`);
+                return;
+            }
+
+            if (selectedRating === 0) {
+                alert("Iltimos, avval yulduzchalardan birini tanlab baho bering!");
+                return;
+            }
+
             playWaterBubble('equals');
+            
+            // Vaqtni saqlash (5 minutlik blokirovka uchun)
+            localStorage.setItem('last_review_time', now);
+
             const review = document.getElementById('reviewText').value || "Sharh yozilmagan";
             const stats = `⭐ Baho: ${selectedRating} / 6\n💬 Sharh: ${review}`;
             const encodedStats = encodeURIComponent(`Ilova uchun yuborilgan statistika:\n\n${stats}`);
