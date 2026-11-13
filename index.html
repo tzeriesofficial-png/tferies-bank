@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ACAZES Trading</title>
+    <!-- Telegram WebApp SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
@@ -108,6 +109,19 @@
             font-weight: 900;
             letter-spacing: 3px;
             color: #111111;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .online-badge {
+            font-size: 11px;
+            font-weight: 700;
+            background: #f1f3f5;
+            padding: 3px 8px;
+            border-radius: 8px;
+            color: #333;
+            border: 1px solid #e1e4e8;
         }
 
         .settings-btn {
@@ -142,8 +156,8 @@
             stroke-linejoin: round;
         }
 
-        /* Modal oynalar */
-        .modal-overlay {
+        /* Support Modal Oynasi */
+        .support-modal {
             display: none;
             position: fixed;
             top: 0;
@@ -158,7 +172,7 @@
             padding: 20px;
         }
 
-        .modal-card {
+        .support-card {
             width: 100%;
             max-width: 340px;
             background: #ffffff;
@@ -168,30 +182,28 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.15);
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
 
-        .modal-header {
+        .support-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 6px;
         }
 
-        .modal-header h3 {
+        .support-header h3 {
             font-size: 18px;
             font-weight: 900;
-            letter-spacing: 0.5px;
         }
 
-        .close-modal {
+        .close-support {
             background: none;
             border: none;
             cursor: pointer;
             padding: 4px;
         }
 
-        .option-btn {
+        .support-item {
             width: 100%;
             padding: 14px 16px;
             background: #f8f9fa;
@@ -200,30 +212,16 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 15px;
+            text-decoration: none;
+            color: #111;
             font-weight: 700;
-            color: #111111;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            font-size: 14px;
         }
 
-        .option-btn.active {
-            background: #111111;
-            color: #ffffff;
-            border-color: #111111;
-        }
-
-        .option-btn svg {
-            width: 18px;
-            height: 18px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2.5;
-            opacity: 0;
-        }
-
-        .option-btn.active svg {
-            opacity: 1;
+        .user-meta-support {
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         /* Tabs Content */
@@ -278,7 +276,7 @@
             font-family: monospace;
         }
 
-        /* Jonli Bozor Shamchalar Ekrani (Live Chart) */
+        /* Haqiqiy osmon va past bo'ylab harakatlanuvchi shamchalar grafigi */
         .live-chart-container {
             flex: 1;
             width: 100%;
@@ -289,10 +287,9 @@
             position: relative;
             overflow: hidden;
             display: flex;
-            align-items: flex-end;
-            padding: 15px;
-            gap: 8px;
+            align-items: center;
             justify-content: space-around;
+            padding: 15px;
         }
 
         .chart-candle {
@@ -300,7 +297,7 @@
             background: #111111;
             border-radius: 3px;
             position: relative;
-            animation: pulseCandle 1.5s infinite alternate ease-in-out;
+            animation: moveCandleVertical 2s infinite alternate ease-in-out;
         }
 
         .chart-candle.white {
@@ -311,16 +308,67 @@
         .chart-candle::before {
             content: '';
             position: absolute;
-            top: -12px;
+            top: -15px;
             left: 5px;
             width: 2px;
-            height: calc(100% + 24px);
+            height: calc(100% + 30px);
             background: inherit;
         }
 
-        @keyframes pulseCandle {
-            0% { transform: scaleY(0.92); }
-            100% { transform: scaleY(1.08); }
+        @keyframes moveCandleVertical {
+            0% { transform: translateY(-30px) scaleY(0.9); }
+            100% { transform: translateY(30px) scaleY(1.1); }
+        }
+
+        .market-closed-box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(4px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+            gap: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .market-closed-box h3 {
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .market-closed-box p {
+            font-size: 13.5px;
+            color: #666;
+        }
+
+        /* Tikish input va tugmalar (Qora fon, oq yozuv) */
+        .bet-input-box {
+            width: 100%;
+            background: #f8f9fa;
+            border: 1.5px solid #e1e4e8;
+            padding: 10px 16px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .bet-input-box input {
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            font-weight: 900;
+            outline: none;
+            width: 70%;
+            color: #111;
         }
 
         .trade-actions {
@@ -337,17 +385,51 @@
             font-size: 14px;
             cursor: pointer;
             border: 1.5px solid #111;
+            background: #111111;
+            color: #ffffff;
             transition: all 0.2s;
         }
 
-        .btn-buy {
-            background: #111111;
-            color: #ffffff;
+        .btn-trade-action:active {
+            transform: scale(0.96);
         }
 
-        .btn-sell {
-            background: #ffffff;
-            color: #111111;
+        /* Profile Stili */
+        .profile-card {
+            width: 100%;
+            background: #f8f9fa;
+            border: 1.5px solid #e1e4e8;
+            border-radius: 20px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #111;
+            object-fit: cover;
+            background: #ddd;
+        }
+
+        .profile-name-box {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .badge-svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            display: inline-block;
+            vertical-align: middle;
         }
 
         .section-icon-box {
@@ -386,7 +468,7 @@
             line-height: 1.5;
         }
 
-        /* Pastki 5 ta Navigatsiya Tugmasi */
+        /* Pastki Navigatsiya */
         nav {
             width: 100%;
             max-width: 450px;
@@ -473,95 +555,91 @@
         </div>
     </div>
 
-    <!-- Valyuta Tanlash Modali (Trade bosganda chiqadi) -->
-    <div class="modal-overlay" id="currencyModal">
-        <div class="modal-card">
-            <div class="modal-header">
-                <h3>Select Currency</h3>
-                <button class="close-modal" onclick="closeCurrencyModal()">
+    <!-- Support Modal (Nastroyka tugmasi bosganda ochiladi) -->
+    <div class="support-modal" id="supportModal">
+        <div class="support-card">
+            <div class="support-header">
+                <h3>Support & Admin</h3>
+                <button class="close-support" onclick="closeSupportModal()">
                     <svg width="20" height="20" viewBox="0 0 24 24" stroke="#111" fill="none" stroke-width="2.5" stroke-linecap="round">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
                         <line x1="6" y1="6" x2="18" y2="18"></line>
                     </svg>
                 </button>
             </div>
-            <p style="font-size: 13px; color: #666; margin-bottom: 4px;">Choose trading asset currency:</p>
             
-            <button class="option-btn active" id="btn-curr-som" onclick="selectCurrency('SOʻM')">
-                <span>SOʻM (Uzbekistan Som)</span>
-                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            </button>
-            <button class="option-btn" id="btn-curr-ton" onclick="selectCurrency('TON')">
-                <span>TON (Toncoin)</span>
-                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            </button>
-            <button class="option-btn" id="btn-curr-usd" onclick="selectCurrency('USD')">
-                <span>USD (US Dollar)</span>
-                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            </button>
+            <a href="https://t.me/zero_dreamvxv" target="_blank" class="support-item">
+                <div class="user-meta-support">
+                    <span>@zero_dreamvxv</span>
+                    <!-- Admin V nishoni (Premium SVG) -->
+                    <svg class="badge-svg" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" fill="#007aff"/>
+                        <path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    </svg>
+                </div>
+                <span style="font-size: 12px; color: #666;">Admin</span>
+            </a>
+
+            <a href="https://t.me/FarzonaTurayeva" target="_blank" class="support-item">
+                <div class="user-meta-support">
+                    <span>@FarzonaTurayeva</span>
+                    <!-- Yordam galichkasi (Premium SVG) -->
+                    <svg class="badge-svg" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" fill="#34c759"/>
+                        <path d="M8 12l3 3 5-6" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    </svg>
+                </div>
+                <span style="font-size: 12px; color: #666;">Yordam</span>
+            </a>
         </div>
     </div>
 
     <!-- Yuqori Panel (Header) -->
     <header class="app-header">
-        <div class="brand-title">ACAZES</div>
-        <button class="settings-btn" onclick="openLangModal()" aria-label="Settings">
+        <div class="brand-title">
+            <span>ACAZES</span>
+            <span class="online-badge" id="online-count">Online: 3</span>
+        </div>
+        <button class="settings-btn" onclick="openSupportModal()" aria-label="Support">
             <svg viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="3"></circle>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
             </svg>
         </button>
     </header>
 
-    <!-- Til Tanlash Modali -->
-    <div class="modal-overlay" id="langModal">
-        <div class="modal-card">
-            <div class="modal-header">
-                <h3 id="modal-lang-title">Select Language</h3>
-                <button class="close-modal" onclick="closeLangModal()">
-                    <svg width="20" height="20" viewBox="0 0 24 24" stroke="#111" fill="none" stroke-width="2.5" stroke-linecap="round">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                </button>
-            </div>
-            <button class="option-btn" id="btn-lang-uz" onclick="setLanguage('uz')">
-                <span>UZB tili</span>
-                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            </button>
-            <button class="option-btn active" id="btn-lang-en" onclick="setLanguage('en')">
-                <span>INGLS tili</span>
-                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            </button>
-            <button class="option-btn" id="btn-lang-ru" onclick="setLanguage('ru')">
-                <span>RUS tili</span>
-                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            </button>
-        </div>
-    </div>
-
-    <!-- 1-BO'LIM: Trade (Katta jonli trading ekrani) -->
+    <!-- 1-BO'LIM: Trade (Jonli ekran va tikish) -->
     <div id="tab-trade" class="tab-content active">
         <div class="trade-screen">
             <div class="market-header-box">
-                <div class="market-pair" id="active-pair">BTC / SOʻM</div>
-                <div class="market-price" id="live-price">124,580,200</div>
+                <div class="market-pair">BTC / UZS</div>
+                <div class="market-price" id="live-price">124,586,449</div>
             </div>
 
-            <!-- Haqiqiy harakatlanuvchi oq va qora shamchalar grafigi -->
+            <!-- Haqiqiy osmon bo'ylab harakatlanuvchi shamchalar -->
             <div class="live-chart-container" id="liveChart">
-                <div class="chart-candle white" style="height: 50px;"></div>
-                <div class="chart-candle" style="height: 75px;"></div>
+                <!-- Bozor yopiq ogohlantirishi (08:00 dan 22:00 gacha emas paytda chiqadi) -->
+                <div class="market-closed-box" id="marketClosedBox" style="display: none;">
+                    <h3>Bozor yopiq</h3>
+                    <p>Hozir soat 08:00 dan 22:00 gacha bo'lgan vaqt emas. Hozir savdo qilish mumkin emas!</p>
+                </div>
+
                 <div class="chart-candle white" style="height: 60px;"></div>
                 <div class="chart-candle" style="height: 90px;"></div>
-                <div class="chart-candle white" style="height: 110px;"></div>
-                <div class="chart-candle" style="height: 85px;"></div>
-                <div class="chart-candle white" style="height: 125px;"></div>
+                <div class="chart-candle white" style="height: 75px;"></div>
+                <div class="chart-candle" style="height: 110px;"></div>
+                <div class="chart-candle white" style="height: 85px;"></div>
             </div>
 
-            <div class="trade-actions">
-                <button class="btn-trade-action btn-buy" onclick="openCurrencyModal()">Buy / Long</button>
-                <button class="btn-trade-action btn-sell" onclick="openCurrencyModal()">Sell / Short</button>
+            <div>
+                <div class="bet-input-box">
+                    <input type="number" id="betAmount" placeholder="Summani kiriting (UZS)" value="10000">
+                    <span style="font-weight: 800; font-size: 13px; color: #555;">UZS</span>
+                </div>
+                <div class="trade-actions">
+                    <button class="btn-trade-action" onclick="placeBet()">Tikish</button>
+                    <button class="btn-trade-action" onclick="stopGame()">O'yinni to'xtatish</button>
+                </div>
             </div>
         </div>
     </div>
@@ -571,8 +649,8 @@
         <div class="section-icon-box">
             <svg viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline><line x1="5" y1="21" x2="19" y2="21"></line></svg>
         </div>
-        <div class="section-title" id="title-withdraw">Withdraw Funds</div>
-        <div class="section-desc" id="desc-withdraw">Transfer your trading profits securely to your external wallet or card.</div>
+        <div class="section-title">Withdraw Funds</div>
+        <div class="section-desc">Transfer your trading profits securely to your external wallet or card.</div>
     </div>
 
     <!-- 3-BO'LIM: Deposit -->
@@ -580,8 +658,8 @@
         <div class="section-icon-box">
             <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline><line x1="5" y1="3" x2="19" y2="3"></line></svg>
         </div>
-        <div class="section-title" id="title-deposit">Deposit Balance</div>
-        <div class="section-desc" id="desc-deposit">Top up your trading account instantly to start opening positions.</div>
+        <div class="section-title">Deposit Balance</div>
+        <div class="section-desc">Top up your trading account instantly to start opening positions.</div>
     </div>
 
     <!-- 4-BO'LIM: Verify -->
@@ -589,17 +667,24 @@
         <div class="section-icon-box">
             <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
         </div>
-        <div class="section-title" id="title-verify">Account Verification</div>
-        <div class="section-desc" id="desc-verify">Complete identity verification to unlock higher withdrawal limits.</div>
+        <div class="section-title">Account Verification</div>
+        <div class="section-desc">Complete identity verification to unlock higher withdrawal limits.</div>
     </div>
 
-    <!-- 5-BO'LIM: Profile -->
+    <!-- 5-BO'LIM: Profile (Telegram ism, rasm va qora qavatli galichka bilan) -->
     <div id="tab-profile" class="tab-content">
-        <div class="section-icon-box">
-            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <div class="profile-card">
+            <img src="" alt="Profile Photo" class="profile-avatar" id="userPhoto">
+            <div class="profile-name-box">
+                <span id="userName">User</span>
+                <!-- Qora rangli premium SVG galichka -->
+                <svg class="badge-svg" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" fill="#111111"/>
+                    <path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+            </div>
+            <div style="font-size: 13px; color: #666;" id="userHandle">@username</div>
         </div>
-        <div class="section-title" id="title-profile">Trader Profile</div>
-        <div class="section-desc" id="desc-profile">View your account statistics, trading history, and security status.</div>
     </div>
 
     <!-- Pastki 5 ta Navigatsiya Tugmasi -->
@@ -627,6 +712,23 @@
     </nav>
 
     <script>
+        // Telegram WebApp orqali ism va rasmni olish
+        let tgName = "Shohruzbek";
+        let tgHandle = "@acazes";
+        let tgPhotoUrl = "https://via.placeholder.com/150";
+
+        if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user) {
+            let u = window.Telegram.WebApp.initDataUnsafe.user;
+            tgName = u.first_name || "User";
+            if(u.last_name) tgName += " " + u.last_name;
+            tgHandle = u.username ? `@${u.username}` : "@user";
+            if(u.photo_url) tgPhotoUrl = u.photo_url;
+        }
+
+        document.getElementById('userName').innerText = tgName;
+        document.getElementById('userHandle').innerText = tgHandle;
+        document.getElementById('userPhoto').src = tgPhotoUrl;
+
         // Splash screen shamchalar animatsiyasi
         const candleBg = document.getElementById('candleBg');
         for (let i = 0; i < 18; i++) {
@@ -654,128 +756,77 @@
                 splash.style.opacity = '0';
                 setTimeout(() => splash.remove(), 800);
             }, 2500);
+            checkMarketTime();
         });
 
-        // Tab almashtirish va Trade bosilganda valyuta so'rovini chiqarish
+        // Bozor vaqtini tekshirish (08:00 dan 22:00 gacha)
+        function checkMarketTime() {
+            const now = new Date();
+            const hours = now.getHours();
+            const closedBox = document.getElementById('marketClosedBox');
+
+            // Agar soat 08:00 dan 22:00 gacha bo'lmasa, bozor yopiq
+            if (hours < 8 || hours >= 22) {
+                closedBox.style.display = 'flex';
+            } else {
+                closedBox.style.display = 'none';
+            }
+        }
+
+        // Online odamlar sonini o'zgartirib turish (3, 7, 11 va hokazo)
+        const onlineCounts = [3, 7, 11, 5, 9, 4, 12, 6];
+        setInterval(() => {
+            let rand = onlineCounts[Math.floor(Math.random() * onlineCounts.length)];
+            document.getElementById('online-count').innerText = `Online: ${rand}`;
+        }, 4000);
+
+        // Tab almashtirish
         function switchTab(tabId, btn) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.getElementById('tab-' + tabId).classList.add('active');
             document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
             btn.classList.add('active');
+        }
 
-            if(tabId === 'trade') {
-                // Agar xohlasangiz avtomatik ham ochish mumkin, lekin tugmalarda ham funksiya bor
+        // Support modalini boshqarish
+        function openSupportModal() {
+            document.getElementById('supportModal').style.display = 'flex';
+        }
+        function closeSupportModal() {
+            document.getElementById('supportModal').style.display = 'none';
+        }
+
+        // Tikish va O'yinni to'xtatish funksiyalari
+        function placeBet() {
+            const hours = new Date().getHours();
+            if (hours < 8 || hours >= 22) {
+                alert("Bozor yopiq! Hozir soat 08:00 dan 22:00 gacha emas, savdo qilish mumkin emas.");
+                return;
             }
+            let amount = document.getElementById('betAmount').value;
+            alert(`Muvaffaqiyatli tikildi: ${amount} UZS! Bozor kuzatilmoqda.`);
         }
 
-        // Valyuta modal oynasi
-        function openCurrencyModal() {
-            document.getElementById('currencyModal').style.display = 'flex';
-        }
-        function closeCurrencyModal() {
-            document.getElementById('currencyModal').style.display = 'none';
+        function stopGame() {
+            alert("O'yin to'xtatildi.");
         }
 
-        let selectedAssetCurrency = 'SOʻM';
-        function selectCurrency(curr) {
-            selectedAssetCurrency = curr;
-            localStorage.setItem('acazes_currency', curr);
-
-            document.querySelectorAll('#currencyModal .option-btn').forEach(btn => btn.classList.remove('active'));
-            if(curr === 'SOʻM') document.getElementById('btn-curr-som').classList.add('active');
-            if(curr === 'TON') document.getElementById('btn-curr-ton').classList.add('active');
-            if(curr === 'USD') document.getElementById('btn-curr-usd').classList.add('active');
-
-            document.getElementById('active-pair').innerText = `BTC / ${curr}`;
-            closeCurrencyModal();
-        }
-
-        // Real vaqt rejimida bozor narxi va shamchalarni qimirlatish (Live Market Simulation)
+        // Real vaqt bozor harakati va shamchalar animatsiyasi
         setInterval(() => {
             let priceEl = document.getElementById('live-price');
             let currentPrice = parseFloat(priceEl.innerText.replace(/,/g, ''));
-            let randomChange = (Math.random() - 0.48) * 1200;
+            let randomChange = (Math.random() - 0.48) * 1500;
             let newPrice = currentPrice + randomChange;
             priceEl.innerText = newPrice.toLocaleString('en-US', {maximumFractionDigits: 0});
 
-            // Shamchalarni jonli o'zgartirish
             const candles = document.querySelectorAll('.chart-candle');
             candles.forEach(c => {
                 let currentH = parseInt(c.style.height);
-                let diff = Math.floor(Math.random() * 16) - 8;
-                let newH = Math.max(30, Math.min(140, currentH + diff));
+                let diff = Math.floor(Math.random() * 20) - 10;
+                let newH = Math.max(40, Math.min(140, currentH + diff));
                 c.style.height = newH + 'px';
             });
-        }, 1200);
-
-        // Nastroyka / Til modalini boshqarish
-        function openLangModal() {
-            document.getElementById('langModal').style.display = 'flex';
-        }
-        function closeLangModal() {
-            document.getElementById('langModal').style.display = 'none';
-        }
-
-        const translations = {
-            en: {
-                modalTitle: "Select Language",
-                withdrawTitle: "Withdraw Funds",
-                withdrawDesc: "Transfer your trading profits securely to your external wallet or card.",
-                depositTitle: "Deposit Balance",
-                depositDesc: "Top up your trading account instantly to start opening positions.",
-                verifyTitle: "Account Verification",
-                verifyDesc: "Complete identity verification to unlock higher withdrawal limits.",
-                profileTitle: "Trader Profile",
-                profileDesc: "View your account statistics, trading history, and security status."
-            },
-            uz: {
-                modalTitle: "Tilni tanlang",
-                withdrawTitle: "Pul yechish",
-                withdrawDesc: "Savdodan topgan daromadingizni hamyoningiz yoki kartangizga xavfsiz yechib oling.",
-                depositTitle: "Hisob to'ldirish",
-                depositDesc: "Savdo bitimlarini ochish uchun hisobingizni bir zumda to'ldiring.",
-                verifyTitle: "Akkaunt tasdiqlash",
-                verifyDesc: "Yuqori pul yechish limitlarini ochish uchun shaxsingizni tasdiqlang.",
-                profileTitle: "Treyder Profili",
-                profileDesc: "Hisobingiz statistikasi, savdo tarixi va xavfsizlik holatini kuzating."
-            },
-            ru: {
-                modalTitle: "Выберите язык",
-                withdrawTitle: "Вывод средств",
-                withdrawDesc: "Безопасно выводите прибыль от торговли на ваш кошелек или банковскую карту.",
-                depositTitle: "Пополнение счета",
-                depositDesc: "Мгновенно пополните торговый баланс, чтобы начать открывать позиции.",
-                verifyTitle: "Верификация аккаунта",
-                verifyDesc: "Пройдите проверку личности, чтобы открыть повышенные лимиты на вывод.",
-                profileTitle: "Профиль трейдера",
-                profileDesc: "Просматривайте статистику счета, историю сделок и статус безопасности."
-            }
-        };
-
-        function setLanguage(lang) {
-            localStorage.setItem('acazes_lang', lang);
-            document.querySelectorAll('#langModal .option-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('btn-lang-' + lang).classList.add('active');
-
-            const t = translations[lang];
-            document.getElementById('modal-lang-title').innerText = t.modalTitle;
-            document.getElementById('title-withdraw').innerText = t.withdrawTitle;
-            document.getElementById('desc-withdraw').innerText = t.withdrawDesc;
-            document.getElementById('title-deposit').innerText = t.depositTitle;
-            document.getElementById('desc-deposit').innerText = t.depositDesc;
-            document.getElementById('title-verify').innerText = t.verifyTitle;
-            document.getElementById('desc-verify').innerText = t.verifyDesc;
-            document.getElementById('title-profile').innerText = t.profileTitle;
-            document.getElementById('desc-profile').innerText = t.profileDesc;
-
-            closeLangModal();
-        }
-
-        const savedLang = localStorage.getItem('acazes_lang') || 'en';
-        setLanguage(savedLang);
-
-        const savedCurr = localStorage.getItem('acazes_currency') || 'SOʻM';
-        selectCurrency(savedCurr);
+        }, 1000);
     </script>
 </body>
 </html>
