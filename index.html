@@ -64,6 +64,7 @@
             align-items: center;
             padding: 20px;
             text-align: center;
+            overflow-y: auto;
         }
 
         .tab-content.active {
@@ -76,7 +77,7 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
-            gap: 24px;
+            gap: 20px;
             position: relative;
         }
 
@@ -86,7 +87,6 @@
             letter-spacing: 1px;
         }
 
-        /* Professional SVG Tapper Button */
         .tap-circle {
             width: 220px;
             height: 220px;
@@ -100,23 +100,21 @@
             cursor: pointer;
             box-shadow: 0 16px 40px rgba(0,0,0,0.22);
             user-select: none;
-            transition: transform 0.08s ease, box-shadow 0.08s ease;
-            position: relative;
+            transition: transform 0.08s ease;
             border: 4px solid #333;
         }
 
         .tap-circle:active {
             transform: scale(0.93);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
         .tap-circle svg {
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
             stroke: #ffffff;
             fill: none;
             stroke-width: 2.2;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .tap-circle span {
@@ -125,7 +123,6 @@
             letter-spacing: 4px;
         }
 
-        /* Har bosganda chiqib keluvchi animatsiyalashgan yozuv */
         .floating-text {
             position: absolute;
             font-size: 24px;
@@ -137,14 +134,8 @@
         }
 
         @keyframes floatUp {
-            0% {
-                opacity: 1;
-                transform: translateY(0) scale(0.8);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-80px) scale(1.2);
-            }
+            0% { opacity: 1; transform: translateY(0) scale(0.8); }
+            100% { opacity: 0; transform: translateY(-80px) scale(1.2); }
         }
 
         /* Energy Bar */
@@ -157,7 +148,6 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
         }
 
         .energy-bar-bg {
@@ -179,9 +169,24 @@
         .energy-info {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             font-size: 13px;
             font-weight: 700;
             color: #444;
+        }
+
+        .energy-title-box {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .energy-title-box svg {
+            width: 16px;
+            height: 16px;
+            stroke: #111;
+            fill: none;
+            stroke-width: 2.5;
         }
 
         /* Boost Cards */
@@ -198,64 +203,50 @@
             align-items: center;
         }
 
-        .boost-info h4 {
-            font-size: 15px;
-            font-weight: 800;
-            margin-bottom: 4px;
-            color: #111;
-        }
+        .boost-info h4 { font-size: 15px; font-weight: 800; margin-bottom: 4px; color: #111; }
+        .boost-info p { font-size: 12px; color: #666; }
+        .btn-buy { background: #111; color: #fff; border: none; padding: 10px 16px; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 13px; }
 
-        .boost-info p {
-            font-size: 12px;
-            color: #666;
-        }
-
-        .btn-buy {
-            background: #111;
-            color: #fff;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 10px;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 13px;
-        }
-
-        /* Aviator Game */
-        .aviator-box {
+        /* TaskTor Roulette Game */
+        .roulette-box {
             width: 100%;
             background: #f8f9fa;
             border: 1.5px solid #e1e4e8;
             border-radius: 20px;
-            padding: 20px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 15px;
+            gap: 14px;
         }
 
-        .plane-screen {
-            width: 100%;
-            height: 180px;
-            background: #111;
-            border-radius: 14px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        .roulette-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .roulette-cell {
+            background: #fff;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            padding: 14px 8px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .roulette-cell.green {
+            background: #34c759;
             color: #fff;
+            border-color: #28a745;
         }
 
-        .multiplier {
-            font-size: 38px;
-            font-weight: 900;
-            letter-spacing: 2px;
-        }
-
-        .game-status {
-            font-size: 12px;
-            color: #aaa;
-            margin-top: 5px;
+        .roulette-cell.selected {
+            border-color: #111;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            transform: scale(1.03);
         }
 
         .btn-game {
@@ -265,12 +256,12 @@
             color: #fff;
             border: none;
             border-radius: 12px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 800;
             cursor: pointer;
         }
 
-        /* Support Cards */
+        /* Support & Kitob Cards */
         .support-card {
             width: 100%;
             background: #f8f9fa;
@@ -293,12 +284,42 @@
             font-size: 15px;
         }
 
-        .badge-svg {
-            width: 18px;
-            height: 18px;
-            flex-shrink: 0;
-            display: inline-block;
-            vertical-align: middle;
+        .badge-svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+        /* Kitob Card */
+        .kitob-card {
+            width: 100%;
+            background: #f8f9fa;
+            border: 1.5px solid #e1e4e8;
+            padding: 18px;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .kitob-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #111;
+        }
+
+        .kitob-header svg {
+            width: 24px;
+            height: 24px;
+            stroke: #111;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .kitob-text {
+            font-size: 13.5px;
+            line-height: 1.5;
+            color: #444;
         }
 
         /* Bottom Nav */
@@ -334,22 +355,8 @@
             transform: translateY(-2px);
         }
 
-        nav button.active span {
-            color: #111;
-            font-weight: 700;
-        }
-
-        nav svg {
-            width: 24px;
-            height: 24px;
-            stroke: #111;
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            margin-bottom: 4px;
-        }
-
+        nav button.active span { color: #111; font-weight: 700; }
+        nav svg { width: 24px; height: 24px; stroke: #111; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 4px; }
         nav button.active svg { stroke-width: 2.3; }
         nav span { font-size: 11px; font-weight: 600; color: #555; }
     </style>
@@ -375,8 +382,11 @@
 
             <div class="energy-container">
                 <div class="energy-info">
-                    <span>⚡ Energiya limiti</span>
-                    <span id="limit-text">10 / 10</span>
+                    <div class="energy-title-box">
+                        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                        <span>Energiya limiti</span>
+                    </div>
+                    <span id="limit-text">20 / 20</span>
                 </div>
                 <div class="energy-bar-bg">
                     <div class="energy-bar-fill" id="energy-bar"></div>
@@ -411,29 +421,44 @@
         </div>
     </div>
 
-    <!-- TAB 3: TaskTor (Aviator Game) -->
+    <!-- TAB 3: TaskTor (Ruletka Baraban O'yini) -->
     <div id="tab-tasktor" class="tab-content">
-        <h2 style="margin-bottom: 15px; font-weight: 900; font-size: 22px;">TaskTor Aviator</h2>
-        <div class="aviator-box">
-            <div class="plane-screen">
-                <div class="multiplier" id="multiplier">1.00x</div>
-                <div class="game-status" id="game-status">Tikish uchun bosing (Tikish: 1 TESLA)</div>
+        <h2 style="margin-bottom: 15px; font-weight: 900; font-size: 20px;">TaskTor Ruletka</h2>
+        <div class="roulette-box">
+            <div style="font-size: 13px; font-weight: 700; color: #555;" id="roulette-status">1 tadan 6 tagacha katak tanlang (Har biriga 1 TESLA tikiladi)</div>
+            
+            <div class="roulette-grid" id="roulette-grid">
+                <div class="roulette-cell" onclick="toggleCell(0)">Katak 1 (3x)</div>
+                <div class="roulette-cell" onclick="toggleCell(1)">Katak 2 (3x)</div>
+                <div class="roulette-cell" onclick="toggleCell(2)">Katak 3 (3x)</div>
+                <div class="roulette-cell" onclick="toggleCell(3)">Katak 4 (3x)</div>
+                <div class="roulette-cell" onclick="toggleCell(4)">Katak 5 (3x)</div>
+                <div class="roulette-cell green" onclick="toggleCell(5)">Yashil (50x)</div>
             </div>
-            <button class="btn-game" id="aviator-btn" onclick="startAviator()">Uchishni Boshlash (1 TESLA)</button>
+
+            <button class="btn-game" id="roulette-btn" onclick="startRoulette()">O'yinni Boshlash</button>
         </div>
     </div>
 
-    <!-- TAB 4: Support -->
+    <!-- TAB 4: Support & Kitob -->
     <div id="tab-support" class="tab-content">
-        <h2 style="margin-bottom: 20px; font-weight: 900; font-size: 22px;">Admin va Yordam</h2>
+        <h2 style="margin-bottom: 20px; font-weight: 900; font-size: 22px;">Qo'llanma va Admin</h2>
         
+        <!-- Kitob bo'limi -->
+        <div class="kitob-card">
+            <div class="kitob-header">
+                <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                <span>Kitob (Qo'llanma)</span>
+            </div>
+            <div class="kitob-text">
+                Assalomu alekum. Shohruzbek siz bu bot orqali 1 000 000 tesla ishlab olib, va uni bank kartangizga 50 000 UZS koʻrinshda chiqarib olishingiz mumkun. Oʻyin oson koʻringani bilan juda murakab.
+            </div>
+        </div>
+
         <a href="https://t.me/smpli" target="_blank" class="support-card">
             <div class="user-meta">
                 <span>@smpli</span>
-                <svg class="badge-svg" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="10" fill="#007aff"/>
-                    <path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                </svg>
+                <svg class="badge-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#007aff"/><path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
             </div>
             <span style="font-size: 13px; color: #888;">Admin</span>
         </a>
@@ -441,10 +466,7 @@
         <a href="https://t.me/FarzonaTurayeva" target="_blank" class="support-card">
             <div class="user-meta">
                 <span>@FarzonaTurayeva</span>
-                <svg class="badge-svg" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="10" fill="#34c759"/>
-                    <path d="M8 12l3 3 5-6" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                </svg>
+                <svg class="badge-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#34c759"/><path d="M8 12l3 3 5-6" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
             </div>
             <span style="font-size: 13px; color: #888;">Yordam</span>
         </a>
@@ -473,7 +495,7 @@
     <script>
         let balance = parseInt(localStorage.getItem('tesla_balance')) || 0;
         let tapPower = parseInt(localStorage.getItem('tesla_power')) || 1;
-        let maxLimit = parseInt(localStorage.getItem('tesla_limit')) || 10;
+        let maxLimit = parseInt(localStorage.getItem('tesla_limit')) || 20;
         let currentLimit = parseInt(localStorage.getItem('tesla_current_limit')) ?? maxLimit;
 
         document.getElementById('balance').innerText = balance;
@@ -501,13 +523,11 @@
             saveData();
             updateUI();
 
-            // Bosganda "+1 TESLA" (yoki power ga qarab) yozuvi chiqishi
             const container = document.getElementById('tap-container');
             const floatEl = document.createElement('div');
             floatEl.className = 'floating-text';
             floatEl.innerText = `+${tapPower} TESLA`;
             
-            // Bosilgan joyga yaqinroq chiqishi uchun
             const rect = event.target.getBoundingClientRect();
             const x = event.clientX - rect.left || 50;
             const y = event.clientY - rect.top || 50;
@@ -559,52 +579,108 @@
             localStorage.setItem('tesla_current_limit', currentLimit);
         }
 
-        // Aviator Game
-        let gameInterval = null;
-        function startAviator() {
-            if (balance < 1) {
-                alert("Tikish uchun 1 TESLA kerak!");
-                return;
-            }
-            balance -= 1;
-            updateUI();
-            saveData();
-
-            let mult = 1.00;
-            const btn = document.getElementById('aviator-btn');
-            const status = document.getElementById('game-status');
-            const multEl = document.getElementById('multiplier');
-            
-            btn.innerText = "To'xtatish (Naqd qilish)";
-            btn.onclick = cashOut;
-            status.innerText = "Raketa uchmoqda...";
-
-            let crashAt = (Math.random() * 3 + 1.2).toFixed(2);
-
-            gameInterval = setInterval(() => {
-                mult += 0.05;
-                multEl.innerText = mult.toFixed(2) + 'x';
-
-                if (mult >= crashAt) {
-                    clearInterval(gameInterval);
-                    status.innerText = "Portladi! Yutqazdingiz 💥";
-                    btn.innerText = "Uchishni Boshlash (1 TESLA)";
-                    btn.onclick = startAviator;
+        // Ruletka Game Logic
+        let selectedCells = [];
+        function toggleCell(index) {
+            const cells = document.querySelectorAll('.roulette-cell');
+            const cell = cells[index];
+            if (selectedCells.includes(index)) {
+                selectedCells = selectedCells.filter(i => i !== index);
+                cell.classList.remove('selected');
+            } else {
+                if (selectedCells.length >= 6) {
+                    alert("Ko'pi bilan 6 ta katak tanlashingiz mumkin!");
+                    return;
                 }
-            }, 150);
+                selectedCells.push(index);
+                cell.classList.add('selected');
+            }
         }
 
-        function cashOut() {
-            clearInterval(gameInterval);
-            let winAmount = Math.floor(1 * parseFloat(document.getElementById('multiplier').innerText));
-            balance += winAmount;
+        function startRoulette() {
+            if (selectedCells.length === 0) {
+                alert("Kamida 1 ta katak tanlang!");
+                return;
+            }
+            let totalCost = selectedCells.length;
+            if (balance < totalCost) {
+                alert("Tikish uchun balansingizda yetarli TESLA yo'q!");
+                return;
+            }
+            balance -= totalCost;
             updateUI();
             saveData();
 
-            document.getElementById('game-status').innerText = `Tabriklayman! ${winAmount} TESLA yutib oldingiz 🎉`;
-            const btn = document.getElementById('aviator-btn');
-            btn.innerText = "Uchishni Boshlash (1 TESLA)";
-            btn.onclick = startAviator;
+            const btn = document.getElementById('roulette-btn');
+            const status = document.getElementById('roulette-status');
+            btn.disabled = true;
+            status.innerText = "10 sekunddan keyin baraban aylanadi...";
+
+            let countdown = 10;
+            let timer = setInterval(() => {
+                countdown--;
+                status.innerText = `Baraban aylanishiga ${countdown} sekund qoldi...`;
+                if (countdown <= 0) {
+                    clearInterval(timer);
+                    spinRouletteWheel();
+                }
+            }, 1000);
+        }
+
+        function spinRouletteWheel() {
+            const status = document.getElementById('roulette-status');
+            status.innerText = "Baraban aylanmoqda...";
+
+            setTimeout(() => {
+                // Randomly pick exactly 2 winning cells out of 6
+                let allIndices = [0, 1, 2, 3, 4, 5];
+                let winningCells = [];
+                while(winningCells.length < 2) {
+                    let randIndex = Math.floor(Math.random() * allIndices.length);
+                    let chosen = allIndices.splice(randIndex, 1)[0];
+                    winningCells.push(chosen);
+                }
+
+                let wonAmount = 0;
+                selectedCells.forEach(cellIdx => {
+                    if (winningCells.includes(cellIdx)) {
+                        if (cellIdx === 5) {
+                            wonAmount += 50; // Yashil katak 50x
+                        } else {
+                            wonAmount += 3;  // Odatiy katak 3x
+                        }
+                    }
+                });
+
+                balance += wonAmount;
+                updateUI();
+                saveData();
+
+                const cells = document.querySelectorAll('.roulette-cell');
+                cells.forEach((c, idx) => {
+                    c.classList.remove('selected');
+                    if (winningCells.includes(idx)) {
+                        c.style.borderColor = '#ff3b30';
+                        c.style.transform = 'scale(1.05)';
+                    }
+                });
+
+                if (wonAmount > 0) {
+                    status.innerText = `Tabriklayman! Yutuqli kataklarga tushdi. Siz ${wonAmount} TESLA yutib oldingiz 🎉`;
+                } else {
+                    status.innerText = `Afsuski, tikkan kataklaringizga tushmadi. Yutqazdingiz 💥`;
+                }
+
+                const btn = document.getElementById('roulette-btn');
+                btn.disabled = false;
+                selectedCells = [];
+                setTimeout(() => {
+                    cells.forEach(c => {
+                        c.style.borderColor = '#ddd';
+                        c.style.transform = 'scale(1)';
+                    });
+                }, 4000);
+            }, 2000);
         }
     </script>
 </body>
