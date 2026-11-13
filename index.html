@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TESLA TapUz</title>
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -444,14 +446,14 @@
     <div id="tab-support" class="tab-content">
         <h2 style="margin-bottom: 20px; font-weight: 900; font-size: 22px;">Qo'llanma va Admin</h2>
         
-        <!-- Kitob bo'limi -->
+        <!-- Kitob bo'limi (Dinamik Telegram Username bilan) -->
         <div class="kitob-card">
             <div class="kitob-header">
                 <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                 <span>Kitob (Qo'llanma)</span>
             </div>
-            <div class="kitob-text">
-                Assalomu alekum. Shohruzbek siz bu bot orqali 1 000 000 tesla ishlab olib, va uni bank kartangizga 50 000 UZS koʻrinshda chiqarib olishingiz mumkun. Oʻyin oson koʻringani bilan juda murakab.
+            <div class="kitob-text" id="guide-text">
+                Assalomu alekum. Siz bu bot orqali 1 000 000 tesla ishlab olib, va uni bank kartangizga 50 000 UZS koʻrinshda chiqarib olishingiz mumkun. Oʻyin oson koʻringani bilan juda murakab.
             </div>
         </div>
 
@@ -493,6 +495,16 @@
     </nav>
 
     <script>
+        // Telegram WebApp orqali foydalanuvchi ismini/nikini aniqlash
+        let tgUser = "Foydalanuvchi";
+        if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user) {
+            let user = window.Telegram.WebApp.initDataUnsafe.user;
+            tgUser = user.username ? `@${user.username}` : (user.first_name || "Foydalanuvchi");
+        }
+
+        // Kitob matniga foydalanuvchi nomini joylash
+        document.getElementById('guide-text').innerHTML = `Assalomu alekum, <b>${tgUser}</b>! Siz bu bot orqali 1 000 000 tesla ishlab olib, va uni bank kartangizga 50 000 UZS koʻrinshda chiqarib olishingiz mumkun. Oʻyin oson koʻringani bilan juda murakab.`;
+
         let balance = parseInt(localStorage.getItem('tesla_balance')) || 0;
         let tapPower = parseInt(localStorage.getItem('tesla_power')) || 1;
         let maxLimit = parseInt(localStorage.getItem('tesla_limit')) || 20;
@@ -632,7 +644,6 @@
             status.innerText = "Baraban aylanmoqda...";
 
             setTimeout(() => {
-                // Randomly pick exactly 2 winning cells out of 6
                 let allIndices = [0, 1, 2, 3, 4, 5];
                 let winningCells = [];
                 while(winningCells.length < 2) {
@@ -645,9 +656,9 @@
                 selectedCells.forEach(cellIdx => {
                     if (winningCells.includes(cellIdx)) {
                         if (cellIdx === 5) {
-                            wonAmount += 50; // Yashil katak 50x
+                            wonAmount += 50;
                         } else {
-                            wonAmount += 3;  // Odatiy katak 3x
+                            wonAmount += 3;
                         }
                     }
                 });
