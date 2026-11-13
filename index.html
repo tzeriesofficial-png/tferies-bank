@@ -13,13 +13,28 @@
         }
         body {
             background-color: #ffffff;
-            height: 100vh;
+            color: #111111;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        /* Splash / Kirish qismi */
+        #splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            z-index: 9999;
+            transition: opacity 0.6s ease;
         }
-        /* Qoq o'rtada va yorqin neon effektli qimirlab turuvchi yozuv */
         .glossy-logo {
             font-size: 42px;
             font-weight: 900;
@@ -38,11 +53,129 @@
                 transform: scale(1.04);
             }
         }
+
+        /* Asosiy menyu konteyneri */
+        .menu-container {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards 1.2s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 800;
+            color: #111111;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        /* Premium tugmalar */
+        .menu-btn {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+            padding: 16px 20px;
+            background: #f8f9fa;
+            border: 1.5px solid #e1e4e8;
+            border-radius: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #111111;
+            font-size: 16px;
+            font-weight: 700;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .menu-btn:hover {
+            background: #111111;
+            color: #ffffff;
+            border-color: #111111;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .menu-btn:hover svg {
+            stroke: #ffffff;
+        }
+
+        /* Premium SVG ikonka stili */
+        .menu-btn svg {
+            width: 26px;
+            height: 26px;
+            stroke: #111111;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: stroke 0.25s ease;
+        }
     </style>
 </head>
 <body>
 
-    <div class="glossy-logo">A C A Z E S</div>
+    <!-- Kirish qismidagi qimirlab turuvchi yozuv -->
+    <div id="splash">
+        <div class="glossy-logo">A C A Z E S</div>
+    </div>
 
+    <!-- 3 ta asosiy menyu bo'limi -->
+    <div class="menu-container">
+        <div class="menu-title">ACAZES BOT</div>
+
+        <!-- 1. Bot Yaratish -->
+        <button class="menu-btn" onclick="alert('Bot yaratish bo\'limi')">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+            <span>Bot Yaratish</span>
+        </button>
+
+        <!-- 2. Bot O'chirish -->
+        <button class="menu-btn" onclick="alert('Bot o\'chirish bo\'limi')">
+            <svg viewBox="0 0 24 24">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                <line x1="10" y1="11" x2="14" y2="15"></line>
+                <line x1="14" y1="11" x2="10" y2="15"></line>
+            </svg>
+            <span>Bot Oʻchrsh</span>
+        </button>
+
+        <!-- 3. Hisob To'ldirish -->
+        <button class="menu-btn" onclick="alert('Hisob to\'ldirish bo\'limi')">
+            <svg viewBox="0 0 24 24">
+                <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                <line x1="2" y1="10" x2="22" y2="10"></line>
+                <circle cx="17" cy="15" r="1.5" fill="#111111"></circle>
+            </svg>
+            <span>Hisob Toʻldirish</span>
+        </button>
+    </div>
+
+    <script>
+        // Splash screen'ni birozdan keyin yo'q qilish va menyuni ko'rsatish
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const splash = document.getElementById('splash');
+                splash.style.opacity = '0';
+                setTimeout(() => splash.remove(), 600);
+            }, 1200);
+        });
+    </script>
 </body>
 </html>
