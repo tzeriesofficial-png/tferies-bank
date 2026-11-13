@@ -55,15 +55,19 @@
         }
 
         /* Asosiy menyu konteyneri */
-        .menu-container {
+        .menu-container, .bots-container {
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
             display: flex;
             flex-direction: column;
             gap: 16px;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeIn 0.8s ease forwards 1.2s;
+        }
+
+        .bots-container {
+            display: none; /* Boshida yashirin turadi */
         }
 
         @keyframes fadeIn {
@@ -80,6 +84,19 @@
             color: #111111;
             margin-bottom: 10px;
             letter-spacing: 1px;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            font-size: 15px;
+            font-weight: 700;
+            color: #111;
+            cursor: pointer;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         /* Premium tugmalar */
@@ -124,6 +141,34 @@
             stroke-linejoin: round;
             transition: stroke 0.25s ease;
         }
+
+        /* Botlar Grid paneli (3 tadan chap va o'ngda) */
+        .bots-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .bot-card {
+            background: #f8f9fa;
+            border: 1.5px solid #e1e4e8;
+            border-radius: 14px;
+            padding: 16px 12px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            color: #111;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .bot-card:hover {
+            background: #111;
+            color: #fff;
+            border-color: #111;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -133,12 +178,12 @@
         <div class="glossy-logo">A C A Z E S</div>
     </div>
 
-    <!-- 3 ta asosiy menyu bo'limi -->
-    <div class="menu-container">
+    <!-- 1. Asosiy menyu bo'limi -->
+    <div id="main-menu" class="menu-container">
         <div class="menu-title">ACAZES BOT</div>
 
-        <!-- 1. Bot Yaratish (Bot / Robot stikeri SVG) -->
-        <button class="menu-btn" onclick="alert('Bot yaratish bo\'limi')">
+        <!-- Bot Yaratish -->
+        <button class="menu-btn" onclick="openBotsMenu()">
             <svg viewBox="0 0 24 24">
                 <rect x="3" y="11" width="18" height="10" rx="2"></rect>
                 <circle cx="9" cy="16" r="1.5" fill="currentColor"></circle>
@@ -150,7 +195,7 @@
             <span>Bot Yaratish</span>
         </button>
 
-        <!-- 2. Bot O'chirish -->
+        <!-- Bot O'chirish -->
         <button class="menu-btn" onclick="alert('Bot o\'chirish bo\'limi')">
             <svg viewBox="0 0 24 24">
                 <polyline points="3 6 5 6 21 6"></polyline>
@@ -161,7 +206,7 @@
             <span>Bot Oʻchrsh</span>
         </button>
 
-        <!-- 3. Hisob To'ldirish -->
+        <!-- Hisob To'ldirish -->
         <button class="menu-btn" onclick="alert('Hisob to\'ldirish bo\'limi')">
             <svg viewBox="0 0 24 24">
                 <rect x="2" y="5" width="20" height="14" rx="2"></rect>
@@ -172,8 +217,25 @@
         </button>
     </div>
 
+    <!-- 2. Bot turlari tanlash bo'limi (3 tadan chap va o'ngda) -->
+    <div id="bots-menu" class="bots-container">
+        <button class="back-btn" onclick="closeBotsMenu()">← Orqaga</button>
+        <div class="menu-title">Bot Turini Tanlang</div>
+        
+        <div class="bots-grid">
+            <div class="bot-card" onclick="selectBot('Nakrutka Bot')">Nakrutka Bot</div>
+            <div class="bot-card" onclick="selectBot('Kino Bot')">Kino Bot</div>
+            <div class="bot-card" onclick="selectBot('Saved Bot')">Saved Bot</div>
+            <div class="bot-card" onclick="selectBot('AiChat Bot')">AiChat Bot</div>
+            <div class="bot-card" onclick="selectBot('Taxi Bot')">Taxi Bot</div>
+            <div class="bot-card" onclick="selectBot('Biznes Bot')">Biznes Bot</div>
+            <div class="bot-card" onclick="selectBot('Pul Bot')">Pul Bot</div>
+            <div class="bot-card" onclick="selectBot('Zakas Bot')">Zakas Bot</div>
+        </div>
+    </div>
+
     <script>
-        // Splash screen'ni birozdan keyin yo'q qilish va menyuni ko'rsatish
+        // Splash screen'ni o'chirish
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const splash = document.getElementById('splash');
@@ -181,6 +243,21 @@
                 setTimeout(() => splash.remove(), 600);
             }, 1200);
         });
+
+        function openBotsMenu() {
+            document.getElementById('main-menu').style.display = 'none';
+            document.getElementById('bots-menu').style.display = 'flex';
+            document.getElementById('bots-menu').style.animation = 'fadeIn 0.4s ease forwards';
+        }
+
+        function closeBotsMenu() {
+            document.getElementById('bots-menu').style.display = 'none';
+            document.getElementById('main-menu').style.display = 'flex';
+        }
+
+        function selectBot(botName) {
+            alert(`${botName} narxi: 15 000 so'm`);
+        }
     </script>
 </body>
 </html>
