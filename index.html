@@ -16,7 +16,7 @@
             color: #111111;
             padding-bottom: 90px;
         }
-        /* Splash Screen */
+        /* Splash Screen - Qoq o'rtada va yorqin neon effektli */
         #splash {
             position: fixed;
             top: 0;
@@ -29,21 +29,25 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.6s ease;
         }
         .glossy-logo {
-            font-size: 36px;
+            font-size: 42px;
             font-weight: 900;
-            letter-spacing: 4px;
-            background: linear-gradient(135deg, #111111 0%, #555555 50%, #111111 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 2s infinite linear;
+            letter-spacing: 6px;
+            color: #000000;
+            text-align: center;
+            animation: neonGlow 1.5s infinite alternate ease-in-out;
         }
-        @keyframes shine {
-            0% { filter: brightness(1); }
-            50% { filter: brightness(1.5); }
-            100% { filter: brightness(1); }
+        @keyframes neonGlow {
+            0% {
+                text-shadow: 0 0 5px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.05);
+                transform: scale(1);
+            }
+            100% {
+                text-shadow: 0 0 15px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 0, 0, 0.2), 0 0 45px rgba(0, 0, 0, 0.1);
+                transform: scale(1.03);
+            }
         }
         /* Header */
         header {
@@ -215,6 +219,7 @@
 </head>
 <body>
 
+    <!-- Splash Screen (Kirish qismidagi A C A Z E S yozuvi) -->
     <div id="splash">
         <div class="glossy-logo">A C A Z E S</div>
     </div>
@@ -229,7 +234,6 @@
         <!-- BUY TAB -->
         <div id="tab-buy" class="tab-content active">
             <div id="accounts-list">
-                <!-- Standart default e'lon (70$ va ko'rsatilgan video) -->
                 <div class="account-card">
                     <video controls src="https://cache.ikk.li/file/ultra_cardinal4/113023.mp4" crossorigin="anonymous"></video>
                     <div class="card-body">
@@ -286,7 +290,7 @@
         </div>
     </div>
 
-    <!-- PREMIUM BOTTOM NAVIGATION (UZBEK LABELS & PRO SVG ICONS) -->
+    <!-- PREMIUM BOTTOM NAVIGATION -->
     <nav>
         <button class="active" onclick="switchTab('buy', this)">
             <svg viewBox="0 0 24 24">
@@ -337,8 +341,8 @@
             setTimeout(() => {
                 const splash = document.getElementById('splash');
                 splash.style.opacity = '0';
-                setTimeout(() => splash.remove(), 500);
-            }, 800);
+                setTimeout(() => splash.remove(), 600);
+            }, 1200);
             loadAccounts();
         });
 
