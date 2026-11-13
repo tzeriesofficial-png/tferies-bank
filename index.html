@@ -118,7 +118,7 @@
             50%, 100% { transform: translateX(260px); }
         }
 
-        /* 2-Oyna: Market (Asosiy Sahifa) */
+        /* 2-Oyna: Asosiy Market Konteyneri */
         .market-container {
             width: 100%;
             max-width: 440px;
@@ -129,6 +129,19 @@
             padding: 16px 16px 0 16px;
             background: #070709;
             z-index: 20;
+        }
+
+        /* Tab oynalari */
+        .tab-view {
+            display: none;
+            flex: 1;
+            flex-direction: column;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .tab-view.active {
+            display: flex;
         }
 
         /* Qidiruv bo'limi */
@@ -152,9 +165,9 @@
         }
 
         .search-box input:focus {
-            border-color: #ff9900;
+            border-color: #ff2a2a;
             background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 15px rgba(255, 153, 0, 0.2);
+            box-shadow: 0 0 15px rgba(255, 42, 42, 0.25);
         }
 
         .search-icon {
@@ -176,7 +189,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
         }
 
         .apps-list::-webkit-scrollbar {
@@ -200,10 +213,10 @@
             transition: all 0.2s;
         }
 
-        .app-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 153, 0, 0.3);
-            transform: translateY(-2px);
+        .app-card:active {
+            transform: scale(0.98);
+            background: rgba(255, 42, 42, 0.08);
+            border-color: rgba(255, 42, 42, 0.4);
         }
 
         .app-info {
@@ -212,26 +225,40 @@
             gap: 14px;
         }
 
-        .app-icon-wrap {
+        /* Qizil qimirlab turuvchi Premium SVG Galochka konteyneri */
+        .red-check-wrap {
             width: 46px;
             height: 46px;
-            background: linear-gradient(135deg, rgba(255,42,42,0.15), rgba(255,208,0,0.15));
-            border: 1px solid rgba(255,255,255,0.15);
+            background: radial-gradient(circle, rgba(255, 30, 30, 0.22) 0%, rgba(255, 30, 30, 0.04) 100%);
+            border: 1.5px solid rgba(255, 42, 42, 0.45);
             border-radius: 14px;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-shrink: 0;
+            box-shadow: 0 0 14px rgba(255, 30, 30, 0.25);
         }
 
-        .app-icon-wrap svg {
-            width: 24px;
-            height: 24px;
-            stroke: #ffd000;
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
+        .red-check-svg {
+            width: 26px;
+            height: 26px;
+            animation: wiggleCheck 1.8s infinite ease-in-out;
+            filter: drop-shadow(0 0 6px rgba(255, 30, 30, 0.8));
+        }
+
+        @keyframes wiggleCheck {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+            }
+            25% {
+                transform: scale(1.14) rotate(-8deg);
+            }
+            50% {
+                transform: scale(0.96) rotate(4deg);
+            }
+            75% {
+                transform: scale(1.1) rotate(8deg);
+            }
         }
 
         .app-details h4 {
@@ -247,25 +274,75 @@
             font-weight: 600;
         }
 
+        /* Skachat tugmasi */
         .download-badge {
-            font-size: 12px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ff2a2a, #ff9900);
-            color: #fff;
-            padding: 8px 14px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(255, 68, 0, 0.3);
+            font-size: 12.5px;
+            font-weight: 900;
+            letter-spacing: 0.4px;
+            background: linear-gradient(135deg, #ff1e1e 0%, #ff7b00 100%);
+            color: #ffffff;
+            padding: 9px 16px;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(255, 42, 42, 0.35);
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        /* Pastki 4 ta Navigatsiya */
+        /* Boshqa bo'limlar markaziy ko'rinishi */
+        .empty-tab-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            gap: 14px;
+        }
+
+        .empty-tab-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1.5px solid rgba(255, 208, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 25px rgba(255, 153, 0, 0.15);
+        }
+
+        .empty-tab-icon svg {
+            width: 34px;
+            height: 34px;
+            stroke: #ffd000;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .empty-tab-box h3 {
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+        }
+
+        .empty-tab-box p {
+            font-size: 13.5px;
+            color: rgba(255, 255, 255, 0.55);
+            max-width: 260px;
+            line-height: 1.5;
+        }
+
+        /* Pastki 5 ta Premium Navigatsiya */
         .bottom-nav {
             width: 100%;
-            height: 72px;
-            background: rgba(12, 12, 16, 0.95);
+            height: 74px;
+            background: rgba(12, 12, 16, 0.96);
             backdrop-filter: blur(20px);
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
             padding-bottom: env(safe-area-inset-bottom);
         }
@@ -278,9 +355,9 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            width: 25%;
+            width: 20%;
             height: 100%;
-            opacity: 0.5;
+            opacity: 0.48;
             transition: all 0.2s ease;
         }
 
@@ -295,25 +372,27 @@
         }
 
         .nav-item svg {
-            width: 22px;
-            height: 22px;
+            width: 21px;
+            height: 21px;
             stroke: #ffffff;
             fill: none;
             stroke-width: 2;
             stroke-linecap: round;
             stroke-linejoin: round;
-            margin-bottom: 4px;
+            margin-bottom: 5px;
         }
 
         .nav-item.active svg {
             stroke: #ffd000;
             stroke-width: 2.4;
+            filter: drop-shadow(0 0 6px rgba(255, 208, 0, 0.5));
         }
 
         .nav-item span {
-            font-size: 10px;
+            font-size: 9.5px;
             font-weight: 600;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.75);
+            letter-spacing: 0.1px;
         }
     </style>
 </head>
@@ -413,159 +492,84 @@
         </div>
     </div>
 
-    <!-- 2-OYNA: Market va Qidiruv sahifasi -->
+    <!-- 2-OYNA: Asosiy Sahifa -->
     <div id="marketPage" class="page hidden">
         <div class="market-container">
-            <!-- Qidiruv bo'limi -->
-            <div class="search-box">
-                <svg class="search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" id="searchInput" placeholder="O'yin yoki ilova qidirish..." oninput="filterApps()">
+            
+            <!-- ROOM BO'LIMI (Ilovalar va Qidiruv shu yerda) -->
+            <div id="view-room" class="tab-view active">
+                <div class="search-box">
+                    <svg class="search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" id="searchInput" placeholder="O'yin yoki ilova qidirish..." oninput="filterApps()">
+                </div>
+
+                <!-- Ilovalar ro'yxati (JavaScript orqali qizil jonli SVG galochka bilan chiziladi) -->
+                <div class="apps-list" id="appsList"></div>
             </div>
 
-            <!-- Ilovalar ro'yxati -->
-            <div class="apps-list" id="appsList">
-                <!-- Standoff 2 -->
-                <a href="https://play.google.com/store/apps/details?id=com.axlebolt.standoff2" target="_blank" class="app-card" data-name="standoff 2">
-                    <div class="app-info">
-                        <div class="app-icon-wrap">
-                            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                        </div>
-                        <div class="app-details">
-                            <h4>Standoff 2</h4>
-                            <span>Action • Shooter</span>
-                        </div>
+            <!-- CREATE GAME BO'LIMI -->
+            <div id="view-creategame" class="tab-view">
+                <div class="empty-tab-box">
+                    <div class="empty-tab-icon">
+                        <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="4"></rect><line x1="6" y1="12" x2="10" y2="12"></line><line x1="8" y1="10" x2="8" y2="14"></line><circle cx="15" cy="11" r="1" fill="#ffd000"></circle><circle cx="17" cy="13" r="1" fill="#ffd000"></circle></svg>
                     </div>
-                    <div class="download-badge">Play Market</div>
-                </a>
-
-                <!-- PUBG Mobile -->
-                <a href="https://play.google.com/store/apps/details?id=com.tencent.ig" target="_blank" class="app-card" data-name="pubg mobile">
-                    <div class="app-info">
-                        <div class="app-icon-wrap">
-                            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                        </div>
-                        <div class="app-details">
-                            <h4>PUBG MOBILE</h4>
-                            <span>Battle Royale • Action</span>
-                        </div>
-                    </div>
-                    <div class="download-badge">Play Market</div>
-                </a>
-
-                <!-- Free Fire -->
-                <a href="https://play.google.com/store/apps/details?id=com.dts.freefireth" target="_blank" class="app-card" data-name="free fire">
-                    <div class="app-info">
-                        <div class="app-icon-wrap">
-                            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                        </div>
-                        <div class="app-details">
-                            <h4>Free Fire</h4>
-                            <span>Survival • Shooter</span>
-                        </div>
-                    </div>
-                    <div class="download-badge">Play Market</div>
-                </a>
-
-                <!-- Free Fire Max -->
-                <a href="https://play.google.com/store/apps/details?id=com.dts.freefiremax" target="_blank" class="app-card" data-name="free fire max">
-                    <div class="app-info">
-                        <div class="app-icon-wrap">
-                            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                        </div>
-                        <div class="app-details">
-                            <h4>Free Fire Max</h4>
-                            <span>Ultra Graphics • Action</span>
-                        </div>
-                    </div>
-                    <div class="download-badge">Play Market</div>
-                </a>
-
-                <!-- Blood Strike -->
-                <a href="https://play.google.com/store/apps/details?id=com.netease.bloodstrike" target="_blank" class="app-card" data-name="blood strike">
-                    <div class="app-info">
-                        <div class="app-icon-wrap">
-                            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                        </div>
-                        <div class="app-details">
-                            <h4>Blood Strike</h4>
-                            <span>FPS • Battle Royale</span>
-                        </div>
-                    </div>
-                    <div class="download-badge">Play Market</div>
-                </a>
-
-                <!-- YouTube (Stiker: ▶️ Premium SVG) -->
-                <a href="https://play.google.com/store/apps/details?id=com.google.android.youtube" target="_blank" class="app-card" data-name="youtube">
-                    <div class="app-info">
-                        <div class="app-icon-wrap">
-                            <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#ffd000"></polygon></svg>
-                        </div>
-                        <div class="app-details">
-                            <h4>YouTube</h4>
-                            <span>Video • Streaming</span>
-                        </div>
-                    </div>
-                    <div class="download-badge">Play Market</div>
-                </a>
-
-                <!-- TikTok -->
-                <a href="https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically" target="_blank" class="app-card" data-name="tiktok">
-                    <div class="app-info">
-                        <div class="app-icon-wrap">
-                            <svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
-                        </div>
-                        <div class="app-details">
-                            <h4>TikTok</h4>
-                            <span>Social • Short Videos</span>
-                        </div>
-                    </div>
-                    <div class="download-badge">Play Market</div>
-                </a>
-
-                <!-- Poppo Live -->
-                <a href="https://play.google.com/store/apps/details?id=com.poppo.android" target="_blank" class="app-card" data-name="poppo live">
-                    <div class="app-info">
-                        <div class="app-icon-wrap">
-                            <svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-                        </div>
-                        <div class="app-details">
-                            <h4>Poppo Live</h4>
-                            <span>Live Streaming • Chat</span>
-                        </div>
-                    </div>
-                    <div class="download-badge">Play Market</div>
-                </a>
-
-                <!-- Bigo Live -->
-                <a href="https://play.google.com/store/apps/details?id=sg.bigo.live" target="_blank" class="app-card" data-name="bigo live">
-                    <div class="app-info">
-                        <div class="app-icon-wrap">
-                            <svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-                        </div>
-                        <div class="app-details">
-                            <h4>Bigo Live</h4>
-                            <span>Broadcasting • Social</span>
-                        </div>
-                    </div>
-                    <div class="download-badge">Play Market</div>
-                </a>
+                    <h3>CreateGame</h3>
+                    <p>Yangi o'yin xonalari va turnirlar yaratish bo'limi.</p>
+                </div>
             </div>
 
-            <!-- Pastki 4 ta Premium Navigatsiya -->
+            <!-- GAME SUPPORT BO'LIMI -->
+            <div id="view-support" class="tab-view">
+                <div class="empty-tab-box">
+                    <div class="empty-tab-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    </div>
+                    <h3>GameSupport</h3>
+                    <p>Texnik yordam va savollar bo'yicha murojaat qilish bo'limi.</p>
+                </div>
+            </div>
+
+            <!-- CHANNEL BO'LIMI -->
+            <div id="view-channel" class="tab-view">
+                <div class="empty-tab-box">
+                    <div class="empty-tab-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 2L11 13"></path><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </div>
+                    <h3>Channel</h3>
+                    <p>ACAZES market rasmiy Telegram kanali va yangiliklar.</p>
+                </div>
+            </div>
+
+            <!-- ADMINKA BO'LIMI -->
+            <div id="view-adminka" class="tab-view">
+                <div class="empty-tab-box">
+                    <div class="empty-tab-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+                    </div>
+                    <h3>Adminka</h3>
+                    <p>Boshqaruv paneli va tizim sozlamalari.</p>
+                </div>
+            </div>
+
+            <!-- Pastki 5 ta Premium SVG Navigatsiya (Room qo'shildi) -->
             <div class="bottom-nav">
-                <button class="nav-item active" onclick="switchTab(this)">
-                    <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <button class="nav-item active" onclick="switchTab('room', this)">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect></svg>
+                    <span>Room</span>
+                </button>
+                <button class="nav-item" onclick="switchTab('creategame', this)">
+                    <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="4"></rect><line x1="6" y1="12" x2="10" y2="12"></line><line x1="8" y1="10" x2="8" y2="14"></line><circle cx="15" cy="11" r="1"></circle><circle cx="17" cy="13" r="1"></circle></svg>
                     <span>CreateGame</span>
                 </button>
-                <button class="nav-item" onclick="switchTab(this)">
+                <button class="nav-item" onclick="switchTab('support', this)">
                     <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                     <span>GameSupport</span>
                 </button>
-                <button class="nav-item" onclick="switchTab(this)">
-                    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <button class="nav-item" onclick="switchTab('channel', this)">
+                    <svg viewBox="0 0 24 24"><path d="M22 2L11 13"></path><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                     <span>Channel</span>
                 </button>
-                <button class="nav-item" onclick="switchTab(this)">
+                <button class="nav-item" onclick="switchTab('adminka', this)">
                     <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                     <span>Adminka</span>
                 </button>
@@ -579,6 +583,49 @@
             window.Telegram.WebApp.expand();
         }
 
+        // Ilovalar va o'yinlar bazasi
+        const appsData = [
+            { name: "Standoff 2", cat: "Action • Shooter", url: "https://play.google.com/store/apps/details?id=com.axlebolt.standoff2" },
+            { name: "PUBG MOBILE", cat: "Battle Royale • Action", url: "https://play.google.com/store/apps/details?id=com.tencent.ig" },
+            { name: "Free Fire", cat: "Survival • Shooter", url: "https://play.google.com/store/apps/details?id=com.dts.freefireth" },
+            { name: "Free Fire Max", cat: "Ultra Graphics • Action", url: "https://play.google.com/store/apps/details?id=com.dts.freefiremax" },
+            { name: "Blood Strike", cat: "FPS • Battle Royale", url: "https://play.google.com/store/apps/details?id=com.netease.bloodstrike" },
+            { name: "YouTube", cat: "Video • Streaming", url: "https://play.google.com/store/apps/details?id=com.google.android.youtube" },
+            { name: "TikTok", cat: "Social • Short Videos", url: "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically" },
+            { name: "Poppo Live", cat: "Live Streaming • Chat", url: "https://play.google.com/store/apps/details?id=com.poppo.android" },
+            { name: "Bigo Live", cat: "Broadcasting • Social", url: "https://play.google.com/store/apps/details?id=sg.bigo.live" }
+        ];
+
+        // Qizil qimirlab turuvchi premium SVG galochka bilan ro'yxatni chiqarish
+        const appsListContainer = document.getElementById('appsList');
+        appsData.forEach((app, index) => {
+            const delay = (index * 0.15).toFixed(2);
+            const cardHTML = `
+                <a href="${app.url}" target="_blank" class="app-card" data-name="${app.name.toLowerCase()}">
+                    <div class="app-info">
+                        <div class="red-check-wrap">
+                            <svg class="red-check-svg" style="animation-delay: ${delay}s;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="redBadgeGrad${index}" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#ff1e1e"/>
+                                        <stop offset="100%" stop-color="#b80000"/>
+                                    </linearGradient>
+                                </defs>
+                                <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="url(#redBadgeGrad${index})" stroke="#ff6b6b" stroke-width="0.8"/>
+                                <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="app-details">
+                            <h4>${app.name}</h4>
+                            <span>${app.cat}</span>
+                        </div>
+                    </div>
+                    <div class="download-badge">Skachat</div>
+                </a>
+            `;
+            appsListContainer.insertAdjacentHTML('beforeend', cardHTML);
+        });
+
         function goToMarket() {
             if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.HapticFeedback) {
                 window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
@@ -590,7 +637,7 @@
             document.getElementById('marketPage').classList.add('active');
         }
 
-        // Qidiruv funksiyasi
+        // Qidiruv funksiyasi (Room ichida)
         function filterApps() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('app-card');
@@ -605,15 +652,17 @@
             }
         }
 
-        function switchTab(btn) {
+        // Pastki 5 ta tabni almashtirish
+        function switchTab(tabName, btn) {
             if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.HapticFeedback) {
                 window.Telegram.WebApp.HapticFeedback.selectionChanged();
             }
-            let items = document.getElementsByClassName('nav-item');
-            for(let i = 0; i < items.length; i++) {
-                items[i].classList.remove('active');
-            }
+            
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             btn.classList.add('active');
+
+            document.querySelectorAll('.tab-view').forEach(view => view.classList.remove('active'));
+            document.getElementById('view-' + tabName).classList.add('active');
         }
     </script>
 </body>
