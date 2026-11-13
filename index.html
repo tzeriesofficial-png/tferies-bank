@@ -2,410 +2,422 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ACAZES — PUBG Marketplace</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACAZES - PUBG Account Marketplace</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@800;900&family=Montserrat:wght@500;600;700;800;900&display=swap');
-
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            user-select: none;
-            -webkit-user-select: none;
-            -webkit-tap-highlight-color: transparent;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
-
         body {
             background-color: #ffffff;
-            color: #000000;
-            font-family: 'Montserrat', sans-serif;
-            min-height: 100vh;
-            overflow: hidden;
-            position: relative;
+            color: #111111;
+            padding-bottom: 80px;
         }
-
-        /* ================= 1. KIRISH EKRANI (A C A Z E S - YALTIROQ ATROFI QIMIRLAYDI) ================= */
-        .splash-screen {
+        /* Splash Screen */
+        #splash {
             position: fixed;
-            inset: 0;
-            background-color: #ffffff;
-            z-index: 100;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 15px;
-            animation: hideSplash 0.6s ease 2.4s forwards;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
         }
-
-        .acazes-text {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(24px, 7.5vw, 38px);
-            font-weight: 900;
-            letter-spacing: 10px;
-            padding-left: 10px;
-            white-space: nowrap;
-            text-transform: uppercase;
-            color: #000000;
-            /* Faqat yozuv atrofidagi yaltiroq nur harakatlanadi */
-            text-shadow: 
-                0 0 8px rgba(0, 0, 0, 0.15),
-                0 0 20px rgba(0, 0, 0, 0.1);
-            animation: glossGlowMove 2.2s linear infinite;
-        }
-
-        @keyframes glossGlowMove {
-            0% {
-                text-shadow: 
-                    -10px 0 15px rgba(0, 0, 0, 0.3),
-                    10px 0 15px rgba(0, 0, 0, 0.05);
-            }
-            50% {
-                text-shadow: 
-                    10px 0 15px rgba(0, 0, 0, 0.3),
-                    -10px 0 15px rgba(0, 0, 0, 0.05);
-            }
-            100% {
-                text-shadow: 
-                    -10px 0 15px rgba(0, 0, 0, 0.3),
-                    10px 0 15px rgba(0, 0, 0, 0.05);
-            }
-        }
-
-        @keyframes hideSplash {
-            to { opacity: 0; visibility: hidden; pointer-events: none; }
-        }
-
-        /* ================= 2. ASOSIY ILOVA OYNASI ================= */
-        .app-container {
-            position: fixed;
-            inset: 0;
-            background-color: #ffffff;
-            color: #000000;
-            display: flex;
-            flex-direction: column;
-            opacity: 0;
-            animation: showApp 0.6s ease 2.4s forwards;
-        }
-
-        @keyframes showApp {
-            to { opacity: 1; }
-        }
-
-        /* Yuqori sarlavha */
-        .top-header {
-            height: 58px;
-            padding: 0 18px;
-            background: #f7f7f9;
-            border-bottom: 1.5px solid #000000;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .brand-logo {
-            font-family: 'Cinzel', serif;
-            font-size: 18px;
+        .glossy-logo {
+            font-size: 36px;
             font-weight: 900;
             letter-spacing: 4px;
-            color: #000000;
+            background: linear-gradient(135deg, #111111 0%, #555555 50%, #111111 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 2s infinite linear;
         }
-
-        .header-badge {
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            padding: 5px 10px;
-            border-radius: 20px;
-            background: rgba(0, 0, 0, 0.06);
-            border: 1px solid #000000;
-            color: #000000;
-            text-transform: uppercase;
+        @keyframes shine {
+            0% { filter: brightness(1); }
+            50% { filter: brightness(1.5); }
+            100% { filter: brightness(1); }
         }
-
-        /* Bo'limlar kontenti */
-        .content-area {
-            flex: 1;
-            height: calc(100vh - 130px);
-            overflow-y: auto;
-            padding: 18px 16px 30px;
-        }
-
-        .tab-panel {
-            display: none;
-            flex-direction: column;
-            gap: 14px;
-            animation: fadePanel 0.3s ease;
-        }
-
-        .tab-panel.active {
-            display: flex;
-        }
-
-        @keyframes fadePanel {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .panel-title {
-            font-family: 'Cinzel', serif;
-            font-size: 16px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            color: #000000;
-            border-left: 3px solid #000000;
-            padding-left: 10px;
-        }
-
-        .placeholder-card {
-            background: #f7f7f9;
-            border: 1.5px solid #000000;
-            border-radius: 18px;
-            padding: 24px 18px;
+        /* Header */
+        header {
+            padding: 20px;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .placeholder-card h3 {
-            font-size: 15px;
+            border-bottom: 1px solid #eaeaea;
+            font-size: 20px;
             font-weight: 800;
-            color: #000000;
+            letter-spacing: 2px;
         }
-
-        .placeholder-card p {
-            font-size: 12px;
-            color: #555555;
-            line-height: 1.5;
+        /* Container */
+        .container {
+            padding: 15px;
+            max-width: 600px;
+            margin: 0 auto;
         }
-
-        /* ================= 3. PASTKI NAVIGATSIYA PANELI (QORA IKONKALAR) ================= */
-        .bottom-nav {
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        /* Card */
+        .account-card {
+            background: #fafafa;
+            border: 1px solid #eaeaea;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .account-card video {
+            width: 100%;
+            max-height: 350px;
+            object-fit: cover;
+            background: #000;
+        }
+        .card-body {
+            padding: 15px;
+        }
+        .price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 8px;
+        }
+        .btn-contact {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #111;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        /* Form */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: #111;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        /* Bottom Nav */
+        nav {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 72px;
+            height: 65px;
             background: #ffffff;
-            border-top: 2px solid #000000;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid #eaeaea;
+            display: flex;
+            justify-content: space-around;
             align-items: center;
-            z-index: 50;
-            box-shadow: 0 -6px 25px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
         }
-
-        .nav-btn {
-            height: 100%;
+        nav button {
+            background: none;
+            border: none;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 4px;
             cursor: pointer;
-            color: #555555;
-            position: relative;
-            transition: all 0.2s ease;
+            opacity: 0.4;
+            transition: 0.2s;
         }
-
-        .nav-btn.active {
-            color: #000000;
+        nav button.active {
+            opacity: 1;
         }
-
-        .nav-btn.active::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            width: 34px;
-            height: 3.5px;
-            background: #000000;
-            border-radius: 0 0 4px 4px;
+        nav svg {
+            width: 24px;
+            height: 24px;
+            fill: #111;
+            margin-bottom: 3px;
         }
-
-        .nav-svg-box {
-            width: 36px;
-            height: 36px;
-            border-radius: 11px;
-            display: flex;
-            align-items: center;
+        nav span {
+            font-size: 11px;
+            font-weight: 600;
+            color: #111;
+        }
+        /* Loader overlay */
+        #loading-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255,255,255,0.8);
+            display: none;
             justify-content: center;
-            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .nav-btn.active .nav-svg-box {
-            background: #000000;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-        }
-
-        .nav-btn svg {
-            width: 20px;
-            height: 20px;
-            stroke: #000000;
-            fill: none;
-            stroke-width: 2.1;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            transition: stroke 0.2s ease;
-        }
-
-        .nav-btn.active svg {
-            stroke: #ffffff;
-        }
-
-        .nav-text {
-            font-size: 9px;
-            font-weight: 900;
-            letter-spacing: 0.4px;
-            text-transform: uppercase;
+            align-items: center;
+            z-index: 10000;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. KIRISH EKRANI -->
-    <div class="splash-screen">
-        <div class="acazes-text">A C A Z E S</div>
+    <div id="splash">
+        <div class="glossy-logo">A C A Z E S</div>
     </div>
 
-    <!-- 2. ASOSIY ILOVA OYNASI -->
-    <div class="app-container">
-        <header class="top-header">
-            <div class="brand-logo">ACAZES</div>
-            <div class="header-badge">PUBG MARKET</div>
-        </header>
+    <div id="loading-overlay">Yuklanmoqda...</div>
 
-        <main class="content-area">
-            <!-- SOTIB OLISH -->
-            <section class="tab-panel active" id="buyPanel">
-                <div class="panel-title">SOTIB OLISH</div>
-                <div class="placeholder-card">
-                    <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.8">
-                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <path d="M16 10a4 4 0 0 1-8 0"></path>
-                    </svg>
-                    <h3>PUBG Akkauntlar Vitrinasi</h3>
-                    <p>Tekshirilgan va kafolatlangan barcha akkauntlar shu yerda ko'rinadi.</p>
-                </div>
-            </section>
+    <header>A C A Z E S</header>
 
-            <!-- SOTISH -->
-            <section class="tab-panel" id="sellPanel">
-                <div class="panel-title">AKKAUNT SOTISH</div>
-                <div class="placeholder-card">
-                    <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.8">
-                        <rect x="3" y="3" width="18" height="18" rx="4"></rect>
-                        <line x1="12" y1="8" x2="12" y2="16"></line>
-                        <line x1="8" y1="12" x2="16" y2="12"></line>
-                    </svg>
-                    <h3>Yangi E'lon Joylash</h3>
-                    <p>Akkauntingiz ma'lumotlari va abzorini admin tekshiruviga yuboring.</p>
-                </div>
-            </section>
-
-            <!-- RANDOM -->
-            <section class="tab-panel" id="randomPanel">
-                <div class="panel-title">RANDOM QUTILAR</div>
-                <div class="placeholder-card">
-                    <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.8">
-                        <rect x="2" y="2" width="20" height="20" rx="5"></rect>
-                        <circle cx="8.5" cy="8.5" r="1.5" fill="#000000"></circle>
-                        <circle cx="15.5" cy="8.5" r="1.5" fill="#000000"></circle>
-                        <circle cx="12" cy="12" r="1.5" fill="#000000"></circle>
-                        <circle cx="8.5" cy="15.5" r="1.5" fill="#000000"></circle>
-                        <circle cx="15.5" cy="15.5" r="1.5" fill="#000000"></circle>
-                    </svg>
-                    <h3>Omadli Random Akkauntlar</h3>
-                    <p>Kutilmagan darajadagi eksklyuziv PUBG akkauntlarni sinab ko'ring.</p>
-                </div>
-            </section>
-
-            <!-- HAMYON -->
-            <section class="tab-panel" id="walletPanel">
-                <div class="panel-title">HAMYON (BALANS)</div>
-                <div class="placeholder-card">
-                    <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.8">
-                        <path d="M19 7H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path>
-                        <path d="M16 7V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2"></path>
-                        <circle cx="16.5" cy="13.5" r="1.5" fill="#000000"></circle>
-                    </svg>
-                    <h3>0 UZS</h3>
-                    <p>Xaridlar va random o'yinlar uchun hisobingizni to'ldiring.</p>
-                </div>
-            </section>
-        </main>
-
-        <!-- 3. PASTKI NAVIGATSIYA PANELI (QORA IKONKALAR) -->
-        <nav class="bottom-nav">
-            <!-- 1. SOTIB OLISH -->
-            <div class="nav-btn active" onclick="openTab('buyPanel', this)">
-                <div class="nav-svg-box">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <path d="M16 10a4 4 0 0 1-8 0"></path>
-                    </svg>
-                </div>
-                <span class="nav-text">Sotib olish</span>
+    <div class="container">
+        <!-- BUY TAB -->
+        <div id="tab-buy" class="tab-content active">
+            <div id="accounts-list">
+                <p style="text-align:center; color:#777; margin-top:30px;">Akkauntlar yuklanmoqda...</p>
             </div>
+        </div>
 
-            <!-- 2. SOTISH -->
-            <div class="nav-btn" onclick="openTab('sellPanel', this)">
-                <div class="nav-svg-box">
-                    <svg viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="18" height="18" rx="4"></rect>
-                        <line x1="12" y1="8" x2="12" y2="16"></line>
-                        <line x1="8" y1="12" x2="16" y2="12"></line>
-                    </svg>
+        <!-- SELL TAB -->
+        <div id="tab-sell" class="tab-content">
+            <h2 style="margin-bottom: 20px; font-size: 22px;">Akkaunt joylash</h2>
+            <form id="sell-form" onsubmit="uploadAccount(event)">
+                <div class="form-group">
+                    <label>Akkaunt Videosi (maksimal 5-10MB)</label>
+                    <input type="file" id="account-video" accept="video/*" required>
                 </div>
-                <span class="nav-text">Sotish</span>
-            </div>
+                <div class="form-group">
+                    <label>Narxi ($ yoki so'm)</label>
+                    <input type="text" id="account-price" placeholder="Masalan: $50 yoki 600,000 so'm" required>
+                </div>
+                <div class="form-group">
+                    <label>Telegram yulduzchasi / Username (@username)</label>
+                    <input type="text" id="account-telegram" placeholder="@username" required>
+                </div>
+                <button type="submit" class="btn-submit">E'lonni joylash</button>
+            </form>
+        </div>
 
-            <!-- 3. RANDOM -->
-            <div class="nav-btn" onclick="openTab('randomPanel', this)">
-                <div class="nav-svg-box">
-                    <svg viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="18" height="18" rx="4"></rect>
-                        <circle cx="8.5" cy="8.5" r="1" fill="currentColor"></circle>
-                        <circle cx="15.5" cy="8.5" r="1" fill="currentColor"></circle>
-                        <circle cx="12" cy="12" r="1" fill="currentColor"></circle>
-                        <circle cx="8.5" cy="15.5" r="1" fill="currentColor"></circle>
-                        <circle cx="15.5" cy="15.5" r="1" fill="currentColor"></circle>
-                    </svg>
-                </div>
-                <span class="nav-text">Random</span>
+        <!-- RANDOM TAB -->
+        <div id="tab-random" class="tab-content">
+            <h2 style="margin-bottom: 20px; font-size: 22px;">Tasodifiy Akkaunt</h2>
+            <div id="random-container">
+                <p style="text-align:center; color:#777;">Hozircha akkauntlar yo'q.</p>
             </div>
+            <button class="btn-submit" onclick="showRandomAccount()" style="margin-top:15px;">Boshqasini ko'rish</button>
+        </div>
 
-            <!-- 4. HAMYON -->
-            <div class="nav-btn" onclick="openTab('walletPanel', this)">
-                <div class="nav-svg-box">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M19 7H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path>
-                        <path d="M16 7V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2"></path>
-                        <circle cx="16.5" cy="13.5" r="1.2" fill="currentColor"></circle>
-                    </svg>
-                </div>
-                <span class="nav-text">Hamyon</span>
+        <!-- WALLET TAB -->
+        <div id="tab-wallet" class="tab-content">
+            <h2 style="margin-bottom: 20px; font-size: 22px;">Hamyon / Balans</h2>
+            <div style="background: #fafafa; border: 1px solid #eaeaea; padding: 20px; border-radius: 12px; text-align:center;">
+                <p style="font-size: 14px; color: #777;">Sizning balansingiz</p>
+                <h1 style="font-size: 32px; margin: 10px 0;">0.00 $</h1>
+                <p style="font-size: 12px; color: #aaa;">Tez kunda depozit va yechib olish funksiyalari qo'shiladi.</p>
             </div>
-        </nav>
+        </div>
     </div>
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav>
+        <button class="active" onclick="switchTab('buy', this)">
+            <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+            <span>Buy</span>
+        </button>
+        <button onclick="switchTab('sell', this)">
+            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            <span>Sell</span>
+        </button>
+        <button onclick="switchTab('random', this)">
+            <svg viewBox="0 0 24 24"><path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/></svg>
+            <span>Random</span>
+        </button>
+        <button onclick="switchTab('wallet', this)">
+            <svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+            <span>Wallet</span>
+        </button>
+    </nav>
 
     <script>
-        if (window.Telegram && window.Telegram.WebApp) {
-            window.Telegram.WebApp.ready();
-            window.Telegram.WebApp.expand();
+        // GITHUB CONFIGURATION
+        const GITHUB_CONFIG = {
+            owner: "tzeriesofficial-png",
+            repo: "tferies-bank",
+            path: "accounts.json",
+            token: "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"
+        };
+
+        let allAccounts = [];
+
+        // Splash screen fade out
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const splash = document.getElementById('splash');
+                splash.style.opacity = '0';
+                setTimeout(() => splash.remove(), 500);
+            }, 1000);
+            loadAccounts();
+        });
+
+        function switchTab(tabId, btn) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.add('active');
+            
+            document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
+            btn.classList.add('active');
         }
 
-        function openTab(panelId, btnElement) {
-            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        function showLoading(show) {
+            document.getElementById('loading-overlay').style.display = show ? 'flex' : 'none';
+        }
 
-            document.getElementById(panelId).classList.add('active');
-            btnElement.classList.add('active');
+        // Load Accounts from GitHub
+        async function loadAccounts() {
+            try {
+                const url = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${GITHUB_CONFIG.path}`;
+                const response = await fetch(url, {
+                    headers: { 'Authorization': `token ${GITHUB_CONFIG.token}` }
+                });
+                if (!response.ok) return;
+                const data = await response.json();
+                const content = JSON.parse(atob(data.content));
+                allAccounts = content.reverse(); // Yangilari tepada chiqishi uchun
+                renderAccounts();
+            } catch (err) {
+                console.error("Xatolik:", err);
+            }
+        }
+
+        function renderAccounts() {
+            const listEl = document.getElementById('accounts-list');
+            if (allAccounts.length === 0) {
+                listEl.innerHTML = '<p style="text-align:center; color:#777; margin-top:30px;">Hozircha e\'lonlar yo\'q.</p>';
+                return;
+            }
+            let html = '';
+            allAccounts.forEach(acc => {
+                html += `
+                    <div class="account-card">
+                        <video controls src="${acc.video}"></video>
+                        <div class="card-body">
+                            <div class="price">Narxi: ${acc.price}</div>
+                            <a href="https://t.me/${acc.telegram.replace('@','')}" target="_blank" class="btn-contact">Sotuvchi bilan bog'lanish (${acc.telegram})</a>
+                        </div>
+                    </div>
+                `;
+            });
+            listEl.innerHTML = html;
+        }
+
+        // Upload Account to GitHub
+        async function uploadAccount(event) {
+            event.preventDefault();
+            const videoFile = document.getElementById('account-video').files[0];
+            const price = document.getElementById('account-price').value;
+            const telegram = document.getElementById('account-telegram').value;
+
+            if (!videoFile) return alert('Video tanlang!');
+
+            showLoading(true);
+
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                const base64Video = e.target.result;
+
+                try {
+                    const apiUrl = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${GITHUB_CONFIG.path}`;
+                    
+                    // 1. Faylning joriy SHA kodini olish (GitHub yangilash uchun talab qiladi)
+                    const getRes = await fetch(apiUrl, {
+                        headers: { 'Authorization': `token ${GITHUB_CONFIG.token}` }
+                    });
+                    const getData = await getRes.json();
+                    const sha = getData.sha;
+
+                    let existingData = [];
+                    try {
+                        existingData = JSON.parse(atob(getData.content));
+                    } catch(ex) {}
+
+                    // Yangi e'lonni qo'shish
+                    existingData.push({
+                        id: Date.now(),
+                        video: base64Video,
+                        price: price,
+                        telegram: telegram
+                    });
+
+                    // 2. GitHub'ga yozish
+                    const putRes = await fetch(apiUrl, {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `token ${GITHUB_CONFIG.token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            message: "Add new PUBG account listing",
+                            content: btoa(unescape(encodeURIComponent(JSON.stringify(existingData)))),
+                            sha: sha
+                        })
+                    });
+
+                    if (putRes.ok) {
+                        alert('E\'lon muvaffaqiyatli joylandi!');
+                        document.getElementById('sell-form').reset();
+                        loadAccounts();
+                        switchTab('buy', document.querySelector('nav button'));
+                    } else {
+                        alert('Xatolik yuz berdi!');
+                    }
+                } catch (err) {
+                    console.error(err);
+                    alert('Tarmoqda xatolik yuz berdi.');
+                } finally {
+                    showLoading(false);
+                }
+            };
+            reader.readAsDataURL(videoFile);
+        }
+
+        // Random Account Tab
+        function showRandomAccount() {
+            const randEl = document.getElementById('random-container');
+            if (allAccounts.length === 0) {
+                randEl.innerHTML = '<p style="text-align:center; color:#777;">Akkauntlar mavjud emas.</p>';
+                return;
+            }
+            const randomAcc = allAccounts[Math.floor(Math.random() * allAccounts.length)];
+            randEl.innerHTML = `
+                <div class="account-card" style="margin:0;">
+                    <video controls src="${randomAcc.video}"></video>
+                    <div class="card-body">
+                        <div class="price">Narxi: ${randomAcc.price}</div>
+                        <a href="https://t.me/${randomAcc.telegram.replace('@','')}" target="_blank" class="btn-contact">Sotuvchi bilan bog'lanish (${randomAcc.telegram})</a>
+                    </div>
+                </div>
+            `;
         }
     </script>
 </body>
