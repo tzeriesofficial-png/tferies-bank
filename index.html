@@ -79,13 +79,12 @@
             margin-bottom: 20px;
             overflow: hidden;
             box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-            transition: transform 0.2s ease;
         }
-        .account-card img {
+        .account-card video {
             width: 100%;
             max-height: 400px;
             object-fit: cover;
-            background: #f1f3f5;
+            background: #000;
         }
         .card-body {
             padding: 18px;
@@ -109,9 +108,6 @@
             font-size: 15px;
             transition: background 0.2s;
         }
-        .btn-contact:active {
-            background: #333;
-        }
         /* Form */
         .form-group {
             margin-bottom: 18px;
@@ -131,10 +127,6 @@
             font-size: 16px;
             background: #fff;
             outline: none;
-            transition: border-color 0.2s;
-        }
-        .form-group input:focus {
-            border-color: #111;
         }
         .btn-submit {
             width: 100%;
@@ -195,7 +187,6 @@
             stroke-linecap: round;
             stroke-linejoin: round;
             margin-bottom: 4px;
-            transition: transform 0.2s;
         }
         nav button.active svg {
             stroke-width: 2.3;
@@ -204,7 +195,6 @@
             font-size: 11px;
             font-weight: 500;
             color: #666;
-            letter-spacing: -0.2px;
         }
         /* Loader overlay */
         #loading-overlay {
@@ -244,19 +234,19 @@
 
         <!-- SELL TAB -->
         <div id="tab-sell" class="tab-content">
-            <h2 style="margin-bottom: 20px; font-size: 22px; font-weight: 800;">Akkaunt joylash</h2>
+            <h2 style="margin-bottom: 20px; font-size: 22px; font-weight: 800;">Akkaunt joylash (Video)</h2>
             <form id="sell-form" onsubmit="uploadAccount(event)">
                 <div class="form-group">
-                    <label>Akkaunt Rasmi (Skrinshot)</label>
-                    <input type="file" id="account-image" accept="image/*" required>
+                    <label>Akkaunt Videosi (Kichikroq hajmda)</label>
+                    <input type="file" id="account-video" accept="video/*" required>
                 </div>
                 <div class="form-group">
                     <label>Narxi ($ yoki so'm)</label>
                     <input type="text" id="account-price" placeholder="Masalan: $50 yoki 600,000 so'm" required>
                 </div>
                 <div class="form-group">
-                    <label>Telegram Username (@username)</label>
-                    <input type="text" id="account-telegram" placeholder="@username" required>
+                    <label>Telegram Username</label>
+                    <input type="text" id="account-telegram" value="@UzzsDxxPmg" required>
                 </div>
                 <button type="submit" class="btn-submit">E'lonni joylash</button>
             </form>
@@ -282,9 +272,8 @@
         </div>
     </div>
 
-    <!-- PREMIUM BOTTOM NAVIGATION WITH PRO SVG ICONS -->
+    <!-- PREMIUM BOTTOM NAVIGATION -->
     <nav>
-        <!-- Buy Icon (Shopping Bag) -->
         <button class="active" onclick="switchTab('buy', this)">
             <svg viewBox="0 0 24 24">
                 <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -294,7 +283,6 @@
             <span>Buy</span>
         </button>
 
-        <!-- Sell Icon (Plus Square / Upload) -->
         <button onclick="switchTab('sell', this)">
             <svg viewBox="0 0 24 24">
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -304,7 +292,6 @@
             <span>Sell</span>
         </button>
 
-        <!-- Random Icon (Sparkles / Shuffle) -->
         <button onclick="switchTab('random', this)">
             <svg viewBox="0 0 24 24">
                 <path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"></path>
@@ -312,7 +299,6 @@
             <span>Random</span>
         </button>
 
-        <!-- Wallet Icon (Wallet) -->
         <button onclick="switchTab('wallet', this)">
             <svg viewBox="0 0 24 24">
                 <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path>
@@ -378,12 +364,13 @@
             }
             let html = '';
             allAccounts.forEach(acc => {
+                const tgUsername = acc.telegram.startsWith('@') ? acc.telegram.substring(1) : acc.telegram;
                 html += `
                     <div class="account-card">
-                        <img src="${acc.image}" alt="PUBG Account">
+                        <video controls src="${acc.video}"></video>
                         <div class="card-body">
                             <div class="price">Narxi: ${acc.price}</div>
-                            <a href="https://t.me/${acc.telegram.replace('@','')}" target="_blank" class="btn-contact">Sotuvchi bilan bog'lanish (${acc.telegram})</a>
+                            <a href="https://t.me/${tgUsername}" target="_blank" class="btn-contact">Sotuvchi bilan bog'lanish (${acc.telegram})</a>
                         </div>
                     </div>
                 `;
@@ -393,81 +380,68 @@
 
         async function uploadAccount(event) {
             event.preventDefault();
-            const imageFile = document.getElementById('account-image').files[0];
+            const videoFile = document.getElementById('account-video').files[0];
             const price = document.getElementById('account-price').value;
             const telegram = document.getElementById('account-telegram').value;
 
-            if (!imageFile) return alert('Rasm tanlang!');
+            if (!videoFile) return alert('Video tanlang!');
 
             showLoading(true);
 
             const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = async function() {
-                    const canvas = document.createElement('canvas');
-                    const MAX_WIDTH = 800;
-                    const scaleSize = MAX_WIDTH / img.width;
-                    canvas.width = MAX_WIDTH;
-                    canvas.height = img.height * (scaleSize < 1 ? scaleSize : 1);
-                    
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                    
-                    const base64Image = canvas.toDataURL('image/jpeg', 0.7);
+            reader.onload = async function(e) {
+                const base64Video = e.target.result;
 
+                try {
+                    const apiUrl = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${GITHUB_CONFIG.path}`;
+                    
+                    const getRes = await fetch(apiUrl, {
+                        headers: { 'Authorization': `token ${GITHUB_CONFIG.token}` }
+                    });
+                    const getData = await getRes.json();
+                    const sha = getData.sha;
+
+                    let existingData = [];
                     try {
-                        const apiUrl = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${GITHUB_CONFIG.path}`;
-                        
-                        const getRes = await fetch(apiUrl, {
-                            headers: { 'Authorization': `token ${GITHUB_CONFIG.token}` }
-                        });
-                        const getData = await getRes.json();
-                        const sha = getData.sha;
+                        existingData = JSON.parse(atob(getData.content));
+                    } catch(ex) {}
 
-                        let existingData = [];
-                        try {
-                            existingData = JSON.parse(atob(getData.content));
-                        } catch(ex) {}
+                    existingData.push({
+                        id: Date.now(),
+                        video: base64Video,
+                        price: price,
+                        telegram: telegram
+                    });
 
-                        existingData.push({
-                            id: Date.now(),
-                            image: base64Image,
-                            price: price,
-                            telegram: telegram
-                        });
+                    const putRes = await fetch(apiUrl, {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `token ${GITHUB_CONFIG.token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            message: "Add new PUBG account video listing",
+                            content: btoa(unescape(encodeURIComponent(JSON.stringify(existingData)))),
+                            sha: sha
+                        })
+                    });
 
-                        const putRes = await fetch(apiUrl, {
-                            method: 'PUT',
-                            headers: {
-                                'Authorization': `token ${GITHUB_CONFIG.token}`,
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                message: "Add new PUBG account image listing",
-                                content: btoa(unescape(encodeURIComponent(JSON.stringify(existingData)))),
-                                sha: sha
-                            })
-                        });
-
-                        if (putRes.ok) {
-                            alert('E\'lon muvaffaqiyatli joylandi!');
-                            document.getElementById('sell-form').reset();
-                            loadAccounts();
-                            switchTab('buy', document.querySelector('nav button'));
-                        } else {
-                            alert('Xatolik yuz berdi!');
-                        }
-                    } catch (err) {
-                        console.error(err);
-                        alert('Tarmoqda xatolik yuz berdi.');
-                    } finally {
-                        showLoading(false);
+                    if (putRes.ok) {
+                        alert('E\'lon muvaffaqiyatli joylandi!');
+                        document.getElementById('sell-form').reset();
+                        loadAccounts();
+                        switchTab('buy', document.querySelector('nav button'));
+                    } else {
+                        alert('Xatolik yuz berdi!');
                     }
-                };
-                img.src = e.target.result;
+                } catch (err) {
+                    console.error(err);
+                    alert('Tarmoqda xatolik yuz berdi.');
+                } finally {
+                    showLoading(false);
+                }
             };
-            reader.readAsDataURL(imageFile);
+            reader.readAsDataURL(videoFile);
         }
 
         function showRandomAccount() {
@@ -477,12 +451,13 @@
                 return;
             }
             const randomAcc = allAccounts[Math.floor(Math.random() * allAccounts.length)];
+            const tgUsername = randomAcc.telegram.startsWith('@') ? randomAcc.telegram.substring(1) : randomAcc.telegram;
             randEl.innerHTML = `
                 <div class="account-card" style="margin:0;">
-                    <img src="${randomAcc.image}" alt="PUBG Account">
+                    <video controls src="${randomAcc.video}"></video>
                     <div class="card-body">
                         <div class="price">Narxi: ${randomAcc.price}</div>
-                        <a href="https://t.me/${randomAcc.telegram.replace('@','')}" target="_blank" class="btn-contact">Sotuvchi bilan bog'lanish (${randomAcc.telegram})</a>
+                        <a href="https://t.me/${tgUsername}" target="_blank" class="btn-contact">Sotuvchi bilan bog'lanish (${randomAcc.telegram})</a>
                     </div>
                 </div>
             `;
