@@ -192,9 +192,10 @@
             stroke-width: 2.3;
         }
         nav span {
-            font-size: 11px;
-            font-weight: 500;
-            color: #666;
+            font-size: 10px;
+            font-weight: 600;
+            color: #555;
+            letter-spacing: -0.2px;
         }
         /* Loader overlay */
         #loading-overlay {
@@ -228,7 +229,14 @@
         <!-- BUY TAB -->
         <div id="tab-buy" class="tab-content active">
             <div id="accounts-list">
-                <p style="text-align:center; color:#777; margin-top:40px;">Akkauntlar yuklanmoqda...</p>
+                <!-- Standart default e'lon (70$ va ko'rsatilgan video) -->
+                <div class="account-card">
+                    <video controls src="https://cache.ikk.li/file/ultra_cardinal4/113023.mp4" crossorigin="anonymous"></video>
+                    <div class="card-body">
+                        <div class="price">Narxi: 70$</div>
+                        <a href="https://t.me/UzzsDxxPmg" target="_blank" class="btn-contact">Sotuvchi bilan bog'lanish (@UzzsDxxPmg)</a>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -237,12 +245,12 @@
             <h2 style="margin-bottom: 20px; font-size: 22px; font-weight: 800;">Akkaunt joylash (Video)</h2>
             <form id="sell-form" onsubmit="uploadAccount(event)">
                 <div class="form-group">
-                    <label>Akkaunt Videosi (Kichikroq hajmda)</label>
+                    <label>Akkaunt Videosi</label>
                     <input type="file" id="account-video" accept="video/*" required>
                 </div>
                 <div class="form-group">
                     <label>Narxi ($ yoki so'm)</label>
-                    <input type="text" id="account-price" placeholder="Masalan: $50 yoki 600,000 so'm" required>
+                    <input type="text" id="account-price" placeholder="Masalan: $70 yoki 850,000 so'm" required>
                 </div>
                 <div class="form-group">
                     <label>Telegram Username</label>
@@ -256,14 +264,20 @@
         <div id="tab-random" class="tab-content">
             <h2 style="margin-bottom: 20px; font-size: 22px; font-weight: 800;">Tasodifiy Akkaunt</h2>
             <div id="random-container">
-                <p style="text-align:center; color:#777; margin-top:40px;">Hozircha akkauntlar yo'q.</p>
+                <div class="account-card" style="margin:0;">
+                    <video controls src="https://cache.ikk.li/file/ultra_cardinal4/113023.mp4" crossorigin="anonymous"></video>
+                    <div class="card-body">
+                        <div class="price">Narxi: 70$</div>
+                        <a href="https://t.me/UzzsDxxPmg" target="_blank" class="btn-contact">Sotuvchi bilan bog'lanish (@UzzsDxxPmg)</a>
+                    </div>
+                </div>
             </div>
             <button class="btn-submit" onclick="showRandomAccount()" style="margin-top:20px;">Boshqasini ko'rish</button>
         </div>
 
         <!-- WALLET TAB -->
         <div id="tab-wallet" class="tab-content">
-            <h2 style="margin-bottom: 20px; font-size: 22px; font-weight: 800;">Hamyon / Balans</h2>
+            <h2 style="margin-bottom: 20px; font-size: 22px; font-weight: 800;">Hamyon</h2>
             <div style="background: #ffffff; border: 1px solid #eaeaea; padding: 25px; border-radius: 16px; text-align:center; box-shadow: 0 4px 16px rgba(0,0,0,0.03);">
                 <p style="font-size: 14px; color: #777;">Sizning balansingiz</p>
                 <h1 style="font-size: 36px; margin: 12px 0; font-weight: 800;">0.00 $</h1>
@@ -272,7 +286,7 @@
         </div>
     </div>
 
-    <!-- PREMIUM BOTTOM NAVIGATION -->
+    <!-- PREMIUM BOTTOM NAVIGATION (UZBEK LABELS & PRO SVG ICONS) -->
     <nav>
         <button class="active" onclick="switchTab('buy', this)">
             <svg viewBox="0 0 24 24">
@@ -280,7 +294,7 @@
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <path d="M16 10a4 4 0 0 1-8 0"></path>
             </svg>
-            <span>Buy</span>
+            <span>Sotib olish</span>
         </button>
 
         <button onclick="switchTab('sell', this)">
@@ -289,14 +303,14 @@
                 <line x1="12" y1="8" x2="12" y2="16"></line>
                 <line x1="8" y1="12" x2="16" y2="12"></line>
             </svg>
-            <span>Sell</span>
+            <span>Sotish</span>
         </button>
 
         <button onclick="switchTab('random', this)">
             <svg viewBox="0 0 24 24">
                 <path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"></path>
             </svg>
-            <span>Random</span>
+            <span>Tasodifiy</span>
         </button>
 
         <button onclick="switchTab('wallet', this)">
@@ -305,7 +319,7 @@
                 <path d="M4 6v12a2 2 0 0 0 2 2h14v-4"></path>
                 <path d="M18 12h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v-6z"></path>
             </svg>
-            <span>Wallet</span>
+            <span>Hamyon</span>
         </button>
     </nav>
 
@@ -349,7 +363,14 @@
                 if (!response.ok) return;
                 const data = await response.json();
                 const content = JSON.parse(atob(data.content));
-                allAccounts = content.reverse();
+                
+                let defaultItem = {
+                    video: "https://cache.ikk.li/file/ultra_cardinal4/113023.mp4",
+                    price: "70$",
+                    telegram: "@UzzsDxxPmg"
+                };
+
+                allAccounts = [defaultItem, ...content.reverse()];
                 renderAccounts();
             } catch (err) {
                 console.error("Xatolik:", err);
@@ -358,22 +379,28 @@
 
         function renderAccounts() {
             const listEl = document.getElementById('accounts-list');
-            if (allAccounts.length === 0) {
-                listEl.innerHTML = '<p style="text-align:center; color:#777; margin-top:40px;">Hozircha e\'lonlar yo\'q.</p>';
-                return;
-            }
-            let html = '';
-            allAccounts.forEach(acc => {
-                const tgUsername = acc.telegram.startsWith('@') ? acc.telegram.substring(1) : acc.telegram;
-                html += `
-                    <div class="account-card">
-                        <video controls src="${acc.video}"></video>
-                        <div class="card-body">
-                            <div class="price">Narxi: ${acc.price}</div>
-                            <a href="https://t.me/${tgUsername}" target="_blank" class="btn-contact">Sotuvchi bilan bog'lanish (${acc.telegram})</a>
-                        </div>
+            let html = `
+                <div class="account-card">
+                    <video controls src="https://cache.ikk.li/file/ultra_cardinal4/113023.mp4" crossorigin="anonymous"></video>
+                    <div class="card-body">
+                        <div class="price">Narxi: 70$</div>
+                        <a href="https://t.me/UzzsDxxPmg" target="_blank" class="btn-contact">Sotuvchi bilan bog'lanish (@UzzsDxxPmg)</a>
                     </div>
-                `;
+                </div>
+            `;
+            allAccounts.forEach(acc => {
+                if(acc.video !== "https://cache.ikk.li/file/ultra_cardinal4/113023.mp4") {
+                    const tgUsername = acc.telegram.startsWith('@') ? acc.telegram.substring(1) : acc.telegram;
+                    html += `
+                        <div class="account-card">
+                            <video controls src="${acc.video}"></video>
+                            <div class="card-body">
+                                <div class="price">Narxi: ${acc.price}</div>
+                                <a href="https://t.me/${tgUsername}" target="_blank" class="btn-contact">Sotuvchi bilan bog'lanish (${acc.telegram})</a>
+                            </div>
+                        </div>
+                    `;
+                }
             });
             listEl.innerHTML = html;
         }
@@ -446,10 +473,6 @@
 
         function showRandomAccount() {
             const randEl = document.getElementById('random-container');
-            if (allAccounts.length === 0) {
-                randEl.innerHTML = '<p style="text-align:center; color:#777; margin-top:40px;">Akkauntlar mavjud emas.</p>';
-                return;
-            }
             const randomAcc = allAccounts[Math.floor(Math.random() * allAccounts.length)];
             const tgUsername = randomAcc.telegram.startsWith('@') ? randomAcc.telegram.substring(1) : randomAcc.telegram;
             randEl.innerHTML = `
