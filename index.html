@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TESLA PUBG</title>
-    <!-- Telegram WebApp SDK -->
+    <title>ACAZES Trading</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
@@ -25,71 +24,93 @@
             position: relative;
         }
 
-        /* Splash Screen */
+        /* Kirish qismi (Splash Screen) - Kumushsimon-kulrang fon */
         #splash {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #ffffff;
+            background: radial-gradient(circle at center, #f4f6f9 0%, #dce1e8 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.6s ease;
+            overflow: hidden;
+            transition: opacity 0.8s ease;
         }
 
-        .tesla-logo {
-            font-size: 54px;
-            font-weight: 900;
-            letter-spacing: 10px;
-            color: #111111;
-            text-transform: uppercase;
-            text-align: center;
-            animation: borderGlow 1.5s infinite alternate ease-in-out;
-        }
-
-        @keyframes borderGlow {
-            0% { transform: scale(1); text-shadow: 0 0 2px rgba(0, 0, 0, 0.2); }
-            100% { transform: scale(1.03); text-shadow: 0 0 10px rgba(0, 0, 0, 0.4); }
-        }
-
-        /* Yuqori Header */
-        .app-header {
+        /* Orqa fondagi nozik trading setkasi (Grid) */
+        .trading-grid {
+            position: absolute;
             width: 100%;
-            max-width: 400px;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(0,0,0,0.035) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0,0,0,0.035) 1px, transparent 1px);
+            background-size: 32px 32px;
+            z-index: 0;
+        }
+
+        /* SVG shamchalar konteyneri */
+        .candle-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .svg-candle {
+            position: absolute;
+            bottom: -160px;
+            animation: floatCandle linear infinite;
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.12));
+        }
+
+        @keyframes floatCandle {
+            0% {
+                transform: translateY(0) scale(0.95);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.9;
+            }
+            85% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-115vh) scale(1.05);
+                opacity: 0;
+            }
+        }
+
+        /* Markaziy yaltiroq SVG ACAZES logotipi */
+        .logo-wrapper {
+            position: relative;
+            z-index: 2;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            padding: 14px 20px 0 20px;
-            z-index: 100;
+            animation: logoPulse 2s infinite alternate ease-in-out;
         }
 
-        /* Qora rangdagi UC Yechish tugmasi */
-        .uc-header-btn {
-            background: #111111;
-            border: 1.5px solid #111111;
-            border-radius: 12px;
-            padding: 8px 14px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 800;
-            font-size: 13px;
-            cursor: pointer;
-            color: #fff;
-            transition: all 0.2s;
+        @keyframes logoPulse {
+            0% {
+                transform: scale(1);
+                filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+            }
+            100% {
+                transform: scale(1.04);
+                filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.35));
+            }
         }
 
-        .uc-header-btn svg {
-            width: 16px;
-            height: 16px;
-            fill: #ff9500;
-        }
-
-        /* Tabs Content */
-        .tab-content {
+        /* Asosiy Oyna */
+        .main-content {
             display: none;
             flex: 1;
             width: 100%;
@@ -99,725 +120,95 @@
             align-items: center;
             padding: 20px;
             text-align: center;
-            overflow-y: auto;
         }
 
-        .tab-content.active {
+        .main-content.active {
             display: flex;
         }
 
-        /* Tap Game Container */
-        .tap-game-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            gap: 16px;
-            position: relative;
-        }
-
-        .balance-display {
-            font-size: 34px;
+        .welcome-title {
+            font-size: 26px;
             font-weight: 900;
+            margin-bottom: 10px;
             letter-spacing: 1px;
         }
 
-        /* UC Hamyon paneli (Yechish ostida hisoblanib boruvchi joy) */
-        .uc-wallet-box {
-            background: #f8f9fa;
-            border: 1.5px solid #e1e4e8;
-            padding: 8px 16px;
-            border-radius: 12px;
+        .welcome-subtitle {
             font-size: 14px;
-            font-weight: 800;
-            color: #ff9500;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            color: #666;
+            margin-bottom: 25px;
         }
-
-        .tap-circle {
-            width: 210px;
-            height: 210px;
-            background: #111111;
-            color: #ffffff;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 16px 40px rgba(0,0,0,0.22);
-            user-select: none;
-            transition: transform 0.08s ease;
-            border: 4px solid #333;
-        }
-
-        .tap-circle:active {
-            transform: scale(0.93);
-        }
-
-        .tap-circle svg {
-            width: 44px;
-            height: 44px;
-            stroke: #ffffff;
-            fill: none;
-            stroke-width: 2.2;
-            margin-bottom: 6px;
-        }
-
-        .tap-circle span {
-            font-size: 24px;
-            font-weight: 900;
-            letter-spacing: 3px;
-        }
-
-        .floating-text {
-            position: absolute;
-            font-size: 24px;
-            font-weight: 900;
-            color: #111111;
-            pointer-events: none;
-            animation: floatUp 0.8s ease-out forwards;
-            z-index: 100;
-        }
-
-        @keyframes floatUp {
-            0% { opacity: 1; transform: translateY(0) scale(0.8); }
-            100% { opacity: 0; transform: translateY(-80px) scale(1.2); }
-        }
-
-        /* Energy Bar */
-        .energy-container {
-            width: 100%;
-            background: #f8f9fa;
-            border-radius: 16px;
-            padding: 12px 16px;
-            border: 1.5px solid #e1e4e8;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .energy-bar-bg {
-            width: 100%;
-            height: 12px;
-            background: #e9ecef;
-            border-radius: 6px;
-            overflow: hidden;
-        }
-
-        .energy-bar-fill {
-            width: 100%;
-            height: 100%;
-            background: #111111;
-            border-radius: 6px;
-            transition: width 0.15s linear;
-        }
-
-        .energy-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            font-weight: 700;
-            color: #444;
-        }
-
-        .energy-title-box {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .energy-title-box svg {
-            width: 16px;
-            height: 16px;
-            stroke: #111;
-            fill: none;
-            stroke-width: 2.5;
-        }
-
-        /* Boost Cards */
-        .boost-card {
-            width: 100%;
-            background: #f8f9fa;
-            border: 1.5px solid #e1e4e8;
-            padding: 16px;
-            border-radius: 16px;
-            margin-bottom: 12px;
-            text-align: left;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .boost-info h4 { font-size: 15px; font-weight: 800; margin-bottom: 4px; color: #111; }
-        .boost-info p { font-size: 12px; color: #666; }
-        .btn-buy { background: #111; color: #fff; border: none; padding: 10px 16px; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 13px; }
-
-        /* TaskTor Roulette Game */
-        .roulette-box {
-            width: 100%;
-            background: #f8f9fa;
-            border: 1.5px solid #e1e4e8;
-            border-radius: 20px;
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .roulette-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-        }
-
-        .roulette-cell {
-            background: #fff;
-            border: 2px solid #ddd;
-            border-radius: 12px;
-            padding: 14px 8px;
-            text-align: center;
-            cursor: pointer;
-            font-weight: 800;
-            font-size: 14px;
-            transition: all 0.2s;
-        }
-
-        .roulette-cell.green {
-            background: #34c759;
-            color: #fff;
-            border-color: #28a745;
-        }
-
-        .roulette-cell.selected {
-            border-color: #111;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            transform: scale(1.03);
-        }
-
-        .btn-game {
-            width: 100%;
-            padding: 14px;
-            background: #111;
-            color: #fff;
-            border: none;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 800;
-            cursor: pointer;
-        }
-
-        /* Support & Kitob Cards */
-        .support-card {
-            width: 100%;
-            background: #f8f9fa;
-            border: 1.5px solid #e1e4e8;
-            padding: 16px 20px;
-            border-radius: 16px;
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            text-decoration: none;
-            color: #111;
-        }
-
-        .user-meta {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 700;
-            font-size: 15px;
-        }
-
-        .badge-svg { width: 18px; height: 18px; flex-shrink: 0; }
-
-        /* Kitob Card */
-        .kitob-card {
-            width: 100%;
-            background: #f8f9fa;
-            border: 1.5px solid #e1e4e8;
-            padding: 18px;
-            border-radius: 16px;
-            margin-bottom: 16px;
-            text-align: left;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-        }
-
-        .kitob-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 800;
-            font-size: 16px;
-            margin-bottom: 10px;
-            color: #111;
-        }
-
-        .kitob-header svg {
-            width: 24px;
-            height: 24px;
-            stroke: #111;
-            fill: none;
-            stroke-width: 2;
-        }
-
-        .kitob-text {
-            font-size: 13.5px;
-            line-height: 1.5;
-            color: #444;
-        }
-
-        /* UC Modal */
-        .uc-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(5px);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            padding: 20px;
-        }
-
-        .uc-card {
-            width: 100%;
-            max-width: 360px;
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 24px;
-            border: 1.5px solid #e1e4e8;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .uc-card h3 { font-size: 20px; font-weight: 900; }
-        .uc-card p { font-size: 13.5px; color: #555; line-height: 1.5; }
-        .uc-close-btn { background: #111; color: #fff; border: none; padding: 12px; border-radius: 12px; font-weight: 800; cursor: pointer; font-size: 14px; }
-
-        /* Bottom Nav */
-        nav {
-            width: 100%;
-            height: 75px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 1000;
-            padding-bottom: env(safe-area-inset-bottom);
-        }
-
-        nav button {
-            background: none;
-            border: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            width: 25%;
-            height: 100%;
-            opacity: 0.45;
-            transition: all 0.25s ease;
-        }
-
-        nav button.active { opacity: 1; transform: translateY(-2px); }
-        nav button.active span { color: #111; font-weight: 700; }
-        nav svg { width: 24px; height: 24px; stroke: #111; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 4px; }
-        nav button.active svg { stroke-width: 2.3; }
-        nav span { font-size: 11px; font-weight: 600; color: #555; }
     </style>
 </head>
 <body>
 
-    <!-- Splash Screen -->
+    <!-- Kirish Qismi (Splash Screen) -->
     <div id="splash">
-        <div class="tesla-logo">TESLA</div>
-    </div>
-
-    <!-- Yuqori Header -->
-    <div class="app-header">
-        <div style="font-weight: 900; font-size: 16px; letter-spacing: 0.5px;">TESLA PUBG</div>
-        <button class="uc-header-btn" onclick="openUcModal()">
-            <svg viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10" stroke="#ff9500" stroke-width="2" fill="#fff7e6"/>
-                <path d="M12 6v12M9 9h5.5a2.5 2.5 0 0 1 0 5H9m0 0h6" stroke="#ff9500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>UC Yechish</span>
-        </button>
-    </div>
-
-    <!-- UC Modal oynasi -->
-    <div class="uc-modal" id="ucModal">
-        <div class="uc-card">
-            <h3>PUBG UC Yechish</h3>
-            <p>
-                Minimal yechib olish: <b>60 UC</b><br>
-                Maksimal yechib olish: <b>120 UC</b><br><br>
-                Yechib olish tugmasiga bosganingizda <b>@FarzonaTurayeva</b> ga yozib yechib olasiz.
-            </p>
-            <button class="uc-close-btn" onclick="closeUcModal()">Tushunarli</button>
-        </div>
-    </div>
-
-    <!-- TAB 1: TeslaTap -->
-    <div id="tab-tap" class="tab-content active">
-        <div class="tap-game-container" id="tap-container">
-            <div class="balance-display"><span id="balance">0</span> TESLA</div>
-            
-            <!-- Hamyon balansi (har 200 ta tap = 1 UC) -->
-            <div class="uc-wallet-box">
-                <span>Hamyon: <span id="uc-balance">0</span> UC</span>
-            </div>
-            
-            <div class="tap-circle" onclick="tapTesla(event)">
-                <svg viewBox="0 0 24 24">
-                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                </svg>
-                <span>TESLA UC</span>
-            </div>
-
-            <div class="energy-container">
-                <div class="energy-info">
-                    <div class="energy-title-box">
-                        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                        <span>Energiya limiti</span>
-                    </div>
-                    <span id="limit-text">20 / 20</span>
-                </div>
-                <div class="energy-bar-bg">
-                    <div class="energy-bar-fill" id="energy-bar"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TAB 2: Boost -->
-    <div id="tab-boost" class="tab-content">
-        <h2 style="margin-bottom: 20px; font-weight: 900; font-size: 22px;">Boostlar</h2>
-        <div class="boost-card">
-            <div class="boost-info">
-                <h4>10 ta tap & Limit tugasin</h4>
-                <p>Har bosganda +2 TESLA beradi</p>
-            </div>
-            <button class="btn-buy" onclick="buyBoost(1, 50, 2)">50 TESLA</button>
-        </div>
-        <div class="boost-card">
-            <div class="boost-info">
-                <h4>20 ta tap & Limit tugasin</h4>
-                <p>Limit chegarasini kengaytiradi</p>
-            </div>
-            <button class="btn-buy" onclick="buyBoost(2, 50, 5)">50 TESLA</button>
-        </div>
-        <div class="boost-card">
-            <div class="boost-info">
-                <h4>Vaqt tez tugasin</h4>
-                <p>Limit tiklanish vaqti tezlashadi</p>
-            </div>
-            <button class="btn-buy" onclick="buyBoost(3, 50, 10)">50 TESLA</button>
-        </div>
-    </div>
-
-    <!-- TAB 3: TaskTor (Ruletka) -->
-    <div id="tab-tasktor" class="tab-content">
-        <h2 style="margin-bottom: 15px; font-weight: 900; font-size: 20px;">TaskTor Ruletka</h2>
-        <div class="roulette-box">
-            <div style="font-size: 13px; font-weight: 700; color: #555;" id="roulette-status">1 tadan 6 tagacha katak tanlang (Har biriga 1 TESLA tikiladi)</div>
-            
-            <div class="roulette-grid" id="roulette-grid">
-                <div class="roulette-cell" onclick="toggleCell(0)">Katak 1 (3x)</div>
-                <div class="roulette-cell" onclick="toggleCell(1)">Katak 2 (3x)</div>
-                <div class="roulette-cell" onclick="toggleCell(2)">Katak 3 (3x)</div>
-                <div class="roulette-cell" onclick="toggleCell(3)">Katak 4 (3x)</div>
-                <div class="roulette-cell" onclick="toggleCell(4)">Katak 5 (3x)</div>
-                <div class="roulette-cell green" onclick="toggleCell(5)">Yashil (50x)</div>
-            </div>
-
-            <button class="btn-game" id="roulette-btn" onclick="startRoulette()">O'yinni Boshlash</button>
-        </div>
-    </div>
-
-    <!-- TAB 4: Support & Kitob -->
-    <div id="tab-support" class="tab-content">
-        <h2 style="margin-bottom: 20px; font-weight: 900; font-size: 22px;">Qo'llanma va Admin</h2>
+        <div class="trading-grid"></div>
+        <div class="candle-bg" id="candleBg"></div>
         
-        <!-- Kitob bo'limi yangi matn va SVG galichka bilan -->
-        <div class="kitob-card">
-            <div class="kitob-header">
-                <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                <span>Kitob (Qo'llanma)</span>
-            </div>
-            <div class="kitob-text" id="guide-text"></div>
+        <!-- Yaltiroq Qora SVG ACAZES Yozuvi -->
+        <div class="logo-wrapper">
+            <svg width="320" height="70" viewBox="0 0 320 70" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="glossyBlack" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#000000"/>
+                        <stop offset="45%" stop-color="#3a3a3a"/>
+                        <stop offset="55%" stop-color="#000000"/>
+                        <stop offset="100%" stop-color="#222222"/>
+                    </linearGradient>
+                </defs>
+                <text x="50%" y="52%" dominant-baseline="middle" text-anchor="middle" 
+                      fill="url(#glossyBlack)" font-size="42" font-weight="900" 
+                      letter-spacing="12" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+                    ACAZES
+                </text>
+            </svg>
         </div>
-
-        <a href="https://t.me/smpli" target="_blank" class="support-card">
-            <div class="user-meta">
-                <span>@smpli</span>
-                <svg class="badge-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#007aff"/><path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-            </div>
-            <span style="font-size: 13px; color: #888;">Admin</span>
-        </a>
-
-        <a href="https://t.me/FarzonaTurayeva" target="_blank" class="support-card">
-            <div class="user-meta">
-                <span>@FarzonaTurayeva</span>
-                <!-- Premium SVG Galichka nishoni -->
-                <svg class="badge-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#34c759"/><path d="M8 12l3 3 5-6" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-            </div>
-            <span style="font-size: 13px; color: #888;">Yordam</span>
-        </a>
     </div>
 
-    <!-- Bottom Navigation -->
-    <nav>
-        <button class="active" onclick="switchTab('tap', this)">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v8M8 12h8"></path></svg>
-            <span>TeslaTap</span>
-        </button>
-        <button onclick="switchTab('boost', this)">
-            <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-            <span>Boost</span>
-        </button>
-        <button onclick="switchTab('tasktor', this)">
-            <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg>
-            <span>TaskTor</span>
-        </button>
-        <button onclick="switchTab('support', this)">
-            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-            <span>Support</span>
-        </button>
-    </nav>
+    <!-- Asosiy Oyna -->
+    <div class="main-content active" id="tab-main">
+        <div class="welcome-title">ACAZES Trading</div>
+        <div class="welcome-subtitle">Keyingi qadamda asosiy savdo oynasi va bo'limlarni qo'shamiz</div>
+    </div>
 
     <script>
-        // Telegram WebApp user detection
-        let tgUser = "Foydalanuvchi";
-        if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user) {
-            let user = window.Telegram.WebApp.initDataUnsafe.user;
-            tgUser = user.username ? `@${user.username}` : (user.first_name || "Foydalanuvchi");
+        // Premium SVG Trading Shamchalarini (Oq va Qora) generatsiya qilish
+        const candleBg = document.getElementById('candleBg');
+        const totalCandles = 18;
+
+        for (let i = 0; i < totalCandles; i++) {
+            const isWhite = i % 2 === 0;
+            const bodyHeight = Math.floor(Math.random() * 55) + 35; // Shamcha tanasi uzunligi
+            const topWick = Math.floor(Math.random() * 25) + 12;    // Tepasidagi pilta
+            const bottomWick = Math.floor(Math.random() * 25) + 12; // Pastidagi pilta
+            const totalHeight = topWick + bodyHeight + bottomWick;
+
+            const fillColor = isWhite ? '#ffffff' : '#111111';
+            const strokeColor = '#111111';
+
+            const svgHTML = `
+                <svg class="svg-candle" width="24" height="${totalHeight}" viewBox="0 0 24 ${totalHeight}" 
+                     style="left: ${Math.random() * 92 + 2}%; animation-duration: ${Math.random() * 4 + 4.5}s; animation-delay: ${Math.random() * 2.5}s;"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <!-- Yuqori va pastki pilta (Wick) -->
+                    <line x1="12" y1="0" x2="12" y2="${totalHeight}" stroke="${strokeColor}" stroke-width="2" stroke-linecap="round"/>
+                    <!-- Shamcha tanasi (Body) -->
+                    <rect x="4" y="${topWick}" width="16" height="${bodyHeight}" rx="3" fill="${fillColor}" stroke="${strokeColor}" stroke-width="1.8"/>
+                </svg>
+            `;
+            candleBg.insertAdjacentHTML('beforeend', svgHTML);
         }
 
-        // Kitob matni
-        document.getElementById('guide-text').innerHTML = `Assalomu alekum, <b>${tgUser}</b>!<br>Siz bu tesla uc bot orqali oʻz pubg akkauntizni kuchaytrb oling. Qanday deysizmi bu malumotni oʻqing.<br><br>Siz har 200 dona tesla uc bosganizdan soʻng u sizni Mablagʻ hamyonizga 1 uc bulib tushadi. Yechib olish tugmasiga bosganizda <b>@FarzonaTurayeva</b> ga yozib yechib olasiz.<br><br><b>Minimal yechib olish 60 UC, maksimal 120 UC.</b>`;
-
-        let balance = parseInt(localStorage.getItem('tesla_balance')) || 0;
-        let ucWallet = parseInt(localStorage.getItem('tesla_uc_wallet')) || 0;
-        let tapPower = parseInt(localStorage.getItem('tesla_power')) || 1;
-        let maxLimit = parseInt(localStorage.getItem('tesla_limit')) || 20;
-        let currentLimit = parseInt(localStorage.getItem('tesla_current_limit')) ?? maxLimit;
-
-        document.getElementById('balance').innerText = balance;
-        document.getElementById('uc-balance').innerText = ucWallet;
-        updateUI();
-
+        // 2.8 sekunddan keyin asosiy oynaga o'tish
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const splash = document.getElementById('splash');
                 splash.style.opacity = '0';
-                setTimeout(() => splash.remove(), 600);
-            }, 1200);
+                setTimeout(() => splash.remove(), 800);
+            }, 2800);
         });
-
-        function switchTab(tabId, btn) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.getElementById('tab-' + tabId).classList.add('active');
-            document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
-            btn.classList.add('active');
-        }
-
-        function openUcModal() {
-            document.getElementById('ucModal').style.display = 'flex';
-        }
-
-        function closeUcModal() {
-            document.getElementById('ucModal').style.display = 'none';
-        }
-
-        function tapTesla(event) {
-            if (currentLimit <= 0) return;
-            balance += tapPower;
-            
-            // Har 200 ta bosganda 1 UC qo'shish logikasi (yoki tap tushishiga qarab)
-            // Bu yerda jami balansdan yoki umumiy taplardan hisoblanishi mumkin:
-            ucWallet = Math.floor(balance / 200);
-
-            currentLimit -= 1;
-            saveData();
-            updateUI();
-
-            const container = document.getElementById('tap-container');
-            const floatEl = document.createElement('div');
-            floatEl.className = 'floating-text';
-            floatEl.innerText = `+${tapPower} TESLA`;
-            
-            const rect = event.target.getBoundingClientRect();
-            const x = event.clientX - rect.left || 50;
-            const y = event.clientY - rect.top || 50;
-            
-            floatEl.style.left = (x + 20) + 'px';
-            floatEl.style.top = (y - 20) + 'px';
-            
-            container.appendChild(floatEl);
-            setTimeout(() => floatEl.remove(), 800);
-
-            setTimeout(() => {
-                if (currentLimit < maxLimit) {
-                    currentLimit++;
-                    saveData();
-                    updateUI();
-                }
-            }, 10000);
-        }
-
-        function updateUI() {
-            document.getElementById('balance').innerText = balance;
-            document.getElementById('uc-balance').innerText = ucWallet;
-            document.getElementById('limit-text').innerText = `${currentLimit} / ${maxLimit}`;
-            let percent = (currentLimit / maxLimit) * 100;
-            document.getElementById('energy-bar').style.width = percent + '%';
-        }
-
-        function buyBoost(id, cost, powerVal) {
-            if (balance < cost) {
-                alert("Balansingizda yetarli TESLA yo'q!");
-                return;
-            }
-            balance -= cost;
-            if (id === 1) {
-                tapPower = powerVal;
-                maxLimit = 20;
-            } else if (id === 2) {
-                maxLimit = 30;
-            }
-            currentLimit = maxLimit;
-            saveData();
-            updateUI();
-            alert("Boost muvaffaqiyatli faollashtirildi!");
-        }
-
-        function saveData() {
-            localStorage.setItem('tesla_balance', balance);
-            localStorage.setItem('tesla_uc_wallet', ucWallet);
-            localStorage.setItem('tesla_power', tapPower);
-            localStorage.setItem('tesla_limit', maxLimit);
-            localStorage.setItem('tesla_current_limit', currentLimit);
-        }
-
-        // Ruletka Game Logic
-        let selectedCells = [];
-        function toggleCell(index) {
-            const cells = document.querySelectorAll('.roulette-cell');
-            const cell = cells[index];
-            if (selectedCells.includes(index)) {
-                selectedCells = selectedCells.filter(i => i !== index);
-                cell.classList.remove('selected');
-            } else {
-                if (selectedCells.length >= 6) {
-                    alert("Ko'pi bilan 6 ta katak tanlashingiz mumkin!");
-                    return;
-                }
-                selectedCells.push(index);
-                cell.classList.add('selected');
-            }
-        }
-
-        function startRoulette() {
-            if (selectedCells.length === 0) {
-                alert("Kamida 1 ta katak tanlang!");
-                return;
-            }
-            let totalCost = selectedCells.length;
-            if (balance < totalCost) {
-                alert("Tikish uchun balansingizda yetarli TESLA yo'q!");
-                return;
-            }
-            balance -= totalCost;
-            ucWallet = Math.floor(balance / 200);
-            updateUI();
-            saveData();
-
-            const btn = document.getElementById('roulette-btn');
-            const status = document.getElementById('roulette-status');
-            btn.disabled = true;
-            status.innerText = "10 sekunddan keyin baraban aylanadi...";
-
-            let countdown = 10;
-            let timer = setInterval(() => {
-                countdown--;
-                status.innerText = `Baraban aylanishiga ${countdown} sekund qoldi...`;
-                if (countdown <= 0) {
-                    clearInterval(timer);
-                    spinRouletteWheel();
-                }
-            }, 1000);
-        }
-
-        function spinRouletteWheel() {
-            const status = document.getElementById('roulette-status');
-            status.innerText = "Baraban aylanmoqda...";
-
-            setTimeout(() => {
-                let allIndices = [0, 1, 2, 3, 4, 5];
-                let winningCells = [];
-                while(winningCells.length < 2) {
-                    let randIndex = Math.floor(Math.random() * allIndices.length);
-                    let chosen = allIndices.splice(randIndex, 1)[0];
-                    winningCells.push(chosen);
-                }
-
-                let wonAmount = 0;
-                selectedCells.forEach(cellIdx => {
-                    if (winningCells.includes(cellIdx)) {
-                        if (cellIdx === 5) {
-                            wonAmount += 50;
-                        } else {
-                            wonAmount += 3;
-                        }
-                    }
-                });
-
-                balance += wonAmount;
-                ucWallet = Math.floor(balance / 200);
-                updateUI();
-                saveData();
-
-                const cells = document.querySelectorAll('.roulette-cell');
-                cells.forEach((c, idx) => {
-                    c.classList.remove('selected');
-                    if (winningCells.includes(idx)) {
-                        c.style.borderColor = '#ff3b30';
-                        c.style.transform = 'scale(1.05)';
-                    }
-                });
-
-                if (wonAmount > 0) {
-                    status.innerText = `Tabriklayman! Yutuqli kataklarga tushdi. Siz ${wonAmount} TESLA yutib oldingiz 🎉`;
-                } else {
-                    status.innerText = `Afsuski, tikkan kataklaringizga tushmadi. Yutqazdingiz 💥`;
-                }
-
-                const btn = document.getElementById('roulette-btn');
-                btn.disabled = false;
-                selectedCells = [];
-                setTimeout(() => {
-                    cells.forEach(c => {
-                        c.style.borderColor = '#ddd';
-                        c.style.transform = 'scale(1)';
-                    });
-                }, 4000);
-            }, 2000);
-        }
     </script>
 </body>
 </html>
