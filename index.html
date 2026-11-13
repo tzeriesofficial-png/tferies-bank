@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TESLA TapUz</title>
+    <title>TESLA PUBG</title>
     <!-- Telegram WebApp SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
@@ -55,7 +55,7 @@
             100% { transform: scale(1.03); text-shadow: 0 0 10px rgba(0, 0, 0, 0.4); }
         }
 
-        /* Yuqori UC tugmasi panel (Header) */
+        /* Yuqori Header */
         .app-header {
             width: 100%;
             max-width: 400px;
@@ -66,9 +66,10 @@
             z-index: 100;
         }
 
+        /* Qora rangdagi UC Yechish tugmasi */
         .uc-header-btn {
-            background: #f8f9fa;
-            border: 1.5px solid #e1e4e8;
+            background: #111111;
+            border: 1.5px solid #111111;
             border-radius: 12px;
             padding: 8px 14px;
             display: flex;
@@ -77,14 +78,8 @@
             font-weight: 800;
             font-size: 13px;
             cursor: pointer;
-            color: #111;
-            transition: all 0.2s;
-        }
-
-        .uc-header-btn:hover {
-            background: #111;
             color: #fff;
-            border-color: #111;
+            transition: all 0.2s;
         }
 
         .uc-header-btn svg {
@@ -117,19 +112,33 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
-            gap: 20px;
+            gap: 16px;
             position: relative;
         }
 
         .balance-display {
-            font-size: 38px;
+            font-size: 34px;
             font-weight: 900;
             letter-spacing: 1px;
         }
 
+        /* UC Hamyon paneli (Yechish ostida hisoblanib boruvchi joy) */
+        .uc-wallet-box {
+            background: #f8f9fa;
+            border: 1.5px solid #e1e4e8;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 800;
+            color: #ff9500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
         .tap-circle {
-            width: 220px;
-            height: 220px;
+            width: 210px;
+            height: 210px;
             background: #111111;
             color: #ffffff;
             border-radius: 50%;
@@ -149,8 +158,8 @@
         }
 
         .tap-circle svg {
-            width: 48px;
-            height: 48px;
+            width: 44px;
+            height: 44px;
             stroke: #ffffff;
             fill: none;
             stroke-width: 2.2;
@@ -158,9 +167,9 @@
         }
 
         .tap-circle span {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 900;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
         }
 
         .floating-text {
@@ -362,7 +371,7 @@
             color: #444;
         }
 
-        /* UC Modal / Bo'lim stili */
+        /* UC Modal */
         .uc-modal {
             display: none;
             position: fixed;
@@ -392,27 +401,9 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
-        .uc-card h3 {
-            font-size: 20px;
-            font-weight: 900;
-        }
-
-        .uc-card p {
-            font-size: 13.5px;
-            color: #555;
-            line-height: 1.5;
-        }
-
-        .uc-close-btn {
-            background: #111;
-            color: #fff;
-            border: none;
-            padding: 12px;
-            border-radius: 12px;
-            font-weight: 800;
-            cursor: pointer;
-            font-size: 14px;
-        }
+        .uc-card h3 { font-size: 20px; font-weight: 900; }
+        .uc-card p { font-size: 13.5px; color: #555; line-height: 1.5; }
+        .uc-close-btn { background: #111; color: #fff; border: none; padding: 12px; border-radius: 12px; font-weight: 800; cursor: pointer; font-size: 14px; }
 
         /* Bottom Nav */
         nav {
@@ -442,11 +433,7 @@
             transition: all 0.25s ease;
         }
 
-        nav button.active {
-            opacity: 1;
-            transform: translateY(-2px);
-        }
-
+        nav button.active { opacity: 1; transform: translateY(-2px); }
         nav button.active span { color: #111; font-weight: 700; }
         nav svg { width: 24px; height: 24px; stroke: #111; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 4px; }
         nav button.active svg { stroke-width: 2.3; }
@@ -460,11 +447,10 @@
         <div class="tesla-logo">TESLA</div>
     </div>
 
-    <!-- Yuqori UC tugmasi header -->
+    <!-- Yuqori Header -->
     <div class="app-header">
-        <div style="font-weight: 900; font-size: 16px; letter-spacing: 0.5px;">TESLA TapUz</div>
+        <div style="font-weight: 900; font-size: 16px; letter-spacing: 0.5px;">TESLA PUBG</div>
         <button class="uc-header-btn" onclick="openUcModal()">
-            <!-- Premium SVG UC Coin Ikonkasi -->
             <svg viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" stroke="#ff9500" stroke-width="2" fill="#fff7e6"/>
                 <path d="M12 6v12M9 9h5.5a2.5 2.5 0 0 1 0 5H9m0 0h6" stroke="#ff9500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -478,9 +464,9 @@
         <div class="uc-card">
             <h3>PUBG UC Yechish</h3>
             <p>
-                <b>100 ta Tesla</b> ni <b>1 UC</b> ga almashtirib PUBG akkauntingizga yechib olishingiz mumkin.<br><br>
-                ⚠️ <b>Minimal yechib olish: 60 UC</b>.<br><br>
-                Yechib olish uchun quyidagi <b>Support yordamchisi</b> orqali adminlarga murojaat qiling.
+                Minimal yechib olish: <b>60 UC</b><br>
+                Maksimal yechib olish: <b>120 UC</b><br><br>
+                Yechib olish tugmasiga bosganingizda <b>@FarzonaTurayeva</b> ga yozib yechib olasiz.
             </p>
             <button class="uc-close-btn" onclick="closeUcModal()">Tushunarli</button>
         </div>
@@ -491,11 +477,16 @@
         <div class="tap-game-container" id="tap-container">
             <div class="balance-display"><span id="balance">0</span> TESLA</div>
             
+            <!-- Hamyon balansi (har 200 ta tap = 1 UC) -->
+            <div class="uc-wallet-box">
+                <span>Hamyon: <span id="uc-balance">0</span> UC</span>
+            </div>
+            
             <div class="tap-circle" onclick="tapTesla(event)">
                 <svg viewBox="0 0 24 24">
                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                 </svg>
-                <span>TESLA</span>
+                <span>TESLA UC</span>
             </div>
 
             <div class="energy-container">
@@ -539,7 +530,7 @@
         </div>
     </div>
 
-    <!-- TAB 3: TaskTor (Ruletka Baraban O'yini) -->
+    <!-- TAB 3: TaskTor (Ruletka) -->
     <div id="tab-tasktor" class="tab-content">
         <h2 style="margin-bottom: 15px; font-weight: 900; font-size: 20px;">TaskTor Ruletka</h2>
         <div class="roulette-box">
@@ -562,14 +553,13 @@
     <div id="tab-support" class="tab-content">
         <h2 style="margin-bottom: 20px; font-weight: 900; font-size: 22px;">Qo'llanma va Admin</h2>
         
+        <!-- Kitob bo'limi yangi matn va SVG galichka bilan -->
         <div class="kitob-card">
             <div class="kitob-header">
                 <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                 <span>Kitob (Qo'llanma)</span>
             </div>
-            <div class="kitob-text" id="guide-text">
-                Assalomu alekum. Siz bu bot orqali 1 000 000 tesla ishlab olib, va uni bank kartangizga 50 000 UZS koʻrinshda chiqarib olishingiz mumkun. Oʻyin oson koʻringani bilan juda murakab.
-            </div>
+            <div class="kitob-text" id="guide-text"></div>
         </div>
 
         <a href="https://t.me/smpli" target="_blank" class="support-card">
@@ -583,6 +573,7 @@
         <a href="https://t.me/FarzonaTurayeva" target="_blank" class="support-card">
             <div class="user-meta">
                 <span>@FarzonaTurayeva</span>
+                <!-- Premium SVG Galichka nishoni -->
                 <svg class="badge-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#34c759"/><path d="M8 12l3 3 5-6" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
             </div>
             <span style="font-size: 13px; color: #888;">Yordam</span>
@@ -617,14 +608,17 @@
             tgUser = user.username ? `@${user.username}` : (user.first_name || "Foydalanuvchi");
         }
 
-        document.getElementById('guide-text').innerHTML = `Assalomu alekum, <b>${tgUser}</b>! Siz bu bot orqali 1 000 000 tesla ishlab olib, va uni bank kartangizga 50 000 UZS koʻrinshda chiqarib olishingiz mumkun. Oʻyin oson koʻringani bilan juda murakab.`;
+        // Kitob matni
+        document.getElementById('guide-text').innerHTML = `Assalomu alekum, <b>${tgUser}</b>!<br>Siz bu tesla uc bot orqali oʻz pubg akkauntizni kuchaytrb oling. Qanday deysizmi bu malumotni oʻqing.<br><br>Siz har 200 dona tesla uc bosganizdan soʻng u sizni Mablagʻ hamyonizga 1 uc bulib tushadi. Yechib olish tugmasiga bosganizda <b>@FarzonaTurayeva</b> ga yozib yechib olasiz.<br><br><b>Minimal yechib olish 60 UC, maksimal 120 UC.</b>`;
 
         let balance = parseInt(localStorage.getItem('tesla_balance')) || 0;
+        let ucWallet = parseInt(localStorage.getItem('tesla_uc_wallet')) || 0;
         let tapPower = parseInt(localStorage.getItem('tesla_power')) || 1;
         let maxLimit = parseInt(localStorage.getItem('tesla_limit')) || 20;
         let currentLimit = parseInt(localStorage.getItem('tesla_current_limit')) ?? maxLimit;
 
         document.getElementById('balance').innerText = balance;
+        document.getElementById('uc-balance').innerText = ucWallet;
         updateUI();
 
         window.addEventListener('load', () => {
@@ -653,6 +647,11 @@
         function tapTesla(event) {
             if (currentLimit <= 0) return;
             balance += tapPower;
+            
+            // Har 200 ta bosganda 1 UC qo'shish logikasi (yoki tap tushishiga qarab)
+            // Bu yerda jami balansdan yoki umumiy taplardan hisoblanishi mumkin:
+            ucWallet = Math.floor(balance / 200);
+
             currentLimit -= 1;
             saveData();
             updateUI();
@@ -683,6 +682,7 @@
 
         function updateUI() {
             document.getElementById('balance').innerText = balance;
+            document.getElementById('uc-balance').innerText = ucWallet;
             document.getElementById('limit-text').innerText = `${currentLimit} / ${maxLimit}`;
             let percent = (currentLimit / maxLimit) * 100;
             document.getElementById('energy-bar').style.width = percent + '%';
@@ -708,6 +708,7 @@
 
         function saveData() {
             localStorage.setItem('tesla_balance', balance);
+            localStorage.setItem('tesla_uc_wallet', ucWallet);
             localStorage.setItem('tesla_power', tapPower);
             localStorage.setItem('tesla_limit', maxLimit);
             localStorage.setItem('tesla_current_limit', currentLimit);
@@ -742,6 +743,7 @@
                 return;
             }
             balance -= totalCost;
+            ucWallet = Math.floor(balance / 200);
             updateUI();
             saveData();
 
@@ -786,6 +788,7 @@
                 });
 
                 balance += wonAmount;
+                ucWallet = Math.floor(balance / 200);
                 updateUI();
                 saveData();
 
