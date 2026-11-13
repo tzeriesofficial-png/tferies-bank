@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ACAZES LIVE — Registration</title>
+    <title>Star Boy — Registration</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@500;600;700;800;900&display=swap');
@@ -44,7 +44,7 @@
             opacity: 0.15;
         }
 
-        /* ================= 1. ACAZES LIVE EKRANI ================= */
+        /* ================= 1. STAR BOY KIRISH EKRANI (O'RTADA VA YONIB TURUVCHI) ================= */
         .splash-screen {
             position: fixed;
             top: 0;
@@ -57,23 +57,25 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            animation: fadeOutSplash 0.6s ease 2.2s forwards;
+            animation: fadeOutSplash 0.6s ease 2.5s forwards;
         }
 
         .splash-title {
             font-family: 'Cinzel', serif;
-            font-size: 38px;
+            font-size: 42px;
             font-weight: 900;
-            letter-spacing: 12px;
+            letter-spacing: 8px;
             color: #ffffff;
-            text-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
             text-transform: uppercase;
-            animation: pulseTitle 1.5s infinite alternate;
+            text-align: center;
+            padding: 15px 30px;
+            border-radius: 18px;
+            animation: neonMultiGlow 3s infinite alternate, pulseTitle 1.5s infinite alternate;
         }
 
         @keyframes pulseTitle {
-            0% { transform: scale(1); opacity: 0.85; }
-            100% { transform: scale(1.05); opacity: 1; text-shadow: 0 0 35px rgba(255, 20, 147, 0.6); }
+            0% { transform: scale(1); }
+            100% { transform: scale(1.04); }
         }
 
         @keyframes fadeOutSplash {
@@ -92,7 +94,7 @@
             padding: 25px 20px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
-            animation: fadeInReg 0.8s ease 2.2s both;
+            animation: fadeInReg 0.8s ease 2.5s both;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -260,7 +262,27 @@
             pointer-events: none;
         }
 
-        /* ================= 3. TSADIQLASH TUGMASI (YONIB-O'CHUVCHI NEON) ================= */
+        /* ================= 3. YONIB-O'CHUVCHI NEON ANIMATSIYA ================= */
+        @keyframes neonMultiGlow {
+            0% {
+                border-color: #ff1493;
+                box-shadow: 0 0 12px rgba(255, 20, 147, 0.5), inset 0 0 10px rgba(255, 20, 147, 0.2);
+            }
+            33% {
+                border-color: #ffffff;
+                box-shadow: 0 0 14px rgba(255, 255, 255, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.2);
+            }
+            66% {
+                border-color: #00ffff;
+                box-shadow: 0 0 14px rgba(0, 255, 255, 0.5), inset 0 0 10px rgba(0, 255, 255, 0.2);
+            }
+            100% {
+                border-color: #ff1493;
+                box-shadow: 0 0 16px rgba(255, 20, 147, 0.7), inset 0 0 12px rgba(255, 20, 147, 0.3);
+            }
+        }
+
+        /* TSADIQLASH TUGMASI */
         .submit-btn {
             width: 100%;
             background-color: #000000;
@@ -284,25 +306,6 @@
         .submit-btn:active {
             transform: scale(0.96);
         }
-
-        @keyframes neonMultiGlow {
-            0% {
-                border-color: #ff1493;
-                box-shadow: 0 0 10px rgba(255, 20, 147, 0.4), inset 0 0 10px rgba(255, 20, 147, 0.2);
-            }
-            33% {
-                border-color: #ffffff;
-                box-shadow: 0 0 12px rgba(255, 255, 255, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.2);
-            }
-            66% {
-                border-color: #00ffff;
-                box-shadow: 0 0 12px rgba(0, 255, 255, 0.4), inset 0 0 10px rgba(0, 255, 255, 0.2);
-            }
-            100% {
-                border-color: #ff1493;
-                box-shadow: 0 0 15px rgba(255, 20, 147, 0.6), inset 0 0 12px rgba(255, 20, 147, 0.3);
-            }
-        }
     </style>
 </head>
 <body>
@@ -317,9 +320,9 @@
         <rect width="100%" height="100%" fill="url(#dotGrid)" />
     </svg>
 
-    <!-- 1. ACAZES LIVE KIRISH EKRANI -->
+    <!-- 1. STAR BOY KIRISH EKRANI (O'RTADA) -->
     <div class="splash-screen" id="splashScreen">
-        <div class="splash-title">ACAZES LIVE</div>
+        <div class="splash-title">Star Boy</div>
     </div>
 
     <!-- 2. REGISTRATION BO'LIMI -->
@@ -345,7 +348,7 @@
         <!-- Nickname kiritish -->
         <div class="input-group">
             <label class="input-label">Nickname (Taxallus)</label>
-            <input type="text" id="nicknameInput" class="custom-input" placeholder="Masalan: shohruz" maxlength="18" oninput="checkNickname()">
+            <input type="text" id="nicknameInput" class="custom-input" placeholder="Masalan: Star Boy" maxlength="18" oninput="checkNickname()">
             <div class="char-hint" id="charHint">6 - 18 ta harf</div>
         </div>
 
