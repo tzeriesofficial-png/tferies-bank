@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACAZES</title>
+    <title>TESLA TapUz</title>
     <style>
         * {
             box-sizing: border-box;
@@ -14,250 +14,108 @@
         body {
             background-color: #ffffff;
             color: #111111;
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            overflow: hidden;
+            position: relative;
         }
-        /* Splash / Kirish qismi */
-        #splash {
-            position: fixed;
+
+        /* Orqa fonda qimirlab turuvchi "Tesla" so'zlari */
+        .background-ticker {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.6s ease;
-        }
-        .glossy-logo {
-            font-size: 42px;
-            font-weight: 900;
-            letter-spacing: 6px;
-            color: #111111;
-            text-align: center;
-            animation: neonGlow 1.5s infinite alternate ease-in-out;
-        }
-        @keyframes neonGlow {
-            0% {
-                text-shadow: 0 0 5px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.05);
-                transform: scale(1);
-            }
-            100% {
-                text-shadow: 0 0 15px rgba(0, 0, 0, 0.35), 0 0 30px rgba(0, 0, 0, 0.15), 0 0 45px rgba(0, 0, 0, 0.05);
-                transform: scale(1.04);
-            }
-        }
-
-        /* Asosiy menyu konteyneri */
-        .menu-container, .bots-container {
-            width: 100%;
-            max-width: 420px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.8s ease forwards 1.2s;
+            justify-content: space-around;
+            opacity: 0.08; /* Juda mayin va xira ko'rinishi uchun */
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
         }
 
-        .bots-container {
-            display: none; /* Boshida yashirin turadi */
+        .ticker-row {
+            white-space: nowrap;
+            font-size: 40px;
+            font-weight: 900;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: #ff007f;
+            animation: moveTicker 15s linear infinite;
         }
 
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .ticker-row:nth-child(even) {
+            animation-direction: reverse;
+            animation-duration: 20s;
         }
 
-        .menu-title {
+        @keyframes moveTicker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Markaziy Neon Pushti Yozuv */
+        .splash-content {
+            position: relative;
+            z-index: 10;
             text-align: center;
-            font-size: 24px;
-            font-weight: 800;
-            color: #111111;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
         }
 
-        .back-btn {
-            background: none;
-            border: none;
-            font-size: 15px;
-            font-weight: 700;
-            color: #111;
-            cursor: pointer;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        /* Premium tugmalar */
-        .menu-btn {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            width: 100%;
-            padding: 16px 20px;
-            background: #f8f9fa;
-            border: 1.5px solid #e1e4e8;
-            border-radius: 16px;
-            cursor: pointer;
-            text-decoration: none;
-            color: #111111;
-            font-size: 16px;
-            font-weight: 700;
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-        }
-
-        .menu-btn:hover {
-            background: #111111;
+        .neon-logo {
+            font-size: 48px;
+            font-weight: 900;
+            letter-spacing: 6px;
             color: #ffffff;
-            border-color: #111111;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            text-transform: uppercase;
+            text-shadow: 
+                0 0 5px #ff69b4,
+                0 0 10px #ff69b4,
+                0 0 20px #ff1493,
+                0 0 40px #ff1493,
+                0 0 80px #ff1493;
+            animation: pulseNeon 1.5s infinite alternate ease-in-out;
         }
 
-        .menu-btn:hover svg {
-            stroke: #ffffff;
-        }
-
-        /* Premium SVG ikonka stili */
-        .menu-btn svg {
-            width: 26px;
-            height: 26px;
-            stroke: #111111;
-            fill: none;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            transition: stroke 0.25s ease;
-        }
-
-        /* Botlar Grid paneli (3 tadan chap va o'ngda) */
-        .bots-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        .bot-card {
-            background: #f8f9fa;
-            border: 1.5px solid #e1e4e8;
-            border-radius: 14px;
-            padding: 16px 12px;
-            text-align: center;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 14px;
-            color: #111;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-        }
-
-        .bot-card:hover {
-            background: #111;
-            color: #fff;
-            border-color: #111;
-            transform: translateY(-2px);
+        @keyframes pulseNeon {
+            0% {
+                transform: scale(1);
+                text-shadow: 
+                    0 0 5px #ff69b4,
+                    0 0 10px #ff69b4,
+                    0 0 20px #ff1493,
+                    0 0 40px #ff1493;
+            }
+            100% {
+                transform: scale(1.05);
+                text-shadow: 
+                    0 0 10px #ff69b4,
+                    0 0 20px #ff1493,
+                    0 0 30px #ff1493,
+                    0 0 60px #ff1493,
+                    0 0 100px #ff1493;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Kirish qismidagi qimirlab turuvchi yozuv -->
-    <div id="splash">
-        <div class="glossy-logo">A C A Z E S</div>
+    <!-- Orqa fonda qimirlab turuvchi Tesla so'zlari -->
+    <div class="background-ticker">
+        <div class="ticker-row">TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA</div>
+        <div class="ticker-row">TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA</div>
+        <div class="ticker-row">TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA</div>
+        <div class="ticker-row">TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA</div>
+        <div class="ticker-row">TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA &nbsp; TESLA</div>
     </div>
 
-    <!-- 1. Asosiy menyu bo'limi -->
-    <div id="main-menu" class="menu-container">
-        <div class="menu-title">ACAZES BOT</div>
-
-        <!-- Bot Yaratish -->
-        <button class="menu-btn" onclick="openBotsMenu()">
-            <svg viewBox="0 0 24 24">
-                <rect x="3" y="11" width="18" height="10" rx="2"></rect>
-                <circle cx="9" cy="16" r="1.5" fill="currentColor"></circle>
-                <circle cx="15" cy="16" r="1.5" fill="currentColor"></circle>
-                <path d="M12 11V7"></path>
-                <path d="M7 7h10"></path>
-                <circle cx="12" cy="5" r="1"></circle>
-            </svg>
-            <span>Bot Yaratish</span>
-        </button>
-
-        <!-- Bot O'chirish -->
-        <button class="menu-btn" onclick="alert('Bot o\'chirish bo\'limi')">
-            <svg viewBox="0 0 24 24">
-                <polyline points="3 6 5 6 21 6"></polyline>
-                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                <line x1="10" y1="11" x2="14" y2="15"></line>
-                <line x1="14" y1="11" x2="10" y2="15"></line>
-            </svg>
-            <span>Bot Oʻchrsh</span>
-        </button>
-
-        <!-- Hisob To'ldirish -->
-        <button class="menu-btn" onclick="alert('Hisob to\'ldirish bo\'limi')">
-            <svg viewBox="0 0 24 24">
-                <rect x="2" y="5" width="20" height="14" rx="2"></rect>
-                <line x1="2" y1="10" x2="22" y2="10"></line>
-                <circle cx="17" cy="15" r="1.5" fill="currentColor"></circle>
-            </svg>
-            <span>Hisob Toʻldirish</span>
-        </button>
+    <!-- Markaziy neon pushti yozuv -->
+    <div class="splash-content">
+        <div class="neon-logo">TESLA TapUz</div>
     </div>
 
-    <!-- 2. Bot turlari tanlash bo'limi (3 tadan chap va o'ngda) -->
-    <div id="bots-menu" class="bots-container">
-        <button class="back-btn" onclick="closeBotsMenu()">← Orqaga</button>
-        <div class="menu-title">Bot Turini Tanlang</div>
-        
-        <div class="bots-grid">
-            <div class="bot-card" onclick="selectBot('Nakrutka Bot')">Nakrutka Bot</div>
-            <div class="bot-card" onclick="selectBot('Kino Bot')">Kino Bot</div>
-            <div class="bot-card" onclick="selectBot('Saved Bot')">Saved Bot</div>
-            <div class="bot-card" onclick="selectBot('AiChat Bot')">AiChat Bot</div>
-            <div class="bot-card" onclick="selectBot('Taxi Bot')">Taxi Bot</div>
-            <div class="bot-card" onclick="selectBot('Biznes Bot')">Biznes Bot</div>
-            <div class="bot-card" onclick="selectBot('Pul Bot')">Pul Bot</div>
-            <div class="bot-card" onclick="selectBot('Zakas Bot')">Zakas Bot</div>
-        </div>
-    </div>
-
-    <script>
-        // Splash screen'ni o'chirish
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const splash = document.getElementById('splash');
-                splash.style.opacity = '0';
-                setTimeout(() => splash.remove(), 600);
-            }, 1200);
-        });
-
-        function openBotsMenu() {
-            document.getElementById('main-menu').style.display = 'none';
-            document.getElementById('bots-menu').style.display = 'flex';
-            document.getElementById('bots-menu').style.animation = 'fadeIn 0.4s ease forwards';
-        }
-
-        function closeBotsMenu() {
-            document.getElementById('bots-menu').style.display = 'none';
-            document.getElementById('main-menu').style.display = 'flex';
-        }
-
-        function selectBot(botName) {
-            alert(`${botName} narxi: 15 000 so'm`);
-        }
-    </script>
 </body>
 </html>
