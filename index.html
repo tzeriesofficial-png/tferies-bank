@@ -16,12 +16,28 @@
             color: #111111;
             height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
             overflow: hidden;
+            position: relative;
         }
 
-        /* Qoq o'rtada qora rangli va chekkalari qimirlab/porlab turuvchi TESLA yozuvi */
+        /* Kirish qismi (Splash Screen) */
+        #splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease;
+        }
+
         .tesla-logo {
             font-size: 54px;
             font-weight: 900;
@@ -35,23 +51,171 @@
         @keyframes borderGlow {
             0% {
                 transform: scale(1);
-                text-shadow: 
-                    0 0 2px rgba(0, 0, 0, 0.2),
-                    0 0 5px rgba(0, 0, 0, 0.1);
+                text-shadow: 0 0 2px rgba(0, 0, 0, 0.2), 0 0 5px rgba(0, 0, 0, 0.1);
             }
             100% {
                 transform: scale(1.03);
-                text-shadow: 
-                    0 0 10px rgba(0, 0, 0, 0.4),
-                    0 0 20px rgba(0, 0, 0, 0.2),
-                    0 0 30px rgba(0, 0, 0, 0.1);
+                text-shadow: 0 0 10px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 0, 0, 0.2), 0 0 30px rgba(0, 0, 0, 0.1);
             }
+        }
+
+        /* Asosiy kontent oynasi */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: fadeIn 0.8s ease forwards 1.2s;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .main-title {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .main-subtitle {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Pastki 4 ta premium SVG navigatsiya menyusi */
+        nav {
+            width: 100%;
+            height: 75px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+            padding-bottom: env(safe-area-inset-bottom);
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards 1.2s;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            width: 25%;
+            height: 100%;
+            opacity: 0.45;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav button.active {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        nav button.active span {
+            color: #111;
+            font-weight: 700;
+        }
+
+        nav svg {
+            width: 24px;
+            height: 24px;
+            stroke: #111;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            margin-bottom: 4px;
+        }
+
+        nav button.active svg {
+            stroke-width: 2.3;
+        }
+
+        nav span {
+            font-size: 11px;
+            font-weight: 600;
+            color: #555;
+            letter-spacing: -0.2px;
         }
     </style>
 </head>
 <body>
 
-    <div class="tesla-logo">TESLA</div>
+    <!-- Kirish qismi -->
+    <div id="splash">
+        <div class="tesla-logo">TESLA</div>
+    </div>
 
+    <!-- Asosiy oyna -->
+    <div class="main-content">
+        <div class="main-title">TESLA TapUz</div>
+        <div class="main-subtitle">O'yinni boshlash uchun ekranni bosing</div>
+    </div>
+
+    <!-- Pastki 4 ta SVG menyu -->
+    <nav>
+        <button class="active" onclick="switchTab(this)">
+            <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 8v8M8 12h8"></path>
+            </svg>
+            <span>TeslaTap</span>
+        </button>
+
+        <button onclick="switchTab(this)">
+            <svg viewBox="0 0 24 24">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <span>Boost</span>
+        </button>
+
+        <button onclick="switchTab(this)">
+            <svg viewBox="0 0 24 24">
+                <path d="M20 6L9 17l-5-5"></path>
+            </svg>
+            <span>Claim</span>
+        </button>
+
+        <button onclick="switchTab(this)">
+            <svg viewBox="0 0 24 24">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span>Support</span>
+        </button>
+    </nav>
+
+    <script>
+        // Kirish ekranini 1.2 sekunddan keyin yo'q qilish
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const splash = document.getElementById('splash');
+                splash.style.opacity = '0';
+                setTimeout(() => splash.remove(), 600);
+            }, 1200);
+        });
+
+        // Menyudagi tugmalarni bosganda aktiv qilish
+        function switchTab(btn) {
+            document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
+            btn.classList.add('active');
+        }
+    </script>
 </body>
 </html>
