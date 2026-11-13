@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ACAZES — ASMR Kalkulyator & Sekundomer</title>
+    <title>ACAZES LIVE — Registration</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@500;600;700;800;900&display=swap');
 
         * {
             margin: 0;
@@ -18,8 +18,8 @@
         }
 
         body {
-            background-color: #ffffff;
-            color: #000000;
+            background-color: #050505;
+            color: #ffffff;
             font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
             display: flex;
@@ -28,13 +28,12 @@
             align-items: center;
             overflow-x: hidden;
             overflow-y: auto;
-            padding: 15px 15px 30px 15px;
+            padding: 20px;
             position: relative;
-            transition: background-color 0.4s ease;
         }
 
-        /* ================= 1. KIRISH EKRANI (MATEMATIKA FON ANIMATSIYASI) ================= */
-        .math-bg-container {
+        /* Fon uchun premium SVG nuqtalar va chiziqlar */
+        .bg-svg-pattern {
             position: fixed;
             top: 0;
             left: 0;
@@ -42,886 +41,350 @@
             height: 100%;
             z-index: 1;
             pointer-events: none;
-            background-color: #ffffff;
-            overflow: hidden;
+            opacity: 0.15;
         }
 
-        .math-formula {
-            position: absolute;
-            color: rgba(0, 0, 0, 0.08);
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            white-space: nowrap;
-            animation: floatFormula linear infinite;
-        }
-
-        @keyframes floatFormula {
-            0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(15deg); opacity: 0; }
-        }
-
+        /* ================= 1. ACAZES LIVE EKRANI ================= */
         .splash-screen {
-            position: relative;
-            z-index: 2;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #050505;
+            z-index: 10;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            width: 100%;
-            max-width: 390px;
-            margin: auto;
-            animation: fadeIn 0.5s ease;
+            animation: fadeOutSplash 0.6s ease 2.2s forwards;
         }
 
-        .title-acazes {
+        .splash-title {
             font-family: 'Cinzel', serif;
             font-size: 38px;
+            font-weight: 900;
             letter-spacing: 12px;
-            font-weight: 900;
-            margin-bottom: 8px;
+            color: #ffffff;
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
             text-transform: uppercase;
-            color: #000000;
-            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+            animation: pulseTitle 1.5s infinite alternate;
         }
 
-        .subtitle-select {
-            font-size: 11px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 35px;
-            font-weight: 800;
-            color: #333333;
+        @keyframes pulseTitle {
+            0% { transform: scale(1); opacity: 0.85; }
+            100% { transform: scale(1.05); opacity: 1; text-shadow: 0 0 35px rgba(255, 20, 147, 0.6); }
         }
 
-        .gender-cards {
-            display: flex;
-            gap: 16px;
-            width: 100%;
-            justify-content: center;
+        @keyframes fadeOutSplash {
+            to { opacity: 0; visibility: hidden; pointer-events: none; }
         }
 
-        .gender-card {
-            flex: 1;
-            max-width: 165px;
-            padding: 26px 15px;
-            border-radius: 22px;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .gender-card:active {
-            transform: scale(0.94);
-        }
-
-        .gender-card.male-card, .gender-card.female-card {
-            background: #ffffff;
-            border: 2.5px solid #000000;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
-            color: #000000;
-        }
-
-        .gender-card.male-card svg, .gender-card.female-card svg {
-            width: 54px;
-            height: 54px;
-            fill: none;
-            stroke: #000000;
-            stroke-width: 2.3;
-        }
-
-        .card-label {
-            font-size: 13px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* ================= 2. KALKULYATOR EKRANI ================= */
-        .bg-pattern {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-            display: none;
-        }
-
-        .calculator-wrapper {
+        /* ================= 2. REGISTRATION BO'LIMI ================= */
+        .reg-container {
             position: relative;
             z-index: 2;
-            display: none;
-            flex-direction: column;
             width: 100%;
             max-width: 380px;
-            border-radius: 22px;
-            padding: 20px;
-            animation: fadeIn 0.4s ease-out;
-            margin: auto;
-        }
-
-        .calc-top-bar {
+            background: rgba(18, 18, 20, 0.85);
+            border: 1.5px solid #222225;
+            border-radius: 24px;
+            padding: 25px 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            animation: fadeInReg 0.8s ease 2.2s both;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .calc-header {
+        @keyframes fadeInReg {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reg-header {
             font-family: 'Cinzel', serif;
-            font-size: 15px;
-            letter-spacing: 4px;
+            font-size: 18px;
             font-weight: 900;
+            letter-spacing: 4px;
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 2px;
         }
 
-        .top-controls {
+        .reg-subtitle {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-align: center;
+            color: #888888;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        /* Profil rasmini tanlash */
+        .avatar-upload-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .avatar-preview {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #111115;
+            border: 2px dashed #ff1493;
             display: flex;
             align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(255, 20, 147, 0.2);
+        }
+
+        .avatar-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .avatar-preview svg {
+            width: 28px;
+            height: 28px;
+            stroke: #ff1493;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .avatar-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #aaaaaa;
+            text-transform: uppercase;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        /* Inputlar va tanlovlar bloki */
+        .input-group {
+            display: flex;
+            flex-direction: column;
             gap: 6px;
         }
 
-        .icon-top-btn {
-            background: transparent;
-            border: none;
-            cursor: pointer;
+        .input-label {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: #aaaaaa;
+            text-transform: uppercase;
+        }
+
+        .custom-input {
+            width: 100%;
+            background: #0b0b0e;
+            border: 1.5px solid #2b2b30;
+            border-radius: 12px;
+            padding: 12px 14px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            color: #ffffff;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .custom-input:focus {
+            border-color: #ff1493;
+            box-shadow: 0 0 10px rgba(255, 20, 147, 0.3);
+        }
+
+        .char-hint {
+            font-size: 9px;
+            color: #666666;
+            text-align: right;
+            font-weight: 700;
+        }
+
+        /* SVG Premium Sana va Yil Tanlash Grid */
+        .date-select-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr;
+            gap: 8px;
+        }
+
+        .select-wrapper {
+            position: relative;
+            background: #0b0b0e;
+            border: 1.5px solid #2b2b30;
+            border-radius: 12px;
+            overflow: hidden;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 4px;
+        }
+
+        .select-wrapper select {
+            width: 100%;
+            background: transparent;
+            border: none;
+            padding: 11px 10px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            padding: 6px 8px;
-            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #ffffff;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .select-wrapper select option {
+            background: #151518;
+            color: #ffffff;
+        }
+
+        .select-wrapper::after {
+            content: '▼';
+            font-size: 8px;
+            color: #ff1493;
+            position: absolute;
+            right: 10px;
+            pointer-events: none;
+        }
+
+        /* ================= 3. TSADIQLASH TUGMASI (YONIB-O'CHUVCHI NEON) ================= */
+        .submit-btn {
+            width: 100%;
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 3px;
             text-transform: uppercase;
+            padding: 15px;
+            border-radius: 14px;
+            border: 2px solid #ffffff;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            margin-top: 5px;
+            animation: neonMultiGlow 3s infinite alternate;
             transition: transform 0.15s ease;
         }
 
-        .icon-top-btn:active {
-            transform: scale(0.92);
-        }
-
-        .icon-top-btn svg {
-            width: 14px;
-            height: 14px;
-        }
-
-        .display-screen {
-            width: 100%;
-            height: 98px;
-            border-radius: 14px;
-            padding: 14px 16px;
-            margin-bottom: 14px;
-            text-align: right;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            overflow: hidden;
-        }
-
-        .prev-operand {
-            font-size: 14px;
-            height: 20px;
-            line-height: 20px;
-            white-space: nowrap;
-            overflow-x: auto;
-            overflow-y: hidden;
-            scrollbar-width: none;
-        }
-
-        .prev-operand::-webkit-scrollbar {
-            display: none;
-        }
-
-        .curr-operand {
-            font-size: 34px;
-            height: 44px;
-            line-height: 44px;
-            font-weight: 800;
-            white-space: nowrap;
-            overflow-x: auto;
-            overflow-y: hidden;
-            scrollbar-width: none;
-        }
-
-        .curr-operand::-webkit-scrollbar {
-            display: none;
-        }
-
-        .buttons-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-
-        .calc-btn {
-            border-radius: 14px;
-            height: 54px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 20px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: transform 0.1s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease, box-shadow 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .calc-btn:active {
-            transform: scale(0.91);
-        }
-
-        .calc-btn.zero-btn {
-            grid-column: span 2;
-        }
-
-        .calc-btn.equals {
-            grid-column: span 2;
-            font-size: 26px;
-        }
-
-        /* ================= 3. SEKUNDOMER BO'LIMI ================= */
-        .stopwatch-box {
-            width: 100%;
-            border-radius: 14px;
-            padding: 10px 14px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid rgba(0, 0, 0, 0.15);
-            background: rgba(0, 0, 0, 0.03);
-            margin-bottom: 12px;
-        }
-
-        .stopwatch-info {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .stopwatch-icon-svg {
-            width: 20px;
-            height: 20px;
-            fill: none;
-            stroke-width: 2.2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .stopwatch-time {
-            font-family: 'Cinzel', serif;
-            font-size: 16px;
-            font-weight: 900;
-            letter-spacing: 1px;
-        }
-
-        .stopwatch-controls {
-            display: flex;
-            gap: 5px;
-        }
-
-        .sw-btn {
-            padding: 5px 10px;
-            border-radius: 7px;
-            font-size: 9px;
-            font-weight: 800;
-            font-family: 'Montserrat', sans-serif;
-            cursor: pointer;
-            border: 1px solid;
-            transition: transform 0.1s ease;
-        }
-
-        .sw-btn:active {
-            transform: scale(0.93);
-        }
-
-        /* ================= 4. PASTKI QISMDAGI 2 TA PREMIUM SVG PANEL (REKLAMA VA ADMINKA) ================= */
-        .bottom-actions-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            width: 100%;
-        }
-
-        .action-card {
-            border-radius: 14px;
-            padding: 12px 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            cursor: pointer;
-            border: 1.5px solid;
-            transition: transform 0.15s ease, box-shadow 0.15s ease;
-            text-decoration: none;
-        }
-
-        .action-card:active {
-            transform: scale(0.94);
-        }
-
-        .action-card svg {
-            width: 20px;
-            height: 20px;
-            stroke-width: 2.2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            fill: none;
-        }
-
-        .action-card-text {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-        }
-
-        .action-card-title {
-            font-size: 11px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .action-card-subtitle {
-            font-size: 8px;
-            font-weight: 700;
-            opacity: 0.75;
-            letter-spacing: 0.5px;
-        }
-
-        /* ================= MODAL OYINLAR (SHARH) ================= */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(4px);
-            z-index: 100;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal-card {
-            background: #ffffff;
-            border: 2px solid #000000;
-            border-radius: 20px;
-            padding: 22px;
-            width: 100%;
-            max-width: 340px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            color: #000000;
-        }
-
-        .modal-title {
-            font-family: 'Cinzel', serif;
-            font-size: 16px;
-            font-weight: 900;
-            margin-bottom: 12px;
-            letter-spacing: 2px;
-        }
-
-        .stars-container {
-            display: flex;
-            justify-content: center;
-            gap: 6px;
-            margin-bottom: 15px;
-        }
-
-        .star-svg {
-            width: 32px;
-            height: 32px;
-            cursor: pointer;
-            fill: #e0e0e0;
-            transition: transform 0.15s ease, fill 0.15s ease;
-        }
-
-        .star-svg.active {
-            fill: #ffb700;
-            filter: drop-shadow(0 0 6px rgba(255, 183, 0, 0.6));
-        }
-
-        .review-textarea {
-            width: 100%;
-            height: 90px;
-            border: 1.5px solid #cccccc;
-            border-radius: 10px;
-            padding: 10px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
-            resize: none;
-            outline: none;
-            margin-bottom: 6px;
-            background: #fafafa;
-        }
-
-        .review-textarea:focus {
-            border-color: #000000;
-        }
-
-        .char-counter {
-            font-size: 10px;
-            color: #777777;
-            text-align: right;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .modal-btns {
-            display: flex;
-            gap: 10px;
-        }
-
-        .modal-btn {
-            flex: 1;
-            padding: 12px;
-            border-radius: 10px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
-            font-weight: 800;
-            cursor: pointer;
-            border: 1.5px solid #000000;
-            transition: transform 0.1s ease;
-        }
-
-        .modal-btn:active {
-            transform: scale(0.95);
-        }
-
-        .modal-btn.cancel {
-            background: #ffffff;
-            color: #000000;
-        }
-
-        .modal-btn.confirm {
-            background: #000000;
-            color: #ffffff;
-        }
-
-        /* ================= JENSKIY TEMA (PUSHTI) ================= */
-        body.theme-female {
-            background-color: #14030c;
-        }
-
-        body.theme-female .calculator-wrapper {
-            background: rgba(32, 6, 20, 0.95);
-            border: 1.5px solid #ff1493;
-            box-shadow: 0 0 35px rgba(255, 20, 147, 0.4);
-        }
-
-        body.theme-female .calc-header {
-            color: #ff69b4;
-        }
-
-        body.theme-female .icon-top-btn {
-            color: #ff69b4;
-            border: 1px solid #8b0046;
-            background: rgba(255, 20, 147, 0.12);
-        }
-
-        body.theme-female .icon-top-btn svg {
-            stroke: #ff69b4;
-            fill: none;
-        }
-
-        body.theme-female .display-screen {
-            background-color: #0d0208;
-            border: 1px solid #8b0046;
-            box-shadow: inset 0 0 15px rgba(255, 20, 147, 0.25);
-        }
-
-        body.theme-female .prev-operand {
-            color: #b34781;
-        }
-
-        body.theme-female .curr-operand {
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
-        }
-
-        body.theme-female .calc-btn {
-            background-color: #210715;
-            border: 1px solid #8b0046;
-            color: #ffb6c1;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-        }
-
-        body.theme-female .calc-btn.operator {
-            background-color: #380922;
-            border-color: #ff1493;
-            color: #ff1493;
-            font-size: 26px;
-        }
-
-        body.theme-female .calc-btn.clear {
-            background-color: #2b071a;
-            color: #ff69b4;
-            font-size: 18px;
-        }
-
-        body.theme-female .calc-btn.equals {
-            background: linear-gradient(135deg, #c70067 0%, #ff1493 100%);
-            border: 1px solid #ff1493;
-            color: #ffffff;
-            box-shadow: 0 0 15px rgba(255, 20, 147, 0.6);
-        }
-
-        body.theme-female .stopwatch-box {
-            border-color: #8b0046;
-            background: rgba(255, 20, 147, 0.06);
-        }
-
-        body.theme-female .stopwatch-icon-svg {
-            stroke: #ff69b4;
-        }
-
-        body.theme-female .stopwatch-time {
-            color: #ff69b4;
-            text-shadow: 0 0 8px rgba(255, 105, 180, 0.5);
-        }
-
-        body.theme-female .sw-btn {
-            background: #210715;
-            border-color: #ff1493;
-            color: #ffb6c1;
-        }
-
-        body.theme-female .action-card {
-            background: rgba(255, 20, 147, 0.08);
-            border-color: #ff1493;
-            color: #ff69b4;
-        }
-
-        body.theme-female .action-card svg {
-            stroke: #ff1493;
-        }
-
-        body.theme-female .action-card-subtitle {
-            color: #ffb6c1;
-        }
-
-        body.theme-female .modal-card {
-            background: #1a0511;
-            border-color: #ff1493;
-            color: #ff69b4;
-            box-shadow: 0 0 35px rgba(255, 20, 147, 0.5);
-        }
-
-        body.theme-female .review-textarea {
-            background: #0d0208;
-            border-color: #8b0046;
-            color: #ffffff;
-        }
-
-        body.theme-female .modal-btn.cancel {
-            background: #210715;
-            color: #ff69b4;
-            border-color: #8b0046;
-        }
-
-        body.theme-female .modal-btn.confirm {
-            background: #ff1493;
-            color: #ffffff;
-            border-color: #ff1493;
-        }
-
-        /* ================= MUJISKOY TEMA (OQ & QORA) ================= */
-        body.theme-male {
-            background-color: #ffffff;
-        }
-
-        body.theme-male .calculator-wrapper {
-            background: #f5f5f7;
-            border: 2px solid #000000;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
-        }
-
-        body.theme-male .calc-header {
-            color: #000000;
-        }
-
-        body.theme-male .icon-top-btn {
-            color: #000000;
-            border: 1.5px solid #000000;
-            background: #ffffff;
-        }
-
-        body.theme-male .icon-top-btn svg {
-            stroke: #000000;
-            fill: none;
-        }
-
-        body.theme-male .display-screen {
-            background-color: #ffffff;
-            border: 2px solid #000000;
-            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.08);
-        }
-
-        body.theme-male .prev-operand {
-            color: #555555;
-            font-weight: 700;
-        }
-
-        body.theme-male .curr-operand {
-            color: #000000;
-        }
-
-        body.theme-male .calc-btn {
-            background-color: #0a0a0a;
-            border: 1px solid #000000;
-            color: #ffffff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-        }
-
-        body.theme-male .calc-btn:active {
-            background-color: #2b2b2b;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-        }
-
-        body.theme-male .calc-btn.operator {
-            background-color: #1c1c1e;
-            border: 1.5px solid #000000;
-            color: #ffffff;
-            font-size: 26px;
-        }
-
-        body.theme-male .calc-btn.clear {
-            background-color: #262626;
-            color: #e0e0e0;
-            font-size: 18px;
-        }
-
-        body.theme-male .calc-btn.equals {
-            background: #000000;
-            border: 1.5px solid #000000;
-            color: #ffffff;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
-        }
-
-        body.theme-male .stopwatch-box {
-            border-color: #000000;
-            background: #ffffff;
-        }
-
-        body.theme-male .stopwatch-icon-svg {
-            stroke: #000000;
-        }
-
-        body.theme-male .stopwatch-time {
-            color: #000000;
-        }
-
-        body.theme-male .sw-btn {
-            background: #0a0a0a;
-            border-color: #000000;
-            color: #ffffff;
-        }
-
-        body.theme-male .action-card {
-            background: #ffffff;
-            border-color: #000000;
-            color: #000000;
-        }
-
-        body.theme-male .action-card svg {
-            stroke: #000000;
-        }
-
-        body.theme-male .action-card-subtitle {
-            color: #555555;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
+        .submit-btn:active {
+            transform: scale(0.96);
+        }
+
+        @keyframes neonMultiGlow {
+            0% {
+                border-color: #ff1493;
+                box-shadow: 0 0 10px rgba(255, 20, 147, 0.4), inset 0 0 10px rgba(255, 20, 147, 0.2);
+            }
+            33% {
+                border-color: #ffffff;
+                box-shadow: 0 0 12px rgba(255, 255, 255, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.2);
+            }
+            66% {
+                border-color: #00ffff;
+                box-shadow: 0 0 12px rgba(0, 255, 255, 0.4), inset 0 0 10px rgba(0, 255, 255, 0.2);
+            }
+            100% {
+                border-color: #ff1493;
+                box-shadow: 0 0 15px rgba(255, 20, 147, 0.6), inset 0 0 12px rgba(255, 20, 147, 0.3);
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Kirish ekrani uchun matematika formulalari foni -->
-    <div class="math-bg-container" id="mathBg"></div>
-
-    <!-- Kalkulyator ochilganda fon naqshlari -->
-    <svg class="bg-pattern" id="bgSvg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+    <!-- Fon SVG Naqshlari -->
+    <svg class="bg-svg-pattern" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
         <defs>
-            <pattern id="gridPattern" width="35" height="35" patternUnits="userSpaceOnUse">
-                <path d="M 35 0 L 0 0 0 35" fill="none" stroke="#ffffff" stroke-width="0.6" stroke-opacity="0.1"/>
-                <circle cx="0" cy="0" r="1.2" fill="#ffffff" fill-opacity="0.2"/>
+            <pattern id="dotGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+                <circle cx="2" cy="2" r="1" fill="#ffffff" fill-opacity="0.3"/>
             </pattern>
         </defs>
-        <rect width="100%" height="100%" fill="url(#gridPattern)" />
+        <rect width="100%" height="100%" fill="url(#dotGrid)" />
     </svg>
 
-    <!-- 1. KIRISH VA TANLOV EKRANI (ACAZES) -->
+    <!-- 1. ACAZES LIVE KIRISH EKRANI -->
     <div class="splash-screen" id="splashScreen">
-        <div class="title-acazes">ACAZES</div>
-        <div class="subtitle-select">Rejimni tanlang</div>
-
-        <div class="gender-cards">
-            <!-- Mujiskoy SVG Premium tugma -->
-            <div class="gender-card male-card" onclick="selectMode('male')">
-                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="10" cy="14" r="6"></circle>
-                    <line x1="14.5" y1="9.5" x2="20" y2="4"></line>
-                    <polyline points="15 4 20 4 20 9"></polyline>
-                </svg>
-                <span class="card-label">MUJISKOY</span>
-            </div>
-
-            <!-- Jenskiy SVG Premium tugma -->
-            <div class="gender-card female-card" onclick="selectMode('female')">
-                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="9" r="6"></circle>
-                    <line x1="12" y1="15" x2="12" y2="22"></line>
-                    <line x1="9" y1="19" x2="15" y2="19"></line>
-                </svg>
-                <span class="card-label">JENSKIY</span>
-            </div>
-        </div>
+        <div class="splash-title">ACAZES LIVE</div>
     </div>
 
-    <!-- 2. KALKULYATOR EKRANI -->
-    <div class="calculator-wrapper" id="calcApp">
-        <div class="calc-top-bar">
-            <div class="calc-header">ACAZES</div>
-            <div class="top-controls">
-                <!-- Sharh yozish tugmasi -->
-                <button class="icon-top-btn" onclick="openModal('reviewModal')" title="Sharh">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                    </svg>
-                    <span>SHARH</span>
-                </button>
-
-                <!-- Rejimni o'zgartirish tugmasi -->
-                <button class="icon-top-btn" onclick="goBackToSelection()" title="Rejim">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                    </svg>
-                    <span>REJIM</span>
-                </button>
-            </div>
-        </div>
-        
-        <div class="display-screen">
-            <div class="prev-operand" id="prevOperand"></div>
-            <div class="curr-operand" id="currOperand">0</div>
+    <!-- 2. REGISTRATION BO'LIMI -->
+    <div class="reg-container" id="regContainer">
+        <div>
+            <div class="reg-header">RO'YXATDAN O'TISH</div>
+            <div class="subtitle-select">Ma'lumotlaringizni kiriting</div>
         </div>
 
-        <div class="buttons-grid">
-            <button class="calc-btn clear" onclick="clearDisplay()">AC</button>
-            <button class="calc-btn clear" onclick="deleteLast()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path>
-                    <line x1="18" y1="9" x2="12" y2="15"></line>
-                    <line x1="12" y1="9" x2="18" y2="15"></line>
-                </svg>
-            </button>
-            <button class="calc-btn operator" onclick="chooseOperation('÷')">÷</button>
-            <button class="calc-btn operator" onclick="chooseOperation('×')">×</button>
-
-            <button class="calc-btn" onclick="appendNumber('7')">7</button>
-            <button class="calc-btn" onclick="appendNumber('8')">8</button>
-            <button class="calc-btn" onclick="appendNumber('9')">9</button>
-            <button class="calc-btn operator" onclick="chooseOperation('-')">−</button>
-
-            <button class="calc-btn" onclick="appendNumber('4')">4</button>
-            <button class="calc-btn" onclick="appendNumber('5')">5</button>
-            <button class="calc-btn" onclick="appendNumber('6')">6</button>
-            <button class="calc-btn operator" onclick="chooseOperation('+')">+</button>
-
-            <button class="calc-btn" onclick="appendNumber('1')">1</button>
-            <button class="calc-btn" onclick="appendNumber('2')">2</button>
-            <button class="calc-btn" onclick="appendNumber('3')">3</button>
-            <button class="calc-btn" onclick="appendNumber('.')">.</button>
-
-            <button class="calc-btn zero-btn" onclick="appendNumber('0')">0</button>
-            <button class="calc-btn equals" onclick="compute()">=</button>
-        </div>
-
-        <!-- 3. SEKUNDOMER BO'LIMI -->
-        <div class="stopwatch-box">
-            <div class="stopwatch-info">
-                <svg class="stopwatch-icon-svg" viewBox="0 0 24 24">
-                    <circle cx="12" cy="13" r="8"></circle>
-                    <path d="M12 9v4l2 2"></path>
-                    <path d="M5 3L2 6"></path>
-                    <path d="M19 3l3 3"></path>
-                    <path d="M10 2h4"></path>
-                </svg>
-                <div class="stopwatch-time" id="swDisplay">00:00.0</div>
-            </div>
-            <div class="stopwatch-controls">
-                <button class="sw-btn" id="swStartBtn" onclick="toggleStopwatch()">START</button>
-                <button class="sw-btn" onclick="resetStopwatch()">RESET</button>
-            </div>
-        </div>
-
-        <!-- 4. PASTKI QISMDAGI 2 TA IKONKA: REKLAMA (CHAT) VA ADMINKA (V STIKER BILAN) -->
-        <div class="bottom-actions-grid">
-            <!-- REKLAMA (CHAI) -->
-            <a href="https://t.me/acazes_chati" target="_blank" class="action-card" onclick="playWaterBubble('normal')">
+        <!-- Profil rasm yuklash -->
+        <div class="avatar-upload-wrapper">
+            <div class="avatar-preview" onclick="document.getElementById('fileInput').click()" id="avatarBox">
                 <svg viewBox="0 0 24 24">
-                    <path d="M21 115a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
                 </svg>
-                <div class="action-card-text">
-                    <div class="action-card-title">REKLAMA</div>
-                    <div class="action-card-subtitle">Obuna bo'lish</div>
-                </div>
-            </a>
-
-            <!-- ADMINKA (V STIKER BILAN) -->
-            <a href="https://t.me/FarzonaTurayeva?text=%E2%9%A0%20Iltimos%2C%20faqat%20mani%20so%CA%BBkmang.%20Xatolarim%20sababini%20shunchaki%20tushuntiring%20%F0%9F%A5%B0" target="_blank" class="action-card" onclick="playWaterBubble('equals')">
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                    <text x="9" y="16" font-size="10" font-weight="900" fill="currentColor" stroke="none">v</text>
-                </svg>
-                <div class="action-card-text">
-                    <div class="action-card-title">ADMINKA</div>
-                    <div class="action-card-subtitle">Lichkaga o'tish</div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <!-- 5. SHARH MODAL OYNASI -->
-    <div class="modal-overlay" id="reviewModal">
-        <div class="modal-card">
-            <div class="modal-title">ILOVANI BAHOLANG</div>
-            
-            <div class="stars-container" id="starsContainer">
-                <svg class="star-svg" viewBox="0 0 24 24" onclick="setRating(1)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg class="star-svg" viewBox="0 0 24 24" onclick="setRating(2)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg class="star-svg" viewBox="0 0 24 24" onclick="setRating(3)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg class="star-svg" viewBox="0 0 24 24" onclick="setRating(4)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg class="star-svg" viewBox="0 0 24 24" onclick="setRating(5)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <svg class="star-svg" viewBox="0 0 24 24" onclick="setRating(6)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <img id="avatarImg" src="" alt="Avatar">
             </div>
+            <span class="avatar-label">Profil rasm tanlash</span>
+            <input type="file" id="fileInput" accept="image/*" onchange="previewAvatar(event)">
+        </div>
 
-            <textarea class="review-textarea" id="reviewText" maxlength="500" placeholder="Fikr va mulohazalaringizni yozing..." oninput="updateCharCount()"></textarea>
-            <div class="char-counter" id="charCounter">0 / 500</div>
+        <!-- Nickname kiritish -->
+        <div class="input-group">
+            <label class="input-label">Nickname (Taxallus)</label>
+            <input type="text" id="nicknameInput" class="custom-input" placeholder="Masalan: shohruz" maxlength="18" oninput="checkNickname()">
+            <div class="char-hint" id="charHint">6 - 18 ta harf</div>
+        </div>
 
-            <div class="modal-btns">
-                <button class="modal-btn cancel" onclick="closeModal('reviewModal')">Bekor qilish</button>
-                <button class="modal-btn confirm" id="submitReviewBtn" onclick="submitReview()">Tasdiqlash</button>
+        <!-- Tug'ilgan yil va sana (SVG Premium uslubida) -->
+        <div class="input-group">
+            <label class="input-label">Tug'ilgan sana va yil</label>
+            <div class="date-select-grid">
+                <div class="select-wrapper">
+                    <select id="yearSelect">
+                        <option value="" disabled selected>Yil</option>
+                    </select>
+                </div>
+                <div class="select-wrapper">
+                    <select id="monthSelect">
+                        <option value="" disabled selected>Oy</option>
+                        <option value="1">Yanvar</option>
+                        <option value="2">Fevral</option>
+                        <option value="3">Mart</option>
+                        <option value="4">Aprel</option>
+                        <option value="5">May</option>
+                        <option value="6">Iyun</option>
+                        <option value="7">Iyul</option>
+                        <option value="8">Avgust</option>
+                        <option value="9">Sentabr</option>
+                        <option value="10">Oktabr</option>
+                        <option value="11">Noyabr</option>
+                        <option value="12">Dekabr</option>
+                    </select>
+                </div>
+                <div class="select-wrapper">
+                    <select id="daySelect">
+                        <option value="" disabled selected>Kun</option>
+                    </select>
+                </div>
             </div>
         </div>
+
+        <!-- TSADIQLASH TUGMASI -->
+        <button class="submit-btn" onclick="submitRegistration()">TSADIQLASH</button>
     </div>
 
     <script>
@@ -930,362 +393,78 @@
             window.Telegram.WebApp.expand();
         }
 
-        // ================= MATEMATIKA FON ANIMATSIYASI =================
-        const formulas = [
-            "E = mc²", "∫ f(x)dx", "a² + b² = c²", "π ≈ 3.14159", 
-            "∑ xᵢ", "sin²α + cos²α = 1", "√x", "log(x)", 
-            "f'(x) = 3x²", "A = πr²", "x = (-b ± √(b² - 4ac)) / 2a",
-            "1, 2, 3, 5, 8, 13", "sin(90°) = 1", "10 × 10 = 100", "Δx → 0"
-        ];
-
-        function createMathBackground() {
-            const container = document.getElementById('mathBg');
-            for (let i = 0; i < 22; i++) {
-                const el = document.createElement('div');
-                el.className = 'math-formula';
-                el.innerText = formulas[Math.floor(Math.random() * formulas.length)];
-                el.style.left = Math.random() * 90 + '%';
-                el.style.fontSize = (Math.random() * 10 + 14) + 'px';
-                el.style.animationDuration = (Math.random() * 8 + 7) + 's';
-                el.style.animationDelay = (Math.random() * 5) + 's';
-                container.appendChild(el);
-            }
-        }
-        createMathBackground();
-
-        // ================= ASMR SUV "BULQ" OVOZ SINTEZATORI =================
-        let audioCtx = null;
-        let isSoundEnabled = true;
-        let currentThemeMode = 'female';
-
-        function initAudio() {
-            if (!audioCtx) {
-                const AudioContext = window.AudioContext || window.webkitAudioContext;
-                audioCtx = new AudioContext();
-            }
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
+        // Yillarni dinamik to'ldirish (2016 dan 1950 gacha)
+        const yearSelect = document.getElementById('yearSelect');
+        for (let y = 2016; y >= 1950; y--) {
+            let opt = document.createElement('option');
+            opt.value = y;
+            opt.innerText = y + "-yil";
+            yearSelect.appendChild(opt);
         }
 
-        function playWaterBubble(type = 'normal') {
-            if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.HapticFeedback) {
-                window.Telegram.WebApp.HapticFeedback.impactOccurred(type === 'equals' ? 'medium' : 'light');
-            }
-
-            if (!isSoundEnabled) return;
-            initAudio();
-
-            const now = audioCtx.currentTime;
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-
-            osc.type = 'sine';
-
-            if (type === 'equals') {
-                osc.frequency.setValueAtTime(440, now);
-                osc.frequency.exponentialRampToValueAtTime(880, now + 0.08);
-                osc.frequency.exponentialRampToValueAtTime(1100, now + 0.15);
-
-                gain.gain.setValueAtTime(0.001, now);
-                gain.gain.linearRampToValueAtTime(0.3, now + 0.02);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
-
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start(now);
-                osc.stop(now + 0.22);
-                return;
-            }
-
-            if (type === 'clear') {
-                osc.frequency.setValueAtTime(500, now);
-                osc.frequency.exponentialRampToValueAtTime(180, now + 0.09);
-
-                gain.gain.setValueAtTime(0.001, now);
-                gain.gain.linearRampToValueAtTime(0.25, now + 0.015);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
-            } else {
-                const startFreq = currentThemeMode === 'female' ? 420 : 320;
-                const peakFreq = currentThemeMode === 'female' ? 980 : 760;
-                const endFreq = currentThemeMode === 'female' ? 600 : 450;
-
-                osc.frequency.setValueAtTime(startFreq, now);
-                osc.frequency.exponentialRampToValueAtTime(peakFreq, now + 0.04);
-                osc.frequency.exponentialRampToValueAtTime(endFreq, now + 0.08);
-
-                gain.gain.setValueAtTime(0.001, now);
-                gain.gain.linearRampToValueAtTime(0.32, now + 0.01);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.085);
-            }
-
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-
-            osc.start(now);
-            osc.stop(now + 0.09);
+        // Kunlarni dinamik to'ldirish (1 dan 31 gacha)
+        const daySelect = document.getElementById('daySelect');
+        for (let d = 1; d <= 31; d++) {
+            let opt = document.createElement('option');
+            opt.value = d;
+            opt.innerText = d + "-kun";
+            daySelect.appendChild(opt);
         }
 
-        // ================= SEKUNDOMER LOGIKASI =================
-        let swTimer = null;
-        let swStartTime = 0;
-        let swElapsedTime = 0;
-        let swRunning = false;
-
-        function toggleStopwatch() {
-            playWaterBubble('normal');
-            const btn = document.getElementById('swStartBtn');
-            const now = Date.now();
-
-            if (!swRunning) {
-                swRunning = true;
-                swStartTime = now - swElapsedTime;
-                swTimer = setInterval(updateStopwatch, 100);
-                btn.innerText = "STOP";
-            } else {
-                swRunning = false;
-                clearInterval(swTimer);
-                swElapsedTime = now - swStartTime;
-                btn.innerText = "START";
-            }
-        }
-
-        function updateStopwatch() {
-            const now = Date.now();
-            const diff = now - swStartTime;
-            
-            const minutes = Math.floor(diff / 60000);
-            const seconds = Math.floor((diff % 60000) / 1000);
-            const tenths = Math.floor((diff % 1000) / 100);
-
-            const minStr = minutes < 10 ? '0' + minutes : minutes;
-            const secStr = seconds < 10 ? '0' + seconds : seconds;
-
-            document.getElementById('swDisplay').innerText = `${minStr}:${secStr}.${tenths}`;
-        }
-
-        function resetStopwatch() {
-            playWaterBubble('clear');
-            swRunning = false;
-            clearInterval(swTimer);
-            swElapsedTime = 0;
-            document.getElementById('swDisplay').innerText = "00:00.0";
-            document.getElementById('swStartBtn').innerText = "START";
-        }
-
-        // ================= REJIM VA EKRAN BOSHQARUVI =================
-        const splashScreen = document.getElementById('splashScreen');
-        const mathBg = document.getElementById('mathBg');
-        const bgSvg = document.getElementById('bgSvg');
-        const calcApp = document.getElementById('calcApp');
-        const gridPattern = document.getElementById('gridPattern');
-
-        function selectMode(mode) {
-            currentThemeMode = mode;
-            playWaterBubble('equals');
-
-            document.body.classList.remove('theme-male', 'theme-female');
-            mathBg.style.display = 'none';
-            bgSvg.style.display = 'block';
-            
-            if (mode === 'male') {
-                document.body.classList.add('theme-male');
-                gridPattern.innerHTML = `
-                    <path d="M 35 0 L 0 0 0 35" fill="none" stroke="#000000" stroke-width="0.6" stroke-opacity="0.08"/>
-                    <circle cx="0" cy="0" r="1.2" fill="#000000" fill-opacity="0.18"/>
-                `;
-            } else {
-                document.body.classList.add('theme-female');
-                gridPattern.innerHTML = `
-                    <path d="M 35 0 L 0 0 0 35" fill="none" stroke="#ff1493" stroke-width="0.6" stroke-opacity="0.22"/>
-                    <circle cx="0" cy="0" r="1.2" fill="#ff69b4" fill-opacity="0.35"/>
-                `;
-            }
-
-            splashScreen.style.display = 'none';
-            calcApp.style.display = 'flex';
-        }
-
-        function goBackToSelection() {
-            playWaterBubble('clear');
-            document.body.classList.remove('theme-male', 'theme-female');
-            bgSvg.style.display = 'none';
-            mathBg.style.display = 'block';
-            calcApp.style.display = 'none';
-            splashScreen.style.display = 'flex';
-        }
-
-        // ================= MODAL VA SHARH BOSHQARUVI =================
-        function openModal(modalId) {
-            playWaterBubble('normal');
-            document.getElementById(modalId).style.display = 'flex';
-        }
-
-        function closeModal(modalId) {
-            playWaterBubble('clear');
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        let selectedRating = 0;
-
-        function setRating(rating) {
-            playWaterBubble('normal');
-            selectedRating = rating;
-            const stars = document.querySelectorAll('.star-svg');
-            stars.forEach((star, index) => {
-                if (index < rating) {
-                    star.classList.add('active');
-                } else {
-                    star.classList.remove('active');
+        // Galereyadan rasm tanlash va ko'rsatish
+        function previewAvatar(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById('avatarImg');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                    document.querySelector('#avatarBox svg').style.display = 'none';
                 }
-            });
-        }
-
-        function updateCharCount() {
-            const text = document.getElementById('reviewText').value;
-            if (text.length > 500) {
-                document.getElementById('reviewText').value = text.substring(0, 500);
+                reader.readAsDataURL(file);
             }
-            document.getElementById('charCounter').innerText = `${document.getElementById('reviewText').value.length} / 500`;
         }
 
-        function submitReview() {
-            const lastReviewTime = localStorage.getItem('last_review_time');
-            const now = Date.now();
-            const coolDownTime = 5 * 60 * 1000; // 5 minut
+        // Nickname uzunligini tekshirish (6 tadan 18 tagacha)
+        function checkNickname() {
+            const val = document.getElementById('nicknameInput').value;
+            const hint = document.getElementById('charHint');
+            const len = val.length;
 
-            if (lastReviewTime && (now - lastReviewTime < coolDownTime)) {
-                const remainingSec = Math.ceil((coolDownTime - (now - lastReviewTime)) / 1000);
-                const minutes = Math.floor(remainingSec / 60);
-                const seconds = remainingSec % 60;
-                alert(`Iltimos, yana sharh yozish uchun ${minutes} daqiqa ${seconds} soniya kuting!`);
+            if (len === 0) {
+                hint.innerText = "6 - 18 ta harf";
+                hint.style.color = "#666666";
+            } else if (len < 6) {
+                hint.innerText = `Yana ${6 - len} ta harf kiriting (${len}/18)`;
+                hint.style.color = "#ff4d4d";
+            } else if (len <= 18) {
+                hint.innerText = `Ajoyib! (${len}/18)`;
+                hint.style.color = "#00ffcc";
+            } else {
+                hint.innerText = "Ko'pi bilan 18 ta harf bo'lishi kerak!";
+                hint.style.color = "#ff4d4d";
+            }
+        }
+
+        // Tasdiqlash tugmasi bosilganda tekshiruv
+        function submitRegistration() {
+            const nickname = document.getElementById('nicknameInput').value.trim();
+            const year = yearSelect.value;
+            const month = document.getElementById('monthSelect').value;
+            const day = daySelect.value;
+
+            if (nickname.length < 6 || nickname.length > 18) {
+                alert("Nickname kamida 6 tadan va ko'pi bilan 18 ta harfdan iborat bo'lishi kerak!");
                 return;
             }
 
-            if (selectedRating === 0) {
-                alert("Iltimos, avval yulduzchalardan birini tanlab baho bering!");
+            if (!year || !month || !day) {
+                alert("Iltimos, tug'ilgan sanangizni to'liq tanlang!");
                 return;
             }
 
-            playWaterBubble('equals');
-            localStorage.setItem('last_review_time', now);
-
-            const review = document.getElementById('reviewText').value || "Sharh yozilmagan";
-            const stats = `⭐ Baho: ${selectedRating} / 6\n💬 Sharh: ${review}`;
-            const encodedStats = encodeURIComponent(`Ilova uchun yuborilgan statistika:\n\n${stats}`);
-            window.location.href = `https://t.me/FarzonaTurayeva?text=${encodedStats}`;
-        }
-
-        // ================= KALKULYATOR LOGIKASI =================
-        let currentOperand = '0';
-        let previousOperand = '';
-        let operation = undefined;
-
-        const currDisplay = document.getElementById('currOperand');
-        const prevDisplay = document.getElementById('prevOperand');
-
-        function adjustFontSize() {
-            const len = currentOperand.toString().length;
-            if (len > 15) {
-                currDisplay.style.fontSize = '20px';
-            } else if (len > 11) {
-                currDisplay.style.fontSize = '26px';
-            } else {
-                currDisplay.style.fontSize = '34px';
-            }
-        }
-
-        function updateDisplay() {
-            currDisplay.innerText = currentOperand;
-            adjustFontSize();
-            currDisplay.scrollLeft = currDisplay.scrollWidth;
-
-            if (operation != null) {
-                prevDisplay.innerText = `${previousOperand} ${operation}`;
-            } else {
-                prevDisplay.innerText = '';
-            }
-        }
-
-        function appendNumber(number) {
-            playWaterBubble('normal');
-            if (number === '.' && currentOperand.toString().includes('.')) return;
-            if (currentOperand === '0' && number !== '.') {
-                currentOperand = number.toString();
-            } else {
-                currentOperand = currentOperand.toString() + number.toString();
-            }
-            updateDisplay();
-        }
-
-        function chooseOperation(op) {
-            playWaterBubble('normal');
-            if (currentOperand === '') return;
-            if (previousOperand !== '') {
-                compute(false);
-            }
-            operation = op;
-            previousOperand = currentOperand;
-            currentOperand = '';
-            updateDisplay();
-        }
-
-        function compute(playSound = true) {
-            if (playSound) playWaterBubble('equals');
-            let computation;
-            const prev = parseFloat(previousOperand);
-            const current = parseFloat(currentOperand);
-            if (isNaN(prev) || isNaN(current)) return;
-
-            switch (operation) {
-                case '+':
-                    computation = prev + current;
-                    break;
-                case '-':
-                    computation = prev - current;
-                    break;
-                case '×':
-                    computation = prev * current;
-                    break;
-                case '÷':
-                    if (current === 0) {
-                        currentOperand = 'Xato';
-                        previousOperand = '';
-                        operation = undefined;
-                        updateDisplay();
-                        return;
-                    }
-                    computation = prev / current;
-                    break;
-                default:
-                    return;
-            }
-
-            currentOperand = Math.round(computation * 100000000) / 100000000;
-            operation = undefined;
-            previousOperand = '';
-            updateDisplay();
-        }
-
-        function clearDisplay() {
-            playWaterBubble('clear');
-            currentOperand = '0';
-            previousOperand = '';
-            operation = undefined;
-            updateDisplay();
-        }
-
-        function deleteLast() {
-            playWaterBubble('clear');
-            if (currentOperand === 'Xato') {
-                clearDisplay();
-                return;
-            }
-            currentOperand = currentOperand.toString().slice(0, -1);
-            if (currentOperand === '' || currentOperand === '-') {
-                currentOperand = '0';
-            }
-            updateDisplay();
+            alert(`Tabriklaymiz, ${nickname}! Ro'yxatdan muvaffaqiyatli o'tdingiz.`);
         }
     </script>
 </body>
