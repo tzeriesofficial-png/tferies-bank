@@ -58,57 +58,130 @@
             display: none;
             flex: 1;
             width: 100%;
-            max-width: 450px;
+            max-width: 400px;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 20px;
             text-align: center;
-            overflow-y: auto;
         }
 
         .tab-content.active {
             display: flex;
         }
 
-        /* Balance Display */
-        .balance-box {
-            font-size: 32px;
+        /* Tap Game Container */
+        .tap-game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            gap: 24px;
+            position: relative;
+        }
+
+        .balance-display {
+            font-size: 38px;
             font-weight: 900;
-            margin-bottom: 20px;
             letter-spacing: 1px;
         }
 
-        /* Circular Tap Button */
+        /* Professional SVG Tapper Button */
         .tap-circle {
-            width: 200px;
-            height: 200px;
+            width: 220px;
+            height: 220px;
             background: #111111;
             color: #ffffff;
             border-radius: 50%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-size: 26px;
-            font-weight: 900;
-            letter-spacing: 4px;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.22);
             user-select: none;
-            transition: transform 0.1s ease;
+            transition: transform 0.08s ease, box-shadow 0.08s ease;
             position: relative;
-            overflow: hidden;
+            border: 4px solid #333;
         }
 
         .tap-circle:active {
-            transform: scale(0.94);
+            transform: scale(0.93);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
-        .limit-info {
-            margin-top: 15px;
+        .tap-circle svg {
+            width: 50px;
+            height: 50px;
+            stroke: #ffffff;
+            fill: none;
+            stroke-width: 2.2;
+            margin-bottom: 8px;
+        }
+
+        .tap-circle span {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 4px;
+        }
+
+        /* Har bosganda chiqib keluvchi animatsiyalashgan yozuv */
+        .floating-text {
+            position: absolute;
+            font-size: 24px;
+            font-weight: 900;
+            color: #111111;
+            pointer-events: none;
+            animation: floatUp 0.8s ease-out forwards;
+            z-index: 100;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(0.8);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-80px) scale(1.2);
+            }
+        }
+
+        /* Energy Bar */
+        .energy-container {
+            width: 100%;
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 12px 16px;
+            border: 1.5px solid #e1e4e8;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .energy-bar-bg {
+            width: 100%;
+            height: 12px;
+            background: #e9ecef;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .energy-bar-fill {
+            width: 100%;
+            height: 100%;
+            background: #111111;
+            border-radius: 6px;
+            transition: width 0.15s linear;
+        }
+
+        .energy-info {
+            display: flex;
+            justify-content: space-between;
             font-size: 13px;
-            color: #666;
-            font-weight: 600;
+            font-weight: 700;
+            color: #444;
         }
 
         /* Boost Cards */
@@ -148,7 +221,7 @@
             font-size: 13px;
         }
 
-        /* Aviator Game Styles */
+        /* Aviator Game */
         .aviator-box {
             width: 100%;
             background: #f8f9fa;
@@ -171,8 +244,6 @@
             justify-content: center;
             align-items: center;
             color: #fff;
-            position: relative;
-            overflow: hidden;
         }
 
         .multiplier {
@@ -199,7 +270,7 @@
             cursor: pointer;
         }
 
-        /* Support User Cards */
+        /* Support Cards */
         .support-card {
             width: 100%;
             background: #f8f9fa;
@@ -212,28 +283,22 @@
             justify-content: space-between;
             text-decoration: none;
             color: #111;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
         }
 
         .user-meta {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
             font-weight: 700;
             font-size: 15px;
         }
 
-        /* Premium SVG Badges */
-        .badge-v {
+        .badge-svg {
             width: 18px;
             height: 18px;
-            fill: #007aff;
-        }
-
-        .badge-check {
-            width: 18px;
-            height: 18px;
-            fill: #34c759;
+            flex-shrink: 0;
+            display: inline-block;
+            vertical-align: middle;
         }
 
         /* Bottom Nav */
@@ -285,15 +350,8 @@
             margin-bottom: 4px;
         }
 
-        nav button.active svg {
-            stroke-width: 2.3;
-        }
-
-        nav span {
-            font-size: 11px;
-            font-weight: 600;
-            color: #555;
-        }
+        nav button.active svg { stroke-width: 2.3; }
+        nav span { font-size: 11px; font-weight: 600; color: #555; }
     </style>
 </head>
 <body>
@@ -305,17 +363,31 @@
 
     <!-- TAB 1: TeslaTap -->
     <div id="tab-tap" class="tab-content active">
-        <div class="balance-box"><span id="balance">0</span> TESLA</div>
-        <div class="tap-circle" onclick="tapTesla()">
-            TESLA
+        <div class="tap-game-container" id="tap-container">
+            <div class="balance-display"><span id="balance">0</span> TESLA</div>
+            
+            <div class="tap-circle" onclick="tapTesla(event)">
+                <svg viewBox="0 0 24 24">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+                <span>TESLA</span>
+            </div>
+
+            <div class="energy-container">
+                <div class="energy-info">
+                    <span>⚡ Energiya limiti</span>
+                    <span id="limit-text">10 / 10</span>
+                </div>
+                <div class="energy-bar-bg">
+                    <div class="energy-bar-fill" id="energy-bar"></div>
+                </div>
+            </div>
         </div>
-        <div class="limit-info" id="limit-text">Limit: 10 / 10</div>
     </div>
 
     <!-- TAB 2: Boost -->
     <div id="tab-boost" class="tab-content">
         <h2 style="margin-bottom: 20px; font-weight: 900; font-size: 22px;">Boostlar</h2>
-        
         <div class="boost-card">
             <div class="boost-info">
                 <h4>10 ta tap & Limit tugasin</h4>
@@ -323,7 +395,6 @@
             </div>
             <button class="btn-buy" onclick="buyBoost(1, 50, 2)">50 TESLA</button>
         </div>
-
         <div class="boost-card">
             <div class="boost-info">
                 <h4>20 ta tap & Limit tugasin</h4>
@@ -331,7 +402,6 @@
             </div>
             <button class="btn-buy" onclick="buyBoost(2, 50, 5)">50 TESLA</button>
         </div>
-
         <div class="boost-card">
             <div class="boost-info">
                 <h4>Vaqt tez tugasin</h4>
@@ -357,25 +427,23 @@
     <div id="tab-support" class="tab-content">
         <h2 style="margin-bottom: 20px; font-weight: 900; font-size: 22px;">Admin va Yordam</h2>
         
-        <!-- Admin 1 -->
         <a href="https://t.me/smpli" target="_blank" class="support-card">
             <div class="user-meta">
                 <span>@smpli</span>
-                <!-- Premium V Badge SVG -->
-                <svg class="badge-v" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z" fill="#007aff"></path>
+                <svg class="badge-svg" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" fill="#007aff"/>
+                    <path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
                 </svg>
             </div>
             <span style="font-size: 13px; color: #888;">Admin</span>
         </a>
 
-        <!-- Admin 2 -->
         <a href="https://t.me/FarzonaTurayeva" target="_blank" class="support-card">
             <div class="user-meta">
                 <span>@FarzonaTurayeva</span>
-                <!-- Premium Check Badge SVG -->
-                <svg class="badge-check" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#34c759"></path>
+                <svg class="badge-svg" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" fill="#34c759"/>
+                    <path d="M8 12l3 3 5-6" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
                 </svg>
             </div>
             <span style="font-size: 13px; color: #888;">Yordam</span>
@@ -403,14 +471,13 @@
     </nav>
 
     <script>
-        // State variables saved in LocalStorage
         let balance = parseInt(localStorage.getItem('tesla_balance')) || 0;
         let tapPower = parseInt(localStorage.getItem('tesla_power')) || 1;
         let maxLimit = parseInt(localStorage.getItem('tesla_limit')) || 10;
         let currentLimit = parseInt(localStorage.getItem('tesla_current_limit')) ?? maxLimit;
 
         document.getElementById('balance').innerText = balance;
-        updateLimitText();
+        updateUI();
 
         window.addEventListener('load', () => {
             setTimeout(() => {
@@ -427,29 +494,44 @@
             btn.classList.add('active');
         }
 
-        function tapTesla() {
-            if (currentLimit <= 0) {
-                alert("Limit tugadi! 10 sekund kuting yoki Boost sotib oling.");
-                return;
-            }
+        function tapTesla(event) {
+            if (currentLimit <= 0) return;
             balance += tapPower;
-            currentLimit--;
+            currentLimit -= 1;
             saveData();
-            document.getElementById('balance').innerText = balance;
-            updateLimitText();
+            updateUI();
 
-            // 10 sekundda limitni qayta tiklash
+            // Bosganda "+1 TESLA" (yoki power ga qarab) yozuvi chiqishi
+            const container = document.getElementById('tap-container');
+            const floatEl = document.createElement('div');
+            floatEl.className = 'floating-text';
+            floatEl.innerText = `+${tapPower} TESLA`;
+            
+            // Bosilgan joyga yaqinroq chiqishi uchun
+            const rect = event.target.getBoundingClientRect();
+            const x = event.clientX - rect.left || 50;
+            const y = event.clientY - rect.top || 50;
+            
+            floatEl.style.left = (x + 20) + 'px';
+            floatEl.style.top = (y - 20) + 'px';
+            
+            container.appendChild(floatEl);
+            setTimeout(() => floatEl.remove(), 800);
+
             setTimeout(() => {
                 if (currentLimit < maxLimit) {
                     currentLimit++;
                     saveData();
-                    updateLimitText();
+                    updateUI();
                 }
             }, 10000);
         }
 
-        function updateLimitText() {
-            document.getElementById('limit-text').innerText = `Limit: ${currentLimit} / ${maxLimit}`;
+        function updateUI() {
+            document.getElementById('balance').innerText = balance;
+            document.getElementById('limit-text').innerText = `${currentLimit} / ${maxLimit}`;
+            let percent = (currentLimit / maxLimit) * 100;
+            document.getElementById('energy-bar').style.width = percent + '%';
         }
 
         function buyBoost(id, cost, powerVal) {
@@ -463,14 +545,10 @@
                 maxLimit = 20;
             } else if (id === 2) {
                 maxLimit = 30;
-            } else if (id === 3) {
-                // Vaqtni qisqartirish logikasi
-                alert("Vaqt tezlashtirildi!");
             }
             currentLimit = maxLimit;
             saveData();
-            document.getElementById('balance').innerText = balance;
-            updateLimitText();
+            updateUI();
             alert("Boost muvaffaqiyatli faollashtirildi!");
         }
 
@@ -481,7 +559,7 @@
             localStorage.setItem('tesla_current_limit', currentLimit);
         }
 
-        // Aviator Game Logic
+        // Aviator Game
         let gameInterval = null;
         function startAviator() {
             if (balance < 1) {
@@ -489,7 +567,7 @@
                 return;
             }
             balance -= 1;
-            document.getElementById('balance').innerText = balance;
+            updateUI();
             saveData();
 
             let mult = 1.00;
@@ -501,7 +579,7 @@
             btn.onclick = cashOut;
             status.innerText = "Raketa uchmoqda...";
 
-            let crashAt = (Math.random() * 3 + 1.2).toFixed(2); // Tasodifiy portlash nuqtasi
+            let crashAt = (Math.random() * 3 + 1.2).toFixed(2);
 
             gameInterval = setInterval(() => {
                 mult += 0.05;
@@ -514,16 +592,13 @@
                     btn.onclick = startAviator;
                 }
             }, 150);
-
-            window.currentMultiplier = mult;
-            window.crashPoint = crashAt;
         }
 
         function cashOut() {
             clearInterval(gameInterval);
             let winAmount = Math.floor(1 * parseFloat(document.getElementById('multiplier').innerText));
             balance += winAmount;
-            document.getElementById('balance').innerText = balance;
+            updateUI();
             saveData();
 
             document.getElementById('game-status').innerText = `Tabriklayman! ${winAmount} TESLA yutib oldingiz 🎉`;
