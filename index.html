@@ -12,10 +12,10 @@
             padding: 0;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            /* Orqa fon: oddiy, toza och ko'k rang (SVG siz) */
             background-color: #2998ff;
             height: 100vh;
             display: flex;
@@ -23,9 +23,36 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            position: relative;
         }
 
-        .container {
+        /* Sahifalar kontyeneri */
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .page.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.96);
+        }
+
+        .page.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* 1-Oyna: Landing (Kirish) */
+        .landing-container {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -43,7 +70,6 @@
             overflow: visible;
         }
 
-        /* Harflarning birma-bir chiqish animatsiyasi */
         @keyframes letterAppear {
             0% {
                 opacity: 0;
@@ -55,7 +81,6 @@
             }
         }
 
-        /* Barcha harflar chiqib bo'lgach birdan oq nurlanib yonib turishi */
         @keyframes whiteGlowPulse {
             0%, 100% {
                 filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.65)) drop-shadow(0 0 22px rgba(255, 255, 255, 0.35));
@@ -76,7 +101,6 @@
         .char-5 { opacity: 0; animation: letterAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.95s forwards; }
         .char-6 { opacity: 0; animation: letterAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.15s forwards; }
 
-        /* Oq rangli Premium SVG KIRISH tugmasi */
         .enter-svg-btn {
             background: none;
             border: none;
@@ -91,7 +115,6 @@
 
         .enter-svg-btn:active {
             transform: scale(0.93);
-            filter: drop-shadow(0 5px 12px rgba(0, 60, 130, 0.18));
         }
 
         .btn-shine {
@@ -102,86 +125,258 @@
             0% { transform: translateX(-220px); }
             50%, 100% { transform: translateX(260px); }
         }
+
+        /* 2-Oyna: Asosiy Market Konteyneri */
+        .market-container {
+            width: 100%;
+            max-width: 440px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px 16px 0 16px;
+        }
+
+        .tab-view {
+            display: none;
+            flex: 1;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .tab-view.active {
+            display: flex;
+        }
+
+        .tab-content-box h2 {
+            font-size: 26px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+
+        .tab-content-box p {
+            font-size: 14.5px;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 600;
+        }
+
+        /* Pastki 4 ta Ikonkali Navigatsiya */
+        .bottom-nav {
+            width: 100%;
+            height: 78px;
+            background: rgba(0, 60, 140, 0.35);
+            backdrop-filter: blur(25px);
+            border: 1.5px solid rgba(255, 255, 255, 0.22);
+            border-radius: 22px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 10px;
+            box-shadow: 0 10px 30px rgba(0, 50, 120, 0.25);
+        }
+
+        .nav-item {
+            background: none;
+            border: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            width: 25%;
+            height: 100%;
+            opacity: 0.65;
+            transition: all 0.25s ease;
+        }
+
+        .nav-item.active {
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+
+        .nav-item.active span {
+            color: #ffffff;
+            font-weight: 900;
+            text-shadow: 0 0 10px rgba(255,255,255,0.8);
+        }
+
+        /* Qimirlab turuvchi qora/oq premium SVG ikonka animatsiyasi */
+        .nav-svg-icon {
+            width: 26px;
+            height: 26px;
+            stroke: #ffffff;
+            fill: none;
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            margin-bottom: 5px;
+            animation: iconWiggle 2s infinite ease-in-out;
+            filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+        }
+
+        .nav-item.active .nav-svg-icon {
+            stroke-width: 2.6;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.95));
+        }
+
+        @keyframes iconWiggle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.12) rotate(-6deg); }
+            50% { transform: scale(0.95) rotate(4deg); }
+            75% { transform: scale(1.08) rotate(6deg); }
+        }
+
+        .nav-item span {
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.85);
+            letter-spacing: 0.2px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Oq rangli Premium SVG: A C A Z E S -->
-        <svg class="logo-svg animated-logo" viewBox="0 0 360 90" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="whitePremiumGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stop-color="#ffffff"/>
-                    <stop offset="80%" stop-color="#f2f8ff"/>
-                    <stop offset="100%" stop-color="#dceeff"/>
-                </linearGradient>
-
-                <linearGradient id="whiteFrameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="rgba(255, 255, 255, 0.85)"/>
-                    <stop offset="100%" stop-color="rgba(255, 255, 255, 0.35)"/>
-                </linearGradient>
-            </defs>
-
-            <!-- Dekorativ oq SVG burchaklar -->
-            <path d="M 20 12 L 8 12 L 8 24" fill="none" stroke="url(#whiteFrameGrad)" stroke-width="2.2" stroke-linecap="round"/>
-            <path d="M 340 12 L 352 12 L 352 24" fill="none" stroke="url(#whiteFrameGrad)" stroke-width="2.2" stroke-linecap="round"/>
-            <path d="M 20 78 L 8 78 L 8 66" fill="none" stroke="url(#whiteFrameGrad)" stroke-width="2.2" stroke-linecap="round"/>
-            <path d="M 340 78 L 352 78 L 352 66" fill="none" stroke="url(#whiteFrameGrad)" stroke-width="2.2" stroke-linecap="round"/>
-
-            <!-- Ketma-ket chiqadigan oq SVG harflar -->
-            <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="52" font-weight="900" fill="url(#whitePremiumGrad)" text-anchor="middle">
-                <text class="char-1" x="42" y="62">A</text>
-                <text class="char-2" x="96" y="62">C</text>
-                <text class="char-3" x="150" y="62">A</text>
-                <text class="char-4" x="204" y="62">Z</text>
-                <text class="char-5" x="258" y="62">E</text>
-                <text class="char-6" x="312" y="62">S</text>
-            </g>
-        </svg>
-
-        <!-- Oq rangli Premium SVG KIRISH Tugmasi -->
-        <button class="enter-svg-btn" onclick="enterMarket()" aria-label="Kirish">
-            <svg width="240" height="62" viewBox="0 0 240 62" xmlns="http://www.w3.org/2000/svg">
+    <!-- 1-OYNA: Kirish Sahifasi -->
+    <div id="landingPage" class="page active">
+        <div class="landing-container">
+            <svg class="logo-svg animated-logo" viewBox="0 0 360 90" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                    <linearGradient id="whiteBtnBg" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <linearGradient id="whitePremiumGrad" x1="0%" y1="0%" x2="0%" y2="100%">
                         <stop offset="0%" stop-color="#ffffff"/>
-                        <stop offset="100%" stop-color="#eef6ff"/>
+                        <stop offset="80%" stop-color="#f2f8ff"/>
+                        <stop offset="100%" stop-color="#dceeff"/>
                     </linearGradient>
-
-                    <linearGradient id="blueShine" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="rgba(41, 152, 255, 0)"/>
-                        <stop offset="50%" stop-color="rgba(41, 152, 255, 0.25)"/>
-                        <stop offset="100%" stop-color="rgba(41, 152, 255, 0)"/>
+                    <linearGradient id="whiteFrameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="rgba(255, 255, 255, 0.85)"/>
+                        <stop offset="100%" stop-color="rgba(255, 255, 255, 0.35)"/>
                     </linearGradient>
-
-                    <clipPath id="btnClip">
-                        <rect x="2" y="2" width="236" height="58" rx="18"/>
-                    </clipPath>
                 </defs>
-
-                <!-- Oq tugma asosi -->
-                <rect x="2" y="2" width="236" height="58" rx="18" fill="url(#whiteBtnBg)"/>
-                
-                <!-- Harakatlanuvchi yaltiroq nur -->
-                <g clip-path="url(#btnClip)">
-                    <polygon class="btn-shine" points="0,0 45,0 20,62 -25,62" fill="url(#blueShine)"/>
-                </g>
-
-                <!-- KIRISH matni (och ko'k rangda, oq fon ustida aniq ko'rinishi uchun) -->
-                <text x="106" y="32" text-anchor="middle" dominant-baseline="middle"
-                      fill="#1884eb"
-                      font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
-                      font-size="16" font-weight="900" letter-spacing="3.5">
-                    KIRISH
-                </text>
-
-                <!-- Premium SVG Strelka -->
-                <g transform="translate(166, 21)" stroke="#1884eb" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
-                    <line x1="0" y1="10" x2="16" y2="10"/>
-                    <polyline points="10 4 16 10 10 16"/>
+                <path d="M 20 12 L 8 12 L 8 24" fill="none" stroke="url(#whiteFrameGrad)" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M 340 12 L 352 12 L 352 24" fill="none" stroke="url(#whiteFrameGrad)" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M 20 78 L 8 78 L 8 66" fill="none" stroke="url(#whiteFrameGrad)" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M 340 78 L 352 78 L 352 66" fill="none" stroke="url(#whiteFrameGrad)" stroke-width="2.2" stroke-linecap="round"/>
+                <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="52" font-weight="900" fill="url(#whitePremiumGrad)" text-anchor="middle">
+                    <text class="char-1" x="42" y="62">A</text>
+                    <text class="char-2" x="96" y="62">C</text>
+                    <text class="char-3" x="150" y="62">A</text>
+                    <text class="char-4" x="204" y="62">Z</text>
+                    <text class="char-5" x="258" y="62">E</text>
+                    <text class="char-6" x="312" y="62">S</text>
                 </g>
             </svg>
-        </button>
+
+            <button class="enter-svg-btn" onclick="goToMarket()" aria-label="Kirish">
+                <svg width="240" height="62" viewBox="0 0 240 62" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="whiteBtnBg" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="100%" stop-color="#eef6ff"/>
+                        </linearGradient>
+                        <linearGradient id="blueShine" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="rgba(41, 152, 255, 0)"/>
+                            <stop offset="50%" stop-color="rgba(41, 152, 255, 0.25)"/>
+                            <stop offset="100%" stop-color="rgba(41, 152, 255, 0)"/>
+                        </linearGradient>
+                        <clipPath id="btnClip">
+                            <rect x="2" y="2" width="236" height="58" rx="18"/>
+                        </clipPath>
+                    </defs>
+                    <rect x="2" y="2" width="236" height="58" rx="18" fill="url("url(#whiteBtnBg)")"/>
+                    <rect x="2" y="2" width="236" height="58" rx="18" fill="url(#whiteBtnBg)"/>
+                    <g clip-path="url(#btnClip)">
+                        <polygon class="btn-shine" points="0,0 45,0 20,62 -25,62" fill="url(#blueShine)"/>
+                    </g>
+                    <text x="106" y="32" text-anchor="middle" dominant-baseline="middle" fill="#1884eb" font-size="16" font-weight="900" letter-spacing="3.5">KIRISH</text>
+                    <g transform="translate(166, 21)" stroke="#1884eb" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+                        <line x1="0" y1="10" x2="16" y2="10"/>
+                        <polyline points="10 4 16 10 10 16"/>
+                    </g>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- 2-OYNA: Asosiy Oyna (Stars, Premium, Admin, Support) -->
+    <div id="marketPage" class="page hidden">
+        <div class="market-container">
+            
+            <!-- STARS BO'LIMI -->
+            <div id="view-stars" class="tab-view active">
+                <div class="tab-content-box">
+                    <h2>⭐ Stars</h2>
+                    <p>Telegram yulduzlarini boshqarish va to'ldirish bo'limi.</p>
+                </div>
+            </div>
+
+            <!-- PREMIUM BO'LIMI -->
+            <div id="view-premium" class="tab-view">
+                <div class="tab-content-box">
+                    <h2>💎 Premium</h2>
+                    <p>Telegram Premium obunalarini qulay narxlarda xarid qiling.</p>
+                </div>
+            </div>
+
+            <!-- ADMIN BO'LIMI -->
+            <div id="view-admin" class="tab-view">
+                <div class="tab-content-box">
+                    <h2>🛡️ Admin</h2>
+                    <p>Boshqaruv paneli va maxsus buyruqlar bo'limi.</p>
+                </div>
+            </div>
+
+            <!-- SUPPORT BO'LIMI -->
+            <div id="view-support" class="tab-view">
+                <div class="tab-content-box">
+                    <h2>🎧 Support</h2>
+                    <p>Savollar va texnik yordam uchun operator bilan bog'laning.</p>
+                </div>
+            </div>
+
+            <!-- Pastdagi 4 ta Qimirlab turuvchi Premium SVG Ikonkali Menyu -->
+            <div class="bottom-nav">
+                <!-- Stars Ikonkasi (Yulduzcha SVG) -->
+                <button class="nav-item active" onclick="switchTab('stars', this)">
+                    <svg class="nav-svg-icon" viewBox="0 0 24 24">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                    <span>Stars</span>
+                </button>
+
+                <!-- Premium Ikonkasi (Olmos / Diamond SVG) -->
+                <button class="nav-item" onclick="switchTab('premium', this)">
+                    <svg class="nav-svg-icon" viewBox="0 0 24 24">
+                        <path d="M6 3h12l4 6-10 13L2 9z"></path>
+                        <path d="M11 3L8 9l4 13 4-13-3-6"></path>
+                        <line x1="2" y1="9" x2="22" y2="9"></line>
+                    </svg>
+                    <span>Premium</span>
+                </button>
+
+                <!-- Admin Ikonkasi (Qalqon / Shield SVG) -->
+                <button class="nav-item" onclick="switchTab('admin', this)">
+                    <svg class="nav-svg-icon" viewBox="0 0 24 24">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        <polyline points="9 12 11 14 15 10"></polyline>
+                    </svg>
+                    <span>Admin</span>
+                </button>
+
+                <!-- Support Ikonkasi (Naushnik / Headset SVG) -->
+                <button class="nav-item" onclick="switchTab('support', this)">
+                    <svg class="nav-svg-icon" viewBox="0 0 24 24">
+                        <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                        <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                    </svg>
+                    <span>Support</span>
+                </button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -190,10 +385,27 @@
             window.Telegram.WebApp.expand();
         }
 
-        function enterMarket() {
+        function goToMarket() {
             if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.HapticFeedback) {
                 window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
             }
+            document.getElementById('landingPage').classList.remove('active');
+            document.getElementById('landingPage').classList.add('hidden');
+            
+            document.getElementById('marketPage').classList.remove('hidden');
+            document.getElementById('marketPage').classList.add('active');
+        }
+
+        function switchTab(tabName, btn) {
+            if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.HapticFeedback) {
+                window.Telegram.WebApp.HapticFeedback.selectionChanged();
+            }
+            
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            btn.classList.add('active');
+
+            document.querySelectorAll('.tab-view').forEach(view => view.classList.remove('active'));
+            document.getElementById('view-' + tabName).classList.add('active');
         }
     </script>
 </body>
