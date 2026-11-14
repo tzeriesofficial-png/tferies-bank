@@ -26,6 +26,53 @@
             position: relative;
         }
 
+        /* Yangi yil archa chiroqchalari (Garland) ekanning chekkalari bo'ylab */
+        .garland-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .bulb {
+            position: absolute;
+            width: 10px;
+            height: 14px;
+            border-radius: 50%;
+            animation: bulbGlow 1.2s infinite alternate ease-in-out;
+        }
+
+        @keyframes bulbGlow {
+            0% { opacity: 0.3; transform: scale(0.8); filter: drop-shadow(0 0 2px currentColor); }
+            100% { opacity: 1; transform: scale(1.2); filter: drop-shadow(0 0 10px currentColor); }
+        }
+
+        /* Yuqori chekka chiroqlari */
+        .b-top-1 { top: 6px; left: 10%; background: #ff3333; color: #ff3333; animation-delay: 0.1s; }
+        .b-top-2 { top: 6px; left: 30%; background: #33ff33; color: #33ff33; animation-delay: 0.4s; }
+        .b-top-3 { top: 6px; left: 50%; background: #ffff33; color: #ffff33; animation-delay: 0.2s; }
+        .b-top-4 { top: 6px; left: 70%; background: #33ffff; color: #33ffff; animation-delay: 0.5s; }
+        .b-top-5 { top: 6px; left: 90%; background: #ff33ff; color: #ff33ff; animation-delay: 0.3s; }
+
+        /* Pastki chekka chiroqlari */
+        .b-bot-1 { bottom: 6px; left: 15%; background: #ffff33; color: #ffff33; animation-delay: 0.3s; }
+        .b-bot-2 { bottom: 6px; left: 35%; background: #ff3333; color: #ff3333; animation-delay: 0.6s; }
+        .b-bot-3 { bottom: 6px; left: 55%; background: #33ffff; color: #33ffff; animation-delay: 0.1s; }
+        .b-bot-4 { bottom: 6px; left: 75%; background: #33ff33; color: #33ff33; animation-delay: 0.4s; }
+
+        /* Chap chekka chiroqlari */
+        .b-left-1 { left: 6px; top: 25%; background: #ff33ff; color: #ff33ff; animation-delay: 0.2s; }
+        .b-left-2 { left: 6px; top: 55%; background: #33ffff; color: #33ffff; animation-delay: 0.5s; }
+        .b-left-3 { left: 6px; top: 80%; background: #ff3333; color: #ff3333; animation-delay: 0.3s; }
+
+        /* O'ng chekka chiroqlari */
+        .b-right-1 { right: 6px; top: 25%; background: #33ff33; color: #33ff33; animation-delay: 0.4s; }
+        .b-right-2 { right: 6px; top: 55%; background: #ffff33; color: #ffff33; animation-delay: 0.1s; }
+        .b-right-3 { right: 6px; top: 80%; background: #ff33ff; color: #ff33ff; animation-delay: 0.6s; }
+
         .page {
             position: absolute;
             top: 0;
@@ -410,7 +457,6 @@
             margin-bottom: 4px;
         }
 
-        /* Qora rangdagi Lichkaga o'tish tugmasi */
         .dm-black-btn {
             background: #000000;
             color: #ffffff;
@@ -455,20 +501,20 @@
             max-width: 320px;
         }
 
-        /* Pastki Navigatsiya: Qora rangdagi qimirlab turuvchi ikonka va yozuvlar */
+        /* Pastki Navigatsiya: Qora ikonka va oqish yorug'lik konturi */
         .bottom-nav {
             width: 100%;
             height: 78px;
-            background: rgba(15, 23, 42, 0.75);
+            background: rgba(15, 23, 42, 0.8);
             backdrop-filter: blur(25px);
-            border: 1.5px solid rgba(59, 164, 255, 0.3);
+            border: 1.5px solid rgba(59, 164, 255, 0.35);
             border-radius: 22px;
             margin-bottom: 16px;
             display: flex;
             justify-content: space-around;
             align-items: center;
             padding: 0 10px;
-            box-shadow: 0 10px 30px rgba(0, 15, 40, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 15, 40, 0.6);
             flex-shrink: 0;
         }
 
@@ -482,7 +528,7 @@
             cursor: pointer;
             width: 25%;
             height: 100%;
-            opacity: 0.75;
+            opacity: 0.85;
             transition: all 0.25s ease;
         }
 
@@ -492,28 +538,28 @@
         }
 
         .nav-item.active span {
-            color: #000000;
+            color: #ffffff;
             font-weight: 900;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
         }
 
-        /* Qora rangdagi va qimirlab turuvchi SVG ikonka */
+        /* Qora rangli va oqish yorug' konturli qimirlab turuvchi SVG ikonka */
         .nav-svg-icon {
             width: 26px;
             height: 26px;
             stroke: #000000;
             fill: none;
-            stroke-width: 2.4;
+            stroke-width: 2.6;
             stroke-linecap: round;
             stroke-linejoin: round;
             margin-bottom: 5px;
             animation: iconWiggle 1.6s infinite ease-in-out;
-            filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.7));
+            filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 8px rgba(0, 0, 0, 0.9));
         }
 
         .nav-item.active .nav-svg-icon {
-            stroke-width: 2.8;
-            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.95));
+            stroke-width: 3;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1)) drop-shadow(0 0 14px rgba(0, 0, 0, 1));
         }
 
         @keyframes iconWiggle {
@@ -526,12 +572,31 @@
         .nav-item span {
             font-size: 11px;
             font-weight: 800;
-            color: #000000;
+            color: rgba(255, 255, 255, 0.85);
             text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
         }
     </style>
 </head>
 <body>
+
+    <!-- Yangi yil archa chiroqchalari (Garland) -->
+    <div class="garland-container">
+        <div class="bulb b-top-1"></div>
+        <div class="bulb b-top-2"></div>
+        <div class="bulb b-top-3"></div>
+        <div class="bulb b-top-4"></div>
+        <div class="bulb b-top-5"></div>
+        <div class="bulb b-bot-1"></div>
+        <div class="bulb b-bot-2"></div>
+        <div class="bulb b-bot-3"></div>
+        <div class="bulb b-bot-4"></div>
+        <div class="bulb b-left-1"></div>
+        <div class="bulb b-left-2"></div>
+        <div class="bulb b-left-3"></div>
+        <div class="bulb b-right-1"></div>
+        <div class="bulb b-right-2"></div>
+        <div class="bulb b-right-3"></div>
+    </div>
 
     <!-- 1-OYNA: Kirish Sahifasi -->
     <div id="landingPage" class="page active">
@@ -708,14 +773,13 @@
                         </div>
                     </div>
                     <div class="admin-username">@org_karimov</div>
-                    <!-- Qora rangdagi Lichkaga o'tish tugmasi -->
                     <a href="https://t.me/org_karimov" target="_blank" class="dm-black-btn">
                         Lichkaga oʻtish
                     </a>
                 </div>
             </div>
 
-            <!-- SUPPORT BO'LIMI (karimov_gifts kanali qo'shildi) -->
+            <!-- SUPPORT BO'LIMI (karimov_gifts kanali rasm va galochkasi bilan) -->
             <div id="view-support" class="tab-view">
                 <div class="support-list">
                     <a href="https://t.me/org_karimov" target="_blank" class="admin-card" style="max-width: 100%; padding: 12px 14px; flex-direction: row; justify-content: space-between;">
@@ -762,11 +826,11 @@
                         <span style="font-size: 11px; font-weight: 800; background: #000000; color: #ffffff; padding: 6px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2);">Yozish</span>
                     </a>
 
-                    <!-- karimov_gifts kanali -->
+                    <!-- karimov_gifts kanali (rasm va galochkasi bilan) -->
                     <a href="https://t.me/karimov_gifts" target="_blank" class="admin-card" style="max-width: 100%; padding: 12px 14px; flex-direction: row; justify-content: space-between;">
                         <div style="display: flex; align-items: center; gap: 10px;">
-                            <div class="admin-photo-wrap" style="width: 42px; height: 42px; border-width: 2px; background: linear-gradient(135deg, #111, #333);">
-                                <svg viewBox="0 0 24 24" width="22" height="22" stroke="#fff" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                            <div class="admin-photo-wrap" style="width: 42px; height: 42px; border-width: 2px;">
+                                <img src="https://t.me/i/userpic/320/karimov_gifts.jpg" alt="@karimov_gifts" class="admin-photo" onerror="this.src='https://t.me/i/userpic/320/org_karimov.jpg';">
                             </div>
                             <div style="text-align: left;">
                                 <div class="admin-name-row" style="margin-bottom: 2px;">
@@ -787,7 +851,7 @@
                 </div>
             </div>
 
-            <!-- Pastdagi Navigatsiya (Qora rangdagi qimirlab turuvchi ikonka va yozuvlar) -->
+            <!-- Pastdagi Navigatsiya -->
             <div class="bottom-nav">
                 <button class="nav-item active" onclick="switchTab('stars', this)">
                     <svg class="nav-svg-icon" viewBox="0 0 24 24">
@@ -812,7 +876,7 @@
                             </linearGradient>
                         </defs>
                         <path d="M 12 24 L 16 30 L 20 24 Z" fill="url(#navRocketFire)"/>
-                        <path d="M 16 3 C 16 3 9 9 9 16 C 9 19 11 22 13 23 L 19 23 C 21 22 23 19 23 16 C 23 9 16 3 16 3 Z" fill="#000000" stroke="#333" stroke-width="1"/>
+                        <path d="M 16 3 C 16 3 9 9 9 16 C 9 19 11 22 13 23 L 19 23 C 21 22 23 19 23 16 C 23 9 16 3 16 3 Z" fill="#000000" stroke="#fff" stroke-width="1"/>
                         <circle cx="16" cy="12" r="3" fill="#3ba4ff"/>
                     </svg>
                     <span>Admin</span>
