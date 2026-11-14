@@ -16,7 +16,8 @@
         }
 
         body {
-            background-color: #2998ff;
+            /* Orqa fon yana ham och ko'k rangga o'tkazildi */
+            background-color: #3ba4ff;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -151,17 +152,16 @@
             display: flex;
         }
 
-        /* Stars va Premium umumiy qora quti dizayni */
         .stars-box {
             background: rgba(10, 10, 14, 0.88);
             backdrop-filter: blur(20px);
             border: 1.5px solid rgba(255, 255, 255, 0.2);
             border-radius: 26px;
-            padding: 20px 16px;
+            padding: 22px 18px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             width: 100%;
             max-width: 340px;
             box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
@@ -171,98 +171,11 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 900;
             color: #ffffff;
         }
 
-        .info-text {
-            font-size: 11.5px;
-            color: rgba(255, 255, 255, 0.75);
-            font-weight: 600;
-            line-height: 1.4;
-            padding: 0 4px;
-        }
-
-        /* Premium paketlar gridi */
-        .premium-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            width: 100%;
-        }
-
-        .prem-card {
-            background: rgba(255, 255, 255, 0.07);
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
-            border-radius: 14px;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .prem-card.selected {
-            background: rgba(41, 152, 255, 0.25);
-            border-color: #2998ff;
-            box-shadow: 0 0 15px rgba(41, 152, 255, 0.4);
-            transform: scale(1.02);
-        }
-
-        .prem-title {
-            font-size: 13px;
-            font-weight: 800;
-            color: #ffffff;
-        }
-
-        .prem-price {
-            font-size: 12px;
-            font-weight: 900;
-            color: #ffd000;
-        }
-
-        /* Qora qimirlab turuvchi va orqasidan olov chiqadigan Raketa SVG */
-        .rocket-svg-wrap {
-            width: 32px;
-            height: 32px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: rocketFlight 1.2s infinite ease-in-out;
-            filter: drop-shadow(0 0 8px rgba(255, 120, 0, 0.8));
-        }
-
-        @keyframes rocketFlight {
-            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-            50% { transform: translateY(-5px) rotate(3deg) scale(1.08); }
-        }
-
-        /* Sotib olish tugmasi (Qora rangda, oq yozuvli) */
-        .buy-action-btn {
-            background: #000000;
-            color: #ffffff;
-            border: 1.5px solid rgba(255, 255, 255, 0.25);
-            border-radius: 14px;
-            padding: 12px 20px;
-            font-size: 14px;
-            font-weight: 900;
-            letter-spacing: 0.3px;
-            cursor: pointer;
-            text-decoration: none;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-            transition: transform 0.15s ease;
-            width: 100%;
-            text-align: center;
-        }
-
-        .buy-action-btn:active {
-            transform: scale(0.96);
-        }
-
-        /* Stars bo'limi elementlari */
         .input-group {
             width: 100%;
             display: flex;
@@ -276,6 +189,9 @@
             font-weight: 700;
             color: rgba(255, 255, 255, 0.8);
             padding-left: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .stars-input {
@@ -293,9 +209,9 @@
         }
 
         .stars-input:focus {
-            border-color: #2998ff;
+            border-color: #3ba4ff;
             background: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 0 12px rgba(41, 152, 255, 0.4);
+            box-shadow: 0 0 12px rgba(59, 164, 255, 0.4);
         }
 
         .price-display {
@@ -340,11 +256,33 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        .yellow-star-svg {
+        .buy-action-btn {
+            background: #ffffff;
+            color: #1884eb;
+            border: none;
+            border-radius: 14px;
+            padding: 13px 20px;
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+            transition: transform 0.15s ease;
+            width: 100%;
+            text-align: center;
+        }
+
+        .buy-action-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* Qora rangdagi qimirlab turuvchi Premium SVG Stars (Raketaga o'xshatilgan) */
+        .black-star-svg {
             width: 26px;
             height: 26px;
             animation: fastWiggleStar 0.7s infinite ease-in-out;
-            filter: drop-shadow(0 0 8px rgba(255, 204, 0, 0.9));
+            filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.8));
         }
 
         @keyframes fastWiggleStar {
@@ -353,6 +291,73 @@
             40% { transform: scale(0.90) rotate(8deg); }
             60% { transform: scale(1.16) rotate(14deg); }
             80% { transform: scale(0.95) rotate(-6deg); }
+        }
+
+        /* Premium paketlar gridi va Qora rangdagi narxlar */
+        .info-text {
+            font-size: 11.5px;
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 600;
+            line-height: 1.4;
+            padding: 0 4px;
+        }
+
+        .premium-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            width: 100%;
+        }
+
+        .prem-card {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .prem-card.selected {
+            background: rgba(59, 164, 255, 0.25);
+            border-color: #3ba4ff;
+            box-shadow: 0 0 15px rgba(59, 164, 255, 0.4);
+            transform: scale(1.02);
+        }
+
+        .prem-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        /* Paket ichidagi narxlar QORA rangda */
+        .prem-price {
+            font-size: 12.5px;
+            font-weight: 900;
+            color: #000000;
+            background: #ffffff;
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .rocket-svg-wrap {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: rocketFlight 1.2s infinite ease-in-out;
+            filter: drop-shadow(0 0 8px rgba(255, 120, 0, 0.8));
+        }
+
+        @keyframes rocketFlight {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            50% { transform: translateY(-5px) rotate(3deg) scale(1.08); }
         }
 
         /* Admin va Support elementlari */
@@ -453,20 +458,20 @@
             max-width: 310px;
         }
 
-        /* Pastki Navigatsiya */
+        /* Pastki Navigatsiya: Qora rangdagi qimirlab turuvchi Premium SVG ikonka va yozuvlar */
         .bottom-nav {
             width: 100%;
             height: 78px;
-            background: rgba(0, 60, 140, 0.35);
+            background: rgba(0, 40, 100, 0.45);
             backdrop-filter: blur(25px);
-            border: 1.5px solid rgba(255, 255, 255, 0.22);
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
             border-radius: 22px;
             margin-bottom: 16px;
             display: flex;
             justify-content: space-around;
             align-items: center;
             padding: 0 10px;
-            box-shadow: 0 10px 30px rgba(0, 50, 120, 0.25);
+            box-shadow: 0 10px 30px rgba(0, 40, 100, 0.3);
             flex-shrink: 0;
         }
 
@@ -480,7 +485,7 @@
             cursor: pointer;
             width: 25%;
             height: 100%;
-            opacity: 0.65;
+            opacity: 0.75;
             transition: all 0.25s ease;
         }
 
@@ -490,33 +495,42 @@
         }
 
         .nav-item.active span {
-            color: #ffffff;
+            color: #000000;
             font-weight: 900;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
         }
 
+        /* Qora rangdagi va qimirlab turuvchi SVG ikonka */
         .nav-svg-icon {
             width: 26px;
             height: 26px;
-            stroke: #ffffff;
+            stroke: #000000;
             fill: none;
-            stroke-width: 2.2;
+            stroke-width: 2.4;
             stroke-linecap: round;
             stroke-linejoin: round;
             margin-bottom: 5px;
-            animation: iconWiggle 2s infinite ease-in-out;
+            animation: iconWiggle 1.6s infinite ease-in-out;
+            filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.6));
+        }
+
+        .nav-item.active .nav-svg-icon {
+            stroke-width: 2.8;
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.9));
         }
 
         @keyframes iconWiggle {
             0%, 100% { transform: scale(1) rotate(0deg); }
-            25% { transform: scale(1.12) rotate(-6deg); }
-            50% { transform: scale(0.95) rotate(4deg); }
-            75% { transform: scale(1.08) rotate(6deg); }
+            25% { transform: scale(1.15) rotate(-8deg); }
+            50% { transform: scale(0.92) rotate(6deg); }
+            75% { transform: scale(1.10) rotate(8deg); }
         }
 
         .nav-item span {
             font-size: 11px;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.85);
+            font-weight: 800;
+            color: #000000;
+            text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
         }
     </style>
 </head>
@@ -559,9 +573,9 @@
                             <stop offset="100%" stop-color="#eef6ff"/>
                         </linearGradient>
                         <linearGradient id="blueShine" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stop-color="rgba(41, 152, 255, 0)"/>
-                            <stop offset="50%" stop-color="rgba(41, 152, 255, 0.25)"/>
-                            <stop offset="100%" stop-color="rgba(41, 152, 255, 0)"/>
+                            <stop offset="0%" stop-color="rgba(59, 164, 255, 0)"/>
+                            <stop offset="50%" stop-color="rgba(59, 164, 255, 0.25)"/>
+                            <stop offset="100%" stop-color="rgba(59, 164, 255, 0)"/>
                         </linearGradient>
                         <clipPath id="btnClip">
                             <rect x="2" y="2" width="236" height="58" rx="18"/>
@@ -585,19 +599,19 @@
     <div id="marketPage" class="page hidden">
         <div class="market-container">
             
-            <!-- STARS BO'LIMI -->
+            <!-- STARS BO'LIMI (Qora rangdagi qimirlab turuvchi Stars SVG bilan) -->
             <div id="view-stars" class="tab-view active">
                 <div class="stars-box">
                     <div class="stars-header">
-                        <svg class="yellow-star-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Raketaga o'xshatilgan qora rangdagi qimirlab turuvchi Premium SVG Stars -->
+                        <svg class="black-star-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <defs>
-                                <linearGradient id="yellowStarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#ffea00"/>
-                                    <stop offset="50%" stop-color="#ffbb00"/>
-                                    <stop offset="100%" stop-color="#ff8800"/>
+                                <linearGradient id="blackStarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#222222"/>
+                                    <stop offset="100%" stop-color="#000000"/>
                                 </linearGradient>
                             </defs>
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="url(#yellowStarGrad)" stroke="#ffdf33" stroke-width="0.8"/>
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="url(#blackStarGrad)" stroke="#555555" stroke-width="1"/>
                         </svg>
                         <span>Telegram Stars</span>
                     </div>
@@ -624,11 +638,10 @@
                 </div>
             </div>
 
-            <!-- PREMIUM BO'LIMI (Yangilandi: Olovli raketa SVG, paketlar va ko'rsatma) -->
+            <!-- PREMIUM BO'LIMI (Qora rangdagi narxlar bilan) -->
             <div id="view-premium" class="tab-view">
                 <div class="stars-box">
                     <div class="stars-header">
-                        <!-- Orqasidan olov chiqib harakatlanadigan qora Raketa SVG stikeri -->
                         <div class="rocket-svg-wrap">
                             <svg viewBox="0 0 32 32" width="30" height="30" xmlns="http://www.w3.org/2000/svg">
                                 <defs>
@@ -638,16 +651,12 @@
                                         <stop offset="100%" stop-color="#ff0000" stop-opacity="0"/>
                                     </linearGradient>
                                 </defs>
-                                <!-- Olov -->
                                 <path d="M 12 24 L 16 32 L 20 24 Z" fill="url(#rocketFire)"/>
                                 <circle cx="16" cy="25" r="2" fill="#ffaa00"/>
-                                <!-- Raketa korpusi (Qora) -->
                                 <path d="M 16 2 C 16 2 8 8 8 16 C 8 20 10 23 12 24 L 20 24 C 22 23 24 20 24 16 C 24 8 16 2 16 2 Z" fill="#111111" stroke="#444444" stroke-width="1"/>
-                                <!-- Qanotlari -->
                                 <path d="M 8 18 L 4 22 L 8 23 Z" fill="#222222"/>
                                 <path d="M 24 18 L 28 22 L 24 23 Z" fill="#222222"/>
-                                <!-- Derazasi -->
-                                <circle cx="16" cy="12" r="3.5" fill="#2998ff" stroke="#ffffff" stroke-width="1"/>
+                                <circle cx="16" cy="12" r="3.5" fill="#3ba4ff" stroke="#ffffff" stroke-width="1"/>
                             </svg>
                         </div>
                         <span>Telegram Premium</span>
@@ -680,7 +689,7 @@
                         Narxi: 49 000 soʻm
                     </div>
 
-                    <a id="premBuyBtn" href="https://t.me/org_karimov?text=Salom%20man%201%20oylik%20Telegram%20Premium%20sotib%20olmoqchiman" target="_blank" class="buy-action-btn">
+                    <a id="premBuyBtn" href="https://t.me/org_karimov?text=Salom%20man%201%20oylik%20Telegram%20Premium%20sotib%20olmoqchiman" target="_blank" class="buy-action-btn" style="background:#000; color:#fff;">
                         Sotib olish
                     </a>
                 </div>
@@ -767,7 +776,7 @@
                 </div>
             </div>
 
-            <!-- Pastdagi Navigatsiya -->
+            <!-- Pastdagi Navigatsiya (Qora qimirlab turuvchi SVG ikonka va yozuvlar bilan) -->
             <div class="bottom-nav">
                 <button class="nav-item active" onclick="switchTab('stars', this)">
                     <svg class="nav-svg-icon" viewBox="0 0 24 24">
@@ -858,7 +867,6 @@
             calculatePrice();
         }
 
-        // Premium paketlarni tanlash logikasi
         function selectPrem(cardElement, duration, price) {
             document.querySelectorAll('.prem-card').forEach(c => c.classList.remove('selected'));
             cardElement.classList.add('selected');
