@@ -16,7 +16,6 @@
         }
 
         body {
-            /* Chuqur quyuq neon-ko'k / midnight dark gradient orqa fon */
             background: radial-gradient(circle at center, #1e3a8a 0%, #0f172a 65%, #050b14 100%);
             height: 100vh;
             display: flex;
@@ -411,21 +410,25 @@
             margin-bottom: 4px;
         }
 
-        .dm-svg-btn {
-            background: none;
-            border: none;
+        /* Qora rangdagi Lichkaga o'tish tugmasi */
+        .dm-black-btn {
+            background: #000000;
+            color: #ffffff;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            border-radius: 14px;
+            padding: 11px 24px;
+            font-size: 14px;
+            font-weight: 900;
             cursor: pointer;
-            padding: 0;
-            outline: none;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
             transition: transform 0.15s ease;
+            display: inline-block;
+            margin-top: 6px;
         }
 
-        .dm-svg-btn:active {
-            transform: scale(0.94);
-        }
-
-        .dm-shine {
-            animation: shineMove 3s infinite linear;
+        .dm-black-btn:active {
+            transform: scale(0.95);
         }
 
         .black-check-wrap, .pink-check-wrap {
@@ -447,12 +450,12 @@
         .support-list {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             width: 100%;
-            max-width: 310px;
+            max-width: 320px;
         }
 
-        /* Pastki Navigatsiya */
+        /* Pastki Navigatsiya: Qora rangdagi qimirlab turuvchi ikonka va yozuvlar */
         .bottom-nav {
             width: 100%;
             height: 78px;
@@ -479,7 +482,7 @@
             cursor: pointer;
             width: 25%;
             height: 100%;
-            opacity: 0.7;
+            opacity: 0.75;
             transition: all 0.25s ease;
         }
 
@@ -489,28 +492,28 @@
         }
 
         .nav-item.active span {
-            color: #3ba4ff;
+            color: #000000;
             font-weight: 900;
-            text-shadow: 0 0 10px rgba(59, 164, 255, 0.8);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
         }
 
+        /* Qora rangdagi va qimirlab turuvchi SVG ikonka */
         .nav-svg-icon {
             width: 26px;
             height: 26px;
-            stroke: #ffffff;
+            stroke: #000000;
             fill: none;
-            stroke-width: 2.2;
+            stroke-width: 2.4;
             stroke-linecap: round;
             stroke-linejoin: round;
             margin-bottom: 5px;
             animation: iconWiggle 1.6s infinite ease-in-out;
-            filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
+            filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.7));
         }
 
         .nav-item.active .nav-svg-icon {
-            stroke: #3ba4ff;
             stroke-width: 2.8;
-            filter: drop-shadow(0 0 12px rgba(59, 164, 255, 0.9));
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.95));
         }
 
         @keyframes iconWiggle {
@@ -523,7 +526,8 @@
         .nav-item span {
             font-size: 11px;
             font-weight: 800;
-            color: rgba(255, 255, 255, 0.85);
+            color: #000000;
+            text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
         }
     </style>
 </head>
@@ -704,34 +708,26 @@
                         </div>
                     </div>
                     <div class="admin-username">@org_karimov</div>
-                    <a href="https://t.me/org_karimov" target="_blank" class="dm-svg-btn" style="margin-top:6px;">
-                        <svg width="180" height="40" viewBox="0 0 180 40" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="dmBtnBg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#d6ecff"/></linearGradient>
-                                <linearGradient id="dmShine" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="rgba(24,132,235,0)"/><stop offset="50%" stop-color="rgba(24,132,235,0.3)"/><stop offset="100%" stop-color="rgba(24,132,235,0)"/></linearGradient>
-                                <clipPath id="dmClip"><rect x="1" y="1" width="178" height="38" rx="12"/></clipPath>
-                            </defs>
-                            <rect x="1" y="1" width="178" height="38" rx="12" fill="url(#dmBtnBg)"/>
-                            <g clip-path="url(#dmClip)"><polygon class="dm-shine" points="-40,0 0,0 -15,40 -55,40" fill="url(#dmShine)"/></g>
-                            <text x="90" y="21" text-anchor="middle" dominant-baseline="middle" fill="#1884eb" font-size="13" font-weight="900">Lichkaga oʻtish</text>
-                        </svg>
+                    <!-- Qora rangdagi Lichkaga o'tish tugmasi -->
+                    <a href="https://t.me/org_karimov" target="_blank" class="dm-black-btn">
+                        Lichkaga oʻtish
                     </a>
                 </div>
             </div>
 
-            <!-- SUPPORT BO'LIMI -->
+            <!-- SUPPORT BO'LIMI (karimov_gifts kanali qo'shildi) -->
             <div id="view-support" class="tab-view">
                 <div class="support-list">
                     <a href="https://t.me/org_karimov" target="_blank" class="admin-card" style="max-width: 100%; padding: 12px 14px; flex-direction: row; justify-content: space-between;">
                         <div style="display: flex; align-items: center; gap: 10px;">
-                            <div class="admin-photo-wrap" style="width: 44px; height: 44px; border-width: 2px;">
+                            <div class="admin-photo-wrap" style="width: 42px; height: 42px; border-width: 2px;">
                                 <img src="https://t.me/i/userpic/320/org_karimov.jpg" alt="@org_karimov" class="admin-photo" onerror="this.style.display='none';">
                             </div>
                             <div style="text-align: left;">
                                 <div class="admin-name-row" style="margin-bottom: 2px;">
-                                    <h3 style="font-size: 14px;">Karimov</h3>
+                                    <h3 style="font-size: 13.5px;">Karimov</h3>
                                     <div class="black-check-wrap">
-                                        <svg viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                                        <svg viewBox="0 0 24 24" width="15" height="15" xmlns="http://www.w3.org/2000/svg">
                                             <defs><linearGradient id="bBadge2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1a1a1a"/><stop offset="100%" stop-color="#000000"/></linearGradient></defs>
                                             <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="url(#bBadge2)" stroke="#44" stroke-width="0.8"/>
                                             <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -741,19 +737,19 @@
                                 <div style="font-size: 11px; color: rgba(255,255,255,0.8); font-weight: 700;">@org_karimov</div>
                             </div>
                         </div>
-                        <span style="font-size: 11px; font-weight: 800; background: #3ba4ff; color: #ffffff; padding: 5px 10px; border-radius: 8px;">Yozish</span>
+                        <span style="font-size: 11px; font-weight: 800; background: #000000; color: #ffffff; padding: 6px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2);">Yozish</span>
                     </a>
 
                     <a href="https://t.me/FarzonaTurayeva" target="_blank" class="admin-card" style="max-width: 100%; padding: 12px 14px; flex-direction: row; justify-content: space-between;">
                         <div style="display: flex; align-items: center; gap: 10px;">
-                            <div class="admin-photo-wrap" style="width: 44px; height: 44px; border-width: 2px; background: linear-gradient(135deg, #ff1493, #ff69b4);">
+                            <div class="admin-photo-wrap" style="width: 42px; height: 42px; border-width: 2px; background: linear-gradient(135deg, #ff1493, #ff69b4);">
                                 <img src="https://t.me/i/userpic/320/FarzonaTurayeva.jpg" alt="@FarzonaTurayeva" class="admin-photo" onerror="this.style.display='none';">
                             </div>
                             <div style="text-align: left;">
                                 <div class="admin-name-row" style="margin-bottom: 2px;">
-                                    <h3 style="font-size: 14px;">Farzona</h3>
+                                    <h3 style="font-size: 13.5px;">Farzona</h3>
                                     <div class="pink-check-wrap">
-                                        <svg viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                                        <svg viewBox="0 0 24 24" width="15" height="15" xmlns="http://www.w3.org/2000/svg">
                                             <defs><linearGradient id="pinkBadge" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff1493"/><stop offset="100%" stop-color="#ff69b4"/></linearGradient></defs>
                                             <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="url(#pinkBadge)" stroke="#ffb6c1" stroke-width="0.8"/>
                                             <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -763,12 +759,35 @@
                                 <div style="font-size: 11px; color: rgba(255,255,255,0.8); font-weight: 700;">@FarzonaTurayeva</div>
                             </div>
                         </div>
-                        <span style="font-size: 11px; font-weight: 800; background: #ff1493; color: #ffffff; padding: 5px 10px; border-radius: 8px;">Yozish</span>
+                        <span style="font-size: 11px; font-weight: 800; background: #000000; color: #ffffff; padding: 6px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2);">Yozish</span>
+                    </a>
+
+                    <!-- karimov_gifts kanali -->
+                    <a href="https://t.me/karimov_gifts" target="_blank" class="admin-card" style="max-width: 100%; padding: 12px 14px; flex-direction: row; justify-content: space-between;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div class="admin-photo-wrap" style="width: 42px; height: 42px; border-width: 2px; background: linear-gradient(135deg, #111, #333);">
+                                <svg viewBox="0 0 24 24" width="22" height="22" stroke="#fff" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                            </div>
+                            <div style="text-align: left;">
+                                <div class="admin-name-row" style="margin-bottom: 2px;">
+                                    <h3 style="font-size: 13.5px;">karimov_gifts</h3>
+                                    <div class="black-check-wrap">
+                                        <svg viewBox="0 0 24 24" width="15" height="15" xmlns="http://www.w3.org/2000/svg">
+                                            <defs><linearGradient id="bBadge3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1a1a1a"/><stop offset="100%" stop-color="#000000"/></linearGradient></defs>
+                                            <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="url(#bBadge3)" stroke="#44" stroke-width="0.8"/>
+                                            <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div style="font-size: 11px; color: rgba(255,255,255,0.8); font-weight: 700;">Rasmiy kanal</div>
+                            </div>
+                        </div>
+                        <span style="font-size: 11px; font-weight: 800; background: #000000; color: #ffffff; padding: 6px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2);">Kanalga oʻtish</span>
                     </a>
                 </div>
             </div>
 
-            <!-- Pastdagi Navigatsiya -->
+            <!-- Pastdagi Navigatsiya (Qora rangdagi qimirlab turuvchi ikonka va yozuvlar) -->
             <div class="bottom-nav">
                 <button class="nav-item active" onclick="switchTab('stars', this)">
                     <svg class="nav-svg-icon" viewBox="0 0 24 24">
@@ -793,7 +812,7 @@
                             </linearGradient>
                         </defs>
                         <path d="M 12 24 L 16 30 L 20 24 Z" fill="url(#navRocketFire)"/>
-                        <path d="M 16 3 C 16 3 9 9 9 16 C 9 19 11 22 13 23 L 19 23 C 21 22 23 19 23 16 C 23 9 16 3 16 3 Z" fill="#ffffff" stroke="#3ba4ff" stroke-width="1"/>
+                        <path d="M 16 3 C 16 3 9 9 9 16 C 9 19 11 22 13 23 L 19 23 C 21 22 23 19 23 16 C 23 9 16 3 16 3 Z" fill="#000000" stroke="#333" stroke-width="1"/>
                         <circle cx="16" cy="12" r="3" fill="#3ba4ff"/>
                     </svg>
                     <span>Admin</span>
