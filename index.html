@@ -15,43 +15,39 @@
         }
 
         body {
-            /* Ko'm-ko'k orqa fon, hech qanday chiziqlarsiz */
-            background: radial-gradient(circle at center, #002244 0%, #000d1a 60%, #00050a 100%);
+            /* Orqa fon: oddiy, toza och ko'k rang (SVG siz) */
+            background-color: #2998ff;
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            position: relative;
         }
 
         .container {
-            position: relative;
-            z-index: 10;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 50px;
+            gap: 54px;
             width: 100%;
             max-width: 420px;
             padding: 20px;
         }
 
-        /* Premium SVG Logo Animatsiyasi */
         .logo-svg {
             width: 100%;
-            max-width: 360px;
+            max-width: 350px;
             height: auto;
             overflow: visible;
         }
 
-        /* Harflarning ketma-ket chiqib kelish va yonish animatsiyalari */
+        /* Harflarning birma-bir chiqish animatsiyasi */
         @keyframes letterAppear {
             0% {
                 opacity: 0;
-                transform: translateY(25px) scale(0.7);
+                transform: translateY(22px) scale(0.75);
             }
             100% {
                 opacity: 1;
@@ -59,28 +55,28 @@
             }
         }
 
-        @keyframes globalGlow {
+        /* Barcha harflar chiqib bo'lgach birdan oq nurlanib yonib turishi */
+        @keyframes whiteGlowPulse {
             0%, 100% {
-                filter: drop-shadow(0 0 12px rgba(0, 162, 255, 0.6)) drop-shadow(0 0 25px rgba(0, 102, 255, 0.4));
+                filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.65)) drop-shadow(0 0 22px rgba(255, 255, 255, 0.35));
             }
             50% {
-                filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.9)) drop-shadow(0 0 45px rgba(0, 132, 255, 0.6));
+                filter: drop-shadow(0 0 18px rgba(255, 255, 255, 1)) drop-shadow(0 0 38px rgba(255, 255, 255, 0.75));
             }
         }
 
         .animated-logo {
-            animation: globalGlow 3s infinite alternate ease-in-out;
+            animation: whiteGlowPulse 2.4s infinite ease-in-out 1.5s;
         }
 
-        /* Har bir harf uchun alohida navbat (Delay) */
-        .char-1 { opacity: 0; animation: letterAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s forwards; }
-        .char-2 { opacity: 0; animation: letterAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s forwards; }
-        .char-3 { opacity: 0; animation: letterAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.6s forwards; }
-        .char-4 { opacity: 0; animation: letterAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.8s forwards; }
-        .char-5 { opacity: 0; animation: letterAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.0s forwards; }
-        .char-6 { opacity: 0; animation: letterAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.2s forwards; }
+        .char-1 { opacity: 0; animation: letterAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.15s forwards; }
+        .char-2 { opacity: 0; animation: letterAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.35s forwards; }
+        .char-3 { opacity: 0; animation: letterAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.55s forwards; }
+        .char-4 { opacity: 0; animation: letterAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.75s forwards; }
+        .char-5 { opacity: 0; animation: letterAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.95s forwards; }
+        .char-6 { opacity: 0; animation: letterAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.15s forwards; }
 
-        /* Premium SVG Kirish Tugmasi */
+        /* Oq rangli Premium SVG KIRISH tugmasi */
         .enter-svg-btn {
             background: none;
             border: none;
@@ -88,13 +84,14 @@
             padding: 0;
             outline: none;
             opacity: 0;
-            animation: letterAppear 0.6s ease 1.5s forwards;
+            animation: letterAppear 0.6s ease 1.45s forwards;
             transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
-            filter: drop-shadow(0 10px 25px rgba(0, 119, 255, 0.35));
+            filter: drop-shadow(0 12px 26px rgba(0, 60, 130, 0.22));
         }
 
         .enter-svg-btn:active {
             transform: scale(0.93);
+            filter: drop-shadow(0 5px 12px rgba(0, 60, 130, 0.18));
         }
 
         .btn-shine {
@@ -110,30 +107,29 @@
 <body>
 
     <div class="container">
-        <!-- 100% Premium Ko'm-ko'k SVG Logo (A C A Z E S ketma-ket chiqadi) -->
+        <!-- Oq rangli Premium SVG: A C A Z E S -->
         <svg class="logo-svg animated-logo" viewBox="0 0 360 90" xmlns="http://www.w3.org/2000/svg">
             <defs>
-                <!-- Ko'k rangli yorqin gradient -->
-                <linearGradient id="blueNeon" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#00d4ff"/>
-                    <stop offset="50%" stop-color="#0066ff"/>
-                    <stop offset="100%" stop-color="#00ffcc"/>
+                <linearGradient id="whitePremiumGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff"/>
+                    <stop offset="80%" stop-color="#f2f8ff"/>
+                    <stop offset="100%" stop-color="#dceeff"/>
                 </linearGradient>
 
-                <linearGradient id="frameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="rgba(0, 212, 255, 0.6)"/>
-                    <stop offset="100%" stop-color="rgba(0, 102, 255, 0.2)"/>
+                <linearGradient id="whiteFrameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="rgba(255, 255, 255, 0.85)"/>
+                    <stop offset="100%" stop-color="rgba(255, 255, 255, 0.35)"/>
                 </linearGradient>
             </defs>
 
-            <!-- Dekorativ burchaklar -->
-            <path d="M 20 12 L 8 12 L 8 24" fill="none" stroke="url(#frameGrad)" stroke-width="2" stroke-linecap="round"/>
-            <path d="M 340 12 L 352 12 L 352 24" fill="none" stroke="url(#frameGrad)" stroke-width="2" stroke-linecap="round"/>
-            <path d="M 20 78 L 8 78 L 8 66" fill="none" stroke="url(#frameGrad)" stroke-width="2" stroke-linecap="round"/>
-            <path d="M 340 78 L 352 78 L 352 66" fill="none" stroke="url(#frameGrad)" stroke-width="2" stroke-linecap="round"/>
+            <!-- Dekorativ oq SVG burchaklar -->
+            <path d="M 20 12 L 8 12 L 8 24" fill="none" stroke="url(#whiteFrameGrad)" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M 340 12 L 352 12 L 352 24" fill="none" stroke="url(#whiteFrameGrad)" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M 20 78 L 8 78 L 8 66" fill="none" stroke="url(#whiteFrameGrad)" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M 340 78 L 352 78 L 352 66" fill="none" stroke="url(#whiteFrameGrad)" stroke-width="2.2" stroke-linecap="round"/>
 
-            <!-- Har bir harf alohida guruhda ketma-ket chiqadi -->
-            <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="52" font-weight="900" fill="url(#blueNeon)" text-anchor="middle">
+            <!-- Ketma-ket chiqadigan oq SVG harflar -->
+            <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="52" font-weight="900" fill="url(#whitePremiumGrad)" text-anchor="middle">
                 <text class="char-1" x="42" y="62">A</text>
                 <text class="char-2" x="96" y="62">C</text>
                 <text class="char-3" x="150" y="62">A</text>
@@ -143,25 +139,19 @@
             </g>
         </svg>
 
-        <!-- Premium SVG KIRISH Tugmasi -->
+        <!-- Oq rangli Premium SVG KIRISH Tugmasi -->
         <button class="enter-svg-btn" onclick="enterMarket()" aria-label="Kirish">
             <svg width="240" height="62" viewBox="0 0 240 62" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                    <linearGradient id="btnBg" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#0055ff"/>
-                        <stop offset="50%" stop-color="#00a2ff"/>
-                        <stop offset="100%" stop-color="#00ffcc"/>
+                    <linearGradient id="whiteBtnBg" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#ffffff"/>
+                        <stop offset="100%" stop-color="#eef6ff"/>
                     </linearGradient>
 
-                    <linearGradient id="btnBorder" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="rgba(255, 255, 255, 0.8)"/>
-                        <stop offset="100%" stop-color="rgba(255, 255, 255, 0.15)"/>
-                    </linearGradient>
-
-                    <linearGradient id="shineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
-                        <stop offset="50%" stop-color="rgba(255,255,255,0.5)"/>
-                        <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                    <linearGradient id="blueShine" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="rgba(41, 152, 255, 0)"/>
+                        <stop offset="50%" stop-color="rgba(41, 152, 255, 0.25)"/>
+                        <stop offset="100%" stop-color="rgba(41, 152, 255, 0)"/>
                     </linearGradient>
 
                     <clipPath id="btnClip">
@@ -169,21 +159,24 @@
                     </clipPath>
                 </defs>
 
-                <rect x="2" y="2" width="236" height="58" rx="18" fill="url(#btnBg)"/>
-                <rect x="2" y="2" width="236" height="58" rx="18" fill="none" stroke="url(#btnBorder)" stroke-width="1.5"/>
+                <!-- Oq tugma asosi -->
+                <rect x="2" y="2" width="236" height="58" rx="18" fill="url(#whiteBtnBg)"/>
                 
+                <!-- Harakatlanuvchi yaltiroq nur -->
                 <g clip-path="url(#btnClip)">
-                    <polygon class="btn-shine" points="0,0 45,0 20,62 -25,62" fill="url(#shineGrad)"/>
+                    <polygon class="btn-shine" points="0,0 45,0 20,62 -25,62" fill="url(#blueShine)"/>
                 </g>
 
+                <!-- KIRISH matni (och ko'k rangda, oq fon ustida aniq ko'rinishi uchun) -->
                 <text x="106" y="32" text-anchor="middle" dominant-baseline="middle"
-                      fill="#ffffff"
+                      fill="#1884eb"
                       font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
                       font-size="16" font-weight="900" letter-spacing="3.5">
                     KIRISH
                 </text>
 
-                <g transform="translate(166, 21)" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+                <!-- Premium SVG Strelka -->
+                <g transform="translate(166, 21)" stroke="#1884eb" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
                     <line x1="0" y1="10" x2="16" y2="10"/>
                     <polyline points="10 4 16 10 10 16"/>
                 </g>
@@ -201,8 +194,6 @@
             if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.HapticFeedback) {
                 window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
             }
-            // Keyingi oynaga o'tish logikasini shu yerga qo'shamiz
-            alert("KIRISH bosildi!");
         }
     </script>
 </body>
