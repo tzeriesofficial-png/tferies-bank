@@ -165,6 +165,74 @@
             font-weight: 600;
         }
 
+        /* Admin karta stili */
+        .admin-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 24px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            width: 100%;
+            max-width: 300px;
+            box-shadow: 0 15px 35px rgba(0, 50, 120, 0.25);
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .admin-card:active {
+            transform: scale(0.97);
+        }
+
+        .admin-photo {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            border: 3px solid #ffffff;
+            object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            background: #ffffff;
+        }
+
+        .admin-name-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .admin-name-row h3 {
+            font-size: 18px;
+            font-weight: 900;
+            color: #ffffff;
+        }
+
+        .admin-username {
+            font-size: 13.5px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 700;
+        }
+
+        /* Qora qimirlab turuvchi qora galochka */
+        .black-check-wrap {
+            width: 22px;
+            height: 22px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            animation: wiggleCheck 1.8s infinite ease-in-out;
+            filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.4));
+        }
+
+        @keyframes wiggleCheck {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.15) rotate(-8deg); }
+            50% { transform: scale(0.95) rotate(4deg); }
+            75% { transform: scale(1.1) rotate(8deg); }
+        }
+
         /* Pastki 4 ta Ikonkali Navigatsiya */
         .bottom-nav {
             width: 100%;
@@ -206,7 +274,6 @@
             text-shadow: 0 0 10px rgba(255,255,255,0.8);
         }
 
-        /* Qimirlab turuvchi qora/oq premium SVG ikonka animatsiyasi */
         .nav-svg-icon {
             width: 26px;
             height: 26px;
@@ -287,7 +354,6 @@
                             <rect x="2" y="2" width="236" height="58" rx="18"/>
                         </clipPath>
                     </defs>
-                    <rect x="2" y="2" width="236" height="58" rx="18" fill="url("url(#whiteBtnBg)")"/>
                     <rect x="2" y="2" width="236" height="58" rx="18" fill="url(#whiteBtnBg)"/>
                     <g clip-path="url(#btnClip)">
                         <polygon class="btn-shine" points="0,0 45,0 20,62 -25,62" fill="url(#blueShine)"/>
@@ -302,7 +368,7 @@
         </div>
     </div>
 
-    <!-- 2-OYNA: Asosiy Oyna (Stars, Premium, Admin, Support) -->
+    <!-- 2-OYNA: Asosiy Oyna -->
     <div id="marketPage" class="page hidden">
         <div class="market-container">
             
@@ -322,12 +388,22 @@
                 </div>
             </div>
 
-            <!-- ADMIN BO'LIMI -->
+            <!-- ADMIN BO'LIMI (Yangilandi: @org_karimov va qora qimirlovchi galochka) -->
             <div id="view-admin" class="tab-view">
-                <div class="tab-content-box">
-                    <h2>🛡️ Admin</h2>
-                    <p>Boshqaruv paneli va maxsus buyruqlar bo'limi.</p>
-                </div>
+                <a href="https://t.me/org_karimov" target="_blank" class="admin-card">
+                    <img src="https://via.placeholder.com/150" alt="Admin Photo" class="admin-photo" id="adminPhoto">
+                    <div class="admin-name-row">
+                        <h3>Karimov</h3>
+                        <!-- Qora qimirlab turuvchi qora SVG galochka -->
+                        <div class="black-check-wrap">
+                            <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#111111" stroke="#333333" stroke-width="0.8"/>
+                                <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="admin-username">@org_karimov</div>
+                </a>
             </div>
 
             <!-- SUPPORT BO'LIMI -->
@@ -338,17 +414,14 @@
                 </div>
             </div>
 
-            <!-- Pastdagi 4 ta Qimirlab turuvchi Premium SVG Ikonkali Menyu -->
+            <!-- Pastdagi Navigatsiya -->
             <div class="bottom-nav">
-                <!-- Stars Ikonkasi (Yulduzcha SVG) -->
                 <button class="nav-item active" onclick="switchTab('stars', this)">
                     <svg class="nav-svg-icon" viewBox="0 0 24 24">
                         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                     </svg>
                     <span>Stars</span>
                 </button>
-
-                <!-- Premium Ikonkasi (Olmos / Diamond SVG) -->
                 <button class="nav-item" onclick="switchTab('premium', this)">
                     <svg class="nav-svg-icon" viewBox="0 0 24 24">
                         <path d="M6 3h12l4 6-10 13L2 9z"></path>
@@ -357,8 +430,6 @@
                     </svg>
                     <span>Premium</span>
                 </button>
-
-                <!-- Admin Ikonkasi (Qalqon / Shield SVG) -->
                 <button class="nav-item" onclick="switchTab('admin', this)">
                     <svg class="nav-svg-icon" viewBox="0 0 24 24">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
@@ -366,8 +437,6 @@
                     </svg>
                     <span>Admin</span>
                 </button>
-
-                <!-- Support Ikonkasi (Naushnik / Headset SVG) -->
                 <button class="nav-item" onclick="switchTab('support', this)">
                     <svg class="nav-svg-icon" viewBox="0 0 24 24">
                         <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
@@ -383,6 +452,14 @@
         if (window.Telegram && window.Telegram.WebApp) {
             window.Telegram.WebApp.ready();
             window.Telegram.WebApp.expand();
+            
+            // Agar Telegram orqali ochilsa va rasm mavjud bo'lsa
+            if (window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user) {
+                let u = window.Telegram.WebApp.initDataUnsafe.user;
+                if (u.photo_url) {
+                    document.getElementById('adminPhoto').src = u.photo_url;
+                }
+            }
         }
 
         function goToMarket() {
