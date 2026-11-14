@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACAZES</title>
+    <title>Karimov Stars</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
@@ -26,7 +26,7 @@
             position: relative;
         }
 
-        /* Yangi yil archa chiroqchalari (Garland) ekanning chekkalari bo'ylab */
+        /* Yangi yil archa chiroqchalari (Garland) */
         .garland-container {
             position: absolute;
             top: 0;
@@ -50,25 +50,18 @@
             100% { opacity: 1; transform: scale(1.2); filter: drop-shadow(0 0 10px currentColor); }
         }
 
-        /* Yuqori chekka chiroqlari */
         .b-top-1 { top: 6px; left: 10%; background: #ff3333; color: #ff3333; animation-delay: 0.1s; }
         .b-top-2 { top: 6px; left: 30%; background: #33ff33; color: #33ff33; animation-delay: 0.4s; }
         .b-top-3 { top: 6px; left: 50%; background: #ffff33; color: #ffff33; animation-delay: 0.2s; }
         .b-top-4 { top: 6px; left: 70%; background: #33ffff; color: #33ffff; animation-delay: 0.5s; }
         .b-top-5 { top: 6px; left: 90%; background: #ff33ff; color: #ff33ff; animation-delay: 0.3s; }
-
-        /* Pastki chekka chiroqlari */
         .b-bot-1 { bottom: 6px; left: 15%; background: #ffff33; color: #ffff33; animation-delay: 0.3s; }
         .b-bot-2 { bottom: 6px; left: 35%; background: #ff3333; color: #ff3333; animation-delay: 0.6s; }
         .b-bot-3 { bottom: 6px; left: 55%; background: #33ffff; color: #33ffff; animation-delay: 0.1s; }
         .b-bot-4 { bottom: 6px; left: 75%; background: #33ff33; color: #33ff33; animation-delay: 0.4s; }
-
-        /* Chap chekka chiroqlari */
         .b-left-1 { left: 6px; top: 25%; background: #ff33ff; color: #ff33ff; animation-delay: 0.2s; }
         .b-left-2 { left: 6px; top: 55%; background: #33ffff; color: #33ffff; animation-delay: 0.5s; }
         .b-left-3 { left: 6px; top: 80%; background: #ff3333; color: #ff3333; animation-delay: 0.3s; }
-
-        /* O'ng chekka chiroqlari */
         .b-right-1 { right: 6px; top: 25%; background: #33ff33; color: #33ff33; animation-delay: 0.4s; }
         .b-right-2 { right: 6px; top: 55%; background: #ffff33; color: #ffff33; animation-delay: 0.1s; }
         .b-right-3 { right: 6px; top: 80%; background: #ff33ff; color: #ff33ff; animation-delay: 0.6s; }
@@ -103,15 +96,30 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 54px;
+            gap: 40px;
             width: 100%;
             max-width: 420px;
             padding: 20px;
         }
 
-        .logo-svg {
+        .landing-title-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Kirish qismidagi qimirlab turuvchi qora-oq yulduzcha */
+        .landing-star-svg {
+            width: 52px;
+            height: 52px;
+            animation: fastWiggleStar 0.7s infinite ease-in-out;
+            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.8));
+        }
+
+        .landing-text-svg {
             width: 100%;
-            max-width: 350px;
+            max-width: 360px;
             height: auto;
             overflow: visible;
         }
@@ -137,15 +145,22 @@
         }
 
         .animated-logo {
-            animation: whiteGlowPulse 2.4s infinite ease-in-out 1.5s;
+            animation: whiteGlowPulse 2.4s infinite ease-in-out 1.2s;
         }
 
-        .char-1 { opacity: 0; animation: letterAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.15s forwards; }
-        .char-2 { opacity: 0; animation: letterAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.35s forwards; }
-        .char-3 { opacity: 0; animation: letterAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.55s forwards; }
-        .char-4 { opacity: 0; animation: letterAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.75s forwards; }
-        .char-5 { opacity: 0; animation: letterAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.95s forwards; }
-        .char-6 { opacity: 0; animation: letterAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.15s forwards; }
+        /* Karimov Stars harflari ketma-ket chiqishi uchun */
+        .l-char-1 { opacity: 0; animation: letterAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s forwards; }
+        .l-char-2 { opacity: 0; animation: letterAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s forwards; }
+        .l-char-3 { opacity: 0; animation: letterAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s forwards; }
+        .l-char-4 { opacity: 0; animation: letterAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s forwards; }
+        .l-char-5 { opacity: 0; animation: letterAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s forwards; }
+        .l-char-6 { opacity: 0; animation: letterAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.6s forwards; }
+        .l-char-7 { opacity: 0; animation: letterAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.7s forwards; }
+        .l-char-8 { opacity: 0; animation: letterAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.8s forwards; }
+        .l-char-9 { opacity: 0; animation: letterAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.9s forwards; }
+        .l-char-10 { opacity: 0; animation: letterAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.0s forwards; }
+        .l-char-11 { opacity: 0; animation: letterAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.1s forwards; }
+        .l-char-12 { opacity: 0; animation: letterAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.2s forwards; }
 
         .enter-svg-btn {
             background: none;
@@ -154,7 +169,7 @@
             padding: 0;
             outline: none;
             opacity: 0;
-            animation: letterAppear 0.6s ease 1.45s forwards;
+            animation: letterAppear 0.6s ease 1.35s forwards;
             transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
             filter: drop-shadow(0 12px 26px rgba(0, 20, 60, 0.5));
         }
@@ -400,7 +415,6 @@
             50% { transform: translateY(-5px) rotate(3deg) scale(1.08); }
         }
 
-        /* Admin va Support elementlari */
         .admin-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(18px);
@@ -501,7 +515,7 @@
             max-width: 320px;
         }
 
-        /* Pastki Navigatsiya: Qora ikonka va oqish yorug'lik konturi */
+        /* Pastki Navigatsiya */
         .bottom-nav {
             width: 100%;
             height: 78px;
@@ -543,7 +557,6 @@
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
         }
 
-        /* Qora rangli va oqish yorug' konturli qimirlab turuvchi SVG ikonka */
         .nav-svg-icon {
             width: 26px;
             height: 26px;
@@ -579,7 +592,7 @@
 </head>
 <body>
 
-    <!-- Yangi yil archa chiroqchalari (Garland) -->
+    <!-- Yangi yil archa chiroqchalari -->
     <div class="garland-container">
         <div class="bulb b-top-1"></div>
         <div class="bulb b-top-2"></div>
@@ -601,31 +614,45 @@
     <!-- 1-OYNA: Kirish Sahifasi -->
     <div id="landingPage" class="page active">
         <div class="landing-container">
-            <svg class="logo-svg animated-logo" viewBox="0 0 360 90" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="whitePremiumGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#ffffff"/>
-                        <stop offset="80%" stop-color="#f2f8ff"/>
-                        <stop offset="100%" stop-color="#dceeff"/>
-                    </linearGradient>
-                    <linearGradient id="whiteFrameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="rgba(255, 255, 255, 0.85)"/>
-                        <stop offset="100%" stop-color="rgba(255, 255, 255, 0.35)"/>
-                    </linearGradient>
-                </defs>
-                <path d="M 20 12 L 8 12 L 8 24" fill="none" stroke="url(#whiteFrameGrad)" stroke-width="2.2" stroke-linecap="round"/>
-                <path d="M 340 12 L 352 12 L 352 24" fill="none" stroke="url(#whiteFrameGrad)" stroke-width="2.2" stroke-linecap="round"/>
-                <path d="M 20 78 L 8 78 L 8 66" fill="none" stroke="url(#whiteFrameGrad)" stroke-width="2.2" stroke-linecap="round"/>
-                <path d="M 340 78 L 352 78 L 352 66" fill="none" stroke="url(#whiteFrameGrad)" stroke-width="2.2" stroke-linecap="round"/>
-                <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="52" font-weight="900" fill="url(#whitePremiumGrad)" text-anchor="middle">
-                    <text class="char-1" x="42" y="62">A</text>
-                    <text class="char-2" x="96" y="62">C</text>
-                    <text class="char-3" x="150" y="62">A</text>
-                    <text class="char-4" x="204" y="62">Z</text>
-                    <text class="char-5" x="258" y="62">E</text>
-                    <text class="char-6" x="312" y="62">S</text>
-                </g>
-            </svg>
+            <div class="landing-title-wrap">
+                <!-- Qora-oq qimirlab turuvchi premium SVG yulduzcha -->
+                <svg class="landing-star-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="landingStarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#222222"/>
+                            <stop offset="100%" stop-color="#000000"/>
+                        </linearGradient>
+                    </defs>
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="url(#landingStarGrad)" stroke="#ffffff" stroke-width="1.2"/>
+                </svg>
+
+                <!-- Karimov Stars yozuvi (ketma-ket chiqadigan harflar) -->
+                <svg class="landing-text-svg animated-logo" viewBox="0 0 400 90" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="whitePremiumGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="80%" stop-color="#f2f8ff"/>
+                            <stop offset="100%" stop-color="#dceeff"/>
+                        </linearGradient>
+                    </defs>
+                    <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="42" font-weight="900" fill="url(#whitePremiumGrad)" text-anchor="middle">
+                        <!-- KARIMOV -->
+                        <text class="l-char-1" x="24" y="60">K</text>
+                        <text class="l-char-2" x="52" y="60">A</text>
+                        <text class="l-char-3" x="78" y="60">R</text>
+                        <text class="l-char-4" x="105" y="60">I</text>
+                        <text class="l-char-5" x="122" y="60">M</text>
+                        <text class="l-char-6" x="154" y="60">O</text>
+                        <text class="l-char-7" x="182" y="60">V</text>
+                        <!-- STARS -->
+                        <text class="l-char-8" x="232" y="60">S</text>
+                        <text class="l-char-9" x="256" y="60">T</text>
+                        <text class="l-char-10" x="280" y="60">A</text>
+                        <text class="l-char-11" x="306" y="60">R</text>
+                        <text class="l-char-12" x="332" y="60">S</text>
+                    </g>
+                </svg>
+            </div>
 
             <button class="enter-svg-btn" onclick="goToMarket()" aria-label="Kirish">
                 <svg width="240" height="62" viewBox="0 0 240 62" xmlns="http://www.w3.org/2000/svg">
@@ -779,7 +806,7 @@
                 </div>
             </div>
 
-            <!-- SUPPORT BO'LIMI (karimov_gifts kanali rasm va galochkasi bilan) -->
+            <!-- SUPPORT BO'LIMI -->
             <div id="view-support" class="tab-view">
                 <div class="support-list">
                     <a href="https://t.me/org_karimov" target="_blank" class="admin-card" style="max-width: 100%; padding: 12px 14px; flex-direction: row; justify-content: space-between;">
@@ -826,7 +853,6 @@
                         <span style="font-size: 11px; font-weight: 800; background: #000000; color: #ffffff; padding: 6px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2);">Yozish</span>
                     </a>
 
-                    <!-- karimov_gifts kanali (rasm va galochkasi bilan) -->
                     <a href="https://t.me/karimov_gifts" target="_blank" class="admin-card" style="max-width: 100%; padding: 12px 14px; flex-direction: row; justify-content: space-between;">
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <div class="admin-photo-wrap" style="width: 42px; height: 42px; border-width: 2px;">
