@@ -269,18 +269,18 @@
             transform: scale(0.96);
         }
 
-        /* 5 ta Ikonkali Pastki Navigatsiya Panel */
+        /* 5 ta Ikonkali Qimirlovchi SVG Navigatsiya */
         .bottom-nav {
             width: 100%;
-            max-width: 380px;
-            height: 76px;
+            max-width: 390px;
+            height: 78px;
             background: #f8fafc;
             border: 1.5px solid #e2e8f0;
             border-radius: 22px;
             display: flex;
             justify-content: space-around;
             align-items: center;
-            padding: 0 6px;
+            padding: 0 4px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
             flex-shrink: 0;
         }
@@ -309,26 +309,27 @@
             font-weight: 900;
         }
 
+        /* Katta va kuchli qimirlab turuvchi SVG stikerlar */
         .nav-svg-wrap {
-            width: 28px;
-            height: 28px;
+            width: 30px;
+            height: 30px;
             display: flex;
             justify-content: center;
             align-items: center;
             margin-bottom: 3px;
-            animation: iconWiggle 2s infinite ease-in-out;
+            animation: stickerWiggle 2.2s infinite ease-in-out;
         }
 
-        @keyframes iconWiggle {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            25% { transform: scale(1.18) rotate(-10deg); }
-            50% { transform: scale(0.92) rotate(6deg); }
-            75% { transform: scale(1.12) rotate(8deg); }
+        @keyframes stickerWiggle {
+            0%, 100% { transform: scale(1) rotate(0deg) translateY(0); filter: drop-shadow(0 0 3px rgba(0,0,0,0.15)); }
+            20% { transform: scale(1.28) rotate(-14deg) translateY(-3px); filter: drop-shadow(0 0 8px rgba(0,0,0,0.3)); }
+            50% { transform: scale(0.92) rotate(8deg) translateY(2px); }
+            80% { transform: scale(1.15) rotate(-6deg) translateY(-1px); }
         }
 
         .nav-item span {
-            font-size: 10.5px;
-            font-weight: 800;
+            font-size: 10px;
+            font-weight: 900;
             color: #000000;
         }
 
@@ -555,34 +556,34 @@
                 </button>
             </div>
 
-            <!-- 5 ta Ikonkali Qimirlovchi Premium SVG Navigatsiya -->
+            <!-- 5 ta Qimirlovchi Premium SVG Stikerli Navigatsiya -->
             <div class="bottom-nav">
                 <!-- Stars -->
                 <button class="nav-item active" onclick="switchNav(this)">
                     <div class="nav-svg-wrap">
-                        <svg viewBox="0 0 24 24" width="26" height="26" fill="#000000">
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="#000000">
                             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                         </svg>
                     </div>
-                    <span>Stars ⭐</span>
+                    <span>Stars</span>
                 </button>
 
                 <!-- Nft -->
                 <button class="nav-item" onclick="switchNav(this)">
                     <div class="nav-svg-wrap">
-                        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
                             <polyline points="2 17 12 22 22 17"></polyline>
                             <polyline points="2 12 12 17 22 12"></polyline>
                         </svg>
                     </div>
-                    <span>Nft 💎</span>
+                    <span>Nft</span>
                 </button>
 
                 <!-- Gift -->
                 <button class="nav-item" onclick="switchNav(this)">
                     <div class="nav-svg-wrap">
-                        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="20 12 20 22 4 22 4 12"></polyline>
                             <rect x="2" y="7" width="20" height="5"></rect>
                             <line x1="12" y1="22" x2="12" y2="7"></line>
@@ -590,28 +591,28 @@
                             <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
                         </svg>
                     </div>
-                    <span>Gift 🎁</span>
+                    <span>Gift</span>
                 </button>
 
                 <!-- Donat -->
                 <button class="nav-item" onclick="switchNav(this)">
                     <div class="nav-svg-wrap">
-                        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
                             <line x1="1" y1="10" x2="23" y2="10"></line>
                         </svg>
                     </div>
-                    <span>Donat 💳</span>
+                    <span>Donat</span>
                 </button>
 
                 <!-- Channel -->
                 <button class="nav-item" onclick="switchNav(this)">
                     <div class="nav-svg-wrap">
-                        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                         </svg>
                     </div>
-                    <span>Channel 📢</span>
+                    <span>Channel</span>
                 </button>
             </div>
         </div>
