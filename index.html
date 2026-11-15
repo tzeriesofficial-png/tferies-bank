@@ -77,7 +77,6 @@
             overflow: visible;
         }
 
-        /* Harflar chiqib keladi va qora rangda qoq o'rtada qotib turadi */
         @keyframes letterDrop {
             0% {
                 opacity: 0;
@@ -101,7 +100,6 @@
         .c-5 { animation: letterDrop 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.5s forwards; }
         .c-6 { animation: letterDrop 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.6s forwards; }
 
-        /* Qora galochka qimirlashi */
         .premium-badge-wrap {
             width: 40px;
             height: 40px;
@@ -160,9 +158,9 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            padding: 24px 16px 16px 16px;
             z-index: 10;
         }
 
@@ -176,7 +174,8 @@
             align-items: center;
             gap: 16px;
             width: 100%;
-            max-width: 350px;
+            max-width: 360px;
+            margin: auto;
             box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
         }
 
@@ -268,6 +267,69 @@
 
         .buy-action-btn:active {
             transform: scale(0.96);
+        }
+
+        /* 5 ta Ikonkali Pastki Navigatsiya Panel */
+        .bottom-nav {
+            width: 100%;
+            max-width: 380px;
+            height: 76px;
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 22px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 6px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+            flex-shrink: 0;
+        }
+
+        .nav-item {
+            background: none;
+            border: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            width: 20%;
+            height: 100%;
+            opacity: 0.65;
+            transition: all 0.25s ease;
+        }
+
+        .nav-item.active {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        .nav-item.active span {
+            color: #000000;
+            font-weight: 900;
+        }
+
+        .nav-svg-wrap {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 3px;
+            animation: iconWiggle 2s infinite ease-in-out;
+        }
+
+        @keyframes iconWiggle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.18) rotate(-10deg); }
+            50% { transform: scale(0.92) rotate(6deg); }
+            75% { transform: scale(1.12) rotate(8deg); }
+        }
+
+        .nav-item span {
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #000000;
         }
 
         /* Modal oynalar (Dilerlar ro'yxati) */
@@ -433,7 +495,6 @@
     <div id="landingPage" class="page active">
         <div class="landing-container">
             <div class="brand-row">
-                <!-- ACAZES yozuvi (Qo'shib yozilgan, qora rang, qoq o'rtada) -->
                 <svg class="acazes-svg-logo" viewBox="0 0 240 70" xmlns="http://www.w3.org/2000/svg">
                     <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="900" fill="#000000" text-anchor="middle">
                         <text class="t-char c-1" x="20" y="52">A</text>
@@ -445,7 +506,6 @@
                     </g>
                 </svg>
 
-                <!-- Qora rangdagi qimirlab turuvchi SVG Galochka -->
                 <div class="premium-badge-wrap">
                     <svg viewBox="0 0 48 48" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
                         <defs>
@@ -494,6 +554,66 @@
                     Sotib olish
                 </button>
             </div>
+
+            <!-- 5 ta Ikonkali Qimirlovchi Premium SVG Navigatsiya -->
+            <div class="bottom-nav">
+                <!-- Stars -->
+                <button class="nav-item active" onclick="switchNav(this)">
+                    <div class="nav-svg-wrap">
+                        <svg viewBox="0 0 24 24" width="26" height="26" fill="#000000">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    </div>
+                    <span>Stars ⭐</span>
+                </button>
+
+                <!-- Nft -->
+                <button class="nav-item" onclick="switchNav(this)">
+                    <div class="nav-svg-wrap">
+                        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                            <polyline points="2 17 12 22 22 17"></polyline>
+                            <polyline points="2 12 12 17 22 12"></polyline>
+                        </svg>
+                    </div>
+                    <span>Nft 💎</span>
+                </button>
+
+                <!-- Gift -->
+                <button class="nav-item" onclick="switchNav(this)">
+                    <div class="nav-svg-wrap">
+                        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                            <rect x="2" y="7" width="20" height="5"></rect>
+                            <line x1="12" y1="22" x2="12" y2="7"></line>
+                            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                            <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+                        </svg>
+                    </div>
+                    <span>Gift 🎁</span>
+                </button>
+
+                <!-- Donat -->
+                <button class="nav-item" onclick="switchNav(this)">
+                    <div class="nav-svg-wrap">
+                        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                            <line x1="1" y1="10" x2="23" y2="10"></line>
+                        </svg>
+                    </div>
+                    <span>Donat 💳</span>
+                </button>
+
+                <!-- Channel -->
+                <button class="nav-item" onclick="switchNav(this)">
+                    <div class="nav-svg-wrap">
+                        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </div>
+                    <span>Channel 📢</span>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -503,7 +623,7 @@
             <div class="modal-title">⭐ 2 ta rasmiy diler</div>
             
             <div class="dealers-list">
-                <!-- 1-Diler: @org_karimov (Qora galochka) -->
+                <!-- 1-Diler: @org_karimov -->
                 <a href="https://t.me/org_karimov" target="_blank" class="dealer-card" onclick="hapticClick()">
                     <div class="dealer-info">
                         <img src="https://t.me/i/userpic/320/org_karimov.jpg" alt="@org_karimov" class="dealer-avatar" onerror="this.src='https://via.placeholder.com/48/e2e8f0/0f172a?text=K'">
@@ -529,7 +649,7 @@
                     <span class="dealer-action-badge">Yozish</span>
                 </a>
 
-                <!-- 2-Diler: @Abrorovsaler (Sariq galochka) -->
+                <!-- 2-Diler: @Abrorovsaler -->
                 <a href="https://t.me/Abrorovsaler" target="_blank" class="dealer-card" onclick="hapticClick()">
                     <div class="dealer-info">
                         <img src="https://t.me/i/userpic/320/Abrorovsaler.jpg" alt="@Abrorovsaler" class="dealer-avatar" onerror="this.src='https://via.placeholder.com/48/e2e8f0/0f172a?text=A'">
@@ -572,6 +692,12 @@
             document.getElementById('landingPage').classList.add('hidden');
             document.getElementById('marketPage').classList.remove('hidden');
             document.getElementById('marketPage').classList.add('active');
+        }
+
+        function switchNav(btn) {
+            hapticClick();
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            btn.classList.add('active');
         }
 
         function openDealersModal() {
