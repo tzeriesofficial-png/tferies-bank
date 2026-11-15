@@ -514,7 +514,7 @@
             color: #000000;
         }
 
-        /* Modal oynalar (Dilerlar va Support uchun) */
+        /* Modal oynalar */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -572,7 +572,7 @@
 
         .dealer-card {
             background: #f8fafc;
-            border: 1px solid #e2e8f0;
+            border: 1.5px solid #e2e8f0;
             border-radius: 18px;
             padding: 12px 14px;
             display: flex;
@@ -637,7 +637,7 @@
 
         .close-modal-btn {
             background: #f1f5f9;
-            border: 1px solid #cbd5e1;
+            border: 1.5px solid #cbd5e1;
             border-radius: 14px;
             padding: 11px;
             color: #000000;
@@ -668,7 +668,7 @@
 </head>
 <body>
 
-    <!-- SUPPORT TUGMASI (Yuqori o'ng burchak) -->
+    <!-- SUPPORT TUGMASI -->
     <button class="support-btn" onclick="openSupportModal()" title="Support">
         <div class="support-svg-wrap">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -825,14 +825,14 @@
                 </div>
             </div>
 
-            <!-- 4. DONAT SAHIFASI (PUBG va Free Fire, ko'k va qizil galochkalar) -->
+            <!-- 4. DONAT SAHIFASI (PUBG Mobile & Free Fire, qo'shilgan PUBG MENA kanali) -->
             <div id="tab-donat" class="tab-view">
                 <div class="service-box" style="gap: 12px;">
                     <div class="box-header">
                         <span>Oʻyinlarga Donat</span>
                     </div>
                     <div class="box-desc" style="margin-bottom: 2px;">
-                        Oʻyin ichidagi xaridlar va UC / Almaz xizmatlari uchun dilerlarni tanlang.
+                        Oʻyin ichidagi xaridlar va UC / Almaz xizmatlari.
                     </div>
                     
                     <div class="dealers-list" style="width: 100%;">
@@ -855,6 +855,30 @@
                                         </linearGradient>
                                     </defs>
                                     <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="url(#blueBadgeGrad)" stroke="#bae6fd" stroke-width="0.8"/>
+                                    <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </a>
+
+                        <!-- PUBG Mobile MENA Kanali (Faqat rasm va havolasi ishlaydi, boshqalarga ko'rinmaydigan qilib joylandi) -->
+                        <a href="https://t.me/official_pubgmobile_mena" target="_blank" class="game-card" onclick="hapticClick()" style="background: #ffffff; border-color: #cbd5e1;">
+                            <div class="game-info">
+                                <img src="https://t.me/i/userpic/320/official_pubgmobile_mena.jpg" alt="PUBG MENA" class="game-avatar" onerror="this.src='https://via.placeholder.com/48/e2e8f0/0f172a?text=MENA'">
+                                <div class="game-text">
+                                    <span class="game-title">PUBG Mobile MENA</span>
+                                    <span class="game-sub">Rasmiy kanal</span>
+                                </div>
+                            </div>
+                            <div class="big-wiggle-badge">
+                                <!-- Ko'k rangli SVG galochka -->
+                                <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="blueBadgeGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#38bdf8"/>
+                                            <stop offset="100%" stop-color="#0284c7"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="url(#blueBadgeGrad2)" stroke="#bae6fd" stroke-width="0.8"/>
                                     <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
@@ -1055,7 +1079,6 @@
             <div class="modal-title">Qoʻllab-quvvatlash (Support)</div>
             
             <div class="dealers-list">
-                <!-- @Abrorovsaler (Qora qimirlaydigan galochka bilan) -->
                 <a href="https://t.me/Abrorovsaler?text=Salom%20manga%20yordam%20kerak" target="_blank" class="dealer-card" onclick="hapticClick()">
                     <div class="dealer-info">
                         <img src="https://t.me/i/userpic/320/Abrorovsaler.jpg" alt="@Abrorovsaler" class="dealer-avatar" onerror="this.src='https://via.placeholder.com/48/e2e8f0/0f172a?text=S'">
