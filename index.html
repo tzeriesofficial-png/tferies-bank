@@ -16,7 +16,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #1a0505 0%, #0d0202 50%, #260707 100%);
+            background: #000000;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -31,8 +31,8 @@
             position: absolute;
             top: 16px;
             right: 16px;
-            background: rgba(40, 8, 8, 0.85);
-            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            background: #111111;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
             border-radius: 50%;
             width: 44px;
             height: 44px;
@@ -41,7 +41,7 @@
             align-items: center;
             cursor: pointer;
             z-index: 100;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.15);
             transition: transform 0.15s ease;
         }
 
@@ -156,26 +156,26 @@
         }
 
         @keyframes badgeSuperMotion {
-            0%, 100% { transform: scale(1) rotate(0deg) translateY(0); filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5)); }
-            20% { transform: scale(1.18) rotate(12deg) translateY(-4px); filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.8)); }
+            0%, 100% { transform: scale(1) rotate(0deg) translateY(0); filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.4)); }
+            20% { transform: scale(1.18) rotate(12deg) translateY(-4px); filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.7)); }
             50% { transform: scale(0.95) rotate(-8deg) translateY(2px); }
             80% { transform: scale(1.02) rotate(5deg) translateY(0); }
         }
 
         .enter-btn {
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: #ffffff;
+            border: none;
             border-radius: 20px;
             padding: 16px 52px;
-            color: #ffffff;
+            color: #000000;
             font-size: 16px;
             font-weight: 900;
             letter-spacing: 4px;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.25);
             opacity: 0;
             animation: btnFadeUp 0.6s ease 0.9s forwards;
-            transition: transform 0.15s ease, filter 0.2s ease;
+            transition: transform 0.15s ease, background 0.2s ease;
         }
 
         @keyframes btnFadeUp {
@@ -185,7 +185,7 @@
 
         .enter-btn:active {
             transform: scale(0.94);
-            filter: brightness(0.9);
+            background: #e2e8f0;
         }
 
         /* Market Konteyneri */
@@ -222,9 +222,8 @@
         }
 
         .service-box {
-            background: rgba(26, 8, 8, 0.9);
-            border: 1.5px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(12px);
+            background: #0a0a0a;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
             border-radius: 26px;
             padding: 24px 20px;
             display: flex;
@@ -233,7 +232,7 @@
             gap: 15px;
             width: 100%;
             max-width: 360px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.1);
         }
 
         .box-header {
@@ -243,13 +242,12 @@
             font-size: 19px;
             font-weight: 900;
             color: #ffffff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
         }
 
         .box-desc {
             font-size: 12px;
             font-weight: 700;
-            color: #e2e8f0;
+            color: #a1a1aa;
             text-align: center;
             line-height: 1.4;
         }
@@ -270,8 +268,8 @@
 
         .custom-input {
             width: 100%;
-            background: rgba(15, 3, 3, 0.8);
-            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            background: #000000;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
             border-radius: 14px;
             padding: 12px 14px;
             color: #ffffff;
@@ -279,7 +277,6 @@
             font-weight: 800;
             outline: none;
             text-align: center;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .grid-2 {
@@ -290,8 +287,8 @@
         }
 
         .option-card {
-            background: rgba(15, 3, 3, 0.8);
-            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            background: #000000;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
             border-radius: 14px;
             padding: 10px 8px;
             display: flex;
@@ -304,8 +301,7 @@
 
         .option-card.selected {
             border-color: #ffffff;
-            background: rgba(127, 29, 29, 0.5);
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+            background: #171717;
             transform: scale(1.02);
         }
 
@@ -318,26 +314,25 @@
         .option-sub {
             font-size: 11px;
             font-weight: 700;
-            color: #cbd5e1;
+            color: #a1a1aa;
         }
 
         .price-display {
             font-size: 15px;
             font-weight: 900;
             color: #ffffff;
-            background: rgba(15, 3, 3, 0.8);
-            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            background: #000000;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
             padding: 11px 14px;
             border-radius: 12px;
             width: 100%;
             text-align: center;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
         }
 
         .buy-action-btn {
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: #ffffff;
+            color: #000000;
+            border: none;
             border-radius: 14px;
             padding: 14px 20px;
             font-size: 15px;
@@ -347,18 +342,19 @@
             text-align: center;
             text-decoration: none;
             display: block;
-            box-shadow: 0 8px 22px rgba(220, 38, 38, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.3);
-            transition: transform 0.15s ease;
+            box-shadow: 0 6px 18px rgba(255, 255, 255, 0.15);
+            transition: transform 0.15s ease, background 0.2s;
         }
 
         .buy-action-btn:active {
             transform: scale(0.96);
+            background: #e2e8f0;
         }
 
         /* O'yinlar kartasi (Donat uchun) */
         .game-card {
-            background: rgba(15, 3, 3, 0.8);
-            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            background: #000000;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
             border-radius: 18px;
             padding: 12px 14px;
             display: flex;
@@ -371,7 +367,7 @@
 
         .game-card:active {
             transform: scale(0.97);
-            background: rgba(127, 29, 29, 0.5);
+            background: #171717;
         }
 
         .game-info {
@@ -385,8 +381,8 @@
             height: 48px;
             border-radius: 12px;
             object-fit: cover;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            background: #260707;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: #111111;
         }
 
         .game-text {
@@ -405,13 +401,13 @@
         .game-sub {
             font-size: 11.5px;
             font-weight: 700;
-            color: #cbd5e1;
+            color: #a1a1aa;
         }
 
         /* Kanal kartasi */
         .channel-card {
-            background: rgba(15, 3, 3, 0.8);
-            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            background: #000000;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
             border-radius: 18px;
             padding: 14px 16px;
             display: flex;
@@ -424,7 +420,7 @@
 
         .channel-card:active {
             transform: scale(0.97);
-            background: rgba(127, 29, 29, 0.5);
+            background: #171717;
         }
 
         .channel-info {
@@ -438,8 +434,8 @@
             height: 50px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            background: #260707;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            background: #111111;
         }
 
         .channel-text {
@@ -464,7 +460,7 @@
         .channel-sub-text {
             font-size: 12px;
             font-weight: 700;
-            color: #cbd5e1;
+            color: #a1a1aa;
         }
 
         /* Bottom Nav */
@@ -472,15 +468,14 @@
             width: 100%;
             max-width: 390px;
             height: 78px;
-            background: rgba(26, 8, 8, 0.9);
-            border: 1.5px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(12px);
+            background: #0a0a0a;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
             border-radius: 22px;
             display: flex;
             justify-content: space-around;
             align-items: center;
             padding: 0 4px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.1);
             flex-shrink: 0;
         }
 
@@ -514,8 +509,8 @@
         }
 
         @keyframes stickerWiggle {
-            0%, 100% { transform: scale(1) rotate(0deg) translateY(0); filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.4)); }
-            20% { transform: scale(1.28) rotate(-14deg) translateY(-3px); filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7)); }
+            0%, 100% { transform: scale(1) rotate(0deg) translateY(0); filter: drop-shadow(0 0 4px rgba(255,255,255,0.3)); }
+            20% { transform: scale(1.28) rotate(-14deg) translateY(-3px); filter: drop-shadow(0 0 8px rgba(255,255,255,0.6)); }
             50% { transform: scale(0.92) rotate(8deg) translateY(2px); }
             80% { transform: scale(1.15) rotate(-6deg) translateY(-1px); }
         }
@@ -533,7 +528,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(10, 2, 2, 0.75);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(8px);
             display: flex;
             justify-content: center;
@@ -550,8 +545,8 @@
         }
 
         .modal-content {
-            background: rgba(26, 8, 8, 0.95);
-            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            background: #0a0a0a;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
             border-radius: 26px;
             width: 90%;
             max-width: 350px;
@@ -559,7 +554,7 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.1);
             transform: scale(0.85);
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
@@ -574,7 +569,6 @@
             color: #ffffff;
             text-align: center;
             letter-spacing: 0.5px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
         }
 
         .dealers-list {
@@ -584,8 +578,8 @@
         }
 
         .dealer-card {
-            background: rgba(15, 3, 3, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: #000000;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 18px;
             padding: 12px 14px;
             display: flex;
@@ -597,7 +591,7 @@
 
         .dealer-card:active {
             transform: scale(0.97);
-            background: rgba(127, 29, 29, 0.5);
+            background: #171717;
         }
 
         .dealer-info {
@@ -611,8 +605,8 @@
             height: 48px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            background: #260707;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            background: #111111;
         }
 
         .dealer-text {
@@ -636,22 +630,21 @@
         .dealer-username {
             font-size: 11.5px;
             font-weight: 700;
-            color: #cbd5e1;
+            color: #a1a1aa;
         }
 
         .dealer-action-badge {
             font-size: 11px;
             font-weight: 800;
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            color: #ffffff;
+            background: #ffffff;
+            color: #000000;
             padding: 6px 12px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(220, 38, 38, 0.4);
         }
 
         .close-modal-btn {
-            background: rgba(15, 3, 3, 0.9);
-            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            background: #000000;
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
             border-radius: 14px;
             padding: 11px;
             color: #ffffff;
@@ -664,7 +657,7 @@
         }
 
         .close-modal-btn:active {
-            background: rgba(127, 29, 29, 0.5);
+            background: #171717;
         }
 
         .big-wiggle-badge {
@@ -858,7 +851,7 @@
                         <!-- PUBG Mobile -->
                         <a href="https://t.me/Abrorovsaler" target="_blank" class="game-card" onclick="hapticClick()">
                             <div class="game-info">
-                                <img src="https://t.me/i/userpic/320/official_pubgmobile_mena.jpg" alt="PUBG Mobile" class="game-avatar" onerror="this.src='https://via.placeholder.com/48/260707/ffffff?text=PUBG'">
+                                <img src="https://t.me/i/userpic/320/official_pubgmobile_mena.jpg" alt="PUBG Mobile" class="game-avatar" onerror="this.src='https://via.placeholder.com/48/000000/ffffff?text=PUBG'">
                                 <div class="game-text">
                                     <span class="game-title">PUBG Mobile</span>
                                     <span class="game-sub">Rasmiy service</span>
@@ -881,7 +874,7 @@
                         <!-- Free Fire -->
                         <a href="https://t.me/Abrorovsaler" target="_blank" class="game-card" onclick="hapticClick()">
                             <div class="game-info">
-                                <img src="https://t.me/i/userpic/320/FF_ID_SELLER_FREEFIRE_MAXX.jpg" alt="Free Fire" class="game-avatar" onerror="this.src='https://via.placeholder.com/48/260707/ffffff?text=FF'">
+                                <img src="https://t.me/i/userpic/320/FF_ID_SELLER_FREEFIRE_MAXX.jpg" alt="Free Fire" class="game-avatar" onerror="this.src='https://via.placeholder.com/48/000000/ffffff?text=FF'">
                                 <div class="game-text">
                                     <span class="game-title">Free Fire</span>
                                     <span class="game-sub">Rasmiy service</span>
@@ -916,7 +909,7 @@
 
                     <a href="https://t.me/astroprodaja" target="_blank" class="channel-card" onclick="hapticClick()">
                         <div class="channel-info">
-                            <img src="https://t.me/i/userpic/320/astroprodaja.jpg" alt="@astroprodaja" class="channel-avatar" onerror="this.src='https://via.placeholder.com/50/260707/ffffff?text=A'">
+                            <img src="https://t.me/i/userpic/320/astroprodaja.jpg" alt="@astroprodaja" class="channel-avatar" onerror="this.src='https://via.placeholder.com/50/000000/ffffff?text=A'">
                             <div class="channel-text">
                                 <div class="channel-name-row">
                                     <span class="channel-title-text">Rasmiy kanal</span>
@@ -1012,7 +1005,7 @@
                 <!-- 1-Diler: @org_karimov -->
                 <a href="https://t.me/org_karimov" target="_blank" class="dealer-card" onclick="hapticClick()">
                     <div class="dealer-info">
-                        <img src="https://t.me/i/userpic/320/org_karimov.jpg" alt="@org_karimov" class="dealer-avatar" onerror="this.src='https://via.placeholder.com/48/260707/ffffff?text=K'">
+                        <img src="https://t.me/i/userpic/320/org_karimov.jpg" alt="@org_karimov" class="dealer-avatar" onerror="this.src='https://via.placeholder.com/48/000000/ffffff?text=K'">
                         <div class="dealer-text">
                             <div class="dealer-name-row">
                                 <span class="dealer-name">Karimov</span>
@@ -1038,7 +1031,7 @@
                 <!-- 2-Diler: @Abrorovsaler -->
                 <a href="https://t.me/Abrorovsaler" target="_blank" class="dealer-card" onclick="hapticClick()">
                     <div class="dealer-info">
-                        <img src="https://t.me/i/userpic/320/Abrorovsaler.jpg" alt="@Abrorovsaler" class="dealer-avatar" onerror="this.src='https://via.placeholder.com/48/260707/ffffff?text=A'">
+                        <img src="https://t.me/i/userpic/320/Abrorovsaler.jpg" alt="@Abrorovsaler" class="dealer-avatar" onerror="this.src='https://via.placeholder.com/48/000000/ffffff?text=A'">
                         <div class="dealer-text">
                             <div class="dealer-name-row">
                                 <span class="dealer-name">Abrorov</span>
@@ -1074,7 +1067,7 @@
             <div class="dealers-list">
                 <a href="https://t.me/Abrorovsaler?text=Salom%20manga%20yordam%20kerak" target="_blank" class="dealer-card" onclick="hapticClick()">
                     <div class="dealer-info">
-                        <img src="https://t.me/i/userpic/320/Abrorovsaler.jpg" alt="@Abrorovsaler" class="dealer-avatar" onerror="this.src='https://via.placeholder.com/48/260707/ffffff?text=S'">
+                        <img src="https://t.me/i/userpic/320/Abrorovsaler.jpg" alt="@Abrorovsaler" class="dealer-avatar" onerror="this.src='https://via.placeholder.com/48/000000/ffffff?text=S'">
                         <div class="dealer-text">
                             <div class="dealer-name-row">
                                 <span class="dealer-name">Abrorov Support</span>
