@@ -36,7 +36,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: opacity 0.4s ease, transform 0.4s ease;
+            transition: opacity 0.35s ease, transform 0.35s ease;
         }
 
         .page.hidden {
@@ -78,14 +78,8 @@
         }
 
         @keyframes letterDrop {
-            0% {
-                opacity: 0;
-                transform: translateY(-30px) scale(0.6);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            0% { opacity: 0; transform: translateY(-30px) scale(0.6); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .t-char {
@@ -133,8 +127,6 @@
             font-weight: 900;
             letter-spacing: 4px;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
             opacity: 0;
             animation: btnFadeUp 0.6s ease 0.9s forwards;
@@ -151,7 +143,7 @@
             background: #222222;
         }
 
-        /* 2-Oyna: Market */
+        /* 2-Oyna: Market Konteyneri */
         .market-container {
             width: 100%;
             max-width: 420px;
@@ -160,11 +152,31 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 24px 16px 16px 16px;
+            padding: 20px 16px 16px 16px;
             z-index: 10;
         }
 
-        .stars-box {
+        .tab-view {
+            display: none;
+            width: 100%;
+            flex: 1;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+            animation: tabFadeIn 0.25s ease forwards;
+        }
+
+        .tab-view.active {
+            display: flex;
+        }
+
+        @keyframes tabFadeIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .service-box {
             background: #f8fafc;
             border: 1.5px solid #e2e8f0;
             border-radius: 26px;
@@ -172,20 +184,27 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
+            gap: 15px;
             width: 100%;
             max-width: 360px;
-            margin: auto;
             box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
         }
 
-        .stars-header {
+        .box-header {
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 19px;
             font-weight: 900;
-            color: #0f172a;
+            color: #000000;
+        }
+
+        .box-desc {
+            font-size: 12px;
+            font-weight: 700;
+            color: #475569;
+            text-align: center;
+            line-height: 1.4;
         }
 
         .input-group {
@@ -198,53 +217,68 @@
 
         .input-group label {
             font-size: 11.5px;
-            font-weight: 700;
-            color: #475569;
+            font-weight: 800;
+            color: #0f172a;
         }
 
-        .stars-input {
+        .custom-input {
             width: 100%;
             background: #ffffff;
             border: 1.5px solid #cbd5e1;
             border-radius: 14px;
             padding: 12px 14px;
-            color: #0f172a;
+            color: #000000;
             font-size: 16px;
             font-weight: 800;
             outline: none;
             text-align: center;
         }
 
-        .preset-prices {
+        .grid-2 {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 6px;
+            gap: 8px;
             width: 100%;
         }
 
-        .preset-btn {
+        .option-card {
             background: #ffffff;
-            border: 1px solid #cbd5e1;
-            border-radius: 10px;
-            padding: 8px;
-            color: #0f172a;
-            font-size: 12px;
-            font-weight: 800;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 14px;
+            padding: 10px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.2s ease;
         }
 
-        .preset-btn:hover {
+        .option-card.selected {
+            border-color: #000000;
             background: #f1f5f9;
+            transform: scale(1.02);
+        }
+
+        .option-title {
+            font-size: 13px;
+            font-weight: 900;
+            color: #000000;
+        }
+
+        .option-sub {
+            font-size: 11px;
+            font-weight: 700;
+            color: #475569;
         }
 
         .price-display {
             font-size: 15px;
             font-weight: 900;
-            color: #0f172a;
+            color: #000000;
             background: #ffffff;
-            border: 1px solid #cbd5e1;
-            padding: 10px 14px;
+            border: 1.5px solid #cbd5e1;
+            padding: 11px 14px;
             border-radius: 12px;
             width: 100%;
             text-align: center;
@@ -261,6 +295,8 @@
             cursor: pointer;
             width: 100%;
             text-align: center;
+            text-decoration: none;
+            display: block;
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
             transition: transform 0.15s ease;
         }
@@ -269,7 +305,66 @@
             transform: scale(0.96);
         }
 
-        /* 5 ta Ikonkali Qimirlovchi SVG Navigatsiya */
+        /* Kanal kartasi dizayni */
+        .channel-card {
+            background: #ffffff;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 18px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            width: 100%;
+            transition: all 0.2s ease;
+        }
+
+        .channel-card:active {
+            transform: scale(0.97);
+            background: #f1f5f9;
+        }
+
+        .channel-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .channel-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #cbd5e1;
+            background: #e2e8f0;
+        }
+
+        .channel-text {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            text-align: left;
+        }
+
+        .channel-name-row {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .channel-title-text {
+            font-size: 15px;
+            font-weight: 900;
+            color: #000000;
+        }
+
+        .channel-sub-text {
+            font-size: 12px;
+            font-weight: 700;
+            color: #475569;
+        }
+
+        /* Bottom Nav */
         .bottom-nav {
             width: 100%;
             max-width: 390px;
@@ -295,7 +390,7 @@
             cursor: pointer;
             width: 20%;
             height: 100%;
-            opacity: 0.65;
+            opacity: 0.55;
             transition: all 0.25s ease;
         }
 
@@ -304,12 +399,6 @@
             transform: translateY(-2px);
         }
 
-        .nav-item.active span {
-            color: #000000;
-            font-weight: 900;
-        }
-
-        /* Katta va kuchli qimirlab turuvchi SVG stikerlar */
         .nav-svg-wrap {
             width: 30px;
             height: 30px;
@@ -328,7 +417,7 @@
         }
 
         .nav-item span {
-            font-size: 10px;
+            font-size: 10.5px;
             font-weight: 900;
             color: #000000;
         }
@@ -378,7 +467,7 @@
         .modal-title {
             font-size: 16px;
             font-weight: 900;
-            color: #0f172a;
+            color: #000000;
             text-align: center;
             letter-spacing: 0.5px;
         }
@@ -436,13 +525,13 @@
         .dealer-name {
             font-size: 14.5px;
             font-weight: 900;
-            color: #0f172a;
+            color: #000000;
         }
 
         .dealer-username {
             font-size: 11.5px;
             font-weight: 700;
-            color: #64748b;
+            color: #475569;
         }
 
         .dealer-action-badge {
@@ -459,17 +548,12 @@
             border: 1px solid #cbd5e1;
             border-radius: 14px;
             padding: 11px;
-            color: #0f172a;
+            color: #000000;
             font-size: 13px;
             font-weight: 800;
             cursor: pointer;
             text-align: center;
             margin-top: 4px;
-            transition: background 0.2s;
-        }
-
-        .close-modal-btn:active {
-            background: #e2e8f0;
         }
 
         .big-wiggle-badge {
@@ -527,39 +611,197 @@
         </div>
     </div>
 
-    <!-- 2-OYNA: Market -->
+    <!-- 2-OYNA: Asosiy Market -->
     <div id="marketPage" class="page hidden">
         <div class="market-container">
-            <div class="stars-box">
-                <div class="stars-header">
-                    <span>⚡ Telegram Stars</span>
+            
+            <!-- 1. STARS SAHIFASI -->
+            <div id="tab-stars" class="tab-view active">
+                <div class="service-box">
+                    <div class="box-header">
+                        <span>Telegram Stars</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="starsCount">Stars miqdorini kiriting (Min: 50, Maks: 5000):</label>
+                        <input type="number" id="starsCount" class="custom-input" value="50" min="50" max="5000" oninput="calculatePrice()">
+                    </div>
+                    <div class="grid-2">
+                        <div class="option-card" onclick="setPreset(50)">
+                            <span class="option-title">50 ta</span>
+                            <span class="option-sub">11 000 soʻm</span>
+                        </div>
+                        <div class="option-card" onclick="setPreset(75)">
+                            <span class="option-title">75 ta</span>
+                            <span class="option-sub">16 500 soʻm</span>
+                        </div>
+                        <div class="option-card" onclick="setPreset(100)">
+                            <span class="option-title">100 ta</span>
+                            <span class="option-sub">22 000 soʻm</span>
+                        </div>
+                        <div class="option-card" onclick="setPreset(200)">
+                            <span class="option-title">200 ta</span>
+                            <span class="option-sub">44 000 soʻm</span>
+                        </div>
+                    </div>
+                    <div class="price-display" id="priceDisplay">
+                        Narxi: 11 000 soʻm
+                    </div>
+                    <button class="buy-action-btn" onclick="openDealersModal('Stars')">
+                        Sotib olish
+                    </button>
                 </div>
+            </div>
 
-                <div class="input-group">
-                    <label for="starsCount">Stars miqdorini kiriting (Min: 50, Maks: 5000):</label>
-                    <input type="number" id="starsCount" class="stars-input" value="50" min="50" max="5000" oninput="calculatePrice()">
+            <!-- 2. NFT SAHIFASI -->
+            <div id="tab-nft" class="tab-view">
+                <div class="service-box">
+                    <div class="box-header">
+                        <span>Telegram NFT</span>
+                    </div>
+                    <div class="box-desc">
+                        Noyob raqamli kolleksiyalar, NFT sovgʻalar va raqamli aktivlarni rasmiy dilerlar orqali xarid qiling.
+                    </div>
+                    <div class="grid-2" id="nftGrid">
+                        <div class="option-card selected" onclick="selectItem(this, 'nftPrice', '45 000 soʻm')">
+                            <span class="option-title">Plush Pepe</span>
+                            <span class="option-sub">45 000 soʻm</span>
+                        </div>
+                        <div class="option-card" onclick="selectItem(this, 'nftPrice', '65 000 soʻm')">
+                            <span class="option-title">Durov Cap</span>
+                            <span class="option-sub">65 000 soʻm</span>
+                        </div>
+                        <div class="option-card" onclick="selectItem(this, 'nftPrice', '30 000 soʻm')">
+                            <span class="option-title">Astral Shard</span>
+                            <span class="option-sub">30 000 soʻm</span>
+                        </div>
+                        <div class="option-card" onclick="selectItem(this, 'nftPrice', '95 000 soʻm')">
+                            <span class="option-title">Rare Edition</span>
+                            <span class="option-sub">95 000 soʻm</span>
+                        </div>
+                    </div>
+                    <div class="price-display" id="nftPrice">
+                        Tanlangan: 45 000 soʻm
+                    </div>
+                    <button class="buy-action-btn" onclick="openDealersModal('NFT')">
+                        Sotib olish
+                    </button>
                 </div>
+            </div>
 
-                <div class="preset-prices">
-                    <button class="preset-btn" onclick="setPreset(50)">50 ta (11k)</button>
-                    <button class="preset-btn" onclick="setPreset(75)">75 ta (16k)</button>
-                    <button class="preset-btn" onclick="setPreset(100)">100 ta (22k)</button>
-                    <button class="preset-btn" onclick="setPreset(200)">200 ta (43k)</button>
+            <!-- 3. GIFT (PREMIUM & SOVG'ALAR) SAHIFASI -->
+            <div id="tab-gift" class="tab-view">
+                <div class="service-box">
+                    <div class="box-header">
+                        <span>Telegram Gift & Premium</span>
+                    </div>
+                    <div class="box-desc">
+                        Oʻzingizga yoki yaqinlaringizga Telegram Premium va maxsus sovgʻalarni tezda yuboring.
+                    </div>
+                    <div class="grid-2" id="giftGrid">
+                        <div class="option-card selected" onclick="selectItem(this, 'giftPrice', '49 000 soʻm')">
+                            <span class="option-title">1 oylik Premium</span>
+                            <span class="option-sub">49 000 soʻm</span>
+                        </div>
+                        <div class="option-card" onclick="selectItem(this, 'giftPrice', '170 000 soʻm')">
+                            <span class="option-title">3 oylik Premium</span>
+                            <span class="option-sub">170 000 soʻm</span>
+                        </div>
+                        <div class="option-card" onclick="selectItem(this, 'giftPrice', '220 000 soʻm')">
+                            <span class="option-title">6 oylik Premium</span>
+                            <span class="option-sub">220 000 soʻm</span>
+                        </div>
+                        <div class="option-card" onclick="selectItem(this, 'giftPrice', '289 000 soʻm')">
+                            <span class="option-title">1 yillik Premium</span>
+                            <span class="option-sub">289 000 soʻm</span>
+                        </div>
+                    </div>
+                    <div class="price-display" id="giftPrice">
+                        Narxi: 49 000 soʻm
+                    </div>
+                    <button class="buy-action-btn" onclick="openDealersModal('Gift / Premium')">
+                        Sotib olish
+                    </button>
                 </div>
+            </div>
 
-                <div class="price-display" id="priceDisplay">
-                    Narxi: 11 000 soʻm
+            <!-- 4. DONAT SAHIFASI -->
+            <div id="tab-donat" class="tab-view">
+                <div class="service-box">
+                    <div class="box-header">
+                        <span>Oʻyinlarga Donat</span>
+                    </div>
+                    <div class="box-desc">
+                        PUBG Mobile UC, Free Fire Diamond va boshqa oʻyinlar uchun tezkor hamda ishonchli donat xizmati.
+                    </div>
+                    <div class="grid-2" id="donatGrid">
+                        <div class="option-card selected" onclick="selectItem(this, 'donatPrice', '14 000 soʻm')">
+                            <span class="option-title">60 UC (PUBG)</span>
+                            <span class="option-sub">14 000 soʻm</span>
+                        </div>
+                        <div class="option-card" onclick="selectItem(this, 'donatPrice', '68 000 soʻm')">
+                            <span class="option-title">325 UC (PUBG)</span>
+                            <span class="option-sub">68 000 soʻm</span>
+                        </div>
+                        <div class="option-card" onclick="selectItem(this, 'donatPrice', '15 000 soʻm')">
+                            <span class="option-title">100 Almaz (FF)</span>
+                            <span class="option-sub">15 000 soʻm</span>
+                        </div>
+                        <div class="option-card" onclick="selectItem(this, 'donatPrice', '45 000 soʻm')">
+                            <span class="option-title">310 Almaz (FF)</span>
+                            <span class="option-sub">45 000 soʻm</span>
+                        </div>
+                    </div>
+                    <div class="price-display" id="donatPrice">
+                        Narxi: 14 000 soʻm
+                    </div>
+                    <button class="buy-action-btn" onclick="openDealersModal('Donat')">
+                        Sotib olish
+                    </button>
                 </div>
+            </div>
 
-                <button class="buy-action-btn" onclick="openDealersModal()">
-                    Sotib olish
-                </button>
+            <!-- 5. CHANNEL SAHIFASI (@astroprodaja) -->
+            <div id="tab-channel" class="tab-view">
+                <div class="service-box">
+                    <div class="box-header">
+                        <span>Rasmiy Kanal</span>
+                    </div>
+                    <div class="box-desc">
+                        Yangiliklar, chegirmalar va rasmiy maʼlumotlar bilan tanishing.
+                    </div>
+
+                    <!-- Kanal kartasi: Rasmi, Rasmiy kanal yozuvi va qora qimirlovchi galochka bilan -->
+                    <a href="https://t.me/astroprodaja" target="_blank" class="channel-card" onclick="hapticClick()">
+                        <div class="channel-info">
+                            <img src="https://t.me/i/userpic/320/astroprodaja.jpg" alt="@astroprodaja" class="channel-avatar" onerror="this.src='https://via.placeholder.com/50/e2e8f0/000000?text=A'">
+                            <div class="channel-text">
+                                <div class="channel-name-row">
+                                    <span class="channel-title-text">Rasmiy kanal</span>
+                                    <div class="big-wiggle-badge">
+                                        <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                                            <defs>
+                                                <linearGradient id="blackBadgeGradChan" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                    <stop offset="0%" stop-color="#333333"/>
+                                                    <stop offset="100%" stop-color="#000000"/>
+                                                </linearGradient>
+                                            </defs>
+                                            <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="url(#blackBadgeGradChan)" stroke="#000" stroke-width="0.8"/>
+                                            <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <span class="channel-sub-text">@astroprodaja</span>
+                            </div>
+                        </div>
+                        <span class="dealer-action-badge">Oʻtish</span>
+                    </a>
+                </div>
             </div>
 
             <!-- 5 ta Qimirlovchi Premium SVG Stikerli Navigatsiya -->
             <div class="bottom-nav">
                 <!-- Stars -->
-                <button class="nav-item active" onclick="switchNav(this)">
+                <button class="nav-item active" onclick="switchTab('stars', this)">
                     <div class="nav-svg-wrap">
                         <svg viewBox="0 0 24 24" width="28" height="28" fill="#000000">
                             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
@@ -569,7 +811,7 @@
                 </button>
 
                 <!-- Nft -->
-                <button class="nav-item" onclick="switchNav(this)">
+                <button class="nav-item" onclick="switchTab('nft', this)">
                     <div class="nav-svg-wrap">
                         <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
@@ -581,7 +823,7 @@
                 </button>
 
                 <!-- Gift -->
-                <button class="nav-item" onclick="switchNav(this)">
+                <button class="nav-item" onclick="switchTab('gift', this)">
                     <div class="nav-svg-wrap">
                         <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="20 12 20 22 4 22 4 12"></polyline>
@@ -595,7 +837,7 @@
                 </button>
 
                 <!-- Donat -->
-                <button class="nav-item" onclick="switchNav(this)">
+                <button class="nav-item" onclick="switchTab('donat', this)">
                     <div class="nav-svg-wrap">
                         <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
@@ -606,7 +848,7 @@
                 </button>
 
                 <!-- Channel -->
-                <button class="nav-item" onclick="switchNav(this)">
+                <button class="nav-item" onclick="switchTab('channel', this)">
                     <div class="nav-svg-wrap">
                         <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
@@ -621,7 +863,7 @@
     <!-- DILERLAR MODAL OYNASI -->
     <div id="dealersModal" class="modal-overlay" onclick="closeDealersModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <div class="modal-title">⭐ 2 ta rasmiy diler</div>
+            <div class="modal-title" id="modalHeaderTitle">2 ta rasmiy diler</div>
             
             <div class="dealers-list">
                 <!-- 1-Diler: @org_karimov -->
@@ -695,14 +937,26 @@
             document.getElementById('marketPage').classList.add('active');
         }
 
-        function switchNav(btn) {
+        function switchTab(tabName, btn) {
             hapticClick();
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             btn.classList.add('active');
+
+            document.querySelectorAll('.tab-view').forEach(view => view.classList.remove('active'));
+            document.getElementById('tab-' + tabName).classList.add('active');
         }
 
-        function openDealersModal() {
+        function selectItem(card, displayId, priceText) {
             hapticClick();
+            let parent = card.parentElement;
+            parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            document.getElementById(displayId).innerText = `Narxi: ${priceText}`;
+        }
+
+        function openDealersModal(category) {
+            hapticClick();
+            document.getElementById('modalHeaderTitle').innerText = `${category} — 2 ta rasmiy diler`;
             document.getElementById('dealersModal').classList.add('open');
         }
 
@@ -734,6 +988,7 @@
         }
 
         function setPreset(count) {
+            hapticClick();
             document.getElementById('starsCount').value = count;
             calculatePrice();
         }
