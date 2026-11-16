@@ -26,42 +26,6 @@
             position: relative;
         }
 
-        /* Orqa fonda uchib yuruvchi rasmlar (Floating background photos) */
-        .floating-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .float-img {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            opacity: 0.18;
-            filter: blur(1px);
-            animation: floatUp 12s linear infinite;
-        }
-
-        .float-img:nth-child(1) { left: 10%; animation-duration: 14s; animation-delay: 0s; }
-        .float-img:nth-child(2) { left: 40%; animation-duration: 10s; animation-delay: 3s; width: 40px; height: 40px; }
-        .float-img:nth-child(3) { left: 75%; animation-duration: 16s; animation-delay: 1s; width: 60px; height: 60px; }
-        .float-img:nth-child(4) { left: 25%; animation-duration: 12s; animation-delay: 5s; width: 45px; height: 45px; }
-        .float-img:nth-child(5) { left: 85%; animation-duration: 11s; animation-delay: 2s; width: 35px; height: 35px; }
-
-        @keyframes floatUp {
-            0% { transform: translateY(110vh) scale(0.8) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.22; }
-            80% { opacity: 0.22; }
-            100% { transform: translateY(-15vh) scale(1.2) rotate(360deg); opacity: 0; }
-        }
-
         /* Support Premium SVG Stiker (Yuqori o'ng burchak) */
         .support-btn {
             position: absolute;
@@ -238,8 +202,7 @@
         }
 
         .service-box {
-            background: rgba(10, 10, 10, 0.92);
-            backdrop-filter: blur(12px);
+            background: #0a0a0a;
             border: 1.5px solid rgba(255, 255, 255, 0.2);
             border-radius: 26px;
             padding: 22px 18px;
@@ -269,7 +232,7 @@
             line-height: 1.4;
         }
 
-        /* Yangi kanallar ro'yxati (3 ta) */
+        /* Kanallar ro'yxati */
         .channels-list {
             display: flex;
             flex-direction: column;
@@ -321,11 +284,11 @@
             color: #a1a1aa;
         }
 
-        /* NFT / Gift Arenda Qismi (Uzun tayoqcha / Slider) */
+        /* NFT / Gift Arenda Qismi */
         .rental-section {
             width: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            border: 1.5px solid rgba(255, 255, 255, 0.18);
+            background: #000000;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
             border-radius: 20px;
             padding: 16px;
             display: flex;
@@ -411,7 +374,7 @@
             background: #e2e8f0;
         }
 
-        /* Qimirlab turuvchi qora/oq galochka stikeri */
+        /* Qimirlab turuvchi galochka */
         .big-wiggle-badge {
             width: 22px;
             height: 22px;
@@ -432,17 +395,8 @@
 </head>
 <body>
 
-    <!-- Orqa fonda uchib yuruvchi rasmlar -->
-    <div class="floating-bg">
-        <img src="https://t.me/i/userpic/320/acazes.jpg" class="float-img" alt="">
-        <img src="https://t.me/i/userpic/320/acazes_kanali.jpg" class="float-img" alt="">
-        <img src="https://t.me/i/userpic/320/acazes_chati.jpg" class="float-img" alt="">
-        <img src="https://t.me/i/userpic/320/acazes.jpg" class="float-img" alt="">
-        <img src="https://t.me/i/userpic/320/acazes_kanali.jpg" class="float-img" alt="">
-    </div>
-
-    <!-- Tepadagi Support Stikeri -->
-    <a id="supportBtn" href="https://t.me/acazes" target="_blank" class="support-btn" onclick="hapticClick()" aria-label="Support">
+    <!-- Tepadagi Support Stikeri (@FarzonaTurayeva ga o'tadi) -->
+    <a id="supportBtn" href="https://t.me/FarzonaTurayeva" target="_blank" class="support-btn" onclick="hapticClick()" aria-label="Support">
         <div class="support-svg-wrap">
             <svg viewBox="0 0 48 48" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -496,7 +450,7 @@
         </div>
     </div>
 
-    <!-- 2-OYNA: Asosiy Market (Yangi kanallar va Arenda Slideri) -->
+    <!-- 2-OYNA: Asosiy Market -->
     <div id="marketPage" class="page hidden">
         <div class="market-container">
             <div class="service-box">
@@ -507,7 +461,7 @@
                     Rasmiy kanallarimiz va NFT / Gift arenda xizmati.
                 </div>
                 
-                <!-- Yangi kanallar ro'yxati -->
+                <!-- Kanallar ro'yxati -->
                 <div class="channels-list">
                     <!-- 1. Acazes Chat -->
                     <a href="https://t.me/acazes_chati" target="_blank" class="channel-card" onclick="hapticClick()">
@@ -570,7 +524,7 @@
                     </div>
                     <!-- Uzun tayoqcha -->
                     <input type="range" id="rentalSlider" class="range-slider" min="0" max="4" step="1" value="0" oninput="updateRental(this.value)">
-                    <a id="rentBtn" href="https://t.me/acazes" target="_blank" class="rent-action-btn" onclick="hapticClick()">
+                    <a id="rentBtn" href="https://t.me/FarzonaTurayeva" target="_blank" class="rent-action-btn" onclick="hapticClick()">
                         Arendaga olish
                     </a>
                 </div>
@@ -584,7 +538,7 @@
             window.Telegram.WebApp.expand();
         }
 
-        // Arenda ma'lumotlari (Tayoqcha surilganda o'zgaradi)
+        // Arenda ma'lumotlari
         const rentalData = [
             { time: "2 soat", price: "220 soʻm" },
             { time: "6 soat", price: "990 soʻm" },
