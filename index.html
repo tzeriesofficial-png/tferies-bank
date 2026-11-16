@@ -26,22 +26,23 @@
             position: relative;
         }
 
-        /* Support tugmasi (Faqat kirishdan keyin chiqadi) */
+        /* Support Premium SVG Stiker (Yuqori o'ng burchak, faqat kirishdan keyin ko'rinadi) */
         .support-btn {
             position: absolute;
             top: 16px;
             right: 16px;
-            background: #111111;
+            background: #0d0d0d;
             border: 1.5px solid rgba(255, 255, 255, 0.25);
             border-radius: 50%;
-            width: 44px;
-            height: 44px;
-            display: none; /* Dastlab yashirin */
+            width: 56px;
+            height: 56px;
+            display: none;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             z-index: 100;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.15);
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15), inset 0 2px 6px rgba(255, 255, 255, 0.2);
             transition: transform 0.15s ease;
         }
 
@@ -50,23 +51,23 @@
         }
 
         .support-btn:active {
-            transform: scale(0.92);
+            transform: scale(0.9);
         }
 
         .support-svg-wrap {
-            width: 24px;
-            height: 24px;
+            width: 36px;
+            height: 36px;
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: supportWiggle 2.2s infinite ease-in-out;
+            animation: supportPremiumWiggle 2.4s infinite ease-in-out;
         }
 
-        @keyframes supportWiggle {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            20% { transform: scale(1.2) rotate(-12deg); }
-            50% { transform: scale(0.9) rotate(8deg); }
-            80% { transform: scale(1.1) rotate(-6deg); }
+        @keyframes supportPremiumWiggle {
+            0%, 100% { transform: scale(1) rotate(0deg) translateY(0); filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.4)); }
+            25% { transform: scale(1.16) rotate(-12deg) translateY(-2px); filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.8)); }
+            50% { transform: scale(0.95) rotate(8deg) translateY(1px); }
+            75% { transform: scale(1.1) rotate(-6deg) translateY(-1px); }
         }
 
         .page {
@@ -197,24 +198,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px 16px;
+            padding: 76px 16px 20px 16px;
             z-index: 10;
-        }
-
-        .tab-view {
-            display: flex;
-            width: 100%;
-            flex: 1;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow-y: auto;
-            animation: tabFadeIn 0.25s ease forwards;
-        }
-
-        @keyframes tabFadeIn {
-            0% { opacity: 0; transform: translateY(10px); }
-            100% { opacity: 1; transform: translateY(0); }
         }
 
         .service-box {
@@ -228,8 +213,10 @@
             gap: 12px;
             width: 100%;
             max-width: 360px;
-            max-height: 90vh;
+            height: 100%;
+            max-height: 540px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.1);
+            overflow: hidden;
         }
 
         .box-header {
@@ -239,6 +226,7 @@
             font-size: 19px;
             font-weight: 900;
             color: #ffffff;
+            flex-shrink: 0;
         }
 
         .box-desc {
@@ -247,6 +235,39 @@
             color: #a1a1aa;
             text-align: center;
             line-height: 1.4;
+            flex-shrink: 0;
+        }
+
+        /* Avtomatik tepadan pastga yuruvchi oyna (Marquee Container) */
+        .marquee-viewport {
+            width: 100%;
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+            mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+        }
+
+        .marquee-track {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            animation: scrollDownLoop 22s linear infinite;
+        }
+
+        .marquee-viewport:hover .marquee-track,
+        .marquee-viewport:active .marquee-track {
+            animation-play-state: paused;
+        }
+
+        /* Tepadan pastga qarab asta tushish animatsiyasi */
+        @keyframes scrollDownLoop {
+            0% {
+                transform: translateY(-50%);
+            }
+            100% {
+                transform: translateY(0%);
+            }
         }
 
         /* Kartalar */
@@ -302,75 +323,6 @@
             color: #a1a1aa;
         }
 
-        /* Modal oynalar */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal-overlay.open {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal-content {
-            background: #0a0a0a;
-            border: 1.5px solid rgba(255, 255, 255, 0.25);
-            border-radius: 26px;
-            width: 90%;
-            max-width: 350px;
-            padding: 24px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.1);
-            transform: scale(0.85);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .modal-overlay.open .modal-content {
-            transform: scale(1);
-        }
-
-        .dealers-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            max-height: 380px;
-            overflow-y: auto;
-            padding-right: 2px;
-        }
-
-        .close-modal-btn {
-            background: #000000;
-            border: 1.5px solid rgba(255, 255, 255, 0.25);
-            border-radius: 14px;
-            padding: 11px;
-            color: #ffffff;
-            font-size: 13px;
-            font-weight: 800;
-            cursor: pointer;
-            text-align: center;
-            margin-top: 4px;
-            transition: background 0.2s;
-        }
-
-        .close-modal-btn:active {
-            background: #171717;
-        }
-
         .big-wiggle-badge {
             width: 22px;
             height: 22px;
@@ -391,14 +343,27 @@
 </head>
 <body>
 
-    <!-- SUPPORT TUGMASI (Faqat kirishdan keyin chiqadi) -->
-    <button id="supportBtn" class="support-btn" onclick="openSupportModal()" title="Support">
+    <!-- Tepadagi Kattaroq Premium SVG Support Stiker (Matnsiz, to'g'ridan-to'g'ri @acazes_support ga o'tadi) -->
+    <a id="supportBtn" href="https://t.me/acazes_support" target="_blank" class="support-btn" onclick="hapticClick()" aria-label="Support">
         <div class="support-svg-wrap">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            <svg viewBox="0 0 48 48" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="premiumSupportGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#ffffff"/>
+                        <stop offset="50%" stop-color="#e2e8f0"/>
+                        <stop offset="100%" stop-color="#94a3b8"/>
+                    </linearGradient>
+                </defs>
+                <!-- Premium qalqon/rozetka shakli -->
+                <path d="M24 3L29.5 7.5L36.5 6.8L38.8 13.5L44.5 17.5L42.5 24.3L44.5 31.1L38.8 35.1L36.5 41.8L29.5 41.1L24 45.6L18.5 41.1L11.5 41.8L9.2 35.1L3.5 31.1L5.5 24.3L3.5 17.5L9.2 13.5L11.5 6.8L18.5 7.5L24 3Z" fill="url(#premiumSupportGrad)" stroke="#ffffff" stroke-width="1.2"/>
+                <!-- Ichidagi quloqchin / support ikonkasi -->
+                <path d="M16 25V22C16 17.5817 19.5817 14 24 14C28.4183 14 32 17.5817 32 22V25" fill="none" stroke="#000000" stroke-width="3.2" stroke-linecap="round"/>
+                <rect x="13" y="23" width="5" height="8" rx="2.5" fill="#000000"/>
+                <rect x="30" y="23" width="5" height="8" rx="2.5" fill="#000000"/>
+                <path d="M32.5 30C32.5 32.5 30 34.5 26 34.5H23" fill="none" stroke="#000000" stroke-width="2.6" stroke-linecap="round"/>
             </svg>
         </div>
-    </button>
+    </a>
 
     <!-- 1-OYNA: Landing -->
     <div id="landingPage" class="page active">
@@ -435,21 +400,22 @@
         </div>
     </div>
 
-    <!-- 2-OYNA: Asosiy Market (Barcha kanallar qo'shildi) -->
+    <!-- 2-OYNA: Asosiy Market (Tepadan pastga yuruvchi ro'yxat) -->
     <div id="marketPage" class="page hidden">
         <div class="market-container">
-            <div class="tab-view active">
-                <div class="service-box">
-                    <div class="box-header">
-                        <span>Rasmiy Xizmatlar</span>
-                    </div>
-                    <div class="box-desc">
-                        Oʻyin ichidagi xaridlar va rasmiy kanallar.
-                    </div>
-                    
-                    <div class="dealers-list" style="width: 100%;">
+            <div class="service-box">
+                <div class="box-header">
+                    <span>Rasmiy Xizmatlar</span>
+                </div>
+                <div class="box-desc">
+                    Oʻyin ichidagi xaridlar va rasmiy xizmatlar.
+                </div>
+                
+                <div class="marquee-viewport">
+                    <div class="marquee-track" id="marqueeTrack">
+                        <!-- 1-to'plam -->
                         <!-- 1. PUBG Mobile -->
-                        <a href="https://t.me/Abrorovsaler" target="_blank" class="game-card" onclick="hapticClick()">
+                        <a href="https://t.me/acazes_support" target="_blank" class="game-card" onclick="hapticClick()">
                             <div class="game-info">
                                 <img src="https://t.me/i/userpic/320/official_pubgmobile_mena.jpg" alt="PUBG Mobile" class="game-avatar" onerror="this.src='https://via.placeholder.com/44/000000/ffffff?text=PUBG'">
                                 <div class="game-text">
@@ -466,7 +432,7 @@
                         </a>
 
                         <!-- 2. Free Fire -->
-                        <a href="https://t.me/Abrorovsaler" target="_blank" class="game-card" onclick="hapticClick()">
+                        <a href="https://t.me/acazes_support" target="_blank" class="game-card" onclick="hapticClick()">
                             <div class="game-info">
                                 <img src="https://t.me/i/userpic/320/FF_ID_SELLER_FREEFIRE_MAXX.jpg" alt="Free Fire" class="game-avatar" onerror="this.src='https://via.placeholder.com/44/000000/ffffff?text=FF'">
                                 <div class="game-text">
@@ -483,7 +449,7 @@
                         </a>
 
                         <!-- 3. MLBB CIS -->
-                        <a href="https://t.me/Abrorovsaler" target="_blank" class="game-card" onclick="hapticClick()">
+                        <a href="https://t.me/acazes_support" target="_blank" class="game-card" onclick="hapticClick()">
                             <div class="game-info">
                                 <img src="https://t.me/i/userpic/320/mlbbcis.jpg" alt="MLBB CIS" class="game-avatar" onerror="this.src='https://via.placeholder.com/44/000000/ffffff?text=MLBB'">
                                 <div class="game-text">
@@ -500,7 +466,7 @@
                         </a>
 
                         <!-- 4. Poppo Live -->
-                        <a href="https://t.me/Abrorovsaler" target="_blank" class="game-card" onclick="hapticClick()">
+                        <a href="https://t.me/acazes_support" target="_blank" class="game-card" onclick="hapticClick()">
                             <div class="game-info">
                                 <img src="https://t.me/i/userpic/320/poppolivecommunity.jpg" alt="Poppo Live" class="game-avatar" onerror="this.src='https://via.placeholder.com/44/000000/ffffff?text=Poppo'">
                                 <div class="game-text">
@@ -517,7 +483,7 @@
                         </a>
 
                         <!-- 5. Telegram Premium -->
-                        <a href="https://t.me/Abrorovsaler" target="_blank" class="game-card" onclick="hapticClick()">
+                        <a href="https://t.me/acazes_support" target="_blank" class="game-card" onclick="hapticClick()">
                             <div class="game-info">
                                 <img src="https://t.me/i/userpic/320/premium.jpg" alt="Telegram Premium" class="game-avatar" onerror="this.src='https://via.placeholder.com/44/000000/ffffff?text=Prem'">
                                 <div class="game-text">
@@ -533,8 +499,8 @@
                             </div>
                         </a>
 
-                        <!-- 6. Brawl Nuls Skachat -->
-                        <a href="https://t.me/Abrorovsaler" target="_blank" class="game-card" onclick="hapticClick()">
+                        <!-- 6. Brawl Nuls -->
+                        <a href="https://t.me/acazes_support" target="_blank" class="game-card" onclick="hapticClick()">
                             <div class="game-info">
                                 <img src="https://t.me/i/userpic/320/bravl_nuls_skachat.jpg" alt="Brawl Stars Nuls" class="game-avatar" onerror="this.src='https://via.placeholder.com/44/000000/ffffff?text=Brawl'">
                                 <div class="game-text">
@@ -551,7 +517,7 @@
                         </a>
 
                         <!-- 7. Hayi Chat -->
-                        <a href="https://t.me/Abrorovsaler" target="_blank" class="game-card" onclick="hapticClick()">
+                        <a href="https://t.me/acazes_support" target="_blank" class="game-card" onclick="hapticClick()">
                             <div class="game-info">
                                 <img src="https://t.me/i/userpic/320/hayi_chat.jpg" alt="Hayi Chat" class="game-avatar" onerror="this.src='https://via.placeholder.com/44/000000/ffffff?text=Hayi'">
                                 <div class="game-text">
@@ -568,7 +534,7 @@
                         </a>
 
                         <!-- 8. Bigo Live CIS -->
-                        <a href="https://t.me/Abrorovsaler" target="_blank" class="game-card" onclick="hapticClick()">
+                        <a href="https://t.me/acazes_support" target="_blank" class="game-card" onclick="hapticClick()">
                             <div class="game-info">
                                 <img src="https://t.me/i/userpic/320/bigolivecis.jpg" alt="Bigo Live CIS" class="game-avatar" onerror="this.src='https://via.placeholder.com/44/000000/ffffff?text=Bigo'">
                                 <div class="game-text">
@@ -585,7 +551,7 @@
                         </a>
 
                         <!-- 9. Walt -->
-                        <a href="https://t.me/Abrorovsaler" target="_blank" class="game-card" onclick="hapticClick()">
+                        <a href="https://t.me/acazes_support" target="_blank" class="game-card" onclick="hapticClick()">
                             <div class="game-info">
                                 <img src="https://t.me/i/userpic/320/walt.jpg" alt="Walt" class="game-avatar" onerror="this.src='https://via.placeholder.com/44/000000/ffffff?text=Walt'">
                                 <div class="game-text">
@@ -606,33 +572,19 @@
         </div>
     </div>
 
-    <!-- SUPPORT MODAL OYNASI -->
-    <div id="supportModal" class="modal-overlay" onclick="closeSupportModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <div style="font-size: 16px; font-weight: 900; color: #ffffff; text-align: center;">Qoʻllab-quvvatlash (Support)</div>
-            
-            <div class="dealers-list">
-                <a href="https://t.me/Abrorovsaler?text=Salom%20manga%20yordam%20kerak" target="_blank" class="game-card" onclick="hapticClick()">
-                    <div class="game-info">
-                        <img src="https://t.me/i/userpic/320/Abrorovsaler.jpg" alt="@Abrorovsaler" class="game-avatar" onerror="this.src='https://via.placeholder.com/44/000000/ffffff?text=S'">
-                        <div class="game-text">
-                            <span class="game-title">Abrorov Support</span>
-                            <span class="game-sub">@Abrorovsaler</span>
-                        </div>
-                    </div>
-                    <span style="font-size: 11px; font-weight: 800; background: #ffffff; color: #000000; padding: 6px 12px; border-radius: 10px;">Yozish</span>
-                </a>
-            </div>
-
-            <button class="close-modal-btn" onclick="closeSupportModal()">Yopish</button>
-        </div>
-    </div>
-
     <script>
         if (window.Telegram && window.Telegram.WebApp) {
             window.Telegram.WebApp.ready();
             window.Telegram.WebApp.expand();
         }
+
+        // Uzluksiz tepadan pastga aylanish uchun elementlarni klonlash
+        window.addEventListener('DOMContentLoaded', () => {
+            const track = document.getElementById('marqueeTrack');
+            if (track) {
+                track.innerHTML += track.innerHTML;
+            }
+        });
 
         function goToMarket() {
             hapticClick();
@@ -641,18 +593,8 @@
             document.getElementById('marketPage').classList.remove('hidden');
             document.getElementById('marketPage').classList.add('active');
             
-            // Kirishdan keyin Support tugmasini ko'rsatish
+            // Kirishdan keyin Support stikerini ko'rsatish
             document.getElementById('supportBtn').classList.add('visible');
-        }
-
-        function openSupportModal() {
-            hapticClick();
-            document.getElementById('supportModal').classList.add('open');
-        }
-
-        function closeSupportModal() {
-            hapticClick();
-            document.getElementById('supportModal').classList.remove('open');
         }
 
         function hapticClick() {
