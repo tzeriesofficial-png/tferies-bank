@@ -195,14 +195,14 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 20px 16px 16px 16px;
+            padding: 20px 16px;
             z-index: 10;
         }
 
         .tab-view {
-            display: none;
+            display: flex;
             width: 100%;
             flex: 1;
             flex-direction: column;
@@ -210,10 +210,6 @@
             align-items: center;
             overflow-y: auto;
             animation: tabFadeIn 0.25s ease forwards;
-        }
-
-        .tab-view.active {
-            display: flex;
         }
 
         @keyframes tabFadeIn {
@@ -250,105 +246,6 @@
             color: #a1a1aa;
             text-align: center;
             line-height: 1.4;
-        }
-
-        .input-group {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            text-align: left;
-        }
-
-        .input-group label {
-            font-size: 11.5px;
-            font-weight: 800;
-            color: #ffffff;
-        }
-
-        .custom-input {
-            width: 100%;
-            background: #000000;
-            border: 1.5px solid rgba(255, 255, 255, 0.25);
-            border-radius: 14px;
-            padding: 12px 14px;
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 800;
-            outline: none;
-            text-align: center;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            width: 100%;
-        }
-
-        .option-card {
-            background: #000000;
-            border: 1.5px solid rgba(255, 255, 255, 0.2);
-            border-radius: 14px;
-            padding: 10px 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .option-card.selected {
-            border-color: #ffffff;
-            background: #171717;
-            transform: scale(1.02);
-        }
-
-        .option-title {
-            font-size: 13px;
-            font-weight: 900;
-            color: #ffffff;
-        }
-
-        .option-sub {
-            font-size: 11px;
-            font-weight: 700;
-            color: #a1a1aa;
-        }
-
-        .price-display {
-            font-size: 15px;
-            font-weight: 900;
-            color: #ffffff;
-            background: #000000;
-            border: 1.5px solid rgba(255, 255, 255, 0.25);
-            padding: 11px 14px;
-            border-radius: 12px;
-            width: 100%;
-            text-align: center;
-        }
-
-        .buy-action-btn {
-            background: #ffffff;
-            color: #000000;
-            border: none;
-            border-radius: 14px;
-            padding: 14px 20px;
-            font-size: 15px;
-            font-weight: 900;
-            cursor: pointer;
-            width: 100%;
-            text-align: center;
-            text-decoration: none;
-            display: block;
-            box-shadow: 0 6px 18px rgba(255, 255, 255, 0.15);
-            transition: transform 0.15s ease, background 0.2s;
-        }
-
-        .buy-action-btn:active {
-            transform: scale(0.96);
-            background: #e2e8f0;
         }
 
         /* O'yinlar kartasi (Donat uchun) */
@@ -404,123 +301,6 @@
             color: #a1a1aa;
         }
 
-        /* Kanal kartasi */
-        .channel-card {
-            background: #000000;
-            border: 1.5px solid rgba(255, 255, 255, 0.2);
-            border-radius: 18px;
-            padding: 14px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            text-decoration: none;
-            width: 100%;
-            transition: all 0.2s ease;
-        }
-
-        .channel-card:active {
-            transform: scale(0.97);
-            background: #171717;
-        }
-
-        .channel-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .channel-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid rgba(255, 255, 255, 0.25);
-            background: #111111;
-        }
-
-        .channel-text {
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-            text-align: left;
-        }
-
-        .channel-name-row {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .channel-title-text {
-            font-size: 15px;
-            font-weight: 900;
-            color: #ffffff;
-        }
-
-        .channel-sub-text {
-            font-size: 12px;
-            font-weight: 700;
-            color: #a1a1aa;
-        }
-
-        /* Bottom Nav */
-        .bottom-nav {
-            width: 100%;
-            max-width: 390px;
-            height: 78px;
-            background: #0a0a0a;
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
-            border-radius: 22px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 0 4px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.1);
-            flex-shrink: 0;
-        }
-
-        .nav-item {
-            background: none;
-            border: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            width: 20%;
-            height: 100%;
-            opacity: 0.55;
-            transition: all 0.25s ease;
-        }
-
-        .nav-item.active {
-            opacity: 1;
-            transform: translateY(-2px);
-        }
-
-        .nav-svg-wrap {
-            width: 30px;
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 3px;
-            animation: stickerWiggle 2.2s infinite ease-in-out;
-        }
-
-        @keyframes stickerWiggle {
-            0%, 100% { transform: scale(1) rotate(0deg) translateY(0); filter: drop-shadow(0 0 4px rgba(255,255,255,0.3)); }
-            20% { transform: scale(1.28) rotate(-14deg) translateY(-3px); filter: drop-shadow(0 0 8px rgba(255,255,255,0.6)); }
-            50% { transform: scale(0.92) rotate(8deg) translateY(2px); }
-            80% { transform: scale(1.15) rotate(-6deg) translateY(-1px); }
-        }
-
-        .nav-item span {
-            font-size: 10.5px;
-            font-weight: 900;
-            color: #ffffff;
-        }
-
         /* Modal oynalar */
         .modal-overlay {
             position: fixed;
@@ -563,83 +343,12 @@
             transform: scale(1);
         }
 
-        .modal-title {
-            font-size: 16px;
-            font-weight: 900;
-            color: #ffffff;
-            text-align: center;
-            letter-spacing: 0.5px;
-        }
-
         .dealers-list {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-        }
-
-        .dealer-card {
-            background: #000000;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 18px;
-            padding: 12px 14px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .dealer-card:active {
-            transform: scale(0.97);
-            background: #171717;
-        }
-
-        .dealer-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .dealer-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid rgba(255, 255, 255, 0.25);
-            background: #111111;
-        }
-
-        .dealer-text {
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .dealer-name-row {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .dealer-name {
-            font-size: 14.5px;
-            font-weight: 900;
-            color: #ffffff;
-        }
-
-        .dealer-username {
-            font-size: 11.5px;
-            font-weight: 700;
-            color: #a1a1aa;
-        }
-
-        .dealer-action-badge {
-            font-size: 11px;
-            font-weight: 800;
-            background: #ffffff;
-            color: #000000;
-            padding: 6px 12px;
-            border-radius: 10px;
+            gap: 10px;
+            max-height: 380px;
+            overflow-y: auto;
         }
 
         .close-modal-btn {
@@ -724,121 +433,10 @@
         </div>
     </div>
 
-    <!-- 2-OYNA: Asosiy Market -->
+    <!-- 2-OYNA: Asosiy Market (Faqat Donat va 4 ta kanal) -->
     <div id="marketPage" class="page hidden">
         <div class="market-container">
-            
-            <!-- 1. STARS SAHIFASI -->
-            <div id="tab-stars" class="tab-view active">
-                <div class="service-box">
-                    <div class="box-header">
-                        <span>Telegram Stars</span>
-                    </div>
-                    <div class="input-group">
-                        <label for="starsCount">Stars miqdorini kiriting (Min: 50, Maks: 5000):</label>
-                        <input type="number" id="starsCount" class="custom-input" value="50" min="50" max="5000" oninput="calculatePrice()">
-                    </div>
-                    <div class="grid-2">
-                        <div class="option-card" onclick="setPreset(50)">
-                            <span class="option-title">50 ta</span>
-                            <span class="option-sub">11 000 soʻm</span>
-                        </div>
-                        <div class="option-card" onclick="setPreset(75)">
-                            <span class="option-title">75 ta</span>
-                            <span class="option-sub">16 500 soʻm</span>
-                        </div>
-                        <div class="option-card" onclick="setPreset(100)">
-                            <span class="option-title">100 ta</span>
-                            <span class="option-sub">22 000 soʻm</span>
-                        </div>
-                        <div class="option-card" onclick="setPreset(200)">
-                            <span class="option-title">200 ta</span>
-                            <span class="option-sub">44 000 soʻm</span>
-                        </div>
-                    </div>
-                    <div class="price-display" id="priceDisplay">
-                        Narxi: 11 000 soʻm
-                    </div>
-                    <button class="buy-action-btn" onclick="openDealersModal('Stars')">
-                        Sotib olish
-                    </button>
-                </div>
-            </div>
-
-            <!-- 2. NFT SAHIFASI -->
-            <div id="tab-nft" class="tab-view">
-                <div class="service-box">
-                    <div class="box-header">
-                        <span>Telegram NFT</span>
-                    </div>
-                    <div class="box-desc">
-                        Noyob raqamli kolleksiyalar, NFT sovgʻalar va raqamli aktivlarni rasmiy dilerlar orqali xarid qiling.
-                    </div>
-                    <div class="grid-2" id="nftGrid">
-                        <div class="option-card selected" onclick="selectItem(this, 'nftPrice', '45 000 soʻm')">
-                            <span class="option-title">Plush Pepe</span>
-                            <span class="option-sub">45 000 soʻm</span>
-                        </div>
-                        <div class="option-card" onclick="selectItem(this, 'nftPrice', '65 000 soʻm')">
-                            <span class="option-title">Durov Cap</span>
-                            <span class="option-sub">65 000 soʻm</span>
-                        </div>
-                        <div class="option-card" onclick="selectItem(this, 'nftPrice', '30 000 soʻm')">
-                            <span class="option-title">Astral Shard</span>
-                            <span class="option-sub">30 000 soʻm</span>
-                        </div>
-                        <div class="option-card" onclick="selectItem(this, 'nftPrice', '95 000 soʻm')">
-                            <span class="option-title">Rare Edition</span>
-                            <span class="option-sub">95 000 soʻm</span>
-                        </div>
-                    </div>
-                    <div class="price-display" id="nftPrice">
-                        Tanlangan: 45 000 soʻm
-                    </div>
-                    <button class="buy-action-btn" onclick="openDealersModal('NFT')">
-                        Sotib olish
-                    </button>
-                </div>
-            </div>
-
-            <!-- 3. GIFT SAHIFASI -->
-            <div id="tab-gift" class="tab-view">
-                <div class="service-box">
-                    <div class="box-header">
-                        <span>Telegram Gift & Premium</span>
-                    </div>
-                    <div class="box-desc">
-                        Oʻzingizga yoki yaqinlaringizga Telegram Premium va maxsus sovgʻalarni tezda yuboring.
-                    </div>
-                    <div class="grid-2" id="giftGrid">
-                        <div class="option-card selected" onclick="selectItem(this, 'giftPrice', '49 000 soʻm')">
-                            <span class="option-title">1 oylik Premium</span>
-                            <span class="option-sub">49 000 soʻm</span>
-                        </div>
-                        <div class="option-card" onclick="selectItem(this, 'giftPrice', '170 000 soʻm')">
-                            <span class="option-title">3 oylik Premium</span>
-                            <span class="option-sub">170 000 soʻm</span>
-                        </div>
-                        <div class="option-card" onclick="selectItem(this, 'giftPrice', '220 000 soʻm')">
-                            <span class="option-title">6 oylik Premium</span>
-                            <span class="option-sub">220 000 soʻm</span>
-                        </div>
-                        <div class="option-card" onclick="selectItem(this, 'giftPrice', '289 000 soʻm')">
-                            <span class="option-title">1 yillik Premium</span>
-                            <span class="option-sub">289 000 soʻm</span>
-                        </div>
-                    </div>
-                    <div class="price-display" id="giftPrice">
-                        Narxi: 49 000 soʻm
-                    </div>
-                    <button class="buy-action-btn" onclick="openDealersModal('Gift / Premium')">
-                        Sotib olish
-                    </button>
-                </div>
-            </div>
-
-            <!-- 4. DONAT SAHIFASI -->
-            <div id="tab-donat" class="tab-view">
+            <div class="tab-view active">
                 <div class="service-box" style="gap: 12px;">
                     <div class="box-header">
                         <span>Oʻyinlarga Donat</span>
@@ -848,7 +446,7 @@
                     </div>
                     
                     <div class="dealers-list" style="width: 100%;">
-                        <!-- PUBG Mobile -->
+                        <!-- 1. PUBG Mobile -->
                         <a href="https://t.me/Abrorovsaler" target="_blank" class="game-card" onclick="hapticClick()">
                             <div class="game-info">
                                 <img src="https://t.me/i/userpic/320/official_pubgmobile_mena.jpg" alt="PUBG Mobile" class="game-avatar" onerror="this.src='https://via.placeholder.com/48/000000/ffffff?text=PUBG'">
@@ -871,7 +469,7 @@
                             </div>
                         </a>
 
-                        <!-- Free Fire -->
+                        <!-- 2. Free Fire -->
                         <a href="https://t.me/Abrorovsaler" target="_blank" class="game-card" onclick="hapticClick()">
                             <div class="game-info">
                                 <img src="https://t.me/i/userpic/320/FF_ID_SELLER_FREEFIRE_MAXX.jpg" alt="Free Fire" class="game-avatar" onerror="this.src='https://via.placeholder.com/48/000000/ffffff?text=FF'">
@@ -893,201 +491,73 @@
                                 </svg>
                             </div>
                         </a>
+
+                        <!-- 3. MLBB CIS -->
+                        <a href="https://t.me/mlbbcis" target="_blank" class="game-card" onclick="hapticClick()">
+                            <div class="game-info">
+                                <img src="https://t.me/i/userpic/320/mlbbcis.jpg" alt="MLBB CIS" class="game-avatar" onerror="this.src='https://via.placeholder.com/48/000000/ffffff?text=MLBB'">
+                                <div class="game-text">
+                                    <span class="game-title">MLBB CIS</span>
+                                    <span class="game-sub">Rasmiy service</span>
+                                </div>
+                            </div>
+                            <div class="big-wiggle-badge">
+                                <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="whiteBadgeGame3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#ffffff"/>
+                                            <stop offset="100%" stop-color="#cbd5e1"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="url(#whiteBadgeGame3)" stroke="#ffffff" stroke-width="0.8"/>
+                                    <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </a>
+
+                        <!-- 4. Poppo Live Community -->
+                        <a href="https://t.me/poppolivecommunity" target="_blank" class="game-card" onclick="hapticClick()">
+                            <div class="game-info">
+                                <img src="https://t.me/i/userpic/320/poppolivecommunity.jpg" alt="Poppo Live" class="game-avatar" onerror="this.src='https://via.placeholder.com/48/000000/ffffff?text=Poppo'">
+                                <div class="game-text">
+                                    <span class="game-title">Poppo Live</span>
+                                    <span class="game-sub">Rasmiy service</span>
+                                </div>
+                            </div>
+                            <div class="big-wiggle-badge">
+                                <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="whiteBadgeGame4" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#ffffff"/>
+                                            <stop offset="100%" stop-color="#cbd5e1"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="url(#whiteBadgeGame4)" stroke="#ffffff" stroke-width="0.8"/>
+                                    <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
-
-            <!-- 5. CHANNEL SAHIFASI -->
-            <div id="tab-channel" class="tab-view">
-                <div class="service-box">
-                    <div class="box-header">
-                        <span>Rasmiy Kanal</span>
-                    </div>
-                    <div class="box-desc">
-                        Yangiliklar, chegirmalar va rasmiy maʼlumotlar bilan tanishing.
-                    </div>
-
-                    <a href="https://t.me/astroprodaja" target="_blank" class="channel-card" onclick="hapticClick()">
-                        <div class="channel-info">
-                            <img src="https://t.me/i/userpic/320/astroprodaja.jpg" alt="@astroprodaja" class="channel-avatar" onerror="this.src='https://via.placeholder.com/50/000000/ffffff?text=A'">
-                            <div class="channel-text">
-                                <div class="channel-name-row">
-                                    <span class="channel-title-text">Rasmiy kanal</span>
-                                    <div class="big-wiggle-badge">
-                                        <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
-                                            <defs>
-                                                <linearGradient id="whiteBadgeChan" x1="0%" y1="0%" x2="100%" y2="100%">
-                                                    <stop offset="0%" stop-color="#ffffff"/>
-                                                    <stop offset="100%" stop-color="#cbd5e1"/>
-                                                </linearGradient>
-                                            </defs>
-                                            <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="url(#whiteBadgeChan)" stroke="#ffffff" stroke-width="0.8"/>
-                                            <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <span class="channel-sub-text">@astroprodaja</span>
-                            </div>
-                        </div>
-                        <span class="dealer-action-badge">Oʻtish</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Bottom Nav -->
-            <div class="bottom-nav">
-                <!-- Stars -->
-                <button class="nav-item active" onclick="switchTab('stars', this)">
-                    <div class="nav-svg-wrap">
-                        <svg viewBox="0 0 24 24" width="28" height="28" fill="#ffffff">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                        </svg>
-                    </div>
-                    <span>Stars</span>
-                </button>
-
-                <!-- Nft -->
-                <button class="nav-item" onclick="switchTab('nft', this)">
-                    <div class="nav-svg-wrap">
-                        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                            <polyline points="2 17 12 22 22 17"></polyline>
-                            <polyline points="2 12 12 17 22 12"></polyline>
-                        </svg>
-                    </div>
-                    <span>Nft</span>
-                </button>
-
-                <!-- Gift -->
-                <button class="nav-item" onclick="switchTab('gift', this)">
-                    <div class="nav-svg-wrap">
-                        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="20 12 20 22 4 22 4 12"></polyline>
-                            <rect x="2" y="7" width="20" height="5"></rect>
-                            <line x1="12" y1="22" x2="12" y2="7"></line>
-                            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
-                            <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
-                        </svg>
-                    </div>
-                    <span>Gift</span>
-                </button>
-
-                <!-- Donat -->
-                <button class="nav-item" onclick="switchTab('donat', this)">
-                    <div class="nav-svg-wrap">
-                        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                            <line x1="1" y1="10" x2="23" y2="10"></line>
-                        </svg>
-                    </div>
-                    <span>Donat</span>
-                </button>
-
-                <!-- Channel -->
-                <button class="nav-item" onclick="switchTab('channel', this)">
-                    <div class="nav-svg-wrap">
-                        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                        </svg>
-                    </div>
-                    <span>Channel</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- DILERLAR MODAL OYNASI -->
-    <div id="dealersModal" class="modal-overlay" onclick="closeDealersModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <div class="modal-title" id="modalHeaderTitle">2 ta rasmiy diler</div>
-            
-            <div class="dealers-list">
-                <!-- 1-Diler: @org_karimov -->
-                <a href="https://t.me/org_karimov" target="_blank" class="dealer-card" onclick="hapticClick()">
-                    <div class="dealer-info">
-                        <img src="https://t.me/i/userpic/320/org_karimov.jpg" alt="@org_karimov" class="dealer-avatar" onerror="this.src='https://via.placeholder.com/48/000000/ffffff?text=K'">
-                        <div class="dealer-text">
-                            <div class="dealer-name-row">
-                                <span class="dealer-name">Karimov</span>
-                                <div class="big-wiggle-badge">
-                                    <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
-                                        <defs>
-                                            <linearGradient id="whiteModalGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                                <stop offset="0%" stop-color="#ffffff"/>
-                                                <stop offset="100%" stop-color="#cbd5e1"/>
-                                            </linearGradient>
-                                        </defs>
-                                        <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="url(#whiteModalGrad1)" stroke="#ffffff" stroke-width="0.8"/>
-                                        <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <span class="dealer-username">@org_karimov</span>
-                        </div>
-                    </div>
-                    <span class="dealer-action-badge">Yozish</span>
-                </a>
-
-                <!-- 2-Diler: @Abrorovsaler -->
-                <a href="https://t.me/Abrorovsaler" target="_blank" class="dealer-card" onclick="hapticClick()">
-                    <div class="dealer-info">
-                        <img src="https://t.me/i/userpic/320/Abrorovsaler.jpg" alt="@Abrorovsaler" class="dealer-avatar" onerror="this.src='https://via.placeholder.com/48/000000/ffffff?text=A'">
-                        <div class="dealer-text">
-                            <div class="dealer-name-row">
-                                <span class="dealer-name">Abrorov</span>
-                                <div class="big-wiggle-badge">
-                                    <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
-                                        <defs>
-                                            <linearGradient id="whiteModalGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                                <stop offset="0%" stop-color="#ffffff"/>
-                                                <stop offset="100%" stop-color="#cbd5e1"/>
-                                            </linearGradient>
-                                        </defs>
-                                        <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="url(#whiteModalGrad2)" stroke="#ffffff" stroke-width="0.8"/>
-                                        <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <span class="dealer-username">@Abrorovsaler</span>
-                        </div>
-                    </div>
-                    <span class="dealer-action-badge">Yozish</span>
-                </a>
-            </div>
-
-            <button class="close-modal-btn" onclick="closeDealersModal()">Yopish</button>
         </div>
     </div>
 
     <!-- SUPPORT MODAL OYNASI -->
     <div id="supportModal" class="modal-overlay" onclick="closeSupportModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <div class="modal-title">Qoʻllab-quvvatlash (Support)</div>
+            <div style="font-size: 16px; font-weight: 900; color: #ffffff; text-align: center;">Qoʻllab-quvvatlash (Support)</div>
             
             <div class="dealers-list">
-                <a href="https://t.me/Abrorovsaler?text=Salom%20manga%20yordam%20kerak" target="_blank" class="dealer-card" onclick="hapticClick()">
-                    <div class="dealer-info">
-                        <img src="https://t.me/i/userpic/320/Abrorovsaler.jpg" alt="@Abrorovsaler" class="dealer-avatar" onerror="this.src='https://via.placeholder.com/48/000000/ffffff?text=S'">
-                        <div class="dealer-text">
-                            <div class="dealer-name-row">
-                                <span class="dealer-name">Abrorov Support</span>
-                                <div class="big-wiggle-badge">
-                                    <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
-                                        <defs>
-                                            <linearGradient id="whiteModalGradSupp" x1="0%" y1="0%" x2="100%" y2="100%">
-                                                <stop offset="0%" stop-color="#ffffff"/>
-                                                <stop offset="100%" stop-color="#cbd5e1"/>
-                                            </linearGradient>
-                                        </defs>
-                                        <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="url(#whiteModalGradSupp)" stroke="#ffffff" stroke-width="0.8"/>
-                                        <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#000000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <span class="dealer-username">@Abrorovsaler</span>
+                <a href="https://t.me/Abrorovsaler?text=Salom%20manga%20yordam%20kerak" target="_blank" class="game-card" onclick="hapticClick()">
+                    <div class="game-info">
+                        <img src="https://t.me/i/userpic/320/Abrorovsaler.jpg" alt="@Abrorovsaler" class="game-avatar" onerror="this.src='https://via.placeholder.com/48/000000/ffffff?text=S'">
+                        <div class="game-text">
+                            <span class="game-title">Abrorov Support</span>
+                            <span class="game-sub">@Abrorovsaler</span>
                         </div>
                     </div>
-                    <span class="dealer-action-badge">Yozish</span>
+                    <span style="font-size: 11px; font-weight: 800; background: #ffffff; color: #000000; padding: 6px 12px; border-radius: 10px;">Yozish</span>
                 </a>
             </div>
 
@@ -1112,34 +582,6 @@
             document.getElementById('supportBtn').classList.add('visible');
         }
 
-        function switchTab(tabName, btn) {
-            hapticClick();
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            btn.classList.add('active');
-
-            document.querySelectorAll('.tab-view').forEach(view => view.classList.remove('active'));
-            document.getElementById('tab-' + tabName).classList.add('active');
-        }
-
-        function selectItem(card, displayId, priceText) {
-            hapticClick();
-            let parent = card.parentElement;
-            parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-            card.classList.add('selected');
-            document.getElementById(displayId).innerText = `Narxi: ${priceText}`;
-        }
-
-        function openDealersModal(category) {
-            hapticClick();
-            document.getElementById('modalHeaderTitle').innerText = `${category} — 2 ta rasmiy diler`;
-            document.getElementById('dealersModal').classList.add('open');
-        }
-
-        function closeDealersModal() {
-            hapticClick();
-            document.getElementById('dealersModal').classList.remove('open');
-        }
-
         function openSupportModal() {
             hapticClick();
             document.getElementById('supportModal').classList.add('open');
@@ -1155,30 +597,6 @@
                 window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
             }
         }
-
-        function calculatePrice() {
-            let input = document.getElementById('starsCount');
-            let val = parseInt(input.value);
-
-            if (isNaN(val) || val < 50) {
-                val = 50;
-            } else if (val > 5000) {
-                val = 5000;
-                input.value = 5000;
-            }
-
-            let totalPrice = val * 220;
-            let formattedPrice = totalPrice.toLocaleString('uz-UZ');
-            document.getElementById('priceDisplay').innerText = `Narxi: ${formattedPrice} soʻm`;
-        }
-
-        function setPreset(count) {
-            hapticClick();
-            document.getElementById('starsCount').value = count;
-            calculatePrice();
-        }
-
-        calculatePrice();
     </script>
 </body>
 </html>
