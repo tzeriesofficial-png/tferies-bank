@@ -13,6 +13,7 @@
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            transition: all 0.3s ease;
         }
 
         body {
@@ -68,7 +69,6 @@
             filter: drop-shadow(0 15px 30px rgba(255, 51, 102, 0.45));
         }
 
-        /* Sovg'a qutisi qopqog'i ochilib yopilish animatsiyasi */
         .gift-lid {
             transform-origin: 50% 45%;
             animation: openLid 1.6s infinite ease-in-out;
@@ -89,7 +89,6 @@
             50% { opacity: 1; transform: scale(1.2); }
         }
 
-        /* Uzun rangli chiziq (Progress Bar) */
         .progress-wrapper {
             width: 100%;
             display: flex;
@@ -126,7 +125,7 @@
         /* 2-OYNA: ASOSIY EKRAN VA PASTKI PANEL */
         #mainPage {
             justify-content: space-between;
-            padding: 20px 16px 95px 16px;
+            padding: 16px 14px 90px 14px;
         }
 
         .tab-content {
@@ -135,25 +134,90 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
-            gap: 14px;
+            overflow-y: auto;
+            padding-bottom: 10px;
         }
 
-        .tab-title {
-            font-size: 24px;
+        .tab-pane {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .tab-pane.active-pane {
+            display: flex;
+        }
+
+        /* Kanallar ro'yxati (Do'kon bo'limi uchun) */
+        .channels-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .channel-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .channel-card:hover {
+            background: rgba(255, 0, 85, 0.12);
+            border-color: rgba(255, 0, 85, 0.4);
+        }
+
+        .channel-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .channel-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ff0055;
+            background-color: #1a1e29;
+        }
+
+        .channel-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            gap: 2px;
+        }
+
+        .channel-name {
+            font-size: 15px;
             font-weight: 900;
-            letter-spacing: 1px;
-            background: linear-gradient(90deg, #ffffff, #a5b4fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #ffffff;
         }
 
-        .tab-subtitle {
-            font-size: 14px;
+        .channel-sub {
+            font-size: 11px;
             font-weight: 700;
-            color: #8e96b0;
+            color: #9ba3be;
+        }
+
+        .channel-btn {
+            background: linear-gradient(135deg, #ff0055, #ff3366);
+            color: #ffffff;
+            padding: 7px 14px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 900;
+            box-shadow: 0 4px 12px rgba(255, 0, 85, 0.3);
         }
 
         /* Pastki 5 talik navigatsiya paneli */
@@ -164,7 +228,7 @@
             transform: translateX(-50%);
             width: calc(100% - 20px);
             max-width: 420px;
-            background: rgba(24, 28, 42, 0.92);
+            background: rgba(24, 28, 42, 0.94);
             backdrop-filter: blur(16px);
             border: 1.5px solid rgba(255, 255, 255, 0.12);
             border-radius: 22px;
@@ -185,23 +249,16 @@
             padding: 6px 2px;
             border-radius: 14px;
             cursor: pointer;
-            transition: background 0.25s ease, transform 0.2s ease;
-        }
-
-        .nav-item:active {
-            transform: scale(0.92);
         }
 
         .nav-item.active {
             background: rgba(255, 255, 255, 0.1);
-            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.08);
         }
 
         .nav-label {
             font-size: 10px;
             font-weight: 900;
             color: #9ba3be;
-            letter-spacing: 0.3px;
             text-transform: uppercase;
         }
 
@@ -209,57 +266,38 @@
             color: #ffffff;
         }
 
-        /* Doimiy qimirlab turadigan rangli SVG ikonkalar animatsiyalari */
         .svg-icon-box {
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .anim-shop {
-            animation: wiggleShop 2s infinite ease-in-out;
-        }
-
-        .anim-nft {
-            animation: floatNft 2.2s infinite ease-in-out;
-        }
-
-        .anim-ijara {
-            animation: spinKey 2.4s infinite ease-in-out;
-        }
-
-        .anim-buyurtma {
-            animation: bounceOrder 1.9s infinite ease-in-out;
-        }
-
-        .anim-balans {
-            animation: pulseWallet 2.1s infinite ease-in-out;
-        }
+        .anim-shop { animation: wiggleShop 2s infinite ease-in-out; }
+        .anim-nft { animation: floatNft 2.2s infinite ease-in-out; }
+        .anim-ijara { animation: spinKey 2.4s infinite ease-in-out; }
+        .anim-buyurtma { animation: bounceOrder 1.9s infinite ease-in-out; }
+        .anim-balans { animation: pulseWallet 2.1s infinite ease-in-out; }
 
         @keyframes wiggleShop {
             0%, 100% { transform: rotate(0deg) scale(1); }
             25% { transform: rotate(-10deg) scale(1.1); }
             75% { transform: rotate(10deg) scale(1.1); }
         }
-
         @keyframes floatNft {
             0%, 100% { transform: translateY(0px) scale(1); }
             50% { transform: translateY(-4px) scale(1.12); }
         }
-
         @keyframes spinKey {
             0%, 100% { transform: rotate(-12deg) scale(1); }
             50% { transform: rotate(15deg) scale(1.12); }
         }
-
         @keyframes bounceOrder {
             0%, 100% { transform: scale(1) translateY(0); }
             40% { transform: scale(1.15) translateY(-3px); }
             70% { transform: scale(0.95) translateY(1px); }
         }
-
         @keyframes pulseWallet {
             0%, 100% { transform: scale(1) rotate(0deg); }
             50% { transform: scale(1.14) rotate(6deg); }
@@ -268,7 +306,7 @@
 </head>
 <body>
 
-    <!-- 1-OYNA: BANTIKLI VA OG'ZI OCHILADIGAN RANGORANG PADARKA -->
+    <!-- 1-OYNA: PADARKA LOADING -->
     <div id="loaderPage" class="page active">
         <div class="loader-container">
             <div class="gift-box-wrapper">
@@ -288,33 +326,21 @@
                         </linearGradient>
                     </defs>
 
-                    <!-- Ichidan chiqayotgan yorug'lik nuri -->
                     <circle class="gift-glow" cx="60" cy="52" r="26" fill="#ffe600" opacity="0.5"/>
-
-                    <!-- Quti pastki qismi -->
                     <rect x="24" y="54" width="72" height="54" rx="10" fill="url(#boxGrad)"/>
-                    <!-- Quti ichidagi qorong'u og'iz qismi -->
                     <ellipse cx="60" cy="54" rx="33" ry="6" fill="#2a0033"/>
-                    <!-- Quti vertikal lentasi -->
                     <rect x="53" y="54" width="14" height="54" fill="url(#ribbonGrad)"/>
 
-                    <!-- Ochilib-yopiladigan Qopqoq va Bantik -->
                     <g class="gift-lid">
-                        <!-- Qopqoq -->
                         <rect x="18" y="38" width="84" height="18" rx="6" fill="url(#lidGrad)"/>
-                        <!-- Qopqoq lentasi -->
                         <rect x="53" y="38" width="14" height="18" fill="url(#ribbonGrad)"/>
-                        <!-- Chap bantik -->
                         <path d="M60 38 C42 16, 22 24, 34 38 C42 42, 54 40, 60 38 Z" fill="url(#ribbonGrad)"/>
-                        <!-- O'ng bantik -->
                         <path d="M60 38 C78 16, 98 24, 86 38 C78 42, 66 40, 60 38 Z" fill="url(#ribbonGrad)"/>
-                        <!-- Bantik o'rta tuguni -->
                         <circle cx="60" cy="37" r="6" fill="#ffaa00"/>
                     </g>
                 </svg>
             </div>
 
-            <!-- 1 dan 100 gacha uzun chiziq -->
             <div class="progress-wrapper">
                 <div class="progress-bar-container">
                     <div id="progressBarFill" class="progress-bar-fill"></div>
@@ -324,17 +350,103 @@
         </div>
     </div>
 
-    <!-- 2-OYNA: ASOSIY MENU VA 5 TA RANGORANG QIMIRLAYDIGAN SVG -->
+    <!-- 2-OYNA: ASOSIY EKRAN -->
     <div id="mainPage" class="page">
-        <div class="tab-content" id="tabDisplay">
-            <div class="tab-title" id="activeTabTitle">DOʻKON</div>
-            <div class="tab-subtitle" id="activeTabDesc">Boʻlim tez orada toʻldiriladi</div>
+        <div class="tab-content">
+            
+            <!-- 1. DO'KON BO'LIMI (KANALLAR BILAN) -->
+            <div id="pane-dokon" class="tab-pane active-pane">
+                <div style="font-size: 18px; font-weight: 900; margin-bottom: 4px; text-align: left;">Doʻkon va Hamkor Kanallar</div>
+                <div style="font-size: 12px; font-weight: 700; color: #9ba3be; text-align: left; margin-bottom: 6px;">Quyidagi rasmiy kanallarga obuna boʻling:</div>
+
+                <div class="channels-list">
+                    <!-- Kanal 1 -->
+                    <a href="https://t.me/official_pubgmobile_mena" target="_blank" class="channel-card">
+                        <div class="channel-left">
+                            <img src="https://t.me/i/userpic/320/official_pubgmobile_mena.jpg" 
+                                 onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=PUBG+Mobile&background=ff0055&color=ffffff&bold=true&size=128';" 
+                                 alt="PUBG" class="channel-avatar">
+                            <div class="channel-info">
+                                <span class="channel-name">PUBG Mobile MENA</span>
+                                <span class="channel-sub">Rasmiy kanal</span>
+                            </div>
+                        </div>
+                        <span class="channel-btn">Kirish</span>
+                    </a>
+
+                    <!-- Kanal 2 -->
+                    <a href="https://t.me/play_standoff2" target="_blank" class="channel-card">
+                        <div class="channel-left">
+                            <img src="https://t.me/i/userpic/320/play_standoff2.jpg" 
+                                 onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Standoff+2&background=ff0055&color=ffffff&bold=true&size=128';" 
+                                 alt="Standoff" class="channel-avatar">
+                            <div class="channel-info">
+                                <span class="channel-name">Play Standoff 2</span>
+                                <span class="channel-sub">Rasmiy kanal</span>
+                            </div>
+                        </div>
+                        <span class="channel-btn">Kirish</span>
+                    </a>
+
+                    <!-- Kanal 3 -->
+                    <a href="https://t.me/gruxx_ff" target="_blank" class="channel-card">
+                        <div class="channel-left">
+                            <img src="https://t.me/i/userpic/320/gruxx_ff.jpg" 
+                                 onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Free+Fire&background=ff0055&color=ffffff&bold=true&size=128';" 
+                                 alt="FreeFire" class="channel-avatar">
+                            <div class="channel-info">
+                                <span class="channel-name">Free Fire Gruxx</span>
+                                <span class="channel-sub">Rasmiy kanal</span>
+                            </div>
+                        </div>
+                        <span class="channel-btn">Kirish</span>
+                    </a>
+
+                    <!-- Kanal 4 -->
+                    <a href="https://t.me/roblox_chat" target="_blank" class="channel-card">
+                        <div class="channel-left">
+                            <img src="https://t.me/i/userpic/320/roblox_chat.jpg" 
+                                 onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Roblox+Chat&background=ff0055&color=ffffff&bold=true&size=128';" 
+                                 alt="Roblox" class="channel-avatar">
+                            <div class="channel-info">
+                                <span class="channel-name">Roblox Chat</span>
+                                <span class="channel-sub">Rasmiy kanal</span>
+                            </div>
+                        </div>
+                        <span class="channel-btn">Kirish</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. NFT BO'LIMI -->
+            <div id="pane-nft" class="tab-pane">
+                <div style="font-size: 20px; font-weight: 900; margin-top: 40px;">NFT Katalogi</div>
+                <div style="font-size: 13px; color: #9ba3be; margin-top: 10px;">Tez orada ijara va savdo uchun NFT’lar qoʻshiladi.</div>
+            </div>
+
+            <!-- 3. IJARA BO'LIMI -->
+            <div id="pane-ijara" class="tab-pane">
+                <div style="font-size: 20px; font-weight: 900; margin-top: 40px;">Faol Ijaralar</div>
+                <div style="font-size: 13px; color: #9ba3be; margin-top: 10px;">Sizda hozircha ijaraga olingan NFT’lar yoʻq.</div>
+            </div>
+
+            <!-- 4. BUYURTMA BO'LIMI -->
+            <div id="pane-buyurtma" class="tab-pane">
+                <div style="font-size: 20px; font-weight: 900; margin-top: 40px;">Buyurtmalar tarixi</div>
+                <div style="font-size: 13px; color: #9ba3be; margin-top: 10px;">Buyurtmalar tarixi boʻsh.</div>
+            </div>
+
+            <!-- 5. BALANS BO'LIMI -->
+            <div id="pane-balans" class="tab-pane">
+                <div style="font-size: 20px; font-weight: 900; margin-top: 40px;">Hamyon Balansi</div>
+                <div style="font-size: 26px; font-weight: 900; color: #00e5ff; margin-top: 10px;">0.00 TON</div>
+            </div>
+
         </div>
 
-        <!-- Pastki 5 ta ikonka -->
+        <!-- Pastki 5 ta ikonka paneli -->
         <div class="bottom-nav">
-            <!-- 1. DO'KON -->
-            <div class="nav-item active" onclick="selectTab(this, 'DOʻKON')">
+            <div class="nav-item active" onclick="switchTab('dokon', this)">
                 <div class="svg-icon-box anim-shop">
                     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 9L5 4H19L21 9H3Z" fill="#FF3366"/>
@@ -345,8 +457,7 @@
                 <span class="nav-label">DOʻKON</span>
             </div>
 
-            <!-- 2. NFT -->
-            <div class="nav-item" onclick="selectTab(this, 'NFT')">
+            <div class="nav-item" onclick="switchTab('nft', this)">
                 <div class="svg-icon-box anim-nft">
                     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <polygon points="12,2 21,8 12,22 3,8" fill="#A855F7"/>
@@ -357,8 +468,7 @@
                 <span class="nav-label">NFT</span>
             </div>
 
-            <!-- 3. IJARA -->
-            <div class="nav-item" onclick="selectTab(this, 'IJARA')">
+            <div class="nav-item" onclick="switchTab('ijara', this)">
                 <div class="svg-icon-box anim-ijara">
                     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="8" cy="14" r="5" fill="#FACC15"/>
@@ -369,8 +479,7 @@
                 <span class="nav-label">IJARA</span>
             </div>
 
-            <!-- 4. BUYURTMA -->
-            <div class="nav-item" onclick="selectTab(this, 'BUYURTMA')">
+            <div class="nav-item" onclick="switchTab('buyurtma', this)">
                 <div class="svg-icon-box anim-buyurtma">
                     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="4" y="3" width="16" height="18" rx="3" fill="#10B981"/>
@@ -381,8 +490,7 @@
                 <span class="nav-label">BUYURTMA</span>
             </div>
 
-            <!-- 5. BALANS -->
-            <div class="nav-item" onclick="selectTab(this, 'BALANS')">
+            <div class="nav-item" onclick="switchTab('balans', this)">
                 <div class="svg-icon-box anim-balans">
                     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="2" y="5" width="20" height="14" rx="3.5" fill="#3B82F6"/>
@@ -397,16 +505,12 @@
 
     <script>
         const tg = window.Telegram ? window.Telegram.WebApp : null;
-        if (tg) {
-            tg.ready();
-            tg.expand();
-        }
+        if (tg) { tg.ready(); tg.expand(); }
 
         let currentProgress = 1;
         const fillElement = document.getElementById('progressBarFill');
         const percentageElement = document.getElementById('percentageVal');
 
-        // 1 dan 100 gacha sanab uzun chiziq to'lishi
         const loadingInterval = setInterval(() => {
             if (currentProgress < 100) {
                 currentProgress++;
@@ -421,11 +525,12 @@
             }
         }, 30);
 
-        // Pastki 5 ta bo'limdan birini tanlash
-        function selectTab(element, tabName) {
+        function switchTab(tabId, element) {
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active-pane'));
+            document.getElementById('pane-' + tabId).classList.add('active-pane');
+
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
             element.classList.add('active');
-            document.getElementById('activeTabTitle').textContent = tabName;
         }
     </script>
 </body>
