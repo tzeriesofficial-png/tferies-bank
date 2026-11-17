@@ -13,6 +13,7 @@
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            transition: all 0.3s ease;
         }
 
         body {
@@ -27,6 +28,27 @@
             position: relative;
         }
 
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .page.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         .loader-container {
             display: flex;
             flex-direction: column;
@@ -35,7 +57,6 @@
             gap: 30px;
             width: 100%;
             max-width: 340px;
-            padding: 20px;
         }
 
         /* Reduz Drop Logotipi */
@@ -63,7 +84,7 @@
             letter-spacing: 1px;
         }
 
-        /* Qizil yuklanish chizig'i (Progress bar) */
+        /* Qizil yuklanish chizig'i */
         .progress-bar-container {
             width: 100%;
             height: 8px;
@@ -82,22 +103,152 @@
             box-shadow: 0 0 10px #ff0033;
             transition: width 0.1s linear;
         }
+
+        /* Kanallar oynasi */
+        .channels-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 28px;
+            padding: 24px 18px;
+            width: 100%;
+            max-width: 380px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .channels-title {
+            font-size: 18px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .channel-item {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+
+        .channel-item:hover {
+            background: rgba(255, 0, 51, 0.15);
+            border-color: rgba(255, 0, 51, 0.4);
+        }
+
+        .channel-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .channel-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ff0033;
+            box-shadow: 0 0 10px rgba(255,0,51,0.3);
+        }
+
+        .channel-name {
+            font-size: 14.5px;
+            font-weight: 900;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .channel-action {
+            background: #ff0033;
+            color: #ffffff;
+            padding: 7px 14px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 900;
+            box-shadow: 0 4px 12px rgba(255,0,51,0.3);
+        }
+
+        .verify-subs-btn {
+            background: linear-gradient(135deg, #ff0033, #cc0029);
+            color: #ffffff;
+            border: none;
+            border-radius: 16px;
+            padding: 14px;
+            font-size: 15px;
+            font-weight: 900;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 8px 25px rgba(255, 0, 51, 0.4);
+            margin-top: 6px;
+        }
+
+        .verify-subs-btn:active {
+            transform: scale(0.97);
+        }
     </style>
 </head>
 <body>
 
-    <div class="loader-container">
-        <!-- Logotip -->
-        <div class="logo-text">
-            <span class="logo-reduz">Reduz</span><span class="logo-drop">Drop</span>
-        </div>
-
-        <!-- Progress bar va foiz -->
-        <div style="width: 100%; display: flex; flex-direction: column; gap: 12px; align-items: center;">
-            <div class="progress-bar-container">
-                <div id="progressBarFill" class="progress-bar-fill"></div>
+    <!-- 1-OYNA: REDUZ DROP LOADING -->
+    <div id="loaderPage" class="page active">
+        <div class="loader-container">
+            <div class="logo-text">
+                <span class="logo-reduz">Reduz</span><span class="logo-drop">Drop</span>
             </div>
-            <div id="percentageVal" class="percentage-text">1%</div>
+
+            <div style="width: 100%; display: flex; flex-direction: column; gap: 12px; align-items: center;">
+                <div class="progress-bar-container">
+                    <div id="progressBarFill" class="progress-bar-fill"></div>
+                </div>
+                <div id="percentageVal" class="percentage-text">1%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2-OYNA: MAJBURIY OBUNA KANALLARI -->
+    <div id="channelsPage" class="page">
+        <div class="channels-card">
+            <div class="channels-title">Davom etish uchun kanallarga obuna boʻling! 🔥</div>
+            <div style="font-size: 12px; font-weight: 800; color: #aaaaaa; margin-bottom: 4px;">Barcha kanallarga qoʻshiling va tasdiqlang</div>
+
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <!-- 1-Kanal: PUBG Mobile MENA -->
+                <a href="https://t.me/official_pubgmobile_mena" target="_blank" class="channel-item">
+                    <div class="channel-left">
+                        <img src="https://ui-avatars.com/api/?name=PUBG+Mobile&background=ff0033&color=ffffff&bold=true&size=128" alt="PUBG" class="channel-avatar">
+                        <span class="channel-name">PUBG Mobile MENA</span>
+                    </div>
+                    <span class="channel-action">Obuna</span>
+                </a>
+
+                <!-- 2-Kanal: Free Fire Gruxx -->
+                <a href="https://t.me/gruxx_ff" target="_blank" class="channel-item">
+                    <div class="channel-left">
+                        <img src="https://ui-avatars.com/api/?name=Free+Fire&background=ff0033&color=ffffff&bold=true&size=128" alt="FreeFire" class="channel-avatar">
+                        <span class="channel-name">Free Fire Gruxx</span>
+                    </div>
+                    <span class="channel-action">Obuna</span>
+                </a>
+
+                <!-- 3-Kanal: Standoff 2 -->
+                <a href="https://t.me/play_standoff2" target="_blank" class="channel-item">
+                    <div class="channel-left">
+                        <img src="https://ui-avatars.com/api/?name=Standoff+2&background=ff0033&color=ffffff&bold=true&size=128" alt="Standoff2" class="channel-avatar">
+                        <span class="channel-name">Play Standoff 2</span>
+                    </div>
+                    <span class="channel-action">Obuna</span>
+                </a>
+            </div>
+
+            <button class="verify-subs-btn" onclick="checkSubscription()">Obunani tasdiqlash ✅</button>
         </div>
     </div>
 
@@ -109,7 +260,7 @@
         const fillElement = document.getElementById('progressBarFill');
         const percentageElement = document.getElementById('percentageVal');
 
-        // 1 dan 100 gacha avtomatik to'lish jarayoni
+        // Progress bar to'lish jarayoni
         const loadingInterval = setInterval(() => {
             if (currentProgress < 100) {
                 currentProgress++;
@@ -117,9 +268,17 @@
                 percentageElement.textContent = currentProgress + '%';
             } else {
                 clearInterval(loadingInterval);
-                // 100% bo'lgach keyingi oyna hozircha ochilmaydi (talabingiz bo'yicha)
+                // 100% bo'lgach kanallar oynasiga o'tish
+                setTimeout(() => {
+                    document.getElementById('loaderPage').classList.remove('active');
+                    document.getElementById('channelsPage').classList.add('active');
+                }, 400);
             }
-        }, 30); // Tezligini shu yerdan o'zgartirishingiz mumkin
+        }, 30);
+
+        function checkSubscription() {
+            alert("Tabriklaymiz! Obunalar tasdiqlandi ✅");
+        }
     </script>
 </body>
 </html>
