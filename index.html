@@ -38,8 +38,9 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 15px;
             transition: opacity 0.3s ease;
+            overflow-y: auto;
         }
 
         .page.hidden {
@@ -349,18 +350,17 @@
             60% { transform: scale(0.9) rotate(-10deg); }
         }
 
-        /* 4-OYNA: 6 ta Til tanlash ekrani */
-        .languages-container {
+        /* 4 & 5 & 6 OYNALAR: Umumiy konteynerlar va Sabzi rang bloklar */
+        .languages-container, .level-container, .time-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
-            max-width: 390px;
-            gap: 14px;
-            padding: 6px;
+            max-width: 380px;
+            gap: 12px;
+            padding: 10px 0;
         }
 
-        /* TEPADAGI BLOK (SARLAVHA) - Sabzi rang va oq hoshiya */
         .animated-header-box {
             display: flex;
             align-items: center;
@@ -382,7 +382,7 @@
         }
 
         .header-text {
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 900;
             color: #ffffff;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -406,7 +406,6 @@
             width: 100%;
         }
 
-        /* DAVLAT BLOKLARI ICHING SABZI RANG QILINDI */
         .lang-card {
             background: #ff5500;
             border: 2px solid #ffffff;
@@ -465,52 +464,44 @@
             animation: blackBadgeMotion 1.8s infinite ease-in-out;
         }
 
-        /* 5-OYNA: Tanlangan til darajasi (DARAJAB LOKLARI HAM SABZI RANG) */
-        .level-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 380px;
-            gap: 18px;
-        }
-
-        .level-card {
+        /* OYNA 5 & 6: Daraja va vaqt kartochkalari */
+        .level-card, .time-card {
             background: #ff5500;
             border: 2px solid #ffffff;
-            border-radius: 24px;
-            padding: 20px 18px;
+            border-radius: 22px;
+            padding: 16px 18px;
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 14px;
+            gap: 12px;
             cursor: pointer;
-            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
             transition: transform 0.15s ease, filter 0.2s ease;
         }
 
-        .level-card:active {
+        .level-card:active, .time-card:active {
             transform: scale(0.96);
             filter: brightness(0.9);
         }
 
-        .level-left {
+        .level-left, .time-left {
             display: flex;
             align-items: center;
             gap: 14px;
         }
 
-        .level-svg-box {
-            width: 48px;
-            height: 48px;
+        .level-svg-box, .time-svg-box {
+            width: 44px;
+            height: 44px;
             background: #ffffff;
-            border-radius: 16px;
+            border-radius: 14px;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
             animation: levelSvgWiggle 2.4s infinite ease-in-out;
+            flex-shrink: 0;
         }
 
         @keyframes levelSvgWiggle {
@@ -519,18 +510,18 @@
             65% { transform: scale(0.95) rotate(8deg); }
         }
 
-        .level-title {
-            font-size: 16px;
+        .level-title, .time-title {
+            font-size: 15px;
             font-weight: 900;
             color: #ffffff;
             line-height: 1.3;
         }
 
-        .level-sub {
-            font-size: 12px;
+        .level-sub, .time-sub {
+            font-size: 11.5px;
             font-weight: 700;
             color: rgba(255, 255, 255, 0.85);
-            margin-top: 3px;
+            margin-top: 2px;
         }
 
         .back-btn {
@@ -542,7 +533,7 @@
             font-size: 13px;
             font-weight: 800;
             cursor: pointer;
-            margin-top: 6px;
+            margin-top: 4px;
         }
 
         .back-btn:active {
@@ -672,7 +663,7 @@
 
             <div class="lang-grid">
                 <!-- 1. Ingliz tili -->
-                <div class="lang-card" onclick="openLanguageLevels('Ingliz')">
+                <div class="lang-card" onclick="openLanguageLevels('Ingliz tili')">
                     <div class="flag-square-wrap">
                         <svg viewBox="0 0 60 40" width="52" height="40" preserveAspectRatio="none">
                             <defs><clipPath id="ukClip"><rect width="60" height="40"/></clipPath></defs>
@@ -701,7 +692,7 @@
                 </div>
 
                 <!-- 2. Rus tili -->
-                <div class="lang-card" onclick="openLanguageLevels('Rus')">
+                <div class="lang-card" onclick="openLanguageLevels('Rus tili')">
                     <div class="flag-square-wrap">
                         <svg viewBox="0 0 60 40" width="52" height="40" preserveAspectRatio="none">
                             <rect width="60" height="13.33" y="0" fill="#ffffff"/>
@@ -725,7 +716,7 @@
                 </div>
 
                 <!-- 3. Koreys tili -->
-                <div class="lang-card" onclick="openLanguageLevels('Koreys')">
+                <div class="lang-card" onclick="openLanguageLevels('Koreys tili')">
                     <div class="flag-square-wrap">
                         <svg viewBox="0 0 60 40" width="52" height="40" preserveAspectRatio="none">
                             <rect width="60" height="40" fill="#ffffff"/>
@@ -755,7 +746,7 @@
                 </div>
 
                 <!-- 4. Yapon tili -->
-                <div class="lang-card" onclick="openLanguageLevels('Yapon')">
+                <div class="lang-card" onclick="openLanguageLevels('Yapon tili')">
                     <div class="flag-square-wrap">
                         <svg viewBox="0 0 60 40" width="52" height="40" preserveAspectRatio="none">
                             <rect width="60" height="40" fill="#ffffff"/>
@@ -778,7 +769,7 @@
                 </div>
 
                 <!-- 5. Turk tili -->
-                <div class="lang-card" onclick="openLanguageLevels('Turk')">
+                <div class="lang-card" onclick="openLanguageLevels('Turk tili')">
                     <div class="flag-square-wrap">
                         <svg viewBox="0 0 60 40" width="52" height="40" preserveAspectRatio="none">
                             <rect width="60" height="40" fill="#E30A17"/>
@@ -803,7 +794,7 @@
                 </div>
 
                 <!-- 6. Nemis tili -->
-                <div class="lang-card" onclick="openLanguageLevels('Nemis')">
+                <div class="lang-card" onclick="openLanguageLevels('Nemis tili')">
                     <div class="flag-square-wrap">
                         <svg viewBox="0 0 60 40" width="52" height="40" preserveAspectRatio="none">
                             <rect width="60" height="13.33" y="0" fill="#000000"/>
@@ -843,15 +834,15 @@
             </div>
 
             <!-- 1. 0 dan o'rganish kartochkasi -->
-            <div class="level-card" onclick="startLearning('0%')">
+            <div class="level-card" onclick="openTimeSelection('0 dan oʻrganish')">
                 <div class="level-left">
                     <div class="level-svg-box">
-                        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="#ff5500"/>
                         </svg>
                     </div>
                     <div>
-                        <div id="zeroLevelTitle" class="level-title">Ingliz tilini 0 dan oʻrganish</div>
+                        <div id="zeroLevelTitle" class="level-title">Tilni 0 dan oʻrganish</div>
                         <div class="level-sub">Boshlangʻich alifbo va asoslar</div>
                     </div>
                 </div>
@@ -864,15 +855,15 @@
             </div>
 
             <!-- 2. 50% joyidan o'rganish kartochkasi -->
-            <div class="level-card" onclick="startLearning('50%')">
+            <div class="level-card" onclick="openTimeSelection('50% joyidan oʻrganish')">
                 <div class="level-left">
                     <div class="level-svg-box">
-                        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="#000000"/>
+                        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="#ff5500"/>
                         </svg>
                     </div>
                     <div>
-                        <div id="halfLevelTitle" class="level-title">Ingliz tilini 50% joyidan oʻrganish</div>
+                        <div id="halfLevelTitle" class="level-title">Tilni 50% joyidan oʻrganish</div>
                         <div class="level-sub">Grammatika va erkin soʻzlashuv</div>
                     </div>
                 </div>
@@ -884,7 +875,150 @@
                 </div>
             </div>
 
-            <button class="back-btn" onclick="backToStep4()">← Orqaga qaytish</button>
+            <button class="back-btn" onclick="switchPage('step5Page', 'step4Page')">← Orqaga qaytish</button>
+        </div>
+    </div>
+
+    <!-- 6-OYNA: Kuniga necha minut vaqt ajratasiz? -->
+    <div id="step6Page" class="page hidden">
+        <div class="time-container">
+            <div class="animated-header-box">
+                <div class="header-svg-anim">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="#ffffff" stroke-width="2"/>
+                        <path d="M12 6V12L16 14" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <span id="timeHeaderTitle" class="header-text">Kuniga qancha vaqt ajratasiz?</span>
+            </div>
+
+            <!-- 1. 10 daqiqa -->
+            <div class="time-card" onclick="selectStudyTime('10 daqiqa')">
+                <div class="time-left">
+                    <div class="time-svg-box">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5">
+                            <circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="time-title">10 daqiqa</div>
+                        <div class="time-sub">Tezkor va yengil mashgʻulot</div>
+                    </div>
+                </div>
+                <div class="black-wiggle-badge">
+                    <svg viewBox="0 0 24 24" width="22" height="22">
+                        <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/>
+                        <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- 2. 15 daqiqa -->
+            <div class="time-card" onclick="selectStudyTime('15 daqiqa')">
+                <div class="time-left">
+                    <div class="time-svg-box">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5">
+                            <circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="time-title">15 daqiqa</div>
+                        <div class="time-sub">Optimal kundalik norma</div>
+                    </div>
+                </div>
+                <div class="black-wiggle-badge">
+                    <svg viewBox="0 0 24 24" width="22" height="22">
+                        <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/>
+                        <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- 3. 25 daqiqa -->
+            <div class="time-card" onclick="selectStudyTime('25 daqiqa')">
+                <div class="time-left">
+                    <div class="time-svg-box">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5">
+                            <circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="time-title">25 daqiqa</div>
+                        <div class="time-sub">Pomodoro fokus rejimi</div>
+                    </div>
+                </div>
+                <div class="black-wiggle-badge">
+                    <svg viewBox="0 0 24 24" width="22" height="22">
+                        <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/>
+                        <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- 4. 45 daqiqa -->
+            <div class="time-card" onclick="selectStudyTime('45 daqiqa')">
+                <div class="time-left">
+                    <div class="time-svg-box">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5">
+                            <circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="time-title">45 daqiqa</div>
+                        <div class="time-sub">Chuqurlashtirilgan dars</div>
+                    </div>
+                </div>
+                <div class="black-wiggle-badge">
+                    <svg viewBox="0 0 24 24" width="22" height="22">
+                        <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/>
+                        <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- 5. 1 soat -->
+            <div class="time-card" onclick="selectStudyTime('1 soat')">
+                <div class="time-left">
+                    <div class="time-svg-box">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5">
+                            <circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="time-title">1 soat</div>
+                        <div class="time-sub">Professional oʻqish rejimi</div>
+                    </div>
+                </div>
+                <div class="black-wiggle-badge">
+                    <svg viewBox="0 0 24 24" width="22" height="22">
+                        <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/>
+                        <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- 6. Oʻzim charchagunimcha -->
+            <div class="time-card" onclick="selectStudyTime('Charchagunimcha')">
+                <div class="time-left">
+                    <div class="time-svg-box">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5">
+                            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="time-title">Charchagunimcha</div>
+                        <div class="time-sub">Oʻzimga dam bergunimcha oʻqiyman</div>
+                    </div>
+                </div>
+                <div class="black-wiggle-badge">
+                    <svg viewBox="0 0 24 24" width="22" height="22">
+                        <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/>
+                        <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <button class="back-btn" onclick="switchPage('step6Page', 'step5Page')">← Orqaga qaytish</button>
         </div>
     </div>
 
@@ -895,7 +1029,8 @@
             tg.expand();
         }
 
-        let currentSelectedLang = "Ingliz";
+        let currentSelectedLang = "Ingliz tili";
+        let currentSelectedLevel = "0 dan oʻrganish";
 
         const months = [
             "Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun",
@@ -957,7 +1092,7 @@
             const y = document.getElementById('yearSelect').value;
             const m = document.getElementById('monthSelect').value;
             const d = document.getElementById('daySelect').value;
-            document.getElementById('datePreview').innerText = `Tanlangan: ${y}-yil, ${d}-${m}`;
+            document.getElementById('datePreview').innerText = `Tanlandi: ${y}-yil, ${d}-${m}`;
         }
 
         function switchPage(hideId, showId) {
@@ -1010,21 +1145,23 @@
             switchPage('step3Page', 'step4Page');
         }
 
-        function openLanguageLevels(langRoot) {
-            currentSelectedLang = langRoot;
-            document.getElementById('selectedLangHeader').innerText = `${langRoot} tili — darajani tanlang`;
-            document.getElementById('zeroLevelTitle').innerText = `${langRoot} tilini 0 dan oʻrganish`;
-            document.getElementById('halfLevelTitle').innerText = `${langRoot} tilini 50% joyidan oʻrganish`;
+        function openLanguageLevels(langName) {
+            currentSelectedLang = langName;
+            document.getElementById('selectedLangHeader').innerText = `${langName} — darajani tanlang`;
+            document.getElementById('zeroLevelTitle').innerText = `${langName}ni 0 dan oʻrganish`;
+            document.getElementById('halfLevelTitle').innerText = `${langName}ni 50% joyidan oʻrganish`;
             switchPage('step4Page', 'step5Page');
         }
 
-        function backToStep4() {
-            switchPage('step5Page', 'step4Page');
+        function openTimeSelection(levelName) {
+            currentSelectedLevel = levelName;
+            document.getElementById('timeHeaderTitle').innerText = `Kuniga qancha vaqt ajratasiz?`;
+            switchPage('step5Page', 'step6Page');
         }
 
-        function startLearning(level) {
+        function selectStudyTime(timeVal) {
             hapticClick();
-            alert(`${currentSelectedLang} tili (${level} bosqich) tanlandi! Keyingi qadamda tekin va premium darsliklar ro'yxati ochiladi.`);
+            alert(`Tabriklaymiz! 🚀\n\nTil: ${currentSelectedLang}\nDaraja: ${currentSelectedLevel}\nKunlik vaqt: ${timeVal}\n\nTez orada barcha tekin va premium darsliklar ochiladi!`);
         }
 
         function hapticClick() {
