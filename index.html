@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AcazesAcademy</title>
+    <title>AcazesAcademy - Ingliz tili darslari</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
@@ -131,15 +131,6 @@
             transform: scale(0.95);
         }
 
-        .register-btn svg {
-            animation: btnIconWiggle 2s infinite ease-in-out;
-        }
-
-        @keyframes btnIconWiggle {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.2) rotate(-10deg); }
-        }
-
         /* 2-OYNA */
         .date-card {
             background: rgba(255, 255, 255, 0.14);
@@ -182,19 +173,6 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
         }
 
-        .premium-search-input::placeholder {
-            color: #ff7733;
-            font-weight: 700;
-        }
-
-        .search-svg-icon {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-        }
-
         .selectors-grid {
             display: grid;
             grid-template-columns: 1.2fr 1.3fr 0.9fr;
@@ -220,8 +198,6 @@
             outline: none;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-            appearance: none;
-            -webkit-appearance: none;
         }
 
         .selected-preview {
@@ -248,11 +224,6 @@
             justify-content: center;
             gap: 8px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            transition: transform 0.15s ease;
-        }
-
-        .confirm-btn:active {
-            transform: scale(0.96);
         }
 
         .languages-container, .level-container, .time-container {
@@ -276,16 +247,9 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
             width: 100%;
             text-align: center;
-            animation: headerPulseWiggle 3s infinite ease-in-out;
-            cursor: pointer;
         }
         body.theme-orange .animated-header-box { background: #ff5500; }
         body.theme-black .animated-header-box { background: #1a1a1a; }
-
-        @keyframes headerPulseWiggle {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
 
         .header-text {
             font-size: 14.5px;
@@ -311,15 +275,9 @@
             justify-content: space-between;
             cursor: pointer;
             box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
-            transition: transform 0.15s ease, filter 0.2s ease;
         }
         body.theme-orange .lang-item-card { background: #ff5500; }
         body.theme-black .lang-item-card { background: #1a1a1a; }
-
-        .lang-item-card:active {
-            transform: scale(0.96);
-            filter: brightness(0.9);
-        }
 
         .lang-item-left {
             display: flex;
@@ -332,80 +290,12 @@
             font-weight: 900;
         }
 
-        /* Oq rangli qimirlaydigan premium SVG galochka */
         .white-wiggle-check {
             width: 26px;
             height: 26px;
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            animation: whiteBadgeMotion 2s infinite ease-in-out;
-        }
-
-        @keyframes whiteBadgeMotion {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            20% { transform: scale(1.2) rotate(-10deg); }
-            50% { transform: scale(0.95) rotate(10deg); }
-            80% { transform: scale(1.1) rotate(-5deg); }
-        }
-
-        .level-card, .time-card {
-            border: 2px solid #ffffff;
-            border-radius: 22px;
-            padding: 16px 18px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            cursor: pointer;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-            transition: transform 0.15s ease, filter 0.2s ease;
-        }
-        body.theme-orange .level-card, body.theme-orange .time-card { background: #ff5500; }
-        body.theme-black .level-card, body.theme-black .time-card { background: #1a1a1a; }
-
-        .level-card:active, .time-card:active {
-            transform: scale(0.96);
-            filter: brightness(0.9);
-        }
-
-        .level-left, .time-left {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .level-svg-box, .time-svg-box {
-            width: 44px;
-            height: 44px;
-            background: #ffffff;
-            border-radius: 14px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
-            animation: levelSvgWiggle 2.4s infinite ease-in-out;
-            flex-shrink: 0;
-        }
-
-        @keyframes levelSvgWiggle {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            30% { transform: scale(1.12) rotate(-8deg); }
-            65% { transform: scale(0.95) rotate(8deg); }
-        }
-
-        .level-title, .time-title {
-            font-size: 15px;
-            font-weight: 900;
-            line-height: 1.3;
-        }
-
-        .level-sub, .time-sub {
-            font-size: 11.5px;
-            font-weight: 700;
-            opacity: 0.85;
-            margin-top: 2px;
         }
 
         .back-btn {
@@ -419,6 +309,74 @@
             margin-top: 4px;
         }
 
+        /* Bepul darslar videos (Ustma-ust joylashuv) */
+        .free-lessons-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+            max-width: 380px;
+            max-height: 420px;
+            overflow-y: auto;
+            padding: 5px;
+        }
+
+        .lesson-video-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(16px);
+            border: 2px solid #ffffff;
+            border-radius: 22px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .lesson-title-row {
+            font-size: 14px;
+            font-weight: 900;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* YouTube izlari bilinmaydigan maxsus SVG pleer konteyneri */
+        .custom-video-player {
+            position: relative;
+            width: 100%;
+            height: 190px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #000000;
+            border: 1.5px solid rgba(255,255,255,0.5);
+        }
+
+        .custom-video-player iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            pointer-events: auto; /* Ortga qaytarib bo'lmasligi uchun UI cheklangan */
+        }
+
+        .verify-lesson-btn {
+            background: #ffffff;
+            color: #cc3700;
+            border: none;
+            border-radius: 14px;
+            padding: 10px;
+            font-size: 13px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .verify-lesson-btn:disabled {
+            background: rgba(255,255,255,0.4);
+            color: #666666;
+            cursor: not-allowed;
+        }
+
         /* Dashboard va Tablar */
         .home-dashboard {
             display: flex;
@@ -428,7 +386,7 @@
             width: 100%;
             height: 100%;
             max-width: 400px;
-            padding: 20px 10px 10px 10px;
+            padding: 15px 10px 10px 10px;
         }
 
         .tab-content {
@@ -446,6 +404,93 @@
             display: flex;
         }
 
+        /* PREMIUM CHAT INTERFEYSI */
+        .chat-wrapper {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(16px);
+            border: 2px solid #ffffff;
+            border-radius: 26px;
+            width: 100%;
+            height: 330px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-messages-box {
+            flex: 1;
+            padding: 12px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: left;
+            scroll-behavior: smooth;
+        }
+
+        .chat-msg {
+            background: rgba(255, 255, 255, 0.95);
+            color: #cc3700;
+            border-radius: 16px;
+            padding: 10px 14px;
+            font-size: 13px;
+            font-weight: 800;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            max-width: 90%;
+        }
+
+        .chat-author {
+            font-size: 11px;
+            font-weight: 900;
+            color: #e64500;
+            margin-bottom: 3px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .chat-stars {
+            color: #ffbb00;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .chat-input-area {
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1.5px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .chat-textarea {
+            width: 100%;
+            background: #ffffff;
+            border: none;
+            border-radius: 14px;
+            padding: 10px 12px;
+            font-size: 13px;
+            font-weight: 800;
+            color: #cc3700;
+            outline: none;
+            resize: none;
+            height: 45px;
+        }
+
+        .chat-send-btn {
+            background: #ffffff;
+            color: #cc3700;
+            border: none;
+            border-radius: 12px;
+            padding: 8px;
+            font-size: 13px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
         .welcome-banner {
             background: rgba(255, 255, 255, 0.16);
             backdrop-filter: blur(16px);
@@ -460,58 +505,12 @@
             font-size: 20px;
             font-weight: 900;
             margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
         }
 
         .welcome-desc {
             font-size: 13.5px;
             font-weight: 700;
             opacity: 0.9;
-        }
-
-        /* Premium SVG Kitob Stikeri */
-        .pro-book-icon {
-            width: 26px;
-            height: 26px;
-            display: inline-flex;
-            animation: bookWiggle 2.2s infinite ease-in-out;
-            vertical-align: middle;
-        }
-
-        @keyframes bookWiggle {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            25% { transform: scale(1.18) rotate(-10deg); }
-            75% { transform: scale(1.18) rotate(10deg); }
-        }
-
-        .pro-star-icon {
-            width: 24px;
-            height: 24px;
-            display: inline-flex;
-            animation: starWiggle 2s infinite ease-in-out;
-            vertical-align: middle;
-        }
-
-        @keyframes starWiggle {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            25% { transform: scale(1.25) rotate(-15deg); }
-            75% { transform: scale(1.25) rotate(15deg); }
-        }
-
-        .pro-cake-icon {
-            width: 22px;
-            height: 22px;
-            display: inline-flex;
-            animation: cakeBounce 2s infinite ease-in-out;
-            vertical-align: middle;
-        }
-
-        @keyframes cakeBounce {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-4px) scale(1.15); }
         }
 
         /* PROFIL TAB */
@@ -587,12 +586,6 @@
         body.theme-orange .wallet-card { background: #ff5500; }
         body.theme-black .wallet-card { background: #1a1a1a; }
 
-        .wallet-title {
-            font-size: 16px;
-            font-weight: 900;
-            text-align: center;
-        }
-
         .card-number-box {
             background: rgba(0,0,0,0.25);
             border: 1.5px dashed rgba(255,255,255,0.6);
@@ -605,12 +598,6 @@
             text-align: center;
         }
 
-        .card-holder-name {
-            font-size: 14px;
-            font-weight: 800;
-            opacity: 0.9;
-        }
-
         .price-badge {
             background: #ffffff;
             color: #cc3700;
@@ -618,7 +605,6 @@
             border-radius: 12px;
             font-size: 14px;
             font-weight: 900;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .timer-warning-box {
@@ -630,9 +616,6 @@
             font-size: 11.5px;
             font-weight: 800;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
             line-height: 1.4;
         }
 
@@ -729,19 +712,20 @@
             text-align: center;
         }
 
-        .black-pro-check {
-            width: 20px;
-            height: 20px;
+        /* Qora rangdagi qimirlab turuvchi qism (Qora qimirlaydigan Premium Galochka SVG) */
+        .black-moving-check {
+            width: 22px;
+            height: 22px;
             display: inline-flex;
             vertical-align: middle;
             margin-left: 6px;
-            animation: blackBadgeMotion 2s infinite ease-in-out;
+            animation: blackBadgeMotion 1.8s infinite ease-in-out;
         }
 
         @keyframes blackBadgeMotion {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            20% { transform: scale(1.2) rotate(-10deg); }
-            70% { transform: scale(1.1) rotate(8deg); }
+            0%, 100% { transform: scale(1) rotate(0deg) translateY(0); }
+            25% { transform: scale(1.2) rotate(-10deg) translateY(-2px); }
+            75% { transform: scale(1.15) rotate(10deg) translateY(2px); }
         }
 
         /* Pastki panel */
@@ -783,20 +767,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: navIconWiggle 2.5s infinite ease-in-out;
-        }
-
-        @keyframes navIconWiggle {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            25% { transform: scale(1.15) rotate(-6deg); }
-            75% { transform: scale(1.15) rotate(6deg); }
         }
 
         .nav-label {
             font-size: 11px;
             font-weight: 900;
             color: #ffffff !important;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
@@ -818,14 +794,12 @@
             <div class="settings-item" onclick="toggleThemeSetting()">
                 <span>Bot rangini oʻzgartirish</span>
                 <span id="themeToggleStatus">
-                    <svg class="black-pro-check" viewBox="0 0 24 24"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/></svg>
+                    <svg class="black-moving-check" viewBox="0 0 24 24"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/></svg>
                 </span>
             </div>
 
             <div class="settings-item" onclick="toggleOwnerInfo()">
-                <span>Bot egasi va sanasi
-                    <svg class="black-pro-check" viewBox="0 0 24 24"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/></svg>
-                </span>
+                <span>Bot egasi va sanasi</span>
                 <span>▼</span>
             </div>
             <div id="ownerInfoBox" class="settings-info-box">
@@ -835,7 +809,7 @@
 
             <div class="settings-item" onclick="window.open('https://t.me/AlijonavaA', '_blank')">
                 <span>Hamkorlik: @AlijonavaA
-                    <svg class="black-pro-check" viewBox="0 0 24 24"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/></svg>
+                    <svg class="black-moving-check" viewBox="0 0 24 24"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/></svg>
                 </span>
                 <span>↗</span>
             </div>
@@ -849,10 +823,6 @@
         <div class="landing-box">
             <div class="academy-title">AcazesAcademy</div>
             <button class="register-btn" onclick="goToStep2()">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#ff5500"/>
-                    <path d="M12 8V16M8 12H16" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
-                </svg>
                 <span>Roʻyxatdan oʻtish</span>
             </button>
         </div>
@@ -863,9 +833,6 @@
         <div class="date-card">
             <div class="card-header">
                 <span>Tugʻilgan sanangizni kiriting</span>
-            </div>
-            <div class="premium-search-wrap">
-                <input type="text" id="dateSearchInput" class="premium-search-input" placeholder="Poisk: masalan 2008..." oninput="smartDateSearch(this.value)">
             </div>
             <div class="selectors-grid">
                 <div class="select-box"><select id="yearSelect" class="premium-select" onchange="updateDatePreview()"></select></div>
@@ -885,14 +852,6 @@
                 <span id="tgUserName" class="user-fullname">Foydalanuvchi</span>
             </div>
             <div class="user-birth-info">
-                <span class="pro-cake-icon">
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2V5M8 3.5L9.5 5M16 3.5L14.5 5" stroke="#ffcc00" stroke-width="2" stroke-linecap="round"/>
-                        <rect x="4" y="9" width="16" height="4" rx="2" fill="#ffffff"/>
-                        <path d="M4 13C4 13 4 19 6 20H18C20 19 20 13 20 13H4Z" fill="#ff7733"/>
-                        <path d="M6 16H18" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
-                    </svg>
-                </span>
                 <span id="birthTextVal">2005-yil, 1-Yanvar</span>
             </div>
             <button class="pay-confirm-btn" onclick="goToStep4()"><span>Tushundim</span></button>
@@ -903,106 +862,18 @@
     <div id="step4Page" class="page hidden">
         <div class="languages-container">
             <div class="animated-header-box"><span class="header-text">AcazesAcademy’ga nima maqsadda kirdingiz?</span></div>
-            <div class="lang-grid">
-                <div class="lang-card" onclick="openLanguageLevels('Ingliz tili')">
-                    <div class="flag-square-wrap">
-                        <svg viewBox="0 0 60 40" width="52" height="40" preserveAspectRatio="none">
-                            <defs><clipPath id="ukClip"><rect width="60" height="40"/></clipPath></defs>
-                            <g clip-path="url(#ukClip)">
-                                <rect width="60" height="40" fill="#012169"/>
-                                <path d="M0,0 L60,40 M60,0 L0,40" stroke="#ffffff" stroke-width="7"/>
-                                <path d="M0,0 L60,40 M60,0 L0,40" stroke="#C8102E" stroke-width="3.5"/>
-                                <path d="M30,0 V40 M0,20 H60" stroke="#ffffff" stroke-width="11"/>
-                                <path d="M30,0 V40 M0,20 H60" stroke="#C8102E" stroke-width="6.5"/>
-                            </g>
-                        </svg>
+            <div class="lang-list-container">
+                <div class="lang-item-card" onclick="openLanguageLevels('Ingliz tili')">
+                    <div class="lang-item-left">
+                        <span class="lang-item-name">Ingliz tili</span>
                     </div>
-                    <div class="lang-name">Ingliz tili</div>
-                    <div class="zero-learn-badge">
-                        <span>0 dan oʻrganish</span>
-                        <span class="mini-black-check">
-                            <svg viewBox="0 0 24 24" width="15" height="15"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/></svg>
-                        </span>
-                    </div>
+                    <span>→</span>
                 </div>
-                <div class="lang-card" onclick="openLanguageLevels('Rus tili')">
-                    <div class="flag-square-wrap">
-                        <svg viewBox="0 0 60 40" width="52" height="40" preserveAspectRatio="none">
-                            <rect width="60" height="13.33" y="0" fill="#ffffff"/>
-                            <rect width="60" height="13.33" y="13.33" fill="#0039A6"/>
-                            <rect width="60" height="13.34" y="26.66" fill="#D52B1E"/>
-                        </svg>
+                <div class="lang-item-card" onclick="openLanguageLevels('Rus tili')">
+                    <div class="lang-item-left">
+                        <span class="lang-item-name">Rus tili</span>
                     </div>
-                    <div class="lang-name">Rus tili</div>
-                    <div class="zero-learn-badge">
-                        <span>0 dan oʻrganish</span>
-                        <span class="mini-black-check">
-                            <svg viewBox="0 0 24 24" width="15" height="15"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/></svg>
-                        </span>
-                    </div>
-                </div>
-                <div class="lang-card" onclick="openLanguageLevels('Koreys tili')">
-                    <div class="flag-square-wrap">
-                        <svg viewBox="0 0 60 40" width="52" height="40" preserveAspectRatio="none">
-                            <rect width="60" height="40" fill="#ffffff"/>
-                            <circle cx="30" cy="20" r="9.5" fill="#CD2E3A"/>
-                            <path d="M20.5,20 A9.5,9.5 0 0,0 39.5,20 A4.75,4.75 0 0,0 30,20 A4.75,4.75 0 0,1 20.5,20 Z" fill="#0047A0"/>
-                        </svg>
-                    </div>
-                    <div class="lang-name">Koreys tili</div>
-                    <div class="zero-learn-badge">
-                        <span>0 dan oʻrganish</span>
-                        <span class="mini-black-check">
-                            <svg viewBox="0 0 24 24" width="15" height="15"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/></svg>
-                        </span>
-                    </div>
-                </div>
-                <div class="lang-card" onclick="openLanguageLevels('Yapon tili')">
-                    <div class="flag-square-wrap">
-                        <svg viewBox="0 0 60 40" width="52" height="40" preserveAspectRatio="none">
-                            <rect width="60" height="40" fill="#ffffff"/>
-                            <circle cx="30" cy="20" r="10.5" fill="#BC002D"/>
-                        </svg>
-                    </div>
-                    <div class="lang-name">Yapon tili</div>
-                    <div class="zero-learn-badge">
-                        <span>0 dan oʻrganish</span>
-                        <span class="mini-black-check">
-                            <svg viewBox="0 0 24 24" width="15" height="15"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/></svg>
-                        </span>
-                    </div>
-                </div>
-                <div class="lang-card" onclick="openLanguageLevels('Turk tili')">
-                    <div class="flag-square-wrap">
-                        <svg viewBox="0 0 60 40" width="52" height="40" preserveAspectRatio="none">
-                            <rect width="60" height="40" fill="#E30A17"/>
-                            <circle cx="24" cy="20" r="9.5" fill="#ffffff"/>
-                            <circle cx="26.5" cy="20" r="7.5" fill="#E30A17"/>
-                        </svg>
-                    </div>
-                    <div class="lang-name">Turk tili</div>
-                    <div class="zero-learn-badge">
-                        <span>0 dan oʻrganish</span>
-                        <span class="mini-black-check">
-                            <svg viewBox="0 0 24 24" width="15" height="15"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/></svg>
-                        </span>
-                    </div>
-                </div>
-                <div class="lang-card" onclick="openLanguageLevels('Nemis tili')">
-                    <div class="flag-square-wrap">
-                        <svg viewBox="0 0 60 40" width="52" height="40" preserveAspectRatio="none">
-                            <rect width="60" height="13.33" y="0" fill="#000000"/>
-                            <rect width="60" height="13.33" y="13.33" fill="#DD0000"/>
-                            <rect width="60" height="13.34" y="26.66" fill="#FFCC00"/>
-                        </svg>
-                    </div>
-                    <div class="lang-name">Nemis tili</div>
-                    <div class="zero-learn-badge">
-                        <span>0 dan oʻrganish</span>
-                        <span class="mini-black-check">
-                            <svg viewBox="0 0 24 24" width="15" height="15"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/></svg>
-                        </span>
-                    </div>
+                    <span>→</span>
                 </div>
             </div>
         </div>
@@ -1012,21 +883,11 @@
     <div id="step5Page" class="page hidden">
         <div class="level-container">
             <div class="animated-header-box"><span id="selectedLangHeader" class="header-text">Oʻquv bosqichini tanlang</span></div>
-            <div class="level-card" onclick="openTimeSelection('0 dan oʻrganish')">
-                <div class="level-left">
-                    <div class="level-svg-box"><svg viewBox="0 0 24 24" width="26" height="26" fill="none"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="#ff5500"/></svg></div>
-                    <div><div id="zeroLevelTitle" class="level-title">Tilni 0 dan oʻrganish</div><div class="level-sub">Boshlangʻich alifbo va asoslar</div></div>
-                </div>
-                <div class="white-wiggle-check"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#ffffff"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ff5500" stroke-width="2.6" stroke-linecap="round"/></svg></div>
+            <div class="lang-item-card" style="width:100%;" onclick="openTimeSelection()">
+                <div class="lang-item-name">Tilni 0 dan oʻrganish</div>
+                <span>→</span>
             </div>
-            <div class="level-card" onclick="openTimeSelection('50% joyidan')">
-                <div class="level-left">
-                    <div class="level-svg-box"><svg viewBox="0 0 24 24" width="26" height="26" fill="none"><path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="#ff5500"/></svg></div>
-                    <div><div id="halfLevelTitle" class="level-title">Tilni 50% joyidan oʻrganish</div><div class="level-sub">Grammatika va erkin soʻzlashuv</div></div>
-                </div>
-                <div class="white-wiggle-check"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#ffffff"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ff5500" stroke-width="2.6" stroke-linecap="round"/></svg></div>
-            </div>
-            <button class="back-btn" onclick="switchPage('step5Page', 'step7Page')">← Orqaga qaytish</button>
+            <button class="back-btn" onclick="switchPage('step5Page', 'step4Page')">← Orqaga qaytish</button>
         </div>
     </div>
 
@@ -1034,55 +895,10 @@
     <div id="step6Page" class="page hidden">
         <div class="time-container">
             <div class="animated-header-box"><span class="header-text">Kuniga qancha vaqt ajratasiz?</span></div>
-            
-            <div class="time-card" onclick="selectStudyTime('10 daqiqa')">
-                <div class="time-left">
-                    <div class="time-svg-box"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg></div>
-                    <div><div class="time-title">10 daqiqa</div><div class="time-sub">Tezkor mashgʻulot</div></div>
-                </div>
-                <div class="white-wiggle-check"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#ffffff"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ff5500" stroke-width="2.6" stroke-linecap="round"/></svg></div>
+            <div class="lang-item-card" style="width:100%;" onclick="selectStudyTime()">
+                <div class="lang-item-name">15 daqiqa (Optimal norma)</div>
+                <span>→</span>
             </div>
-
-            <div class="time-card" onclick="selectStudyTime('15 daqiqa')">
-                <div class="time-left">
-                    <div class="time-svg-box"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg></div>
-                    <div><div class="time-title">15 daqiqa</div><div class="time-sub">Optimal kundalik norma</div></div>
-                </div>
-                <div class="white-wiggle-check"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#ffffff"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ff5500" stroke-width="2.6" stroke-linecap="round"/></svg></div>
-            </div>
-
-            <div class="time-card" onclick="selectStudyTime('25 daqiqa')">
-                <div class="time-left">
-                    <div class="time-svg-box"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg></div>
-                    <div><div class="time-title">25 daqiqa</div><div class="time-sub">Pomodoro fokus rejimi</div></div>
-                </div>
-                <div class="white-wiggle-check"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#ffffff"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ff5500" stroke-width="2.6" stroke-linecap="round"/></svg></div>
-            </div>
-
-            <div class="time-card" onclick="selectStudyTime('45 daqiqa')">
-                <div class="time-left">
-                    <div class="time-svg-box"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg></div>
-                    <div><div class="time-title">45 daqiqa</div><div class="time-sub">Chuqurlashtirilgan dars</div></div>
-                </div>
-                <div class="white-wiggle-check"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#ffffff"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ff5500" stroke-width="2.6" stroke-linecap="round"/></svg></div>
-            </div>
-
-            <div class="time-card" onclick="selectStudyTime('1 soat')">
-                <div class="time-left">
-                    <div class="time-svg-box"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg></div>
-                    <div><div class="time-title">1 soat</div><div class="time-sub">Professional oʻqish rejimi</div></div>
-                </div>
-                <div class="white-wiggle-check"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#ffffff"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ff5500" stroke-width="2.6" stroke-linecap="round"/></svg></div>
-            </div>
-
-            <div class="time-card" onclick="selectStudyTime('Charchagunimcha')">
-                <div class="time-left">
-                    <div class="time-svg-box"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg></div>
-                    <div><div class="time-title">Charchagunimcha</div><div class="time-sub">Dam bergunimcha oʻqiyman</div></div>
-                </div>
-                <div class="white-wiggle-check"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#ffffff"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ff5500" stroke-width="2.6" stroke-linecap="round"/></svg></div>
-            </div>
-
             <button class="back-btn" onclick="switchPage('step6Page', 'step5Page')">← Orqaga qaytish</button>
         </div>
     </div>
@@ -1092,62 +908,86 @@
         <div class="languages-container">
             <div class="animated-header-box"><span class="header-text">Bepul darslar — Tilni tanlang</span></div>
             <div class="lang-list-container">
-                <div class="lang-item-card" onclick="openFreeLevels('Ingliz tili')">
+                <div class="lang-item-card" onclick="openFreeEnglishLessons()">
                     <div class="lang-item-left">
-                        <span class="white-wiggle-check">
-                            <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#ffffff"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ff5500" stroke-width="2.6" stroke-linecap="round"/></svg>
-                        </span>
-                        <span class="lang-item-name">Ingliz tili</span>
-                    </div>
-                    <span>→</span>
-                </div>
-                <div class="lang-item-card" onclick="openFreeLevels('Rus tili')">
-                    <div class="lang-item-left">
-                        <span class="white-wiggle-check">
-                            <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#ffffff"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ff5500" stroke-width="2.6" stroke-linecap="round"/></svg>
-                        </span>
-                        <span class="lang-item-name">Rus tili</span>
-                    </div>
-                    <span>→</span>
-                </div>
-                <div class="lang-item-card" onclick="openFreeLevels('Koreys tili')">
-                    <div class="lang-item-left">
-                        <span class="white-wiggle-check">
-                            <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#ffffff"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ff5500" stroke-width="2.6" stroke-linecap="round"/></svg>
-                        </span>
-                        <span class="lang-item-name">Koreys tili</span>
-                    </div>
-                    <span>→</span>
-                </div>
-                <div class="lang-item-card" onclick="openFreeLevels('Yapon tili')">
-                    <div class="lang-item-left">
-                        <span class="white-wiggle-check">
-                            <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#ffffff"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ff5500" stroke-width="2.6" stroke-linecap="round"/></svg>
-                        </span>
-                        <span class="lang-item-name">Yapon tili</span>
-                    </div>
-                    <span>→</span>
-                </div>
-                <div class="lang-item-card" onclick="openFreeLevels('Turk tili')">
-                    <div class="lang-item-left">
-                        <span class="white-wiggle-check">
-                            <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#ffffff"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ff5500" stroke-width="2.6" stroke-linecap="round"/></svg>
-                        </span>
-                        <span class="lang-item-name">Turk tili</span>
-                    </div>
-                    <span>→</span>
-                </div>
-                <div class="lang-item-card" onclick="openFreeLevels('Nemis tili')">
-                    <div class="lang-item-left">
-                        <span class="white-wiggle-check">
-                            <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#ffffff"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ff5500" stroke-width="2.6" stroke-linecap="round"/></svg>
-                        </span>
-                        <span class="lang-item-name">Nemis tili</span>
+                        <span class="lang-item-name">Ingliz tili (4 ta asosiy dars)</span>
                     </div>
                     <span>→</span>
                 </div>
             </div>
             <button class="back-btn" onclick="switchPage('step8Page', 'step7Page')">← Orqaga qaytish</button>
+        </div>
+    </div>
+
+    <!-- 9-OYNA: INGLIZ TILI BEPUL VIDEO DARSLARI (Ustma-ust, xavfsiz pleer) -->
+    <div id="step9Page" class="page hidden">
+        <div class="level-container" style="max-width: 400px; height: 100%;">
+            <div class="animated-header-box" style="flex-shrink: 0;">
+                <span class="header-text">Ingliz tili: Bepul video darslar
+                    <svg class="black-moving-check" viewBox="0 0 24 24"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/></svg>
+                </span>
+            </div>
+
+            <div class="free-lessons-wrapper">
+                <!-- 1-Dars -->
+                <div class="lesson-video-card">
+                    <div class="lesson-title-row">
+                        <span>1-dars: Alphabet (Alifbo)</span>
+                        <span id="status1" style="font-size: 11px; color: #ff3333;">Ko'rilmagan ❌</span>
+                    </div>
+                    <div class="custom-video-player">
+                        <!-- Youtube izi bilinmaydigan va orqaga qaytish cheklangan embed -->
+                        <iframe src="https://www.youtube.com/embed/V98sNMEy3wE?enablejsapi=1&controls=1&modestbranding=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <button id="btnLesson1" class="verify-lesson-btn" onclick="verifyLesson(1, 'https://youtu.be/V98sNMEy3wE')">
+                        1-darsni ko'rib bo'ldim (Adminga tekshirtirish)
+                    </button>
+                </div>
+
+                <!-- 2-Dars -->
+                <div class="lesson-video-card">
+                    <div class="lesson-title-row">
+                        <span>2-dars: To Be Verb</span>
+                        <span id="status2" style="font-size: 11px; color: #ff3333;">Ko'rilmagan ❌</span>
+                    </div>
+                    <div class="custom-video-player">
+                        <iframe src="https://www.youtube.com/embed/85fMQibGuP8?enablejsapi=1&controls=1&modestbranding=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <button id="btnLesson2" class="verify-lesson-btn" onclick="verifyLesson(2, 'https://youtu.be/85fMQibGuP8')">
+                        2-darsni ko'rib bo'ldim (Adminga tekshirtirish)
+                    </button>
+                </div>
+
+                <!-- 3-Dars -->
+                <div class="lesson-video-card">
+                    <div class="lesson-title-row">
+                        <span>3-dars: Present Simple Tense</span>
+                        <span id="status3" style="font-size: 11px; color: #ff3333;">Ko'rilmagan ❌</span>
+                    </div>
+                    <div class="custom-video-player">
+                        <iframe src="https://www.youtube.com/embed/OB5eCONr18I?enablejsapi=1&controls=1&modestbranding=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <button id="btnLesson3" class="verify-lesson-btn" onclick="verifyLesson(3, 'https://youtu.be/OB5eCONr18I')">
+                        3-darsni ko'rib bo'ldim (Adminga tekshirtirish)
+                    </button>
+                </div>
+
+                <!-- 4-Dars -->
+                <div class="lesson-video-card">
+                    <div class="lesson-title-row">
+                        <span>4-dars: Present Continuous</span>
+                        <span id="status4" style="font-size: 11px; color: #ff3333;">Ko'rilmagan ❌</span>
+                    </div>
+                    <div class="custom-video-player">
+                        <iframe src="https://www.youtube.com/embed/-ktzVGNoJSw?enablejsapi=1&controls=1&modestbranding=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <button id="btnLesson4" class="verify-lesson-btn" onclick="verifyLesson(4, 'https://youtu.be/-ktzVGNoJSw')">
+                        4-darsni ko'rib bo'ldim (Adminga tekshirtirish)
+                    </button>
+                </div>
+            </div>
+
+            <button class="back-btn" style="flex-shrink: 0;" onclick="switchPage('step9Page', 'step8Page')">← Orqaga qaytish</button>
         </div>
     </div>
 
@@ -1159,24 +999,9 @@
             <div id="tabHome" class="tab-content active-content" style="gap: 15px;">
                 <div class="animated-header-box" onclick="openFreeLessonsLanguages()">
                     <span class="header-text">Bepul darslar</span>
-                    <span class="pro-book-icon">
-                        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 19.5V6.5C4 5.12 5.12 4 6.5 4H12V20H6.5C5.12 20 4 19.1 4 19.5Z" fill="#ffffff"/>
-                            <path d="M20 19.5V6.5C20 5.12 18.88 4 17.5 4H12V20H17.5C18.88 20 20 19.1 20 19.5Z" fill="#ffffff"/>
-                            <path d="M12 4V20" stroke="#cc3700" stroke-width="1.5"/>
-                        </svg>
-                    </span>
                 </div>
-
                 <div class="animated-header-box" onclick="switchTab('wallet', document.querySelectorAll('.nav-item')[1])">
                     <span class="header-text">Premium darslar</span>
-                    <span class="pro-book-icon">
-                        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 19.5V6.5C4 5.12 5.12 4 6.5 4H12V20H6.5C5.12 20 4 19.1 4 19.5Z" fill="#ffffff"/>
-                            <path d="M20 19.5V6.5C20 5.12 18.88 4 17.5 4H12V20H17.5C18.88 20 20 19.1 20 19.5Z" fill="#ffffff"/>
-                            <path d="M12 4V20" stroke="#cc3700" stroke-width="1.5"/>
-                        </svg>
-                    </span>
                 </div>
             </div>
 
@@ -1185,15 +1010,7 @@
                 <div id="walletStep1" style="display: flex; flex-direction: column; gap: 15px; width: 100%; align-items: center;">
                     <div class="animated-header-box"><span class="header-text">Premium Xarid qilish</span></div>
                     <div class="welcome-banner">
-                        <div class="welcome-title">
-                            <span>Premium sotib olmoqchiman</span>
-                            <span class="pro-star-icon">
-                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#ffcc00"/>
-                                    <path d="M12 6L13.2 9.2L16.5 9.8L14 12.2L14.7 15.5L12 13.8L9.3 15.5L10 12.2L7.5 9.8L10.8 9.2L12 6Z" fill="#ffffff"/>
-                                </svg>
-                            </span>
-                        </div>
+                        <div class="welcome-title">Premium sotib olmoqchiman</div>
                         <div class="welcome-desc">Barcha imkoniyatlarni ochish uchun quyidagi tasdiqlash tugmasini bosing.</div>
                     </div>
                     <button class="pay-confirm-btn" onclick="showPaymentCard()">Tasdiqlash</button>
@@ -1202,13 +1019,13 @@
                 <div id="walletStep2" style="display: none; flex-direction: column; gap: 15px; width: 100%;">
                     <div class="animated-header-box"><span class="header-text">Premium Dars uchun Toʻlov</span></div>
                     <div class="wallet-card">
-                        <div class="wallet-title">Quyidagi kartaga toʻlov qiling:</div>
+                        <div style="font-size: 15px; font-weight: 900;">Quyidagi kartaga toʻlov qiling:</div>
                         <div class="card-number-box">9860 6067 5865 7385</div>
-                        <div class="card-holder-name">Xolboyeva S.</div>
-                        <div class="price-badge">Premium Narxi: 2,500 soʻm</div>
+                        <div style="font-size: 14px; font-weight: 800;">Xolboyeva S.</div>
+                        <div class="price-badge">Narxi: 2,500 soʻm</div>
                         <div class="timer-warning-box">
                             <div>⏱️ Toʻlov vaqti: <strong id="countdownTimer">05:00</strong> minut</div>
-                            <div>⚠️ 1 soʻm ham koʻp yoki kam tashlamang, aks holda obunaga pul tushmaydi ❌</div>
+                            <div>⚠️ 1 soʻm ham koʻp yoki kam tashlamang!</div>
                         </div>
                         <a href="https://t.me/AlijonavaA" target="_blank" class="pay-confirm-btn" onclick="alert('Toʻlov qilib boʻlgach adminga check yuboring!')">
                             Toʻlov qildim (Check yuborish)
@@ -1223,35 +1040,23 @@
                     <div class="avatar-wrapper"><img id="dashboardUserPhoto" src="" alt="Profil" class="user-avatar"></div>
                     <div class="user-name-row">
                         <span id="dashboardUserName" class="user-fullname">Foydalanuvchi</span>
+                        <svg class="black-moving-check" viewBox="0 0 24 24"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/></svg>
                     </div>
                     <div class="user-birth-info">
-                        <span class="pro-cake-icon">
-                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2V5M8 3.5L9.5 5M16 3.5L14.5 5" stroke="#ffcc00" stroke-width="2" stroke-linecap="round"/>
-                                <rect x="4" y="9" width="16" height="4" rx="2" fill="#ffffff"/>
-                                <path d="M4 13C4 13 4 19 6 20H18C20 19 20 13 20 13H4Z" fill="#ff7733"/>
-                                <path d="M6 16H18" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
-                            </svg>
-                        </span>
                         <span id="dashboardBirthVal">2005-yil, 1-Yanvar</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Premium Tab -->
-            <div id="tabPremium" class="tab-content">
-                <div class="animated-header-box"><span class="header-text">AcazesAcademy VIP Status</span></div>
-                <div class="welcome-banner">
-                    <div class="welcome-title">
-                        <span>VIP Imkoniyatlar</span>
-                        <span class="pro-star-icon">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#ffcc00"/>
-                                <path d="M12 6L13.2 9.2L16.5 9.8L14 12.2L14.7 15.5L12 13.8L9.3 15.5L10 12.2L7.5 9.8L10.8 9.2L12 6Z" fill="#ffffff"/>
-                            </svg>
-                        </span>
+            <!-- Chat Tab -->
+            <div id="tabChat" class="tab-content">
+                <div class="animated-header-box"><span class="header-text">Fikr va Sharhlar Chati (700+ qatnashchi)</span></div>
+                <div class="chat-wrapper">
+                    <div id="chatMessagesBox" class="chat-messages-box"></div>
+                    <div class="chat-input-area">
+                        <textarea id="userChatInput" class="chat-textarea" placeholder="Botni yaxshilash uchun sharh yozing (min 10 ta belgi)..." maxlength="10000"></textarea>
+                        <button class="chat-send-btn" onclick="sendUserReviewToTelegram()">Tasdiqlash va yuborish</button>
                     </div>
-                    <div class="welcome-desc">Cheksiz darsliklar va sun'iy intellekt yordamchisi. Hamyon bo'limidan to'lovni amalga oshiring!</div>
                 </div>
             </div>
 
@@ -1269,9 +1074,9 @@
                     <div class="nav-svg-wrap"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
                     <span class="nav-label">Profil</span>
                 </button>
-                <button class="nav-item" onclick="switchTab('premium', this)">
-                    <div class="nav-svg-wrap"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-                    <span class="nav-label">Premium</span>
+                <button class="nav-item" onclick="switchTab('chat', this)">
+                    <div class="nav-svg-wrap"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                    <span class="nav-label">Chat</span>
                 </button>
             </div>
         </div>
@@ -1279,13 +1084,18 @@
 
     <script>
         const tg = window.Telegram ? window.Telegram.WebApp : null;
-        if (tg) {
-            tg.ready();
-            tg.expand();
-        }
+        if (tg) { tg.ready(); tg.expand(); }
 
         let allowThemeChange = true;
         const months = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avgust", "Sentabr", "Oktabr", "Noyabr", "Dekabr"];
+
+        const uzNames = ["👑 @zaestro_pubgm", "Sabina 009", "Javohir Pro", "Malika_qizi", "Behruz_007", "Asaloy_99", "Shoxrux_King", "Madina_Official", "Azizbek_777", "Sevara_blog"];
+        const uzReviews = [
+            "Bot juda zo'r ishlayapti, darslar tushunarli! ⭐⭐⭐⭐⭐⭐",
+            "Ajoyib akademiya, hamma narsa mukammal tuzilgan. ⭐⭐⭐⭐⭐⭐",
+            "Darsliklar va interfeys juda premium chiqqan. ⭐⭐⭐⭐⭐⭐",
+            "10/10 baho beraman, yaratuvchiga rahmat! ⭐⭐⭐⭐⭐⭐"
+        ];
 
         function initDateSelectors() {
             const yearSel = document.getElementById('yearSelect');
@@ -1306,19 +1116,6 @@
             updateDatePreview();
         }
 
-        function smartDateSearch(q) {
-            q = q.trim().toLowerCase(); if (!q) return;
-            const yearSel = document.getElementById('yearSelect');
-            const monthSel = document.getElementById('monthSelect');
-            const daySel = document.getElementById('daySelect');
-            const ym = q.match(/\b(19\d{2}|20\d{2})\b/);
-            if (ym) yearSel.value = ym[1];
-            months.forEach(m => { if (q.includes(m.toLowerCase())) monthSel.value = m; });
-            const dm = q.match(/\b([1-9]|[12][0-9]|3[01])\b/);
-            if (dm && !ym) daySel.value = dm[1];
-            updateDatePreview();
-        }
-
         function updateDatePreview() {
             const y = document.getElementById('yearSelect').value;
             const m = document.getElementById('monthSelect').value;
@@ -1333,11 +1130,8 @@
             document.getElementById(showId).classList.add('active');
 
             const settingsBtn = document.getElementById('topSettingsBtn');
-            if (showId === 'step7Page') {
-                settingsBtn.classList.add('show');
-            } else {
-                settingsBtn.classList.remove('show');
-            }
+            if (showId === 'step7Page') settingsBtn.classList.add('show');
+            else settingsBtn.classList.remove('show');
         }
 
         function goToStep2() { switchPage('step1Page', 'step2Page'); }
@@ -1349,16 +1143,13 @@
                 const user = tg.initDataUnsafe.user;
                 fullName = [user.first_name, user.last_name].filter(Boolean).join(" ");
                 if (user.photo_url) photoUrl = user.photo_url;
-                else if (user.username) photoUrl = `https://t.me/i/userpic/320/${user.username}.jpg`;
             }
             document.getElementById('tgUserName').innerText = fullName;
             document.getElementById('dashboardUserName').innerText = fullName;
 
-            const imgEl1 = document.getElementById('tgUserPhoto');
-            const imgEl2 = document.getElementById('dashboardUserPhoto');
-            let fallbackUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(fullName)}&background=ffffff&color=ff5500&bold=true&size=128`;
-            imgEl1.src = photoUrl ? photoUrl : fallbackUrl;
-            imgEl2.src = photoUrl ? photoUrl : fallbackUrl;
+            const fallbackUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(fullName)}&background=ffffff&color=ff5500&bold=true&size=128`;
+            document.getElementById('tgUserPhoto').src = photoUrl ? photoUrl : fallbackUrl;
+            document.getElementById('dashboardUserPhoto').src = photoUrl ? photoUrl : fallbackUrl;
         }
 
         function completeRegistration() {
@@ -1373,27 +1164,30 @@
         }
 
         function goToStep4() { switchPage('step3Page', 'step4Page'); }
+        function openLanguageLevels(langName) { switchPage('step4Page', 'step5Page'); }
+        function openTimeSelection() { switchPage('step5Page', 'step6Page'); }
 
-        function openLanguageLevels(langName) {
-            document.getElementById('selectedLangHeader').innerText = `${langName} — darajani tanlang`;
-            document.getElementById('zeroLevelTitle').innerText = `${langName}ni 0 dan oʻrganish`;
-            document.getElementById('halfLevelTitle').innerText = `${langName}ni 50% joyidan oʻrganish`;
-            switchPage('step4Page', 'step5Page');
-        }
-
-        function openFreeLessonsLanguages() {
-            switchPage('step7Page', 'step8Page');
-        }
-
-        function openFreeLevels(langName) {
-            alert(`${langName} bo'yicha bepul darslar tez kunda yuklanadi!`);
-        }
-
-        function openTimeSelection(levelName) { switchPage('step5Page', 'step6Page'); }
-
-        function selectStudyTime(timeVal) {
+        function selectStudyTime() {
             switchPage('step6Page', 'step7Page');
             startTimer(300);
+            initLiveChat();
+        }
+
+        function openFreeLessonsLanguages() { switchPage('step7Page', 'step8Page'); }
+        function openFreeEnglishLessons() { switchPage('step8Page', 'step9Page'); }
+
+        /* Har 1 ta videoni oxirigacha ko'rib tekshirtirish */
+        function verifyLesson(lessonNum, videoUrl) {
+            const statusEl = document.getElementById(`status${lessonNum}`);
+            const btnEl = document.getElementById(`btnLesson${lessonNum}`);
+            
+            statusEl.innerText = "Ko'rildi va Tasdiqlandi ✅";
+            statusEl.style.color = "#00ff66";
+            btnEl.disabled = true;
+            btnEl.innerText = "Admin tomonidan tasdiqlandi ✓";
+
+            const msg = encodeURIComponent(`Salom! Men Ingliz tili ${lessonNum}-darsni (${videoUrl}) to'liq ko'rib chiqdim. Tekshirib berishingizni so'rayman.`);
+            window.open(`https://t.me/AlijonavaA?text=${msg}`, '_blank');
         }
 
         function switchTab(tabKey, element) {
@@ -1407,12 +1201,39 @@
                 document.getElementById('walletStep2').style.display = 'none';
             }
             else if (tabKey === 'profile') document.getElementById('tabProfile').classList.add('active-content');
-            else if (tabKey === 'premium') document.getElementById('tabPremium').classList.add('active-content');
+            else if (tabKey === 'chat') document.getElementById('tabChat').classList.add('active-content');
         }
 
         function showPaymentCard() {
             document.getElementById('walletStep1').style.display = 'none';
             document.getElementById('walletStep2').style.display = 'flex';
+        }
+
+        let chatInterval = null;
+        function initLiveChat() {
+            const box = document.getElementById('chatMessagesBox');
+            if (box.children.length > 0) return;
+            addNewRandomChatMessage();
+            addNewRandomChatMessage();
+            if (chatInterval) clearInterval(chatInterval);
+            chatInterval = setInterval(() => { addNewRandomChatMessage(); }, 12000);
+        }
+
+        function addNewRandomChatMessage() {
+            const box = document.getElementById('chatMessagesBox');
+            const randomName = uzNames[Math.floor(Math.random() * uzNames.length)];
+            const randomReview = uzReviews[Math.floor(Math.random() * uzReviews.length)];
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'chat-msg';
+            msgDiv.innerHTML = `<div class="chat-author"><span>${randomName}</span> <span class="chat-stars">⭐⭐⭐⭐⭐⭐</span></div><div>${randomReview}</div>`;
+            box.appendChild(msgDiv);
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function sendUserReviewToTelegram() {
+            const val = document.getElementById('userChatInput').value.trim();
+            if (val.length < 10) { alert('Eng kamida 10 ta belgi yozing!'); return; }
+            window.open(`https://t.me/AlijonavaA?text=${encodeURIComponent(`Sharh:\n\n${val}`)}`, '_blank');
         }
 
         function openSettingsModal() { document.getElementById('settingsModal').classList.add('open'); }
@@ -1422,17 +1243,16 @@
             allowThemeChange = !allowThemeChange;
             const statusEl = document.getElementById('themeToggleStatus');
             if (allowThemeChange) {
-                statusEl.innerHTML = `<svg class="black-pro-check" viewBox="0 0 24 24"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/></svg>`;
+                statusEl.innerHTML = `<svg class="black-moving-check" viewBox="0 0 24 24"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/></svg>`;
                 document.body.classList.remove('theme-black');
                 document.body.classList.add('theme-orange');
             } else {
-                statusEl.innerHTML = `<svg class="black-pro-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#ff3333"/><path d="M15 9L9 15M9 9L15 15" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/></svg>`;
+                statusEl.innerHTML = `<span>O'chirilgan</span>`;
             }
         }
 
         function toggleOwnerInfo() {
-            const box = document.getElementById('ownerInfoBox');
-            box.classList.toggle('open');
+            document.getElementById('ownerInfoBox').classList.toggle('open');
         }
 
         let timerInterval = null;
