@@ -101,7 +101,7 @@
             transition: width 0.1s linear;
         }
 
-        /* Kanallar oynasi (Bloksiz) */
+        /* Kanallar oynasi */
         .channels-container {
             display: flex;
             flex-direction: column;
@@ -139,9 +139,10 @@
             75% { transform: scale(1.15) rotate(12deg) translateY(2px); }
         }
 
+        /* O'yin bloklari (Qora rangda) */
         .channel-item {
-            background: rgba(0, 0, 0, 0.05);
-            border: 1.5px solid rgba(0, 0, 0, 0.12);
+            background: #000000;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
             border-radius: 20px;
             padding: 14px 18px;
             display: flex;
@@ -150,6 +151,7 @@
             width: 100%;
             text-decoration: none;
             cursor: default;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
         }
 
         .channel-left {
@@ -164,24 +166,47 @@
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid #ff0033;
-            background-color: #f0f0f0;
+            background-color: #1a1a1a;
         }
 
         .channel-name {
             font-size: 16px;
             font-weight: 900;
-            color: #000000;
+            color: #ffffff;
             text-align: left;
+            text-transform: lowercase; /* Kichik harflar */
         }
 
+        .channel-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Tanlash tugmasi (Qora rangda) */
         .channel-action {
-            background: #ff0033;
+            background: #000000;
             color: #ffffff;
-            padding: 8px 16px;
+            border: 1.5px solid rgba(255,255,255,0.3);
+            padding: 8px 14px;
             border-radius: 12px;
             font-size: 13px;
             font-weight: 900;
-            box-shadow: 0 4px 12px rgba(255,0,51,0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        /* Qimirlaydigan Premium Galochka SVG */
+        .moving-check-svg {
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            animation: checkBadgeMotion 1.8s infinite ease-in-out;
+        }
+
+        @keyframes checkBadgeMotion {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            30% { transform: scale(1.2) rotate(-10deg); }
+            70% { transform: scale(1.15) rotate(10deg); }
         }
     </style>
 </head>
@@ -203,7 +228,7 @@
         </div>
     </div>
 
-    <!-- 2-OYNA: O'YINLAR (BLOKSIZ) -->
+    <!-- 2-OYNA: O'YINLAR (QORA BLOKLAR BILAN) -->
     <div id="channelsPage" class="page">
         <div class="channels-container">
             <div class="channels-title">
@@ -217,37 +242,61 @@
             <div style="font-size: 13px; font-weight: 800; color: #555555; margin-bottom: 6px;">Oʻzingizga mos oʻyinni tanlang</div>
 
             <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
-                <!-- 1-O'yin: PUBG Mobile -->
-                <div class="channel-item" onclick="event.preventDefault()">
+                <!-- 1-O'yin: pubg mobile -->
+                <div class="channel-item">
                     <div class="channel-left">
                         <img src="https://t.me/i/userpic/320/official_pubgmobile_mena.jpg" 
                              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=PUBG+Mobile&background=ff0033&color=ffffff&bold=true&size=128';" 
-                             alt="PUBG Mobile" class="channel-avatar">
-                        <span class="channel-name">PUBG Mobile</span>
+                             alt="pubg mobile" class="channel-avatar">
+                        <span class="channel-name">pubg mobile</span>
                     </div>
-                    <span class="channel-action">Tanlash</span>
+                    <div class="channel-right">
+                        <span class="channel-action">tanlash</span>
+                        <span class="moving-check-svg">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" fill="#00ff66"/>
+                                <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                    </div>
                 </div>
 
-                <!-- 2-O'yin: Free Fire -->
-                <div class="channel-item" onclick="event.preventDefault()">
+                <!-- 2-O'yin: free fire -->
+                <div class="channel-item">
                     <div class="channel-left">
                         <img src="https://t.me/i/userpic/320/gruxx_ff.jpg" 
                              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Free+Fire&background=ff0033&color=ffffff&bold=true&size=128';" 
-                             alt="Free Fire" class="channel-avatar">
-                        <span class="channel-name">Free Fire</span>
+                             alt="free fire" class="channel-avatar">
+                        <span class="channel-name">free fire</span>
                     </div>
-                    <span class="channel-action">Tanlash</span>
+                    <div class="channel-right">
+                        <span class="channel-action">tanlash</span>
+                        <span class="moving-check-svg">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" fill="#00ff66"/>
+                                <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                    </div>
                 </div>
 
-                <!-- 3-O'yin: Standoff 2 -->
-                <div class="channel-item" onclick="event.preventDefault()">
+                <!-- 3-O'yin: standoff 2 -->
+                <div class="channel-item">
                     <div class="channel-left">
                         <img src="https://t.me/i/userpic/320/play_standoff2.jpg" 
                              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Standoff+2&background=ff0033&color=ffffff&bold=true&size=128';" 
-                             alt="Standoff 2" class="channel-avatar">
-                        <span class="channel-name">Standoff 2</span>
+                             alt="standoff 2" class="channel-avatar">
+                        <span class="channel-name">standoff 2</span>
                     </div>
-                    <span class="channel-action">Tanlash</span>
+                    <div class="channel-right">
+                        <span class="channel-action">tanlash</span>
+                        <span class="moving-check-svg">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" fill="#00ff66"/>
+                                <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
