@@ -18,8 +18,8 @@
 
         body {
             height: 100vh;
-            background: #0a0a0a;
-            color: #ffffff;
+            background: #ffffff;
+            color: #000000;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -65,7 +65,6 @@
             font-weight: 900;
             letter-spacing: 2px;
             text-transform: uppercase;
-            text-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
         }
 
         .logo-reduz {
@@ -73,14 +72,14 @@
         }
 
         .logo-drop {
-            color: #ffffff;
+            color: #000000;
         }
 
         /* Foiz ko'rsatkichi */
         .percentage-text {
             font-size: 20px;
             font-weight: 900;
-            color: #ffffff;
+            color: #000000;
             letter-spacing: 1px;
         }
 
@@ -88,11 +87,10 @@
         .progress-bar-container {
             width: 100%;
             height: 8px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 15px rgba(255, 0, 51, 0.3);
+            border: 1px solid rgba(0, 0, 0, 0.2);
         }
 
         .progress-bar-fill {
@@ -100,30 +98,24 @@
             width: 0%;
             background: linear-gradient(90deg, #ff0033, #ff3366);
             border-radius: 10px;
-            box-shadow: 0 0 10px #ff0033;
             transition: width 0.1s linear;
         }
 
-        /* Kanallar oynasi */
-        .channels-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(16px);
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
-            border-radius: 28px;
-            padding: 24px 18px;
-            width: 100%;
-            max-width: 380px;
+        /* Kanallar oynasi (Bloksiz) */
+        .channels-container {
             display: flex;
             flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 380px;
             gap: 16px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             text-align: center;
         }
 
         .channels-title {
-            font-size: 16.5px;
+            font-size: 18px;
             font-weight: 900;
-            color: #ffffff;
+            color: #000000;
             margin-bottom: 2px;
             display: flex;
             align-items: center;
@@ -132,10 +124,10 @@
             flex-wrap: wrap;
         }
 
-        /* Qimirlaydigan oq premium SVG o'yin stikeri */
+        /* Qimirlaydigan qora premium SVG o'yin stikeri */
         .game-svg-icon {
-            width: 26px;
-            height: 26px;
+            width: 28px;
+            height: 28px;
             display: inline-flex;
             vertical-align: middle;
             animation: gameIconMotion 1.8s infinite ease-in-out;
@@ -148,71 +140,48 @@
         }
 
         .channel-item {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 12px 14px;
+            background: rgba(0, 0, 0, 0.05);
+            border: 1.5px solid rgba(0, 0, 0, 0.12);
+            border-radius: 20px;
+            padding: 14px 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            width: 100%;
             text-decoration: none;
-            transition: background 0.2s ease;
-        }
-
-        .channel-item:hover {
-            background: rgba(255, 0, 51, 0.15);
-            border-color: rgba(255, 0, 51, 0.4);
+            cursor: default;
         }
 
         .channel-left {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
         }
 
         .channel-avatar {
-            width: 44px;
-            height: 44px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid #ff0033;
-            box-shadow: 0 0 10px rgba(255,0,51,0.3);
-            background-color: #1a1a1a;
+            background-color: #f0f0f0;
         }
 
         .channel-name {
-            font-size: 14.5px;
+            font-size: 16px;
             font-weight: 900;
-            color: #ffffff;
+            color: #000000;
             text-align: left;
         }
 
         .channel-action {
             background: #ff0033;
             color: #ffffff;
-            padding: 7px 14px;
-            border-radius: 10px;
-            font-size: 12px;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 13px;
             font-weight: 900;
             box-shadow: 0 4px 12px rgba(255,0,51,0.3);
-        }
-
-        .verify-subs-btn {
-            background: linear-gradient(135deg, #ff0033, #cc0029);
-            color: #ffffff;
-            border: none;
-            border-radius: 16px;
-            padding: 14px;
-            font-size: 15px;
-            font-weight: 900;
-            cursor: pointer;
-            width: 100%;
-            box-shadow: 0 8px 25px rgba(255, 0, 51, 0.4);
-            margin-top: 6px;
-        }
-
-        .verify-subs-btn:active {
-            transform: scale(0.97);
         }
     </style>
 </head>
@@ -234,55 +203,53 @@
         </div>
     </div>
 
-    <!-- 2-OYNA: KANALLAR -->
+    <!-- 2-OYNA: O'YINLAR (BLOKSIZ) -->
     <div id="channelsPage" class="page">
-        <div class="channels-card">
+        <div class="channels-container">
             <div class="channels-title">
                 <span>Siz qaysi oʻyinga drop qilishingizni tanlang.</span>
                 <span class="game-svg-icon">
-                    <svg viewBox="0 0 24 24" width="26" height="26" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+                    <svg viewBox="0 0 24 24" width="28" height="28" fill="#000000" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21 6H3C1.9 6 1 6.9 1 8V16C1 17.1 1.9 18 3 18H21C22.1 18 23 17.1 23 16V8C23 6.9 22.1 6 21 6ZM10 13H8V15H6V13H4V11H6V9H8V11H10V13ZM15.5 15C14.67 15 14 14.33 14 13.5C14 12.67 14.67 12 15.5 12C16.33 12 17 12.67 17 13.5C17 14.33 16.33 15 15.5 15ZM19 11.5C18.17 11.5 17.5 10.83 17.5 10C17.5 9.17 18.17 8.5 19 8.5C19.83 8.5 20.5 9.17 20.5 10C20.5 10.83 19.83 11.5 19 11.5Z"/>
                     </svg>
                 </span>
             </div>
-            <div style="font-size: 12px; font-weight: 800; color: #aaaaaa; margin-bottom: 4px;">Barcha kanallarga qoʻshiling va tasdiqlang</div>
+            <div style="font-size: 13px; font-weight: 800; color: #555555; margin-bottom: 6px;">Oʻzingizga mos oʻyinni tanlang</div>
 
-            <div style="display: flex; flex-direction: column; gap: 10px;">
-                <!-- 1-Kanal -->
-                <a href="https://t.me/official_pubgmobile_mena" target="_blank" class="channel-item">
+            <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
+                <!-- 1-O'yin: PUBG Mobile -->
+                <div class="channel-item" onclick="event.preventDefault()">
                     <div class="channel-left">
                         <img src="https://t.me/i/userpic/320/official_pubgmobile_mena.jpg" 
                              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=PUBG+Mobile&background=ff0033&color=ffffff&bold=true&size=128';" 
-                             alt="PUBG Mobile MENA" class="channel-avatar">
-                        <span class="channel-name">PUBG Mobile MENA</span>
+                             alt="PUBG Mobile" class="channel-avatar">
+                        <span class="channel-name">PUBG Mobile</span>
                     </div>
-                    <span class="channel-action">Obuna</span>
-                </a>
+                    <span class="channel-action">Tanlash</span>
+                </div>
 
-                <!-- 2-Kanal -->
-                <a href="https://t.me/gruxx_ff" target="_blank" class="channel-item">
+                <!-- 2-O'yin: Free Fire -->
+                <div class="channel-item" onclick="event.preventDefault()">
                     <div class="channel-left">
                         <img src="https://t.me/i/userpic/320/gruxx_ff.jpg" 
                              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Free+Fire&background=ff0033&color=ffffff&bold=true&size=128';" 
-                             alt="Free Fire Gruxx" class="channel-avatar">
-                        <span class="channel-name">Free Fire Gruxx</span>
+                             alt="Free Fire" class="channel-avatar">
+                        <span class="channel-name">Free Fire</span>
                     </div>
-                    <span class="channel-action">Obuna</span>
-                </a>
+                    <span class="channel-action">Tanlash</span>
+                </div>
 
-                <!-- 3-Kanal -->
-                <a href="https://t.me/play_standoff2" target="_blank" class="channel-item">
+                <!-- 3-O'yin: Standoff 2 -->
+                <div class="channel-item" onclick="event.preventDefault()">
                     <div class="channel-left">
                         <img src="https://t.me/i/userpic/320/play_standoff2.jpg" 
                              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Standoff+2&background=ff0033&color=ffffff&bold=true&size=128';" 
-                             alt="Play Standoff 2" class="channel-avatar">
-                        <span class="channel-name">Play Standoff 2</span>
+                             alt="Standoff 2" class="channel-avatar">
+                        <span class="channel-name">Standoff 2</span>
                     </div>
-                    <span class="channel-action">Obuna</span>
-                </a>
+                    <span class="channel-action">Tanlash</span>
+                </div>
             </div>
-
-            <button class="verify-subs-btn" onclick="checkSubscription()">Obunani tasdiqlash ✅</button>
         </div>
     </div>
 
@@ -307,10 +274,6 @@
                 }, 400);
             }
         }, 30);
-
-        function checkSubscription() {
-            alert("Tabriklaymiz! Obunalar tasdiqlandi ✅");
-        }
     </script>
 </body>
 </html>
