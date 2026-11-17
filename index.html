@@ -15,7 +15,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
-        /* Juda to'q va yorqin Sabzi rang (Vibrant Carrot Orange) orqa fon */
+        /* Juda to'q va yorqin Sabzi rang fon */
         body {
             background: linear-gradient(145deg, #ff5500 0%, #e64500 50%, #cc3700 100%);
             height: 100vh;
@@ -54,7 +54,7 @@
             z-index: 10;
         }
 
-        /* 1-OYNA: Kirish (Harakatsiz oq yozuv va Premium SVG tugma) */
+        /* 1-OYNA: Kirish */
         .landing-box {
             display: flex;
             flex-direction: column;
@@ -95,7 +95,7 @@
             transform: scale(0.95);
         }
 
-        /* 2-OYNA: Premium Sana va Poisk (Qidiruv) kirgizish oynasi */
+        /* 2-OYNA: Sana va Poisk */
         .date-card {
             background: rgba(255, 255, 255, 0.14);
             backdrop-filter: blur(16px);
@@ -121,7 +121,6 @@
             color: #ffffff;
         }
 
-        /* Premium Poisk (Qidiruv) maydoni */
         .premium-search-wrap {
             position: relative;
             width: 100%;
@@ -153,7 +152,6 @@
             pointer-events: none;
         }
 
-        /* Yil, Oy, Kun tanlash bloklari */
         .selectors-grid {
             display: grid;
             grid-template-columns: 1.2fr 1.3fr 0.9fr;
@@ -223,7 +221,7 @@
             transform: scale(0.96);
         }
 
-        /* 3-OYNA: Profil va Akademiya Asosiy Ekrani */
+        /* 3-OYNA: Profil */
         .profile-card {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(18px);
@@ -274,21 +272,17 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Sabzi rangli qimirlab turuvchi Premium SVG Galochka */
-        .carrot-wiggle-badge {
-            width: 28px;
-            height: 28px;
+        /* Oq fonsiz, qora rangdagi qimirlab turuvchi Premium SVG Galochka */
+        .black-wiggle-badge {
+            width: 26px;
+            height: 26px;
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            background: #ffffff;
-            border-radius: 50%;
-            padding: 3px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            animation: carrotBadgeMotion 2s infinite ease-in-out;
+            animation: blackBadgeMotion 2s infinite ease-in-out;
         }
 
-        @keyframes carrotBadgeMotion {
+        @keyframes blackBadgeMotion {
             0%, 100% { transform: scale(1) rotate(0deg); }
             20% { transform: scale(1.22) rotate(-12deg); }
             45% { transform: scale(0.95) rotate(10deg); }
@@ -297,26 +291,42 @@
 
         .user-birth-info {
             background: rgba(0, 0, 0, 0.22);
-            padding: 8px 16px;
-            border-radius: 12px;
-            font-size: 13px;
+            padding: 10px 16px;
+            border-radius: 14px;
+            font-size: 13.5px;
             font-weight: 800;
             color: #ffffff;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 10px;
+        }
+
+        /* Qimirlab turuvchi Premium SVG Tort (Pirojniy) ikonka */
+        .wiggle-cake-icon {
+            width: 22px;
+            height: 22px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            animation: cakeWiggle 2.2s infinite ease-in-out;
+        }
+
+        @keyframes cakeWiggle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.18) rotate(-10deg); }
+            50% { transform: scale(0.92) rotate(8deg); }
+            75% { transform: scale(1.1) rotate(-5deg); }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1-OYNA: Kirish (Harakatsiz Oq yozuv va Ro'yxatdan o'tish tugmasi) -->
+    <!-- 1-OYNA: Kirish -->
     <div id="step1Page" class="page active">
         <div class="landing-box">
             <div class="academy-title">AcazesAcademy</div>
 
             <button class="register-btn" onclick="goToStep2()">
-                <!-- Premium SVG Ikonka -->
                 <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#ff5500"/>
                     <path d="M12 8V16M8 12H16" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
@@ -326,7 +336,7 @@
         </div>
     </div>
 
-    <!-- 2-OYNA: Yil, Oy, Sana kiritish va Poisk (Qidiruv) -->
+    <!-- 2-OYNA: Sana va Poisk -->
     <div id="step2Page" class="page hidden">
         <div class="date-card">
             <div class="card-header">
@@ -339,7 +349,6 @@
                 <span>Tugʻilgan sanangizni kiriting</span>
             </div>
 
-            <!-- Bot ichidagi ajoyib Poisk (Yil yoki Oyni tez topish uchun) -->
             <div class="premium-search-wrap">
                 <svg class="search-svg-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ff5500" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="11" cy="11" r="8"></circle>
@@ -376,35 +385,35 @@
         </div>
     </div>
 
-    <!-- 3-OYNA: Telegram Profil ({name}, {photo} va Sabzi-rang qimirlaydigan galochka) -->
+    <!-- 3-OYNA: Profil -->
     <div id="step3Page" class="page hidden">
         <div class="profile-card">
             <div class="avatar-wrapper">
-                <!-- Telegram profil rasmi / video-avatari avtomatik yuklanadi -->
                 <img id="tgUserPhoto" src="https://via.placeholder.com/100/ff5500/ffffff?text=User" alt="Profil" class="user-avatar">
             </div>
 
             <div class="user-name-row">
-                <!-- Telegramdagi ismi (nik o'zgarsa botda ham o'zgaradi) -->
                 <span id="tgUserName" class="user-fullname">Foydalanuvchi</span>
 
-                <!-- Sabzi rangli qimirlab turuvchi Premium SVG Galochka -->
-                <div class="carrot-wiggle-badge" title="Tasdiqlangan">
-                    <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="carrotBadgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#ff6600"/>
-                                <stop offset="100%" stop-color="#cc3700"/>
-                            </linearGradient>
-                        </defs>
-                        <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="url(#carrotBadgeGrad)"/>
+                <!-- Oq fonsiz, qora rangdagi qimirlab turuvchi Premium Galochka -->
+                <div class="black-wiggle-badge" title="Tasdiqlangan">
+                    <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/>
                         <polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
             </div>
 
             <div id="userSavedBirth" class="user-birth-info">
-                <!-- Tanlangan sana shu yerda chiqadi -->
+                <!-- Qimirlab turuvchi Premium SVG Tort Ikonka -->
+                <div class="wiggle-cake-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2V5M9 3.5H15M7 11H17V20C17 21.1046 16.1046 22 15 22H9C7.89543 22 7 21.1046 7 20V11Z" fill="#ffaa55" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M4 11H20V13H4V11Z" fill="#ffffff" rx="1"/>
+                        <path d="M7 16H17V17H7V16Z" fill="#ff5500"/>
+                    </svg>
+                </div>
+                <span id="birthTextVal">2005-yil, 1-Yanvar</span>
             </div>
         </div>
     </div>
@@ -421,7 +430,6 @@
             "Iyul", "Avgust", "Sentabr", "Oktabr", "Noyabr", "Dekabr"
         ];
 
-        // Yil, Oy, Kunlarni to'ldirish
         function initDateSelectors() {
             const yearSel = document.getElementById('yearSelect');
             const monthSel = document.getElementById('monthSelect');
@@ -452,7 +460,6 @@
             updateDatePreview();
         }
 
-        // Poisk orqali yil, oy yoki sanani avtomatik topib belgilash
         function smartDateSearch(query) {
             const q = query.trim().toLowerCase();
             if (!q) return;
@@ -461,20 +468,17 @@
             const monthSel = document.getElementById('monthSelect');
             const daySel = document.getElementById('daySelect');
 
-            // Yil qidirish (4 xonali son)
             const yearMatch = q.match(/\b(19\d{2}|20\d{2})\b/);
             if (yearMatch) {
                 yearSel.value = yearMatch[1];
             }
 
-            // Oy qidirish
             months.forEach(m => {
                 if (q.includes(m.toLowerCase())) {
                     monthSel.value = m;
                 }
             });
 
-            // Kun qidirish (1-31 oralig'idagi alohida son)
             const dayMatch = q.match(/\b([1-9]|[12][0-9]|3[01])\b/);
             if (dayMatch && !yearMatch) {
                 daySel.value = dayMatch[1];
@@ -498,7 +502,6 @@
             document.getElementById('step2Page').classList.add('active');
         }
 
-        // Telegramdagi haqiqiy ism va rasmni yuklash (har safar yangilanadi)
         function syncTelegramUser() {
             let fullName = "Acazes Oʻquvchi";
             let photoUrl = "";
@@ -530,7 +533,7 @@
             const d = document.getElementById('daySelect').value;
 
             syncTelegramUser();
-            document.getElementById('userSavedBirth').innerText = `🎂 ${y}-yil, ${d}-${m}`;
+            document.getElementById('birthTextVal').innerText = `${y}-yil, ${d}-${m}`;
 
             document.getElementById('step2Page').classList.remove('active');
             document.getElementById('step2Page').classList.add('hidden');
