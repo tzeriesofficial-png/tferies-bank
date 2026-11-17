@@ -18,8 +18,8 @@
 
         body {
             height: 100vh;
-            background: #0d0f17;
-            color: #ffffff;
+            background: #ffffff;
+            color: #000000;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -49,7 +49,7 @@
             pointer-events: auto;
         }
 
-        /* 1-OYNA: LOADING VA PADARKA SVG */
+        /* 1-OYNA: LOADING PADARKA */
         .loader-container {
             display: flex;
             flex-direction: column;
@@ -66,7 +66,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            filter: drop-shadow(0 15px 30px rgba(255, 51, 102, 0.45));
+            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.2));
         }
 
         .gift-lid {
@@ -100,17 +100,16 @@
         .progress-bar-container {
             width: 100%;
             height: 10px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.1);
             border-radius: 12px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.15);
         }
 
         .progress-bar-fill {
             height: 100%;
             width: 1%;
-            background: linear-gradient(90deg, #ff0055, #ffcc00, #00e5ff);
+            background: linear-gradient(90deg, #000000, #ff0055);
             border-radius: 12px;
             transition: width 0.08s linear;
         }
@@ -118,11 +117,11 @@
         .percentage-text {
             font-size: 20px;
             font-weight: 900;
-            color: #ffffff;
+            color: #000000;
             letter-spacing: 1.5px;
         }
 
-        /* 2-OYNA: ASOSIY EKRAN VA PASTKI PANEL */
+        /* 2-OYNA: ASOSIY EKRAN */
         #mainPage {
             justify-content: space-between;
             padding: 16px 14px 90px 14px;
@@ -130,7 +129,7 @@
 
         .tab-content {
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -150,77 +149,92 @@
             display: flex;
         }
 
-        /* Kanallar ro'yxati (Do'kon bo'limi uchun) */
-        .channels-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+        /* Qimirlaydigan Qora Premium Galochka SVG */
+        .moving-check-black {
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            vertical-align: middle;
+            animation: checkMotionBlack 1.8s infinite ease-in-out;
+            flex-shrink: 0;
+        }
+
+        @keyframes checkMotionBlack {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            30% { transform: scale(1.2) rotate(-10deg); }
+            70% { transform: scale(1.15) rotate(10deg); }
+        }
+
+        /* O'yinlar gridi (2 tadan: chapda 2, o'ngda 2) */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
             width: 100%;
             margin-top: 10px;
         }
 
-        .channel-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1.5px solid rgba(255, 255, 255, 0.1);
-            border-radius: 18px;
-            padding: 12px 14px;
+        .game-card {
+            background: #000000;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 16px 12px;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: space-between;
+            text-align: center;
             text-decoration: none;
-            backdrop-filter: blur(10px);
-        }
-
-        .channel-card:hover {
-            background: rgba(255, 0, 85, 0.12);
-            border-color: rgba(255, 0, 85, 0.4);
-        }
-
-        .channel-left {
-            display: flex;
-            align-items: center;
             gap: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
-        .channel-avatar {
-            width: 44px;
-            height: 44px;
+        .game-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-avatar {
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid #ff0055;
+            border: 2px solid #000000;
             background-color: #1a1e29;
         }
 
-        .channel-info {
+        .game-info {
             display: flex;
             flex-direction: column;
-            text-align: left;
-            gap: 2px;
+            align-items: center;
+            gap: 4px;
+            width: 100%;
         }
 
-        .channel-name {
-            font-size: 15px;
+        .game-name {
+            font-size: 13.5px;
             font-weight: 900;
             color: #ffffff;
+            text-transform: lowercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            flex-wrap: wrap;
         }
 
-        .channel-sub {
-            font-size: 11px;
-            font-weight: 700;
-            color: #9ba3be;
-        }
-
-        .channel-btn {
-            background: linear-gradient(135deg, #ff0055, #ff3366);
+        .game-btn {
+            background: #000000;
             color: #ffffff;
-            padding: 7px 14px;
-            border-radius: 10px;
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            padding: 7px 0;
+            width: 100%;
+            border-radius: 12px;
             font-size: 12px;
             font-weight: 900;
-            box-shadow: 0 4px 12px rgba(255, 0, 85, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
-        /* Pastki 5 talik navigatsiya paneli */
+        /* Pastki 5 talik navigatsiya paneli (Qora rangda) */
         .bottom-nav {
             position: fixed;
             bottom: 12px;
@@ -228,15 +242,14 @@
             transform: translateX(-50%);
             width: calc(100% - 20px);
             max-width: 420px;
-            background: rgba(24, 28, 42, 0.94);
-            backdrop-filter: blur(16px);
-            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            background: #000000;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
             border-radius: 22px;
             padding: 10px 6px;
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 4px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
             z-index: 100;
         }
 
@@ -252,13 +265,13 @@
         }
 
         .nav-item.active {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.12);
         }
 
         .nav-label {
             font-size: 10px;
             font-weight: 900;
-            color: #9ba3be;
+            color: #aaaaaa;
             text-transform: uppercase;
         }
 
@@ -306,29 +319,29 @@
 </head>
 <body>
 
-    <!-- 1-OYNA: PADARKA LOADING -->
+    <!-- 1-OYNA: LOADING -->
     <div id="loaderPage" class="page active">
         <div class="loader-container">
             <div class="gift-box-wrapper">
                 <svg viewBox="0 0 120 120" width="130" height="130" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#ff0055"/>
-                            <stop offset="100%" stop-color="#9900ff"/>
+                            <stop offset="0%" stop-color="#000000"/>
+                            <stop offset="100%" stop-color="#333333"/>
                         </linearGradient>
                         <linearGradient id="lidGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#ff3377"/>
-                            <stop offset="100%" stop-color="#b833ff"/>
+                            <stop offset="0%" stop-color="#222222"/>
+                            <stop offset="100%" stop-color="#444444"/>
                         </linearGradient>
                         <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stop-color="#ffe600"/>
-                            <stop offset="100%" stop-color="#ff8800"/>
+                            <stop offset="0%" stop-color="#ff0055"/>
+                            <stop offset="100%" stop-color="#ff3366"/>
                         </linearGradient>
                     </defs>
 
-                    <circle class="gift-glow" cx="60" cy="52" r="26" fill="#ffe600" opacity="0.5"/>
+                    <circle class="gift-glow" cx="60" cy="52" r="26" fill="#ff0055" opacity="0.4"/>
                     <rect x="24" y="54" width="72" height="54" rx="10" fill="url(#boxGrad)"/>
-                    <ellipse cx="60" cy="54" rx="33" ry="6" fill="#2a0033"/>
+                    <ellipse cx="60" cy="54" rx="33" ry="6" fill="#111111"/>
                     <rect x="53" y="54" width="14" height="54" fill="url(#ribbonGrad)"/>
 
                     <g class="gift-lid">
@@ -336,7 +349,7 @@
                         <rect x="53" y="38" width="14" height="18" fill="url(#ribbonGrad)"/>
                         <path d="M60 38 C42 16, 22 24, 34 38 C42 42, 54 40, 60 38 Z" fill="url(#ribbonGrad)"/>
                         <path d="M60 38 C78 16, 98 24, 86 38 C78 42, 66 40, 60 38 Z" fill="url(#ribbonGrad)"/>
-                        <circle cx="60" cy="37" r="6" fill="#ffaa00"/>
+                        <circle cx="60" cy="37" r="6" fill="#ffffff"/>
                     </g>
                 </svg>
             </div>
@@ -354,104 +367,119 @@
     <div id="mainPage" class="page">
         <div class="tab-content">
             
-            <!-- 1. DO'KON BO'LIMI (KANALLAR BILAN) -->
+            <!-- 1. DO'KON (O'YINLAR 2 TA 2 TA GRID) -->
             <div id="pane-dokon" class="tab-pane active-pane">
-                <div style="font-size: 18px; font-weight: 900; margin-bottom: 4px; text-align: left;">Doʻkon va Hamkor Kanallar</div>
-                <div style="font-size: 12px; font-weight: 700; color: #9ba3be; text-align: left; margin-bottom: 6px;">Quyidagi rasmiy kanallarga obuna boʻling:</div>
+                <div style="font-size: 16px; font-weight: 900; margin-bottom: 2px; text-align: left; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                    <span>Oʻyinlarga adminka | orqali donat qilish</span>
+                    <span class="moving-check-black">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" fill="#000000"/>
+                            <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </div>
+                <div style="font-size: 12px; font-weight: 700; color: #555555; text-align: left; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                    <span>Quyidagi 4 ta oʻyinga adminka orqali donat qilish.</span>
+                    <span class="moving-check-black">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" fill="#000000"/>
+                            <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </div>
 
-                <div class="channels-list">
-                    <!-- Kanal 1 -->
-                    <a href="https://t.me/official_pubgmobile_mena" target="_blank" class="channel-card">
-                        <div class="channel-left">
-                            <img src="https://t.me/i/userpic/320/official_pubgmobile_mena.jpg" 
-                                 onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=PUBG+Mobile&background=ff0055&color=ffffff&bold=true&size=128';" 
-                                 alt="PUBG" class="channel-avatar">
-                            <div class="channel-info">
-                                <span class="channel-name">PUBG Mobile MENA</span>
-                                <span class="channel-sub">Rasmiy kanal</span>
-                            </div>
+                <div class="games-grid">
+                    <!-- 1. pubg mobile -->
+                    <a href="https://t.me/acazesega" target="_blank" class="game-card">
+                        <img src="https://t.me/i/userpic/320/official_pubgmobile_mena.jpg" 
+                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=PUBG+Mobile&background=000000&color=ffffff&bold=true&size=128';" 
+                             alt="pubg mobile" class="game-avatar">
+                        <div class="game-info">
+                            <span class="game-name">
+                                <span>pubg</span>
+                                <span style="display:inline-flex; align-items:center; gap:2px;">
+                                    <span>mobile</span>
+                                    <span class="moving-check-black" style="width:14px; height:14px;">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="12" cy="12" r="10" fill="#000000"/>
+                                            <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                            </span>
                         </div>
-                        <span class="channel-btn">Kirish</span>
+                        <span class="game-btn">tanlash</span>
                     </a>
 
-                    <!-- Kanal 2 -->
-                    <a href="https://t.me/play_standoff2" target="_blank" class="channel-card">
-                        <div class="channel-left">
-                            <img src="https://t.me/i/userpic/320/play_standoff2.jpg" 
-                                 onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Standoff+2&background=ff0055&color=ffffff&bold=true&size=128';" 
-                                 alt="Standoff" class="channel-avatar">
-                            <div class="channel-info">
-                                <span class="channel-name">Play Standoff 2</span>
-                                <span class="channel-sub">Rasmiy kanal</span>
-                            </div>
+                    <!-- 2. standoff 2 -->
+                    <a href="https://t.me/acazesega" target="_blank" class="game-card">
+                        <img src="https://t.me/i/userpic/320/play_standoff2.jpg" 
+                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Standoff+2&background=000000&color=ffffff&bold=true&size=128';" 
+                             alt="standoff 2" class="game-avatar">
+                        <div class="game-info">
+                            <span class="game-name">standoff 2</span>
                         </div>
-                        <span class="channel-btn">Kirish</span>
+                        <span class="game-btn">tanlash</span>
                     </a>
 
-                    <!-- Kanal 3 -->
-                    <a href="https://t.me/gruxx_ff" target="_blank" class="channel-card">
-                        <div class="channel-left">
-                            <img src="https://t.me/i/userpic/320/gruxx_ff.jpg" 
-                                 onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Free+Fire&background=ff0055&color=ffffff&bold=true&size=128';" 
-                                 alt="FreeFire" class="channel-avatar">
-                            <div class="channel-info">
-                                <span class="channel-name">Free Fire Gruxx</span>
-                                <span class="channel-sub">Rasmiy kanal</span>
-                            </div>
+                    <!-- 3. free fire -->
+                    <a href="https://t.me/acazesega" target="_blank" class="game-card">
+                        <img src="https://t.me/i/userpic/320/gruxx_ff.jpg" 
+                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Free+Fire&background=000000&color=ffffff&bold=true&size=128';" 
+                             alt="free fire" class="game-avatar">
+                        <div class="game-info">
+                            <span class="game-name">free fire</span>
                         </div>
-                        <span class="channel-btn">Kirish</span>
+                        <span class="game-btn">tanlash</span>
                     </a>
 
-                    <!-- Kanal 4 -->
-                    <a href="https://t.me/roblox_chat" target="_blank" class="channel-card">
-                        <div class="channel-left">
-                            <img src="https://t.me/i/userpic/320/roblox_chat.jpg" 
-                                 onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Roblox+Chat&background=ff0055&color=ffffff&bold=true&size=128';" 
-                                 alt="Roblox" class="channel-avatar">
-                            <div class="channel-info">
-                                <span class="channel-name">Roblox Chat</span>
-                                <span class="channel-sub">Rasmiy kanal</span>
-                            </div>
+                    <!-- 4. roblox -->
+                    <a href="https://t.me/acazesega" target="_blank" class="game-card">
+                        <img src="https://t.me/i/userpic/320/roblox_chat.jpg" 
+                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Roblox&background=000000&color=ffffff&bold=true&size=128';" 
+                             alt="roblox" class="game-avatar">
+                        <div class="game-info">
+                            <span class="game-name">roblox</span>
                         </div>
-                        <span class="channel-btn">Kirish</span>
+                        <span class="game-btn">tanlash</span>
                     </a>
                 </div>
             </div>
 
-            <!-- 2. NFT BO'LIMI -->
+            <!-- 2. NFT -->
             <div id="pane-nft" class="tab-pane">
-                <div style="font-size: 20px; font-weight: 900; margin-top: 40px;">NFT Katalogi</div>
-                <div style="font-size: 13px; color: #9ba3be; margin-top: 10px;">Tez orada ijara va savdo uchun NFT’lar qoʻshiladi.</div>
+                <div style="font-size: 20px; font-weight: 900; margin-top: 40px; color: #000000;">NFT Katalogi</div>
+                <div style="font-size: 13px; color: #555555; margin-top: 10px;">Tez orada ijara va savdo uchun NFT’lar qoʻshiladi.</div>
             </div>
 
-            <!-- 3. IJARA BO'LIMI -->
+            <!-- 3. IJARA -->
             <div id="pane-ijara" class="tab-pane">
-                <div style="font-size: 20px; font-weight: 900; margin-top: 40px;">Faol Ijaralar</div>
-                <div style="font-size: 13px; color: #9ba3be; margin-top: 10px;">Sizda hozircha ijaraga olingan NFT’lar yoʻq.</div>
+                <div style="font-size: 20px; font-weight: 900; margin-top: 40px; color: #000000;">Faol Ijaralar</div>
+                <div style="font-size: 13px; color: #555555; margin-top: 10px;">Sizda hozircha ijaraga olingan NFT’lar yoʻq.</div>
             </div>
 
-            <!-- 4. BUYURTMA BO'LIMI -->
+            <!-- 4. BUYURTMA -->
             <div id="pane-buyurtma" class="tab-pane">
-                <div style="font-size: 20px; font-weight: 900; margin-top: 40px;">Buyurtmalar tarixi</div>
-                <div style="font-size: 13px; color: #9ba3be; margin-top: 10px;">Buyurtmalar tarixi boʻsh.</div>
+                <div style="font-size: 20px; font-weight: 900; margin-top: 40px; color: #000000;">Buyurtmalar tarixi</div>
+                <div style="font-size: 13px; color: #555555; margin-top: 10px;">Buyurtmalar tarixi boʻsh.</div>
             </div>
 
-            <!-- 5. BALANS BO'LIMI -->
+            <!-- 5. BALANS -->
             <div id="pane-balans" class="tab-pane">
-                <div style="font-size: 20px; font-weight: 900; margin-top: 40px;">Hamyon Balansi</div>
-                <div style="font-size: 26px; font-weight: 900; color: #00e5ff; margin-top: 10px;">0.00 TON</div>
+                <div style="font-size: 20px; font-weight: 900; margin-top: 40px; color: #000000;">Hamyon Balansi</div>
+                <div style="font-size: 26px; font-weight: 900; color: #ff0055; margin-top: 10px;">0.00 TON</div>
             </div>
 
         </div>
 
-        <!-- Pastki 5 ta ikonka paneli -->
+        <!-- Pastki panel (Qora rangda) -->
         <div class="bottom-nav">
             <div class="nav-item active" onclick="switchTab('dokon', this)">
                 <div class="svg-icon-box anim-shop">
                     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3 9L5 4H19L21 9H3Z" fill="#FF3366"/>
-                        <path d="M4 9H20V19C20 20.1 19.1 21 18 21H6C4.9 21 4 20.1 4 19V9Z" fill="#00D2FF"/>
-                        <rect x="9" y="13" width="6" height="8" rx="1.5" fill="#FFE600"/>
+                        <path d="M3 9L5 4H19L21 9H3Z" fill="#ffffff"/>
+                        <path d="M4 9H20V19C20 20.1 19.1 21 18 21H6C4.9 21 4 20.1 4 19V9Z" fill="#ff0055"/>
+                        <rect x="9" y="13" width="6" height="8" rx="1.5" fill="#000000"/>
                     </svg>
                 </div>
                 <span class="nav-label">DOʻKON</span>
@@ -460,9 +488,9 @@
             <div class="nav-item" onclick="switchTab('nft', this)">
                 <div class="svg-icon-box anim-nft">
                     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <polygon points="12,2 21,8 12,22 3,8" fill="#A855F7"/>
-                        <polygon points="12,2 21,8 12,11 3,8" fill="#38BDF8"/>
-                        <polygon points="12,11 21,8 12,22" fill="#EC4899"/>
+                        <polygon points="12,2 21,8 12,22 3,8" fill="#ffffff"/>
+                        <polygon points="12,2 21,8 12,11 3,8" fill="#ff0055"/>
+                        <polygon points="12,11 21,8 12,22" fill="#333333"/>
                     </svg>
                 </div>
                 <span class="nav-label">NFT</span>
@@ -471,9 +499,9 @@
             <div class="nav-item" onclick="switchTab('ijara', this)">
                 <div class="svg-icon-box anim-ijara">
                     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="8" cy="14" r="5" fill="#FACC15"/>
-                        <circle cx="8" cy="14" r="2" fill="#0D0F17"/>
-                        <path d="M12 12L20 4L22 6L20 8L22 10L19 13L17 11L13 15" fill="#FB923C"/>
+                        <circle cx="8" cy="14" r="5" fill="#ffffff"/>
+                        <circle cx="8" cy="14" r="2" fill="#000000"/>
+                        <path d="M12 12L20 4L22 6L20 8L22 10L19 13L17 11L13 15" fill="#ff0055"/>
                     </svg>
                 </div>
                 <span class="nav-label">IJARA</span>
@@ -482,9 +510,9 @@
             <div class="nav-item" onclick="switchTab('buyurtma', this)">
                 <div class="svg-icon-box anim-buyurtma">
                     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="4" y="3" width="16" height="18" rx="3" fill="#10B981"/>
-                        <path d="M8 9H16M8 13H14M8 17H11" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
-                        <circle cx="17" cy="17" r="4" fill="#FACC15"/>
+                        <rect x="4" y="3" width="16" height="18" rx="3" fill="#ffffff"/>
+                        <path d="M8 9H16M8 13H14M8 17H11" stroke="#000000" stroke-width="2.2" stroke-linecap="round"/>
+                        <circle cx="17" cy="17" r="4" fill="#ff0055"/>
                     </svg>
                 </div>
                 <span class="nav-label">BUYURTMA</span>
@@ -493,9 +521,9 @@
             <div class="nav-item" onclick="switchTab('balans', this)">
                 <div class="svg-icon-box anim-balans">
                     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="2" y="5" width="20" height="14" rx="3.5" fill="#3B82F6"/>
-                        <path d="M15 10H22V14H15C13.9 14 13 13.1 13 12C13 10.9 13.9 10 15 10Z" fill="#FACC15"/>
-                        <circle cx="16" cy="12" r="1.3" fill="#0D0F17"/>
+                        <rect x="2" y="5" width="20" height="14" rx="3.5" fill="#ffffff"/>
+                        <path d="M15 10H22V14H15C13.9 14 13 13.1 13 12C13 10.9 13.9 10 15 10Z" fill="#ff0055"/>
+                        <circle cx="16" cy="12" r="1.3" fill="#000000"/>
                     </svg>
                 </div>
                 <span class="nav-label">BALANS</span>
