@@ -202,8 +202,8 @@
             70% { transform: scale(1.15) rotate(10deg); }
         }
 
-        /* Ta'mirlash eslatmasi oynasi */
-        .maintenance-card {
+        /* Yangi xabar oynasi */
+        .message-card {
             background: #000000;
             border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: 26px;
@@ -229,12 +229,12 @@
         }
 
         .m-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 900;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
 
@@ -245,7 +245,11 @@
             line-height: 1.5;
         }
 
-        .m-partner {
+        .m-footer-user {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 10px 16px;
@@ -253,10 +257,14 @@
             font-size: 14px;
             font-weight: 900;
             color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+        }
+
+        .small-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid #ff0033;
         }
     </style>
 </head>
@@ -294,7 +302,7 @@
 
             <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
                 <!-- 1-O'yin: pubg mobile -->
-                <div class="channel-item" onclick="goToMaintenance()">
+                <div class="channel-item" onclick="goToMessage()">
                     <div class="channel-left">
                         <span class="moving-check-white">
                             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -311,7 +319,7 @@
                 </div>
 
                 <!-- 2-O'yin: free fire -->
-                <div class="channel-item" onclick="goToMaintenance()">
+                <div class="channel-item" onclick="goToMessage()">
                     <div class="channel-left">
                         <span class="moving-check-white">
                             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -328,7 +336,7 @@
                 </div>
 
                 <!-- 3-O'yin: standoff 2 -->
-                <div class="channel-item" onclick="goToMaintenance()">
+                <div class="channel-item" onclick="goToMessage()">
                     <div class="channel-left">
                         <span class="moving-check-white">
                             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -347,32 +355,33 @@
         </div>
     </div>
 
-    <!-- 3-OYNA: TA'MIRLASH ESLATMASI -->
-    <div id="maintenancePage" class="page">
-        <div class="maintenance-card">
+    <!-- 3-OYNA: YANGI XABAR OYNASI -->
+    <div id="messagePage" class="page">
+        <div class="message-card">
             <img id="userAvatar" src="" alt="Profil" class="m-avatar">
             <div class="m-title">
-                <span id="userName">Foydalanuvchi</span> Bot hozirda tamirlanyabdi
-                <span class="moving-check-white">
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="10" fill="#ffffff"/>
-                        <path d="M8 12L11 15L16 9" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </span>
-            </div>
-            <div class="m-desc">
-                Shuning uchun biroz kutib turing.<br>
-                Biz telegram stars orqali va p2p orqali shartnoma tuzayabmiz botimiz tez orada ishlaydi kamida 1 sutka vaqt kerak boʻladi koʻpi bilan 3 sutka.
-            </div>
-            <div style="font-size: 13px; font-weight: 900; color: #ff3333;">Hamkorlik uchun:</div>
-            <div class="m-partner">
+                <span>Assalomu alekum</span>
+                <span id="userName" style="color: #ff3333;">Foydalanuvchi</span>
                 <span class="moving-check-black">
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="12" r="10" fill="#000000"/>
                         <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </span>
-                <span>@reduzdrop_adminka</span>
+            </div>
+            <div class="m-desc">
+                Bu bot rasmiy kata father lar tarafidan saylandi. Bot asoschisi: <strong>@reduzdrop_adminka</strong><br><br>
+                Ertaga kechga 21:00 da hamma boʻlimlar ochiladi. PUBG, Free Fire, Standoff 2 oʻyin birjasini yechib olish ham mumkin boʻladi.
+            </div>
+            <div class="m-footer-user">
+                <img id="userAvatarSmall" src="" alt="Profil" class="small-avatar">
+                <span id="userNameSmall">Foydalanuvchi</span>
+                <span class="moving-check-black">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" fill="#000000"/>
+                        <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
             </div>
         </div>
     </div>
@@ -391,8 +400,12 @@
                 if (user.photo_url) photoUrl = user.photo_url;
             }
             document.getElementById('userName').innerText = fullName;
+            document.getElementById('userNameSmall').innerText = fullName;
+
             const fallbackUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(fullName)}&background=ff0033&color=ffffff&bold=true&size=128`;
-            document.getElementById('userAvatar').src = photoUrl ? photoUrl : fallbackUrl;
+            const finalPhoto = photoUrl ? photoUrl : fallbackUrl;
+            document.getElementById('userAvatar').src = finalPhoto;
+            document.getElementById('userAvatarSmall').src = finalPhoto;
         }
 
         let currentProgress = 1;
@@ -413,10 +426,10 @@
             }
         }, 30);
 
-        function goToMaintenance() {
+        function goToMessage() {
             loadUserData();
             document.getElementById('channelsPage').classList.remove('active');
-            document.getElementById('maintenancePage').classList.add('active');
+            document.getElementById('messagePage').classList.add('active');
         }
     </script>
 </body>
