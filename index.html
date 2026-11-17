@@ -63,7 +63,7 @@
             z-index: 10;
         }
 
-        /* Yuqori nastroyka tugmasi (Faqat kerakli oynalarda chiqadi) */
+        /* Yuqori nastroyka tugmasi */
         .top-settings-btn {
             position: absolute;
             top: 15px;
@@ -91,7 +91,7 @@
             50% { transform: rotate(180deg) scale(1.1); }
         }
 
-        /* 1-OYNA: Kirish */
+        /* 1-OYNA */
         .landing-box {
             display: flex;
             flex-direction: column;
@@ -140,7 +140,7 @@
             50% { transform: scale(1.2) rotate(-10deg); }
         }
 
-        /* 2-OYNA: Sana va Poisk */
+        /* 2-OYNA */
         .date-card {
             background: rgba(255, 255, 255, 0.14);
             backdrop-filter: blur(16px);
@@ -255,7 +255,6 @@
             transform: scale(0.96);
         }
 
-        /* Umumiy konteynerlar va elementlar */
         .languages-container, .level-container, .time-container {
             display: flex;
             flex-direction: column;
@@ -496,7 +495,7 @@
             opacity: 0.9;
         }
 
-        /* Premium SVG Stikerlar (Raketa, Yulduzcha, Tort) */
+        /* Premium SVG Stikerlar */
         .pro-rocket-icon {
             width: 24px;
             height: 24px;
@@ -825,7 +824,7 @@
 </head>
 <body class="theme-orange">
 
-    <!-- Nastroyka tugmasi (Faqat dashboard ochilganda chiqadi) -->
+    <!-- Nastroyka tugmasi -->
     <div id="topSettingsBtn" class="top-settings-btn" onclick="openSettingsModal()" title="Nastroyka">
         <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="12" r="3" fill="#ffffff"/>
@@ -845,7 +844,6 @@
                 </span>
             </div>
 
-            <!-- Bot egasi haqida yangi ma'lumot -->
             <div class="settings-item" onclick="toggleOwnerInfo()">
                 <span>Bot egasi va sanasi
                     <svg class="black-pro-check" viewBox="0 0 24 24"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/></svg>
@@ -857,7 +855,6 @@
                 <strong>Bot yaratilgan sana:</strong> 1 noyabr (01.11.2026)
             </div>
 
-            <!-- Hamkorlik (@AlijonavaA va qora qimirlaydigan galochka) -->
             <div class="settings-item" onclick="window.open('https://t.me/AlijonavaA', '_blank')">
                 <span>Hamkorlik: @AlijonavaA
                     <svg class="black-pro-check" viewBox="0 0 24 24"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/></svg>
@@ -1116,21 +1113,17 @@
     <div id="step7Page" class="page hidden">
         <div class="home-dashboard">
             
-            <!-- Bosh ekran -->
+            <!-- Bosh ekran ("Bepul darslar" bloki va qimirlaydigan premium SVG bilan) -->
             <div id="tabHome" class="tab-content active-content">
-                <div class="animated-header-box"><span class="header-text">AcazesAcademy - Bosh sahifa</span></div>
-                <div class="welcome-banner">
-                    <div class="welcome-title">
-                        <span>Xush kelibsiz!</span>
-                        <span class="pro-rocket-icon">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4.5 16.5C3 18 2 21 2 21C2 21 5 20 6.5 18.5C7.33 17.67 7.5 16.33 7 15.5C6.5 14.67 5.33 14.67 4.5 16.5Z" fill="#ffffff"/>
-                                <path d="M12 15L15 18L19 14L16 11L12 15Z" fill="#ff7733"/>
-                                <path d="M14.5 9.5C16.5 7.5 18 4 18 4C18 4 14.5 5.5 12.5 7.5C11.5 8.5 11 10 11 11.5C11 12 11.2 12.5 11.5 12.8C11.8 13.1 12.3 13.3 12.8 13.3C14.3 13.3 15.8 12.5 14.5 9.5Z" fill="#ffffff"/>
-                            </svg>
-                        </span>
-                    </div>
-                    <div id="userChoiceSummary" class="welcome-desc">Siz tanlagan kurs va rejim boʻyicha darslar tayyorlanmoqda.</div>
+                <div class="animated-header-box">
+                    <span class="header-text">Bepul darslar</span>
+                    <span class="pro-rocket-icon">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.5 16.5C3 18 2 21 2 21C2 21 5 20 6.5 18.5C7.33 17.67 7.5 16.33 7 15.5C6.5 14.67 5.33 14.67 4.5 16.5Z" fill="#ffffff"/>
+                            <path d="M12 15L15 18L19 14L16 11L12 15Z" fill="#ff7733"/>
+                            <path d="M14.5 9.5C16.5 7.5 18 4 18 4C18 4 14.5 5.5 12.5 7.5C11.5 8.5 11 10 11 11.5C11 12 11.2 12.5 11.5 12.8C11.8 13.1 12.3 13.3 12.8 13.3C14.3 13.3 15.8 12.5 14.5 9.5Z" fill="#ffffff"/>
+                        </svg>
+                    </span>
                 </div>
             </div>
 
@@ -1286,7 +1279,6 @@
             document.getElementById(showId).classList.remove('hidden');
             document.getElementById(showId).classList.add('active');
 
-            // Nastroyka tugmasini faqat 7-oynada (dashboard) ko'rsatish
             const settingsBtn = document.getElementById('topSettingsBtn');
             if (showId === 'step7Page') {
                 settingsBtn.classList.add('show');
