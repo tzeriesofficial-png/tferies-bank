@@ -406,9 +406,9 @@
             width: 100%;
         }
 
+        /* DAVLAT BLOKLARI ICHING SABZI RANG QILINDI */
         .lang-card {
-            background: rgba(0, 0, 0, 0.32);
-            backdrop-filter: blur(14px);
+            background: #ff5500;
             border: 2px solid #ffffff;
             border-radius: 22px;
             padding: 14px 10px;
@@ -418,12 +418,12 @@
             gap: 8px;
             cursor: pointer;
             box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
-            transition: transform 0.15s ease, background 0.2s ease;
+            transition: transform 0.15s ease, filter 0.2s ease;
         }
 
         .lang-card:active {
             transform: scale(0.95);
-            background: rgba(0, 0, 0, 0.55);
+            filter: brightness(0.9);
         }
 
         .flag-square-wrap {
@@ -450,7 +450,7 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            background: rgba(255, 255, 255, 0.18);
+            background: rgba(0, 0, 0, 0.22);
             padding: 4px 9px;
             border-radius: 10px;
             font-size: 11px;
@@ -465,7 +465,7 @@
             animation: blackBadgeMotion 1.8s infinite ease-in-out;
         }
 
-        /* 5-OYNA: Tanlangan til darajasi */
+        /* 5-OYNA: Tanlangan til darajasi (DARAJAB LOKLARI HAM SABZI RANG) */
         .level-container {
             display: flex;
             flex-direction: column;
@@ -476,8 +476,7 @@
         }
 
         .level-card {
-            background: rgba(0, 0, 0, 0.38);
-            backdrop-filter: blur(16px);
+            background: #ff5500;
             border: 2px solid #ffffff;
             border-radius: 24px;
             padding: 20px 18px;
@@ -488,12 +487,12 @@
             gap: 14px;
             cursor: pointer;
             box-shadow: 0 14px 35px rgba(0, 0, 0, 0.3);
-            transition: transform 0.15s ease, background 0.2s ease;
+            transition: transform 0.15s ease, filter 0.2s ease;
         }
 
         .level-card:active {
             transform: scale(0.96);
-            background: rgba(0, 0, 0, 0.65);
+            filter: brightness(0.9);
         }
 
         .level-left {
@@ -530,7 +529,7 @@
         .level-sub {
             font-size: 12px;
             font-weight: 700;
-            color: rgba(255, 255, 255, 0.75);
+            color: rgba(255, 255, 255, 0.85);
             margin-top: 3px;
         }
 
