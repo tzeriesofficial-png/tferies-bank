@@ -121,10 +121,30 @@
         }
 
         .channels-title {
-            font-size: 18px;
+            font-size: 16.5px;
             font-weight: 900;
             color: #ffffff;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        /* Qimirlaydigan oq premium SVG o'yin stikeri */
+        .game-svg-icon {
+            width: 26px;
+            height: 26px;
+            display: inline-flex;
+            vertical-align: middle;
+            animation: gameIconMotion 1.8s infinite ease-in-out;
+        }
+
+        @keyframes gameIconMotion {
+            0%, 100% { transform: scale(1) rotate(0deg) translateY(0); }
+            25% { transform: scale(1.2) rotate(-12deg) translateY(-3px); }
+            75% { transform: scale(1.15) rotate(12deg) translateY(2px); }
         }
 
         .channel-item {
@@ -214,14 +234,21 @@
         </div>
     </div>
 
-    <!-- 2-OYNA: MAJBURIY OBUNA KANALLARI -->
+    <!-- 2-OYNA: KANALLAR -->
     <div id="channelsPage" class="page">
         <div class="channels-card">
-            <div class="channels-title">Davom etish uchun kanallarga obuna boʻling! 🔥</div>
+            <div class="channels-title">
+                <span>Siz qaysi oʻyinga drop qilishingizni tanlang.</span>
+                <span class="game-svg-icon">
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 6H3C1.9 6 1 6.9 1 8V16C1 17.1 1.9 18 3 18H21C22.1 18 23 17.1 23 16V8C23 6.9 22.1 6 21 6ZM10 13H8V15H6V13H4V11H6V9H8V11H10V13ZM15.5 15C14.67 15 14 14.33 14 13.5C14 12.67 14.67 12 15.5 12C16.33 12 17 12.67 17 13.5C17 14.33 16.33 15 15.5 15ZM19 11.5C18.17 11.5 17.5 10.83 17.5 10C17.5 9.17 18.17 8.5 19 8.5C19.83 8.5 20.5 9.17 20.5 10C20.5 10.83 19.83 11.5 19 11.5Z"/>
+                    </svg>
+                </span>
+            </div>
             <div style="font-size: 12px; font-weight: 800; color: #aaaaaa; margin-bottom: 4px;">Barcha kanallarga qoʻshiling va tasdiqlang</div>
 
             <div style="display: flex; flex-direction: column; gap: 10px;">
-                <!-- 1-Kanal: PUBG Mobile MENA -->
+                <!-- 1-Kanal -->
                 <a href="https://t.me/official_pubgmobile_mena" target="_blank" class="channel-item">
                     <div class="channel-left">
                         <img src="https://t.me/i/userpic/320/official_pubgmobile_mena.jpg" 
@@ -232,7 +259,7 @@
                     <span class="channel-action">Obuna</span>
                 </a>
 
-                <!-- 2-Kanal: Free Fire Gruxx -->
+                <!-- 2-Kanal -->
                 <a href="https://t.me/gruxx_ff" target="_blank" class="channel-item">
                     <div class="channel-left">
                         <img src="https://t.me/i/userpic/320/gruxx_ff.jpg" 
@@ -243,7 +270,7 @@
                     <span class="channel-action">Obuna</span>
                 </a>
 
-                <!-- 3-Kanal: Standoff 2 -->
+                <!-- 3-Kanal -->
                 <a href="https://t.me/play_standoff2" target="_blank" class="channel-item">
                     <div class="channel-left">
                         <img src="https://t.me/i/userpic/320/play_standoff2.jpg" 
@@ -267,7 +294,6 @@
         const fillElement = document.getElementById('progressBarFill');
         const percentageElement = document.getElementById('percentageVal');
 
-        // Progress bar to'lish jarayoni
         const loadingInterval = setInterval(() => {
             if (currentProgress < 100) {
                 currentProgress++;
@@ -275,7 +301,6 @@
                 percentageElement.textContent = currentProgress + '%';
             } else {
                 clearInterval(loadingInterval);
-                // 100% bo'lgach kanallar oynasiga o'tish
                 setTimeout(() => {
                     document.getElementById('loaderPage').classList.remove('active');
                     document.getElementById('channelsPage').classList.add('active');
