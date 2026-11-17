@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reduz Drop</title>
+    <title>NFT Ijara</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
@@ -13,13 +13,12 @@
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            transition: all 0.3s ease;
         }
 
         body {
             height: 100vh;
-            background: #ffffff;
-            color: #000000;
+            background: #0d0f17;
+            color: #ffffff;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -49,235 +48,274 @@
             pointer-events: auto;
         }
 
+        /* 1-OYNA: LOADING VA PADARKA SVG */
         .loader-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 30px;
+            gap: 28px;
             width: 100%;
             max-width: 340px;
         }
 
-        /* Reduz Drop Logotipi */
-        .logo-text {
-            font-size: 42px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        .gift-box-wrapper {
+            width: 130px;
+            height: 130px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            filter: drop-shadow(0 15px 30px rgba(255, 51, 102, 0.45));
         }
 
-        .logo-reduz {
-            color: #ff0033;
+        /* Sovg'a qutisi qopqog'i ochilib yopilish animatsiyasi */
+        .gift-lid {
+            transform-origin: 50% 45%;
+            animation: openLid 1.6s infinite ease-in-out;
         }
 
-        .logo-drop {
-            color: #000000;
+        .gift-glow {
+            animation: pulseGlow 1.6s infinite ease-in-out;
+        }
+
+        @keyframes openLid {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            45% { transform: translateY(-16px) rotate(-8deg); }
+            65% { transform: translateY(-14px) rotate(5deg); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Uzun rangli chiziq (Progress Bar) */
+        .progress-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 1%;
+            background: linear-gradient(90deg, #ff0055, #ffcc00, #00e5ff);
+            border-radius: 12px;
+            transition: width 0.08s linear;
         }
 
         .percentage-text {
             font-size: 20px;
             font-weight: 900;
-            color: #000000;
-            letter-spacing: 1px;
+            color: #ffffff;
+            letter-spacing: 1.5px;
         }
 
-        .progress-bar-container {
-            width: 100%;
-            height: 8px;
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid rgba(0, 0, 0, 0.2);
-        }
-
-        .progress-bar-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #ff0033, #ff3366);
-            border-radius: 10px;
-            transition: width 0.1s linear;
-        }
-
-        /* O'yinlar oynasi */
-        .channels-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 380px;
-            gap: 16px;
-            text-align: center;
-        }
-
-        .channels-title {
-            font-size: 18px;
-            font-weight: 900;
-            color: #000000;
-            margin-bottom: 2px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        /* O'yin bloklari (Qora rangda) */
-        .channel-item {
-            background: #000000;
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            padding: 14px 18px;
-            display: flex;
-            align-items: center;
+        /* 2-OYNA: ASOSIY EKRAN VA PASTKI PANEL */
+        #mainPage {
             justify-content: space-between;
-            width: 100%;
-            text-decoration: none;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+            padding: 20px 16px 95px 16px;
         }
 
-        .channel-left {
+        .tab-content {
+            width: 100%;
+            max-width: 400px;
+            flex: 1;
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 12px;
+            text-align: center;
+            gap: 14px;
         }
 
-        .channel-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #ff0033;
-            background-color: #1a1a1a;
-        }
-
-        .channel-name {
-            font-size: 16px;
+        .tab-title {
+            font-size: 24px;
             font-weight: 900;
-            color: #ffffff;
-            text-align: left;
-            text-transform: lowercase;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #ffffff, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .channel-action {
-            background: #000000;
-            color: #ffffff;
-            border: 1.5px solid rgba(255,255,255,0.3);
-            padding: 8px 14px;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 900;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        .tab-subtitle {
+            font-size: 14px;
+            font-weight: 700;
+            color: #8e96b0;
         }
 
-        /* Qimirlaydigan Oq Galochka SVG */
-        .moving-check-white {
-            width: 22px;
-            height: 22px;
-            display: inline-flex;
-            animation: checkMotionWhite 1.8s infinite ease-in-out;
-            flex-shrink: 0;
+        /* Pastki 5 talik navigatsiya paneli */
+        .bottom-nav {
+            position: fixed;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 20px);
+            max-width: 420px;
+            background: rgba(24, 28, 42, 0.92);
+            backdrop-filter: blur(16px);
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            border-radius: 22px;
+            padding: 10px 6px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 4px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            z-index: 100;
         }
 
-        @keyframes checkMotionWhite {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            30% { transform: scale(1.2) rotate(-10deg); }
-            70% { transform: scale(1.15) rotate(10deg); }
-        }
-
-        /* Qimirlaydigan Qora Galochka SVG */
-        .moving-check-black {
-            width: 20px;
-            height: 20px;
-            display: inline-flex;
-            vertical-align: middle;
-            animation: checkMotionBlack 1.8s infinite ease-in-out;
-            flex-shrink: 0;
-        }
-
-        @keyframes checkMotionBlack {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            30% { transform: scale(1.2) rotate(-10deg); }
-            70% { transform: scale(1.15) rotate(10deg); }
-        }
-
-        /* Yangi xabar oynasi */
-        .message-card {
-            background: #000000;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 26px;
-            padding: 24px 20px;
-            width: 100%;
-            max-width: 380px;
+        .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            color: #ffffff;
-        }
-
-        .m-avatar {
-            width: 75px;
-            height: 75px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #ff0033;
-            box-shadow: 0 0 15px rgba(255,0,51,0.4);
-        }
-
-        .m-title {
-            font-size: 17px;
-            font-weight: 900;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-
-        .m-desc {
-            font-size: 13.5px;
-            font-weight: 800;
-            color: #dddddd;
-            line-height: 1.5;
-        }
-
-        .m-footer-user {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 10px 16px;
+            gap: 5px;
+            padding: 6px 2px;
             border-radius: 14px;
-            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.25s ease, transform 0.2s ease;
+        }
+
+        .nav-item:active {
+            transform: scale(0.92);
+        }
+
+        .nav-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-label {
+            font-size: 10px;
             font-weight: 900;
+            color: #9ba3be;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        .nav-item.active .nav-label {
             color: #ffffff;
         }
 
-        .small-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 1.5px solid #ff0033;
+        /* Doimiy qimirlab turadigan rangli SVG ikonkalar animatsiyalari */
+        .svg-icon-box {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .anim-shop {
+            animation: wiggleShop 2s infinite ease-in-out;
+        }
+
+        .anim-nft {
+            animation: floatNft 2.2s infinite ease-in-out;
+        }
+
+        .anim-ijara {
+            animation: spinKey 2.4s infinite ease-in-out;
+        }
+
+        .anim-buyurtma {
+            animation: bounceOrder 1.9s infinite ease-in-out;
+        }
+
+        .anim-balans {
+            animation: pulseWallet 2.1s infinite ease-in-out;
+        }
+
+        @keyframes wiggleShop {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-10deg) scale(1.1); }
+            75% { transform: rotate(10deg) scale(1.1); }
+        }
+
+        @keyframes floatNft {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-4px) scale(1.12); }
+        }
+
+        @keyframes spinKey {
+            0%, 100% { transform: rotate(-12deg) scale(1); }
+            50% { transform: rotate(15deg) scale(1.12); }
+        }
+
+        @keyframes bounceOrder {
+            0%, 100% { transform: scale(1) translateY(0); }
+            40% { transform: scale(1.15) translateY(-3px); }
+            70% { transform: scale(0.95) translateY(1px); }
+        }
+
+        @keyframes pulseWallet {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.14) rotate(6deg); }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1-OYNA: LOADING -->
+    <!-- 1-OYNA: BANTIKLI VA OG'ZI OCHILADIGAN RANGORANG PADARKA -->
     <div id="loaderPage" class="page active">
         <div class="loader-container">
-            <div class="logo-text">
-                <span class="logo-reduz">Reduz</span><span class="logo-drop">Drop</span>
+            <div class="gift-box-wrapper">
+                <svg viewBox="0 0 120 120" width="130" height="130" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ff0055"/>
+                            <stop offset="100%" stop-color="#9900ff"/>
+                        </linearGradient>
+                        <linearGradient id="lidGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ff3377"/>
+                            <stop offset="100%" stop-color="#b833ff"/>
+                        </linearGradient>
+                        <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#ffe600"/>
+                            <stop offset="100%" stop-color="#ff8800"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Ichidan chiqayotgan yorug'lik nuri -->
+                    <circle class="gift-glow" cx="60" cy="52" r="26" fill="#ffe600" opacity="0.5"/>
+
+                    <!-- Quti pastki qismi -->
+                    <rect x="24" y="54" width="72" height="54" rx="10" fill="url(#boxGrad)"/>
+                    <!-- Quti ichidagi qorong'u og'iz qismi -->
+                    <ellipse cx="60" cy="54" rx="33" ry="6" fill="#2a0033"/>
+                    <!-- Quti vertikal lentasi -->
+                    <rect x="53" y="54" width="14" height="54" fill="url(#ribbonGrad)"/>
+
+                    <!-- Ochilib-yopiladigan Qopqoq va Bantik -->
+                    <g class="gift-lid">
+                        <!-- Qopqoq -->
+                        <rect x="18" y="38" width="84" height="18" rx="6" fill="url(#lidGrad)"/>
+                        <!-- Qopqoq lentasi -->
+                        <rect x="53" y="38" width="14" height="18" fill="url(#ribbonGrad)"/>
+                        <!-- Chap bantik -->
+                        <path d="M60 38 C42 16, 22 24, 34 38 C42 42, 54 40, 60 38 Z" fill="url(#ribbonGrad)"/>
+                        <!-- O'ng bantik -->
+                        <path d="M60 38 C78 16, 98 24, 86 38 C78 42, 66 40, 60 38 Z" fill="url(#ribbonGrad)"/>
+                        <!-- Bantik o'rta tuguni -->
+                        <circle cx="60" cy="37" r="6" fill="#ffaa00"/>
+                    </g>
+                </svg>
             </div>
 
-            <div style="width: 100%; display: flex; flex-direction: column; gap: 12px; align-items: center;">
+            <!-- 1 dan 100 gacha uzun chiziq -->
+            <div class="progress-wrapper">
                 <div class="progress-bar-container">
                     <div id="progressBarFill" class="progress-bar-fill"></div>
                 </div>
@@ -286,132 +324,89 @@
         </div>
     </div>
 
-    <!-- 2-OYNA: O'YINLARNI TANLASH -->
-    <div id="channelsPage" class="page">
-        <div class="channels-container">
-            <div class="channels-title">
-                <span>Siz qaysi oʻyinga drop qilishingizni tanlang.</span>
-                <span class="moving-check-black">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="10" fill="#000000"/>
-                        <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </span>
-            </div>
-            <div style="font-size: 13px; font-weight: 800; color: #555555; margin-bottom: 6px;">Oʻzingizga mos oʻyinni tanlang</div>
-
-            <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
-                <!-- 1-O'yin: pubg mobile -->
-                <div class="channel-item" onclick="goToMessage()">
-                    <div class="channel-left">
-                        <span class="moving-check-white">
-                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="10" fill="#ffffff"/>
-                                <path d="M8 12L11 15L16 9" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </span>
-                        <img src="https://t.me/i/userpic/320/official_pubgmobile_mena.jpg" 
-                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=PUBG+Mobile&background=ff0033&color=ffffff&bold=true&size=128';" 
-                             alt="pubg mobile" class="channel-avatar">
-                        <span class="channel-name">pubg mobile</span>
-                    </div>
-                    <span class="channel-action">tanlash</span>
-                </div>
-
-                <!-- 2-O'yin: free fire -->
-                <div class="channel-item" onclick="goToMessage()">
-                    <div class="channel-left">
-                        <span class="moving-check-white">
-                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="10" fill="#ffffff"/>
-                                <path d="M8 12L11 15L16 9" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </span>
-                        <img src="https://t.me/i/userpic/320/gruxx_ff.jpg" 
-                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Free+Fire&background=ff0033&color=ffffff&bold=true&size=128';" 
-                             alt="free fire" class="channel-avatar">
-                        <span class="channel-name">free fire</span>
-                    </div>
-                    <span class="channel-action">tanlash</span>
-                </div>
-
-                <!-- 3-O'yin: standoff 2 -->
-                <div class="channel-item" onclick="goToMessage()">
-                    <div class="channel-left">
-                        <span class="moving-check-white">
-                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="10" fill="#ffffff"/>
-                                <path d="M8 12L11 15L16 9" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </span>
-                        <img src="https://t.me/i/userpic/320/play_standoff2.jpg" 
-                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Standoff+2&background=ff0033&color=ffffff&bold=true&size=128';" 
-                             alt="standoff 2" class="channel-avatar">
-                        <span class="channel-name">standoff 2</span>
-                    </div>
-                    <span class="channel-action">tanlash</span>
-                </div>
-            </div>
+    <!-- 2-OYNA: ASOSIY MENU VA 5 TA RANGORANG QIMIRLAYDIGAN SVG -->
+    <div id="mainPage" class="page">
+        <div class="tab-content" id="tabDisplay">
+            <div class="tab-title" id="activeTabTitle">DOʻKON</div>
+            <div class="tab-subtitle" id="activeTabDesc">Boʻlim tez orada toʻldiriladi</div>
         </div>
-    </div>
 
-    <!-- 3-OYNA: YANGI XABAR OYNASI -->
-    <div id="messagePage" class="page">
-        <div class="message-card">
-            <img id="userAvatar" src="" alt="Profil" class="m-avatar">
-            <div class="m-title">
-                <span>Assalomu alekum</span>
-                <span id="userName" style="color: #ff3333;">Foydalanuvchi</span>
-                <span class="moving-check-black">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="10" fill="#000000"/>
-                        <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Pastki 5 ta ikonka -->
+        <div class="bottom-nav">
+            <!-- 1. DO'KON -->
+            <div class="nav-item active" onclick="selectTab(this, 'DOʻKON')">
+                <div class="svg-icon-box anim-shop">
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 9L5 4H19L21 9H3Z" fill="#FF3366"/>
+                        <path d="M4 9H20V19C20 20.1 19.1 21 18 21H6C4.9 21 4 20.1 4 19V9Z" fill="#00D2FF"/>
+                        <rect x="9" y="13" width="6" height="8" rx="1.5" fill="#FFE600"/>
                     </svg>
-                </span>
+                </div>
+                <span class="nav-label">DOʻKON</span>
             </div>
-            <div class="m-desc">
-                Bu bot rasmiy kata father lar tarafidan saylandi. Bot asoschisi: <strong>@reduzdrop_adminka</strong><br><br>
-                Ertaga kechga 21:00 da hamma boʻlimlar ochiladi. PUBG, Free Fire, Standoff 2 oʻyin birjasini yechib olish ham mumkin boʻladi.
-            </div>
-            <div class="m-footer-user">
-                <img id="userAvatarSmall" src="" alt="Profil" class="small-avatar">
-                <span id="userNameSmall">Foydalanuvchi</span>
-                <span class="moving-check-black">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="10" fill="#000000"/>
-                        <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+            <!-- 2. NFT -->
+            <div class="nav-item" onclick="selectTab(this, 'NFT')">
+                <div class="svg-icon-box anim-nft">
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="12,2 21,8 12,22 3,8" fill="#A855F7"/>
+                        <polygon points="12,2 21,8 12,11 3,8" fill="#38BDF8"/>
+                        <polygon points="12,11 21,8 12,22" fill="#EC4899"/>
                     </svg>
-                </span>
+                </div>
+                <span class="nav-label">NFT</span>
+            </div>
+
+            <!-- 3. IJARA -->
+            <div class="nav-item" onclick="selectTab(this, 'IJARA')">
+                <div class="svg-icon-box anim-ijara">
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="8" cy="14" r="5" fill="#FACC15"/>
+                        <circle cx="8" cy="14" r="2" fill="#0D0F17"/>
+                        <path d="M12 12L20 4L22 6L20 8L22 10L19 13L17 11L13 15" fill="#FB923C"/>
+                    </svg>
+                </div>
+                <span class="nav-label">IJARA</span>
+            </div>
+
+            <!-- 4. BUYURTMA -->
+            <div class="nav-item" onclick="selectTab(this, 'BUYURTMA')">
+                <div class="svg-icon-box anim-buyurtma">
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="4" y="3" width="16" height="18" rx="3" fill="#10B981"/>
+                        <path d="M8 9H16M8 13H14M8 17H11" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
+                        <circle cx="17" cy="17" r="4" fill="#FACC15"/>
+                    </svg>
+                </div>
+                <span class="nav-label">BUYURTMA</span>
+            </div>
+
+            <!-- 5. BALANS -->
+            <div class="nav-item" onclick="selectTab(this, 'BALANS')">
+                <div class="svg-icon-box anim-balans">
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="5" width="20" height="14" rx="3.5" fill="#3B82F6"/>
+                        <path d="M15 10H22V14H15C13.9 14 13 13.1 13 12C13 10.9 13.9 10 15 10Z" fill="#FACC15"/>
+                        <circle cx="16" cy="12" r="1.3" fill="#0D0F17"/>
+                    </svg>
+                </div>
+                <span class="nav-label">BALANS</span>
             </div>
         </div>
     </div>
 
     <script>
         const tg = window.Telegram ? window.Telegram.WebApp : null;
-        if (tg) { tg.ready(); tg.expand(); }
-
-        // Telegram foydalanuvchisini aniqlash va joylash
-        function loadUserData() {
-            let fullName = "Foydalanuvchi";
-            let photoUrl = "";
-            if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) {
-                const user = tg.initDataUnsafe.user;
-                fullName = [user.first_name, user.last_name].filter(Boolean).join(" ");
-                if (user.photo_url) photoUrl = user.photo_url;
-            }
-            document.getElementById('userName').innerText = fullName;
-            document.getElementById('userNameSmall').innerText = fullName;
-
-            const fallbackUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(fullName)}&background=ff0033&color=ffffff&bold=true&size=128`;
-            const finalPhoto = photoUrl ? photoUrl : fallbackUrl;
-            document.getElementById('userAvatar').src = finalPhoto;
-            document.getElementById('userAvatarSmall').src = finalPhoto;
+        if (tg) {
+            tg.ready();
+            tg.expand();
         }
 
         let currentProgress = 1;
         const fillElement = document.getElementById('progressBarFill');
         const percentageElement = document.getElementById('percentageVal');
 
+        // 1 dan 100 gacha sanab uzun chiziq to'lishi
         const loadingInterval = setInterval(() => {
             if (currentProgress < 100) {
                 currentProgress++;
@@ -421,15 +416,16 @@
                 clearInterval(loadingInterval);
                 setTimeout(() => {
                     document.getElementById('loaderPage').classList.remove('active');
-                    document.getElementById('channelsPage').classList.add('active');
-                }, 400);
+                    document.getElementById('mainPage').classList.add('active');
+                }, 350);
             }
         }, 30);
 
-        function goToMessage() {
-            loadUserData();
-            document.getElementById('channelsPage').classList.remove('active');
-            document.getElementById('messagePage').classList.add('active');
+        // Pastki 5 ta bo'limdan birini tanlash
+        function selectTab(element, tabName) {
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            element.classList.add('active');
+            document.getElementById('activeTabTitle').textContent = tabName;
         }
     </script>
 </body>
