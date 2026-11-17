@@ -228,20 +228,20 @@
             -webkit-backdrop-filter: blur(18px);
             border: 1.5px solid rgba(255, 255, 255, 0.4);
             border-radius: 30px;
-            padding: 28px 22px;
+            padding: 24px 20px;
             width: 100%;
             max-width: 370px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
         }
 
         .avatar-wrapper {
             position: relative;
-            width: 104px;
-            height: 104px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
             padding: 4px;
             background: #ffffff;
@@ -266,16 +266,15 @@
         }
 
         .user-fullname {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 900;
             color: #ffffff;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Oq fonsiz, qora rangdagi qimirlab turuvchi Premium SVG Galochka */
         .black-wiggle-badge {
-            width: 26px;
-            height: 26px;
+            width: 24px;
+            height: 24px;
             display: inline-flex;
             justify-content: center;
             align-items: center;
@@ -291,20 +290,19 @@
 
         .user-birth-info {
             background: rgba(0, 0, 0, 0.22);
-            padding: 10px 16px;
-            border-radius: 14px;
-            font-size: 13.5px;
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-size: 13px;
             font-weight: 800;
             color: #ffffff;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
-        /* Qimirlab turuvchi Premium SVG Tort (Pirojniy) ikonka */
         .wiggle-cake-icon {
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             display: inline-flex;
             justify-content: center;
             align-items: center;
@@ -316,6 +314,155 @@
             25% { transform: scale(1.18) rotate(-10deg); }
             50% { transform: scale(0.92) rotate(8deg); }
             75% { transform: scale(1.1) rotate(-5deg); }
+        }
+
+        /* "Tushundim" Premium SVG tugma */
+        .understand-btn {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 16px;
+            padding: 14px;
+            font-size: 15px;
+            font-weight: 900;
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transition: transform 0.15s ease;
+        }
+
+        .understand-btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn-star-icon {
+            animation: starSpinWiggle 2.5s infinite ease-in-out;
+            display: inline-flex;
+        }
+
+        @keyframes starSpinWiggle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            30% { transform: scale(1.25) rotate(20deg); }
+            60% { transform: scale(0.9) rotate(-10deg); }
+        }
+
+        /* 4-OYNA: 6 ta Til (Davlat) tanlash ekrani */
+        .languages-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 390px;
+            gap: 18px;
+            padding: 10px;
+        }
+
+        /* Qimirlab turuvchi Premium SVG Sarlavha */
+        .animated-header-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 18px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            width: 100%;
+            text-align: center;
+            animation: headerPulseWiggle 3s infinite ease-in-out;
+        }
+
+        @keyframes headerPulseWiggle {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); }
+            50% { transform: scale(1.02); box-shadow: 0 0 25px rgba(255, 255, 255, 0.25); }
+        }
+
+        .header-text {
+            font-size: 14.5px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-svg-anim {
+            animation: headIconWiggle 2s infinite ease-in-out;
+        }
+
+        @keyframes headIconWiggle {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-15deg) scale(1.2); }
+            75% { transform: rotate(15deg) scale(1.2); }
+        }
+
+        /* 6 ta Til kartochkalari gridi */
+        .lang-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .lang-card {
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(14px);
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            border-radius: 22px;
+            padding: 18px 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.15s ease, background 0.2s ease;
+            animation: cardFloatAnim 4s infinite ease-in-out;
+        }
+
+        .lang-card:nth-child(even) { animation-delay: 2s; }
+
+        @keyframes cardFloatAnim {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        .lang-card:active {
+            transform: scale(0.94);
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        /* Qimirlab turuvchi Premium SVG Bayroq ikonkasi */
+        .flag-svg-wrap {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: flagWiggleMotion 2.5s infinite ease-in-out;
+        }
+
+        @keyframes flagWiggleMotion {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.15) rotate(-8deg); }
+            50% { transform: scale(0.95) rotate(6deg); }
+            75% { transform: scale(1.1) rotate(-4deg); }
+        }
+
+        .lang-name {
+            font-size: 15px;
+            font-weight: 900;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .lang-sub {
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.7);
         }
     </style>
 </head>
@@ -395,7 +542,6 @@
             <div class="user-name-row">
                 <span id="tgUserName" class="user-fullname">Foydalanuvchi</span>
 
-                <!-- Oq fonsiz, qora rangdagi qimirlab turuvchi Premium Galochka -->
                 <div class="black-wiggle-badge" title="Tasdiqlangan">
                     <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/>
@@ -405,7 +551,6 @@
             </div>
 
             <div id="userSavedBirth" class="user-birth-info">
-                <!-- Qimirlab turuvchi Premium SVG Tort Ikonka -->
                 <div class="wiggle-cake-icon">
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 2V5M9 3.5H15M7 11H17V20C17 21.1046 16.1046 22 15 22H9C7.89543 22 7 21.1046 7 20V11Z" fill="#ffaa55" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
@@ -414,6 +559,128 @@
                     </svg>
                 </div>
                 <span id="birthTextVal">2005-yil, 1-Yanvar</span>
+            </div>
+
+            <!-- "Tushundim" Premium SVG tugma -->
+            <button class="understand-btn" onclick="goToStep4()">
+                <div class="btn-star-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/>
+                        <path d="M12 6L13.5 10.5H18L14.2 13.2L15.8 17.5L12 14.8L8.2 17.5L9.8 13.2L6 10.5H10.5L12 6Z" fill="#ffffff"/>
+                    </svg>
+                </div>
+                <span>Tushundim</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- 4-OYNA: 6 ta Til (Davlat) tanlash va Qimirlaydigan Premium SVG Sarlavha -->
+    <div id="step4Page" class="page hidden">
+        <div class="languages-container">
+            <!-- Qimirlab turuvchi Premium SVG Sarlavha -->
+            <div class="animated-header-box">
+                <div class="header-svg-anim">
+                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" fill="#ffffff"/>
+                        <path d="M2 12H22M12 2C14.5 4.5 15.5 8 15.5 12C15.5 16 14.5 19.5 12 22C9.5 19.5 8.5 16 8.5 12C8.5 8 9.5 4.5 12 2Z" stroke="#ff5500" stroke-width="2"/>
+                    </svg>
+                </div>
+                <span class="header-text">AcazesAcademy’ga nima maqsadda kirdingiz?</span>
+            </div>
+
+            <!-- 6 ta Til kartochkalari -->
+            <div class="lang-grid">
+                <!-- 1. Ingliz tili -->
+                <div class="lang-card" onclick="selectLanguage('Ingliz tili')">
+                    <div class="flag-svg-wrap">
+                        <svg viewBox="0 0 36 36" width="44" height="44">
+                            <circle cx="18" cy="18" r="18" fill="#012169"/>
+                            <path d="M0 0L36 36M36 0L0 36" stroke="#fff" stroke-width="5"/>
+                            <path d="M0 0L36 36M36 0L0 36" stroke="#C8102E" stroke-width="2"/>
+                            <path d="M18 0V36M0 18H36" stroke="#fff" stroke-width="8"/>
+                            <path d="M18 0V36M0 18H36" stroke="#C8102E" stroke-width="4"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="lang-name">Ingliz tili</div>
+                        <div class="lang-sub">Global til</div>
+                    </div>
+                </div>
+
+                <!-- 2. Rus tili -->
+                <div class="lang-card" onclick="selectLanguage('Rus tili')">
+                    <div class="flag-svg-wrap">
+                        <svg viewBox="0 0 36 36" width="44" height="44">
+                            <circle cx="18" cy="18" r="18" fill="#fff"/>
+                            <rect x="0" y="12" width="36" height="12" fill="#0039A6"/>
+                            <rect x="0" y="24" width="36" height="12" fill="#D52B1E"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="lang-name">Rus tili</div>
+                        <div class="lang-sub">Muloqot</div>
+                    </div>
+                </div>
+
+                <!-- 3. Koreys tili -->
+                <div class="lang-card" onclick="selectLanguage('Koreys tili')">
+                    <div class="flag-svg-wrap">
+                        <svg viewBox="0 0 36 36" width="44" height="44">
+                            <circle cx="18" cy="18" r="18" fill="#fff"/>
+                            <circle cx="18" cy="18" r="7" fill="#CD2E3A"/>
+                            <path d="M11 18A7 7 0 0 0 25 18" fill="#0047A0"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="lang-name">Koreys tili</div>
+                        <div class="lang-sub">TOPIK</div>
+                    </div>
+                </div>
+
+                <!-- 4. Yapon tili -->
+                <div class="lang-card" onclick="selectLanguage('Yapon tili')">
+                    <div class="flag-svg-wrap">
+                        <svg viewBox="0 0 36 36" width="44" height="44">
+                            <circle cx="18" cy="18" r="18" fill="#fff"/>
+                            <circle cx="18" cy="18" r="7.5" fill="#BC002D"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="lang-name">Yapon tili</div>
+                        <div class="lang-sub">Anime & Ish</div>
+                    </div>
+                </div>
+
+                <!-- 5. Turk tili -->
+                <div class="lang-card" onclick="selectLanguage('Turk tili')">
+                    <div class="flag-svg-wrap">
+                        <svg viewBox="0 0 36 36" width="44" height="44">
+                            <circle cx="18" cy="18" r="18" fill="#E30A17"/>
+                            <circle cx="15" cy="18" r="7" fill="#E30A17"/>
+                            <circle cx="16.5" cy="18" r="5.5" fill="#fff"/>
+                            <polygon points="21,18 24.5,16.5 23,20" fill="#fff"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="lang-name">Turk tili</div>
+                        <div class="lang-sub">Serial & Muloqot</div>
+                    </div>
+                </div>
+
+                <!-- 6. Nemis tili -->
+                <div class="lang-card" onclick="selectLanguage('Nemis tili')">
+                    <div class="flag-svg-wrap">
+                        <svg viewBox="0 0 36 36" width="44" height="44">
+                            <circle cx="18" cy="18" r="18" fill="#000"/>
+                            <rect x="0" y="12" width="36" height="12" fill="#DD0000"/>
+                            <rect x="0" y="24" width="36" height="12" fill="#FFCC00"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="lang-name">Nemis tili</div>
+                        <div class="lang-sub">Yevropa</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -539,6 +806,19 @@
             document.getElementById('step2Page').classList.add('hidden');
             document.getElementById('step3Page').classList.remove('hidden');
             document.getElementById('step3Page').classList.add('active');
+        }
+
+        function goToStep4() {
+            hapticClick();
+            document.getElementById('step3Page').classList.remove('active');
+            document.getElementById('step3Page').classList.add('hidden');
+            document.getElementById('step4Page').classList.remove('hidden');
+            document.getElementById('step4Page').classList.add('active');
+        }
+
+        function selectLanguage(langName) {
+            hapticClick();
+            alert(`${langName} yo'nalishi tanlandi! Darsliklar tez orada yuklanadi.`);
         }
 
         function hapticClick() {
