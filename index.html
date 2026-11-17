@@ -63,7 +63,7 @@
             z-index: 10;
         }
 
-        /* Yuqori nastroyka tugmasi */
+        /* Yuqori nastroyka tugmasi (Faqat kerakli oynalarda chiqadi) */
         .top-settings-btn {
             position: absolute;
             top: 15px;
@@ -73,13 +73,17 @@
             border-radius: 50%;
             width: 44px;
             height: 44px;
-            display: flex;
+            display: none;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             z-index: 100;
             box-shadow: 0 5px 15px rgba(0,0,0,0.25);
             animation: settingsSpinWiggle 4s infinite ease-in-out;
+        }
+
+        .top-settings-btn.show {
+            display: flex;
         }
 
         @keyframes settingsSpinWiggle {
@@ -204,14 +208,6 @@
             gap: 5px;
         }
 
-        .select-label {
-            font-size: 11px;
-            font-weight: 800;
-            opacity: 0.9;
-            text-align: center;
-            text-transform: uppercase;
-        }
-
         .premium-select {
             background: #ffffff;
             color: #cc3700;
@@ -295,17 +291,6 @@
             font-size: 13.5px;
             font-weight: 900;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .header-svg-anim {
-            animation: headIconWiggle 2s infinite ease-in-out;
-            display: flex;
-        }
-
-        @keyframes headIconWiggle {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            25% { transform: rotate(-15deg) scale(1.2); }
-            75% { transform: rotate(15deg) scale(1.2); }
         }
 
         .lang-grid {
@@ -511,7 +496,20 @@
             opacity: 0.9;
         }
 
-        /* Premium SVG Yulduzcha va Tort stikerlari */
+        /* Premium SVG Stikerlar (Raketa, Yulduzcha, Tort) */
+        .pro-rocket-icon {
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            animation: rocketWiggle 2s infinite ease-in-out;
+            vertical-align: middle;
+        }
+
+        @keyframes rocketWiggle {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(-10deg); }
+        }
+
         .pro-star-icon {
             width: 24px;
             height: 24px;
@@ -760,9 +758,16 @@
             display: inline-flex;
             vertical-align: middle;
             margin-left: 6px;
+            animation: blackBadgeMotion 2s infinite ease-in-out;
         }
 
-        /* Pastki panel (Matnlari OQ rangda va qimirlaydigan ikonkalari bilan) */
+        @keyframes blackBadgeMotion {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            20% { transform: scale(1.2) rotate(-10deg); }
+            70% { transform: scale(1.1) rotate(8deg); }
+        }
+
+        /* Pastki panel */
         .bottom-nav-bar {
             display: flex;
             justify-content: space-around;
@@ -820,8 +825,8 @@
 </head>
 <body class="theme-orange">
 
-    <!-- Nastroyka tugmasi -->
-    <div class="top-settings-btn" onclick="openSettingsModal()" title="Nastroyka">
+    <!-- Nastroyka tugmasi (Faqat dashboard ochilganda chiqadi) -->
+    <div id="topSettingsBtn" class="top-settings-btn" onclick="openSettingsModal()" title="Nastroyka">
         <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="12" r="3" fill="#ffffff"/>
             <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -840,23 +845,21 @@
                 </span>
             </div>
 
+            <!-- Bot egasi haqida yangi ma'lumot -->
             <div class="settings-item" onclick="toggleOwnerInfo()">
-                <span>Bot egasi kim?
+                <span>Bot egasi va sanasi
                     <svg class="black-pro-check" viewBox="0 0 24 24"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/></svg>
                 </span>
                 <span>▼</span>
             </div>
             <div id="ownerInfoBox" class="settings-info-box">
-                Jizzax viloyati Pahtakor tumani Shohruzbek Fayziyev ismli shaxs tomonidan yaratilgan.<br>
-                2-maktabda oʻqiydi 9-"B".<br>
-                Maktab oʻqituvchisi ismi: Adilova Nigora.<br><br>
-                <strong>Bot egasi profili:</strong><br>
-                <a href="https://t.me/ShohruzFayziyev" target="_blank" style="color: #ffffff; text-decoration: underline;">@ShohruzFayziyev</a>
-                <svg class="black-pro-check" viewBox="0 0 24 24"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/></svg>
+                <strong>Bot egasi:</strong> Alijonova Aysulu<br>
+                <strong>Bot yaratilgan sana:</strong> 1 noyabr (01.11.2026)
             </div>
 
-            <div class="settings-item" onclick="window.open('https://t.me/ShohruzFayziyev', '_blank')">
-                <span>Hamkorlik
+            <!-- Hamkorlik (@AlijonavaA va qora qimirlaydigan galochka) -->
+            <div class="settings-item" onclick="window.open('https://t.me/AlijonavaA', '_blank')">
+                <span>Hamkorlik: @AlijonavaA
                     <svg class="black-pro-check" viewBox="0 0 24 24"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/></svg>
                 </span>
                 <span>↗</span>
@@ -907,7 +910,6 @@
                 <span id="tgUserName" class="user-fullname">Foydalanuvchi</span>
             </div>
             <div class="user-birth-info">
-                <!-- Tort stikeri (Premium SVG) -->
                 <span class="pro-cake-icon">
                     <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 2V5M8 3.5L9.5 5M16 3.5L14.5 5" stroke="#ffcc00" stroke-width="2" stroke-linecap="round"/>
@@ -922,12 +924,11 @@
         </div>
     </div>
 
-    <!-- 4-OYNA: 6 ta Til -->
+    <!-- 4-OYNA -->
     <div id="step4Page" class="page hidden">
         <div class="languages-container">
             <div class="animated-header-box"><span class="header-text">AcazesAcademy’ga nima maqsadda kirdingiz?</span></div>
             <div class="lang-grid">
-                <!-- 1. Ingliz tili -->
                 <div class="lang-card" onclick="openLanguageLevels('Ingliz tili')">
                     <div class="flag-square-wrap">
                         <svg viewBox="0 0 60 40" width="52" height="40" preserveAspectRatio="none">
@@ -949,7 +950,6 @@
                         </span>
                     </div>
                 </div>
-                <!-- 2. Rus tili -->
                 <div class="lang-card" onclick="openLanguageLevels('Rus tili')">
                     <div class="flag-square-wrap">
                         <svg viewBox="0 0 60 40" width="52" height="40" preserveAspectRatio="none">
@@ -966,7 +966,6 @@
                         </span>
                     </div>
                 </div>
-                <!-- 3. Koreys tili -->
                 <div class="lang-card" onclick="openLanguageLevels('Koreys tili')">
                     <div class="flag-square-wrap">
                         <svg viewBox="0 0 60 40" width="52" height="40" preserveAspectRatio="none">
@@ -983,7 +982,6 @@
                         </span>
                     </div>
                 </div>
-                <!-- 4. Yapon tili -->
                 <div class="lang-card" onclick="openLanguageLevels('Yapon tili')">
                     <div class="flag-square-wrap">
                         <svg viewBox="0 0 60 40" width="52" height="40" preserveAspectRatio="none">
@@ -999,7 +997,6 @@
                         </span>
                     </div>
                 </div>
-                <!-- 5. Turk tili -->
                 <div class="lang-card" onclick="openLanguageLevels('Turk tili')">
                     <div class="flag-square-wrap">
                         <svg viewBox="0 0 60 40" width="52" height="40" preserveAspectRatio="none">
@@ -1016,7 +1013,6 @@
                         </span>
                     </div>
                 </div>
-                <!-- 6. Nemis tili -->
                 <div class="lang-card" onclick="openLanguageLevels('Nemis tili')">
                     <div class="flag-square-wrap">
                         <svg viewBox="0 0 60 40" width="52" height="40" preserveAspectRatio="none">
@@ -1037,7 +1033,7 @@
         </div>
     </div>
 
-    <!-- 5-OYNA: Darajalar -->
+    <!-- 5-OYNA -->
     <div id="step5Page" class="page hidden">
         <div class="level-container">
             <div class="animated-header-box"><span id="selectedLangHeader" class="header-text">Oʻquv bosqichini tanlang</span></div>
@@ -1059,16 +1055,14 @@
         </div>
     </div>
 
-    <!-- 6-OYNA: Vaqt tanlash (Oq rangli qimirlaydigan soat ikonkalari bilan) -->
+    <!-- 6-OYNA -->
     <div id="step6Page" class="page hidden">
         <div class="time-container">
             <div class="animated-header-box"><span class="header-text">Kuniga qancha vaqt ajratasiz?</span></div>
             
             <div class="time-card" onclick="selectStudyTime('10 daqiqa')">
                 <div class="time-left">
-                    <div class="time-svg-box">
-                        <svg class="pro-clock-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </div>
+                    <div class="time-svg-box"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg></div>
                     <div><div class="time-title">10 daqiqa</div><div class="time-sub">Tezkor mashgʻulot</div></div>
                 </div>
                 <div class="black-wiggle-badge"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/></svg></div>
@@ -1076,9 +1070,7 @@
 
             <div class="time-card" onclick="selectStudyTime('15 daqiqa')">
                 <div class="time-left">
-                    <div class="time-svg-box">
-                        <svg class="pro-clock-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </div>
+                    <div class="time-svg-box"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg></div>
                     <div><div class="time-title">15 daqiqa</div><div class="time-sub">Optimal kundalik norma</div></div>
                 </div>
                 <div class="black-wiggle-badge"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/></svg></div>
@@ -1086,9 +1078,7 @@
 
             <div class="time-card" onclick="selectStudyTime('25 daqiqa')">
                 <div class="time-left">
-                    <div class="time-svg-box">
-                        <svg class="pro-clock-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </div>
+                    <div class="time-svg-box"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg></div>
                     <div><div class="time-title">25 daqiqa</div><div class="time-sub">Pomodoro fokus rejimi</div></div>
                 </div>
                 <div class="black-wiggle-badge"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/></svg></div>
@@ -1096,9 +1086,7 @@
 
             <div class="time-card" onclick="selectStudyTime('45 daqiqa')">
                 <div class="time-left">
-                    <div class="time-svg-box">
-                        <svg class="pro-clock-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </div>
+                    <div class="time-svg-box"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg></div>
                     <div><div class="time-title">45 daqiqa</div><div class="time-sub">Chuqurlashtirilgan dars</div></div>
                 </div>
                 <div class="black-wiggle-badge"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/></svg></div>
@@ -1106,9 +1094,7 @@
 
             <div class="time-card" onclick="selectStudyTime('1 soat')">
                 <div class="time-left">
-                    <div class="time-svg-box">
-                        <svg class="pro-clock-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </div>
+                    <div class="time-svg-box"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg></div>
                     <div><div class="time-title">1 soat</div><div class="time-sub">Professional oʻqish rejimi</div></div>
                 </div>
                 <div class="black-wiggle-badge"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/></svg></div>
@@ -1116,9 +1102,7 @@
 
             <div class="time-card" onclick="selectStudyTime('Charchagunimcha')">
                 <div class="time-left">
-                    <div class="time-svg-box">
-                        <svg class="pro-clock-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </div>
+                    <div class="time-svg-box"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ff5500" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg></div>
                     <div><div class="time-title">Charchagunimcha</div><div class="time-sub">Dam bergunimcha oʻqiyman</div></div>
                 </div>
                 <div class="black-wiggle-badge"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#000000"/><polyline points="8.5 12.5 11 15 16 9.5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/></svg></div>
@@ -1136,7 +1120,16 @@
             <div id="tabHome" class="tab-content active-content">
                 <div class="animated-header-box"><span class="header-text">AcazesAcademy - Bosh sahifa</span></div>
                 <div class="welcome-banner">
-                    <div class="welcome-title">Xush kelibsiz! 🚀</div>
+                    <div class="welcome-title">
+                        <span>Xush kelibsiz!</span>
+                        <span class="pro-rocket-icon">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.5 16.5C3 18 2 21 2 21C2 21 5 20 6.5 18.5C7.33 17.67 7.5 16.33 7 15.5C6.5 14.67 5.33 14.67 4.5 16.5Z" fill="#ffffff"/>
+                                <path d="M12 15L15 18L19 14L16 11L12 15Z" fill="#ff7733"/>
+                                <path d="M14.5 9.5C16.5 7.5 18 4 18 4C18 4 14.5 5.5 12.5 7.5C11.5 8.5 11 10 11 11.5C11 12 11.2 12.5 11.5 12.8C11.8 13.1 12.3 13.3 12.8 13.3C14.3 13.3 15.8 12.5 14.5 9.5Z" fill="#ffffff"/>
+                            </svg>
+                        </span>
+                    </div>
                     <div id="userChoiceSummary" class="welcome-desc">Siz tanlagan kurs va rejim boʻyicha darslar tayyorlanmoqda.</div>
                 </div>
             </div>
@@ -1146,7 +1139,15 @@
                 <div id="walletStep1" style="display: flex; flex-direction: column; gap: 15px; width: 100%; align-items: center;">
                     <div class="animated-header-box"><span class="header-text">Premium Xarid qilish</span></div>
                     <div class="welcome-banner">
-                        <div class="welcome-title">Premium sotib olmoqchiman 🌟</div>
+                        <div class="welcome-title">
+                            <span>Premium sotib olmoqchiman</span>
+                            <span class="pro-star-icon">
+                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L14.8 4.2L18.4 3.8L19.6 7.2L22.6 9.2L21.6 12.7L22.6 16.2L19.6 18.2L18.4 21.6L14.8 21.2L12 23.4L9.2 21.2L5.6 21.6L4.4 18.2L1.4 16.2L2.4 12.7L1.4 9.2L4.4 7.2L5.6 3.8L9.2 4.2L12 2Z" fill="#ffcc00"/>
+                                    <path d="M12 6L13.2 9.2L16.5 9.8L14 12.2L14.7 15.5L12 13.8L9.3 15.5L10 12.2L7.5 9.8L10.8 9.2L12 6Z" fill="#ffffff"/>
+                                </svg>
+                            </span>
+                        </div>
                         <div class="welcome-desc">Barcha imkoniyatlarni ochish uchun quyidagi tasdiqlash tugmasini bosing.</div>
                     </div>
                     <button class="pay-confirm-btn" onclick="showPaymentCard()">Tasdiqlash</button>
@@ -1163,7 +1164,7 @@
                             <div>⏱️ Toʻlov vaqti: <strong id="countdownTimer">05:00</strong> minut</div>
                             <div>⚠️ 1 soʻm ham koʻp yoki kam tashlamang, aks holda obunaga pul tushmaydi ❌</div>
                         </div>
-                        <a href="https://t.me/ShohruzFayziyev" target="_blank" class="pay-confirm-btn" onclick="alert('Toʻlov qilib boʻlgach adminga check yuboring!')">
+                        <a href="https://t.me/AlijonavaA" target="_blank" class="pay-confirm-btn" onclick="alert('Toʻlov qilib boʻlgach adminga check yuboring!')">
                             Toʻlov qildim (Check yuborish)
                         </a>
                     </div>
@@ -1191,7 +1192,7 @@
                 </div>
             </div>
 
-            <!-- Premium Tab (Premium SVG yulduzcha stikeri bilan) -->
+            <!-- Premium Tab -->
             <div id="tabPremium" class="tab-content">
                 <div class="animated-header-box"><span class="header-text">AcazesAcademy VIP Status</span></div>
                 <div class="welcome-banner">
@@ -1284,12 +1285,20 @@
             document.getElementById(hideId).classList.add('hidden');
             document.getElementById(showId).classList.remove('hidden');
             document.getElementById(showId).classList.add('active');
+
+            // Nastroyka tugmasini faqat 7-oynada (dashboard) ko'rsatish
+            const settingsBtn = document.getElementById('topSettingsBtn');
+            if (showId === 'step7Page') {
+                settingsBtn.classList.add('show');
+            } else {
+                settingsBtn.classList.remove('show');
+            }
         }
 
         function goToStep2() { switchPage('step1Page', 'step2Page'); }
 
         function syncTelegramUser() {
-            let fullName = "Shohruzbek Fayziyev";
+            let fullName = "Alijonova Aysulu";
             let photoUrl = "";
             if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) {
                 const user = tg.initDataUnsafe.user;
