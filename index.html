@@ -75,7 +75,6 @@
             color: #000000;
         }
 
-        /* Foiz ko'rsatkichi */
         .percentage-text {
             font-size: 20px;
             font-weight: 900;
@@ -83,7 +82,6 @@
             letter-spacing: 1px;
         }
 
-        /* Qizil yuklanish chizig'i */
         .progress-bar-container {
             width: 100%;
             height: 8px;
@@ -101,7 +99,7 @@
             transition: width 0.1s linear;
         }
 
-        /* Kanallar oynasi */
+        /* O'yinlar oynasi */
         .channels-container {
             display: flex;
             flex-direction: column;
@@ -124,21 +122,6 @@
             flex-wrap: wrap;
         }
 
-        /* Qimirlaydigan qora premium galochka SVG (tepada) */
-        .game-svg-icon {
-            width: 28px;
-            height: 28px;
-            display: inline-flex;
-            vertical-align: middle;
-            animation: gameIconMotion 1.8s infinite ease-in-out;
-        }
-
-        @keyframes gameIconMotion {
-            0%, 100% { transform: scale(1) rotate(0deg) translateY(0); }
-            25% { transform: scale(1.2) rotate(-12deg) translateY(-3px); }
-            75% { transform: scale(1.15) rotate(12deg) translateY(2px); }
-        }
-
         /* O'yin bloklari (Qora rangda) */
         .channel-item {
             background: #000000;
@@ -150,14 +133,14 @@
             justify-content: space-between;
             width: 100%;
             text-decoration: none;
-            cursor: default;
+            cursor: pointer;
             box-shadow: 0 10px 25px rgba(0,0,0,0.25);
         }
 
         .channel-left {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
         }
 
         .channel-avatar {
@@ -177,13 +160,6 @@
             text-transform: lowercase;
         }
 
-        .channel-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* Tanlash tugmasi (Qora rangda) */
         .channel-action {
             background: #000000;
             color: #ffffff;
@@ -195,24 +171,98 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
-        /* Qimirlaydigan Oq Premium Galochka SVG (bloklarda) */
-        .moving-check-svg {
-            width: 24px;
-            height: 24px;
+        /* Qimirlaydigan Oq Galochka SVG */
+        .moving-check-white {
+            width: 22px;
+            height: 22px;
             display: inline-flex;
-            animation: checkBadgeMotion 1.8s infinite ease-in-out;
+            animation: checkMotionWhite 1.8s infinite ease-in-out;
+            flex-shrink: 0;
         }
 
-        @keyframes checkBadgeMotion {
+        @keyframes checkMotionWhite {
             0%, 100% { transform: scale(1) rotate(0deg); }
             30% { transform: scale(1.2) rotate(-10deg); }
             70% { transform: scale(1.15) rotate(10deg); }
+        }
+
+        /* Qimirlaydigan Qora Galochka SVG */
+        .moving-check-black {
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            vertical-align: middle;
+            animation: checkMotionBlack 1.8s infinite ease-in-out;
+            flex-shrink: 0;
+        }
+
+        @keyframes checkMotionBlack {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            30% { transform: scale(1.2) rotate(-10deg); }
+            70% { transform: scale(1.15) rotate(10deg); }
+        }
+
+        /* Ta'mirlash eslatmasi oynasi */
+        .maintenance-card {
+            background: #000000;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 26px;
+            padding: 24px 20px;
+            width: 100%;
+            max-width: 380px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .m-avatar {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ff0033;
+            box-shadow: 0 0 15px rgba(255,0,51,0.4);
+        }
+
+        .m-title {
+            font-size: 18px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .m-desc {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: #dddddd;
+            line-height: 1.5;
+        }
+
+        .m-partner {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 16px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 900;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
     </style>
 </head>
 <body>
 
-    <!-- 1-OYNA: REDUZ DROP LOADING -->
+    <!-- 1-OYNA: LOADING -->
     <div id="loaderPage" class="page active">
         <div class="loader-container">
             <div class="logo-text">
@@ -228,14 +278,13 @@
         </div>
     </div>
 
-    <!-- 2-OYNA: O'YINLAR -->
+    <!-- 2-OYNA: O'YINLARNI TANLASH -->
     <div id="channelsPage" class="page">
         <div class="channels-container">
             <div class="channels-title">
                 <span>Siz qaysi oʻyinga drop qilishingizni tanlang.</span>
-                <!-- Tepadagi qora qimirlaydigan galochka SVG -->
-                <span class="game-svg-icon">
-                    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <span class="moving-check-black">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="12" r="10" fill="#000000"/>
                         <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -245,61 +294,85 @@
 
             <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
                 <!-- 1-O'yin: pubg mobile -->
-                <div class="channel-item">
+                <div class="channel-item" onclick="goToMaintenance()">
                     <div class="channel-left">
+                        <span class="moving-check-white">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" fill="#ffffff"/>
+                                <path d="M8 12L11 15L16 9" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
                         <img src="https://t.me/i/userpic/320/official_pubgmobile_mena.jpg" 
                              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=PUBG+Mobile&background=ff0033&color=ffffff&bold=true&size=128';" 
                              alt="pubg mobile" class="channel-avatar">
                         <span class="channel-name">pubg mobile</span>
                     </div>
-                    <div class="channel-right">
-                        <span class="channel-action">tanlash</span>
-                        <span class="moving-check-svg">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <span class="channel-action">tanlash</span>
+                </div>
+
+                <!-- 2-O'yin: free fire -->
+                <div class="channel-item" onclick="goToMaintenance()">
+                    <div class="channel-left">
+                        <span class="moving-check-white">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="12" cy="12" r="10" fill="#ffffff"/>
                                 <path d="M8 12L11 15L16 9" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </span>
-                    </div>
-                </div>
-
-                <!-- 2-O'yin: free fire -->
-                <div class="channel-item">
-                    <div class="channel-left">
                         <img src="https://t.me/i/userpic/320/gruxx_ff.jpg" 
                              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Free+Fire&background=ff0033&color=ffffff&bold=true&size=128';" 
                              alt="free fire" class="channel-avatar">
                         <span class="channel-name">free fire</span>
                     </div>
-                    <div class="channel-right">
-                        <span class="channel-action">tanlash</span>
-                        <span class="moving-check-svg">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <span class="channel-action">tanlash</span>
+                </div>
+
+                <!-- 3-O'yin: standoff 2 -->
+                <div class="channel-item" onclick="goToMaintenance()">
+                    <div class="channel-left">
+                        <span class="moving-check-white">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="12" cy="12" r="10" fill="#ffffff"/>
                                 <path d="M8 12L11 15L16 9" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </span>
-                    </div>
-                </div>
-
-                <!-- 3-O'yin: standoff 2 -->
-                <div class="channel-item">
-                    <div class="channel-left">
                         <img src="https://t.me/i/userpic/320/play_standoff2.jpg" 
                              onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Standoff+2&background=ff0033&color=ffffff&bold=true&size=128';" 
                              alt="standoff 2" class="channel-avatar">
                         <span class="channel-name">standoff 2</span>
                     </div>
-                    <div class="channel-right">
-                        <span class="channel-action">tanlash</span>
-                        <span class="moving-check-svg">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="10" fill="#ffffff"/>
-                                <path d="M8 12L11 15L16 9" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </span>
-                    </div>
+                    <span class="channel-action">tanlash</span>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3-OYNA: TA'MIRLASH ESLATMASI -->
+    <div id="maintenancePage" class="page">
+        <div class="maintenance-card">
+            <img id="userAvatar" src="" alt="Profil" class="m-avatar">
+            <div class="m-title">
+                <span id="userName">Foydalanuvchi</span> Bot hozirda tamirlanyabdi
+                <span class="moving-check-white">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" fill="#ffffff"/>
+                        <path d="M8 12L11 15L16 9" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </div>
+            <div class="m-desc">
+                Shuning uchun biroz kutib turing.<br>
+                Biz telegram stars orqali va p2p orqali shartnoma tuzayabmiz botimiz tez orada ishlaydi kamida 1 sutka vaqt kerak boʻladi koʻpi bilan 3 sutka.
+            </div>
+            <div style="font-size: 13px; font-weight: 900; color: #ff3333;">Hamkorlik uchun:</div>
+            <div class="m-partner">
+                <span class="moving-check-black">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" fill="#000000"/>
+                        <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+                <span>@reduzdrop_adminka</span>
             </div>
         </div>
     </div>
@@ -307,6 +380,20 @@
     <script>
         const tg = window.Telegram ? window.Telegram.WebApp : null;
         if (tg) { tg.ready(); tg.expand(); }
+
+        // Telegram foydalanuvchisini aniqlash va joylash
+        function loadUserData() {
+            let fullName = "Foydalanuvchi";
+            let photoUrl = "";
+            if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) {
+                const user = tg.initDataUnsafe.user;
+                fullName = [user.first_name, user.last_name].filter(Boolean).join(" ");
+                if (user.photo_url) photoUrl = user.photo_url;
+            }
+            document.getElementById('userName').innerText = fullName;
+            const fallbackUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(fullName)}&background=ff0033&color=ffffff&bold=true&size=128`;
+            document.getElementById('userAvatar').src = photoUrl ? photoUrl : fallbackUrl;
+        }
 
         let currentProgress = 1;
         const fillElement = document.getElementById('progressBarFill');
@@ -325,6 +412,12 @@
                 }, 400);
             }
         }, 30);
+
+        function goToMaintenance() {
+            loadUserData();
+            document.getElementById('channelsPage').classList.remove('active');
+            document.getElementById('maintenancePage').classList.add('active');
+        }
     </script>
 </body>
 </html>
