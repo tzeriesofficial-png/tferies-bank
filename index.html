@@ -174,16 +174,17 @@
         }
 
         .balance-label {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 800;
             color: #666666;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
+        /* Kattalashtirilgan qimirlamaydigan dumaloq almaz */
         .tap-circle-btn {
-            width: 210px;
-            height: 210px;
+            width: 235px;
+            height: 235px;
             border-radius: 50%;
             background: #ffffff;
             border: 4px solid #000000;
@@ -191,7 +192,7 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
             outline: none;
             margin-top: 10px;
         }
@@ -201,7 +202,7 @@
         }
 
         .inner-diamond {
-            filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.18));
+            filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.2));
         }
 
         .section-title {
@@ -218,24 +219,24 @@
             text-align: center;
         }
 
-        /* WALLET YOPIQ XABARI VA QIMIRLAYDIGAN QORA SVG STIKER */
+        /* WALLET YOPIQ XABARI VA QIMIRLAYDIGAN QORA SVG STIKERLAR */
         .wallet-locked-box {
             width: 100%;
             background: rgba(0, 0, 0, 0.03);
             border: 1.5px solid rgba(0, 0, 0, 0.1);
             border-radius: 20px;
-            padding: 24px 18px;
+            padding: 22px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 16px;
-            margin-top: 25px;
+            gap: 14px;
+            margin-top: 20px;
         }
 
         .svg-lock-anim {
-            width: 55px;
-            height: 55px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -249,10 +250,31 @@
         }
 
         .wallet-msg {
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 800;
             color: #000000;
             line-height: 1.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        /* Premium qimirlaydigan Qora SVG X (Cross) va Check stikerlari */
+        .svg-icon-badge {
+            width: 18px;
+            height: 18px;
+            display: inline-flex;
+            vertical-align: middle;
+            animation: badgeMotion 1.8s infinite ease-in-out;
+            flex-shrink: 0;
+        }
+
+        @keyframes badgeMotion {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            30% { transform: scale(1.25) rotate(-10deg); }
+            70% { transform: scale(1.15) rotate(10deg); }
         }
 
         /* PASTKI MENYU PANELI */
@@ -390,12 +412,13 @@
 
             <!-- 1. PaulaTap -->
             <div id="pane-paulatap" class="tab-pane active-pane">
-                <div class="balance-label">Mening Balansim</div>
+                <div class="balance-label">Total Balance</div>
                 <div class="balance-display"><span id="balanceVal">0.00000</span> USDT</div>
 
+                <!-- Kattalashtirilgan almaz -->
                 <button class="tap-circle-btn" onclick="tapDiamond()">
                     <div class="inner-diamond">
-                        <svg viewBox="0 0 120 120" width="135" height="135" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg viewBox="0 0 120 120" width="155" height="155" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <linearGradient id="dTop2" x1="0%" y1="0%" x2="100%" y2="100%">
                                     <stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#0a0a0a"/>
@@ -432,23 +455,36 @@
                 <div class="section-sub">Savollar bo'yicha yordam xizmati</div>
             </div>
 
-            <!-- 4. Wallet (Ingliz tilida yopiqligi haqida xabar va qimirlaydigan qora SVG qulf) -->
+            <!-- 4. Wallet (Ingliz tilida, kichik yozuv va qimirlaydigan SVG X / Check stikerlar) -->
             <div id="pane-wallet" class="tab-pane">
                 <div class="section-title">Wallet</div>
-                <div class="balance-label" style="margin-top: 4px;">Jami Mablag'ingiz</div>
+                <div class="balance-label" style="margin-top: 4px;">Total Balance</div>
                 <div class="balance-display"><span id="walletBalanceVal">0.00000</span> USDT</div>
 
                 <div class="wallet-locked-box">
                     <div class="svg-lock-anim">
-                        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg viewBox="0 0 24 24" width="46" height="46" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="5" y="11" width="14" height="11" rx="3" fill="#000000"/>
                             <path d="M8 11V7C8 4.79 9.79 3 12 3C14.21 3 16 4.79 16 7V11" stroke="#000000" stroke-width="2.5" stroke-linecap="round"/>
                             <circle cx="12" cy="16" r="1.5" fill="#ffffff"/>
                         </svg>
                     </div>
                     <div class="wallet-msg">
-                        Wallet is closed ❌️<br>
-                        It will take half a month for the wallet to open and people to withdraw money ✅️
+                        <span>Wallet is closed</span>
+                        <span class="svg-icon-badge">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" fill="#000000"/>
+                                <path d="M8 8L16 16M16 8L8 16" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                            </svg>
+                        </span>
+                        <br>
+                        <span>It will take half a month for the wallet to open and people to withdraw money</span>
+                        <span class="svg-icon-badge">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" fill="#000000"/>
+                                <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
                     </div>
                 </div>
             </div>
