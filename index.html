@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PaulaTap</title>
+    <title>USERGG Market</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
@@ -41,7 +41,7 @@
             padding: 20px;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.5s ease;
         }
 
         .page.active {
@@ -49,254 +49,118 @@
             pointer-events: auto;
         }
 
-        /* LOADING ALMAZ */
+        /* 1-OYNA: GELIK USLUBIDAGI KÖK-QORA KIRISH QISMI */
+        #loaderPage {
+            background: linear-gradient(180deg, #0b1d3a 0%, #050d1a 55%, #000000 100%);
+            z-index: 300;
+        }
+
         .loader-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 35px;
+            gap: 30px;
             width: 100%;
-            max-width: 340px;
+            max-width: 320px;
         }
 
-        .diamond-wrapper {
-            width: 165px;
-            height: 165px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: diamondFloat 2.2s infinite ease-in-out;
-            filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.25));
+        .loader-logo {
+            font-size: 32px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(0, 136, 255, 0.6);
+            animation: logoGlow 2s infinite ease-in-out;
         }
 
-        @keyframes diamondFloat {
-            0%, 100% { transform: scale(1) translateY(0) rotate(0deg); }
-            35% { transform: scale(1.12) translateY(-10px) rotate(-4deg); }
-            70% { transform: scale(1.08) translateY(-6px) rotate(4deg); }
+        @keyframes logoGlow {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
         }
 
-        .progress-wrapper {
+        .long-progress-container {
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .progress-bar-container {
-            width: 100%;
-            height: 10px;
-            background: rgba(0, 0, 0, 0.08);
-            border-radius: 12px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
             overflow: hidden;
-            border: 1px solid rgba(0, 0, 0, 0.15);
+            box-shadow: 0 0 15px rgba(0, 136, 255, 0.3);
         }
 
-        .progress-bar-fill {
+        .long-progress-fill {
             height: 100%;
-            width: 1%;
-            background: #000000;
-            border-radius: 12px;
-            transition: width 0.08s linear;
+            width: 0%;
+            background: #0088ff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #0088ff;
+            transition: width 0.05s linear;
         }
 
-        .percentage-text {
-            font-size: 20px;
-            font-weight: 900;
-            color: #000000;
-            letter-spacing: 1.5px;
+        .loader-percent {
+            font-size: 16px;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 2px;
         }
 
-        /* ASOSIY EKRAN */
+        /* 2-OYNA: ASOSIY EKRAN (NIKLAR RO'YXATI) */
         #mainPage {
-            justify-content: space-between;
-            padding: 16px 16px 100px 16px;
-        }
-
-        .top-header-row {
-            width: 100%;
-            max-width: 420px;
-            display: flex;
             justify-content: flex-start;
-            align-items: center;
-            margin-bottom: 5px;
+            padding: 30px 20px 20px 20px;
+            background: #ffffff;
         }
 
-        .user-profile-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(0, 0, 0, 0.04);
-            border: 1.5px solid rgba(0, 0, 0, 0.08);
-            padding: 6px 14px 6px 6px;
-            border-radius: 30px;
-        }
-
-        .user-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 1.5px solid #000000;
-        }
-
-        .user-name {
-            font-size: 14px;
+        .main-header {
+            font-size: 24px;
             font-weight: 900;
             color: #000000;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
         }
 
-        .content-area {
+        .nick-list {
             width: 100%;
-            max-width: 420px;
-            flex: 1;
+            max-width: 400px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            position: relative;
+            gap: 14px;
         }
 
-        .tab-pane {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 10px;
+        .nick-card {
             width: 100%;
-            height: 100%;
-            padding-top: 5px;
-            overflow-y: auto;
-        }
-
-        .tab-pane.active-pane {
-            display: flex;
-        }
-
-        .level-badge {
             background: #000000;
-            color: #ffffff;
-            font-size: 11px;
-            font-weight: 900;
-            padding: 4px 12px;
-            border-radius: 20px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .balance-display {
-            font-size: 28px;
-            font-weight: 900;
-            color: #000000;
-            letter-spacing: 1px;
-        }
-
-        .balance-label {
-            font-size: 11px;
-            font-weight: 800;
-            color: #666666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .tap-diamond-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            outline: none;
-            margin-top: 30px;
-            animation: diamondFloat 2.2s infinite ease-in-out;
-            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.2));
-        }
-
-        .tap-diamond-btn:active {
-            transform: scale(0.92);
-        }
-
-        .section-title {
-            font-size: 22px;
-            font-weight: 900;
-            color: #000000;
-            margin-top: 4px;
-        }
-
-        .section-sub {
-            font-size: 12px;
-            font-weight: 700;
-            color: #555555;
-            text-align: center;
-            margin-bottom: 6px;
-        }
-
-        /* BOOST KARTALAR DIZAYNI */
-        .boost-list {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            padding-bottom: 20px;
-        }
-
-        .boost-card {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.03);
-            border: 1.5px solid rgba(0, 0, 0, 0.1);
             border-radius: 18px;
-            padding: 14px 16px;
+            padding: 16px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nick-main-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
         }
 
-        .boost-info {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            text-align: left;
-            flex: 1;
-        }
-
-        .boost-title {
-            font-size: 13.5px;
-            font-weight: 950;
-            color: #000000;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .boost-price {
-            font-size: 12px;
-            font-weight: 800;
-            color: #555555;
-        }
-
-        .buy-boost-btn {
-            background: #000000;
-            color: #ffffff;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 12px;
-            font-size: 12px;
+        .nick-text {
+            font-size: 16px;
             font-weight: 900;
-            cursor: pointer;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-            flex-shrink: 0;
+            color: #ffffff;
+            letter-spacing: 0.5px;
         }
 
-        .buy-boost-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* Qimirlaydigan Premium Qora SVG Galochka */
-        .moving-check {
-            width: 18px;
-            height: 18px;
+        /* Ko'k rangli qimirlaydigan premium SVG galochka */
+        .moving-blue-check {
+            width: 22px;
+            height: 22px;
             display: inline-flex;
-            vertical-align: middle;
+            align-items: center;
+            justify-content: center;
             animation: checkMotion 1.8s infinite ease-in-out;
-            flex-shrink: 0;
         }
 
         @keyframes checkMotion {
@@ -305,392 +169,120 @@
             70% { transform: scale(1.15) rotate(10deg); }
         }
 
-        /* SUPPORT BO'LIMI */
-        .support-card {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.03);
-            border: 1.5px solid rgba(0, 0, 0, 0.1);
-            border-radius: 20px;
-            padding: 22px 16px;
-            display: flex;
-            flex-direction: column;
+        /* Narx qismi (bosganda ochiladi) */
+        .nick-price-row {
+            display: none;
             align-items: center;
-            text-align: center;
-            gap: 16px;
-            margin-top: 10px;
-        }
-
-        .support-avatar {
-            width: 75px;
-            height: 75px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2.5px solid #000000;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .support-user-info {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            font-size: 16px;
-            font-weight: 900;
-            color: #000000;
-        }
-
-        .support-btn {
-            background: #000000;
-            color: #ffffff;
-            border: none;
-            padding: 13px 24px;
-            border-radius: 14px;
+            gap: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
             font-size: 14px;
-            font-weight: 900;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            text-decoration: none;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .support-icon-anim {
-            width: 22px;
-            height: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: headsetMotion 2s infinite ease-in-out;
-        }
-
-        @keyframes headsetMotion {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.18) rotate(8deg); }
-        }
-
-        /* WALLET */
-        .wallet-locked-box {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.03);
-            border: 1.5px solid rgba(0, 0, 0, 0.1);
-            border-radius: 20px;
-            padding: 22px 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 14px;
-            margin-top: 10px;
-        }
-
-        .svg-lock-anim {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: lockMotion 2s infinite ease-in-out;
-        }
-
-        @keyframes lockMotion {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            30% { transform: scale(1.15) rotate(-6deg); }
-            70% { transform: scale(1.1) rotate(6deg); }
-        }
-
-        .wallet-msg {
-            font-size: 13.5px;
             font-weight: 800;
-            color: #000000;
-            line-height: 1.5;
+            color: #0088ff;
         }
 
-        /* PASTKI MENYU PANELI */
-        .bottom-nav {
-            position: fixed;
-            bottom: 14px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 24px);
-            max-width: 420px;
-            background: #ffffff;
-            border: 2px solid #000000;
-            border-radius: 22px;
-            padding: 10px 8px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-            z-index: 100;
-        }
-
-        .nav-item {
+        .nick-card.open .nick-price-row {
             display: flex;
-            flex-direction: column;
+        }
+
+        /* Ko'k rangli qimirlaydigan premium SVG stiker (narx oldida) */
+        .moving-blue-tag {
+            width: 18px;
+            height: 18px;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            padding: 8px 4px;
-            border-radius: 15px;
-            cursor: pointer;
+            animation: tagMotion 2s infinite ease-in-out;
         }
 
-        .nav-item.active {
-            background: rgba(0, 0, 0, 0.08);
-        }
-
-        .nav-label {
-            font-size: 11px;
-            font-weight: 900;
-            color: #000000;
-        }
-
-        .svg-box {
-            width: 28px;
-            height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .anim-tap { animation: pulseTap 1.8s infinite ease-in-out; }
-        .anim-boost { animation: flyRocket 2s infinite ease-in-out; }
-        .anim-support { animation: tiltHeadset 2.2s infinite ease-in-out; }
-        .anim-wallet { animation: bounceWallet 2.1s infinite ease-in-out; }
-
-        @keyframes pulseTap {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.16) rotate(-5deg); }
-        }
-        @keyframes flyRocket {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-4px) rotate(6deg); }
-        }
-        @keyframes tiltHeadset {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            30% { transform: rotate(-10deg) scale(1.1); }
-            70% { transform: rotate(10deg) scale(1.1); }
-        }
-        @keyframes bounceWallet {
+        @keyframes tagMotion {
             0%, 100% { transform: scale(1) translateY(0); }
-            50% { transform: scale(1.14) translateY(-3px); }
+            50% { transform: scale(1.2) translateY(-2px); }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1-OYNA: LOADING -->
+    <!-- 1-OYNA: KIRISH QISMI (USERGG + Gelik ko'k-qora fon) -->
     <div id="loaderPage" class="page active">
         <div class="loader-container">
-            <div class="diamond-wrapper">
-                <svg viewBox="0 0 120 120" width="160" height="160" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <polygon points="34,18 86,18 110,44 10,44" fill="#2b2b2b"/>
-                    <polygon points="10,44 38,44 60,106" fill="#000000"/>
-                    <polygon points="38,44 82,44 60,106" fill="#1f1f1f"/>
-                    <polygon points="82,44 110,44 60,106" fill="#0a0a0a"/>
-                </svg>
+            <div class="loader-logo">USERGG</div>
+            <div class="long-progress-container">
+                <div id="longProgressFill" class="long-progress-fill"></div>
             </div>
-            <div class="progress-wrapper">
-                <div class="progress-bar-container">
-                    <div id="progressBarFill" class="progress-bar-fill"></div>
-                </div>
-                <div id="percentageVal" class="percentage-text">1%</div>
-            </div>
+            <div id="loaderPercent" class="loader-percent">0%</div>
         </div>
     </div>
 
-    <!-- 2-OYNA: ASOSIY EKRAN -->
+    <!-- 2-OYNA: NIKLAR RO'YXATI -->
     <div id="mainPage" class="page">
-        <div class="content-area">
-            
-            <!-- Yuqori qism: Profil -->
-            <div class="top-header-row">
-                <div class="user-profile-header">
-                    <img id="userAvatar" src="" alt="Profil" class="user-avatar">
-                    <span id="userName" class="user-name">User</span>
-                </div>
-            </div>
-
-            <!-- 1. PaulaTap -->
-            <div id="pane-paulatap" class="tab-pane active-pane">
-                <div id="levelBadge" class="level-badge">Level 1</div>
-                <div class="balance-label">TOTAL BALANCE</div>
-                <div class="balance-display"><span id="balanceVal">0.000000</span> USDT</div>
-
-                <button class="tap-diamond-btn" onclick="tapDiamond()">
-                    <svg viewBox="0 0 120 120" width="185" height="185" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <polygon points="34,18 86,18 110,44 10,44" fill="#3a3a3a"/>
-                        <polygon points="10,44 38,44 60,106" fill="#111111"/>
-                        <polygon points="38,44 82,44 60,106" fill="#222222"/>
-                        <polygon points="82,44 110,44 60,106" fill="#050505"/>
-                        <polyline points="10,44 110,44" stroke="#666666" stroke-width="1.2"/>
-                    </svg>
-                </button>
-            </div>
-
-            <!-- 2. Boost (Tariflar va qimirlaydigan qora SVG galochkalar bilan) -->
-            <div id="pane-boost" class="tab-pane">
-                <div class="section-title">Boost</div>
-                <div class="section-sub">Boosters to earn faster and more</div>
-
-                <div class="boost-list">
-                    <!-- 1-Boost -->
-                    <div class="boost-card">
-                        <div class="boost-info">
-                            <div class="boost-title">
-                                <span>10 taps = 1 USDT</span>
-                                <span class="moving-check">
-                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="12" cy="12" r="10" fill="#000000"/>
-                                        <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </span>
-                            </div>
-                            <div class="boost-price">Price: 10 USDT</div>
-                        </div>
-                        <button class="buy-boost-btn" onclick="buyBoost(10, 1)">Buy</button>
-                    </div>
-
-                    <!-- 2-Boost -->
-                    <div class="boost-card">
-                        <div class="boost-info">
-                            <div class="boost-title">
-                                <span>80 taps = 2.10 USDT</span>
-                                <span class="moving-check">
-                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="12" cy="12" r="10" fill="#000000"/>
-                                        <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </span>
-                            </div>
-                            <div class="boost-price">Price: 20 USDT</div>
-                        </div>
-                        <button class="buy-boost-btn" onclick="buyBoost(20, 2.10)">Buy</button>
-                    </div>
-
-                    <!-- 3-Boost -->
-                    <div class="boost-card">
-                        <div class="boost-info">
-                            <div class="boost-title">
-                                <span>240 taps = 3 USDT</span>
-                                <span class="moving-check">
-                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="12" cy="12" r="10" fill="#000000"/>
-                                        <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </span>
-                            </div>
-                            <div class="boost-price">Price: 34 USDT</div>
-                        </div>
-                        <button class="buy-boost-btn" onclick="buyBoost(34, 3)">Buy</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3. Support -->
-            <div id="pane-support" class="tab-pane">
-                <div class="section-title">Support</div>
-                <div class="section-sub">Official operator for questions and support</div>
-
-                <div class="support-card">
-                    <img src="https://t.me/i/userpic/320/pauladeroza.jpg" 
-                         onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Paula+De+Roza&background=000000&color=ffffff&bold=true&size=128';" 
-                         alt="Support" class="support-avatar">
-                    
-                    <div class="support-user-info">
-                        <span>@pauladeroza</span>
-                        <span class="moving-check">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="10" fill="#000000"/>
-                                <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </span>
-                    </div>
-
-                    <a href="https://t.me/pauladeroza" target="_blank" class="support-btn">
-                        <div class="support-icon-anim">
-                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4 13V12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12V13" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round"/>
-                                <rect x="2.5" y="11.5" width="4" height="6.5" rx="2" fill="#ffffff"/>
-                                <rect x="17.5" y="11.5" width="4" height="6.5" rx="2" fill="#ffffff"/>
-                                <path d="M19.5 18C19.5 19.8 17.8 21 15.5 21H12" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                        </div>
-                        <span>Contact Support</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 4. Wallet -->
-            <div id="pane-wallet" class="tab-pane">
-                <div class="section-title">Wallet</div>
-                <div class="balance-label" style="margin-top: 4px;">TOTAL BALANCE</div>
-                <div class="balance-display"><span id="walletBalanceVal">0.000000</span> USDT</div>
-
-                <div class="wallet-locked-box">
-                    <div class="svg-lock-anim">
-                        <svg viewBox="0 0 24 24" width="46" height="46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="5" y="11" width="14" height="11" rx="3" fill="#000000"/>
-                            <path d="M8 11V7C8 4.79 9.79 3 12 3C14.21 3 16 4.79 16 7V11" stroke="#000000" stroke-width="2.5" stroke-linecap="round"/>
-                            <circle cx="12" cy="16" r="1.5" fill="#ffffff"/>
+        <div class="main-header">Available Usernames</div>
+        
+        <div class="nick-list">
+            <!-- 1-Nik -->
+            <div class="nick-card" onclick="togglePrice(this)">
+                <div class="nick-main-row">
+                    <span class="nick-text">@okenft</span>
+                    <span class="moving-blue-check">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" fill="#0088ff"/>
+                            <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                    </div>
-                    <div class="wallet-msg">
-                        <span>Wallet is closed ❌</span>
-                        <br>
-                        <span>It will take half a month for the wallet to open and people to withdraw money ✅</span>
-                    </div>
+                    </span>
+                </div>
+                <div class="nick-price-row">
+                    <span class="moving-blue-tag">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" fill="#0088ff"/>
+                            <circle cx="7" cy="7" r="1.5" fill="#ffffff"/>
+                        </svg>
+                    </span>
+                    <span>10,000 soʻm</span>
                 </div>
             </div>
-        </div>
 
-        <!-- Pastki menyu -->
-        <div class="bottom-nav">
-            <div class="nav-item active" onclick="switchTab('paulatap', this)">
-                <div class="svg-box anim-tap">
-                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <polygon points="7,3 17,3 22,9 2,9" fill="#2b2b2b"/>
-                        <polygon points="2,9 22,9 12,21" fill="#000000"/>
-                        <polygon points="7,3 17,3 12,9" fill="#555555"/>
-                    </svg>
+            <!-- 2-Nik -->
+            <div class="nick-card" onclick="togglePrice(this)">
+                <div class="nick-main-row">
+                    <span class="nick-text">@axeoka</span>
+                    <span class="moving-blue-check">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" fill="#0088ff"/>
+                            <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
                 </div>
-                <span class="nav-label">PaulaTap</span>
+                <div class="nick-price-row">
+                    <span class="moving-blue-tag">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" fill="#0088ff"/>
+                            <circle cx="7" cy="7" r="1.5" fill="#ffffff"/>
+                        </svg>
+                    </span>
+                    <span>10,000 soʻm</span>
+                </div>
             </div>
 
-            <div class="nav-item" onclick="switchTab('boost', this)">
-                <div class="svg-box anim-boost">
-                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C12 2 16 6 16 13C16 16 14 18 12 20C10 18 8 16 8 13C8 6 12 2 12 2Z" fill="#000000"/>
-                        <path d="M8 13L4 16L6 18L9 15" fill="#333333"/>
-                        <circle cx="12" cy="10" r="2" fill="#ffffff"/>
-                    </svg>
+            <!-- 3-Nik -->
+            <div class="nick-card" onclick="togglePrice(this)">
+                <div class="nick-main-row">
+                    <span class="nick-text">@axeake</span>
+                    <span class="moving-blue-check">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" fill="#0088ff"/>
+                            <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
                 </div>
-                <span class="nav-label">Boost</span>
-            </div>
-
-            <div class="nav-item" onclick="switchTab('support', this)">
-                <div class="svg-box anim-support">
-                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 13V12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12V13" stroke="#000000" stroke-width="2.4" stroke-linecap="round"/>
-                        <rect x="2.5" y="11.5" width="4" height="6.5" rx="2" fill="#000000"/>
-                        <rect x="17.5" y="11.5" width="4" height="6.5" rx="2" fill="#000000"/>
-                    </svg>
+                <div class="nick-price-row">
+                    <span class="moving-blue-tag">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" fill="#0088ff"/>
+                            <circle cx="7" cy="7" r="1.5" fill="#ffffff"/>
+                        </svg>
+                    </span>
+                    <span>10,000 soʻm</span>
                 </div>
-                <span class="nav-label">Support</span>
-            </div>
-
-            <div class="nav-item" onclick="switchTab('wallet', this)">
-                <div class="svg-box anim-wallet">
-                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="2.5" y="5" width="19" height="14" rx="3.5" fill="#000000"/>
-                        <path d="M15.5 9.5H21.5V14.5H15.5C14.1 14.5 13 13.4 13 12C13 10.6 14.1 9.5 15.5 9.5Z" fill="#ffffff"/>
-                        <circle cx="16" cy="12" r="1.4" fill="#000000"/>
-                    </svg>
-                </div>
-                <span class="nav-label">Wallet</span>
             </div>
         </div>
     </div>
@@ -699,81 +291,32 @@
         const tg = window.Telegram ? window.Telegram.WebApp : null;
         if (tg) { tg.ready(); tg.expand(); }
 
-        function loadUserData() {
-            let fullName = "User";
-            let photoUrl = "";
-            if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) {
-                const user = tg.initDataUnsafe.user;
-                fullName = [user.first_name, user.last_name].filter(Boolean).join(" ");
-                if (user.photo_url) photoUrl = user.photo_url;
-            }
-            document.getElementById('userName').innerText = fullName;
-            const fallbackUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(fullName)}&background=000000&color=ffffff&bold=true&size=128`;
-            document.getElementById('userAvatar').src = photoUrl ? photoUrl : fallbackUrl;
-        }
-        loadUserData();
-
-        // Tap va Level logikasi (Har 100000 ta tapda +0.80 bonus)
-        let userBalance = 0.000000;
-        let totalTaps = 0;
-        let currentLevel = 1;
-        let tapReward = 0.000001; // Odatiy tap narxi
-
-        function tapDiamond() {
-            totalTaps++;
-
-            if (totalTaps % 100000 === 0) {
-                userBalance += 0.80;
-            }
-
-            userBalance += tapReward;
-            document.getElementById('balanceVal').innerText = userBalance.toFixed(6);
-            document.getElementById('walletBalanceVal').innerText = userBalance.toFixed(6);
-
-            let requiredTapsForNext = currentLevel * 10000;
-            if (totalTaps >= requiredTapsForNext && currentLevel < 10) {
-                currentLevel++;
-                document.getElementById('levelBadge').innerText = `Level ${currentLevel}`;
-            }
-        }
-
-        // Boost sotib olish logikasi
-        function buyBoost(price, rewardPerTap) {
-            if (userBalance >= price) {
-                userBalance -= price;
-                tapReward = rewardPerTap;
-                document.getElementById('balanceVal').innerText = userBalance.toFixed(6);
-                document.getElementById('walletBalanceVal').innerText = userBalance.toFixed(6);
-                alert("Boost successfully activated!");
-            } else {
-                alert("Insufficient balance!");
-            }
-        }
-
-        let currentProgress = 1;
-        const fillElement = document.getElementById('progressBarFill');
-        const percentageElement = document.getElementById('percentageVal');
+        // Uzun chiziq 100% gacha to'lishi logikasi
+        let currentProgress = 0;
+        const fillElement = document.getElementById('longProgressFill');
+        const percentElement = document.getElementById('loaderPercent');
 
         const loadingInterval = setInterval(() => {
             if (currentProgress < 100) {
                 currentProgress++;
                 fillElement.style.width = currentProgress + '%';
-                percentageElement.textContent = currentProgress + '%';
+                percentElement.textContent = currentProgress + '%';
             } else {
                 clearInterval(loadingInterval);
                 setTimeout(() => {
                     document.getElementById('loaderPage').classList.remove('active');
                     document.getElementById('mainPage').classList.add('active');
-                }, 350);
+                }, 400);
             }
-        }, 30);
+        }, 25);
 
-        function switchTab(tabId, element) {
-            document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active-pane'));
-            document.getElementById('pane-' + tabId).classList.add('active-pane');
-
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-            if (element) element.classList.add('active');
+        // Nik ustiga bosganda narxini ko'rsatish
+        function togglePrice(cardElement) {
+            // Boshqa ochiq kartalarni yopish (ixtiyoriy, xohlasangiz barchasi alohida ochiladi)
+            document.querySelectorAll('.nick-card').forEach(card => {
+                if (card !== cardElement) card.classList.remove('open');
+            });
+            cardElement.classList.toggle('open');
         }
     </script>
 </body>
