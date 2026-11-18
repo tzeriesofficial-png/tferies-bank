@@ -13,6 +13,7 @@
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            transition: all 0.2s ease;
         }
 
         body {
@@ -48,7 +49,7 @@
             pointer-events: auto;
         }
 
-        /* 1-OYNA: KATTA QORA PREMIUM SVG ALMAZ */
+        /* 1-OYNA: LOADING ALMAZ */
         .loader-container {
             display: flex;
             flex-direction: column;
@@ -119,7 +120,7 @@
         /* 2-OYNA: ASOSIY EKRAN */
         #mainPage {
             justify-content: space-between;
-            padding: 20px 16px 105px 16px;
+            padding: 16px 16px 100px 16px;
         }
 
         .content-area {
@@ -128,28 +129,91 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
+            position: relative;
+        }
+
+        /* Tepada profil qismi */
+        .user-profile-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            align-self: flex-start;
+            background: rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 6px 14px 6px 6px;
+            border-radius: 30px;
+            margin-bottom: 15px;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid #000000;
+        }
+
+        .user-name {
+            font-size: 14px;
+            font-weight: 900;
+            color: #000000;
         }
 
         .tab-pane {
             display: none;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
+            gap: 16px;
             width: 100%;
+            height: 100%;
         }
 
         .tab-pane.active-pane {
             display: flex;
         }
 
-        .section-title {
-            font-size: 24px;
+        /* Tap bo'limidagi katta almaz va balans */
+        .balance-display {
+            font-size: 32px;
             font-weight: 900;
             color: #000000;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        .balance-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tap-diamond-btn {
+            width: 190px;
+            height: 190px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            background: none;
+            border: none;
+            animation: diamondFloat 2.2s infinite ease-in-out;
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.2));
+            outline: none;
+            margin: 20px 0;
+        }
+
+        .tap-diamond-btn:active {
+            transform: scale(0.92);
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 900;
+            color: #000000;
         }
 
         .section-sub {
@@ -186,11 +250,6 @@
             padding: 8px 4px;
             border-radius: 15px;
             cursor: pointer;
-            transition: background 0.25s ease, transform 0.2s ease;
-        }
-
-        .nav-item:active {
-            transform: scale(0.93);
         }
 
         .nav-item.active {
@@ -201,7 +260,6 @@
             font-size: 11px;
             font-weight: 900;
             color: #000000;
-            letter-spacing: 0.2px;
         }
 
         .svg-box {
@@ -212,7 +270,6 @@
             justify-content: center;
         }
 
-        /* Premium SVG Animatsiyalar */
         .anim-tap { animation: pulseTap 1.8s infinite ease-in-out; }
         .anim-boost { animation: flyRocket 2s infinite ease-in-out; }
         .anim-support { animation: tiltHeadset 2.2s infinite ease-in-out; }
@@ -222,18 +279,15 @@
             0%, 100% { transform: scale(1) rotate(0deg); }
             50% { transform: scale(1.16) rotate(-5deg); }
         }
-
         @keyframes flyRocket {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-4px) rotate(6deg); }
         }
-
         @keyframes tiltHeadset {
             0%, 100% { transform: rotate(0deg) scale(1); }
             30% { transform: rotate(-10deg) scale(1.1); }
             70% { transform: rotate(10deg) scale(1.1); }
         }
-
         @keyframes bounceWallet {
             0%, 100% { transform: scale(1) translateY(0); }
             50% { transform: scale(1.14) translateY(-3px); }
@@ -242,7 +296,7 @@
 </head>
 <body>
 
-    <!-- 1-OYNA: QORA PREMIUM ALMAZ LOADING -->
+    <!-- 1-OYNA: LOADING -->
     <div id="loaderPage" class="page active">
         <div class="loader-container">
             <div class="diamond-wrapper">
@@ -291,46 +345,79 @@
         </div>
     </div>
 
-    <!-- 2-OYNA: ASOSIY MENYULAR -->
+    <!-- 2-OYNA: ASOSIY EKRAN -->
     <div id="mainPage" class="page">
         <div class="content-area">
-            <div id="pane-paulatap" class="tab-pane active-pane">
-                <div class="section-title">PaulaTap</div>
-                <div class="section-sub">Asosiy oʻyin boʻlimi tayyor</div>
+            
+            <!-- Telegram Profil qismi (Har bir bo'limda tepada turadi) -->
+            <div class="user-profile-header">
+                <img id="userAvatar" src="" alt="Profil" class="user-avatar">
+                <span id="userName" class="user-name">Foydalanuvchi</span>
             </div>
 
+            <!-- 1. PaulaTap -->
+            <div id="pane-paulatap" class="tab-pane active-pane">
+                <div class="balance-label">Mening Balansim</div>
+                <div class="balance-display"><span id="balanceVal">0.00000</span> USDT</div>
+
+                <!-- Katta qimirlaydigan almaz (Bosganda tanga ishlaydi) -->
+                <button class="tap-diamond-btn" onclick="tapDiamond()">
+                    <svg viewBox="0 0 120 120" width="170" height="170" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="34,18 86,18 110,44 10,44" fill="url(#dTop2)"/>
+                        <polygon points="10,44 38,44 60,106" fill="url(#dLeft2)"/>
+                        <polygon points="38,44 82,44 60,106" fill="url(#dCenter2)"/>
+                        <polygon points="82,44 110,44 60,106" fill="url(#dRight2)"/>
+                        <defs>
+                            <linearGradient id="dTop2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#0a0a0a"/>
+                            </linearGradient>
+                            <linearGradient id="dLeft2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#222222"/><stop offset="100%" stop-color="#000000"/>
+                            </linearGradient>
+                            <linearGradient id="dCenter2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#4d4d4d"/><stop offset="100%" stop-color="#000000"/>
+                            </linearGradient>
+                            <linearGradient id="dRight2" x1="100%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#1a1a1a"/><stop offset="100%" stop-color="#000000"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- 2. Boost -->
             <div id="pane-boost" class="tab-pane">
                 <div class="section-title">Boost</div>
-                <div class="section-sub">Kuchaytirgichlar boʻlimi</div>
+                <div class="section-sub">Tezroq va ko'proq ishlash uchun kuchaytirgichlar</div>
             </div>
 
+            <!-- 3. Support -->
             <div id="pane-support" class="tab-pane">
                 <div class="section-title">Support</div>
-                <div class="section-sub">Qoʻllab-quvvatlash xizmati</div>
+                <div class="section-sub">Savollar bo'yicha yordam xizmati</div>
             </div>
 
+            <!-- 4. Wallet -->
             <div id="pane-wallet" class="tab-pane">
-                <div class="section-title">Wallet</div>
-                <div class="section-sub">Hamyon va balans boʻlimi</div>
+                <div class="section-title">Wallet (Hamyon)</div>
+                <div class="balance-label" style="margin-top: 10px;">Umumiy Mablag'ingiz</div>
+                <div class="balance-display"><span id="walletBalanceVal">0.00000</span> USDT</div>
             </div>
         </div>
 
         <!-- Pastki menyu -->
         <div class="bottom-nav">
-            <!-- 1. PaulaTap -->
             <div class="nav-item active" onclick="switchTab('paulatap', this)">
                 <div class="svg-box anim-tap">
                     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <polygon points="7,3 17,3 22,9 2,9" fill="#2b2b2b"/>
                         <polygon points="2,9 22,9 12,21" fill="#000000"/>
                         <polygon points="7,3 17,3 12,9" fill="#555555"/>
-                        <line x1="2" y1="9" x2="22" y2="9" stroke="#ffffff" stroke-width="0.8"/>
                     </svg>
                 </div>
                 <span class="nav-label">PaulaTap</span>
             </div>
 
-            <!-- 2. Boost (Tuzatilgan yirik raketa SVG) -->
             <div class="nav-item" onclick="switchTab('boost', this)">
                 <div class="svg-box anim-boost">
                     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -338,13 +425,11 @@
                         <path d="M8 13L4 16L6 18L9 15" fill="#333333"/>
                         <path d="M16 13L20 16L18 18L15 15" fill="#333333"/>
                         <circle cx="12" cy="10" r="2" fill="#ffffff"/>
-                        <path d="M10 20L12 23L14 20" fill="#000000"/>
                     </svg>
                 </div>
                 <span class="nav-label">Boost</span>
             </div>
 
-            <!-- 3. Support -->
             <div class="nav-item" onclick="switchTab('support', this)">
                 <div class="svg-box anim-support">
                     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -352,18 +437,15 @@
                         <rect x="2.5" y="11.5" width="4" height="6.5" rx="2" fill="#000000"/>
                         <rect x="17.5" y="11.5" width="4" height="6.5" rx="2" fill="#000000"/>
                         <path d="M19.5 18C19.5 19.8 17.8 21 15.5 21H12" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
-                        <circle cx="12" cy="21" r="1.5" fill="#000000"/>
                     </svg>
                 </div>
                 <span class="nav-label">Support</span>
             </div>
 
-            <!-- 4. Wallet -->
             <div class="nav-item" onclick="switchTab('wallet', this)">
                 <div class="svg-box anim-wallet">
                     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="2.5" y="5" width="19" height="14" rx="3.5" fill="#000000"/>
-                        <path d="M4 5.5C4 4.1 5.1 3 6.5 3H17.5C18.3 3 19 3.7 19 4.5V5H4V5.5Z" fill="#333333"/>
                         <path d="M15.5 9.5H21.5V14.5H15.5C14.1 14.5 13 13.4 13 12C13 10.6 14.1 9.5 15.5 9.5Z" fill="#ffffff"/>
                         <circle cx="16" cy="12" r="1.4" fill="#000000"/>
                     </svg>
@@ -375,9 +457,29 @@
 
     <script>
         const tg = window.Telegram ? window.Telegram.WebApp : null;
-        if (tg) {
-            tg.ready();
-            tg.expand();
+        if (tg) { tg.ready(); tg.expand(); }
+
+        // Telegram foydalanuvchisini aniqlash
+        function loadUserData() {
+            let fullName = "Foydalanuvchi";
+            let photoUrl = "";
+            if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) {
+                const user = tg.initDataUnsafe.user;
+                fullName = [user.first_name, user.last_name].filter(Boolean).join(" ");
+                if (user.photo_url) photoUrl = user.photo_url;
+            }
+            document.getElementById('userName').innerText = fullName;
+            const fallbackUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(fullName)}&background=000000&color=ffffff&bold=true&size=128`;
+            document.getElementById('userAvatar').src = photoUrl ? photoUrl : fallbackUrl;
+        }
+        loadUserData();
+
+        // Almaz bosganda tanga (USDT) yig'ish logikasi
+        let userBalance = 0.00000;
+        function tapDiamond() {
+            userBalance += 0.00001;
+            document.getElementById('balanceVal').innerText = userBalance.toFixed(5);
+            document.getElementById('walletBalanceVal').innerText = userBalance.toFixed(5);
         }
 
         let currentProgress = 1;
