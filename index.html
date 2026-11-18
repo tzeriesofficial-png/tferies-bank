@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NFT Ijara</title>
+    <title>Yangi Loyiha</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
@@ -13,7 +13,6 @@
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            transition: all 0.3s ease;
         }
 
         body {
@@ -49,44 +48,46 @@
             pointer-events: auto;
         }
 
-        /* 1-OYNA: LOADING PADARKA */
+        /* 1-OYNA: KATTA QORA PREMIUM SVG ALMAZ */
         .loader-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 28px;
+            gap: 35px;
             width: 100%;
             max-width: 340px;
         }
 
-        .gift-box-wrapper {
-            width: 130px;
-            height: 130px;
+        .diamond-wrapper {
+            width: 165px;
+            height: 165px;
             display: flex;
             justify-content: center;
             align-items: center;
-            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.2));
+            animation: diamondFloat 2.2s infinite ease-in-out;
+            filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.25));
         }
 
-        .gift-lid {
-            transform-origin: 50% 45%;
-            animation: openLid 1.6s infinite ease-in-out;
+        .diamond-glint {
+            animation: glintPulse 2.2s infinite ease-in-out;
         }
 
-        .gift-glow {
-            animation: pulseGlow 1.6s infinite ease-in-out;
+        @keyframes diamondFloat {
+            0%, 100% {
+                transform: scale(1) translateY(0) rotate(0deg);
+            }
+            35% {
+                transform: scale(1.12) translateY(-10px) rotate(-4deg);
+            }
+            70% {
+                transform: scale(1.08) translateY(-6px) rotate(4deg);
+            }
         }
 
-        @keyframes openLid {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            45% { transform: translateY(-16px) rotate(-8deg); }
-            65% { transform: translateY(-14px) rotate(5deg); }
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.2; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.2); }
+        @keyframes glintPulse {
+            0%, 100% { opacity: 0.25; }
+            50% { opacity: 0.85; }
         }
 
         .progress-wrapper {
@@ -100,16 +101,17 @@
         .progress-bar-container {
             width: 100%;
             height: 10px;
-            background: rgba(0, 0, 0, 0.1);
+            background: rgba(0, 0, 0, 0.08);
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid rgba(0, 0, 0, 0.15);
         }
 
+        /* Chiziq to'ladigan joyi ham qora rangda */
         .progress-bar-fill {
             height: 100%;
             width: 1%;
-            background: linear-gradient(90deg, #000000, #ff0055);
+            background: #000000;
             border-radius: 12px;
             transition: width 0.08s linear;
         }
@@ -121,236 +123,55 @@
             letter-spacing: 1.5px;
         }
 
-        /* 2-OYNA: ASOSIY EKRAN */
-        #mainPage {
-            justify-content: space-between;
-            padding: 16px 14px 90px 14px;
-        }
-
-        .tab-content {
-            width: 100%;
-            max-width: 420px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-y: auto;
-            padding-bottom: 10px;
-        }
-
-        .tab-pane {
-            display: none;
-            width: 100%;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .tab-pane.active-pane {
-            display: flex;
-        }
-
-        /* Qimirlaydigan Qora Premium Galochka SVG */
-        .moving-check-black {
-            width: 20px;
-            height: 20px;
-            display: inline-flex;
-            vertical-align: middle;
-            animation: checkMotionBlack 1.8s infinite ease-in-out;
-            flex-shrink: 0;
-        }
-
-        @keyframes checkMotionBlack {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            30% { transform: scale(1.2) rotate(-10deg); }
-            70% { transform: scale(1.15) rotate(10deg); }
-        }
-
-        /* O'yinlar gridi (2 tadan: chapda 2, o'ngda 2) */
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .game-card {
-            background: #000000;
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            padding: 16px 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        /* 2-OYNA: KEYINGI ASOSIY EKRAN */
+        .main-placeholder {
             text-align: center;
-            text-decoration: none;
-            gap: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .game-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .game-avatar {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #000000;
-            background-color: #1a1e29;
-        }
-
-        .game-info {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
-            width: 100%;
-        }
-
-        .game-name {
-            font-size: 13.5px;
-            font-weight: 900;
-            color: #ffffff;
-            text-transform: lowercase;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            flex-wrap: wrap;
-        }
-
-        .game-btn {
-            background: #000000;
-            color: #ffffff;
-            border: 1.5px solid rgba(255, 255, 255, 0.3);
-            padding: 7px 0;
-            width: 100%;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 900;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Pastki 5 talik navigatsiya paneli (Qora rangda) */
-        .bottom-nav {
-            position: fixed;
-            bottom: 12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 20px);
-            max-width: 420px;
-            background: #000000;
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
-            border-radius: 22px;
-            padding: 10px 6px;
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 4px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            z-index: 100;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            padding: 6px 2px;
-            border-radius: 14px;
-            cursor: pointer;
-        }
-
-        .nav-item.active {
-            background: rgba(255, 255, 255, 0.12);
-        }
-
-        .nav-label {
-            font-size: 10px;
-            font-weight: 900;
-            color: #aaaaaa;
-            text-transform: uppercase;
-        }
-
-        .nav-item.active .nav-label {
-            color: #ffffff;
-        }
-
-        .svg-icon-box {
-            width: 26px;
-            height: 26px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .anim-shop { animation: wiggleShop 2s infinite ease-in-out; }
-        .anim-nft { animation: floatNft 2.2s infinite ease-in-out; }
-        .anim-ijara { animation: spinKey 2.4s infinite ease-in-out; }
-        .anim-buyurtma { animation: bounceOrder 1.9s infinite ease-in-out; }
-        .anim-balans { animation: pulseWallet 2.1s infinite ease-in-out; }
-
-        @keyframes wiggleShop {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            25% { transform: rotate(-10deg) scale(1.1); }
-            75% { transform: rotate(10deg) scale(1.1); }
-        }
-        @keyframes floatNft {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-4px) scale(1.12); }
-        }
-        @keyframes spinKey {
-            0%, 100% { transform: rotate(-12deg) scale(1); }
-            50% { transform: rotate(15deg) scale(1.12); }
-        }
-        @keyframes bounceOrder {
-            0%, 100% { transform: scale(1) translateY(0); }
-            40% { transform: scale(1.15) translateY(-3px); }
-            70% { transform: scale(0.95) translateY(1px); }
-        }
-        @keyframes pulseWallet {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.14) rotate(6deg); }
+            gap: 10px;
         }
     </style>
 </head>
 <body>
 
-    <!-- 1-OYNA: LOADING -->
+    <!-- 1-OYNA: QORA PREMIUM ALMAZ LOADING -->
     <div id="loaderPage" class="page active">
         <div class="loader-container">
-            <div class="gift-box-wrapper">
-                <svg viewBox="0 0 120 120" width="130" height="130" xmlns="http://www.w3.org/2000/svg">
+            <div class="diamond-wrapper">
+                <svg viewBox="0 0 120 120" width="160" height="160" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <defs>
-                        <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#000000"/>
-                            <stop offset="100%" stop-color="#333333"/>
+                        <linearGradient id="dTop" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#3a3a3a"/>
+                            <stop offset="100%" stop-color="#0a0a0a"/>
                         </linearGradient>
-                        <linearGradient id="lidGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <linearGradient id="dLeft" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" stop-color="#222222"/>
-                            <stop offset="100%" stop-color="#444444"/>
+                            <stop offset="100%" stop-color="#000000"/>
                         </linearGradient>
-                        <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stop-color="#ff0055"/>
-                            <stop offset="100%" stop-color="#ff3366"/>
+                        <linearGradient id="dCenter" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#4d4d4d"/>
+                            <stop offset="50%" stop-color="#141414"/>
+                            <stop offset="100%" stop-color="#000000"/>
+                        </linearGradient>
+                        <linearGradient id="dRight" x1="100%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#1a1a1a"/>
+                            <stop offset="100%" stop-color="#000000"/>
                         </linearGradient>
                     </defs>
 
-                    <circle class="gift-glow" cx="60" cy="52" r="26" fill="#ff0055" opacity="0.4"/>
-                    <rect x="24" y="54" width="72" height="54" rx="10" fill="url(#boxGrad)"/>
-                    <ellipse cx="60" cy="54" rx="33" ry="6" fill="#111111"/>
-                    <rect x="53" y="54" width="14" height="54" fill="url(#ribbonGrad)"/>
+                    <polygon points="34,18 86,18 110,44 10,44" fill="url(#dTop)"/>
+                    <polygon points="34,18 60,44 10,44" fill="#2b2b2b"/>
+                    <polygon points="86,18 110,44 60,44" fill="#181818"/>
+                    <polygon points="34,18 86,18 60,44" fill="#454545"/>
 
-                    <g class="gift-lid">
-                        <rect x="18" y="38" width="84" height="18" rx="6" fill="url(#lidGrad)"/>
-                        <rect x="53" y="38" width="14" height="18" fill="url(#ribbonGrad)"/>
-                        <path d="M60 38 C42 16, 22 24, 34 38 C42 42, 54 40, 60 38 Z" fill="url(#ribbonGrad)"/>
-                        <path d="M60 38 C78 16, 98 24, 86 38 C78 42, 66 40, 60 38 Z" fill="url(#ribbonGrad)"/>
-                        <circle cx="60" cy="37" r="6" fill="#ffffff"/>
-                    </g>
+                    <polygon points="10,44 38,44 60,106" fill="url(#dLeft)"/>
+                    <polygon points="38,44 82,44 60,106" fill="url(#dCenter)"/>
+                    <polygon points="82,44 110,44 60,106" fill="url(#dRight)"/>
+
+                    <polyline points="10,44 110,44" stroke="#666666" stroke-width="1.2"/>
+                    <polyline points="34,18 38,44 60,106 82,44 86,18" stroke="#555555" stroke-width="1"/>
+                    <polygon class="diamond-glint" points="34,18 60,44 38,44" fill="#ffffff" opacity="0.25"/>
                 </svg>
             </div>
 
@@ -363,177 +184,20 @@
         </div>
     </div>
 
-    <!-- 2-OYNA: ASOSIY EKRAN -->
+    <!-- 2-OYNA: KEYINGI SAHIFA -->
     <div id="mainPage" class="page">
-        <div class="tab-content">
-            
-            <!-- 1. DO'KON (O'YINLAR 2 TA 2 TA GRID) -->
-            <div id="pane-dokon" class="tab-pane active-pane">
-                <div style="font-size: 16px; font-weight: 900; margin-bottom: 2px; text-align: left; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-                    <span>Oʻyinlarga adminka | orqali donat qilish</span>
-                    <span class="moving-check-black">
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="10" fill="#000000"/>
-                            <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </span>
-                </div>
-                <div style="font-size: 12px; font-weight: 700; color: #555555; text-align: left; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-                    <span>Quyidagi 4 ta oʻyinga adminka orqali donat qilish.</span>
-                    <span class="moving-check-black">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="10" fill="#000000"/>
-                            <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </span>
-                </div>
-
-                <div class="games-grid">
-                    <!-- 1. pubg mobile -->
-                    <a href="https://t.me/acazesega" target="_blank" class="game-card">
-                        <img src="https://t.me/i/userpic/320/official_pubgmobile_mena.jpg" 
-                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=PUBG+Mobile&background=000000&color=ffffff&bold=true&size=128';" 
-                             alt="pubg mobile" class="game-avatar">
-                        <div class="game-info">
-                            <span class="game-name">
-                                <span>pubg</span>
-                                <span style="display:inline-flex; align-items:center; gap:2px;">
-                                    <span>mobile</span>
-                                    <span class="moving-check-black" style="width:14px; height:14px;">
-                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="12" cy="12" r="10" fill="#000000"/>
-                                            <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </span>
-                                </span>
-                            </span>
-                        </div>
-                        <span class="game-btn">tanlash</span>
-                    </a>
-
-                    <!-- 2. standoff 2 -->
-                    <a href="https://t.me/acazesega" target="_blank" class="game-card">
-                        <img src="https://t.me/i/userpic/320/play_standoff2.jpg" 
-                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Standoff+2&background=000000&color=ffffff&bold=true&size=128';" 
-                             alt="standoff 2" class="game-avatar">
-                        <div class="game-info">
-                            <span class="game-name">standoff 2</span>
-                        </div>
-                        <span class="game-btn">tanlash</span>
-                    </a>
-
-                    <!-- 3. free fire -->
-                    <a href="https://t.me/acazesega" target="_blank" class="game-card">
-                        <img src="https://t.me/i/userpic/320/gruxx_ff.jpg" 
-                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Free+Fire&background=000000&color=ffffff&bold=true&size=128';" 
-                             alt="free fire" class="game-avatar">
-                        <div class="game-info">
-                            <span class="game-name">free fire</span>
-                        </div>
-                        <span class="game-btn">tanlash</span>
-                    </a>
-
-                    <!-- 4. roblox -->
-                    <a href="https://t.me/acazesega" target="_blank" class="game-card">
-                        <img src="https://t.me/i/userpic/320/roblox_chat.jpg" 
-                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Roblox&background=000000&color=ffffff&bold=true&size=128';" 
-                             alt="roblox" class="game-avatar">
-                        <div class="game-info">
-                            <span class="game-name">roblox</span>
-                        </div>
-                        <span class="game-btn">tanlash</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 2. NFT -->
-            <div id="pane-nft" class="tab-pane">
-                <div style="font-size: 20px; font-weight: 900; margin-top: 40px; color: #000000;">NFT Katalogi</div>
-                <div style="font-size: 13px; color: #555555; margin-top: 10px;">Tez orada ijara va savdo uchun NFT’lar qoʻshiladi.</div>
-            </div>
-
-            <!-- 3. IJARA -->
-            <div id="pane-ijara" class="tab-pane">
-                <div style="font-size: 20px; font-weight: 900; margin-top: 40px; color: #000000;">Faol Ijaralar</div>
-                <div style="font-size: 13px; color: #555555; margin-top: 10px;">Sizda hozircha ijaraga olingan NFT’lar yoʻq.</div>
-            </div>
-
-            <!-- 4. BUYURTMA -->
-            <div id="pane-buyurtma" class="tab-pane">
-                <div style="font-size: 20px; font-weight: 900; margin-top: 40px; color: #000000;">Buyurtmalar tarixi</div>
-                <div style="font-size: 13px; color: #555555; margin-top: 10px;">Buyurtmalar tarixi boʻsh.</div>
-            </div>
-
-            <!-- 5. BALANS -->
-            <div id="pane-balans" class="tab-pane">
-                <div style="font-size: 20px; font-weight: 900; margin-top: 40px; color: #000000;">Hamyon Balansi</div>
-                <div style="font-size: 26px; font-weight: 900; color: #ff0055; margin-top: 10px;">0.00 TON</div>
-            </div>
-
-        </div>
-
-        <!-- Pastki panel (Qora rangda) -->
-        <div class="bottom-nav">
-            <div class="nav-item active" onclick="switchTab('dokon', this)">
-                <div class="svg-icon-box anim-shop">
-                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3 9L5 4H19L21 9H3Z" fill="#ffffff"/>
-                        <path d="M4 9H20V19C20 20.1 19.1 21 18 21H6C4.9 21 4 20.1 4 19V9Z" fill="#ff0055"/>
-                        <rect x="9" y="13" width="6" height="8" rx="1.5" fill="#000000"/>
-                    </svg>
-                </div>
-                <span class="nav-label">DOʻKON</span>
-            </div>
-
-            <div class="nav-item" onclick="switchTab('nft', this)">
-                <div class="svg-icon-box anim-nft">
-                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <polygon points="12,2 21,8 12,22 3,8" fill="#ffffff"/>
-                        <polygon points="12,2 21,8 12,11 3,8" fill="#ff0055"/>
-                        <polygon points="12,11 21,8 12,22" fill="#333333"/>
-                    </svg>
-                </div>
-                <span class="nav-label">NFT</span>
-            </div>
-
-            <div class="nav-item" onclick="switchTab('ijara', this)">
-                <div class="svg-icon-box anim-ijara">
-                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="8" cy="14" r="5" fill="#ffffff"/>
-                        <circle cx="8" cy="14" r="2" fill="#000000"/>
-                        <path d="M12 12L20 4L22 6L20 8L22 10L19 13L17 11L13 15" fill="#ff0055"/>
-                    </svg>
-                </div>
-                <span class="nav-label">IJARA</span>
-            </div>
-
-            <div class="nav-item" onclick="switchTab('buyurtma', this)">
-                <div class="svg-icon-box anim-buyurtma">
-                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="4" y="3" width="16" height="18" rx="3" fill="#ffffff"/>
-                        <path d="M8 9H16M8 13H14M8 17H11" stroke="#000000" stroke-width="2.2" stroke-linecap="round"/>
-                        <circle cx="17" cy="17" r="4" fill="#ff0055"/>
-                    </svg>
-                </div>
-                <span class="nav-label">BUYURTMA</span>
-            </div>
-
-            <div class="nav-item" onclick="switchTab('balans', this)">
-                <div class="svg-icon-box anim-balans">
-                    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="2" y="5" width="20" height="14" rx="3.5" fill="#ffffff"/>
-                        <path d="M15 10H22V14H15C13.9 14 13 13.1 13 12C13 10.9 13.9 10 15 10Z" fill="#ff0055"/>
-                        <circle cx="16" cy="12" r="1.3" fill="#000000"/>
-                    </svg>
-                </div>
-                <span class="nav-label">BALANS</span>
-            </div>
+        <div class="main-placeholder">
+            <div style="font-size: 20px; font-weight: 900; color: #000000;">Asosiy oyna tayyor</div>
+            <div style="font-size: 13px; font-weight: 700; color: #666666;">Keyingi qadamda nima qilamiz?</div>
         </div>
     </div>
 
     <script>
         const tg = window.Telegram ? window.Telegram.WebApp : null;
-        if (tg) { tg.ready(); tg.expand(); }
+        if (tg) {
+            tg.ready();
+            tg.expand();
+        }
 
         let currentProgress = 1;
         const fillElement = document.getElementById('progressBarFill');
@@ -552,14 +216,6 @@
                 }, 350);
             }
         }, 30);
-
-        function switchTab(tabId, element) {
-            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active-pane'));
-            document.getElementById('pane-' + tabId).classList.add('active-pane');
-
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-            element.classList.add('active');
-        }
     </script>
 </body>
 </html>
