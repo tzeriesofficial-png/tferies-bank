@@ -107,15 +107,25 @@
         /* 2-OYNA: ASOSIY EKRAN */
         #mainPage {
             justify-content: flex-start;
-            padding: 30px 20px 20px 20px;
+            padding: 25px 20px 20px 20px;
             background: #ffffff;
+            overflow-y: auto;
+        }
+
+        .header-row {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
         }
 
         .main-header {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 900;
             color: #000000;
-            margin-bottom: 20px;
             letter-spacing: 0.5px;
         }
 
@@ -125,6 +135,7 @@
             display: flex;
             flex-direction: column;
             gap: 14px;
+            padding-bottom: 20px;
         }
 
         .nick-card {
@@ -135,7 +146,6 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            cursor: pointer;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -150,6 +160,8 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            cursor: pointer;
+            flex: 1;
         }
 
         .nick-text {
@@ -167,6 +179,7 @@
             align-items: center;
             justify-content: center;
             animation: checkMotion 1.8s infinite ease-in-out;
+            flex-shrink: 0;
         }
 
         @keyframes checkMotion {
@@ -181,7 +194,6 @@
             gap: 10px;
         }
 
-        /* "Narx" tugmachasi */
         .price-btn-label {
             background: rgba(0, 136, 255, 0.2);
             color: #0088ff;
@@ -191,6 +203,7 @@
             border-radius: 8px;
             border: 1px solid rgba(0, 136, 255, 0.4);
             text-transform: uppercase;
+            cursor: pointer;
         }
 
         /* Qimirlaydigan premium ko'k savatcha stikeri */
@@ -201,6 +214,7 @@
             align-items: center;
             justify-content: center;
             animation: cartMotion 2s infinite ease-in-out;
+            cursor: pointer;
         }
 
         @keyframes cartMotion {
@@ -208,11 +222,11 @@
             50% { transform: scale(1.18) rotate(6deg); }
         }
 
-        /* Narxni ko'rsatish qismi */
+        /* Narx qismi (bitta qatorda: Narxi: 10,000 soʻm) */
         .nick-price-row {
             display: none;
             align-items: center;
-            justify-content: space-between;
+            gap: 6px;
             padding-top: 10px;
             border-top: 1px solid rgba(255, 255, 255, 0.12);
             font-size: 15px;
@@ -222,6 +236,35 @@
 
         .nick-card.open .nick-price-row {
             display: flex;
+        }
+
+        /* Nikimni sotaman tugmasi */
+        .sell-card {
+            width: 100%;
+            background: #000000;
+            border-radius: 18px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(0, 136, 255, 0.3);
+            text-decoration: none;
+            cursor: pointer;
+            margin-top: 6px;
+        }
+
+        .sell-text {
+            font-size: 15px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .sell-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
     </style>
 </head>
@@ -238,15 +281,23 @@
         </div>
     </div>
 
-    <!-- 2-OYNA: NIKLAR RO'YXATI -->
+    <!-- 2-OYNA: ASOSIY EKRAN -->
     <div id="mainPage" class="page">
-        <div class="main-header">Mavjud Username lar</div>
+        <div class="header-row">
+            <div class="main-header">mavjud usernamelar</div>
+            <span class="moving-blue-check">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" fill="#0088ff"/>
+                    <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+        </div>
         
         <div class="nick-list">
             <!-- 1-Nik -->
-            <div class="nick-card" onclick="togglePrice(this)">
+            <div class="nick-card" id="card-1">
                 <div class="nick-main-row">
-                    <div class="left-group">
+                    <div class="left-group" onclick="togglePrice('card-1')">
                         <span class="nick-text">@okenft</span>
                         <span class="moving-blue-check">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -256,8 +307,8 @@
                         </span>
                     </div>
                     <div class="right-group">
-                        <span class="price-btn-label">Narx</span>
-                        <span class="moving-cart-svg">
+                        <span class="price-btn-label" onclick="togglePrice('card-1')">Narx</span>
+                        <span class="moving-cart-svg" onclick="buyUsername('@okenft', '10,000 soʻm')">
                             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H19" stroke="#0088ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 <circle cx="9" cy="20" r="1.5" fill="#0088ff"/>
@@ -267,15 +318,14 @@
                     </div>
                 </div>
                 <div class="nick-price-row">
-                    <span>Narxi:</span>
-                    <span>10,000 soʻm</span>
+                    <span>Narxi: 10,000 soʻm</span>
                 </div>
             </div>
 
             <!-- 2-Nik -->
-            <div class="nick-card" onclick="togglePrice(this)">
+            <div class="nick-card" id="card-2">
                 <div class="nick-main-row">
-                    <div class="left-group">
+                    <div class="left-group" onclick="togglePrice('card-2')">
                         <span class="nick-text">@axeoka</span>
                         <span class="moving-blue-check">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -285,8 +335,8 @@
                         </span>
                     </div>
                     <div class="right-group">
-                        <span class="price-btn-label">Narx</span>
-                        <span class="moving-cart-svg">
+                        <span class="price-btn-label" onclick="togglePrice('card-2')">Narx</span>
+                        <span class="moving-cart-svg" onclick="buyUsername('@axeoka', '10,000 soʻm')">
                             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H19" stroke="#0088ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 <circle cx="9" cy="20" r="1.5" fill="#0088ff"/>
@@ -296,15 +346,14 @@
                     </div>
                 </div>
                 <div class="nick-price-row">
-                    <span>Narxi:</span>
-                    <span>10,000 soʻm</span>
+                    <span>Narxi: 10,000 soʻm</span>
                 </div>
             </div>
 
             <!-- 3-Nik -->
-            <div class="nick-card" onclick="togglePrice(this)">
+            <div class="nick-card" id="card-3">
                 <div class="nick-main-row">
-                    <div class="left-group">
+                    <div class="left-group" onclick="togglePrice('card-3')">
                         <span class="nick-text">@axeake</span>
                         <span class="moving-blue-check">
                             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -314,8 +363,8 @@
                         </span>
                     </div>
                     <div class="right-group">
-                        <span class="price-btn-label">Narx</span>
-                        <span class="moving-cart-svg">
+                        <span class="price-btn-label" onclick="togglePrice('card-3')">Narx</span>
+                        <span class="moving-cart-svg" onclick="buyUsername('@axeake', '10,000 soʻm')">
                             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H19" stroke="#0088ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 <circle cx="9" cy="20" r="1.5" fill="#0088ff"/>
@@ -325,10 +374,29 @@
                     </div>
                 </div>
                 <div class="nick-price-row">
-                    <span>Narxi:</span>
-                    <span>10,000 soʻm</span>
+                    <span>Narxi: 10,000 soʻm</span>
                 </div>
             </div>
+
+            <!-- Nikimni sotaman bo'limi -->
+            <a href="https://t.me/pauladeroza" target="_blank" class="sell-card">
+                <span class="sell-text">nikimni sotaman</span>
+                <div class="sell-right">
+                    <span class="moving-blue-check">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" fill="#0088ff"/>
+                            <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                    <span class="moving-cart-svg">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H19" stroke="#0088ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="9" cy="20" r="1.5" fill="#0088ff"/>
+                            <circle cx="18" cy="20" r="1.5" fill="#0088ff"/>
+                        </svg>
+                    </span>
+                </div>
+            </a>
         </div>
     </div>
 
@@ -354,11 +422,23 @@
             }
         }, 25);
 
-        function togglePrice(cardElement) {
+        function togglePrice(cardId) {
+            const cardElement = document.getElementById(cardId);
             document.querySelectorAll('.nick-card').forEach(card => {
                 if (card !== cardElement) card.classList.remove('open');
             });
             cardElement.classList.toggle('open');
+        }
+
+        // Savatga bosganda operator lichkasiga avtomatik yozuv bilan o'tish
+        function buyUsername(username, price) {
+            const message = encodeURIComponent(`Assalomu alaykum, ${username} ni ${price}ga sotib olmoqchiman!`);
+            const url = `https://t.me/pauladeroza?text=${message}`;
+            if (tg && tg.openTelegramLink) {
+                tg.openTelegramLink(url);
+            } else {
+                window.open(url, '_blank');
+            }
         }
     </script>
 </body>
