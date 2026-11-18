@@ -181,7 +181,6 @@
             letter-spacing: 1px;
         }
 
-        /* Qimirlamaydigan, sal tepada joylashgan qora chetli dumaloq almaz */
         .tap-circle-btn {
             width: 210px;
             height: 210px;
@@ -219,46 +218,41 @@
             text-align: center;
         }
 
-        /* DeFi va Mail / URL kiritish bo'limi */
-        .defi-box {
+        /* WALLET YOPIQ XABARI VA QIMIRLAYDIGAN QORA SVG STIKER */
+        .wallet-locked-box {
             width: 100%;
             background: rgba(0, 0, 0, 0.03);
             border: 1.5px solid rgba(0, 0, 0, 0.1);
-            border-radius: 18px;
-            padding: 16px;
+            border-radius: 20px;
+            padding: 24px 18px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-top: 15px;
-            text-align: left;
-        }
-
-        .defi-input {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1.5px solid #000000;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 700;
-            outline: none;
-            background: #ffffff;
-            color: #000000;
-        }
-
-        .copy-btn {
-            background: #000000;
-            color: #ffffff;
-            border: none;
-            padding: 11px;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 900;
-            cursor: pointer;
+            align-items: center;
             text-align: center;
+            gap: 16px;
+            margin-top: 25px;
         }
 
-        .copy-btn:active {
-            transform: scale(0.97);
+        .svg-lock-anim {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: lockMotion 2s infinite ease-in-out;
+        }
+
+        @keyframes lockMotion {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            30% { transform: scale(1.15) rotate(-6deg); }
+            70% { transform: scale(1.1) rotate(6deg); }
+        }
+
+        .wallet-msg {
+            font-size: 14px;
+            font-weight: 800;
+            color: #000000;
+            line-height: 1.5;
         }
 
         /* PASTKI MENYU PANELI */
@@ -399,7 +393,6 @@
                 <div class="balance-label">Mening Balansim</div>
                 <div class="balance-display"><span id="balanceVal">0.00000</span> USDT</div>
 
-                <!-- Qimirlamaydigan, sal tepada turgan dumaloq almaz -->
                 <button class="tap-circle-btn" onclick="tapDiamond()">
                     <div class="inner-diamond">
                         <svg viewBox="0 0 120 120" width="135" height="135" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -439,21 +432,29 @@
                 <div class="section-sub">Savollar bo'yicha yordam xizmati</div>
             </div>
 
-            <!-- 4. Wallet (Mini App ichida DeFi hisobi va Mail/URL nusxalash) -->
+            <!-- 4. Wallet (Ingliz tilida yopiqligi haqida xabar va qimirlaydigan qora SVG qulf) -->
             <div id="pane-wallet" class="tab-pane">
-                <div class="section-title">DeFi Wallet</div>
+                <div class="section-title">Wallet</div>
                 <div class="balance-label" style="margin-top: 4px;">Jami Mablag'ingiz</div>
                 <div class="balance-display"><span id="walletBalanceVal">0.00000</span> USDT</div>
 
-                <div class="defi-box">
-                    <div style="font-size: 13px; font-weight: 900; color: #000000;">DeFi Hisobi / Mail / URL kiritish:</div>
-                    <input type="text" id="defiInput" class="defi-input" placeholder="https://t.me/wallet yoki mail yozing...">
-                    <button class="copy-btn" onclick="copyDefiInput()">Nusxalash va Saqlash</button>
+                <div class="wallet-locked-box">
+                    <div class="svg-lock-anim">
+                        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="5" y="11" width="14" height="11" rx="3" fill="#000000"/>
+                            <path d="M8 11V7C8 4.79 9.79 3 12 3C14.21 3 16 4.79 16 7V11" stroke="#000000" stroke-width="2.5" stroke-linecap="round"/>
+                            <circle cx="12" cy="16" r="1.5" fill="#ffffff"/>
+                        </svg>
+                    </div>
+                    <div class="wallet-msg">
+                        Wallet is closed ❌️<br>
+                        It will take half a month for the wallet to open and people to withdraw money ✅️
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Pastki menyu (Jonli SVG stikerlar bilan) -->
+        <!-- Pastki menyu -->
         <div class="bottom-nav">
             <div class="nav-item active" onclick="switchTab('paulatap', this)">
                 <div class="svg-box anim-tap">
@@ -526,14 +527,6 @@
             userBalance += 0.00001;
             document.getElementById('balanceVal').innerText = userBalance.toFixed(5);
             document.getElementById('walletBalanceVal').innerText = userBalance.toFixed(5);
-        }
-
-        function copyDefiInput() {
-            const inputField = document.getElementById('defiInput');
-            inputField.select();
-            inputField.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(inputField.value);
-            alert("Ma'lumot nusxalandi!");
         }
 
         let currentProgress = 1;
