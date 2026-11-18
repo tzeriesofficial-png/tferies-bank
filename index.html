@@ -166,6 +166,7 @@
             width: 100%;
             height: 100%;
             padding-top: 5px;
+            overflow-y: auto;
         }
 
         .tab-pane.active-pane {
@@ -198,7 +199,6 @@
             letter-spacing: 1px;
         }
 
-        /* Almaz tugmasi (Kirish qismidagi kabi maroqli qimirlab turadi) */
         .tap-diamond-btn {
             background: none;
             border: none;
@@ -217,18 +217,96 @@
             font-size: 22px;
             font-weight: 900;
             color: #000000;
-            margin-top: 10px;
+            margin-top: 4px;
         }
 
         .section-sub {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             color: #555555;
             text-align: center;
+            margin-bottom: 6px;
         }
 
-        /* SUPPORT & WALLET */
-        .support-card, .wallet-locked-box {
+        /* BOOST KARTALAR DIZAYNI */
+        .boost-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding-bottom: 20px;
+        }
+
+        .boost-card {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.03);
+            border: 1.5px solid rgba(0, 0, 0, 0.1);
+            border-radius: 18px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .boost-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            text-align: left;
+            flex: 1;
+        }
+
+        .boost-title {
+            font-size: 13.5px;
+            font-weight: 950;
+            color: #000000;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .boost-price {
+            font-size: 12px;
+            font-weight: 800;
+            color: #555555;
+        }
+
+        .buy-boost-btn {
+            background: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            flex-shrink: 0;
+        }
+
+        .buy-boost-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Qimirlaydigan Premium Qora SVG Galochka */
+        .moving-check {
+            width: 18px;
+            height: 18px;
+            display: inline-flex;
+            vertical-align: middle;
+            animation: checkMotion 1.8s infinite ease-in-out;
+            flex-shrink: 0;
+        }
+
+        @keyframes checkMotion {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            30% { transform: scale(1.25) rotate(-10deg); }
+            70% { transform: scale(1.15) rotate(10deg); }
+        }
+
+        /* SUPPORT BO'LIMI */
+        .support-card {
             width: 100%;
             background: rgba(0, 0, 0, 0.03);
             border: 1.5px solid rgba(0, 0, 0, 0.1);
@@ -238,7 +316,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 14px;
+            gap: 16px;
             margin-top: 10px;
         }
 
@@ -261,20 +339,6 @@
             color: #000000;
         }
 
-        .moving-check {
-            width: 20px;
-            height: 20px;
-            display: inline-flex;
-            vertical-align: middle;
-            animation: checkMotion 1.8s infinite ease-in-out;
-        }
-
-        @keyframes checkMotion {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            30% { transform: scale(1.25) rotate(-10deg); }
-            70% { transform: scale(1.15) rotate(10deg); }
-        }
-
         .support-btn {
             background: #000000;
             color: #ffffff;
@@ -291,6 +355,35 @@
             width: 100%;
             text-decoration: none;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .support-icon-anim {
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: headsetMotion 2s infinite ease-in-out;
+        }
+
+        @keyframes headsetMotion {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.18) rotate(8deg); }
+        }
+
+        /* WALLET */
+        .wallet-locked-box {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.03);
+            border: 1.5px solid rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            padding: 22px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 14px;
+            margin-top: 10px;
         }
 
         .svg-lock-anim {
@@ -315,7 +408,7 @@
             line-height: 1.5;
         }
 
-        /* PASTKI MENYU PANELI (4 ta menyu) */
+        /* PASTKI MENYU PANELI */
         .bottom-nav {
             position: fixed;
             bottom: 14px;
@@ -427,7 +520,6 @@
                 <div class="balance-label">TOTAL BALANCE</div>
                 <div class="balance-display"><span id="balanceVal">0.000000</span> USDT</div>
 
-                <!-- Almaz doiraviy bloksiz, to'g'ridan-to'g'ri qimirlaydigan holatda -->
                 <button class="tap-diamond-btn" onclick="tapDiamond()">
                     <svg viewBox="0 0 120 120" width="185" height="185" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <polygon points="34,18 86,18 110,44 10,44" fill="#3a3a3a"/>
@@ -439,10 +531,63 @@
                 </button>
             </div>
 
-            <!-- 2. Boost -->
+            <!-- 2. Boost (Tariflar va qimirlaydigan qora SVG galochkalar bilan) -->
             <div id="pane-boost" class="tab-pane">
                 <div class="section-title">Boost</div>
                 <div class="section-sub">Boosters to earn faster and more</div>
+
+                <div class="boost-list">
+                    <!-- 1-Boost -->
+                    <div class="boost-card">
+                        <div class="boost-info">
+                            <div class="boost-title">
+                                <span>10 taps = 1 USDT</span>
+                                <span class="moving-check">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="10" fill="#000000"/>
+                                        <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="boost-price">Price: 10 USDT</div>
+                        </div>
+                        <button class="buy-boost-btn" onclick="buyBoost(10, 1)">Buy</button>
+                    </div>
+
+                    <!-- 2-Boost -->
+                    <div class="boost-card">
+                        <div class="boost-info">
+                            <div class="boost-title">
+                                <span>80 taps = 2.10 USDT</span>
+                                <span class="moving-check">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="10" fill="#000000"/>
+                                        <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="boost-price">Price: 20 USDT</div>
+                        </div>
+                        <button class="buy-boost-btn" onclick="buyBoost(20, 2.10)">Buy</button>
+                    </div>
+
+                    <!-- 3-Boost -->
+                    <div class="boost-card">
+                        <div class="boost-info">
+                            <div class="boost-title">
+                                <span>240 taps = 3 USDT</span>
+                                <span class="moving-check">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="10" fill="#000000"/>
+                                        <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="boost-price">Price: 34 USDT</div>
+                        </div>
+                        <button class="buy-boost-btn" onclick="buyBoost(34, 3)">Buy</button>
+                    </div>
+                </div>
             </div>
 
             <!-- 3. Support -->
@@ -466,6 +611,14 @@
                     </div>
 
                     <a href="https://t.me/pauladeroza" target="_blank" class="support-btn">
+                        <div class="support-icon-anim">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 13V12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12V13" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round"/>
+                                <rect x="2.5" y="11.5" width="4" height="6.5" rx="2" fill="#ffffff"/>
+                                <rect x="17.5" y="11.5" width="4" height="6.5" rx="2" fill="#ffffff"/>
+                                <path d="M19.5 18C19.5 19.8 17.8 21 15.5 21H12" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
                         <span>Contact Support</span>
                     </a>
                 </div>
@@ -494,7 +647,7 @@
             </div>
         </div>
 
-        <!-- Pastki menyu (4 ta) -->
+        <!-- Pastki menyu -->
         <div class="bottom-nav">
             <div class="nav-item active" onclick="switchTab('paulatap', this)">
                 <div class="svg-box anim-tap">
@@ -560,16 +713,16 @@
         }
         loadUserData();
 
-        // Tap va Level logikasi (0.000001 USDT va har 10 ta tapda +0.80 bonus)
+        // Tap va Level logikasi (Har 100000 ta tapda +0.80 bonus)
         let userBalance = 0.000000;
         let totalTaps = 0;
         let currentLevel = 1;
+        let tapReward = 0.000001; // Odatiy tap narxi
 
         function tapDiamond() {
             totalTaps++;
-            let tapReward = 0.000001;
 
-            if (totalTaps % 10 === 0) {
+            if (totalTaps % 100000 === 0) {
                 userBalance += 0.80;
             }
 
@@ -581,6 +734,19 @@
             if (totalTaps >= requiredTapsForNext && currentLevel < 10) {
                 currentLevel++;
                 document.getElementById('levelBadge').innerText = `Level ${currentLevel}`;
+            }
+        }
+
+        // Boost sotib olish logikasi
+        function buyBoost(price, rewardPerTap) {
+            if (userBalance >= price) {
+                userBalance -= price;
+                tapReward = rewardPerTap;
+                document.getElementById('balanceVal').innerText = userBalance.toFixed(6);
+                document.getElementById('walletBalanceVal').innerText = userBalance.toFixed(6);
+                alert("Boost successfully activated!");
+            } else {
+                alert("Insufficient balance!");
             }
         }
 
