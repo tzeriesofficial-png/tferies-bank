@@ -222,7 +222,7 @@
             50% { transform: scale(1.18) rotate(6deg); }
         }
 
-        /* Narx qismi (bitta qatorda: Narxi: 10,000 soʻm) */
+        /* Narx qismi */
         .nick-price-row {
             display: none;
             align-items: center;
@@ -308,7 +308,7 @@
                     </div>
                     <div class="right-group">
                         <span class="price-btn-label" onclick="togglePrice('card-1')">Narx</span>
-                        <span class="moving-cart-svg" onclick="buyUsername('@okenft', '10,000 soʻm')">
+                        <span class="moving-cart-svg" onclick="buyAxeoka()">
                             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H19" stroke="#0088ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 <circle cx="9" cy="20" r="1.5" fill="#0088ff"/>
@@ -336,7 +336,7 @@
                     </div>
                     <div class="right-group">
                         <span class="price-btn-label" onclick="togglePrice('card-2')">Narx</span>
-                        <span class="moving-cart-svg" onclick="buyUsername('@axeoka', '10,000 soʻm')">
+                        <span class="moving-cart-svg" onclick="buyAxeoka()">
                             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H19" stroke="#0088ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 <circle cx="9" cy="20" r="1.5" fill="#0088ff"/>
@@ -364,7 +364,7 @@
                     </div>
                     <div class="right-group">
                         <span class="price-btn-label" onclick="togglePrice('card-3')">Narx</span>
-                        <span class="moving-cart-svg" onclick="buyUsername('@axeake', '10,000 soʻm')">
+                        <span class="moving-cart-svg" onclick="buyAxeoka()">
                             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H19" stroke="#0088ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 <circle cx="9" cy="20" r="1.5" fill="#0088ff"/>
@@ -379,7 +379,7 @@
             </div>
 
             <!-- Nikimni sotaman bo'limi -->
-            <a href="https://t.me/pauladeroza" target="_blank" class="sell-card">
+            <div class="sell-card" onclick="sellUsername()">
                 <span class="sell-text">nikimni sotaman</span>
                 <div class="sell-right">
                     <span class="moving-blue-check">
@@ -396,7 +396,7 @@
                         </svg>
                     </span>
                 </div>
-            </a>
+            </div>
         </div>
     </div>
 
@@ -430,14 +430,26 @@
             cardElement.classList.toggle('open');
         }
 
-        // Savatga bosganda operator lichkasiga avtomatik yozuv bilan o'tish
-        function buyUsername(username, price) {
-            const message = encodeURIComponent(`Assalomu alaykum, ${username} ni ${price}ga sotib olmoqchiman!`);
-            const url = `https://t.me/pauladeroza?text=${message}`;
+        // Qaysi savatcha bosilsa ham doim @axeoka va 10,000 so'm yozilib lichkaga o'tadi
+        function buyAxeoka() {
+            const text = encodeURIComponent(`Assalomu alaykum, @axeoka ni 10,000 soʻmga sotib olmoqchiman!`);
+            const url = `https://t.me/pauladeroza?text=${text}`;
+            
             if (tg && tg.openTelegramLink) {
                 tg.openTelegramLink(url);
             } else {
-                window.open(url, '_blank');
+                window.location.href = url;
+            }
+        }
+
+        function sellUsername() {
+            const text = encodeURIComponent(`Assalomu alaykum, o'z username'imni sotmoqchiman.`);
+            const url = `https://t.me/pauladeroza?text=${text}`;
+            
+            if (tg && tg.openTelegramLink) {
+                tg.openTelegramLink(url);
+            } else {
+                window.location.href = url;
             }
         }
     </script>
