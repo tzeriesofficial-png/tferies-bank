@@ -181,7 +181,7 @@
             letter-spacing: 1px;
         }
 
-        /* Dumaloq doira o'lchami avvalgidek, ichidagi almaz esa kattaroq va moslashtirilgan */
+        /* Dumaloq doira ichidagi almaz yanada kattalashtirilib, chekalarga yaqinlashtirildi */
         .tap-circle-btn {
             width: 210px;
             height: 210px;
@@ -219,7 +219,96 @@
             text-align: center;
         }
 
-        /* WALLET YOPIQ XABARI VA QIMIRLAYDIGAN QORA SVG STIKERLAR */
+        /* SUPPORT BO'LIMI DIZAYNI */
+        .support-card {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.03);
+            border: 1.5px solid rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            padding: 22px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .support-avatar {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2.5px solid #000000;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .support-user-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 16px;
+            font-weight: 900;
+            color: #000000;
+            flex-wrap: wrap;
+        }
+
+        /* Qimirlaydigan Premium SVG Galochka */
+        .moving-check {
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            vertical-align: middle;
+            animation: checkMotion 1.8s infinite ease-in-out;
+            flex-shrink: 0;
+        }
+
+        @keyframes checkMotion {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            30% { transform: scale(1.25) rotate(-10deg); }
+            70% { transform: scale(1.15) rotate(10deg); }
+        }
+
+        /* Qora Kirish (Murojaat) Tugmasi */
+        .support-btn {
+            background: #000000;
+            color: #ffffff;
+            border: none;
+            padding: 13px 24px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+        }
+
+        .support-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* Qimirlaydigan Support SVG Stikeri Tugma ichida */
+        .support-icon-anim {
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: headsetMotion 2s infinite ease-in-out;
+        }
+
+        @keyframes headsetMotion {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.18) rotate(8deg); }
+        }
+
+        /* WALLET YOPIQ XABARI */
         .wallet-locked-box {
             width: 100%;
             background: rgba(0, 0, 0, 0.03);
@@ -413,10 +502,10 @@
                 <div class="balance-label">Total Balance</div>
                 <div class="balance-display"><span id="balanceVal">0.00000</span> USDT</div>
 
-                <!-- Dumaloq o'lchami o'zgarmadi, ichidagi almaz esa dumaloqqa tenglashib kattalashtirildi -->
+                <!-- Dumaloq doiraga yetib boradigan kattalashtirilgan almaz -->
                 <button class="tap-circle-btn" onclick="tapDiamond()">
                     <div class="inner-diamond">
-                        <svg viewBox="0 0 120 120" width="162" height="162" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg viewBox="0 0 120 120" width="182" height="182" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <linearGradient id="dTop2" x1="0%" y1="0%" x2="100%" y2="100%">
                                     <stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#0a0a0a"/>
@@ -447,10 +536,39 @@
                 <div class="section-sub">Tezroq va ko'proq ishlash uchun kuchaytirgichlar</div>
             </div>
 
-            <!-- 3. Support -->
+            <!-- 3. Support (@pauladeroza lichkasi, rasm, qimirlaydigan galochka va qora tugma) -->
             <div id="pane-support" class="tab-pane">
                 <div class="section-title">Support</div>
-                <div class="section-sub">Savollar bo'yicha yordam xizmati</div>
+                <div class="section-sub">Savollar va yordam uchun rasmiy operator</div>
+
+                <div class="support-card">
+                    <!-- Support xodimining rasmi (agar mavjud bo'lmasa avtomatik fallback ishlaydi) -->
+                    <img src="https://t.me/i/userpic/320/pauladeroza.jpg" 
+                         onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Paula+De+Roza&background=000000&color=ffffff&bold=true&size=128';" 
+                         alt="Support" class="support-avatar">
+                    
+                    <div class="support-user-info">
+                        <span>@pauladeroza</span>
+                        <span class="moving-check">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" fill="#000000"/>
+                                <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                    </div>
+
+                    <a href="https://t.me/pauladeroza" target="_blank" class="support-btn">
+                        <div class="support-icon-anim">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 13V12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12V13" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round"/>
+                                <rect x="2.5" y="11.5" width="4" height="6.5" rx="2" fill="#ffffff"/>
+                                <rect x="17.5" y="11.5" width="4" height="6.5" rx="2" fill="#ffffff"/>
+                                <path d="M19.5 18C19.5 19.8 17.8 21 15.5 21H12" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <span>Murojaat qilish</span>
+                    </a>
+                </div>
             </div>
 
             <!-- 4. Wallet -->
