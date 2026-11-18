@@ -49,7 +49,7 @@
             pointer-events: auto;
         }
 
-        /* 1-OYNA: LOADING ALMAZ */
+        /* LOADING ALMAZ */
         .loader-container {
             display: flex;
             flex-direction: column;
@@ -70,19 +70,10 @@
             filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.25));
         }
 
-        .diamond-glint {
-            animation: glintPulse 2.2s infinite ease-in-out;
-        }
-
         @keyframes diamondFloat {
             0%, 100% { transform: scale(1) translateY(0) rotate(0deg); }
             35% { transform: scale(1.12) translateY(-10px) rotate(-4deg); }
             70% { transform: scale(1.08) translateY(-6px) rotate(4deg); }
-        }
-
-        @keyframes glintPulse {
-            0%, 100% { opacity: 0.25; }
-            50% { opacity: 0.85; }
         }
 
         .progress-wrapper {
@@ -117,7 +108,7 @@
             letter-spacing: 1.5px;
         }
 
-        /* 2-OYNA: ASOSIY EKRAN */
+        /* ASOSIY EKRAN */
         #mainPage {
             justify-content: space-between;
             padding: 16px 16px 100px 16px;
@@ -142,7 +133,7 @@
             border: 1px solid rgba(0, 0, 0, 0.08);
             padding: 6px 14px 6px 6px;
             border-radius: 30px;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .user-avatar {
@@ -163,10 +154,11 @@
             display: none;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 14px;
+            justify-content: flex-start;
+            gap: 12px;
             width: 100%;
             height: 100%;
+            padding-top: 10px;
         }
 
         .tab-pane.active-pane {
@@ -174,11 +166,11 @@
         }
 
         .balance-display {
-            font-size: 32px;
+            font-size: 30px;
             font-weight: 900;
             color: #000000;
             letter-spacing: 1px;
-            margin-top: 6px;
+            margin-top: 4px;
         }
 
         .balance-label {
@@ -189,10 +181,10 @@
             letter-spacing: 1px;
         }
 
-        /* Cheti qora dumaloq shakl ichidagi Almaz tugmasi */
+        /* Qimirlamaydigan, sal tepada joylashgan qora chetli dumaloq almaz */
         .tap-circle-btn {
-            width: 230px;
-            height: 230px;
+            width: 210px;
+            height: 210px;
             border-radius: 50%;
             background: #ffffff;
             border: 4px solid #000000;
@@ -200,26 +192,24 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
             outline: none;
-            margin: 18px 0;
-            position: relative;
+            margin-top: 10px;
         }
 
         .tap-circle-btn:active {
-            transform: scale(0.93);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.18);
+            transform: scale(0.94);
         }
 
         .inner-diamond {
-            animation: diamondFloat 2.2s infinite ease-in-out;
-            filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.2));
+            filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.18));
         }
 
         .section-title {
             font-size: 22px;
             font-weight: 900;
             color: #000000;
+            margin-top: 10px;
         }
 
         .section-sub {
@@ -229,21 +219,46 @@
             text-align: center;
         }
 
-        .connect-wallet-btn {
-            margin-top: 14px;
+        /* DeFi va Mail / URL kiritish bo'limi */
+        .defi-box {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.03);
+            border: 1.5px solid rgba(0, 0, 0, 0.1);
+            border-radius: 18px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .defi-input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid #000000;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            outline: none;
+            background: #ffffff;
+            color: #000000;
+        }
+
+        .copy-btn {
             background: #000000;
             color: #ffffff;
             border: none;
-            padding: 14px 26px;
-            border-radius: 16px;
-            font-size: 14px;
+            padding: 11px;
+            border-radius: 12px;
+            font-size: 13px;
             font-weight: 900;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
         }
 
-        .connect-wallet-btn:active {
-            transform: scale(0.95);
+        .copy-btn:active {
+            transform: scale(0.97);
         }
 
         /* PASTKI MENYU PANELI */
@@ -294,6 +309,7 @@
             justify-content: center;
         }
 
+        /* Jonli qimirlaydigan Premium SVG Animatsiyalar */
         .anim-tap { animation: pulseTap 1.8s infinite ease-in-out; }
         .anim-boost { animation: flyRocket 2s infinite ease-in-out; }
         .anim-support { animation: tiltHeadset 2.2s infinite ease-in-out; }
@@ -356,7 +372,6 @@
 
                     <polyline points="10,44 110,44" stroke="#666666" stroke-width="1.2"/>
                     <polyline points="34,18 38,44 60,106 82,44 86,18" stroke="#555555" stroke-width="1"/>
-                    <polygon class="diamond-glint" points="34,18 60,44 38,44" fill="#ffffff" opacity="0.25"/>
                 </svg>
             </div>
 
@@ -384,10 +399,10 @@
                 <div class="balance-label">Mening Balansim</div>
                 <div class="balance-display"><span id="balanceVal">0.00000</span> USDT</div>
 
-                <!-- Dumaloq qora chetli shakl ichidagi Almaz -->
+                <!-- Qimirlamaydigan, sal tepada turgan dumaloq almaz -->
                 <button class="tap-circle-btn" onclick="tapDiamond()">
                     <div class="inner-diamond">
-                        <svg viewBox="0 0 120 120" width="145" height="145" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg viewBox="0 0 120 120" width="135" height="135" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <linearGradient id="dTop2" x1="0%" y1="0%" x2="100%" y2="100%">
                                     <stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#0a0a0a"/>
@@ -424,17 +439,21 @@
                 <div class="section-sub">Savollar bo'yicha yordam xizmati</div>
             </div>
 
-            <!-- 4. Wallet -->
+            <!-- 4. Wallet (Mini App ichida DeFi hisobi va Mail/URL nusxalash) -->
             <div id="pane-wallet" class="tab-pane">
-                <div class="section-title">Telegram Wallet</div>
-                <div class="balance-label" style="margin-top: 8px;">Umumiy Mablag'ingiz</div>
+                <div class="section-title">DeFi Wallet</div>
+                <div class="balance-label" style="margin-top: 4px;">Jami Mablag'ingiz</div>
                 <div class="balance-display"><span id="walletBalanceVal">0.00000</span> USDT</div>
-                <div class="section-sub">Telegram hamyoningiz avtomatik ochilmoqda...</div>
-                <button class="connect-wallet-btn" onclick="openTelegramWallet()">Telegram Wallet-ni ulash</button>
+
+                <div class="defi-box">
+                    <div style="font-size: 13px; font-weight: 900; color: #000000;">DeFi Hisobi / Mail / URL kiritish:</div>
+                    <input type="text" id="defiInput" class="defi-input" placeholder="https://t.me/wallet yoki mail yozing...">
+                    <button class="copy-btn" onclick="copyDefiInput()">Nusxalash va Saqlash</button>
+                </div>
             </div>
         </div>
 
-        <!-- Pastki menyu -->
+        <!-- Pastki menyu (Jonli SVG stikerlar bilan) -->
         <div class="bottom-nav">
             <div class="nav-item active" onclick="switchTab('paulatap', this)">
                 <div class="svg-box anim-tap">
@@ -509,13 +528,12 @@
             document.getElementById('walletBalanceVal').innerText = userBalance.toFixed(5);
         }
 
-        function openTelegramWallet() {
-            const walletLink = "https://t.me/wallet";
-            if (tg && tg.openTelegramLink) {
-                tg.openTelegramLink(walletLink);
-            } else {
-                window.open(walletLink, "_blank");
-            }
+        function copyDefiInput() {
+            const inputField = document.getElementById('defiInput');
+            inputField.select();
+            inputField.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(inputField.value);
+            alert("Ma'lumot nusxalandi!");
         }
 
         let currentProgress = 1;
@@ -542,13 +560,6 @@
 
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
             element.classList.add('active');
-
-            // Wallet bosilganda avtomatik Telegram Wallet akkauntiga kirish
-            if (tabId === 'wallet') {
-                setTimeout(() => {
-                    openTelegramWallet();
-                }, 250);
-            }
         }
     </script>
 </body>
