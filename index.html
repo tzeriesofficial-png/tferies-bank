@@ -648,10 +648,16 @@
             50% { transform: translateY(-4px) scale(1.08); }
         }
 
+        .gift-status-neutral {
+            font-size: 12.5px;
+            font-weight: 800;
+            color: #e9d5ff;
+        }
+
         .gift-result-label {
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 900;
-            color: #fde047;
+            color: #ffffff;
         }
 
         .gift-result-label.danger {
@@ -708,13 +714,13 @@
             color: #ddd6fe;
         }
 
-        /* KITOBCHA MODAL */
+        /* KITOBCHA & HADYA MODAL */
         .rules-modal {
             display: none;
             position: fixed;
             inset: 0;
             z-index: 50;
-            background: rgba(3, 1, 10, 0.78);
+            background: rgba(3, 1, 10, 0.82);
             backdrop-filter: blur(6px);
             align-items: center;
             justify-content: center;
@@ -731,15 +737,15 @@
             background: linear-gradient(160deg, #24104d 0%, #0f0724 100%);
             border: 1.5px solid rgba(192, 132, 252, 0.6);
             border-radius: 22px;
-            padding: 20px;
+            padding: 18px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 11px;
             box-shadow: 0 20px 45px rgba(0, 0, 0, 0.75);
         }
 
         .rules-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 950;
             color: #fde047;
             text-align: center;
@@ -749,23 +755,77 @@
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            font-size: 13px;
+            gap: 7px;
+            font-size: 12.5px;
             line-height: 1.45;
             color: #f3e8ff;
         }
 
         .close-rules-btn {
-            margin-top: 4px;
+            margin-top: 2px;
             width: 100%;
-            padding: 11px;
+            padding: 10px;
             border: none;
             border-radius: 13px;
             background: linear-gradient(135deg, #9333ea, #c084fc);
             color: #ffffff;
-            font-size: 13.5px;
+            font-size: 13px;
             font-weight: 900;
             cursor: pointer;
+        }
+
+        .username-input {
+            width: 100%;
+            padding: 11px 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(192, 132, 252, 0.55);
+            background: rgba(9, 4, 22, 0.92);
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 700;
+            outline: none;
+        }
+
+        .target-user-preview {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            background: rgba(16, 7, 38, 0.92);
+            border: 1px solid rgba(192, 132, 252, 0.45);
+            border-radius: 14px;
+            padding: 9px 11px;
+        }
+
+        .target-user-preview.visible {
+            display: flex;
+        }
+
+        .target-user-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #c084fc;
+            background: #1e103f;
+        }
+
+        .target-user-meta {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            gap: 2px;
+        }
+
+        .target-user-nick {
+            font-size: 13.5px;
+            font-weight: 900;
+            color: #ffffff;
+        }
+
+        .target-user-status {
+            font-size: 11px;
+            font-weight: 700;
+            color: #ddd6fe;
         }
 
         /* HISOBIM BO'LIMI */
@@ -774,24 +834,24 @@
             background: linear-gradient(160deg, rgba(109, 40, 217, 0.28) 0%, rgba(25, 11, 56, 0.76) 60%, rgba(10, 5, 24, 0.94) 100%);
             border: 1.5px solid rgba(192, 132, 252, 0.45);
             border-radius: 24px;
-            padding: 20px 18px;
+            padding: 16px 15px;
             box-shadow: 0 16px 38px rgba(0, 0, 0, 0.55), inset 0 0 20px rgba(168, 85, 247, 0.14);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 13px;
+            gap: 10px;
             text-align: center;
         }
 
         .panel-title {
-            font-size: 20px;
+            font-size: 19px;
             font-weight: 900;
             letter-spacing: 0.8px;
             color: #ffffff;
         }
 
         .balance-big {
-            font-size: 26px;
+            font-size: 25px;
             font-weight: 950;
             color: #fde047;
             display: inline-flex;
@@ -800,16 +860,32 @@
             text-shadow: 0 0 16px rgba(250, 204, 21, 0.35);
         }
 
+        .payment-schedule-banner {
+            width: 100%;
+            background: rgba(15, 7, 36, 0.9);
+            border: 1px solid rgba(250, 204, 21, 0.45);
+            border-radius: 14px;
+            padding: 9px 12px;
+            font-size: 12px;
+            font-weight: 800;
+            color: #fde047;
+        }
+
         .withdraw-main-btn {
             width: 100%;
-            padding: 13px 16px;
+            padding: 12px 14px;
             border-radius: 15px;
             border: 1px solid rgba(250, 204, 21, 0.5);
             background: linear-gradient(135deg, #7c3aed, #a855f7);
             color: #ffffff;
-            font-size: 14.5px;
+            font-size: 14px;
             font-weight: 900;
             cursor: pointer;
+        }
+
+        .withdraw-main-btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
         }
 
         .withdraw-box {
@@ -868,10 +944,15 @@
             cursor: pointer;
         }
 
-        /* HISOB BO'LIMI */
+        .send-admin-btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        /* HISOB BO'LIMI: PROFIL VA GIFT SLOTLAR */
         .profile-photo-ring {
-            width: 92px;
-            height: 92px;
+            width: 82px;
+            height: 82px;
             border-radius: 50%;
             padding: 3px;
             background: linear-gradient(135deg, #38bdf8, #c084fc, #facc15);
@@ -894,19 +975,18 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            margin-top: 2px;
         }
 
         .user-nick-text {
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 900;
             color: #ffffff;
             letter-spacing: 0.4px;
         }
 
         .moving-badge-svg {
-            width: 22px;
-            height: 22px;
+            width: 21px;
+            height: 21px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -918,6 +998,115 @@
             0%, 100% { transform: scale(1) rotate(0deg); }
             30% { transform: scale(1.22) rotate(-10deg); }
             70% { transform: scale(1.14) rotate(10deg); }
+        }
+
+        .inventory-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            margin-top: 2px;
+        }
+
+        .inventory-heading {
+            font-size: 12px;
+            font-weight: 900;
+            color: #e9d5ff;
+            text-align: left;
+            padding-left: 2px;
+        }
+
+        .gift-slots-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+        }
+
+        .gift-slot-card {
+            min-height: 74px;
+            border-radius: 13px;
+            border: 1px dashed rgba(192, 132, 252, 0.4);
+            background: rgba(12, 6, 30, 0.72);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            padding: 6px 4px;
+            font-size: 10px;
+            color: #a78bfa;
+            cursor: default;
+        }
+
+        .gift-slot-card.filled {
+            border: 1.5px solid rgba(250, 204, 21, 0.65);
+            background: linear-gradient(155deg, rgba(124, 58, 237, 0.34), rgba(22, 10, 52, 0.94));
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        .gift-slot-card.filled.selected {
+            border-color: #fde047;
+            box-shadow: 0 0 14px rgba(250, 204, 21, 0.35);
+        }
+
+        .slot-gift-name {
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .slot-gift-price {
+            font-size: 10px;
+            font-weight: 900;
+            color: #fde047;
+        }
+
+        .selected-gift-actions {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            gap: 6px;
+            background: rgba(13, 6, 32, 0.9);
+            border: 1px solid rgba(192, 132, 252, 0.48);
+            border-radius: 14px;
+            padding: 9px 10px;
+        }
+
+        .selected-gift-actions.open {
+            display: flex;
+        }
+
+        .selected-gift-title {
+            font-size: 12px;
+            font-weight: 900;
+            color: #fde047;
+        }
+
+        .gift-act-btns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7px;
+        }
+
+        .gift-act-btn {
+            padding: 8px;
+            border-radius: 11px;
+            border: none;
+            font-size: 12px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .btn-sell-gift {
+            background: linear-gradient(135deg, #eab308, #facc15);
+            color: #14092c;
+        }
+
+        .btn-send-gift {
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: #ffffff;
         }
 
         /* PASTKI 4 TA BO'LIM PANELI */
@@ -1104,7 +1293,6 @@
 
             <!-- 1. o'yinlar BO'LIMI -->
             <div id="panel-games" class="tab-panel">
-                <!-- CRASH -->
                 <div class="game-pick-card" onclick="openGameTab('crash')">
                     <div class="game-pick-left">
                         <span class="tg-star-anim">
@@ -1120,7 +1308,6 @@
                     <span class="open-badge">Kirish</span>
                 </div>
 
-                <!-- BOMBA (MINES) -->
                 <div class="game-pick-card" onclick="openGameTab('mines')">
                     <div class="game-pick-left">
                         <span class="tg-star-anim">
@@ -1139,7 +1326,6 @@
                     <span class="open-badge">Kirish</span>
                 </div>
 
-                <!-- GIFT CASE -->
                 <div class="game-pick-card" onclick="openGameTab('giftcase')">
                     <div class="game-pick-left">
                         <span class="tg-star-anim">
@@ -1152,13 +1338,12 @@
                         </span>
                         <div class="game-pick-text">
                             <span class="game-pick-title">GIFT CASE</span>
-                            <span class="game-pick-sub">Giftlar • 50/50 xavf va yutuq</span>
+                            <span class="game-pick-sub">Min. 4 quti • 1 quti = 2 Stars</span>
                         </div>
                     </div>
                     <span class="open-badge">Kirish</span>
                 </div>
 
-                <!-- SEKUNDAMER -->
                 <div class="game-pick-card" onclick="openGameTab('stopwatch')">
                     <div class="game-pick-left">
                         <span class="tg-star-anim">
@@ -1187,7 +1372,7 @@
                                     <path d="M12 2L15.1 8.3L22 9.3L17 14.1L18.2 21L12 17.7L5.8 21L7 14.1L2 9.3L8.9 8.3L12 2Z" fill="#facc15"/>
                                 </svg>
                             </span>
-                            <span id="crashTopStars">2 Stars</span>
+                            <span id="crashTopStars">4 Stars</span>
                         </div>
 
                         <button class="book-btn" onclick="openRulesModal('crash')">
@@ -1255,7 +1440,7 @@
                                     <path d="M12 2L15.1 8.3L22 9.3L17 14.1L18.2 21L12 17.7L5.8 21L7 14.1L2 9.3L8.9 8.3L12 2Z" fill="#facc15"/>
                                 </svg>
                             </span>
-                            <span id="minesTopStars">2 Stars</span>
+                            <span id="minesTopStars">4 Stars</span>
                         </div>
 
                         <button class="book-btn" onclick="openRulesModal('mines')">
@@ -1274,18 +1459,16 @@
                     </div>
 
                     <div class="mines-info-bar">
-                        <span id="minesLevelInfo">3 bomba • Har 3 toʻgʻri: +1.2 Stars</span>
+                        <span id="minesLevelInfo">3 bomba • Har 3 toʻgʻri: +1.2×</span>
                         <span id="minesRoundWin">Yutuq: 0 Stars</span>
                     </div>
 
-                    <!-- Stars tikish qatori -->
                     <div class="bet-input-row">
                         <button class="step-btn" onclick="changeMinesBet(-1)">−</button>
                         <div id="minesBetDisplay" class="bet-amount-val">Tikish: 1 Stars</div>
                         <button class="step-btn" onclick="changeMinesBet(1)">+</button>
                     </div>
 
-                    <!-- 20 ta katakcha -->
                     <div id="minesGrid20" class="mines-grid-20"></div>
 
                     <div class="action-row">
@@ -1305,7 +1488,7 @@
                                     <path d="M12 2L15.1 8.3L22 9.3L17 14.1L18.2 21L12 17.7L5.8 21L7 14.1L2 9.3L8.9 8.3L12 2Z" fill="#facc15"/>
                                 </svg>
                             </span>
-                            <span id="giftTopStars">2 Stars</span>
+                            <span id="giftTopStars">4 Stars</span>
                         </div>
 
                         <button class="book-btn" onclick="openRulesModal('giftcase')">
@@ -1319,10 +1502,9 @@
 
                     <div class="gift-reel-box">
                         <div id="giftShowcaseIcon" class="gift-showcase-svg"></div>
-                        <div id="giftResultText" class="gift-result-label">Case ochishga tayyor (50% Gift / 50% Xavf)</div>
+                        <div id="giftResultText" class="gift-status-neutral">Quti ochishga tayyor</div>
                     </div>
 
-                    <!-- Giftlar ro'yxati: Yurakcha 5, Padarka 11, Tabrik 13, Olmos 16, Uzuk 20, Xavf ❌ -->
                     <div class="gift-legend-strip">
                         <div class="gift-chip"><span>Yurakcha</span><b>5★</b></div>
                         <div class="gift-chip"><span>Padarka</span><b>11★</b></div>
@@ -1333,9 +1515,9 @@
                     </div>
 
                     <div class="bet-input-row">
-                        <button class="step-btn" onclick="changeGiftBet(-1)">−</button>
-                        <div id="giftBetDisplay" class="bet-amount-val">1 Stars</div>
-                        <button class="step-btn" onclick="changeGiftBet(1)">+</button>
+                        <button class="step-btn" onclick="changeGiftBoxes(-1)">−</button>
+                        <div id="giftBetDisplay" class="bet-amount-val">4 quti • 8 Stars</div>
+                        <button class="step-btn" onclick="changeGiftBoxes(1)">+</button>
                     </div>
 
                     <button id="btnOpenGiftCase" class="bet-action-btn btn-stop" onclick="openGiftCase()">Gift Case ochish</button>
@@ -1352,7 +1534,7 @@
                                     <path d="M12 2L15.1 8.3L22 9.3L17 14.1L18.2 21L12 17.7L5.8 21L7 14.1L2 9.3L8.9 8.3L12 2Z" fill="#facc15"/>
                                 </svg>
                             </span>
-                            <span id="swTopStars">2 Stars</span>
+                            <span id="swTopStars">4 Stars</span>
                         </div>
 
                         <button class="book-btn" onclick="openRulesModal('stopwatch')">
@@ -1410,10 +1592,14 @@
                                 <path d="M14 2L17.6 9.3L25.6 10.5L19.8 16.1L21.2 24.1L14 20.3L6.8 24.1L8.2 16.1L2.4 10.5L10.4 9.3L14 2Z" fill="#facc15"/>
                             </svg>
                         </span>
-                        <span id="myAccountStars">2 Stars</span>
+                        <span id="myAccountStars">4 Stars</span>
                     </div>
 
-                    <button class="withdraw-main-btn" onclick="toggleWithdrawBox()">Adminka orqali yechib olish</button>
+                    <div id="paymentTimerBanner" class="payment-schedule-banner">
+                        Toʻlov tizimi 02:00 da ochiladi • 02:00 gacha ... daqiqa
+                    </div>
+
+                    <button id="btnOpenWithdraw" class="withdraw-main-btn" onclick="toggleWithdrawBox()">Adminka orqali yechib olish</button>
 
                     <div id="withdrawBox" class="withdraw-box">
                         <div class="target-switch-row">
@@ -1429,12 +1615,12 @@
                             <button class="step-btn" onclick="changeWithdrawStars(1)">+</button>
                         </div>
 
-                        <button class="send-admin-btn" onclick="sendToAdmin()">@axeopeng ga yuborish</button>
+                        <button id="btnSendAdmin" class="send-admin-btn" onclick="sendToAdmin()">@axeopeng ga yuborish</button>
                     </div>
                 </div>
             </div>
 
-            <!-- 7. hisob BO'LIMI (KIRISH DAN KEYIN 1-BO'LIB SHU OCHILADI) -->
+            <!-- 7. hisob BO'LIMI (1-BO'LIB SHU OCHILADI + GIFT SLOTLAR) -->
             <div id="panel-account" class="tab-panel active">
                 <div class="panel-card">
                     <div class="profile-photo-ring">
@@ -1444,7 +1630,7 @@
                     <div class="user-nick-row">
                         <span id="userName" class="user-nick-text">@foydalanuvchi</span>
                         <span class="moving-badge-svg">
-                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg viewBox="0 0 24 24" width="21" height="21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <defs>
                                     <linearGradient id="blueBadgeGrad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
                                         <stop offset="0%" stop-color="#38bdf8"/>
@@ -1455,6 +1641,19 @@
                                 <path d="M8 12.2L10.8 15L16.3 9.2" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </span>
+                    </div>
+
+                    <div class="inventory-section">
+                        <div class="inventory-heading">Giftlar hisobi (boʻsh kataklar):</div>
+                        <div id="giftSlotsGrid" class="gift-slots-grid"></div>
+                    </div>
+
+                    <div id="selectedGiftActions" class="selected-gift-actions">
+                        <div id="selectedGiftTitle" class="selected-gift-title">Gift tanlanmadi</div>
+                        <div class="gift-act-btns">
+                            <button class="gift-act-btn btn-sell-gift" onclick="sellSelectedGift()">Sotish</button>
+                            <button class="gift-act-btn btn-send-gift" onclick="openSendGiftModal()">Hadya qilish</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1522,6 +1721,30 @@
         </div>
     </div>
 
+    <!-- HADYA QILISH MODALI: QAYSI TELEGRAM @USERNAME GA YUBORISH -->
+    <div id="sendGiftModal" class="rules-modal" onclick="closeSendGiftModal(event)">
+        <div class="rules-box" onclick="event.stopPropagation()">
+            <div class="rules-title">Qaysi Telegram @username ga hadya gift yubormoqchisiz?</div>
+
+            <input id="recipientUsernameInput" class="username-input" type="text" placeholder="@username kiriting" oninput="onRecipientInputChange()">
+
+            <div id="recipientPreview" class="target-user-preview">
+                <img id="recipientAvatarImg" class="target-user-avatar" src="" alt="Profil rasmi">
+                <div class="target-user-meta">
+                    <div id="recipientNickLabel" class="target-user-nick">@username</div>
+                    <div id="recipientStatusLabel" class="target-user-status">Telegram holati tekshirilmoqda...</div>
+                </div>
+            </div>
+
+            <div class="gift-act-btns">
+                <button class="gift-act-btn btn-sell-gift" onclick="verifyAndPreviewRecipient()">Tekshirish</button>
+                <button id="btnConfirmSendGift" class="gift-act-btn btn-send-gift" onclick="confirmSendGiftToRecipient()" disabled>Yuborish</button>
+            </div>
+
+            <button class="close-rules-btn" onclick="closeSendGiftModal()">Bekor qilish</button>
+        </div>
+    </div>
+
     <script>
         const tg = window.Telegram ? window.Telegram.WebApp : null;
         if (tg) {
@@ -1530,6 +1753,9 @@
         }
 
         const tgUser = (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) ? tg.initDataUnsafe.user : null;
+
+        // Agar sizda Telegram @username va profil rasmini qaytaradigan backend URL bo'lsa, shu yerga qo'ying:
+        const TG_LOOKUP_API_URL = '';
 
         function getUserStorageSuffix() {
             if (tgUser && tgUser.id) {
@@ -1544,8 +1770,17 @@
         }
 
         const userSuffix = getUserStorageSuffix();
-        const STORAGE_STARS_KEY = 'tg_stars_balance_' + userSuffix;
+        const STORAGE_STARS_KEY = 'tg_stars_balance_bonus4_' + userSuffix;
         const STORAGE_HIST_KEY = 'tg_crash_history_' + userSuffix;
+        const STORAGE_GIFTS_KEY = 'tg_user_gifts_v1_' + userSuffix;
+
+        const defaultAvatarSvg = "data:image/svg+xml;utf8," + encodeURIComponent(`
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <rect width="100" height="100" fill="#1e103f"/>
+                <circle cx="50" cy="38" r="18" fill="#c084fc"/>
+                <path d="M20 86C24 68 36 60 50 60C64 60 76 68 80 86" fill="#7c3aed"/>
+            </svg>
+        `);
 
         function loadTelegramUser() {
             const nameEl = document.getElementById('userName');
@@ -1560,18 +1795,9 @@
                 }
             }
             nameEl.textContent = displayName;
-
-            const defaultAvatar = "data:image/svg+xml;utf8," + encodeURIComponent(`
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                    <rect width="100" height="100" fill="#1e103f"/>
-                    <circle cx="50" cy="38" r="18" fill="#c084fc"/>
-                    <path d="M20 86C24 68 36 60 50 60C64 60 76 68 80 86" fill="#7c3aed"/>
-                </svg>
-            `);
-
-            photoEl.src = (tgUser && tgUser.photo_url) ? tgUser.photo_url : defaultAvatar;
+            photoEl.src = (tgUser && tgUser.photo_url) ? tgUser.photo_url : defaultAvatarSvg;
             photoEl.onerror = function () {
-                this.src = defaultAvatar;
+                this.src = defaultAvatarSvg;
             };
         }
         loadTelegramUser();
@@ -1622,10 +1848,11 @@
             if (mode === 'giftcase') {
                 titleEl.textContent = 'GIFT CASE — Qanday oʻynaladi';
                 listEl.innerHTML = `
-                    <li>• Stars tikib Case oching. Xavfli (<b>❌</b>) va xavfsiz gift tushish ehtimoli <b>50% / 50%</b>.</li>
-                    <li>• <b>Yurakcha:</b> +5 Stars • <b>Padarka:</b> +11 Stars • <b>Tabrik:</b> +13 Stars</li>
-                    <li>• <b>Olmos:</b> +16 Stars • <b>Uzuk:</b> +20 Stars</li>
-                    <li>• <b>❌ (Xavfli):</b> tushsa yutqazasiz va tikilgan Stars kuyadi.</li>
+                    <li>• Har 1 ta quti ochish narxi <b>2 Stars</b>. Minimal ochish <b>4 ta</b> quti (8 Stars).</li>
+                    <li>• Nechta quti ochilsa, Stars oʻshanchaga koʻpaytiriladi (<b>2 × quti soni</b>).</li>
+                    <li>• Xavfli (<b>❌</b>) va xavfsiz gift tushish ehtimoli <b>50% / 50%</b>.</li>
+                    <li>• Tushgan giftlar Stars boʻlib emas, <b>hisob</b> boʻlimidagi boʻsh kataklarga tushadi.</li>
+                    <li>• Gift ustiga bosib <b>Sotish</b> yoki <b>Hadya qilish</b> mumkin.</li>
                 `;
             } else if (mode === 'mines') {
                 titleEl.textContent = 'BOMBA — Qanday oʻynaladi';
@@ -1658,10 +1885,10 @@
             }
         }
 
-        // HAR BIR FOYDALANUVCHI UCHUN ALOHIDA STARS BALANSI (BOSHLANG'ICH: 2 STARS)
+        // BALANS (4 STARS BONUS)
         const savedStars = localStorage.getItem(STORAGE_STARS_KEY);
-        let starsBalance = savedStars !== null ? Number(savedStars) : 2;
-        if (Number.isNaN(starsBalance) || starsBalance < 0) starsBalance = 2;
+        let starsBalance = savedStars !== null ? Number(savedStars) : 4;
+        if (Number.isNaN(starsBalance) || starsBalance < 0) starsBalance = 4;
 
         const savedHist = localStorage.getItem(STORAGE_HIST_KEY);
         let historyList = [1.45, 2.30, 1.12, 3.65, 1.68, 2.05];
@@ -1672,11 +1899,31 @@
             } catch (_) {}
         }
 
+        // HISOBDAGI GIFT KATAKLARI (6 TA BO'SH JOY)
+        const TOTAL_GIFT_SLOTS = 6;
+        let userGiftSlots = new Array(TOTAL_GIFT_SLOTS).fill(null);
+        const savedGifts = localStorage.getItem(STORAGE_GIFTS_KEY);
+        if (savedGifts) {
+            try {
+                const parsedSlots = JSON.parse(savedGifts);
+                if (Array.isArray(parsedSlots)) {
+                    for (let i = 0; i < TOTAL_GIFT_SLOTS; i++) {
+                        userGiftSlots[i] = parsedSlots[i] || null;
+                    }
+                }
+            } catch (_) {}
+        }
+
+        let selectedGiftSlotIndex = null;
+
         const crashTopStarsEl = document.getElementById('crashTopStars');
         const minesTopStarsEl = document.getElementById('minesTopStars');
         const giftTopStarsEl = document.getElementById('giftTopStars');
         const swTopStarsEl = document.getElementById('swTopStars');
         const myAccountStarsEl = document.getElementById('myAccountStars');
+        const giftSlotsGridEl = document.getElementById('giftSlotsGrid');
+        const selectedGiftActionsEl = document.getElementById('selectedGiftActions');
+        const selectedGiftTitleEl = document.getElementById('selectedGiftTitle');
 
         function formatStars(val) {
             const num = Number(val);
@@ -1687,6 +1934,7 @@
         function saveAll() {
             localStorage.setItem(STORAGE_STARS_KEY, String(starsBalance));
             localStorage.setItem(STORAGE_HIST_KEY, JSON.stringify(historyList.slice(0, 15)));
+            localStorage.setItem(STORAGE_GIFTS_KEY, JSON.stringify(userGiftSlots));
         }
 
         function syncStars() {
@@ -1699,12 +1947,221 @@
             updateCrashButtons();
         }
 
+        function addGiftToEmptySlot(giftObj) {
+            const emptyIdx = userGiftSlots.findIndex(item => item === null);
+            if (emptyIdx === -1) return false;
+            userGiftSlots[emptyIdx] = {
+                id: giftObj.id,
+                name: giftObj.name,
+                reward: giftObj.reward
+            };
+            saveAll();
+            renderGiftSlots();
+            return true;
+        }
+
+        function renderGiftSlots() {
+            giftSlotsGridEl.innerHTML = '';
+            for (let i = 0; i < TOTAL_GIFT_SLOTS; i++) {
+                const gift = userGiftSlots[i];
+                const slotEl = document.createElement('div');
+                slotEl.className = 'gift-slot-card';
+
+                if (gift) {
+                    slotEl.classList.add('filled');
+                    if (selectedGiftSlotIndex === i) {
+                        slotEl.classList.add('selected');
+                    }
+                    slotEl.innerHTML = `
+                        ${renderGiftSvg(gift.id, 24)}
+                        <span class="slot-gift-name">${gift.name}</span>
+                        <span class="slot-gift-price">${gift.reward}★</span>
+                    `;
+                    slotEl.onclick = () => selectGiftSlot(i);
+                } else {
+                    slotEl.innerHTML = `<span>Boʻsh joy</span>`;
+                }
+
+                giftSlotsGridEl.appendChild(slotEl);
+            }
+
+            if (selectedGiftSlotIndex !== null && userGiftSlots[selectedGiftSlotIndex]) {
+                const g = userGiftSlots[selectedGiftSlotIndex];
+                selectedGiftTitleEl.textContent = `${g.name} (${g.reward} Stars)`;
+                selectedGiftActionsEl.classList.add('open');
+            } else {
+                selectedGiftSlotIndex = null;
+                selectedGiftActionsEl.classList.remove('open');
+            }
+        }
+
+        function selectGiftSlot(idx) {
+            if (!userGiftSlots[idx]) return;
+            selectedGiftSlotIndex = (selectedGiftSlotIndex === idx) ? null : idx;
+            renderGiftSlots();
+        }
+
+        // SOTISH BOSILGANDA AVTOMATIK SOTILADI VA STARSGA AYLANADI
+        function sellSelectedGift() {
+            if (selectedGiftSlotIndex === null) return;
+            const gift = userGiftSlots[selectedGiftSlotIndex];
+            if (!gift) return;
+
+            starsBalance = +(starsBalance + gift.reward).toFixed(2);
+            userGiftSlots[selectedGiftSlotIndex] = null;
+            selectedGiftSlotIndex = null;
+            syncStars();
+            renderGiftSlots();
+        }
+
+        // HADYA QILISH MODALI (@USERNAME TEKSHIRUVI + PROFIL RASMI)
+        const sendGiftModalEl = document.getElementById('sendGiftModal');
+        const recipientInputEl = document.getElementById('recipientUsernameInput');
+        const recipientPreviewEl = document.getElementById('recipientPreview');
+        const recipientAvatarImgEl = document.getElementById('recipientAvatarImg');
+        const recipientNickLabelEl = document.getElementById('recipientNickLabel');
+        const recipientStatusLabelEl = document.getElementById('recipientStatusLabel');
+        const btnConfirmSendGiftEl = document.getElementById('btnConfirmSendGift');
+
+        let verifiedRecipient = null;
+
+        function openSendGiftModal() {
+            if (selectedGiftSlotIndex === null || !userGiftSlots[selectedGiftSlotIndex]) return;
+            verifiedRecipient = null;
+            recipientInputEl.value = '';
+            recipientPreviewEl.classList.remove('visible');
+            btnConfirmSendGiftEl.disabled = true;
+            sendGiftModalEl.classList.add('open');
+        }
+
+        function closeSendGiftModal(e) {
+            if (!e || e.target.id === 'sendGiftModal') {
+                sendGiftModalEl.classList.remove('open');
+            }
+        }
+
+        function onRecipientInputChange() {
+            verifiedRecipient = null;
+            btnConfirmSendGiftEl.disabled = true;
+        }
+
+        async function verifyAndPreviewRecipient() {
+            const raw = recipientInputEl.value.trim().replace(/^@+/, '').toLowerCase();
+            if (!/^[a-z0-9_]{5,32}$/.test(raw)) {
+                recipientPreviewEl.classList.add('visible');
+                recipientAvatarImgEl.src = defaultAvatarSvg;
+                recipientNickLabelEl.textContent = '@' + (raw || 'username');
+                recipientStatusLabelEl.textContent = 'Telegram @username notoʻgʻri kiritildi';
+                btnConfirmSendGiftEl.disabled = true;
+                return;
+            }
+
+            recipientPreviewEl.classList.add('visible');
+            recipientNickLabelEl.textContent = '@' + raw;
+            recipientStatusLabelEl.textContent = 'Telegramda tekshirilmoqda...';
+            recipientAvatarImgEl.src = defaultAvatarSvg;
+            btnConfirmSendGiftEl.disabled = true;
+
+            if (TG_LOOKUP_API_URL) {
+                try {
+                    const resp = await fetch(`${TG_LOOKUP_API_URL}?username=${encodeURIComponent(raw)}`);
+                    const data = await resp.json();
+                    if (data && data.exists) {
+                        verifiedRecipient = {
+                            username: '@' + raw,
+                            photoUrl: data.photo_url || defaultAvatarSvg
+                        };
+                        recipientAvatarImgEl.src = verifiedRecipient.photoUrl;
+                        recipientAvatarImgEl.onerror = () => { recipientAvatarImgEl.src = defaultAvatarSvg; };
+                        recipientStatusLabelEl.textContent = 'Telegramda tasdiqlandi';
+                        btnConfirmSendGiftEl.disabled = false;
+                    } else {
+                        recipientStatusLabelEl.textContent = 'Bu @username Telegramda topilmadi';
+                        btnConfirmSendGiftEl.disabled = true;
+                    }
+                    return;
+                } catch (_) {
+                    recipientStatusLabelEl.textContent = 'Server bilan ulanishda xato';
+                    btnConfirmSendGiftEl.disabled = true;
+                    return;
+                }
+            }
+
+            // Server ulanmagan holatda tekshirilgan @username profili
+            verifiedRecipient = {
+                username: '@' + raw,
+                photoUrl: defaultAvatarSvg
+            };
+            recipientAvatarImgEl.src = defaultAvatarSvg;
+            recipientStatusLabelEl.textContent = 'Telegram manzili tayyor (@' + raw + ')';
+            btnConfirmSendGiftEl.disabled = false;
+        }
+
+        function confirmSendGiftToRecipient() {
+            if (!verifiedRecipient || selectedGiftSlotIndex === null) return;
+            const gift = userGiftSlots[selectedGiftSlotIndex];
+            if (!gift) return;
+
+            userGiftSlots[selectedGiftSlotIndex] = null;
+            selectedGiftSlotIndex = null;
+            saveAll();
+            renderGiftSlots();
+            sendGiftModalEl.classList.remove('open');
+
+            const text = encodeURIComponent(
+                `Hadya gift yuborildi: ${gift.name} (${gift.reward} Stars) -> ${verifiedRecipient.username}`
+            );
+            const url = `https://t.me/axeopeng?text=${text}`;
+            if (tg && tg.openTelegramLink) {
+                tg.openTelegramLink(url);
+            }
+        }
+
+        // TO'LOV TIZIMI: HAR KUNI SOAT 02:00 DA OCHILADI VA 02:00 GACHA MINUT SANAYDI
+        const paymentTimerBannerEl = document.getElementById('paymentTimerBanner');
+        const btnOpenWithdrawEl = document.getElementById('btnOpenWithdraw');
+        const btnSendAdminEl = document.getElementById('btnSendAdmin');
+        const withdrawBoxEl = document.getElementById('withdrawBox');
+
+        function isPaymentOpenNow(now = new Date()) {
+            return now.getHours() === 2 && now.getMinutes() < 60;
+        }
+
+        function getMinutesUntilNext0200(now = new Date()) {
+            const target = new Date(now);
+            target.setHours(2, 0, 0, 0);
+            if (now >= target) {
+                target.setDate(target.getDate() + 1);
+            }
+            return Math.max(1, Math.ceil((target.getTime() - now.getTime()) / 60000));
+        }
+
+        function updatePaymentScheduleUI() {
+            const now = new Date();
+            const open = isPaymentOpenNow(now);
+
+            if (open) {
+                paymentTimerBannerEl.textContent = 'Toʻlov tizimi ochiq! (02:00 vaqti faol)';
+                btnOpenWithdrawEl.disabled = false;
+                btnSendAdminEl.disabled = false;
+            } else {
+                const minsLeft = getMinutesUntilNext0200(now);
+                paymentTimerBannerEl.textContent = `Toʻlov tizimi 02:00 da ochiladi • 02:00 gacha ${minsLeft} daqiqa`;
+                btnOpenWithdrawEl.disabled = true;
+                btnSendAdminEl.disabled = true;
+                withdrawBoxEl.classList.remove('open');
+            }
+        }
+
+        setInterval(updatePaymentScheduleUI, 1000);
+
         // ADMINKA ORQALI YECHISH
         let withdrawTarget = 'Postga';
         let withdrawAmount = 1;
 
         function toggleWithdrawBox() {
-            document.getElementById('withdrawBox').classList.toggle('open');
+            if (!isPaymentOpenNow()) return;
+            withdrawBoxEl.classList.toggle('open');
         }
 
         function getWithdrawRange() {
@@ -1733,6 +2190,7 @@
         }
 
         function sendToAdmin() {
+            if (!isPaymentOpenNow()) return;
             const text = encodeURIComponent(
                 `Assalomu alaykum @axeopeng, ${withdrawTarget} uchun ${withdrawAmount} Stars yechib olmoqchiman.`
             );
@@ -1744,7 +2202,7 @@
             }
         }
 
-        // BOMBA (MINES) O'YINI: STARS TIKISH + 20 KATAK + OSON / O'RTACHA / QIYIN
+        // BOMBA (MINES) O'YINI
         const MINES_CONFIG = {
             easy:   { bombs: 3, stepSafe: 3, multPerStep: 1.2, label: '3 bomba • Har 3 toʻgʻri: +1.2×' },
             medium: { bombs: 5, stepSafe: 2, multPerStep: 3.4, label: '5 bomba • Har 2 toʻgʻri: +3.4×' },
@@ -1900,7 +2358,7 @@
             btnMinesClaimEl.disabled = true;
         }
 
-        // GIFT CASE O'YINI: 50% XAVFLI (❌) / 50% XAVFSIZ GIFT
+        // GIFT CASE O'YINI (HAR 1 TA QUTI = 2 STARS, MINIMAL 4 TA QUTI, GIFT HISOBDAGI BO'SH JOYGA TUSHADI)
         const SAFE_GIFTS = [
             { id: 'heart',   name: 'Yurakcha', reward: 5 },
             { id: 'gift',    name: 'Padarka',  reward: 11 },
@@ -1909,57 +2367,87 @@
             { id: 'ring',    name: 'Uzuk',     reward: 20 }
         ];
 
-        let giftBet = 1;
+        const GIFT_PRICE_PER_BOX = 2;
+        const MIN_GIFT_BOXES = 4;
+        let giftBoxesCount = MIN_GIFT_BOXES;
+
         const giftBetDisplayEl = document.getElementById('giftBetDisplay');
         const giftShowcaseIconEl = document.getElementById('giftShowcaseIcon');
         const giftResultTextEl = document.getElementById('giftResultText');
 
-        function renderGiftSvg(type) {
-            if (type === 'heart') {
-                return `<svg viewBox="0 0 48 48" width="44" height="44" xmlns="http://www.w3.org/2000/svg"><path d="M24 41C24 41 7 29.8 7 17.5C7 12.2 11.2 8 16.4 8C19.8 8 22.6 9.8 24 12.3C25.4 9.8 28.2 8 31.6 8C36.8 8 41 12.2 41 17.5C41 29.8 24 41 24 41Z" fill="#f43f5e" stroke="#ffe4e6" stroke-width="2"/></svg>`;
-            }
-            if (type === 'gift') {
-                return `<svg viewBox="0 0 48 48" width="44" height="44" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="9" y="20" width="30" height="20" rx="4" fill="#a855f7" stroke="#f3e8ff" stroke-width="2"/><rect x="7" y="14" width="34" height="7" rx="2.5" fill="#c084fc" stroke="#ffffff" stroke-width="1.8"/><path d="M24 14V40" stroke="#facc15" stroke-width="3.5"/></svg>`;
-            }
-            if (type === 'party') {
-                return `<svg viewBox="0 0 48 48" width="44" height="44" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 38L18 14L34 30L10 38Z" fill="#facc15" stroke="#fffbeb" stroke-width="2"/><circle cx="31" cy="14" r="3" fill="#38bdf8"/><circle cx="38" cy="22" r="2.5" fill="#f472b6"/></svg>`;
-            }
-            if (type === 'diamond') {
-                return `<svg viewBox="0 0 48 48" width="44" height="44" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="15,11 33,11 41,21 24,39 7,21" fill="#38bdf8" stroke="#e0f2fe" stroke-width="2"/></svg>`;
-            }
-            if (type === 'ring') {
-                return `<svg viewBox="0 0 48 48" width="44" height="44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="28" r="11" stroke="#facc15" stroke-width="4"/><polygon points="24,8 29,13 24,18 19,13" fill="#e879f9" stroke="#ffffff" stroke-width="1.5"/></svg>`;
-            }
-            // ❌ XAVFLI BELGI
-            return `<svg viewBox="0 0 48 48" width="44" height="44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="18" fill="#fb7185" fill-opacity="0.22" stroke="#fb7185" stroke-width="2.5"/><path d="M16 16L32 32M32 16L16 32" stroke="#fb7185" stroke-width="3.6" stroke-linecap="round"/></svg>`;
+        function getGiftTotalCost() {
+            return giftBoxesCount * GIFT_PRICE_PER_BOX;
         }
 
-        function changeGiftBet(delta) {
-            let next = giftBet + delta;
-            if (next < 1) next = 1;
-            if (next > 100) next = 100;
-            giftBet = next;
-            giftBetDisplayEl.textContent = formatStars(giftBet);
+        function updateGiftSelectorDisplay() {
+            giftBetDisplayEl.textContent = `${giftBoxesCount} quti • ${getGiftTotalCost()} Stars`;
+        }
+
+        function changeGiftBoxes(delta) {
+            let next = giftBoxesCount + delta;
+            if (next < MIN_GIFT_BOXES) next = MIN_GIFT_BOXES;
+            if (next > 50) next = 50;
+            giftBoxesCount = next;
+            updateGiftSelectorDisplay();
+        }
+
+        function renderGiftSvg(type, size = 44) {
+            if (type === 'heart') {
+                return `<svg viewBox="0 0 48 48" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg"><path d="M24 41C24 41 7 29.8 7 17.5C7 12.2 11.2 8 16.4 8C19.8 8 22.6 9.8 24 12.3C25.4 9.8 28.2 8 31.6 8C36.8 8 41 12.2 41 17.5C41 29.8 24 41 24 41Z" fill="#f43f5e" stroke="#ffe4e6" stroke-width="2"/></svg>`;
+            }
+            if (type === 'gift') {
+                return `<svg viewBox="0 0 48 48" width="${size}" height="${size}" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="9" y="20" width="30" height="20" rx="4" fill="#a855f7" stroke="#f3e8ff" stroke-width="2"/><rect x="7" y="14" width="34" height="7" rx="2.5" fill="#c084fc" stroke="#ffffff" stroke-width="1.8"/><path d="M24 14V40" stroke="#facc15" stroke-width="3.5"/></svg>`;
+            }
+            if (type === 'party') {
+                return `<svg viewBox="0 0 48 48" width="${size}" height="${size}" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 38L18 14L34 30L10 38Z" fill="#facc15" stroke="#fffbeb" stroke-width="2"/><circle cx="31" cy="14" r="3" fill="#38bdf8"/><circle cx="38" cy="22" r="2.5" fill="#f472b6"/></svg>`;
+            }
+            if (type === 'diamond') {
+                return `<svg viewBox="0 0 48 48" width="${size}" height="${size}" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="15,11 33,11 41,21 24,39 7,21" fill="#38bdf8" stroke="#e0f2fe" stroke-width="2"/></svg>`;
+            }
+            if (type === 'ring') {
+                return `<svg viewBox="0 0 48 48" width="${size}" height="${size}" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="28" r="11" stroke="#facc15" stroke-width="4"/><polygon points="24,8 29,13 24,18 19,13" fill="#e879f9" stroke="#ffffff" stroke-width="1.5"/></svg>`;
+            }
+            return `<svg viewBox="0 0 48 48" width="${size}" height="${size}" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="18" fill="#fb7185" fill-opacity="0.22" stroke="#fb7185" stroke-width="2.5"/><path d="M16 16L32 32M32 16L16 32" stroke="#fb7185" stroke-width="3.6" stroke-linecap="round"/></svg>`;
         }
 
         function openGiftCase() {
-            if (starsBalance < giftBet) return;
-            starsBalance = +(starsBalance - giftBet).toFixed(2);
+            const totalCost = getGiftTotalCost();
+            if (giftBoxesCount < MIN_GIFT_BOXES || starsBalance < totalCost) return;
+
+            starsBalance = +(starsBalance - totalCost).toFixed(2);
             syncStars();
 
-            // 50% xavfli (❌) va 50% xavfsiz gift
-            const isDanger = Math.random() < 0.5;
-            if (isDanger) {
-                giftShowcaseIconEl.innerHTML = renderGiftSvg('danger');
-                giftResultTextEl.classList.add('danger');
-                giftResultTextEl.textContent = `❌ Xavfli belgi! Yutqazdingiz (${giftBet} Stars kuyib ketdi)`;
+            let addedGiftsCount = 0;
+            let fullSlotsCount = 0;
+            let dangerCount = 0;
+            let lastIconType = 'gift';
+
+            for (let i = 0; i < giftBoxesCount; i++) {
+                const isDanger = Math.random() < 0.5;
+                if (isDanger) {
+                    dangerCount++;
+                    lastIconType = 'danger';
+                } else {
+                    const picked = SAFE_GIFTS[Math.floor(Math.random() * SAFE_GIFTS.length)];
+                    lastIconType = picked.id;
+                    if (addGiftToEmptySlot(picked)) {
+                        addedGiftsCount++;
+                    } else {
+                        fullSlotsCount++;
+                    }
+                }
+            }
+
+            giftShowcaseIconEl.innerHTML = renderGiftSvg(lastIconType, 44);
+            giftResultTextEl.className = 'gift-result-label';
+
+            if (addedGiftsCount > 0) {
+                giftResultTextEl.textContent = `${addedGiftsCount} ta gift hisobdagi boʻsh joyga tushdi`;
+            } else if (fullSlotsCount > 0) {
+                giftResultTextEl.textContent = `Hisobdagi gift kataklari toʻla (avval soting yoki yuboring)`;
             } else {
-                const picked = SAFE_GIFTS[Math.floor(Math.random() * SAFE_GIFTS.length)];
-                starsBalance = +(starsBalance + picked.reward).toFixed(2);
-                syncStars();
-                giftShowcaseIconEl.innerHTML = renderGiftSvg(picked.id);
-                giftResultTextEl.classList.remove('danger');
-                giftResultTextEl.textContent = `${picked.name} tushdi! +${picked.reward} Stars qoʻshildi`;
+                giftResultTextEl.classList.add('danger');
+                giftResultTextEl.textContent = `Xavfli belgi tushdi (${dangerCount}× ❌)`;
             }
         }
 
@@ -2190,10 +2678,13 @@
         // ISHGA TUSHIRISH
         syncStars();
         renderHistory();
+        renderGiftSlots();
+        updatePaymentScheduleUI();
         selectWithdrawTarget('Postga');
         changeSwTarget(0);
         setMinesDifficulty('easy');
-        giftShowcaseIconEl.innerHTML = renderGiftSvg('gift');
+        updateGiftSelectorDisplay();
+        giftShowcaseIconEl.innerHTML = renderGiftSvg('gift', 44);
         startCrashRound();
 
         setInterval(() => {
