@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AXE OPANG GIFT</title>
+    <title>AXE OPANG GIFT - CRASH</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
@@ -17,7 +17,7 @@
 
         body {
             height: 100vh;
-            background: #030612;
+            background: #070414;
             color: #ffffff;
             display: flex;
             flex-direction: column;
@@ -47,124 +47,139 @@
             pointer-events: auto;
         }
 
-        /* 1-OYNA: KIRISH QISMI */
+        /* 1-OYNA: CRASH USLUBIDAGI KIRISH QISMI */
         #loaderPage {
-            background: radial-gradient(circle at top, #102447 0%, #070d1a 55%, #03060c 100%);
+            background:
+                radial-gradient(circle at 25% 20%, rgba(168, 85, 247, 0.42), transparent 48%),
+                radial-gradient(circle at 80% 35%, rgba(59, 130, 246, 0.35), transparent 50%),
+                radial-gradient(circle at 50% 85%, rgba(124, 58, 237, 0.35), transparent 55%),
+                linear-gradient(180deg, #130829 0%, #090517 55%, #04020b 100%);
             z-index: 100;
         }
 
-        .gift-loader {
+        .crash-loader {
             width: 100%;
-            max-width: 340px;
+            max-width: 345px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 22px;
+            gap: 18px;
+            position: relative;
+            z-index: 2;
         }
 
-        .brand-block {
+        .top-brand {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
         }
 
-        .main-brand {
-            font-size: 32px;
+        .brand-main {
+            font-size: 24px;
             font-weight: 900;
             letter-spacing: 3px;
-            color: #ffffff;
-            text-shadow: 0 0 20px rgba(56, 189, 248, 0.45);
+            color: #f3e8ff;
+            text-shadow: 0 0 18px rgba(192, 132, 252, 0.65);
         }
 
-        .sub-brand {
-            font-size: 20px;
+        .brand-gift {
+            font-size: 16px;
             font-weight: 900;
             letter-spacing: 4px;
-            color: #ff3b5c;
-            text-shadow: 0 0 16px rgba(255, 59, 92, 0.5);
+            color: #facc15;
+            text-shadow: 0 0 14px rgba(250, 204, 21, 0.55);
+        }
+
+        /* CRASH kartasi uslubidagi markaziy sahna */
+        .crash-hero-box {
+            width: 100%;
+            background: linear-gradient(160deg, rgba(88, 28, 135, 0.48) 0%, rgba(30, 12, 66, 0.72) 55%, rgba(12, 6, 30, 0.9) 100%);
+            border: 2px solid rgba(192, 132, 252, 0.55);
+            border-radius: 26px;
+            padding: 20px 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 18px 42px rgba(109, 40, 217, 0.45), inset 0 0 24px rgba(168, 85, 247, 0.22);
+        }
+
+        .crash-svg-stage {
+            width: 170px;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .crash-rocket-anim {
+            animation: crashClimb 2s infinite ease-in-out;
+            transform-origin: 85px 65px;
+        }
+
+        @keyframes crashClimb {
+            0%, 100% { transform: translate(0px, 2px) rotate(-2deg) scale(1); }
+            50% { transform: translate(4px, -6px) rotate(4deg) scale(1.06); }
+        }
+
+        .crash-title-badge {
+            font-size: 34px;
+            font-weight: 950;
+            font-style: italic;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-shadow:
+                0 3px 0 #4c1d95,
+                0 0 22px rgba(192, 132, 252, 0.9);
         }
 
         .deco-lines {
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-top: 2px;
         }
 
-        .line-pill {
+        .line-dash {
             height: 2.5px;
             border-radius: 99px;
-            background: linear-gradient(90deg, transparent, #38bdf8, #ff3b5c, transparent);
-            animation: pillPulse 1.8s infinite ease-in-out;
+            background: linear-gradient(90deg, transparent, #c084fc, #facc15, transparent);
+            animation: dashGlow 1.7s infinite ease-in-out;
         }
 
-        .line-pill.a { width: 28px; animation-delay: 0s; }
-        .line-pill.b { width: 64px; animation-delay: 0.2s; }
-        .line-pill.c { width: 28px; animation-delay: 0.4s; }
+        .line-dash.s1 { width: 26px; }
+        .line-dash.s2 { width: 62px; animation-delay: 0.2s; }
+        .line-dash.s3 { width: 26px; animation-delay: 0.4s; }
 
-        @keyframes pillPulse {
-            0%, 100% { opacity: 0.4; transform: scaleX(0.85); }
-            50% { opacity: 1; transform: scaleX(1.12); }
+        @keyframes dashGlow {
+            0%, 100% { opacity: 0.4; transform: scaleX(0.88); }
+            50% { opacity: 1; transform: scaleX(1.1); }
         }
 
-        .gift-svg-wrap {
-            width: 170px;
-            height: 170px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            filter: drop-shadow(0 14px 26px rgba(0, 168, 255, 0.25));
-            animation: boxWiggle 2.2s infinite ease-in-out;
-        }
-
-        @keyframes boxWiggle {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            25% { transform: rotate(-3deg) scale(1.03); }
-            75% { transform: rotate(3deg) scale(1.03); }
-        }
-
-        .lid-group {
-            transform-origin: 60px 52px;
-            animation: lidPop 2.2s infinite ease-in-out;
-        }
-
-        @keyframes lidPop {
-            0%, 40%, 100% { transform: translateY(0px) rotate(0deg); }
-            55%, 80% { transform: translateY(-9px) rotate(-6deg); }
-        }
-
-        .bear-group {
-            animation: bearPeek 2.2s infinite ease-in-out;
-        }
-
-        @keyframes bearPeek {
-            0%, 38%, 100% { transform: translateY(14px); opacity: 0.85; }
-            55%, 82% { transform: translateY(-4px); opacity: 1; }
-        }
-
+        /* Yuklanish chizig'i */
         .progress-box {
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .progress-track {
             width: 100%;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.12);
+            height: 6px;
+            background: rgba(255, 255, 255, 0.14);
             border-radius: 99px;
             overflow: hidden;
+            border: 1px solid rgba(192, 132, 252, 0.3);
         }
 
         .progress-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #00b4ff, #ff2e55);
+            background: linear-gradient(90deg, #9333ea, #c084fc, #facc15);
             border-radius: 99px;
-            box-shadow: 0 0 12px rgba(0, 180, 255, 0.7);
+            box-shadow: 0 0 14px rgba(192, 132, 252, 0.85);
             transition: width 0.05s linear;
         }
 
@@ -172,16 +187,16 @@
             font-size: 14px;
             font-weight: 800;
             letter-spacing: 1.5px;
-            color: #e2e8f0;
+            color: #f3e8ff;
         }
 
-        /* 2-OYNA: GALAKTIKA YULDUZCHALI ASOSIY EKRAN */
+        /* 2-OYNA: GALAKTIKA YULDUZCHALI ASOSIY EKRAN (FAQAT CRASH + CASHOUT) */
         #mainPage {
             background:
-                radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.28), transparent 45%),
-                radial-gradient(circle at 80% 30%, rgba(14, 165, 233, 0.25), transparent 50%),
-                radial-gradient(circle at 50% 85%, rgba(236, 72, 153, 0.18), transparent 50%),
-                linear-gradient(180deg, #050816 0%, #090d24 50%, #03040c 100%);
+                radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.32), transparent 45%),
+                radial-gradient(circle at 80% 30%, rgba(59, 130, 246, 0.25), transparent 50%),
+                radial-gradient(circle at 50% 85%, rgba(168, 85, 247, 0.22), transparent 55%),
+                linear-gradient(180deg, #090518 0%, #0d0724 55%, #04020c 100%);
             justify-content: center;
             align-items: center;
             z-index: 10;
@@ -203,7 +218,7 @@
         }
 
         @keyframes starTwinkle {
-            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            0%, 100% { opacity: 0.25; transform: scale(0.8); }
             50% { opacity: 1; transform: scale(1.35); }
         }
 
@@ -215,15 +230,25 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 18px;
         }
 
-        /* Qora tugma, oq yozuv, oldida qimirlaydigan oq premium SVG raketa */
+        .mode-pill {
+            background: rgba(124, 58, 237, 0.22);
+            border: 1px solid rgba(192, 132, 252, 0.45);
+            color: #e9d5ff;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            padding: 7px 18px;
+            border-radius: 99px;
+        }
+
         .cashout-btn {
             width: 100%;
             background: #000000;
             color: #ffffff;
-            border: 1.5px solid rgba(255, 255, 255, 0.22);
+            border: 1.5px solid rgba(255, 255, 255, 0.24);
             border-radius: 20px;
             padding: 18px 24px;
             display: flex;
@@ -231,13 +256,8 @@
             justify-content: center;
             gap: 14px;
             cursor: pointer;
-            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.65), 0 0 22px rgba(139, 92, 246, 0.25);
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.7), 0 0 24px rgba(139, 92, 246, 0.3);
             transition: transform 0.18s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-        }
-
-        .cashout-btn:hover {
-            border-color: rgba(255, 255, 255, 0.45);
-            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.8), 0 0 28px rgba(56, 189, 248, 0.35);
         }
 
         .cashout-btn:active {
@@ -271,71 +291,64 @@
             min-height: 20px;
             font-size: 13px;
             font-weight: 700;
-            color: #cbd5e1;
+            color: #ddd6fe;
             text-align: center;
         }
     </style>
 </head>
 <body>
 
-    <!-- 1-OYNA: KIRISH QISMI -->
+    <!-- 1-OYNA: CRASH USLUBIDAGI KIRISH QISMI -->
     <div id="loaderPage" class="page active">
-        <div class="gift-loader">
-            <div class="brand-block">
-                <div class="main-brand">AXE OPANG</div>
-                <div class="sub-brand">GIFT</div>
-                <div class="deco-lines">
-                    <span class="line-pill a"></span>
-                    <span class="line-pill b"></span>
-                    <span class="line-pill c"></span>
-                </div>
+        <div id="loaderStars" class="stars-layer"></div>
+
+        <div class="crash-loader">
+            <div class="top-brand">
+                <div class="brand-main">AXE OPANG</div>
+                <div class="brand-gift">GIFT</div>
             </div>
 
-            <div class="gift-svg-wrap">
-                <svg viewBox="0 0 140 140" width="165" height="165" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="liquidBlue" x1="25" y1="50" x2="115" y2="125" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#4dd2ff"/>
-                            <stop offset="50%" stop-color="#009dff"/>
-                            <stop offset="100%" stop-color="#005bb5"/>
-                        </linearGradient>
-                        <linearGradient id="richRed" x1="20" y1="30" x2="120" y2="65" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#ff4d6d"/>
-                            <stop offset="100%" stop-color="#c9184a"/>
-                        </linearGradient>
-                        <linearGradient id="tanBear" x1="45" y1="20" x2="95" y2="75" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#d49a6a"/>
-                            <stop offset="100%" stop-color="#9c663c"/>
-                        </linearGradient>
-                    </defs>
+            <div class="crash-hero-box">
+                <div class="crash-svg-stage">
+                    <svg viewBox="0 0 170 130" width="170" height="130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="graphGrad" x1="20" y1="110" x2="150" y2="25" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#6d28d9" stop-opacity="0.35"/>
+                                <stop offset="100%" stop-color="#c084fc" stop-opacity="0.85"/>
+                            </linearGradient>
+                            <linearGradient id="flameGrad" x1="55" y1="85" x2="35" y2="112" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#facc15"/>
+                                <stop offset="60%" stop-color="#f97316"/>
+                                <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+                            </linearGradient>
+                        </defs>
 
-                    <g class="bear-group">
-                        <circle cx="51" cy="37" r="9" fill="#9c663c"/>
-                        <circle cx="51" cy="37" r="4.5" fill="#e6b89c"/>
-                        <circle cx="89" cy="37" r="9" fill="#9c663c"/>
-                        <circle cx="89" cy="37" r="4.5" fill="#e6b89c"/>
-                        <circle cx="70" cy="52" r="21" fill="url(#tanBear)"/>
-                        <ellipse cx="70" cy="57" rx="8" ry="6" fill="#e6b89c"/>
-                        <circle cx="70" cy="55" r="2.8" fill="#3d2314"/>
-                        <circle cx="62" cy="49" r="2.6" fill="#1e1b18"/>
-                        <circle cx="78" cy="49" r="2.6" fill="#1e1b18"/>
-                        <circle cx="62.8" cy="48.2" r="0.9" fill="#ffffff"/>
-                        <circle cx="78.8" cy="48.2" r="0.9" fill="#ffffff"/>
-                        <path d="M66.5 59.5C68 61.5 72 61.5 73.5 59.5" stroke="#3d2314" stroke-width="2" stroke-linecap="round"/>
-                    </g>
+                        <!-- O'suvchi grafik strelkasi -->
+                        <path d="M22 106 C58 102, 95 78, 134 34" stroke="url(#graphGrad)" stroke-width="6" stroke-linecap="round"/>
+                        <path d="M118 33 L136 32 L135 50" stroke="#e9d5ff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
 
-                    <rect x="28" y="62" width="84" height="56" rx="12" fill="url(#liquidBlue)"/>
-                    <path d="M34 74C46 69 58 79 70 74C82 69 94 79 106 74" stroke="#b8f0ff" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
-                    <rect x="63" y="62" width="14" height="56" fill="url(#richRed)"/>
+                        <!-- Raketa va alangasi -->
+                        <g class="crash-rocket-anim">
+                            <path d="M58 76 L34 102 L48 95 L53 108 L68 84 Z" fill="url(#flameGrad)"/>
+                            <path d="M108 26 C108 26 124 28 126 44 C128 56 116 68 104 75 L78 49 C85 37 97 25 108 26Z" fill="#f3e8ff" stroke="#a855f7" stroke-width="2.5"/>
+                            <circle cx="105" cy="46" r="7" fill="#3b82f6" stroke="#ffffff" stroke-width="2"/>
+                            <path d="M84 55 L64 52 L58 61 L78 67 Z" fill="#9333ea"/>
+                            <path d="M98 69 L101 89 L92 95 L86 75 Z" fill="#9333ea"/>
+                        </g>
 
-                    <g class="lid-group">
-                        <path d="M70 46C64 36 47 36 47 45C47 51 58 50 70 46Z" fill="url(#richRed)"/>
-                        <path d="M70 46C76 36 93 36 93 45C93 51 82 50 70 46Z" fill="url(#richRed)"/>
-                        <circle cx="70" cy="46" r="5" fill="#ff758f"/>
-                        <rect x="23" y="47" width="94" height="18" rx="7" fill="url(#richRed)"/>
-                        <rect x="63" y="47" width="14" height="18" fill="#ff4d6d"/>
-                    </g>
-                </svg>
+                        <!-- Yulduzchalar -->
+                        <polygon points="34,32 37,39 45,39 39,44 41,51 34,47 27,51 29,44 23,39 31,39" fill="#facc15"/>
+                        <polygon points="142,74 144,79 150,79 145,82 147,88 142,85 137,88 139,82 134,79 140,79" fill="#facc15"/>
+                    </svg>
+                </div>
+
+                <div class="crash-title-badge">CRASH</div>
+
+                <div class="deco-lines">
+                    <span class="line-dash s1"></span>
+                    <span class="line-dash s2"></span>
+                    <span class="line-dash s3"></span>
+                </div>
             </div>
 
             <div class="progress-box">
@@ -349,11 +362,12 @@
 
     <!-- 2-OYNA: GALAKTIKA YULDUZCHALI ASOSIY EKRAN -->
     <div id="mainPage" class="page">
-        <div id="starsLayer" class="stars-layer"></div>
+        <div id="mainStars" class="stars-layer"></div>
 
         <div class="main-content">
+            <div class="mode-pill">CRASH</div>
+
             <button class="cashout-btn" onclick="handleCashout()">
-                <!-- Premium SVG Oq Raketa -->
                 <span class="rocket-svg-wrap">
                     <svg viewBox="0 0 28 28" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.5 3.5C18.5 3.5 23.5 4.2 24.5 9.5C25.2 13.2 22.4 16.8 19.6 18.8L16.5 15.7L12.3 11.5L9.2 8.4C11.2 5.6 14.8 2.8 18.5 3.5Z" fill="#ffffff"/>
@@ -378,33 +392,31 @@
             tg.expand();
         }
 
-        // Galaktika yulduzchalarini yaratish
-        function createStars() {
-            const layer = document.getElementById('starsLayer');
-            const starCount = 70;
-            for (let i = 0; i < starCount; i++) {
+        function populateStars(containerId, count) {
+            const layer = document.getElementById(containerId);
+            for (let i = 0; i < count; i++) {
                 const star = document.createElement('span');
                 star.className = 'star';
-                const size = (Math.random() * 2.6 + 1).toFixed(1);
+                const size = (Math.random() * 2.5 + 1).toFixed(1);
                 star.style.width = size + 'px';
                 star.style.height = size + 'px';
                 star.style.left = (Math.random() * 100).toFixed(2) + '%';
                 star.style.top = (Math.random() * 100).toFixed(2) + '%';
-                star.style.animationDuration = (Math.random() * 2.5 + 1.5).toFixed(2) + 's';
-                star.style.animationDelay = (Math.random() * 2.5).toFixed(2) + 's';
-                if (i % 7 === 0) {
-                    star.style.background = '#bae6fd';
-                    star.style.boxShadow = '0 0 6px #7dd3fc';
-                } else if (i % 11 === 0) {
+                star.style.animationDuration = (Math.random() * 2.4 + 1.4).toFixed(2) + 's';
+                star.style.animationDelay = (Math.random() * 2.4).toFixed(2) + 's';
+                if (i % 5 === 0) {
                     star.style.background = '#e9d5ff';
                     star.style.boxShadow = '0 0 6px #c084fc';
+                } else if (i % 8 === 0) {
+                    star.style.background = '#fef08a';
+                    star.style.boxShadow = '0 0 6px #facc15';
                 }
                 layer.appendChild(star);
             }
         }
-        createStars();
+        populateStars('loaderStars', 45);
+        populateStars('mainStars', 70);
 
-        // Kirish chizig'i 100% gacha to'lishi
         let progress = 0;
         const fillEl = document.getElementById('progressFill');
         const numEl = document.getElementById('progressNum');
@@ -425,7 +437,7 @@
 
         function handleCashout() {
             const toast = document.getElementById('statusToast');
-            toast.textContent = 'Cashout tugmasi bosildi. Keyingi sozlamani yozishingiz mumkin.';
+            toast.textContent = 'Cashout tugmasi bosildi.';
         }
     </script>
 </body>
