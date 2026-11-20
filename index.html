@@ -17,7 +17,7 @@
 
         body {
             height: 100vh;
-            background: #060b14;
+            background: #030612;
             color: #ffffff;
             display: flex;
             flex-direction: column;
@@ -47,7 +47,7 @@
             pointer-events: auto;
         }
 
-        /* KIRISH QISMI */
+        /* 1-OYNA: KIRISH QISMI */
         #loaderPage {
             background: radial-gradient(circle at top, #102447 0%, #070d1a 55%, #03060c 100%);
             z-index: 100;
@@ -108,7 +108,6 @@
             50% { opacity: 1; transform: scaleX(1.12); }
         }
 
-        /* PREMIUM SVG SOVG'A QUTISI + MALLA AYIQCHA */
         .gift-svg-wrap {
             width: 170px;
             height: 170px;
@@ -125,7 +124,6 @@
             75% { transform: rotate(3deg) scale(1.03); }
         }
 
-        /* Qopqoq va ichidagi ayiqcha harakati */
         .lid-group {
             transform-origin: 60px 52px;
             animation: lidPop 2.2s infinite ease-in-out;
@@ -145,7 +143,6 @@
             55%, 82% { transform: translateY(-4px); opacity: 1; }
         }
 
-        /* Yuklanish chizig'i */
         .progress-box {
             width: 100%;
             display: flex;
@@ -178,31 +175,110 @@
             color: #e2e8f0;
         }
 
-        /* ASOSIY OYNA */
+        /* 2-OYNA: GALAKTIKA YULDUZCHALI ASOSIY EKRAN */
         #mainPage {
-            background: #070d1a;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.28), transparent 45%),
+                radial-gradient(circle at 80% 30%, rgba(14, 165, 233, 0.25), transparent 50%),
+                radial-gradient(circle at 50% 85%, rgba(236, 72, 153, 0.18), transparent 50%),
+                linear-gradient(180deg, #050816 0%, #090d24 50%, #03040c 100%);
             justify-content: center;
             align-items: center;
-            text-align: center;
-            gap: 10px;
+            z-index: 10;
         }
 
-        .main-ready-title {
-            font-size: 26px;
-            font-weight: 900;
-            letter-spacing: 2px;
+        .stars-layer {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            border-radius: 50%;
+            background: #ffffff;
+            animation: starTwinkle infinite ease-in-out;
+        }
+
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.35); }
+        }
+
+        .main-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 360px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Qora tugma, oq yozuv, oldida qimirlaydigan oq premium SVG raketa */
+        .cashout-btn {
+            width: 100%;
+            background: #000000;
             color: #ffffff;
+            border: 1.5px solid rgba(255, 255, 255, 0.22);
+            border-radius: 20px;
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            cursor: pointer;
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.65), 0 0 22px rgba(139, 92, 246, 0.25);
+            transition: transform 0.18s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
 
-        .main-ready-sub {
-            font-size: 14px;
-            color: #94a3b8;
+        .cashout-btn:hover {
+            border-color: rgba(255, 255, 255, 0.45);
+            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.8), 0 0 28px rgba(56, 189, 248, 0.35);
+        }
+
+        .cashout-btn:active {
+            transform: scale(0.96);
+        }
+
+        .rocket-svg-wrap {
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            animation: rocketFly 1.9s infinite ease-in-out;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.45));
+        }
+
+        @keyframes rocketFly {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
+            35% { transform: translate(2px, -4px) rotate(6deg) scale(1.1); }
+            70% { transform: translate(-1px, 2px) rotate(-3deg) scale(0.98); }
+        }
+
+        .cashout-label {
+            font-size: 19px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 1.5px;
+        }
+
+        .status-toast {
+            min-height: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #cbd5e1;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
-    <!-- KIRISH QISMI -->
+    <!-- 1-OYNA: KIRISH QISMI -->
     <div id="loaderPage" class="page active">
         <div class="gift-loader">
             <div class="brand-block">
@@ -215,70 +291,53 @@
                 </div>
             </div>
 
-            <!-- Premium SVG: Suyuq ko'k quti, qizil qopqoq/lenta va malla ayiqcha -->
             <div class="gift-svg-wrap">
                 <svg viewBox="0 0 140 140" width="165" height="165" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <defs>
-                        <!-- Suyuq (yorqin ko'k-moviy) gradient -->
                         <linearGradient id="liquidBlue" x1="25" y1="50" x2="115" y2="125" gradientUnits="userSpaceOnUse">
                             <stop offset="0%" stop-color="#4dd2ff"/>
                             <stop offset="50%" stop-color="#009dff"/>
                             <stop offset="100%" stop-color="#005bb5"/>
                         </linearGradient>
-                        <!-- Qizil gradient -->
                         <linearGradient id="richRed" x1="20" y1="30" x2="120" y2="65" gradientUnits="userSpaceOnUse">
                             <stop offset="0%" stop-color="#ff4d6d"/>
                             <stop offset="100%" stop-color="#c9184a"/>
                         </linearGradient>
-                        <!-- Malla rang gradient -->
                         <linearGradient id="tanBear" x1="45" y1="20" x2="95" y2="75" gradientUnits="userSpaceOnUse">
                             <stop offset="0%" stop-color="#d49a6a"/>
                             <stop offset="100%" stop-color="#9c663c"/>
                         </linearGradient>
                     </defs>
 
-                    <!-- Ichidan chiqib turadigan malla ayiqcha -->
                     <g class="bear-group">
-                        <!-- Quloqlar -->
                         <circle cx="51" cy="37" r="9" fill="#9c663c"/>
                         <circle cx="51" cy="37" r="4.5" fill="#e6b89c"/>
                         <circle cx="89" cy="37" r="9" fill="#9c663c"/>
                         <circle cx="89" cy="37" r="4.5" fill="#e6b89c"/>
-                        <!-- Bosh -->
                         <circle cx="70" cy="52" r="21" fill="url(#tanBear)"/>
-                        <!-- Burun atrofi -->
                         <ellipse cx="70" cy="57" rx="8" ry="6" fill="#e6b89c"/>
                         <circle cx="70" cy="55" r="2.8" fill="#3d2314"/>
-                        <!-- Ko'zlar -->
                         <circle cx="62" cy="49" r="2.6" fill="#1e1b18"/>
                         <circle cx="78" cy="49" r="2.6" fill="#1e1b18"/>
                         <circle cx="62.8" cy="48.2" r="0.9" fill="#ffffff"/>
                         <circle cx="78.8" cy="48.2" r="0.9" fill="#ffffff"/>
-                        <!-- Tabassum -->
                         <path d="M66.5 59.5C68 61.5 72 61.5 73.5 59.5" stroke="#3d2314" stroke-width="2" stroke-linecap="round"/>
                     </g>
 
-                    <!-- Suyuq ko'k rangdagi quti tanasi -->
                     <rect x="28" y="62" width="84" height="56" rx="12" fill="url(#liquidBlue)"/>
-                    <!-- Suyuq yaltiroq to'lqin chizig'i -->
                     <path d="M34 74C46 69 58 79 70 74C82 69 94 79 106 74" stroke="#b8f0ff" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
-                    <!-- Vertikal qizil lenta -->
                     <rect x="63" y="62" width="14" height="56" fill="url(#richRed)"/>
 
-                    <!-- Qizil rangdagi qopqoq va bant -->
                     <g class="lid-group">
-                        <!-- Bant -->
                         <path d="M70 46C64 36 47 36 47 45C47 51 58 50 70 46Z" fill="url(#richRed)"/>
                         <path d="M70 46C76 36 93 36 93 45C93 51 82 50 70 46Z" fill="url(#richRed)"/>
                         <circle cx="70" cy="46" r="5" fill="#ff758f"/>
-                        <!-- Qopqoq -->
                         <rect x="23" y="47" width="94" height="18" rx="7" fill="url(#richRed)"/>
                         <rect x="63" y="47" width="14" height="18" fill="#ff4d6d"/>
                     </g>
                 </svg>
             </div>
 
-            <!-- Yuklanish chizig'i -->
             <div class="progress-box">
                 <div class="progress-track">
                     <div id="progressFill" class="progress-fill"></div>
@@ -288,10 +347,28 @@
         </div>
     </div>
 
-    <!-- ASOSIY OYNA -->
+    <!-- 2-OYNA: GALAKTIKA YULDUZCHALI ASOSIY EKRAN -->
     <div id="mainPage" class="page">
-        <div class="main-ready-title">AXE OPANG GIFT</div>
-        <div class="main-ready-sub">Kirish qismi tayyor. Keyingi qadamni yozishingiz mumkin.</div>
+        <div id="starsLayer" class="stars-layer"></div>
+
+        <div class="main-content">
+            <button class="cashout-btn" onclick="handleCashout()">
+                <!-- Premium SVG Oq Raketa -->
+                <span class="rocket-svg-wrap">
+                    <svg viewBox="0 0 28 28" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.5 3.5C18.5 3.5 23.5 4.2 24.5 9.5C25.2 13.2 22.4 16.8 19.6 18.8L16.5 15.7L12.3 11.5L9.2 8.4C11.2 5.6 14.8 2.8 18.5 3.5Z" fill="#ffffff"/>
+                        <circle cx="18.2" cy="9.8" r="2.2" fill="#000000"/>
+                        <path d="M11.6 12.2L6.8 11.2L5 13.5L9.8 15.6L11.6 12.2Z" fill="#e2e8f0"/>
+                        <path d="M15.8 16.4L16.8 21.2L14.5 23L12.4 18.2L15.8 16.4Z" fill="#e2e8f0"/>
+                        <path d="M9.6 16.2L6.2 19.6L8.4 21.8L11.8 18.4L9.6 16.2Z" fill="#ffffff"/>
+                        <circle cx="5.4" cy="22.6" r="1.8" fill="#ffffff" opacity="0.85"/>
+                    </svg>
+                </span>
+                <span class="cashout-label">Cashout</span>
+            </button>
+
+            <div id="statusToast" class="status-toast"></div>
+        </div>
     </div>
 
     <script>
@@ -301,6 +378,33 @@
             tg.expand();
         }
 
+        // Galaktika yulduzchalarini yaratish
+        function createStars() {
+            const layer = document.getElementById('starsLayer');
+            const starCount = 70;
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('span');
+                star.className = 'star';
+                const size = (Math.random() * 2.6 + 1).toFixed(1);
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = (Math.random() * 100).toFixed(2) + '%';
+                star.style.top = (Math.random() * 100).toFixed(2) + '%';
+                star.style.animationDuration = (Math.random() * 2.5 + 1.5).toFixed(2) + 's';
+                star.style.animationDelay = (Math.random() * 2.5).toFixed(2) + 's';
+                if (i % 7 === 0) {
+                    star.style.background = '#bae6fd';
+                    star.style.boxShadow = '0 0 6px #7dd3fc';
+                } else if (i % 11 === 0) {
+                    star.style.background = '#e9d5ff';
+                    star.style.boxShadow = '0 0 6px #c084fc';
+                }
+                layer.appendChild(star);
+            }
+        }
+        createStars();
+
+        // Kirish chizig'i 100% gacha to'lishi
         let progress = 0;
         const fillEl = document.getElementById('progressFill');
         const numEl = document.getElementById('progressNum');
@@ -318,6 +422,11 @@
                 }, 350);
             }
         }, 25);
+
+        function handleCashout() {
+            const toast = document.getElementById('statusToast');
+            toast.textContent = 'Cashout tugmasi bosildi. Keyingi sozlamani yozishingiz mumkin.';
+        }
     </script>
 </body>
 </html>
