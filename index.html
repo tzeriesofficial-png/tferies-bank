@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AviaXStars</title>
+    <title>AXE OPANG GIFT</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
@@ -17,7 +17,7 @@
 
         body {
             height: 100vh;
-            background: #050a14;
+            background: #060b14;
             color: #ffffff;
             display: flex;
             flex-direction: column;
@@ -47,89 +47,102 @@
             pointer-events: auto;
         }
 
-        /* KIRISH QISMI (AviaXStars) */
+        /* KIRISH QISMI */
         #loaderPage {
-            background: radial-gradient(circle at top, #0f294a 0%, #061021 55%, #02050a 100%);
+            background: radial-gradient(circle at top, #102447 0%, #070d1a 55%, #03060c 100%);
             z-index: 100;
         }
 
-        .avia-loader {
+        .gift-loader {
             width: 100%;
             max-width: 340px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 24px;
+            gap: 22px;
         }
 
-        .title-wrap {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* Yon-atrofdagi dekorativ chiziqchalar */
-        .deco-lines-top {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .line-dash {
-            height: 2.5px;
-            border-radius: 99px;
-            background: linear-gradient(90deg, transparent, #38bdf8, transparent);
-            animation: dashPulse 1.8s infinite ease-in-out;
-        }
-
-        .line-dash.sm { width: 24px; animation-delay: 0.1s; }
-        .line-dash.md { width: 52px; animation-delay: 0.3s; }
-        .line-dash.lg { width: 86px; animation-delay: 0.5s; }
-
-        @keyframes dashPulse {
-            0%, 100% { opacity: 0.35; transform: scaleX(0.85); }
-            50% { opacity: 1; transform: scaleX(1.1); }
-        }
-
-        .brand-title {
-            font-size: 34px;
-            font-weight: 900;
-            letter-spacing: 3px;
-            color: #ffffff;
-            text-shadow: 0 0 24px rgba(56, 189, 248, 0.55);
-            animation: titleFloat 2.4s infinite ease-in-out;
-        }
-
-        @keyframes titleFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-4px); }
-        }
-
-        /* Chiziqchalar ostidagi parvoz/yorug'lik yo'lagi */
-        .wave-lines {
-            width: 240px;
+        .brand-block {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 6px;
         }
 
-        .wave-bar {
-            height: 2px;
-            border-radius: 99px;
-            background: linear-gradient(90deg, transparent, #0ea5e9, #7dd3fc, #0ea5e9, transparent);
-            animation: slideLine 2s infinite ease-in-out;
+        .main-brand {
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.45);
         }
 
-        .wave-bar:nth-child(1) { width: 190px; animation-delay: 0s; }
-        .wave-bar:nth-child(2) { width: 130px; animation-delay: 0.25s; opacity: 0.75; }
-        .wave-bar:nth-child(3) { width: 70px; animation-delay: 0.5s; opacity: 0.5; }
+        .sub-brand {
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: #ff3b5c;
+            text-shadow: 0 0 16px rgba(255, 59, 92, 0.5);
+        }
 
-        @keyframes slideLine {
-            0%, 100% { transform: translateX(-12px); opacity: 0.4; }
-            50% { transform: translateX(12px); opacity: 1; }
+        .deco-lines {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 2px;
+        }
+
+        .line-pill {
+            height: 2.5px;
+            border-radius: 99px;
+            background: linear-gradient(90deg, transparent, #38bdf8, #ff3b5c, transparent);
+            animation: pillPulse 1.8s infinite ease-in-out;
+        }
+
+        .line-pill.a { width: 28px; animation-delay: 0s; }
+        .line-pill.b { width: 64px; animation-delay: 0.2s; }
+        .line-pill.c { width: 28px; animation-delay: 0.4s; }
+
+        @keyframes pillPulse {
+            0%, 100% { opacity: 0.4; transform: scaleX(0.85); }
+            50% { opacity: 1; transform: scaleX(1.12); }
+        }
+
+        /* PREMIUM SVG SOVG'A QUTISI + MALLA AYIQCHA */
+        .gift-svg-wrap {
+            width: 170px;
+            height: 170px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: drop-shadow(0 14px 26px rgba(0, 168, 255, 0.25));
+            animation: boxWiggle 2.2s infinite ease-in-out;
+        }
+
+        @keyframes boxWiggle {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-3deg) scale(1.03); }
+            75% { transform: rotate(3deg) scale(1.03); }
+        }
+
+        /* Qopqoq va ichidagi ayiqcha harakati */
+        .lid-group {
+            transform-origin: 60px 52px;
+            animation: lidPop 2.2s infinite ease-in-out;
+        }
+
+        @keyframes lidPop {
+            0%, 40%, 100% { transform: translateY(0px) rotate(0deg); }
+            55%, 80% { transform: translateY(-9px) rotate(-6deg); }
+        }
+
+        .bear-group {
+            animation: bearPeek 2.2s infinite ease-in-out;
+        }
+
+        @keyframes bearPeek {
+            0%, 38%, 100% { transform: translateY(14px); opacity: 0.85; }
+            55%, 82% { transform: translateY(-4px); opacity: 1; }
         }
 
         /* Yuklanish chizig'i */
@@ -139,7 +152,6 @@
             flex-direction: column;
             align-items: center;
             gap: 10px;
-            margin-top: 8px;
         }
 
         .progress-track {
@@ -153,9 +165,9 @@
         .progress-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #0284c7, #38bdf8);
+            background: linear-gradient(90deg, #00b4ff, #ff2e55);
             border-radius: 99px;
-            box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
+            box-shadow: 0 0 12px rgba(0, 180, 255, 0.7);
             transition: width 0.05s linear;
         }
 
@@ -163,26 +175,26 @@
             font-size: 14px;
             font-weight: 800;
             letter-spacing: 1.5px;
-            color: #bae6fd;
+            color: #e2e8f0;
         }
 
         /* ASOSIY OYNA */
         #mainPage {
-            background: #060d1a;
+            background: #070d1a;
             justify-content: center;
             align-items: center;
             text-align: center;
-            gap: 12px;
+            gap: 10px;
         }
 
-        .ready-title {
-            font-size: 24px;
+        .main-ready-title {
+            font-size: 26px;
             font-weight: 900;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             color: #ffffff;
         }
 
-        .ready-sub {
+        .main-ready-sub {
             font-size: 14px;
             color: #94a3b8;
         }
@@ -192,24 +204,81 @@
 
     <!-- KIRISH QISMI -->
     <div id="loaderPage" class="page active">
-        <div class="avia-loader">
-            <div class="deco-lines-top">
-                <span class="line-dash sm"></span>
-                <span class="line-dash md"></span>
-                <span class="line-dash lg"></span>
-                <span class="line-dash md"></span>
-                <span class="line-dash sm"></span>
-            </div>
-
-            <div class="title-wrap">
-                <div class="brand-title">AviaXStars</div>
-                <div class="wave-lines">
-                    <span class="wave-bar"></span>
-                    <span class="wave-bar"></span>
-                    <span class="wave-bar"></span>
+        <div class="gift-loader">
+            <div class="brand-block">
+                <div class="main-brand">AXE OPANG</div>
+                <div class="sub-brand">GIFT</div>
+                <div class="deco-lines">
+                    <span class="line-pill a"></span>
+                    <span class="line-pill b"></span>
+                    <span class="line-pill c"></span>
                 </div>
             </div>
 
+            <!-- Premium SVG: Suyuq ko'k quti, qizil qopqoq/lenta va malla ayiqcha -->
+            <div class="gift-svg-wrap">
+                <svg viewBox="0 0 140 140" width="165" height="165" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <!-- Suyuq (yorqin ko'k-moviy) gradient -->
+                        <linearGradient id="liquidBlue" x1="25" y1="50" x2="115" y2="125" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#4dd2ff"/>
+                            <stop offset="50%" stop-color="#009dff"/>
+                            <stop offset="100%" stop-color="#005bb5"/>
+                        </linearGradient>
+                        <!-- Qizil gradient -->
+                        <linearGradient id="richRed" x1="20" y1="30" x2="120" y2="65" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#ff4d6d"/>
+                            <stop offset="100%" stop-color="#c9184a"/>
+                        </linearGradient>
+                        <!-- Malla rang gradient -->
+                        <linearGradient id="tanBear" x1="45" y1="20" x2="95" y2="75" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#d49a6a"/>
+                            <stop offset="100%" stop-color="#9c663c"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Ichidan chiqib turadigan malla ayiqcha -->
+                    <g class="bear-group">
+                        <!-- Quloqlar -->
+                        <circle cx="51" cy="37" r="9" fill="#9c663c"/>
+                        <circle cx="51" cy="37" r="4.5" fill="#e6b89c"/>
+                        <circle cx="89" cy="37" r="9" fill="#9c663c"/>
+                        <circle cx="89" cy="37" r="4.5" fill="#e6b89c"/>
+                        <!-- Bosh -->
+                        <circle cx="70" cy="52" r="21" fill="url(#tanBear)"/>
+                        <!-- Burun atrofi -->
+                        <ellipse cx="70" cy="57" rx="8" ry="6" fill="#e6b89c"/>
+                        <circle cx="70" cy="55" r="2.8" fill="#3d2314"/>
+                        <!-- Ko'zlar -->
+                        <circle cx="62" cy="49" r="2.6" fill="#1e1b18"/>
+                        <circle cx="78" cy="49" r="2.6" fill="#1e1b18"/>
+                        <circle cx="62.8" cy="48.2" r="0.9" fill="#ffffff"/>
+                        <circle cx="78.8" cy="48.2" r="0.9" fill="#ffffff"/>
+                        <!-- Tabassum -->
+                        <path d="M66.5 59.5C68 61.5 72 61.5 73.5 59.5" stroke="#3d2314" stroke-width="2" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- Suyuq ko'k rangdagi quti tanasi -->
+                    <rect x="28" y="62" width="84" height="56" rx="12" fill="url(#liquidBlue)"/>
+                    <!-- Suyuq yaltiroq to'lqin chizig'i -->
+                    <path d="M34 74C46 69 58 79 70 74C82 69 94 79 106 74" stroke="#b8f0ff" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+                    <!-- Vertikal qizil lenta -->
+                    <rect x="63" y="62" width="14" height="56" fill="url(#richRed)"/>
+
+                    <!-- Qizil rangdagi qopqoq va bant -->
+                    <g class="lid-group">
+                        <!-- Bant -->
+                        <path d="M70 46C64 36 47 36 47 45C47 51 58 50 70 46Z" fill="url(#richRed)"/>
+                        <path d="M70 46C76 36 93 36 93 45C93 51 82 50 70 46Z" fill="url(#richRed)"/>
+                        <circle cx="70" cy="46" r="5" fill="#ff758f"/>
+                        <!-- Qopqoq -->
+                        <rect x="23" y="47" width="94" height="18" rx="7" fill="url(#richRed)"/>
+                        <rect x="63" y="47" width="14" height="18" fill="#ff4d6d"/>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Yuklanish chizig'i -->
             <div class="progress-box">
                 <div class="progress-track">
                     <div id="progressFill" class="progress-fill"></div>
@@ -221,8 +290,8 @@
 
     <!-- ASOSIY OYNA -->
     <div id="mainPage" class="page">
-        <div class="ready-title">AviaXStars</div>
-        <div class="ready-sub">Kirish qismi tayyor. Keyingi boʻlimlarni sozlashimiz mumkin.</div>
+        <div class="main-ready-title">AXE OPANG GIFT</div>
+        <div class="main-ready-sub">Kirish qismi tayyor. Keyingi qadamni yozishingiz mumkin.</div>
     </div>
 
     <script>
