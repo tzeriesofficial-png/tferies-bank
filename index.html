@@ -74,7 +74,7 @@
             50% { transform: scale(0.82) rotate(-14deg); opacity: 1; }
         }
 
-        /* ORADA UCHIB O'TADIGAN KOSMO KEMA */
+        /* KOSMO KEMA */
         .ufo-flyby {
             position: fixed;
             top: 22%;
@@ -229,7 +229,7 @@
             z-index: 3;
             flex: 1;
             width: 100%;
-            padding: 16px 16px 12px;
+            padding: 14px 16px 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -240,17 +240,17 @@
         .tab-panel {
             display: none;
             width: 100%;
-            max-width: 390px;
+            max-width: 385px;
             flex-direction: column;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
         }
 
         .tab-panel.active {
             display: flex;
         }
 
-        /* O'YINLAR BO'LIMI: CRASH KARTASI */
+        /* O'YINLAR BO'LIMI */
         .game-pick-card {
             width: 100%;
             background: linear-gradient(160deg, rgba(109, 40, 217, 0.36) 0%, rgba(28, 12, 62, 0.78) 60%, rgba(10, 5, 24, 0.94) 100%);
@@ -262,7 +262,6 @@
             justify-content: space-between;
             cursor: pointer;
             box-shadow: 0 16px 34px rgba(0, 0, 0, 0.5), 0 0 22px rgba(139, 92, 246, 0.25);
-            transition: transform 0.18s ease, border-color 0.2s ease;
         }
 
         .game-pick-card:active {
@@ -272,7 +271,7 @@
         .game-pick-left {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 4px;
             text-align: left;
         }
 
@@ -285,7 +284,7 @@
         }
 
         .game-pick-sub {
-            font-size: 12.5px;
+            font-size: 12px;
             color: #ddd6fe;
             font-weight: 600;
         }
@@ -295,22 +294,21 @@
             color: #ffffff;
             font-size: 12px;
             font-weight: 900;
-            padding: 9px 14px;
+            padding: 9px 15px;
             border-radius: 14px;
-            letter-spacing: 0.6px;
         }
 
-        /* CRASH O'YIN EKRANI (FAQAT SHU YERDA TEPADA 1,500 SO'M KO'RINADI) */
+        /* CRASH O'YIN EKRANI */
         .crash-game-shell {
             width: 100%;
-            background: linear-gradient(160deg, rgba(109, 40, 217, 0.28) 0%, rgba(20, 9, 48, 0.82) 60%, rgba(8, 4, 20, 0.95) 100%);
+            background: linear-gradient(160deg, rgba(109, 40, 217, 0.28) 0%, rgba(20, 9, 48, 0.84) 60%, rgba(8, 4, 20, 0.96) 100%);
             border: 1.5px solid rgba(192, 132, 252, 0.45);
             border-radius: 24px;
             padding: 14px;
             display: flex;
             flex-direction: column;
-            gap: 11px;
-            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+            gap: 10px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
         }
 
         .crash-top-bar {
@@ -321,14 +319,13 @@
         }
 
         .crash-balance-pill {
-            background: rgba(15, 7, 36, 0.9);
+            background: rgba(15, 7, 36, 0.92);
             border: 1px solid rgba(250, 204, 21, 0.55);
             color: #fde047;
             font-size: 13px;
             font-weight: 900;
             padding: 7px 12px;
             border-radius: 12px;
-            letter-spacing: 0.4px;
         }
 
         .book-btn {
@@ -349,13 +346,11 @@
             transform: scale(0.96);
         }
 
-        /* O'lgan koeffitsientlar tarixi */
         .history-strip {
             display: flex;
             align-items: center;
             gap: 6px;
             overflow-x: auto;
-            padding-bottom: 2px;
             scrollbar-width: none;
         }
 
@@ -386,11 +381,10 @@
             color: #fda4af;
         }
 
-        /* Aviator / Crash uchish maydoni */
         .flight-arena {
             position: relative;
             width: 100%;
-            height: 175px;
+            height: 170px;
             border-radius: 18px;
             background:
                 radial-gradient(circle at 75% 25%, rgba(168, 85, 247, 0.26), transparent 55%),
@@ -424,8 +418,8 @@
 
         .live-plane-mover {
             position: absolute;
-            left: 16%;
-            bottom: 18%;
+            left: 14%;
+            bottom: 16%;
             z-index: 2;
             transition: left 0.08s linear, bottom 0.08s linear, transform 0.1s ease;
         }
@@ -435,49 +429,43 @@
             opacity: 0.55;
         }
 
-        /* Tikish boshqaruvi */
         .bet-controls {
             display: flex;
             flex-direction: column;
-            gap: 9px;
+            gap: 8px;
         }
 
         .bet-input-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(9, 4, 22, 0.85);
+            background: rgba(9, 4, 22, 0.88);
             border: 1px solid rgba(192, 132, 252, 0.35);
             border-radius: 14px;
             padding: 8px 10px;
-            gap: 8px;
+            gap: 10px;
         }
 
         .step-btn {
-            width: 34px;
-            height: 34px;
-            border-radius: 10px;
+            width: 36px;
+            height: 36px;
+            border-radius: 11px;
             border: 1px solid rgba(192, 132, 252, 0.45);
             background: rgba(124, 58, 237, 0.25);
             color: #ffffff;
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 900;
             cursor: pointer;
         }
 
-        .bet-amount-box {
-            flex: 1;
-            text-align: center;
-        }
-
-        .bet-amount-label {
-            font-size: 10.5px;
-            color: #c4b5fd;
-            font-weight: 700;
+        .step-btn:active {
+            transform: scale(0.94);
         }
 
         .bet-amount-val {
-            font-size: 15px;
+            flex: 1;
+            text-align: center;
+            font-size: 16px;
             font-weight: 950;
             color: #ffffff;
         }
@@ -503,6 +491,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
+            margin-top: 2px;
         }
 
         .bet-action-btn {
@@ -533,19 +522,11 @@
         }
 
         .bet-action-btn:disabled {
-            opacity: 0.42;
+            opacity: 0.38;
             cursor: not-allowed;
         }
 
-        .game-msg {
-            min-height: 18px;
-            font-size: 12.5px;
-            font-weight: 800;
-            text-align: center;
-            color: #e9d5ff;
-        }
-
-        /* KITOBCHA (QANDAY O'YNALADI) MODAL OYNA */
+        /* KITOBCHA MODAL */
         .rules-modal {
             display: none;
             position: fixed;
@@ -605,14 +586,14 @@
             cursor: pointer;
         }
 
-        /* HISOBIM VA HISOB BO'LIMLARI */
+        /* HISOBIM BO'LIMI */
         .panel-card {
             width: 100%;
-            background: linear-gradient(160deg, rgba(109, 40, 217, 0.28) 0%, rgba(25, 11, 56, 0.72) 60%, rgba(10, 5, 24, 0.92) 100%);
+            background: linear-gradient(160deg, rgba(109, 40, 217, 0.28) 0%, rgba(25, 11, 56, 0.76) 60%, rgba(10, 5, 24, 0.94) 100%);
             border: 1.5px solid rgba(192, 132, 252, 0.45);
             border-radius: 24px;
-            padding: 24px 20px;
-            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(168, 85, 247, 0.14);
+            padding: 22px 18px;
+            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.55), inset 0 0 20px rgba(168, 85, 247, 0.14);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -628,12 +609,93 @@
         }
 
         .balance-big {
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 950;
             color: #fde047;
             text-shadow: 0 0 16px rgba(250, 204, 21, 0.35);
         }
 
+        .withdraw-main-btn {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 16px;
+            border: 1px solid rgba(250, 204, 21, 0.5);
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            box-shadow: 0 10px 24px rgba(124, 58, 237, 0.35);
+        }
+
+        .withdraw-main-btn:active {
+            transform: scale(0.97);
+        }
+
+        .withdraw-options {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 2px;
+        }
+
+        .withdraw-options.open {
+            display: flex;
+        }
+
+        .withdraw-item-btn {
+            width: 100%;
+            background: rgba(12, 5, 28, 0.9);
+            border: 1.5px solid rgba(192, 132, 252, 0.45);
+            border-radius: 16px;
+            padding: 13px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #ffffff;
+            font-size: 14.5px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: transform 0.15s ease, border-color 0.2s ease;
+        }
+
+        .withdraw-item-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* Qimirlaydigan SVG ikonkalar (Wallet va Adminka) */
+        .moving-wallet-svg {
+            width: 26px;
+            height: 26px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            animation: walletWiggle 1.9s infinite ease-in-out;
+        }
+
+        @keyframes walletWiggle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            35% { transform: scale(1.18) rotate(-8deg); }
+            70% { transform: scale(1.12) rotate(8deg); }
+        }
+
+        .moving-admin-svg {
+            width: 26px;
+            height: 26px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            animation: adminFloat 2s infinite ease-in-out;
+        }
+
+        @keyframes adminFloat {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-3px) scale(1.15); }
+        }
+
+        /* HISOB BO'LIMI */
         .profile-photo-ring {
             width: 92px;
             height: 92px;
@@ -787,7 +849,7 @@
         <polygon points="12,2 14.9,8.6 22,9.3 16.6,14 18.2,21 12,17.3 5.8,21 7.4,14 2,9.3 9.1,8.6" fill="#facc15"/>
     </svg>
 
-    <!-- ORADA UCHIB O'TADIGAN KOSMO KEMA -->
+    <!-- KOSMO KEMA -->
     <svg class="ufo-flyby" viewBox="0 0 80 42" width="68" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M24 18C26 9 54 9 56 18Z" fill="#7dd3fc" fill-opacity="0.7" stroke="#e0f2fe" stroke-width="1.4"/>
         <ellipse cx="40" cy="21" rx="28" ry="8" fill="#a855f7" stroke="#f3e8ff" stroke-width="1.5"/>
@@ -882,10 +944,8 @@
             <div id="panel-crash" class="tab-panel active">
                 <div class="crash-game-shell">
                     <div class="crash-top-bar">
-                        <!-- FAQAT CRASH BO'LIMIDA TEPADA MABLAG' KO'RINADI -->
                         <div id="crashTopBalance" class="crash-balance-pill">1,500 soʻm</div>
 
-                        <!-- Kitobcha: qanday o'ynaladi -->
                         <button class="book-btn" onclick="openRulesModal()">
                             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M4 5.5C4 4.67157 4.67157 4 5.5 4H10.5C11.3284 4 12 4.67157 12 5.5V19C12 18.1716 11.3284 17.5 10.5 17.5H5.5C4.67157 17.5 4 18.1716 4 19V5.5Z" fill="#c084fc" stroke="#ffffff" stroke-width="1.5"/>
@@ -895,10 +955,8 @@
                         </button>
                     </div>
 
-                    <!-- O'lgan koeffitsientlar tarixi -->
                     <div id="historyStrip" class="history-strip"></div>
 
-                    <!-- Uchish maydoni -->
                     <div class="flight-arena">
                         <div id="livePlaneMover" class="live-plane-mover">
                             <div class="plane-flight-anim">
@@ -921,14 +979,10 @@
                         <div id="multiplierText" class="multiplier-readout">1.00x</div>
                     </div>
 
-                    <!-- Tikish boshqaruvi -->
                     <div class="bet-controls">
                         <div class="bet-input-row">
                             <button class="step-btn" onclick="changeBet(-500)">−</button>
-                            <div class="bet-amount-box">
-                                <div class="bet-amount-label">Tikish (500 – 50,000 soʻm)</div>
-                                <div id="betAmountDisplay" class="bet-amount-val">500 soʻm</div>
-                            </div>
+                            <div id="betAmountDisplay" class="bet-amount-val">500 soʻm</div>
                             <button class="step-btn" onclick="changeBet(500)">+</button>
                         </div>
 
@@ -943,21 +997,59 @@
                             <button id="btnTikish" class="bet-action-btn btn-tikish" onclick="placeBet()">Tikish</button>
                             <button id="btnStop" class="bet-action-btn btn-stop" onclick="cashoutBet()" disabled>Stop</button>
                         </div>
-
-                        <div id="gameMessage" class="game-msg"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- 3. hisobim BO'LIMI (MABLAG' SHU YERDA KO'RINADI) -->
+            <!-- 3. hisobim BO'LIMI -->
             <div id="panel-myaccount" class="tab-panel">
                 <div class="panel-card">
                     <div class="panel-title">hisobim</div>
                     <div id="myAccountBalance" class="balance-big">1,500 soʻm</div>
+
+                    <button class="withdraw-main-btn" onclick="toggleWithdrawOptions()">Yechib olish</button>
+
+                    <div id="withdrawOptions" class="withdraw-options">
+                        <!-- Uzcard (Premium SVG Wallet) -->
+                        <button class="withdraw-item-btn" onclick="goWithdraw('Uzcard')">
+                            <span>Uzcard</span>
+                            <span class="moving-wallet-svg">
+                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="2.5" y="5" width="19" height="14" rx="4" fill="#38bdf8" fill-opacity="0.22" stroke="#38bdf8" stroke-width="2"/>
+                                    <path d="M15 11.5H21.5V14.5H15C14.17 14.5 13.5 13.83 13.5 13C13.5 12.17 14.17 11.5 15 11.5Z" fill="#38bdf8"/>
+                                    <circle cx="15.5" cy="13" r="1" fill="#ffffff"/>
+                                </svg>
+                            </span>
+                        </button>
+
+                        <!-- Humo (Premium SVG Wallet) -->
+                        <button class="withdraw-item-btn" onclick="goWithdraw('Humo')">
+                            <span>Humo</span>
+                            <span class="moving-wallet-svg">
+                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="2.5" y="5" width="19" height="14" rx="4" fill="#c084fc" fill-opacity="0.22" stroke="#c084fc" stroke-width="2"/>
+                                    <path d="M15 11.5H21.5V14.5H15C14.17 14.5 13.5 13.83 13.5 13C13.5 12.17 14.17 11.5 15 11.5Z" fill="#c084fc"/>
+                                    <circle cx="15.5" cy="13" r="1" fill="#ffffff"/>
+                                </svg>
+                            </span>
+                        </button>
+
+                        <!-- Adminka orqali (Premium SVG) -->
+                        <button class="withdraw-item-btn" onclick="goWithdraw('Adminka orqali')">
+                            <span>Adminka orqali</span>
+                            <span class="moving-admin-svg">
+                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="9.5" fill="#facc15" fill-opacity="0.2" stroke="#facc15" stroke-width="2"/>
+                                    <circle cx="12" cy="9.2" r="3" fill="#fde047"/>
+                                    <path d="M6.8 17.8C7.6 15.4 9.6 14 12 14C14.4 14 16.4 15.4 17.2 17.8" stroke="#fde047" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <!-- 4. hisob BO'LIMI (GALOCHKA NARGI TARAFDA) -->
+            <!-- 4. hisob BO'LIMI -->
             <div id="panel-account" class="tab-panel">
                 <div class="panel-card">
                     <div class="profile-photo-ring">
@@ -966,7 +1058,6 @@
 
                     <div class="user-nick-row">
                         <span id="userName" class="user-nick-text">@foydalanuvchi</span>
-                        <!-- Galochka narigi (o'ng) tarafda -->
                         <span class="moving-badge-svg">
                             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <defs>
@@ -1044,10 +1135,10 @@
             <div class="rules-title">Qanday oʻynaladi</div>
             <ul class="rules-list">
                 <li>• Minimal tikish: <b>500 soʻm</b>, maksimal tikish: <b>50,000 soʻm</b>.</li>
-                <li>• Koeffitsient <b>1.30x</b> ga yetmaguncha yutuqni <b>Stop</b> tugmasi bilan olish mumkin emas.</li>
-                <li>• Yutuq = <b>Tikilgan summa × joriy koeffitsient</b> (1xbet Aviator hisob-kitobi kabi).</li>
-                <li>• Yutib olganingizdan soʻng raund davom etsa ham siz uchun qayta tikish bosqichiga oʻtadi.</li>
-                <li>• Oʻyin siz kirmasangiz ham uzluksiz davom etadi va tepada koeffitsientlar tarixi koʻrinadi.</li>
+                <li>• Koeffitsient <b>1.30x</b> ga yetmaguncha yutuqni <b>Stop</b> bilan olish mumkin emas.</li>
+                <li>• Yutuq = <b>Tikilgan summa × joriy koeffitsient</b>.</li>
+                <li>• Yutib olganingizdan keyin keyingi oʻyin boshlanmaguncha qayta tikib boʻlmaydi.</li>
+                <li>• Oʻyin siz kirmasangiz ham davom etadi va tepada koeffitsientlar koʻrinadi.</li>
             </ul>
             <button class="close-rules-btn" onclick="closeRulesModal()">Yopish</button>
         </div>
@@ -1139,15 +1230,44 @@
             }
         }
 
-        // CRASH O'YINI MANTIG'I (AVTONOM DAVOM ETADI)
-        let balance = 1500;
+        // Yechib olish bo'limi
+        function toggleWithdrawOptions() {
+            document.getElementById('withdrawOptions').classList.toggle('open');
+        }
+
+        function goWithdraw(methodName) {
+            const msg = encodeURIComponent(`Assalomu alaykum, ${formatSom(balance)} mablag'ni ${methodName} orqali yechib olmoqchiman.`);
+            const url = `https://t.me/axeopeng?text=${msg}`;
+            if (tg && tg.openTelegramLink) {
+                tg.openTelegramLink(url);
+            } else {
+                window.location.href = url;
+            }
+        }
+
+        // CRASH O'YINI (LOCALSTORAGE BILAN SAQLANADI)
+        const STORAGE_BAL_KEY = 'axe_opang_crash_balance_v1';
+        const STORAGE_HIST_KEY = 'axe_opang_crash_history_v1';
+
+        const savedBal = localStorage.getItem(STORAGE_BAL_KEY);
+        let balance = savedBal !== null ? Number(savedBal) : 1500;
+        if (Number.isNaN(balance) || balance < 0) balance = 1500;
+
+        const savedHist = localStorage.getItem(STORAGE_HIST_KEY);
+        let historyList = [1.42, 2.85, 1.18, 4.10, 1.75, 2.12];
+        if (savedHist) {
+            try {
+                const parsed = JSON.parse(savedHist);
+                if (Array.isArray(parsed) && parsed.length > 0) historyList = parsed;
+            } catch (_) {}
+        }
+
         let selectedBet = 500;
         let multiplier = 1.00;
         let crashPoint = 2.00;
         let gameState = 'flying'; // 'flying' | 'crashed' | 'waiting'
         let activeBet = 0;
-        let cashedOutInCurrentFlight = false;
-        let historyList = [1.42, 2.85, 1.18, 4.10, 1.75, 2.12];
+        let cashedOutInCurrentRound = false;
 
         const crashTopBalEl = document.getElementById('crashTopBalance');
         const myAccountBalEl = document.getElementById('myAccountBalance');
@@ -1156,16 +1276,21 @@
         const planeMoverEl = document.getElementById('livePlaneMover');
         const btnTikishEl = document.getElementById('btnTikish');
         const btnStopEl = document.getElementById('btnStop');
-        const gameMsgEl = document.getElementById('gameMessage');
         const historyStripEl = document.getElementById('historyStrip');
 
         function formatSom(num) {
             return Math.round(num).toLocaleString('en-US') + ' soʻm';
         }
 
+        function saveState() {
+            localStorage.setItem(STORAGE_BAL_KEY, String(Math.round(balance)));
+            localStorage.setItem(STORAGE_HIST_KEY, JSON.stringify(historyList.slice(0, 15)));
+        }
+
         function syncBalances() {
             crashTopBalEl.textContent = formatSom(balance);
             myAccountBalEl.textContent = formatSom(balance);
+            saveState();
         }
 
         function renderHistory() {
@@ -1173,7 +1298,7 @@
             historyList.slice(0, 10).forEach(val => {
                 const chip = document.createElement('span');
                 chip.className = 'hist-chip ' + (val >= 2 ? 'high' : (val < 1.3 ? 'low' : ''));
-                chip.textContent = val.toFixed(2) + 'x';
+                chip.textContent = Number(val).toFixed(2) + 'x';
                 historyStripEl.appendChild(chip);
             });
         }
@@ -1187,7 +1312,8 @@
         }
 
         function updateButtons() {
-            const canPlace = !cashedOutInCurrentFlight && activeBet === 0 && (gameState === 'flying' || gameState === 'waiting');
+            // Pulni yutib olgan bo'lsa, keyingi o'yin boshlanmagunicha umuman tikib bo'lmaydi
+            const canPlace = !cashedOutInCurrentRound && activeBet === 0 && (gameState === 'flying' || gameState === 'waiting');
             btnTikishEl.disabled = !canPlace;
 
             const canStop = activeBet > 0 && gameState === 'flying' && multiplier >= 1.30;
@@ -1210,20 +1336,13 @@
         }
 
         function placeBet() {
-            if (activeBet > 0 || cashedOutInCurrentFlight) return;
-            if (selectedBet < 500 || selectedBet > 50000) {
-                gameMsgEl.textContent = 'Tikish 500 dan 50,000 soʻmgacha boʻlishi kerak.';
-                return;
-            }
-            if (balance < selectedBet) {
-                gameMsgEl.textContent = 'Mablagʻ yetarli emas.';
-                return;
-            }
+            if (activeBet > 0 || cashedOutInCurrentRound) return;
+            if (selectedBet < 500 || selectedBet > 50000) return;
+            if (balance < selectedBet) return;
 
             balance -= selectedBet;
             activeBet = selectedBet;
             syncBalances();
-            gameMsgEl.textContent = `${formatSom(activeBet)} tikildi. 1.30x dan keyin Stop bosing.`;
             updateButtons();
         }
 
@@ -1232,11 +1351,9 @@
 
             const winAmount = Math.round(activeBet * multiplier);
             balance += winAmount;
-            syncBalances();
-
-            gameMsgEl.textContent = `${multiplier.toFixed(2)}x da yutib oldingiz: +${formatSom(winAmount)}! Keyingi tikish uchun raund yangilanadi.`;
             activeBet = 0;
-            cashedOutInCurrentFlight = true;
+            cashedOutInCurrentRound = true;
+            syncBalances();
             updateButtons();
         }
 
@@ -1244,7 +1361,7 @@
             multiplier = 1.00;
             crashPoint = generateCrashPoint();
             gameState = 'flying';
-            cashedOutInCurrentFlight = false;
+            cashedOutInCurrentRound = false;
             multTextEl.classList.remove('crashed', 'waiting');
             multTextEl.textContent = '1.00x';
             planeMoverEl.classList.remove('crashed-plane');
@@ -1262,19 +1379,19 @@
             historyList.unshift(Number(multiplier.toFixed(2)));
             if (historyList.length > 15) historyList.pop();
             renderHistory();
+            saveState();
 
             if (activeBet > 0) {
-                gameMsgEl.textContent = `${multiplier.toFixed(2)}x da toʻxtadi. Tikish kuyib ketdi.`;
                 activeBet = 0;
             }
             updateButtons();
 
             setTimeout(() => {
                 gameState = 'waiting';
-                cashedOutInCurrentFlight = false;
+                cashedOutInCurrentRound = false;
                 multTextEl.classList.remove('crashed');
                 multTextEl.classList.add('waiting');
-                multTextEl.textContent = 'Keyingi parvoz...';
+                multTextEl.textContent = 'Keyingi oʻyin...';
                 updateButtons();
             }, 1300);
 
@@ -1283,7 +1400,6 @@
             }, 2600);
         }
 
-        // O'yin tsikli (foydalanuvchi kirmagan taqdirda ham davom etadi)
         syncBalances();
         renderHistory();
         startNewFlight();
