@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>USERGG Market</title>
+    <title>AviaXStars</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
@@ -13,13 +13,12 @@
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            transition: all 0.2s ease;
         }
 
         body {
             height: 100vh;
-            background: #ffffff;
-            color: #000000;
+            background: #050a14;
+            color: #ffffff;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -30,8 +29,7 @@
 
         .page {
             position: absolute;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100%;
             height: 100%;
             display: flex;
@@ -41,7 +39,7 @@
             padding: 20px;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.45s ease;
         }
 
         .page.active {
@@ -49,409 +47,208 @@
             pointer-events: auto;
         }
 
-        /* 1-OYNA: GELIK KÖK-QORA KIRISH QISMI */
+        /* KIRISH QISMI (AviaXStars) */
         #loaderPage {
-            background: linear-gradient(180deg, #0b1d3a 0%, #050d1a 55%, #000000 100%);
-            z-index: 300;
+            background: radial-gradient(circle at top, #0f294a 0%, #061021 55%, #02050a 100%);
+            z-index: 100;
         }
 
-        .loader-container {
+        .avia-loader {
+            width: 100%;
+            max-width: 340px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 30px;
-            width: 100%;
-            max-width: 320px;
+            gap: 24px;
         }
 
-        .loader-logo {
-            font-size: 32px;
+        .title-wrap {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Yon-atrofdagi dekorativ chiziqchalar */
+        .deco-lines-top {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .line-dash {
+            height: 2.5px;
+            border-radius: 99px;
+            background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+            animation: dashPulse 1.8s infinite ease-in-out;
+        }
+
+        .line-dash.sm { width: 24px; animation-delay: 0.1s; }
+        .line-dash.md { width: 52px; animation-delay: 0.3s; }
+        .line-dash.lg { width: 86px; animation-delay: 0.5s; }
+
+        @keyframes dashPulse {
+            0%, 100% { opacity: 0.35; transform: scaleX(0.85); }
+            50% { opacity: 1; transform: scaleX(1.1); }
+        }
+
+        .brand-title {
+            font-size: 34px;
             font-weight: 900;
+            letter-spacing: 3px;
             color: #ffffff;
-            letter-spacing: 4px;
-            text-shadow: 0 0 20px rgba(0, 136, 255, 0.6);
-            animation: logoGlow 2s infinite ease-in-out;
+            text-shadow: 0 0 24px rgba(56, 189, 248, 0.55);
+            animation: titleFloat 2.4s infinite ease-in-out;
         }
 
-        @keyframes logoGlow {
-            0%, 100% { opacity: 0.8; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); }
+        @keyframes titleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
         }
 
-        .long-progress-container {
+        /* Chiziqchalar ostidagi parvoz/yorug'lik yo'lagi */
+        .wave-lines {
+            width: 240px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .wave-bar {
+            height: 2px;
+            border-radius: 99px;
+            background: linear-gradient(90deg, transparent, #0ea5e9, #7dd3fc, #0ea5e9, transparent);
+            animation: slideLine 2s infinite ease-in-out;
+        }
+
+        .wave-bar:nth-child(1) { width: 190px; animation-delay: 0s; }
+        .wave-bar:nth-child(2) { width: 130px; animation-delay: 0.25s; opacity: 0.75; }
+        .wave-bar:nth-child(3) { width: 70px; animation-delay: 0.5s; opacity: 0.5; }
+
+        @keyframes slideLine {
+            0%, 100% { transform: translateX(-12px); opacity: 0.4; }
+            50% { transform: translateX(12px); opacity: 1; }
+        }
+
+        /* Yuklanish chizig'i */
+        .progress-box {
             width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(0, 136, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
         }
 
-        .long-progress-fill {
+        .progress-track {
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
             height: 100%;
             width: 0%;
-            background: #0088ff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #0088ff;
+            background: linear-gradient(90deg, #0284c7, #38bdf8);
+            border-radius: 99px;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
             transition: width 0.05s linear;
         }
 
-        .loader-percent {
-            font-size: 16px;
+        .progress-num {
+            font-size: 14px;
             font-weight: 800;
-            color: rgba(255, 255, 255, 0.7);
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
+            color: #bae6fd;
         }
 
-        /* 2-OYNA: ASOSIY EKRAN */
+        /* ASOSIY OYNA */
         #mainPage {
-            justify-content: flex-start;
-            padding: 25px 20px 20px 20px;
-            background: #ffffff;
-            overflow-y: auto;
-        }
-
-        .header-row {
-            width: 100%;
-            max-width: 400px;
-            display: flex;
-            align-items: center;
+            background: #060d1a;
             justify-content: center;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .main-header {
-            font-size: 22px;
-            font-weight: 900;
-            color: #000000;
-            letter-spacing: 0.5px;
-        }
-
-        .nick-list {
-            width: 100%;
-            max-width: 400px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            padding-bottom: 20px;
-        }
-
-        .nick-card {
-            width: 100%;
-            background: #000000;
-            border-radius: 18px;
-            padding: 16px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .nick-main-row {
-            display: flex;
             align-items: center;
-            justify-content: space-between;
-        }
-
-        .left-group {
-            display: flex;
-            align-items: center;
+            text-align: center;
             gap: 12px;
-            cursor: pointer;
-            flex: 1;
         }
 
-        .nick-text {
-            font-size: 16px;
+        .ready-title {
+            font-size: 24px;
             font-weight: 900;
+            letter-spacing: 1px;
             color: #ffffff;
-            letter-spacing: 0.5px;
         }
 
-        /* Qimirlaydigan ko'k galochka */
-        .moving-blue-check {
-            width: 20px;
-            height: 20px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            animation: checkMotion 1.8s infinite ease-in-out;
-            flex-shrink: 0;
-        }
-
-        @keyframes checkMotion {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            30% { transform: scale(1.25) rotate(-10deg); }
-            70% { transform: scale(1.15) rotate(10deg); }
-        }
-
-        .right-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .price-btn-label {
-            background: rgba(0, 136, 255, 0.2);
-            color: #0088ff;
-            font-size: 11px;
-            font-weight: 900;
-            padding: 4px 10px;
-            border-radius: 8px;
-            border: 1px solid rgba(0, 136, 255, 0.4);
-            text-transform: uppercase;
-            cursor: pointer;
-        }
-
-        /* Qimirlaydigan premium ko'k savatcha stikeri */
-        .moving-cart-svg {
-            width: 24px;
-            height: 24px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            animation: cartMotion 2s infinite ease-in-out;
-            cursor: pointer;
-        }
-
-        @keyframes cartMotion {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.18) rotate(6deg); }
-        }
-
-        /* Narx qismi */
-        .nick-price-row {
-            display: none;
-            align-items: center;
-            gap: 6px;
-            padding-top: 10px;
-            border-top: 1px solid rgba(255, 255, 255, 0.12);
-            font-size: 15px;
-            font-weight: 900;
-            color: #0088ff;
-        }
-
-        .nick-card.open .nick-price-row {
-            display: flex;
-        }
-
-        /* Nikimni sotaman tugmasi */
-        .sell-card {
-            width: 100%;
-            background: #000000;
-            border-radius: 18px;
-            padding: 16px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(0, 136, 255, 0.3);
-            text-decoration: none;
-            cursor: pointer;
-            margin-top: 6px;
-        }
-
-        .sell-text {
-            font-size: 15px;
-            font-weight: 900;
-            color: #ffffff;
-            letter-spacing: 0.5px;
-        }
-
-        .sell-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .ready-sub {
+            font-size: 14px;
+            color: #94a3b8;
         }
     </style>
 </head>
 <body>
 
-    <!-- 1-OYNA: KIRISH QISMI -->
+    <!-- KIRISH QISMI -->
     <div id="loaderPage" class="page active">
-        <div class="loader-container">
-            <div class="loader-logo">USERGG</div>
-            <div class="long-progress-container">
-                <div id="longProgressFill" class="long-progress-fill"></div>
+        <div class="avia-loader">
+            <div class="deco-lines-top">
+                <span class="line-dash sm"></span>
+                <span class="line-dash md"></span>
+                <span class="line-dash lg"></span>
+                <span class="line-dash md"></span>
+                <span class="line-dash sm"></span>
             </div>
-            <div id="loaderPercent" class="loader-percent">0%</div>
+
+            <div class="title-wrap">
+                <div class="brand-title">AviaXStars</div>
+                <div class="wave-lines">
+                    <span class="wave-bar"></span>
+                    <span class="wave-bar"></span>
+                    <span class="wave-bar"></span>
+                </div>
+            </div>
+
+            <div class="progress-box">
+                <div class="progress-track">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <div id="progressNum" class="progress-num">0%</div>
+            </div>
         </div>
     </div>
 
-    <!-- 2-OYNA: ASOSIY EKRAN -->
+    <!-- ASOSIY OYNA -->
     <div id="mainPage" class="page">
-        <div class="header-row">
-            <div class="main-header">mavjud usernamelar</div>
-            <span class="moving-blue-check">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="10" fill="#0088ff"/>
-                    <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </span>
-        </div>
-        
-        <div class="nick-list">
-            <!-- 1-Nik -->
-            <div class="nick-card" id="card-1">
-                <div class="nick-main-row">
-                    <div class="left-group" onclick="togglePrice('card-1')">
-                        <span class="nick-text">@okenft</span>
-                        <span class="moving-blue-check">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="10" fill="#0088ff"/>
-                                <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="right-group">
-                        <span class="price-btn-label" onclick="togglePrice('card-1')">Narx</span>
-                        <span class="moving-cart-svg" onclick="buyAxeoka()">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H19" stroke="#0088ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <circle cx="9" cy="20" r="1.5" fill="#0088ff"/>
-                                <circle cx="18" cy="20" r="1.5" fill="#0088ff"/>
-                            </svg>
-                        </span>
-                    </div>
-                </div>
-                <div class="nick-price-row">
-                    <span>Narxi: 10,000 soʻm</span>
-                </div>
-            </div>
-
-            <!-- 2-Nik -->
-            <div class="nick-card" id="card-2">
-                <div class="nick-main-row">
-                    <div class="left-group" onclick="togglePrice('card-2')">
-                        <span class="nick-text">@axeoka</span>
-                        <span class="moving-blue-check">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="10" fill="#0088ff"/>
-                                <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="right-group">
-                        <span class="price-btn-label" onclick="togglePrice('card-2')">Narx</span>
-                        <span class="moving-cart-svg" onclick="buyAxeoka()">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H19" stroke="#0088ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <circle cx="9" cy="20" r="1.5" fill="#0088ff"/>
-                                <circle cx="18" cy="20" r="1.5" fill="#0088ff"/>
-                            </svg>
-                        </span>
-                    </div>
-                </div>
-                <div class="nick-price-row">
-                    <span>Narxi: 10,000 soʻm</span>
-                </div>
-            </div>
-
-            <!-- 3-Nik -->
-            <div class="nick-card" id="card-3">
-                <div class="nick-main-row">
-                    <div class="left-group" onclick="togglePrice('card-3')">
-                        <span class="nick-text">@axeake</span>
-                        <span class="moving-blue-check">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="12" cy="12" r="10" fill="#0088ff"/>
-                                <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </span>
-                    </div>
-                    <div class="right-group">
-                        <span class="price-btn-label" onclick="togglePrice('card-3')">Narx</span>
-                        <span class="moving-cart-svg" onclick="buyAxeoka()">
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H19" stroke="#0088ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <circle cx="9" cy="20" r="1.5" fill="#0088ff"/>
-                                <circle cx="18" cy="20" r="1.5" fill="#0088ff"/>
-                            </svg>
-                        </span>
-                    </div>
-                </div>
-                <div class="nick-price-row">
-                    <span>Narxi: 10,000 soʻm</span>
-                </div>
-            </div>
-
-            <!-- Nikimni sotaman bo'limi -->
-            <div class="sell-card" onclick="sellUsername()">
-                <span class="sell-text">nikimni sotaman</span>
-                <div class="sell-right">
-                    <span class="moving-blue-check">
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="10" fill="#0088ff"/>
-                            <path d="M8 12L11 15L16 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </span>
-                    <span class="moving-cart-svg">
-                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H19" stroke="#0088ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <circle cx="9" cy="20" r="1.5" fill="#0088ff"/>
-                            <circle cx="18" cy="20" r="1.5" fill="#0088ff"/>
-                        </svg>
-                    </span>
-                </div>
-            </div>
-        </div>
+        <div class="ready-title">AviaXStars</div>
+        <div class="ready-sub">Kirish qismi tayyor. Keyingi boʻlimlarni sozlashimiz mumkin.</div>
     </div>
 
     <script>
         const tg = window.Telegram ? window.Telegram.WebApp : null;
-        if (tg) { tg.ready(); tg.expand(); }
+        if (tg) {
+            tg.ready();
+            tg.expand();
+        }
 
-        let currentProgress = 0;
-        const fillElement = document.getElementById('longProgressFill');
-        const percentElement = document.getElementById('loaderPercent');
+        let progress = 0;
+        const fillEl = document.getElementById('progressFill');
+        const numEl = document.getElementById('progressNum');
 
-        const loadingInterval = setInterval(() => {
-            if (currentProgress < 100) {
-                currentProgress++;
-                fillElement.style.width = currentProgress + '%';
-                percentElement.textContent = currentProgress + '%';
+        const timer = setInterval(() => {
+            if (progress < 100) {
+                progress++;
+                fillEl.style.width = progress + '%';
+                numEl.textContent = progress + '%';
             } else {
-                clearInterval(loadingInterval);
+                clearInterval(timer);
                 setTimeout(() => {
                     document.getElementById('loaderPage').classList.remove('active');
                     document.getElementById('mainPage').classList.add('active');
-                }, 400);
+                }, 350);
             }
         }, 25);
-
-        function togglePrice(cardId) {
-            const cardElement = document.getElementById(cardId);
-            document.querySelectorAll('.nick-card').forEach(card => {
-                if (card !== cardElement) card.classList.remove('open');
-            });
-            cardElement.classList.toggle('open');
-        }
-
-        // Qaysi savatcha bosilsa ham doim @axeoka va 10,000 so'm yozilib lichkaga o'tadi
-        function buyAxeoka() {
-            const text = encodeURIComponent(`Assalomu alaykum, @axeoka ni 10,000 soʻmga sotib olmoqchiman!`);
-            const url = `https://t.me/pauladeroza?text=${text}`;
-            
-            if (tg && tg.openTelegramLink) {
-                tg.openTelegramLink(url);
-            } else {
-                window.location.href = url;
-            }
-        }
-
-        function sellUsername() {
-            const text = encodeURIComponent(`Assalomu alaykum, o'z username'imni sotmoqchiman.`);
-            const url = `https://t.me/pauladeroza?text=${text}`;
-            
-            if (tg && tg.openTelegramLink) {
-                tg.openTelegramLink(url);
-            } else {
-                window.location.href = url;
-            }
-        }
     </script>
 </body>
 </html>
