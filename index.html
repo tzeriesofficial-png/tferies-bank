@@ -31,6 +31,23 @@
             position: relative;
         }
 
+        .page {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.45s ease;
+        }
+
+        .page.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         /* 7 ta alohida yulduzcha */
         .star-7 {
             position: absolute;
@@ -88,6 +105,13 @@
         @keyframes twinkle2 {
             0%, 100% { transform: scale(1.1) rotate(0deg); opacity: 0.75; }
             50% { transform: scale(0.82) rotate(-14deg); opacity: 1; }
+        }
+
+        /* 1-OYNA: KIRISH QISMI */
+        #loaderPage {
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
         }
 
         .loader-wrap {
@@ -213,6 +237,171 @@
             letter-spacing: 1.5px;
             color: #f3e8ff;
         }
+
+        /* 2-OYNA: ASOSIY SAHIFA VA PASTKI 4 TA BO'LIM */
+        #mainPage {
+            justify-content: space-between;
+            z-index: 10;
+        }
+
+        .content-area {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            width: 100%;
+            padding: 28px 18px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+        }
+
+        .tab-panel {
+            display: none;
+            width: 100%;
+            max-width: 360px;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            text-align: center;
+        }
+
+        .tab-panel.active {
+            display: flex;
+        }
+
+        .panel-card {
+            width: 100%;
+            background: linear-gradient(160deg, rgba(109, 40, 217, 0.28) 0%, rgba(25, 11, 56, 0.72) 60%, rgba(10, 5, 24, 0.92) 100%);
+            border: 1.5px solid rgba(192, 132, 252, 0.45);
+            border-radius: 24px;
+            padding: 24px 20px;
+            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(168, 85, 247, 0.14);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .panel-title {
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: 0.8px;
+            color: #ffffff;
+        }
+
+        .panel-desc {
+            font-size: 13.5px;
+            color: #ddd6fe;
+            line-height: 1.5;
+        }
+
+        /* HISOB BO'LIMI: {photo} va {name} + Qimirlaydigan Premium SVG Galochka */
+        .profile-photo-ring {
+            width: 92px;
+            height: 92px;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(135deg, #38bdf8, #c084fc, #facc15);
+            box-shadow: 0 0 24px rgba(168, 85, 247, 0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-photo-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #140a2e;
+        }
+
+        .user-nick-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 2px;
+        }
+
+        .moving-badge-svg {
+            width: 22px;
+            height: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            animation: badgeMove 1.8s infinite ease-in-out;
+            flex-shrink: 0;
+        }
+
+        @keyframes badgeMove {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            30% { transform: scale(1.22) rotate(-10deg); }
+            70% { transform: scale(1.14) rotate(10deg); }
+        }
+
+        .user-nick-text {
+            font-size: 19px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.4px;
+        }
+
+        /* PASTKI 4 TA BO'LIM PANELI */
+        .bottom-nav {
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            background: rgba(11, 6, 26, 0.92);
+            backdrop-filter: blur(14px);
+            border-top: 1px solid rgba(192, 132, 252, 0.28);
+            padding: 8px 10px calc(10px + env(safe-area-inset-bottom));
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+        }
+
+        .nav-item {
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 16px;
+            padding: 8px 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            color: #a78bfa;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item.active {
+            background: rgba(139, 92, 246, 0.22);
+            border-color: rgba(192, 132, 252, 0.5);
+            color: #ffffff;
+            box-shadow: 0 0 16px rgba(139, 92, 246, 0.28);
+        }
+
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-item.active .nav-icon {
+            transform: translateY(-1px) scale(1.08);
+        }
+
+        .nav-label {
+            font-size: 11.5px;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+        }
     </style>
 </head>
 <body>
@@ -240,83 +429,178 @@
         <polygon points="12,2 14.9,8.6 22,9.3 16.6,14 18.2,21 12,17.3 5.8,21 7.4,14 2,9.3 9.1,8.6" fill="#fbbf24"/>
     </svg>
 
-    <div class="loader-wrap">
-        <div class="crash-card">
-            <div class="rocket-3d-box">
-                <svg viewBox="0 0 170 140" width="170" height="140" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <!-- 3D Korpus gradienti -->
-                        <linearGradient id="body3D" x1="78" y1="24" x2="128" y2="78" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#ffffff"/>
-                            <stop offset="55%" stop-color="#e9d5ff"/>
-                            <stop offset="100%" stop-color="#9333ea"/>
-                        </linearGradient>
-                        <!-- 3D Burun/Uch qismi -->
-                        <linearGradient id="nose3D" x1="106" y1="22" x2="132" y2="48" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#c084fc"/>
-                            <stop offset="100%" stop-color="#6b21a8"/>
-                        </linearGradient>
-                        <!-- 3D Oyna gradienti -->
-                        <radialGradient id="window3D" cx="35%" cy="35%" r="65%">
-                            <stop offset="0%" stop-color="#7dd3fc"/>
-                            <stop offset="55%" stop-color="#2563eb"/>
-                            <stop offset="100%" stop-color="#1e1b4b"/>
-                        </radialGradient>
-                        <!-- 3D Qanot gradienti -->
-                        <linearGradient id="fin3D" x1="55" y1="50" x2="95" y2="95" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#a855f7"/>
-                            <stop offset="100%" stop-color="#4c1d95"/>
-                        </linearGradient>
-                        <!-- 3D Alanga gradienti -->
-                        <linearGradient id="fire3D" x1="62" y1="84" x2="26" y2="124" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#fef08a"/>
-                            <stop offset="45%" stop-color="#fb923c"/>
-                            <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
-                        </linearGradient>
-                    </defs>
+    <!-- 1-OYNA: KIRISH QISMI -->
+    <div id="loaderPage" class="page active">
+        <div class="loader-wrap">
+            <div class="crash-card">
+                <div class="rocket-3d-box">
+                    <svg viewBox="0 0 170 140" width="170" height="140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="body3D" x1="78" y1="24" x2="128" y2="78" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#ffffff"/>
+                                <stop offset="55%" stop-color="#e9d5ff"/>
+                                <stop offset="100%" stop-color="#9333ea"/>
+                            </linearGradient>
+                            <linearGradient id="nose3D" x1="106" y1="22" x2="132" y2="48" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#c084fc"/>
+                                <stop offset="100%" stop-color="#6b21a8"/>
+                            </linearGradient>
+                            <radialGradient id="window3D" cx="35%" cy="35%" r="65%">
+                                <stop offset="0%" stop-color="#7dd3fc"/>
+                                <stop offset="55%" stop-color="#2563eb"/>
+                                <stop offset="100%" stop-color="#1e1b4b"/>
+                            </radialGradient>
+                            <linearGradient id="fin3D" x1="55" y1="50" x2="95" y2="95" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#a855f7"/>
+                                <stop offset="100%" stop-color="#4c1d95"/>
+                            </linearGradient>
+                            <linearGradient id="fire3D" x1="62" y1="84" x2="26" y2="124" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#fef08a"/>
+                                <stop offset="45%" stop-color="#fb923c"/>
+                                <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+                            </linearGradient>
+                        </defs>
 
-                    <g class="rocket-3d-flight">
-                        <!-- 3D Alanga -->
-                        <g class="flame-3d">
-                            <path d="M62 84 C44 92, 32 106, 26 122 C41 117, 49 113, 53 119 C56 110, 65 101, 74 92 Z" fill="url(#fire3D)"/>
-                            <path d="M63 87 C51 94, 44 102, 41 110 C49 107, 54 106, 57 109 C61 103, 66 96, 71 91 Z" fill="#fef08a"/>
+                        <g class="rocket-3d-flight">
+                            <g class="flame-3d">
+                                <path d="M62 84 C44 92, 32 106, 26 122 C41 117, 49 113, 53 119 C56 110, 65 101, 74 92 Z" fill="url(#fire3D)"/>
+                                <path d="M63 87 C51 94, 44 102, 41 110 C49 107, 54 106, 57 109 C61 103, 66 96, 71 91 Z" fill="#fef08a"/>
+                            </g>
+                            <path d="M98 72 L103 98 L90 105 L82 81 Z" fill="url(#fin3D)"/>
+                            <path d="M124 22 C124 22 138 26 138 44 C138 59 121 75 104 84 L74 54 C83 37 99 20 124 22Z" fill="url(#body3D)" stroke="#ffffff" stroke-width="1.5"/>
+                            <path d="M124 22 C131 24 137 31 138 40 C131 38 125 32 124 22Z" fill="url(#nose3D)"/>
+                            <path d="M82 56 L55 52 L48 64 L74 72 Z" fill="url(#fin3D)" stroke="#c084fc" stroke-width="1"/>
+                            <circle cx="113" cy="45" r="10.5" fill="#4c1d95"/>
+                            <circle cx="112.5" cy="44.5" r="8.5" fill="url(#window3D)" stroke="#ffffff" stroke-width="1.6"/>
+                            <ellipse cx="109.5" cy="41.5" rx="2.8" ry="1.6" transform="rotate(-35 109.5 41.5)" fill="#ffffff" opacity="0.85"/>
                         </g>
+                    </svg>
+                </div>
 
-                        <!-- Orqa 3D qanot -->
-                        <path d="M98 72 L103 98 L90 105 L82 81 Z" fill="url(#fin3D)"/>
+                <div class="crash-label">CRASH</div>
 
-                        <!-- Asosiy 3D raketa korpusi -->
-                        <path d="M124 22 C124 22 138 26 138 44 C138 59 121 75 104 84 L74 54 C83 37 99 20 124 22Z" fill="url(#body3D)" stroke="#ffffff" stroke-width="1.5"/>
-
-                        <!-- 3D burun qismi -->
-                        <path d="M124 22 C131 24 137 31 138 40 C131 38 125 32 124 22Z" fill="url(#nose3D)"/>
-
-                        <!-- 3D yon qanot -->
-                        <path d="M82 56 L55 52 L48 64 L74 72 Z" fill="url(#fin3D)" stroke="#c084fc" stroke-width="1"/>
-
-                        <!-- 3D illyuminator (oyna) -->
-                        <circle cx="113" cy="45" r="10.5" fill="#4c1d95"/>
-                        <circle cx="112.5" cy="44.5" r="8.5" fill="url(#window3D)" stroke="#ffffff" stroke-width="1.6"/>
-                        <ellipse cx="109.5" cy="41.5" rx="2.8" ry="1.6" transform="rotate(-35 109.5 41.5)" fill="#ffffff" opacity="0.85"/>
-                    </g>
-                </svg>
+                <div class="deco-lines">
+                    <span class="line-bar a"></span>
+                    <span class="line-bar b"></span>
+                    <span class="line-bar c"></span>
+                </div>
             </div>
 
-            <div class="crash-label">CRASH</div>
+            <div class="progress-area">
+                <div class="progress-track">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <div id="progressPercent" class="progress-percent">0%</div>
+            </div>
+        </div>
+    </div>
 
-            <div class="deco-lines">
-                <span class="line-bar a"></span>
-                <span class="line-bar b"></span>
-                <span class="line-bar c"></span>
+    <!-- 2-OYNA: ASOSIY SAHIFA -->
+    <div id="mainPage" class="page">
+        <div class="content-area">
+            <!-- 1. o'yinlar -->
+            <div id="panel-games" class="tab-panel">
+                <div class="panel-card">
+                    <div class="panel-title">oʻyinlar</div>
+                    <div class="panel-desc">Oʻyinlar boʻlimi tayyor. Keyingi funksiyalarni qoʻshishimiz mumkin.</div>
+                </div>
+            </div>
+
+            <!-- 2. crash -->
+            <div id="panel-crash" class="tab-panel active">
+                <div class="panel-card">
+                    <div class="panel-title">crash</div>
+                    <div class="panel-desc">CRASH boʻlimi tayyor.</div>
+                </div>
+            </div>
+
+            <!-- 3. hisobim -->
+            <div id="panel-myaccount" class="tab-panel">
+                <div class="panel-card">
+                    <div class="panel-title">hisobim</div>
+                    <div class="panel-desc">Hisobim boʻlimi tayyor.</div>
+                </div>
+            </div>
+
+            <!-- 4. hisob -->
+            <div id="panel-account" class="tab-panel">
+                <div class="panel-card">
+                    <div class="profile-photo-ring">
+                        <img id="userPhoto" class="profile-photo-img" src="" alt="Profil rasmi">
+                    </div>
+
+                    <div class="user-nick-row">
+                        <!-- Nik oldidagi qimirlaydigan premium SVG galochka -->
+                        <span class="moving-badge-svg">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="blueBadgeGrad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="#38bdf8"/>
+                                        <stop offset="100%" stop-color="#0284c7"/>
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="12" cy="12" r="10" fill="url(#blueBadgeGrad)"/>
+                                <path d="M8 12.2L10.8 15L16.3 9.2" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                        <span id="userName" class="user-nick-text">@foydalanuvchi</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="progress-area">
-            <div class="progress-track">
-                <div id="progressFill" class="progress-fill"></div>
-            </div>
-            <div id="progressPercent" class="progress-percent">0%</div>
-        </div>
+        <!-- PASTKI 4 TA BO'LIM (PREMIUM SVG IKONKALAR BILAN) -->
+        <nav class="bottom-nav">
+            <!-- o'yinlar -->
+            <button class="nav-item" data-tab="games" onclick="switchTab('games', this)">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2.5" y="6.5" width="19" height="11" rx="5.5" stroke="currentColor" stroke-width="2"/>
+                        <path d="M8 10V14M6 12H10" stroke="#c084fc" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="15.5" cy="11" r="1.3" fill="#facc15"/>
+                        <circle cx="17.8" cy="13" r="1.3" fill="#38bdf8"/>
+                    </svg>
+                </span>
+                <span class="nav-label">oʻyinlar</span>
+            </button>
+
+            <!-- crash -->
+            <button class="nav-item active" data-tab="crash" onclick="switchTab('crash', this)">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.5 3.5C15.5 3.5 19.8 4.2 20.5 8.8C21.1 12.2 18.6 15.2 16.2 16.9L11.5 12.2C13.2 9.8 16.2 7.3 15.5 3.5Z" fill="#e9d5ff" stroke="currentColor" stroke-width="1.6"/>
+                        <circle cx="16.1" cy="8.4" r="1.8" fill="#6d28d9"/>
+                        <path d="M11.8 12.6L8.2 11.8L6.8 13.6L10.4 15.2L11.8 12.6Z" fill="#c084fc"/>
+                        <path d="M14.8 15.6L15.6 19.2L13.8 20.6L12.2 17L14.8 15.6Z" fill="#c084fc"/>
+                        <path d="M9.8 15.4L6.8 18.8L10.2 17.8Z" fill="#facc15"/>
+                    </svg>
+                </span>
+                <span class="nav-label">crash</span>
+            </button>
+
+            <!-- hisobim -->
+            <button class="nav-item" data-tab="myaccount" onclick="switchTab('myaccount', this)">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 7.5C4 5.84315 5.34315 4.5 7 4.5H17C18.6569 4.5 20 5.84315 20 7.5V16.5C20 18.1569 18.6569 19.5 17 19.5H7C5.34315 19.5 4 18.1569 4 16.5V7.5Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M15.5 12H20V14.5H15.5C14.6716 14.5 14 13.8284 14 13V13C14 12.1716 14.6716 12 15.5 12Z" fill="#38bdf8"/>
+                        <circle cx="16" cy="13.25" r="0.9" fill="#ffffff"/>
+                    </svg>
+                </span>
+                <span class="nav-label">hisobim</span>
+            </button>
+
+            <!-- hisob -->
+            <button class="nav-item" data-tab="account" onclick="switchTab('account', this)">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="8.2" r="3.8" fill="#c084fc" stroke="currentColor" stroke-width="1.6"/>
+                        <path d="M5.2 19.2C5.8 16.1 8.6 14.2 12 14.2C15.4 14.2 18.2 16.1 18.8 19.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </span>
+                <span class="nav-label">hisob</span>
+            </button>
+        </nav>
     </div>
 
     <script>
@@ -326,7 +610,38 @@
             tg.expand();
         }
 
-        // 0% dan 100% gacha to'ladi va shu sahifada qoladi (keyingi oynaga o'tmaydi)
+        // Telegram foydalanuvchi ma'lumotlari ({name} va {photo})
+        function loadTelegramUser() {
+            const user = tg && tg.initDataUnsafe ? tg.initDataUnsafe.user : null;
+            const nameEl = document.getElementById('userName');
+            const photoEl = document.getElementById('userPhoto');
+
+            let displayName = '@foydalanuvchi';
+            if (user) {
+                if (user.username) {
+                    displayName = '@' + user.username;
+                } else {
+                    displayName = [user.first_name, user.last_name].filter(Boolean).join(' ') || '@foydalanuvchi';
+                }
+            }
+            nameEl.textContent = displayName;
+
+            const defaultAvatar = "data:image/svg+xml;utf8," + encodeURIComponent(`
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                    <rect width="100" height="100" fill="#1e103f"/>
+                    <circle cx="50" cy="38" r="18" fill="#c084fc"/>
+                    <path d="M20 86C24 68 36 60 50 60C64 60 76 68 80 86" fill="#7c3aed"/>
+                </svg>
+            `);
+
+            photoEl.src = (user && user.photo_url) ? user.photo_url : defaultAvatar;
+            photoEl.onerror = function () {
+                this.src = defaultAvatar;
+            };
+        }
+        loadTelegramUser();
+
+        // Kirish chizig'i 100% gacha to'lib, keyingi oynaga o'tadi
         let current = 0;
         const fillEl = document.getElementById('progressFill');
         const percentEl = document.getElementById('progressPercent');
@@ -338,8 +653,22 @@
                 percentEl.textContent = current + '%';
             } else {
                 clearInterval(interval);
+                setTimeout(() => {
+                    document.getElementById('loaderPage').classList.remove('active');
+                    document.getElementById('mainPage').classList.add('active');
+                }, 350);
             }
         }, 25);
+
+        // Pastki 4 ta bo'lim o'rtasida o'tish
+        function switchTab(tabName, btnEl) {
+            document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+
+            document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+            const targetPanel = document.getElementById('panel-' + tabName);
+            if (targetPanel) targetPanel.classList.add('active');
+        }
     </script>
 </body>
 </html>
