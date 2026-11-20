@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRASH</title>
+    <title>CRASH & STARS</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
@@ -91,6 +91,20 @@
             50% { transform: translate(55vw, -24px) rotate(4deg); opacity: 1; }
             92% { opacity: 1; }
             100% { transform: translate(115vw, 12px) rotate(-4deg); opacity: 0; }
+        }
+
+        /* TELEGRAM PREMIUM STAR ANIMATSIYASI */
+        .tg-star-anim {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            animation: tgStarPulse 2s infinite ease-in-out;
+            filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.55));
+        }
+
+        @keyframes tgStarPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.18) rotate(10deg); }
         }
 
         /* 1-OYNA: KIRISH QISMI */
@@ -229,7 +243,7 @@
             z-index: 3;
             flex: 1;
             width: 100%;
-            padding: 14px 16px 10px;
+            padding: 12px 15px 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -240,28 +254,29 @@
         .tab-panel {
             display: none;
             width: 100%;
-            max-width: 385px;
+            max-width: 390px;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
+            gap: 11px;
         }
 
         .tab-panel.active {
             display: flex;
         }
 
-        /* O'YINLAR BO'LIMI */
+        /* O'YINLAR BO'LIMI KARTALARI */
         .game-pick-card {
             width: 100%;
             background: linear-gradient(160deg, rgba(109, 40, 217, 0.36) 0%, rgba(28, 12, 62, 0.78) 60%, rgba(10, 5, 24, 0.94) 100%);
             border: 1.5px solid rgba(192, 132, 252, 0.55);
-            border-radius: 24px;
-            padding: 20px;
+            border-radius: 22px;
+            padding: 17px 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 12px;
             cursor: pointer;
-            box-shadow: 0 16px 34px rgba(0, 0, 0, 0.5), 0 0 22px rgba(139, 92, 246, 0.25);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(139, 92, 246, 0.22);
         }
 
         .game-pick-card:active {
@@ -270,21 +285,26 @@
 
         .game-pick-left {
             display: flex;
-            flex-direction: column;
-            gap: 4px;
+            align-items: center;
+            gap: 12px;
             text-align: left;
         }
 
+        .game-pick-text {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
         .game-pick-title {
-            font-size: 22px;
+            font-size: 19px;
             font-weight: 950;
-            font-style: italic;
-            letter-spacing: 1.5px;
+            letter-spacing: 0.8px;
             color: #ffffff;
         }
 
         .game-pick-sub {
-            font-size: 12px;
+            font-size: 11.5px;
             color: #ddd6fe;
             font-weight: 600;
         }
@@ -294,38 +314,42 @@
             color: #ffffff;
             font-size: 12px;
             font-weight: 900;
-            padding: 9px 15px;
-            border-radius: 14px;
+            padding: 8px 14px;
+            border-radius: 13px;
+            flex-shrink: 0;
         }
 
-        /* CRASH O'YIN EKRANI */
-        .crash-game-shell {
+        /* CRASH & SEKUNDAMER SHELL */
+        .game-shell {
             width: 100%;
-            background: linear-gradient(160deg, rgba(109, 40, 217, 0.28) 0%, rgba(20, 9, 48, 0.84) 60%, rgba(8, 4, 20, 0.96) 100%);
+            background: linear-gradient(160deg, rgba(109, 40, 217, 0.28) 0%, rgba(20, 9, 48, 0.86) 60%, rgba(8, 4, 20, 0.96) 100%);
             border: 1.5px solid rgba(192, 132, 252, 0.45);
             border-radius: 24px;
-            padding: 14px;
+            padding: 13px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 9px;
             box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
         }
 
-        .crash-top-bar {
+        .game-top-bar {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 8px;
         }
 
-        .crash-balance-pill {
+        .stars-pill {
             background: rgba(15, 7, 36, 0.92);
             border: 1px solid rgba(250, 204, 21, 0.55);
             color: #fde047;
             font-size: 13px;
             font-weight: 900;
-            padding: 7px 12px;
+            padding: 6px 11px;
             border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .book-btn {
@@ -333,11 +357,11 @@
             border: 1px solid rgba(192, 132, 252, 0.55);
             color: #ffffff;
             border-radius: 12px;
-            padding: 6px 11px;
+            padding: 6px 10px;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            font-size: 12px;
+            gap: 5px;
+            font-size: 11.5px;
             font-weight: 800;
             cursor: pointer;
         }
@@ -360,9 +384,9 @@
 
         .hist-chip {
             flex-shrink: 0;
-            font-size: 11.5px;
+            font-size: 11px;
             font-weight: 900;
-            padding: 4px 9px;
+            padding: 4px 8px;
             border-radius: 99px;
             background: rgba(124, 58, 237, 0.28);
             border: 1px solid rgba(192, 132, 252, 0.35);
@@ -384,7 +408,7 @@
         .flight-arena {
             position: relative;
             width: 100%;
-            height: 170px;
+            height: 158px;
             border-radius: 18px;
             background:
                 radial-gradient(circle at 75% 25%, rgba(168, 85, 247, 0.26), transparent 55%),
@@ -392,6 +416,7 @@
             border: 1px solid rgba(192, 132, 252, 0.32);
             overflow: hidden;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
@@ -399,7 +424,7 @@
         .multiplier-readout {
             position: relative;
             z-index: 3;
-            font-size: 36px;
+            font-size: 34px;
             font-weight: 950;
             letter-spacing: 1px;
             color: #ffffff;
@@ -412,7 +437,7 @@
         }
 
         .multiplier-readout.waiting {
-            font-size: 20px;
+            font-size: 18px;
             color: #fde047;
         }
 
@@ -432,7 +457,7 @@
         .bet-controls {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 7px;
         }
 
         .bet-input-row {
@@ -441,19 +466,19 @@
             justify-content: space-between;
             background: rgba(9, 4, 22, 0.88);
             border: 1px solid rgba(192, 132, 252, 0.35);
-            border-radius: 14px;
-            padding: 8px 10px;
-            gap: 10px;
+            border-radius: 13px;
+            padding: 6px 9px;
+            gap: 8px;
         }
 
         .step-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 11px;
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
             border: 1px solid rgba(192, 132, 252, 0.45);
             background: rgba(124, 58, 237, 0.25);
             color: #ffffff;
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 900;
             cursor: pointer;
         }
@@ -465,7 +490,7 @@
         .bet-amount-val {
             flex: 1;
             text-align: center;
-            font-size: 16px;
+            font-size: 14.5px;
             font-weight: 950;
             color: #ffffff;
         }
@@ -480,10 +505,10 @@
             background: rgba(124, 58, 237, 0.2);
             border: 1px solid rgba(192, 132, 252, 0.35);
             color: #f3e8ff;
-            font-size: 11.5px;
+            font-size: 11px;
             font-weight: 800;
-            padding: 6px 4px;
-            border-radius: 10px;
+            padding: 5px 4px;
+            border-radius: 9px;
             cursor: pointer;
         }
 
@@ -491,16 +516,15 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
-            margin-top: 2px;
         }
 
         .bet-action-btn {
-            padding: 13px 10px;
-            border-radius: 15px;
+            padding: 12px 10px;
+            border-radius: 14px;
             border: none;
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 950;
-            letter-spacing: 0.6px;
+            letter-spacing: 0.5px;
             cursor: pointer;
             transition: transform 0.14s ease, opacity 0.2s ease;
         }
@@ -524,6 +548,32 @@
         .bet-action-btn:disabled {
             opacity: 0.38;
             cursor: not-allowed;
+        }
+
+        /* SEKUNDAMER O'YINI QO'SHIMCHA STILLARI */
+        .stopwatch-ring-wrap {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .sw-needle-spin {
+            animation: swTick 1.2s infinite ease-in-out;
+            transform-origin: 36px 38px;
+        }
+
+        @keyframes swTick {
+            0%, 100% { transform: rotate(-18deg) scale(1); }
+            50% { transform: rotate(18deg) scale(1.08); }
+        }
+
+        .sw-status-line {
+            font-size: 11.5px;
+            font-weight: 800;
+            color: #ddd6fe;
         }
 
         /* KITOBCHA MODAL */
@@ -586,18 +636,18 @@
             cursor: pointer;
         }
 
-        /* HISOBIM BO'LIMI */
+        /* HISOBIM BO'LIMI (STARS YECHISH) */
         .panel-card {
             width: 100%;
             background: linear-gradient(160deg, rgba(109, 40, 217, 0.28) 0%, rgba(25, 11, 56, 0.76) 60%, rgba(10, 5, 24, 0.94) 100%);
             border: 1.5px solid rgba(192, 132, 252, 0.45);
             border-radius: 24px;
-            padding: 22px 18px;
+            padding: 20px 18px;
             box-shadow: 0 16px 38px rgba(0, 0, 0, 0.55), inset 0 0 20px rgba(168, 85, 247, 0.14);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 14px;
+            gap: 13px;
             text-align: center;
         }
 
@@ -609,90 +659,82 @@
         }
 
         .balance-big {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 950;
             color: #fde047;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             text-shadow: 0 0 16px rgba(250, 204, 21, 0.35);
         }
 
         .withdraw-main-btn {
             width: 100%;
-            padding: 14px 18px;
-            border-radius: 16px;
+            padding: 13px 16px;
+            border-radius: 15px;
             border: 1px solid rgba(250, 204, 21, 0.5);
             background: linear-gradient(135deg, #7c3aed, #a855f7);
-            color: #ffffff;
-            font-size: 15px;
-            font-weight: 900;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            box-shadow: 0 10px 24px rgba(124, 58, 237, 0.35);
-        }
-
-        .withdraw-main-btn:active {
-            transform: scale(0.97);
-        }
-
-        .withdraw-options {
-            display: none;
-            width: 100%;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 2px;
-        }
-
-        .withdraw-options.open {
-            display: flex;
-        }
-
-        .withdraw-item-btn {
-            width: 100%;
-            background: rgba(12, 5, 28, 0.9);
-            border: 1.5px solid rgba(192, 132, 252, 0.45);
-            border-radius: 16px;
-            padding: 13px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
             color: #ffffff;
             font-size: 14.5px;
             font-weight: 900;
             cursor: pointer;
-            transition: transform 0.15s ease, border-color 0.2s ease;
+            box-shadow: 0 10px 24px rgba(124, 58, 237, 0.35);
         }
 
-        .withdraw-item-btn:active {
-            transform: scale(0.97);
+        .withdraw-box {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            gap: 10px;
+            background: rgba(11, 5, 26, 0.85);
+            border: 1px solid rgba(192, 132, 252, 0.4);
+            border-radius: 18px;
+            padding: 14px;
         }
 
-        /* Qimirlaydigan SVG ikonkalar (Wallet va Adminka) */
-        .moving-wallet-svg {
-            width: 26px;
-            height: 26px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            animation: walletWiggle 1.9s infinite ease-in-out;
+        .withdraw-box.open {
+            display: flex;
         }
 
-        @keyframes walletWiggle {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            35% { transform: scale(1.18) rotate(-8deg); }
-            70% { transform: scale(1.12) rotate(8deg); }
+        .target-switch-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
         }
 
-        .moving-admin-svg {
-            width: 26px;
-            height: 26px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            animation: adminFloat 2s infinite ease-in-out;
+        .target-btn {
+            padding: 9px 8px;
+            border-radius: 12px;
+            border: 1px solid rgba(192, 132, 252, 0.4);
+            background: rgba(124, 58, 237, 0.2);
+            color: #ddd6fe;
+            font-size: 13px;
+            font-weight: 900;
+            cursor: pointer;
         }
 
-        @keyframes adminFloat {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-3px) scale(1.15); }
+        .target-btn.active {
+            background: linear-gradient(135deg, #9333ea, #c084fc);
+            color: #ffffff;
+            border-color: #fde047;
+        }
+
+        .limit-hint {
+            font-size: 11.5px;
+            color: #fde047;
+            font-weight: 800;
+        }
+
+        .send-admin-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 14px;
+            border: none;
+            background: linear-gradient(135deg, #eab308, #facc15);
+            color: #14092c;
+            font-size: 13.5px;
+            font-weight: 950;
+            cursor: pointer;
         }
 
         /* HISOB BO'LIMI */
@@ -931,10 +973,52 @@
 
             <!-- 1. o'yinlar BO'LIMI -->
             <div id="panel-games" class="tab-panel">
-                <div class="game-pick-card" onclick="openCrashFromGames()">
+                <!-- CRASH -->
+                <div class="game-pick-card" onclick="openGameTab('crash')">
                     <div class="game-pick-left">
-                        <span class="game-pick-title">CRASH</span>
-                        <span class="game-pick-sub">Samolyot koʻtarilish oʻyini</span>
+                        <span class="tg-star-anim">
+                            <svg viewBox="0 0 32 32" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="tgStarGradA" x1="4" y1="2" x2="28" y2="30" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="#fef08a"/>
+                                        <stop offset="50%" stop-color="#facc15"/>
+                                        <stop offset="100%" stop-color="#ea580c"/>
+                                    </linearGradient>
+                                </defs>
+                                <path d="M16 2.5L20.1 10.8L29.2 12.1L22.6 18.5L24.2 27.6L16 23.3L7.8 27.6L9.4 18.5L2.8 12.1L11.9 10.8L16 2.5Z" fill="url(#tgStarGradA)" stroke="#fffbeb" stroke-width="1.2"/>
+                            </svg>
+                        </span>
+                        <div class="game-pick-text">
+                            <span class="game-pick-title">CRASH</span>
+                            <span class="game-pick-sub">Samolyot koʻtarilish oʻyini</span>
+                        </div>
+                    </div>
+                    <span class="open-badge">Kirish</span>
+                </div>
+
+                <!-- SEKUNDAMER O'YINI -->
+                <div class="game-pick-card" onclick="openGameTab('stopwatch')">
+                    <div class="game-pick-left">
+                        <span class="tg-star-anim">
+                            <svg viewBox="0 0 32 32" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="swGrad" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="#38bdf8"/>
+                                        <stop offset="55%" stop-color="#a855f7"/>
+                                        <stop offset="100%" stop-color="#facc15"/>
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="16" cy="18" r="11" fill="#1e103f" stroke="url(#swGrad)" stroke-width="2.6"/>
+                                <path d="M13 3.5H19M16 3.5V7" stroke="#fde047" stroke-width="2.4" stroke-linecap="round"/>
+                                <path d="M24 9L26.5 11.5" stroke="#38bdf8" stroke-width="2.4" stroke-linecap="round"/>
+                                <path d="M16 18L21.5 13" stroke="#facc15" stroke-width="2.4" stroke-linecap="round"/>
+                                <circle cx="16" cy="18" r="2.2" fill="#ffffff"/>
+                            </svg>
+                        </span>
+                        <div class="game-pick-text">
+                            <span class="game-pick-title">SEKUNDAMER</span>
+                            <span class="game-pick-sub">Sekundni ushlab Stars yuting</span>
+                        </div>
                     </div>
                     <span class="open-badge">Kirish</span>
                 </div>
@@ -942,12 +1026,19 @@
 
             <!-- 2. crash O'YIN BO'LIMI -->
             <div id="panel-crash" class="tab-panel active">
-                <div class="crash-game-shell">
-                    <div class="crash-top-bar">
-                        <div id="crashTopBalance" class="crash-balance-pill">1,500 soʻm</div>
+                <div class="game-shell">
+                    <div class="game-top-bar">
+                        <div class="stars-pill">
+                            <span class="tg-star-anim">
+                                <svg viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L15.1 8.3L22 9.3L17 14.1L18.2 21L12 17.7L5.8 21L7 14.1L2 9.3L8.9 8.3L12 2Z" fill="#facc15"/>
+                                </svg>
+                            </span>
+                            <span id="crashTopStars">2 Stars</span>
+                        </div>
 
-                        <button class="book-btn" onclick="openRulesModal()">
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <button class="book-btn" onclick="openRulesModal('crash')">
+                            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M4 5.5C4 4.67157 4.67157 4 5.5 4H10.5C11.3284 4 12 4.67157 12 5.5V19C12 18.1716 11.3284 17.5 10.5 17.5H5.5C4.67157 17.5 4 18.1716 4 19V5.5Z" fill="#c084fc" stroke="#ffffff" stroke-width="1.5"/>
                                 <path d="M20 5.5C20 4.67157 19.3284 4 18.5 4H13.5C12.6716 4 12 4.67157 12 5.5V19C12 18.1716 12.6716 17.5 13.5 17.5H18.5C19.3284 17.5 20 18.1716 20 19V5.5Z" fill="#a855f7" stroke="#ffffff" stroke-width="1.5"/>
                             </svg>
@@ -960,7 +1051,7 @@
                     <div class="flight-arena">
                         <div id="livePlaneMover" class="live-plane-mover">
                             <div class="plane-flight-anim">
-                                <svg viewBox="0 0 180 140" width="94" height="72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg viewBox="0 0 180 140" width="90" height="68" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g transform="rotate(-14 90 70)">
                                         <path d="M68 42 L114 38 C119 38 122 42 119 45 L72 49 C67 49 65 44 68 42 Z" fill="#c084fc" stroke="#f3e8ff" stroke-width="1.2"/>
                                         <path d="M26 62 L34 42 L48 58 Z" fill="#a855f7"/>
@@ -981,75 +1072,126 @@
 
                     <div class="bet-controls">
                         <div class="bet-input-row">
-                            <button class="step-btn" onclick="changeBet(-500)">−</button>
-                            <div id="betAmountDisplay" class="bet-amount-val">500 soʻm</div>
-                            <button class="step-btn" onclick="changeBet(500)">+</button>
+                            <button class="step-btn" onclick="changeCrashBet(-1)">−</button>
+                            <div id="crashBetDisplay" class="bet-amount-val">1 Stars</div>
+                            <button class="step-btn" onclick="changeCrashBet(1)">+</button>
                         </div>
 
                         <div class="quick-bets">
-                            <button class="q-btn" onclick="setBetExact(500)">500</button>
-                            <button class="q-btn" onclick="setBetExact(1500)">1,500</button>
-                            <button class="q-btn" onclick="setBetExact(5000)">5,000</button>
-                            <button class="q-btn" onclick="setBetExact(50000)">50,000</button>
+                            <button class="q-btn" onclick="setCrashBetExact(1)">1</button>
+                            <button class="q-btn" onclick="setCrashBetExact(2)">2</button>
+                            <button class="q-btn" onclick="setCrashBetExact(5)">5</button>
+                            <button class="q-btn" onclick="setCrashBetExact(10)">10</button>
                         </div>
 
                         <div class="action-row">
-                            <button id="btnTikish" class="bet-action-btn btn-tikish" onclick="placeBet()">Tikish</button>
-                            <button id="btnStop" class="bet-action-btn btn-stop" onclick="cashoutBet()" disabled>Stop</button>
+                            <button id="btnCrashTikish" class="bet-action-btn btn-tikish" onclick="placeCrashBet()">Tikish</button>
+                            <button id="btnCrashStop" class="bet-action-btn btn-stop" onclick="cashoutCrashBet()" disabled>Stop</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 3. hisobim BO'LIMI -->
-            <div id="panel-myaccount" class="tab-panel">
-                <div class="panel-card">
-                    <div class="panel-title">hisobim</div>
-                    <div id="myAccountBalance" class="balance-big">1,500 soʻm</div>
-
-                    <button class="withdraw-main-btn" onclick="toggleWithdrawOptions()">Yechib olish</button>
-
-                    <div id="withdrawOptions" class="withdraw-options">
-                        <!-- Uzcard (Premium SVG Wallet) -->
-                        <button class="withdraw-item-btn" onclick="goWithdraw('Uzcard')">
-                            <span>Uzcard</span>
-                            <span class="moving-wallet-svg">
-                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="2.5" y="5" width="19" height="14" rx="4" fill="#38bdf8" fill-opacity="0.22" stroke="#38bdf8" stroke-width="2"/>
-                                    <path d="M15 11.5H21.5V14.5H15C14.17 14.5 13.5 13.83 13.5 13C13.5 12.17 14.17 11.5 15 11.5Z" fill="#38bdf8"/>
-                                    <circle cx="15.5" cy="13" r="1" fill="#ffffff"/>
+            <!-- 3. SEKUNDAMER O'YINI BO'LIMI -->
+            <div id="panel-stopwatch" class="tab-panel">
+                <div class="game-shell">
+                    <div class="game-top-bar">
+                        <div class="stars-pill">
+                            <span class="tg-star-anim">
+                                <svg viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L15.1 8.3L22 9.3L17 14.1L18.2 21L12 17.7L5.8 21L7 14.1L2 9.3L8.9 8.3L12 2Z" fill="#facc15"/>
                                 </svg>
                             </span>
-                        </button>
+                            <span id="swTopStars">2 Stars</span>
+                        </div>
 
-                        <!-- Humo (Premium SVG Wallet) -->
-                        <button class="withdraw-item-btn" onclick="goWithdraw('Humo')">
-                            <span>Humo</span>
-                            <span class="moving-wallet-svg">
-                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="2.5" y="5" width="19" height="14" rx="4" fill="#c084fc" fill-opacity="0.22" stroke="#c084fc" stroke-width="2"/>
-                                    <path d="M15 11.5H21.5V14.5H15C14.17 14.5 13.5 13.83 13.5 13C13.5 12.17 14.17 11.5 15 11.5Z" fill="#c084fc"/>
-                                    <circle cx="15.5" cy="13" r="1" fill="#ffffff"/>
-                                </svg>
-                            </span>
+                        <button class="book-btn" onclick="openRulesModal('stopwatch')">
+                            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 5.5C4 4.67157 4.67157 4 5.5 4H10.5C11.3284 4 12 4.67157 12 5.5V19C12 18.1716 11.3284 17.5 10.5 17.5H5.5C4.67157 17.5 4 18.1716 4 19V5.5Z" fill="#c084fc" stroke="#ffffff" stroke-width="1.5"/>
+                                <path d="M20 5.5C20 4.67157 19.3284 4 18.5 4H13.5C12.6716 4 12 4.67157 12 5.5V19C12 18.1716 12.6716 17.5 13.5 17.5H18.5C19.3284 17.5 20 18.1716 20 19V5.5Z" fill="#a855f7" stroke="#ffffff" stroke-width="1.5"/>
+                            </svg>
+                            <span>Qanday oʻynaladi</span>
                         </button>
+                    </div>
 
-                        <!-- Adminka orqali (Premium SVG) -->
-                        <button class="withdraw-item-btn" onclick="goWithdraw('Adminka orqali')">
-                            <span>Adminka orqali</span>
-                            <span class="moving-admin-svg">
-                                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="12" cy="12" r="9.5" fill="#facc15" fill-opacity="0.2" stroke="#facc15" stroke-width="2"/>
-                                    <circle cx="12" cy="9.2" r="3" fill="#fde047"/>
-                                    <path d="M6.8 17.8C7.6 15.4 9.6 14 12 14C14.4 14 16.4 15.4 17.2 17.8" stroke="#fde047" stroke-width="2" stroke-linecap="round"/>
-                                </svg>
-                            </span>
-                        </button>
+                    <div class="flight-arena">
+                        <div class="stopwatch-ring-wrap">
+                            <svg viewBox="0 0 72 72" width="54" height="54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="proSwRing" x1="6" y1="6" x2="66" y2="66" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="#38bdf8"/>
+                                        <stop offset="50%" stop-color="#c084fc"/>
+                                        <stop offset="100%" stop-color="#facc15"/>
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="36" cy="38" r="24" fill="#170a36" stroke="url(#proSwRing)" stroke-width="3"/>
+                                <path d="M31 8.5H41M36 8.5V14" stroke="#fde047" stroke-width="3" stroke-linecap="round"/>
+                                <g class="sw-needle-spin">
+                                    <line x1="36" y1="38" x2="48" y2="24" stroke="#facc15" stroke-width="3" stroke-linecap="round"/>
+                                </g>
+                                <circle cx="36" cy="38" r="3.5" fill="#ffffff"/>
+                            </svg>
+                            <div id="swClockText" class="multiplier-readout">0.00s</div>
+                            <div id="swSubStatus" class="sw-status-line">Maqsad: 5.00s</div>
+                        </div>
+                    </div>
+
+                    <div class="bet-controls">
+                        <div class="bet-input-row">
+                            <button class="step-btn" onclick="changeSwBet(-1)">−</button>
+                            <div id="swBetDisplay" class="bet-amount-val">1 Stars</div>
+                            <button class="step-btn" onclick="changeSwBet(1)">+</button>
+                        </div>
+
+                        <div class="bet-input-row">
+                            <button class="step-btn" onclick="changeSwTarget(-1)">−</button>
+                            <div id="swTargetDisplay" class="bet-amount-val">5.00s</div>
+                            <button class="step-btn" onclick="changeSwTarget(1)">+</button>
+                        </div>
+
+                        <div class="action-row">
+                            <button id="btnSwStart" class="bet-action-btn btn-tikish" onclick="startStopwatchGame()">Boshlash</button>
+                            <button id="btnSwTake" class="bet-action-btn btn-stop" onclick="takeStopwatchWin()" disabled>Olish</button>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 4. hisob BO'LIMI -->
+            <!-- 4. hisobim BO'LIMI -->
+            <div id="panel-myaccount" class="tab-panel">
+                <div class="panel-card">
+                    <div class="panel-title">hisobim</div>
+                    <div class="balance-big">
+                        <span class="tg-star-anim">
+                            <svg viewBox="0 0 28 28" width="26" height="26" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14 2L17.6 9.3L25.6 10.5L19.8 16.1L21.2 24.1L14 20.3L6.8 24.1L8.2 16.1L2.4 10.5L10.4 9.3L14 2Z" fill="#facc15"/>
+                            </svg>
+                        </span>
+                        <span id="myAccountStars">2 Stars</span>
+                    </div>
+
+                    <button class="withdraw-main-btn" onclick="toggleWithdrawBox()">Adminka orqali yechib olish</button>
+
+                    <div id="withdrawBox" class="withdraw-box">
+                        <div class="target-switch-row">
+                            <button id="btnTargetPost" class="target-btn active" onclick="selectWithdrawTarget('Postga')">Postga</button>
+                            <button id="btnTargetProfile" class="target-btn" onclick="selectWithdrawTarget('Profilga')">Profilga</button>
+                        </div>
+
+                        <div id="withdrawLimitHint" class="limit-hint">Postga: minimal 1 Stars, maksimal 10 Stars</div>
+
+                        <div class="bet-input-row">
+                            <button class="step-btn" onclick="changeWithdrawStars(-1)">−</button>
+                            <div id="withdrawAmountDisplay" class="bet-amount-val">1 Stars</div>
+                            <button class="step-btn" onclick="changeWithdrawStars(1)">+</button>
+                        </div>
+
+                        <button class="send-admin-btn" onclick="sendToAdmin()">@axeopeng ga yuborish</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. hisob BO'LIMI -->
             <div id="panel-account" class="tab-panel">
                 <div class="panel-card">
                     <div class="profile-photo-ring">
@@ -1109,9 +1251,7 @@
             <button class="nav-item" data-tab="myaccount" onclick="switchTab('myaccount', this)">
                 <span class="nav-icon anim-wallet">
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 7.5C4 5.84315 5.34315 4.5 7 4.5H17C18.6569 4.5 20 5.84315 20 7.5V16.5C20 18.1569 18.6569 19.5 17 19.5H7C5.34315 19.5 4 18.1569 4 16.5V7.5Z" stroke="currentColor" stroke-width="2"/>
-                        <path d="M15.5 12H20V14.5H15.5C14.6716 14.5 14 13.8284 14 13V13C14 12.1716 14.6716 12 15.5 12Z" fill="#38bdf8"/>
-                        <circle cx="16" cy="13.25" r="0.9" fill="#ffffff"/>
+                        <path d="M12 2.5L15 8.6L21.7 9.6L16.8 14.3L18 21L12 17.8L6 21L7.2 14.3L2.3 9.6L9 8.6L12 2.5Z" fill="#facc15"/>
                     </svg>
                 </span>
                 <span class="nav-label">hisobim</span>
@@ -1132,14 +1272,8 @@
     <!-- KITOBCHA: QANDAY O'YNALADI -->
     <div id="rulesModal" class="rules-modal" onclick="closeRulesModal(event)">
         <div class="rules-box" onclick="event.stopPropagation()">
-            <div class="rules-title">Qanday oʻynaladi</div>
-            <ul class="rules-list">
-                <li>• Minimal tikish: <b>500 soʻm</b>, maksimal tikish: <b>50,000 soʻm</b>.</li>
-                <li>• Koeffitsient <b>1.30x</b> ga yetmaguncha yutuqni <b>Stop</b> bilan olish mumkin emas.</li>
-                <li>• Yutuq = <b>Tikilgan summa × joriy koeffitsient</b>.</li>
-                <li>• Yutib olganingizdan keyin keyingi oʻyin boshlanmaguncha qayta tikib boʻlmaydi.</li>
-                <li>• Oʻyin siz kirmasangiz ham davom etadi va tepada koeffitsientlar koʻrinadi.</li>
-            </ul>
+            <div id="rulesTitle" class="rules-title">Qanday oʻynaladi</div>
+            <ul id="rulesList" class="rules-list"></ul>
             <button class="close-rules-btn" onclick="closeRulesModal()">Yopish</button>
         </div>
     </div>
@@ -1151,18 +1285,36 @@
             tg.expand();
         }
 
+        const tgUser = (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) ? tg.initDataUnsafe.user : null;
+
+        // Har bir foydalanuvchi uchun alohida identifikator (bitta umumiy kishiga tegishli bo'lmasligi uchun)
+        function getUserStorageSuffix() {
+            if (tgUser && tgUser.id) {
+                return 'tg_u_' + String(tgUser.id);
+            }
+            let localUid = localStorage.getItem('local_unique_player_id_v1');
+            if (!localUid) {
+                localUid = 'guest_' + Math.random().toString(36).slice(2, 11) + '_' + Date.now().toString(36);
+                localStorage.setItem('local_unique_player_id_v1', localUid);
+            }
+            return localUid;
+        }
+
+        const userSuffix = getUserStorageSuffix();
+        const STORAGE_STARS_KEY = 'tg_stars_balance_' + userSuffix;
+        const STORAGE_HIST_KEY = 'tg_crash_history_' + userSuffix;
+
         // Foydalanuvchi ma'lumotlari
         function loadTelegramUser() {
-            const user = tg && tg.initDataUnsafe ? tg.initDataUnsafe.user : null;
             const nameEl = document.getElementById('userName');
             const photoEl = document.getElementById('userPhoto');
 
             let displayName = '@foydalanuvchi';
-            if (user) {
-                if (user.username) {
-                    displayName = '@' + user.username;
+            if (tgUser) {
+                if (tgUser.username) {
+                    displayName = '@' + tgUser.username;
                 } else {
-                    displayName = [user.first_name, user.last_name].filter(Boolean).join(' ') || '@foydalanuvchi';
+                    displayName = [tgUser.first_name, tgUser.last_name].filter(Boolean).join(' ') || '@foydalanuvchi';
                 }
             }
             nameEl.textContent = displayName;
@@ -1175,7 +1327,7 @@
                 </svg>
             `);
 
-            photoEl.src = (user && user.photo_url) ? user.photo_url : defaultAvatar;
+            photoEl.src = (tgUser && tgUser.photo_url) ? tgUser.photo_url : defaultAvatar;
             photoEl.onerror = function () {
                 this.src = defaultAvatar;
             };
@@ -1207,7 +1359,8 @@
             if (btnEl) {
                 btnEl.classList.add('active');
             } else {
-                const targetBtn = document.querySelector(`.nav-item[data-tab="${tabName}"]`);
+                const navTarget = (tabName === 'stopwatch') ? 'games' : tabName;
+                const targetBtn = document.querySelector(`.nav-item[data-tab="${navTarget}"]`);
                 if (targetBtn) targetBtn.classList.add('active');
             }
 
@@ -1216,11 +1369,31 @@
             if (targetPanel) targetPanel.classList.add('active');
         }
 
-        function openCrashFromGames() {
-            switchTab('crash', null);
+        function openGameTab(gameTab) {
+            switchTab(gameTab, null);
         }
 
-        function openRulesModal() {
+        // KITOBCHA QOIDALARI
+        function openRulesModal(mode) {
+            const titleEl = document.getElementById('rulesTitle');
+            const listEl = document.getElementById('rulesList');
+            if (mode === 'stopwatch') {
+                titleEl.textContent = 'Sekundamer — Qanday oʻynaladi';
+                listEl.innerHTML = `
+                    <li>• Tikish miqdorini va maqsad sekundni (masalan, <b>5.00s</b>) tanlang.</li>
+                    <li>• Oʻyin toʻliq <b>omadga bogʻliq</b>: sekundamer ishlayotganda omadsizlik nuqtasi istalgan vaqtda kelishi mumkin.</li>
+                    <li>• Maqsad sekundga yetganingizda <b>Olish</b> tugmasini bossangiz, yutuq = <b>Tikish × Sekund</b> (masalan, 1 Stars × 5 = <b>5 Stars</b>) hisoblanadi.</li>
+                    <li>• Vaqtida ololmasangiz yoki omadsizlikka uchrasangiz, tikilgan Stars kuyadi.</li>
+                `;
+            } else {
+                titleEl.textContent = 'CRASH — Qanday oʻynaladi';
+                listEl.innerHTML = `
+                    <li>• Koeffitsient <b>1.30x</b> ga yetmaguncha <b>Stop</b> bilan yutuqni olish mumkin emas.</li>
+                    <li>• Oʻyin davom etayotganida tiksangiz, <b>keyingi raundgacha</b> kutib turadi.</li>
+                    <li>• Yutib olganingizdan keyin keyingi oʻyin boshlanmaguncha qayta tikib boʻlmaydi.</li>
+                    <li>• Har oʻlganda <b>4 soniyadan keyin</b> yangi raund boshlanadi.</li>
+                `;
+            }
             document.getElementById('rulesModal').classList.add('open');
         }
 
@@ -1230,31 +1403,13 @@
             }
         }
 
-        // Yechib olish bo'limi
-        function toggleWithdrawOptions() {
-            document.getElementById('withdrawOptions').classList.toggle('open');
-        }
-
-        function goWithdraw(methodName) {
-            const msg = encodeURIComponent(`Assalomu alaykum, ${formatSom(balance)} mablag'ni ${methodName} orqali yechib olmoqchiman.`);
-            const url = `https://t.me/axeopeng?text=${msg}`;
-            if (tg && tg.openTelegramLink) {
-                tg.openTelegramLink(url);
-            } else {
-                window.location.href = url;
-            }
-        }
-
-        // CRASH O'YINI (LOCALSTORAGE BILAN SAQLANADI)
-        const STORAGE_BAL_KEY = 'axe_opang_crash_balance_v1';
-        const STORAGE_HIST_KEY = 'axe_opang_crash_history_v1';
-
-        const savedBal = localStorage.getItem(STORAGE_BAL_KEY);
-        let balance = savedBal !== null ? Number(savedBal) : 1500;
-        if (Number.isNaN(balance) || balance < 0) balance = 1500;
+        // HAR BIR FOYDALANUVCHI UCHUN ALOHIDA STARS BALANSI (BOSHLANG'ICH: 2 STARS)
+        const savedStars = localStorage.getItem(STORAGE_STARS_KEY);
+        let starsBalance = savedStars !== null ? Number(savedStars) : 2;
+        if (Number.isNaN(starsBalance) || starsBalance < 0) starsBalance = 2;
 
         const savedHist = localStorage.getItem(STORAGE_HIST_KEY);
-        let historyList = [1.42, 2.85, 1.18, 4.10, 1.75, 2.12];
+        let historyList = [1.45, 2.30, 1.12, 3.65, 1.68, 2.05];
         if (savedHist) {
             try {
                 const parsed = JSON.parse(savedHist);
@@ -1262,36 +1417,89 @@
             } catch (_) {}
         }
 
-        let selectedBet = 500;
-        let multiplier = 1.00;
-        let crashPoint = 2.00;
-        let gameState = 'flying'; // 'flying' | 'crashed' | 'waiting'
-        let activeBet = 0;
-        let cashedOutInCurrentRound = false;
+        const crashTopStarsEl = document.getElementById('crashTopStars');
+        const swTopStarsEl = document.getElementById('swTopStars');
+        const myAccountStarsEl = document.getElementById('myAccountStars');
 
-        const crashTopBalEl = document.getElementById('crashTopBalance');
-        const myAccountBalEl = document.getElementById('myAccountBalance');
-        const betDisplayEl = document.getElementById('betAmountDisplay');
-        const multTextEl = document.getElementById('multiplierText');
-        const planeMoverEl = document.getElementById('livePlaneMover');
-        const btnTikishEl = document.getElementById('btnTikish');
-        const btnStopEl = document.getElementById('btnStop');
-        const historyStripEl = document.getElementById('historyStrip');
-
-        function formatSom(num) {
-            return Math.round(num).toLocaleString('en-US') + ' soʻm';
+        function formatStars(val) {
+            const num = Number(val);
+            const clean = Number.isInteger(num) ? num : +num.toFixed(2);
+            return clean.toLocaleString('en-US') + ' Stars';
         }
 
-        function saveState() {
-            localStorage.setItem(STORAGE_BAL_KEY, String(Math.round(balance)));
+        function saveAll() {
+            localStorage.setItem(STORAGE_STARS_KEY, String(starsBalance));
             localStorage.setItem(STORAGE_HIST_KEY, JSON.stringify(historyList.slice(0, 15)));
         }
 
-        function syncBalances() {
-            crashTopBalEl.textContent = formatSom(balance);
-            myAccountBalEl.textContent = formatSom(balance);
-            saveState();
+        function syncStars() {
+            crashTopStarsEl.textContent = formatStars(starsBalance);
+            swTopStarsEl.textContent = formatStars(starsBalance);
+            myAccountStarsEl.textContent = formatStars(starsBalance);
+            saveAll();
+            updateCrashButtons();
         }
+
+        // ADMINKA ORQALI YECHISH (POSTGA / PROFILGA)
+        let withdrawTarget = 'Postga';
+        let withdrawAmount = 1;
+
+        function toggleWithdrawBox() {
+            document.getElementById('withdrawBox').classList.toggle('open');
+        }
+
+        function getWithdrawRange() {
+            return withdrawTarget === 'Postga' ? { min: 1, max: 10 } : { min: 50, max: 150 };
+        }
+
+        function selectWithdrawTarget(target) {
+            withdrawTarget = target;
+            document.getElementById('btnTargetPost').classList.toggle('active', target === 'Postga');
+            document.getElementById('btnTargetProfile').classList.toggle('active', target === 'Profilga');
+
+            const rng = getWithdrawRange();
+            withdrawAmount = rng.min;
+            document.getElementById('withdrawLimitHint').textContent =
+                `${target}: minimal ${rng.min} Stars, maksimal ${rng.max} Stars`;
+            document.getElementById('withdrawAmountDisplay').textContent = formatStars(withdrawAmount);
+        }
+
+        function changeWithdrawStars(delta) {
+            const rng = getWithdrawRange();
+            let next = withdrawAmount + delta;
+            if (next < rng.min) next = rng.min;
+            if (next > rng.max) next = rng.max;
+            withdrawAmount = next;
+            document.getElementById('withdrawAmountDisplay').textContent = formatStars(withdrawAmount);
+        }
+
+        function sendToAdmin() {
+            const text = encodeURIComponent(
+                `Assalomu alaykum @axeopeng, ${withdrawTarget} uchun ${withdrawAmount} Stars yechib olmoqchiman.`
+            );
+            const url = `https://t.me/axeopeng?text=${text}`;
+            if (tg && tg.openTelegramLink) {
+                tg.openTelegramLink(url);
+            } else {
+                window.location.href = url;
+            }
+        }
+
+        // CRASH O'YINI
+        let crashBetInput = 1;
+        let multiplier = 1.00;
+        let crashPoint = 1.85;
+        let crashPhase = 'flying'; // 'flying' | 'crashed' | 'waiting'
+        let queuedBet = 0;
+        let activeCrashBet = 0;
+        let cashedOutThisRound = false;
+
+        const crashBetDisplayEl = document.getElementById('crashBetDisplay');
+        const multTextEl = document.getElementById('multiplierText');
+        const planeMoverEl = document.getElementById('livePlaneMover');
+        const btnCrashTikishEl = document.getElementById('btnCrashTikish');
+        const btnCrashStopEl = document.getElementById('btnCrashStop');
+        const historyStripEl = document.getElementById('historyStrip');
 
         function renderHistory() {
             historyStripEl.innerHTML = '';
@@ -1303,75 +1511,88 @@
             });
         }
 
-        function generateCrashPoint() {
+        function generateHardcoreCrashPoint() {
             const r = Math.random();
-            if (r < 0.14) return +(1.05 + Math.random() * 0.23).toFixed(2);
-            if (r < 0.55) return +(1.30 + Math.random() * 1.40).toFixed(2);
-            if (r < 0.88) return +(2.70 + Math.random() * 3.80).toFixed(2);
-            return +(6.50 + Math.random() * 8.50).toFixed(2);
+            if (r < 0.24) return +(1.06 + Math.random() * 0.22).toFixed(2);
+            if (r < 0.68) return +(1.30 + Math.random() * 1.15).toFixed(2);
+            if (r < 0.91) return +(2.45 + Math.random() * 2.50).toFixed(2);
+            return +(5.00 + Math.random() * 4.50).toFixed(2);
         }
 
-        function updateButtons() {
-            // Pulni yutib olgan bo'lsa, keyingi o'yin boshlanmagunicha umuman tikib bo'lmaydi
-            const canPlace = !cashedOutInCurrentRound && activeBet === 0 && (gameState === 'flying' || gameState === 'waiting');
-            btnTikishEl.disabled = !canPlace;
-
-            const canStop = activeBet > 0 && gameState === 'flying' && multiplier >= 1.30;
-            btnStopEl.disabled = !canStop;
+        function canPlaceCrashBet() {
+            return !cashedOutThisRound && queuedBet === 0 && activeCrashBet === 0 && starsBalance >= crashBetInput;
         }
 
-        function changeBet(delta) {
-            let next = selectedBet + delta;
-            if (next < 500) next = 500;
-            if (next > 50000) next = 50000;
-            selectedBet = next;
-            betDisplayEl.textContent = formatSom(selectedBet);
+        function updateCrashButtons() {
+            btnCrashTikishEl.disabled = !canPlaceCrashBet();
+
+            const canStop =
+                activeCrashBet > 0 &&
+                crashPhase === 'flying' &&
+                multiplier >= 1.30;
+            btnCrashStopEl.disabled = !canStop;
         }
 
-        function setBetExact(val) {
-            if (val < 500) val = 500;
-            if (val > 50000) val = 50000;
-            selectedBet = val;
-            betDisplayEl.textContent = formatSom(selectedBet);
+        function changeCrashBet(delta) {
+            let next = crashBetInput + delta;
+            if (next < 1) next = 1;
+            if (next > 150) next = 150;
+            crashBetInput = next;
+            crashBetDisplayEl.textContent = formatStars(crashBetInput);
+            updateCrashButtons();
         }
 
-        function placeBet() {
-            if (activeBet > 0 || cashedOutInCurrentRound) return;
-            if (selectedBet < 500 || selectedBet > 50000) return;
-            if (balance < selectedBet) return;
-
-            balance -= selectedBet;
-            activeBet = selectedBet;
-            syncBalances();
-            updateButtons();
+        function setCrashBetExact(val) {
+            crashBetInput = val;
+            crashBetDisplayEl.textContent = formatStars(crashBetInput);
+            updateCrashButtons();
         }
 
-        function cashoutBet() {
-            if (activeBet <= 0 || gameState !== 'flying' || multiplier < 1.30) return;
+        function placeCrashBet() {
+            if (!canPlaceCrashBet()) return;
+            starsBalance = +(starsBalance - crashBetInput).toFixed(2);
+            syncStars();
 
-            const winAmount = Math.round(activeBet * multiplier);
-            balance += winAmount;
-            activeBet = 0;
-            cashedOutInCurrentRound = true;
-            syncBalances();
-            updateButtons();
+            if (crashPhase === 'flying') {
+                queuedBet = crashBetInput;
+            } else {
+                activeCrashBet = crashBetInput;
+            }
+            updateCrashButtons();
         }
 
-        function startNewFlight() {
+        function cashoutCrashBet() {
+            if (activeCrashBet <= 0 || crashPhase !== 'flying' || multiplier < 1.30) return;
+
+            const won = Math.floor(activeCrashBet * multiplier * 100) / 100;
+            starsBalance = +(starsBalance + won).toFixed(2);
+            activeCrashBet = 0;
+            cashedOutThisRound = true;
+            syncStars();
+            updateCrashButtons();
+        }
+
+        function startCrashRound() {
             multiplier = 1.00;
-            crashPoint = generateCrashPoint();
-            gameState = 'flying';
-            cashedOutInCurrentRound = false;
+            crashPoint = generateHardcoreCrashPoint();
+            crashPhase = 'flying';
+            cashedOutThisRound = false;
+
+            if (queuedBet > 0) {
+                activeCrashBet = queuedBet;
+                queuedBet = 0;
+            }
+
             multTextEl.classList.remove('crashed', 'waiting');
             multTextEl.textContent = '1.00x';
             planeMoverEl.classList.remove('crashed-plane');
             planeMoverEl.style.left = '14%';
             planeMoverEl.style.bottom = '16%';
-            updateButtons();
+            updateCrashButtons();
         }
 
-        function triggerCrash() {
-            gameState = 'crashed';
+        function handleCrashBoom() {
+            crashPhase = 'crashed';
             multTextEl.classList.add('crashed');
             multTextEl.textContent = multiplier.toFixed(2) + 'x';
             planeMoverEl.classList.add('crashed-plane');
@@ -1379,47 +1600,137 @@
             historyList.unshift(Number(multiplier.toFixed(2)));
             if (historyList.length > 15) historyList.pop();
             renderHistory();
-            saveState();
+            saveAll();
 
-            if (activeBet > 0) {
-                activeBet = 0;
+            if (activeCrashBet > 0) {
+                activeCrashBet = 0;
             }
-            updateButtons();
+            updateCrashButtons();
 
             setTimeout(() => {
-                gameState = 'waiting';
-                cashedOutInCurrentRound = false;
+                crashPhase = 'waiting';
+                cashedOutThisRound = false;
                 multTextEl.classList.remove('crashed');
                 multTextEl.classList.add('waiting');
-                multTextEl.textContent = 'Keyingi oʻyin...';
-                updateButtons();
-            }, 1300);
+                multTextEl.textContent = 'Keyingi raund...';
+                updateCrashButtons();
+            }, 1200);
 
             setTimeout(() => {
-                startNewFlight();
-            }, 2600);
+                startCrashRound();
+            }, 4000);
         }
 
-        syncBalances();
+        // SEKUNDAMER O'YINI
+        let swBet = 1;
+        let swTargetSec = 5;
+        let swElapsed = 0.00;
+        let swBustSec = 3.20;
+        let swRunning = false;
+        let swTimer = null;
+
+        const swBetDisplayEl = document.getElementById('swBetDisplay');
+        const swTargetDisplayEl = document.getElementById('swTargetDisplay');
+        const swClockTextEl = document.getElementById('swClockText');
+        const swSubStatusEl = document.getElementById('swSubStatus');
+        const btnSwStartEl = document.getElementById('btnSwStart');
+        const btnSwTakeEl = document.getElementById('btnSwTake');
+
+        function changeSwBet(delta) {
+            if (swRunning) return;
+            let next = swBet + delta;
+            if (next < 1) next = 1;
+            if (next > 100) next = 100;
+            swBet = next;
+            swBetDisplayEl.textContent = formatStars(swBet);
+            swSubStatusEl.textContent = `Maqsad: ${swTargetSec.toFixed(2)}s (Yutuq: ${swBet * swTargetSec} Stars)`;
+        }
+
+        function changeSwTarget(delta) {
+            if (swRunning) return;
+            let next = swTargetSec + delta;
+            if (next < 1) next = 1;
+            if (next > 20) next = 20;
+            swTargetSec = next;
+            swTargetDisplayEl.textContent = swTargetSec.toFixed(2) + 's';
+            swSubStatusEl.textContent = `Maqsad: ${swTargetSec.toFixed(2)}s (Yutuq: ${swBet * swTargetSec} Stars)`;
+        }
+
+        function startStopwatchGame() {
+            if (swRunning || starsBalance < swBet) return;
+            starsBalance = +(starsBalance - swBet).toFixed(2);
+            syncStars();
+
+            swRunning = true;
+            swElapsed = 0.00;
+            const luckRoll = Math.random();
+            if (luckRoll < 0.55) {
+                swBustSec = +(0.40 + Math.random() * Math.max(0.5, swTargetSec - 0.5)).toFixed(2);
+            } else {
+                swBustSec = +(swTargetSec + Math.random() * 2.5).toFixed(2);
+            }
+
+            btnSwStartEl.disabled = true;
+            btnSwTakeEl.disabled = true;
+            swClockTextEl.classList.remove('crashed', 'waiting');
+            swSubStatusEl.textContent = `Maqsad: ${swTargetSec.toFixed(2)}s`;
+
+            swTimer = setInterval(() => {
+                swElapsed = +(swElapsed + 0.05).toFixed(2);
+                swClockTextEl.textContent = swElapsed.toFixed(2) + 's';
+
+                if (swElapsed >= swTargetSec) {
+                    btnSwTakeEl.disabled = false;
+                }
+
+                if (swElapsed >= swBustSec) {
+                    clearInterval(swTimer);
+                    swRunning = false;
+                    swClockTextEl.classList.add('crashed');
+                    swSubStatusEl.textContent = `${swBustSec.toFixed(2)}s da uzildi (Omadsiz)`;
+                    btnSwStartEl.disabled = false;
+                    btnSwTakeEl.disabled = true;
+                }
+            }, 50);
+        }
+
+        function takeStopwatchWin() {
+            if (!swRunning || swElapsed < swTargetSec) return;
+            clearInterval(swTimer);
+            swRunning = false;
+
+            const winStars = swBet * swTargetSec;
+            starsBalance = +(starsBalance + winStars).toFixed(2);
+            syncStars();
+
+            swClockTextEl.classList.remove('crashed');
+            swClockTextEl.classList.add('waiting');
+            swSubStatusEl.textContent = `Yutdingiz: +${winStars} Stars!`;
+            btnSwStartEl.disabled = false;
+            btnSwTakeEl.disabled = true;
+        }
+
+        // ISHGA TUSHIRISH
+        syncStars();
         renderHistory();
-        startNewFlight();
+        selectWithdrawTarget('Postga');
+        changeSwTarget(0);
+        startCrashRound();
 
         setInterval(() => {
-            if (gameState === 'flying') {
-                const step = multiplier < 1.6 ? 0.012 : (multiplier < 3.0 ? 0.022 : 0.038);
+            if (crashPhase === 'flying') {
+                const step = multiplier < 1.5 ? 0.014 : (multiplier < 2.8 ? 0.025 : 0.042);
                 multiplier = +(multiplier + step).toFixed(2);
                 multTextEl.textContent = multiplier.toFixed(2) + 'x';
 
-                const progressRatio = Math.min((multiplier - 1) / 4, 1);
-                const leftPct = 14 + progressRatio * 54;
-                const bottomPct = 16 + progressRatio * 54;
-                planeMoverEl.style.left = leftPct + '%';
-                planeMoverEl.style.bottom = bottomPct + '%';
+                const ratio = Math.min((multiplier - 1) / 4, 1);
+                planeMoverEl.style.left = (14 + ratio * 54) + '%';
+                planeMoverEl.style.bottom = (16 + ratio * 54) + '%';
 
-                updateButtons();
+                updateCrashButtons();
 
                 if (multiplier >= crashPoint) {
-                    triggerCrash();
+                    handleCrashBoom();
                 }
             }
         }, 80);
