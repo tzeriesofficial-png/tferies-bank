@@ -100,7 +100,29 @@
             }
         }
 
-        /* 2-EKRAN: ASOSIY O'YIN MAYDONI */
+        /* QIMIRLAB TURADIGAN PREMIUM SVG TAPCOIN STIKERI */
+        .tapcoin-sticker-svg {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            display: inline-block;
+            animation: stickerWiggle 1.8s infinite ease-in-out;
+            filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.55));
+        }
+
+        @keyframes stickerWiggle {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+            }
+            30% {
+                transform: translateY(-3px) rotate(14deg) scale(1.14);
+            }
+            70% {
+                transform: translateY(1px) rotate(-12deg) scale(1.06);
+            }
+        }
+
+        /* 2-EKRAN: ASOSIY SAHIFA */
         #appScreen {
             justify-content: space-between;
         }
@@ -122,7 +144,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 24px;
+            gap: 22px;
             text-align: center;
         }
 
@@ -155,8 +177,13 @@
             filter: drop-shadow(0 0 24px rgba(250, 204, 21, 0.45));
         }
 
-        .big-tap-coin-btn:active {
+        .big-tap-coin-btn:active:not(:disabled) {
             transform: scale(0.92);
+        }
+
+        .big-tap-coin-btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
         }
 
         .big-tap-coin-svg {
@@ -174,6 +201,26 @@
             }
         }
 
+        /* UZUN SARIQ ENERGIYA CHIZIG'I (ICHIDA YOZUV YO'Q) */
+        .yellow-energy-track {
+            width: 100%;
+            max-width: 340px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.14);
+            border-radius: 999px;
+            overflow: hidden;
+            box-shadow: 0 0 14px rgba(250, 204, 21, 0.2);
+        }
+
+        .yellow-energy-fill {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #eab308 0%, #facc15 55%, #fef08a 100%);
+            border-radius: 999px;
+            box-shadow: 0 0 16px rgba(250, 204, 21, 0.75);
+            transition: width 0.06s linear;
+        }
+
         .section-heading {
             font-size: 24px;
             font-weight: 900;
@@ -185,6 +232,136 @@
             font-size: 14px;
             font-weight: 700;
             color: #d4d4d8;
+        }
+
+        /* HISOB BO'LIMI: PROFIL RASMI + NIKI + QIMIRLOVCHI TANGA */
+        .profile-card-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .profile-avatar-circle {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2.5px solid #ffffff;
+            box-shadow: 0 0 22px rgba(255, 255, 255, 0.22);
+            background: #18181b;
+        }
+
+        .nick-with-sticker {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 21px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        /* KITOBCHA MODALI (WALLET UCHUN) */
+        .book-modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 60;
+            background: rgba(0, 0, 0, 0.85);
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .book-modal-backdrop.open {
+            display: flex;
+        }
+
+        .book-sheet {
+            width: 100%;
+            max-width: 375px;
+            max-height: 86vh;
+            overflow-y: auto;
+            background: #0a0a0a;
+            border: 2px solid rgba(255, 255, 255, 0.28);
+            border-radius: 22px;
+            padding: 18px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
+        }
+
+        .book-user-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+        }
+
+        .book-user-photo {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #facc15;
+            flex-shrink: 0;
+            background: #18181b;
+        }
+
+        .book-greeting-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+            font-size: 16px;
+            font-weight: 900;
+            color: #ffffff;
+        }
+
+        .book-body-text {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.55;
+            color: #f4f4f5;
+            text-align: left;
+        }
+
+        .book-limits-box {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(250, 204, 21, 0.45);
+            border-radius: 14px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            text-align: left;
+        }
+
+        .book-limit-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13.5px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .book-close-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 14px;
+            border: none;
+            background: #ffffff;
+            color: #000000;
+            font-size: 14px;
+            font-weight: 900;
+            cursor: pointer;
         }
 
         /* PASTKI 4 TA BO'LIM PANELI */
@@ -229,21 +406,10 @@
             flex-shrink: 0;
         }
 
-        .svg-move-tap {
-            animation: svgTapWobble 1.9s infinite ease-in-out;
-        }
-
-        .svg-move-boost {
-            animation: svgRocketLift 1.7s infinite ease-in-out;
-        }
-
-        .svg-move-wallet {
-            animation: svgWalletBounce 2.1s infinite ease-in-out;
-        }
-
-        .svg-move-user {
-            animation: svgUserPulse 2.2s infinite ease-in-out;
-        }
+        .svg-move-tap { animation: svgTapWobble 1.9s infinite ease-in-out; }
+        .svg-move-boost { animation: svgRocketLift 1.7s infinite ease-in-out; }
+        .svg-move-wallet { animation: svgWalletBounce 2.1s infinite ease-in-out; }
+        .svg-move-user { animation: svgUserPulse 2.2s infinite ease-in-out; }
 
         @keyframes svgTapWobble {
             0%, 100% { transform: rotate(0deg) scale(1); }
@@ -267,6 +433,26 @@
     </style>
 </head>
 <body>
+
+    <!-- QIMIRLAB TURADIGAN PREMIUM SVG TAPCOIN STIKER SHABLONI -->
+    <template id="tapcoinStickerTemplate">
+        <svg class="tapcoin-sticker-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="stCoinOuter" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#fef08a"/>
+                    <stop offset="50%" stop-color="#facc15"/>
+                    <stop offset="100%" stop-color="#ca8a04"/>
+                </linearGradient>
+                <linearGradient id="stCoinInner" x1="16" y1="14" x2="48" y2="50" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#fde047"/>
+                    <stop offset="100%" stop-color="#eab308"/>
+                </linearGradient>
+            </defs>
+            <circle cx="32" cy="32" r="27" fill="url(#stCoinOuter)" stroke="#fef08a" stroke-width="2"/>
+            <circle cx="32" cy="32" r="21" fill="url(#stCoinInner)" stroke="#ffffff" stroke-width="2" stroke-opacity="0.75"/>
+            <path d="M23 22L41 42M41 22L23 42" stroke="#ffffff" stroke-width="4.4" stroke-linecap="round"/>
+        </svg>
+    </template>
 
     <!-- 1-EKRAN: KIRISH -->
     <div id="introScreen" class="screen active">
@@ -305,7 +491,7 @@
                     <span id="coinBalanceText">0</span>
                 </div>
 
-                <button type="button" class="big-tap-coin-btn" onclick="tapBigCoin()">
+                <button id="bigTapCoinBtn" type="button" class="big-tap-coin-btn" onclick="tapBigCoin()">
                     <svg class="big-tap-coin-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                             <linearGradient id="bigCoinOuter" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
@@ -323,6 +509,11 @@
                         <path d="M23 22L41 42M41 22L23 42" stroke="#ffffff" stroke-width="4.4" stroke-linecap="round"/>
                     </svg>
                 </button>
+
+                <!-- UZUN SARIQ ENERGIYA CHIZIG'I (ICHIDA YOZUV YO'Q) -->
+                <div class="yellow-energy-track">
+                    <div id="yellowEnergyFill" class="yellow-energy-fill"></div>
+                </div>
             </div>
 
             <!-- BOOST BO'LIMI -->
@@ -331,23 +522,28 @@
                 <div class="section-sub">Tezlashtirish boʻlimi</div>
             </div>
 
-            <!-- WALLET BO'LIMI -->
+            <!-- WALLET BO'LIMI (KIRISH MUMKIN EMAS, KITOBCHA OCHILADI) -->
             <div id="view-wallet" class="tab-view">
                 <div class="section-heading">Wallet</div>
-                <div class="section-sub">Hamyon boʻlimi</div>
+                <div class="section-sub">Maʼlumot kitobchasi</div>
             </div>
 
             <!-- HISOB BO'LIMI -->
             <div id="view-hisob" class="tab-view">
-                <div class="section-heading">Hisob</div>
-                <div class="section-sub">Profil boʻlimi</div>
+                <div class="profile-card-box">
+                    <img id="hisobPhoto" class="profile-avatar-circle" src="" alt="Profil rasmi">
+                    <div class="nick-with-sticker">
+                        <span id="hisobName">@foydalanuvchi</span>
+                        <span id="hisobStickerSlot"></span>
+                    </div>
+                </div>
             </div>
 
         </div>
 
         <!-- 4 TA BO'LIM: IKONKA YOZUVNING OLDIDA -->
         <nav class="bottom-bar">
-            <button type="button" class="nav-tab-btn active" onclick="switchView('cointap', this)">
+            <button type="button" class="nav-tab-btn active" data-view="cointap" onclick="switchView('cointap', this)">
                 <span class="nav-svg-wrap svg-move-tap">
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="12" r="9" fill="#facc15" stroke="#ffffff" stroke-width="1.6"/>
@@ -357,7 +553,7 @@
                 <span>CoinTap</span>
             </button>
 
-            <button type="button" class="nav-tab-btn" onclick="switchView('boost', this)">
+            <button type="button" class="nav-tab-btn" data-view="boost" onclick="switchView('boost', this)">
                 <span class="nav-svg-wrap svg-move-boost">
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M13 2L5 13H12L11 22L19 11H12L13 2Z" fill="#facc15" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round"/>
@@ -366,7 +562,7 @@
                 <span>Boost</span>
             </button>
 
-            <button type="button" class="nav-tab-btn" onclick="switchView('wallet', this)">
+            <button type="button" class="nav-tab-btn" data-view="wallet" onclick="openWalletBookModal()">
                 <span class="nav-svg-wrap svg-move-wallet">
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="3" y="6" width="18" height="13" rx="3" fill="#ffffff" stroke="#ffffff" stroke-width="1.5"/>
@@ -377,7 +573,7 @@
                 <span>Wallet</span>
             </button>
 
-            <button type="button" class="nav-tab-btn" onclick="switchView('hisob', this)">
+            <button type="button" class="nav-tab-btn" data-view="hisob" onclick="switchView('hisob', this)">
                 <span class="nav-svg-wrap svg-move-user">
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="8" r="4" fill="#ffffff"/>
@@ -389,6 +585,45 @@
         </nav>
     </div>
 
+    <!-- WALLET KITOBCHASI -->
+    <div id="walletBookModal" class="book-modal-backdrop" onclick="closeWalletBookModal(event)">
+        <div class="book-sheet" onclick="event.stopPropagation()">
+            <div class="book-user-header">
+                <img id="bookPhoto" class="book-user-photo" src="" alt="Profil rasmi">
+                <div class="book-greeting-row">
+                    <span>Salom</span>
+                    <span id="bookName">@foydalanuvchi</span>
+                    <span id="bookStickerSlot"></span>
+                </div>
+            </div>
+
+            <p class="book-body-text">
+                siz bu bot orqali 1 hafta davomida oʻz tangalarizni yigʻb olib uni telegram wallet ichidagi Defi hisobizga yechib olishingiz mumkin.
+            </p>
+
+            <p class="book-body-text">
+                28.11.2026 yil soat kechasi 12:00 da yechib olishingiz mumkin.
+            </p>
+
+            <p class="book-body-text">
+                Bot hozirda yangi bot ichida 670 ta inson tapcoin bosyabdi. qani tezroq tapcoin qilib oling va pul yeching.
+            </p>
+
+            <div class="book-limits-box">
+                <div class="book-limit-item">
+                    <span>Minimal yechib olish 1M tapcoin</span>
+                    <span id="bookMinStickerSlot"></span>
+                </div>
+                <div class="book-limit-item">
+                    <span>Maximal yechib olish 10B tapcoin</span>
+                    <span id="bookMaxStickerSlot"></span>
+                </div>
+            </div>
+
+            <button type="button" class="book-close-btn" onclick="closeWalletBookModal()">Yopish</button>
+        </div>
+    </div>
+
     <script>
         const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
         if (tg) {
@@ -396,23 +631,120 @@
             tg.expand();
         }
 
+        const tgUser = (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) ? tg.initDataUnsafe.user : null;
+
+        // Har bir foydalanuvchi uchun alohida kalit (qayta kirganda saqlanib qoladi)
+        function getUniquePlayerKey() {
+            if (tgUser && tgUser.id) {
+                return 'xilcoin_user_' + String(tgUser.id);
+            }
+            let guestId = localStorage.getItem('xilcoin_guest_id_v1');
+            if (!guestId) {
+                guestId = 'guest_' + Math.random().toString(36).slice(2, 11) + '_' + Date.now().toString(36);
+                localStorage.setItem('xilcoin_guest_id_v1', guestId);
+            }
+            return guestId;
+        }
+
+        const playerKey = getUniquePlayerKey();
+        const COINS_STORAGE_KEY = playerKey + '_coins';
+        const ENERGY_STORAGE_KEY = playerKey + '_energy';
+
+        const MAX_ENERGY = 5000000;
+
+        const fallbackAvatar = "data:image/svg+xml;utf8," + encodeURIComponent(`
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <rect width="100" height="100" fill="#18181b"/>
+                <circle cx="50" cy="38" r="18" fill="#facc15"/>
+                <path d="M20 86C24 68 36 60 50 60C64 60 76 68 80 86" fill="#3f3f46"/>
+            </svg>
+        `);
+
+        function createStickerNode() {
+            const tpl = document.getElementById('tapcoinStickerTemplate');
+            return tpl.content.cloneNode(true);
+        }
+
+        function mountStickers() {
+            ['hisobStickerSlot', 'bookStickerSlot', 'bookMinStickerSlot', 'bookMaxStickerSlot'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.innerHTML = '';
+                    el.appendChild(createStickerNode());
+                }
+            });
+        }
+
+        function setupUserProfile() {
+            let nickText = '@foydalanuvchi';
+            let photoUrl = fallbackAvatar;
+
+            if (tgUser) {
+                if (tgUser.username) {
+                    nickText = '@' + tgUser.username;
+                } else {
+                    const fullName = [tgUser.first_name, tgUser.last_name].filter(Boolean).join(' ');
+                    nickText = fullName || '@foydalanuvchi';
+                }
+                if (tgUser.photo_url) {
+                    photoUrl = tgUser.photo_url;
+                }
+            }
+
+            document.getElementById('hisobName').textContent = nickText;
+            document.getElementById('bookName').textContent = nickText;
+
+            const hisobImg = document.getElementById('hisobPhoto');
+            const bookImg = document.getElementById('bookPhoto');
+            hisobImg.src = photoUrl;
+            bookImg.src = photoUrl;
+            hisobImg.onerror = () => { hisobImg.src = fallbackAvatar; };
+            bookImg.onerror = () => { bookImg.src = fallbackAvatar; };
+        }
+
+        mountStickers();
+        setupUserProfile();
+
+        // Kirish ekrani -> Asosiy ekran
         setTimeout(() => {
             document.getElementById('introScreen').classList.remove('active');
             document.getElementById('appScreen').classList.add('active');
         }, 1500);
 
-        let coinsCount = Number(localStorage.getItem('xilcoin_balance_v1') || 0);
+        let coinsCount = Number(localStorage.getItem(COINS_STORAGE_KEY) || 0);
+        if (Number.isNaN(coinsCount) || coinsCount < 0) coinsCount = 0;
+
+        const savedEnergy = localStorage.getItem(ENERGY_STORAGE_KEY);
+        let energyCount = savedEnergy !== null ? Number(savedEnergy) : MAX_ENERGY;
+        if (Number.isNaN(energyCount) || energyCount < 0) energyCount = 0;
+        if (energyCount > MAX_ENERGY) energyCount = MAX_ENERGY;
+
         const coinBalanceTextEl = document.getElementById('coinBalanceText');
-        coinBalanceTextEl.textContent = coinsCount.toLocaleString('en-US');
+        const yellowEnergyFillEl = document.getElementById('yellowEnergyFill');
+        const bigTapCoinBtnEl = document.getElementById('bigTapCoinBtn');
+
+        function renderTapState() {
+            coinBalanceTextEl.textContent = coinsCount.toLocaleString('en-US');
+            const pct = Math.max(0, Math.min(100, (energyCount / MAX_ENERGY) * 100));
+            yellowEnergyFillEl.style.width = pct + '%';
+            bigTapCoinBtnEl.disabled = energyCount <= 0;
+
+            localStorage.setItem(COINS_STORAGE_KEY, String(coinsCount));
+            localStorage.setItem(ENERGY_STORAGE_KEY, String(energyCount));
+        }
 
         function tapBigCoin() {
+            if (energyCount <= 0) return;
             coinsCount += 1;
-            localStorage.setItem('xilcoin_balance_v1', String(coinsCount));
-            coinBalanceTextEl.textContent = coinsCount.toLocaleString('en-US');
+            energyCount -= 1;
+            renderTapState();
+
             if (tg && tg.HapticFeedback) {
                 tg.HapticFeedback.impactOccurred('light');
             }
         }
+
+        renderTapState();
 
         function switchView(viewName, btnEl) {
             document.querySelectorAll('.nav-tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -421,6 +753,17 @@
             document.querySelectorAll('.tab-view').forEach(v => v.classList.remove('active'));
             const target = document.getElementById('view-' + viewName);
             if (target) target.classList.add('active');
+        }
+
+        // Wallet bo'limiga kirib bo'lmaydi — bosilganda kitobcha ochiladi
+        function openWalletBookModal() {
+            document.getElementById('walletBookModal').classList.add('open');
+        }
+
+        function closeWalletBookModal(e) {
+            if (!e || e.target.id === 'walletBookModal') {
+                document.getElementById('walletBookModal').classList.remove('open');
+            }
         }
     </script>
 </body>
