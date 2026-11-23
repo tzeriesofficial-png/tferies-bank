@@ -71,14 +71,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 16px;
             overflow-y: auto;
         }
 
         .tab-panel {
             display: none;
             width: 100%;
-            max-width: 400px;
+            max-width: 410px;
+            height: 100%;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -90,8 +91,13 @@
             display: flex;
         }
 
+        #panel-tanishuv {
+            justify-content: flex-start;
+            padding-top: 6px;
+        }
+
         .panel-title {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 900;
             color: #ffffff;
             letter-spacing: 1px;
@@ -100,9 +106,120 @@
 
         .panel-subtitle {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 600;
             color: #a1a1aa;
+        }
+
+        /* X-TANISHUV RO'YXATI */
+        .tanishuv-header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4px 4px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        .tanishuv-count-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 999px;
+            padding: 5px 12px;
+            font-size: 12px;
+            font-weight: 900;
+            color: #facc15;
+        }
+
+        .users-feed-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow-y: auto;
+            padding-bottom: 14px;
+        }
+
+        .user-profile-card {
+            width: 100%;
+            background: #0b0b0b;
+            border: 1.5px solid rgba(255, 255, 255, 0.16);
+            border-radius: 18px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            text-align: left;
+            transition: border-color 0.2s ease, transform 0.15s ease;
+        }
+
+        .user-profile-card.is-me {
+            border-color: rgba(250, 204, 21, 0.55);
+            background: rgba(250, 204, 21, 0.05);
+        }
+
+        .user-card-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .user-tg-photo {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ffffff;
+            background: #18181b;
+            flex-shrink: 0;
+        }
+
+        .user-tg-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 0;
+        }
+
+        .user-tg-username {
+            font-size: 15px;
+            font-weight: 900;
+            color: #ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .user-tg-fullname {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #a1a1aa;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .user-open-tg-btn {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 12px;
+            padding: 8px 12px;
+            font-size: 12px;
+            font-weight: 900;
+            cursor: pointer;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .user-open-tg-btn:active {
+            transform: scale(0.95);
         }
 
         /* PASTKI 3 TA PREMIUM SVG IKONKA PANELI */
@@ -165,42 +282,22 @@
         }
 
         @keyframes xboxSpinFloat {
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg) scale(1);
-            }
-            35% {
-                transform: translateY(-3px) rotate(12deg) scale(1.12);
-            }
-            70% {
-                transform: translateY(1px) rotate(-10deg) scale(1.06);
-            }
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            35% { transform: translateY(-3px) rotate(12deg) scale(1.12); }
+            70% { transform: translateY(1px) rotate(-10deg) scale(1.06); }
         }
 
         @keyframes tanishuvBeat {
-            0%, 100% {
-                transform: scale(1) rotate(0deg);
-            }
-            25% {
-                transform: scale(1.18) rotate(-6deg);
-            }
-            50% {
-                transform: scale(1.04) rotate(0deg);
-            }
-            75% {
-                transform: scale(1.15) rotate(6deg);
-            }
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.18) rotate(-6deg); }
+            50% { transform: scale(1.04) rotate(0deg); }
+            75% { transform: scale(1.15) rotate(6deg); }
         }
 
         @keyframes walletTilt {
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg) scale(1);
-            }
-            40% {
-                transform: translateY(-3px) rotate(-8deg) scale(1.12);
-            }
-            80% {
-                transform: translateY(1px) rotate(6deg) scale(1.05);
-            }
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            40% { transform: translateY(-3px) rotate(-8deg) scale(1.12); }
+            80% { transform: translateY(1px) rotate(6deg) scale(1.05); }
         }
     </style>
 </head>
@@ -222,8 +319,14 @@
 
             <!-- X-TANISHUV BO'LIMI -->
             <div id="panel-tanishuv" class="tab-panel">
-                <div class="panel-title">x-tanishuv</div>
-                <div class="panel-subtitle">Tanishuv va muloqot boʻlimi</div>
+                <div class="tanishuv-header">
+                    <div class="panel-title">x-tanishuv</div>
+                    <div class="tanishuv-count-badge">
+                        <span id="tanishuvUserCount">0</span> ta aʼzo
+                    </div>
+                </div>
+
+                <div id="usersFeedList" class="users-feed-list"></div>
             </div>
 
             <!-- X-WALLET BO'LIMI -->
@@ -299,7 +402,159 @@
             tg.expand();
         }
 
-        // X-BOX kirish ekranidan keyingi oynaga o'tish
+        const FIREBASE_DB_URL = "https://xbox-tanishuv-default-rtdb.firebaseio.com";
+        const LOCAL_USERS_KEY = "xbox_tanishuv_directory_v1";
+
+        const fallbackAvatar = "data:image/svg+xml;utf8," + encodeURIComponent(`
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <rect width="100" height="100" fill="#18181b"/>
+                <circle cx="50" cy="38" r="18" fill="#facc15"/>
+                <path d="M20 86C24 68 36 60 50 60C64 60 76 68 80 86" fill="#3f3f46"/>
+            </svg>
+        `);
+
+        function getCurrentTgUser() {
+            const u = (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) ? tg.initDataUnsafe.user : null;
+            if (u && u.id) {
+                const fullName = [u.first_name, u.last_name].filter(Boolean).join(' ') || 'Foydalanuvchi';
+                const atName = u.username ? ('@' + u.username) : fullName;
+                return {
+                    id: String(u.id),
+                    username: u.username || '',
+                    atName: atName,
+                    fullName: fullName,
+                    photo: u.photo_url || '',
+                    lastSeen: Date.now()
+                };
+            }
+
+            let guestId = localStorage.getItem('xbox_guest_uid_v1');
+            if (!guestId) {
+                guestId = 'guest_' + Math.random().toString(36).slice(2, 9);
+                localStorage.setItem('xbox_guest_uid_v1', guestId);
+            }
+            return {
+                id: guestId,
+                username: '',
+                atName: '@mehmon_' + guestId.slice(-4),
+                fullName: 'Mehmon foydalanuvchi',
+                photo: '',
+                lastSeen: Date.now()
+            };
+        }
+
+        const currentUser = getCurrentTgUser();
+
+        function loadLocalDirectory() {
+            try {
+                const raw = localStorage.getItem(LOCAL_USERS_KEY);
+                const parsed = raw ? JSON.parse(raw) : {};
+                return (parsed && typeof parsed === 'object') ? parsed : {};
+            } catch (e) {
+                return {};
+            }
+        }
+
+        function saveLocalDirectory(mapObj) {
+            try {
+                localStorage.setItem(LOCAL_USERS_KEY, JSON.stringify(mapObj));
+            } catch (e) {}
+        }
+
+        async function syncAndLoadUsers() {
+            const localMap = loadLocalDirectory();
+            localMap[currentUser.id] = currentUser;
+            saveLocalDirectory(localMap);
+
+            let combinedMap = { ...localMap };
+
+            if (FIREBASE_DB_URL) {
+                const base = FIREBASE_DB_URL.replace(/\/+$/, '');
+                try {
+                    await fetch(`${base}/tanishuv_users/${encodeURIComponent(currentUser.id)}.json`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(currentUser)
+                    });
+                    const res = await fetch(`${base}/tanishuv_users.json`);
+                    if (res.ok) {
+                        const remoteData = await res.json();
+                        if (remoteData && typeof remoteData === 'object') {
+                            combinedMap = { ...combinedMap, ...remoteData };
+                            saveLocalDirectory(combinedMap);
+                        }
+                    }
+                } catch (err) {}
+            }
+
+            renderTanishuvUsers(combinedMap);
+        }
+
+        function renderTanishuvUsers(usersMap) {
+            const listEl = document.getElementById('usersFeedList');
+            const countEl = document.getElementById('tanishuvUserCount');
+
+            const usersArr = Object.values(usersMap || {})
+                .filter(u => u && u.id)
+                .sort((a, b) => (b.lastSeen || 0) - (a.lastSeen || 0));
+
+            countEl.textContent = String(usersArr.length);
+            listEl.innerHTML = '';
+
+            usersArr.forEach(user => {
+                const isMe = String(user.id) === String(currentUser.id);
+                const card = document.createElement('div');
+                card.className = 'user-profile-card' + (isMe ? ' is-me' : '');
+
+                const left = document.createElement('div');
+                left.className = 'user-card-left';
+
+                const img = document.createElement('img');
+                img.className = 'user-tg-photo';
+                img.src = user.photo || fallbackAvatar;
+                img.alt = user.atName || 'User';
+                img.onerror = () => { img.src = fallbackAvatar; };
+
+                const meta = document.createElement('div');
+                meta.className = 'user-tg-meta';
+
+                const nameLine = document.createElement('div');
+                nameLine.className = 'user-tg-username';
+                nameLine.textContent = (user.atName || '@foydalanuvchi') + (isMe ? ' (Siz)' : '');
+
+                const fullLine = document.createElement('div');
+                fullLine.className = 'user-tg-fullname';
+                fullLine.textContent = user.fullName || 'Telegram foydalanuvchisi';
+
+                meta.appendChild(nameLine);
+                meta.appendChild(fullLine);
+
+                left.appendChild(img);
+                left.appendChild(meta);
+                card.appendChild(left);
+
+                if (user.username) {
+                    const msgBtn = document.createElement('button');
+                    msgBtn.type = 'button';
+                    msgBtn.className = 'user-open-tg-btn';
+                    msgBtn.textContent = 'Yozish';
+                    msgBtn.onclick = () => {
+                        const link = 'https://t.me/' + user.username;
+                        if (tg && tg.openTelegramLink) {
+                            tg.openTelegramLink(link);
+                        } else {
+                            window.open(link, '_blank', 'noopener,noreferrer');
+                        }
+                    };
+                    card.appendChild(msgBtn);
+                }
+
+                listEl.appendChild(card);
+            });
+        }
+
+        syncAndLoadUsers();
+
         setTimeout(() => {
             document.getElementById('splashScreen').classList.remove('active');
             document.getElementById('mainScreen').classList.add('active');
@@ -312,6 +567,10 @@
             document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
             const activePanel = document.getElementById('panel-' + panelName);
             if (activePanel) activePanel.classList.add('active');
+
+            if (panelName === 'tanishuv') {
+                syncAndLoadUsers();
+            }
 
             if (tg && tg.HapticFeedback) {
                 tg.HapticFeedback.selectionChanged();
