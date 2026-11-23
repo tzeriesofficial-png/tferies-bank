@@ -18,6 +18,7 @@
         :root {
             --bg-white: #ffffff;
             --bg-soft: #fdf4ff;
+            --bg-card: #faf5ff;
             --accent-pink: #ec4899;
             --accent-purple: #a855f7;
             --accent-magenta: #c026d3;
@@ -83,7 +84,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 16px;
+            padding: 14px 16px;
             overflow-y: auto;
             background-color: var(--bg-white);
         }
@@ -96,7 +97,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 14px;
+            gap: 12px;
             text-align: center;
         }
 
@@ -107,11 +108,11 @@
         #panel-tanishuv,
         #panel-hisobim {
             justify-content: flex-start;
-            padding-top: 6px;
+            padding-top: 4px;
         }
 
         .panel-title {
-            font-size: 24px;
+            font-size: 23px;
             font-weight: 900;
             color: var(--text-plum);
             letter-spacing: 1px;
@@ -125,8 +126,8 @@
             color: var(--text-muted);
         }
 
-        /* X-TANISHUV RO'YXATI */
-        .tanishuv-header {
+        /* SARLAVHA QATORI */
+        .section-header {
             width: 100%;
             display: flex;
             align-items: center;
@@ -135,7 +136,7 @@
             border-bottom: 1.5px solid var(--border-plum);
         }
 
-        .tanishuv-count-badge {
+        .count-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
@@ -148,6 +149,38 @@
             color: var(--accent-magenta);
         }
 
+        /* JINSGA QARAB QIMIRLAB TURUVCHI PREMIUM SVG BELGI */
+        .gender-badge-svg {
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            animation: badgePulseSwing 1.8s infinite ease-in-out;
+        }
+
+        @keyframes badgePulseSwing {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.18) rotate(-10deg); }
+            50% { transform: scale(1.05) rotate(4deg); }
+            75% { transform: scale(1.16) rotate(10deg); }
+        }
+
+        .nick-with-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            min-width: 0;
+        }
+
+        .nick-text-truncate {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* X-TANISHUV RO'YXATI */
         .users-feed-list {
             width: 100%;
             display: flex;
@@ -167,9 +200,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
+            gap: 10px;
             text-align: left;
-            transition: border-color 0.2s ease, transform 0.15s ease;
         }
 
         .user-profile-card.is-me {
@@ -182,6 +214,7 @@
             align-items: center;
             gap: 12px;
             min-width: 0;
+            flex: 1;
         }
 
         .user-tg-photo {
@@ -197,63 +230,64 @@
         .user-tg-meta {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 3px;
             min-width: 0;
+            flex: 1;
         }
 
         .user-tg-username {
             font-size: 15px;
             font-weight: 900;
             color: var(--text-plum);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            min-width: 0;
         }
 
-        .user-tg-fullname {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            font-size: 12.5px;
-            font-weight: 700;
-            color: var(--text-muted);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .user-open-tg-btn {
+        .view-profile-btn {
             background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
             color: var(--bg-white);
             border: none;
             border-radius: 12px;
-            padding: 8px 12px;
+            padding: 9px 14px;
             font-size: 12px;
             font-weight: 900;
             cursor: pointer;
             flex-shrink: 0;
         }
 
-        .user-open-tg-btn:active {
+        .view-profile-btn:active {
             transform: scale(0.95);
         }
 
         /* X-HISOBIM PROFIL KARTASI */
+        .hisobim-scroll {
+            width: 100%;
+            overflow-y: auto;
+            padding-top: 10px;
+            padding-bottom: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
         .hisobim-card {
             width: 100%;
-            margin-top: 16px;
             background: var(--bg-soft);
             border: 2px solid var(--border-plum);
             border-radius: 24px;
-            padding: 24px 18px;
+            padding: 20px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .hisobim-avatar-wrap {
             position: relative;
-            width: 102px;
-            height: 102px;
+            width: 98px;
+            height: 98px;
             border-radius: 50%;
             padding: 3px;
             background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
@@ -269,50 +303,144 @@
             display: block;
         }
 
-        .hisobim-nick {
+        .hisobim-nick-row {
             font-size: 20px;
             font-weight: 900;
             color: var(--text-plum);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
             word-break: break-word;
         }
 
-        .hisobim-sub {
+        .profile-meta-pills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 7px;
+        }
+
+        .meta-pill {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--text-plum);
+            background: var(--bg-white);
+            border: 1px solid var(--border-plum);
+            border-radius: 999px;
+            padding: 4px 11px;
+        }
+
+        .profile-bio-box {
+            width: 100%;
+            background: var(--bg-white);
+            border: 1.5px solid var(--border-plum);
+            border-radius: 16px;
+            padding: 11px 13px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             font-size: 13px;
-            font-weight: 700;
-            color: var(--text-muted);
+            font-weight: 600;
+            color: var(--text-plum);
+            text-align: left;
+            line-height: 1.45;
+            white-space: pre-wrap;
+            word-break: break-word;
         }
 
         .edit-profile-btn {
-            margin-top: 6px;
+            margin-top: 4px;
             width: 100%;
-            max-width: 260px;
+            max-width: 280px;
             background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
             color: var(--bg-white);
             border: none;
             border-radius: 16px;
             padding: 13px 18px;
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 900;
             letter-spacing: 0.4px;
             cursor: pointer;
-            transition: transform 0.15s ease, opacity 0.2s ease;
         }
 
         .edit-profile-btn:active {
             transform: scale(0.97);
         }
 
-        /* TAHRIRLASH MODALI */
+        /* BOT ICHIDAGI LICHKA XABARLARI QUTISI */
+        .dm-inbox-card {
+            width: 100%;
+            background: var(--bg-soft);
+            border: 1.5px solid var(--border-plum);
+            border-radius: 20px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: left;
+        }
+
+        .dm-inbox-title {
+            font-size: 14px;
+            font-weight: 900;
+            color: var(--text-plum);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .dm-threads-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+
+        .dm-thread-item {
+            background: var(--bg-white);
+            border: 1px solid var(--border-plum);
+            border-radius: 14px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .dm-thread-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .dm-thread-peer {
+            font-size: 13px;
+            font-weight: 900;
+            color: var(--text-plum);
+        }
+
+        .dm-thread-last {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-top: 2px;
+        }
+
+        /* MODALLAR (TAHRIRLASH, PROFIL KO'RISH, BOT LICHKASI) */
         .modal-backdrop {
             position: fixed;
             inset: 0;
-            background: rgba(88, 28, 135, 0.35);
+            background: rgba(88, 28, 135, 0.36);
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 18px;
-            z-index: 50;
+            padding: 16px;
+            z-index: 60;
         }
 
         .modal-backdrop.open {
@@ -321,14 +449,16 @@
 
         .modal-box {
             width: 100%;
-            max-width: 380px;
+            max-width: 390px;
+            max-height: 88vh;
+            overflow-y: auto;
             background: var(--bg-white);
             border: 2px solid var(--accent-magenta);
             border-radius: 24px;
-            padding: 20px 18px;
+            padding: 18px 16px;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
             text-align: center;
         }
 
@@ -342,12 +472,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .modal-preview-img {
-            width: 88px;
-            height: 88px;
+            width: 84px;
+            height: 84px;
             border-radius: 50%;
             object-fit: cover;
             border: 2.5px solid var(--accent-magenta);
@@ -359,8 +489,8 @@
             color: var(--accent-magenta);
             border: 1.5px solid var(--accent-magenta);
             border-radius: 12px;
-            padding: 9px 14px;
-            font-size: 12.5px;
+            padding: 8px 14px;
+            font-size: 12px;
             font-weight: 900;
             cursor: pointer;
         }
@@ -368,33 +498,63 @@
         .input-group {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 5px;
             text-align: left;
         }
 
         .input-label {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            font-size: 12.5px;
+            font-size: 12px;
             font-weight: 800;
             color: var(--text-plum);
         }
 
-        .nick-input {
+        .nick-input,
+        .bio-textarea,
+        .date-input {
             width: 100%;
             background: var(--bg-soft);
             color: var(--text-plum);
             border: 1.8px solid var(--accent-purple);
             border-radius: 14px;
-            padding: 11px 13px;
-            font-size: 14px;
-            font-weight: 800;
+            padding: 10px 12px;
+            font-size: 13.5px;
+            font-weight: 700;
             outline: none;
             user-select: text;
             -webkit-user-select: text;
         }
 
-        .nick-input:focus {
+        .bio-textarea {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            min-height: 70px;
+            resize: vertical;
+        }
+
+        .gender-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .gender-choice-btn {
+            background: var(--bg-soft);
+            color: var(--text-plum);
+            border: 1.8px solid var(--border-plum);
+            border-radius: 14px;
+            padding: 10px 8px;
+            font-size: 12.5px;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .gender-choice-btn.selected {
             border-color: var(--accent-magenta);
+            background: #fae8ff;
         }
 
         .modal-error {
@@ -432,6 +592,82 @@
             font-size: 13px;
             font-weight: 900;
             cursor: pointer;
+        }
+
+        /* FOYDALANUVCHI PROFILI VA LICHKA CHAT OYNALARI */
+        .peer-top-card {
+            background: var(--bg-soft);
+            border: 1.5px solid var(--border-plum);
+            border-radius: 20px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .peer-action-row {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .chat-messages-box {
+            width: 100%;
+            min-height: 160px;
+            max-height: 240px;
+            overflow-y: auto;
+            background: var(--bg-soft);
+            border: 1.5px solid var(--border-plum);
+            border-radius: 16px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            text-align: left;
+        }
+
+        .chat-msg-bubble {
+            max-width: 82%;
+            padding: 8px 12px;
+            border-radius: 14px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.35;
+            word-break: break-word;
+        }
+
+        .chat-msg-bubble.mine {
+            align-self: flex-end;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            color: var(--bg-white);
+        }
+
+        .chat-msg-bubble.theirs {
+            align-self: flex-start;
+            background: var(--bg-white);
+            border: 1px solid var(--border-plum);
+            color: var(--text-plum);
+        }
+
+        .chat-send-row {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .chat-send-btn {
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            color: var(--bg-white);
+            border: none;
+            border-radius: 14px;
+            padding: 0 16px;
+            font-size: 13px;
+            font-weight: 900;
+            cursor: pointer;
+            flex-shrink: 0;
         }
 
         /* PASTKI 3 TA PUSHTI-BINAFSHA PREMIUM SVG IKONKA PANELI */
@@ -528,9 +764,9 @@
 
             <!-- X-TANISHUV BO'LIMI -->
             <div id="panel-tanishuv" class="tab-panel">
-                <div class="tanishuv-header">
+                <div class="section-header">
                     <div class="panel-title">x-tanishuv</div>
-                    <div class="tanishuv-count-badge">
+                    <div class="count-badge">
                         <span id="tanishuvUserCount">0</span> ta aʼzo
                     </div>
                 </div>
@@ -539,25 +775,38 @@
 
             <!-- X-HISOBIM BO'LIMI -->
             <div id="panel-hisobim" class="tab-panel">
-                <div class="tanishuv-header">
+                <div class="section-header">
                     <div class="panel-title">x-hisobim</div>
-                    <div class="tanishuv-count-badge">Profil</div>
+                    <div class="count-badge">Profil</div>
                 </div>
 
-                <div class="hisobim-card">
-                    <div class="hisobim-avatar-wrap">
-                        <img id="hisobimPhoto" class="hisobim-avatar" src="" alt="Profil rasmi">
+                <div class="hisobim-scroll">
+                    <div class="hisobim-card">
+                        <div class="hisobim-avatar-wrap">
+                            <img id="hisobimPhoto" class="hisobim-avatar" src="" alt="Profil rasmi">
+                        </div>
+                        <div class="hisobim-nick-row">
+                            <span id="hisobimNick">@nik</span>
+                            <span id="hisobimGenderBadge"></span>
+                        </div>
+                        <div id="hisobimMetaPills" class="profile-meta-pills"></div>
+                        <div id="hisobimBio" class="profile-bio-box">Tavsif hali kiritilmagan.</div>
+                        <button type="button" class="edit-profile-btn" onclick="openEditModal()">Profilni tahrirlash</button>
                     </div>
-                    <div id="hisobimNick" class="hisobim-nick">@nik</div>
-                    <div id="hisobimSub" class="hisobim-sub">Telegram profili</div>
-                    <button type="button" class="edit-profile-btn" onclick="openEditModal()">Profilni tahrirlash</button>
+
+                    <div class="dm-inbox-card">
+                        <div class="dm-inbox-title">
+                            <span>Bot lichkasi</span>
+                            <span id="dmThreadsCount" class="count-badge">0 ta suhbat</span>
+                        </div>
+                        <div id="dmThreadsList" class="dm-threads-list"></div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- PASTKI 3 TA BO'LIM: x-box, x-tanishuv, x-hisobim -->
         <nav class="bottom-nav">
-            <!-- 1. x-box -->
             <button type="button" class="nav-item-btn active" onclick="openPanel('xbox', this)">
                 <span class="svg-icon-box anim-xbox-svg">
                     <svg viewBox="0 0 32 32" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -575,7 +824,6 @@
                 <span>x-box</span>
             </button>
 
-            <!-- 2. x-tanishuv -->
             <button type="button" class="nav-item-btn" onclick="openPanel('tanishuv', this)">
                 <span class="svg-icon-box anim-tanishuv-svg">
                     <svg viewBox="0 0 32 32" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -594,7 +842,6 @@
                 <span>x-tanishuv</span>
             </button>
 
-            <!-- 3. x-hisobim (qimirlab turadigan premium SVG) -->
             <button type="button" class="nav-item-btn" onclick="openPanel('hisobim', this)">
                 <span class="svg-icon-box anim-hisobim-svg">
                     <svg viewBox="0 0 32 32" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -615,7 +862,7 @@
         </nav>
     </div>
 
-    <!-- PROFILNI TAHRIRLASH OYNASI -->
+    <!-- 1-MODAL: PROFILNI TAHRIRLASH -->
     <div id="editProfileModal" class="modal-backdrop">
         <div class="modal-box">
             <div class="modal-title">Profilni tahrirlash</div>
@@ -629,8 +876,32 @@
             </div>
 
             <div class="input-group">
-                <label for="nickInput" class="input-label">Yangi nik (boshqalarnikiga oʻxshamasligi kerak)</label>
+                <label for="nickInput" class="input-label">Nik (bir xil nik boʻlishi mumkin emas)</label>
                 <input type="text" id="nickInput" class="nick-input" maxlength="28" placeholder="@yangi_nik">
+            </div>
+
+            <div class="input-group">
+                <div class="input-label">Jinsni tanlang</div>
+                <div class="gender-selector">
+                    <button type="button" id="genderMaleBtn" class="gender-choice-btn" onclick="selectGender('male')">
+                        <span id="maleChoiceSvg"></span>
+                        <span>Oʻgʻil bola</span>
+                    </button>
+                    <button type="button" id="genderFemaleBtn" class="gender-choice-btn" onclick="selectGender('female')">
+                        <span id="femaleChoiceSvg"></span>
+                        <span>Qiz bola</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="birthDateInput" class="input-label">Tugʻilgan sana (ixtiyoriy)</label>
+                <input type="date" id="birthDateInput" class="date-input">
+            </div>
+
+            <div class="input-group">
+                <label for="bioInput" class="input-label">Tavsif (oʻzingiz haqingizda)</label>
+                <textarea id="bioInput" class="bio-textarea" maxlength="220" placeholder="Qisqacha tavsif yozing..."></textarea>
             </div>
 
             <div id="modalErrorMsg" class="modal-error"></div>
@@ -642,6 +913,51 @@
         </div>
     </div>
 
+    <!-- 2-MODAL: FOYDALANUVCHI PROFILINI KO'RISH -->
+    <div id="viewUserModal" class="modal-backdrop">
+        <div class="modal-box">
+            <div class="modal-title">Foydalanuvchi profili</div>
+
+            <div class="peer-top-card">
+                <div class="hisobim-avatar-wrap">
+                    <img id="peerProfilePhoto" class="hisobim-avatar" src="" alt="Profil rasmi">
+                </div>
+                <div class="hisobim-nick-row">
+                    <span id="peerProfileNick">@nik</span>
+                    <span id="peerProfileGenderBadge"></span>
+                </div>
+                <div id="peerProfileMeta" class="profile-meta-pills"></div>
+                <div id="peerProfileBio" class="profile-bio-box">Tavsif kiritilmagan.</div>
+            </div>
+
+            <div class="peer-action-row">
+                <button type="button" class="modal-save-btn" onclick="openBotDmFromPeer()">Botda yozish</button>
+                <button type="button" class="modal-cancel-btn" onclick="openExternalTgFromPeer()">Telegram lichka</button>
+            </div>
+
+            <button type="button" class="modal-cancel-btn" style="width:100%;" onclick="closeViewUserModal()">Yopish</button>
+        </div>
+    </div>
+
+    <!-- 3-MODAL: BOT ICHIDAGI LICHKA CHAT -->
+    <div id="botDmModal" class="modal-backdrop">
+        <div class="modal-box">
+            <div class="hisobim-nick-row">
+                <span id="dmPeerTitle">@nik</span>
+                <span id="dmPeerBadge"></span>
+            </div>
+
+            <div id="dmMessagesBox" class="chat-messages-box"></div>
+
+            <div class="chat-send-row">
+                <input type="text" id="dmMessageInput" class="nick-input" maxlength="400" placeholder="Xabar yozing...">
+                <button type="button" class="chat-send-btn" onclick="sendBotDmMessage()">Yuborish</button>
+            </div>
+
+            <button type="button" class="modal-cancel-btn" style="width:100%;" onclick="closeBotDmModal()">Yopish</button>
+        </div>
+    </div>
+
     <script>
         const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
         if (tg) {
@@ -650,7 +966,8 @@
         }
 
         const FIREBASE_DB_URL = "https://xbox-tanishuv-default-rtdb.firebaseio.com";
-        const LOCAL_USERS_KEY = "xbox_tanishuv_directory_v1";
+        const LOCAL_USERS_KEY = "xbox_tanishuv_directory_v2";
+        const LOCAL_CHATS_KEY = "xbox_bot_dm_chats_v1";
 
         const fallbackAvatar = "data:image/svg+xml;utf8," + encodeURIComponent(`
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
@@ -659,6 +976,38 @@
                 <path d="M20 86C24 68 36 60 50 60C64 60 76 68 80 86" fill="#e879f9"/>
             </svg>
         `);
+
+        // Qiz bola uchun pushti premium SVG, o'g'il bola uchun qora premium SVG
+        function getGenderPremiumSvg(gender) {
+            if (gender === 'female') {
+                return `
+                    <span class="gender-badge-svg" title="Qiz bola">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="pinkStarGrad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#f472b6"/>
+                                    <stop offset="100%" stop-color="#db2777"/>
+                                </linearGradient>
+                            </defs>
+                            <circle cx="12" cy="12" r="10" fill="url(#pinkStarGrad)" stroke="#be185d" stroke-width="1.4"/>
+                            <path d="M8.2 12.4L10.8 15L16.2 9.4" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                `;
+            }
+
+            return `
+                <span class="gender-badge-svg" title="O'g'il bola">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" fill="#09090b" stroke="#27272a" stroke-width="1.4"/>
+                        <path d="M8.2 12.4L10.8 15L16.2 9.4" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            `;
+        }
+
+        document.getElementById('maleChoiceSvg').innerHTML = getGenderPremiumSvg('male');
+        document.getElementById('femaleChoiceSvg').innerHTML = getGenderPremiumSvg('female');
 
         function normalizeNick(rawNick, fallbackName) {
             let clean = String(rawNick || '').trim().replace(/\s+/g, '_');
@@ -671,17 +1020,41 @@
             return clean;
         }
 
+        function calcAgeFromBirthDate(birthDateStr) {
+            if (!birthDateStr) return null;
+            const parts = birthDateStr.split('-');
+            if (parts.length !== 3) return null;
+            const year = Number(parts[0]);
+            const month = Number(parts[1]) - 1;
+            const day = Number(parts[2]);
+            const dob = new Date(year, month, day);
+            if (Number.isNaN(dob.getTime())) return null;
+
+            const today = new Date();
+            let age = today.getFullYear() - dob.getFullYear();
+            const mDiff = today.getMonth() - dob.getMonth();
+            if (mDiff < 0 || (mDiff === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+            return (age >= 0 && age <= 120) ? age : null;
+        }
+
         function getInitialTgUser() {
             const u = (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) ? tg.initDataUnsafe.user : null;
             if (u && u.id) {
                 const fullName = [u.first_name, u.last_name].filter(Boolean).join(' ') || 'Foydalanuvchi';
-                const atName = normalizeNick(u.username ? ('@' + u.username) : fullName, fullName);
+                const tgHandle = u.username ? u.username : '';
+                const atName = normalizeNick(tgHandle ? ('@' + tgHandle) : fullName, fullName);
                 return {
                     id: String(u.id),
-                    username: u.username || '',
+                    tgUserId: String(u.id),
+                    tgUsername: tgHandle,
                     atName: atName,
                     fullName: fullName,
                     photo: u.photo_url || '',
+                    gender: 'male',
+                    birthDate: '',
+                    bio: '',
                     lastSeen: Date.now()
                 };
             }
@@ -693,10 +1066,14 @@
             }
             return {
                 id: guestId,
-                username: '',
+                tgUserId: '',
+                tgUsername: '',
                 atName: '@mehmon_' + guestId.slice(-4),
                 fullName: 'Mehmon foydalanuvchi',
                 photo: '',
+                gender: 'male',
+                birthDate: '',
+                bio: '',
                 lastSeen: Date.now()
             };
         }
@@ -717,20 +1094,68 @@
             } catch (e) {}
         }
 
+        function loadLocalChats() {
+            try {
+                const raw = localStorage.getItem(LOCAL_CHATS_KEY);
+                const parsed = raw ? JSON.parse(raw) : {};
+                return (parsed && typeof parsed === 'object') ? parsed : {};
+            } catch (e) {
+                return {};
+            }
+        }
+
+        function saveLocalChats(chatsObj) {
+            try {
+                localStorage.setItem(LOCAL_CHATS_KEY, JSON.stringify(chatsObj));
+            } catch (e) {}
+        }
+
         const tgInitialUser = getInitialTgUser();
         const initialLocalMap = loadLocalDirectory();
         let currentUser = initialLocalMap[tgInitialUser.id]
-            ? { ...tgInitialUser, ...initialLocalMap[tgInitialUser.id], id: tgInitialUser.id, lastSeen: Date.now() }
+            ? {
+                ...tgInitialUser,
+                ...initialLocalMap[tgInitialUser.id],
+                id: tgInitialUser.id,
+                tgUserId: tgInitialUser.tgUserId || initialLocalMap[tgInitialUser.id].tgUserId || '',
+                tgUsername: tgInitialUser.tgUsername || initialLocalMap[tgInitialUser.id].tgUsername || '',
+                lastSeen: Date.now()
+            }
             : tgInitialUser;
 
         let allUsersMap = { ...initialLocalMap, [currentUser.id]: currentUser };
+        let allChatsMap = loadLocalChats();
         let tempEditedPhoto = currentUser.photo || '';
+        let tempSelectedGender = currentUser.gender || 'male';
+        let activePeerUser = null;
+        let activeDmPeerId = null;
+
+        function buildMetaPills(user) {
+            const pills = [];
+            pills.push(user.gender === 'female' ? 'Qiz bola' : 'Oʻgʻil bola');
+            if (user.birthDate) {
+                const age = calcAgeFromBirthDate(user.birthDate);
+                pills.push(age !== null ? `${user.birthDate} (${age} yosh)` : user.birthDate);
+            }
+            return pills.map(text => `<span class="meta-pill">${escapeHtml(text)}</span>`).join('');
+        }
+
+        function escapeHtml(str) {
+            return String(str || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
 
         function renderHisobimProfile() {
             document.getElementById('hisobimPhoto').src = currentUser.photo || fallbackAvatar;
             document.getElementById('hisobimPhoto').onerror = function() { this.src = fallbackAvatar; };
             document.getElementById('hisobimNick').textContent = currentUser.atName || '@nik';
-            document.getElementById('hisobimSub').textContent = currentUser.fullName || 'Telegram foydalanuvchisi';
+            document.getElementById('hisobimGenderBadge').innerHTML = getGenderPremiumSvg(currentUser.gender || 'male');
+            document.getElementById('hisobimMetaPills').innerHTML = buildMetaPills(currentUser);
+            document.getElementById('hisobimBio').textContent = currentUser.bio ? currentUser.bio : 'Tavsif hali kiritilmagan.';
+            renderDmThreadsList();
         }
 
         function renderTanishuvUsers(usersMap) {
@@ -763,37 +1188,75 @@
 
                 const nameLine = document.createElement('div');
                 nameLine.className = 'user-tg-username';
-                nameLine.textContent = (user.atName || '@foydalanuvchi') + (isMe ? ' (Siz)' : '');
 
-                const fullLine = document.createElement('div');
-                fullLine.className = 'user-tg-fullname';
-                fullLine.textContent = user.fullName || 'Telegram foydalanuvchisi';
+                const nickSpan = document.createElement('span');
+                nickSpan.className = 'nick-text-truncate';
+                nickSpan.textContent = (user.atName || '@foydalanuvchi') + (isMe ? ' (Siz)' : '');
+
+                const badgeWrap = document.createElement('span');
+                badgeWrap.innerHTML = getGenderPremiumSvg(user.gender || 'male');
+
+                nameLine.appendChild(nickSpan);
+                nameLine.appendChild(badgeWrap.firstElementChild);
 
                 meta.appendChild(nameLine);
-                meta.appendChild(fullLine);
-
                 left.appendChild(img);
                 left.appendChild(meta);
                 card.appendChild(left);
 
-                const cleanHandle = (user.atName || '').replace(/^@/, '');
-                if (cleanHandle && !cleanHandle.startsWith('mehmon_')) {
-                    const msgBtn = document.createElement('button');
-                    msgBtn.type = 'button';
-                    msgBtn.className = 'user-open-tg-btn';
-                    msgBtn.textContent = 'Yozish';
-                    msgBtn.onclick = () => {
-                        const link = 'https://t.me/' + cleanHandle;
-                        if (tg && tg.openTelegramLink) {
-                            tg.openTelegramLink(link);
-                        } else {
-                            window.open(link, '_blank', 'noopener,noreferrer');
-                        }
-                    };
-                    card.appendChild(msgBtn);
-                }
+                const viewBtn = document.createElement('button');
+                viewBtn.type = 'button';
+                viewBtn.className = 'view-profile-btn';
+                viewBtn.textContent = 'Koʻrish';
+                viewBtn.onclick = () => openViewUserModal(user.id);
+                card.appendChild(viewBtn);
 
                 listEl.appendChild(card);
+            });
+        }
+
+        function getThreadKey(uidA, uidB) {
+            return [String(uidA), String(uidB)].sort().join('__');
+        }
+
+        function renderDmThreadsList() {
+            const listEl = document.getElementById('dmThreadsList');
+            const countEl = document.getElementById('dmThreadsCount');
+
+            const threads = Object.entries(allChatsMap || {})
+                .filter(([key]) => key.split('__').includes(String(currentUser.id)))
+                .map(([key, msgsObj]) => {
+                    const parts = key.split('__');
+                    const peerId = parts[0] === String(currentUser.id) ? parts[1] : parts[0];
+                    const msgs = Object.values(msgsObj || {}).sort((a, b) => (a.ts || 0) - (b.ts || 0));
+                    const lastMsg = msgs[msgs.length - 1];
+                    return { peerId, msgs, lastMsg };
+                })
+                .filter(t => t.lastMsg)
+                .sort((a, b) => (b.lastMsg.ts || 0) - (a.lastMsg.ts || 0));
+
+            countEl.textContent = `${threads.length} ta suhbat`;
+            listEl.innerHTML = '';
+
+            if (threads.length === 0) {
+                listEl.innerHTML = `<div class="panel-subtitle" style="padding:8px 2px;">Hali bot ichida xabarlar yoʻq. x-tanishuv orqali profilga kirib yozishingiz mumkin.</div>`;
+                return;
+            }
+
+            threads.forEach(thread => {
+                const peer = allUsersMap[thread.peerId] || { id: thread.peerId, atName: '@foydalanuvchi' };
+                const item = document.createElement('div');
+                item.className = 'dm-thread-item';
+                item.onclick = () => openBotDmModal(thread.peerId);
+
+                item.innerHTML = `
+                    <div class="dm-thread-info">
+                        <div class="dm-thread-peer">${escapeHtml(peer.atName || '@foydalanuvchi')}</div>
+                        <div class="dm-thread-last">${escapeHtml(thread.lastMsg.text || '')}</div>
+                    </div>
+                    <span class="view-profile-btn" style="padding:6px 10px;">Ochish</span>
+                `;
+                listEl.appendChild(item);
             });
         }
 
@@ -813,15 +1276,28 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(currentUser)
                     });
-                    const res = await fetch(`${base}/tanishuv_users.json`);
-                    if (res.ok) {
-                        const remoteData = await res.json();
-                        if (remoteData && typeof remoteData === 'object') {
-                            allUsersMap = { ...allUsersMap, ...remoteData };
+
+                    const [usersRes, chatsRes] = await Promise.all([
+                        fetch(`${base}/tanishuv_users.json`),
+                        fetch(`${base}/tanishuv_chats.json`)
+                    ]);
+
+                    if (usersRes.ok) {
+                        const remoteUsers = await usersRes.json();
+                        if (remoteUsers && typeof remoteUsers === 'object') {
+                            allUsersMap = { ...allUsersMap, ...remoteUsers };
                             if (allUsersMap[currentUser.id]) {
                                 currentUser = { ...currentUser, ...allUsersMap[currentUser.id], id: currentUser.id };
                             }
                             saveLocalDirectory(allUsersMap);
+                        }
+                    }
+
+                    if (chatsRes.ok) {
+                        const remoteChats = await chatsRes.json();
+                        if (remoteChats && typeof remoteChats === 'object') {
+                            allChatsMap = { ...allChatsMap, ...remoteChats };
+                            saveLocalChats(allChatsMap);
                         }
                     }
                 } catch (err) {}
@@ -829,13 +1305,28 @@
 
             renderHisobimProfile();
             renderTanishuvUsers(allUsersMap);
+            if (activeDmPeerId) {
+                renderDmMessages(activeDmPeerId);
+            }
+        }
+
+        /* TAHRIRLASH MODALI FUNKSIYALARI */
+        function selectGender(gender) {
+            tempSelectedGender = gender === 'female' ? 'female' : 'male';
+            document.getElementById('genderMaleBtn').classList.toggle('selected', tempSelectedGender === 'male');
+            document.getElementById('genderFemaleBtn').classList.toggle('selected', tempSelectedGender === 'female');
         }
 
         function openEditModal() {
             tempEditedPhoto = currentUser.photo || '';
+            tempSelectedGender = currentUser.gender || 'male';
+            selectGender(tempSelectedGender);
+
             document.getElementById('modalPreviewPhoto').src = tempEditedPhoto || fallbackAvatar;
             document.getElementById('modalPreviewPhoto').onerror = function() { this.src = fallbackAvatar; };
             document.getElementById('nickInput').value = currentUser.atName || '@nik';
+            document.getElementById('birthDateInput').value = currentUser.birthDate || '';
+            document.getElementById('bioInput').value = currentUser.bio || '';
             document.getElementById('modalErrorMsg').textContent = '';
             document.getElementById('photoFileInput').value = '';
             document.getElementById('editProfileModal').classList.add('open');
@@ -887,16 +1378,17 @@
         async function saveProfileChanges() {
             const errorEl = document.getElementById('modalErrorMsg');
             const rawInput = document.getElementById('nickInput').value.trim();
+            const birthDateVal = document.getElementById('birthDateInput').value.trim();
+            const bioVal = document.getElementById('bioInput').value.trim();
 
             if (!rawInput || rawInput === '@') {
-                errorEl.textContent = 'Iltimos, yangi nik kiriting!';
+                errorEl.textContent = 'Iltimos, nik kiriting!';
                 return;
             }
 
             const candidateNick = normalizeNick(rawInput, currentUser.fullName).toLowerCase();
             const displayNick = normalizeNick(rawInput, currentUser.fullName);
 
-            // Avval bazadagi eng yangi ro'yxat bilan solishtiramiz
             if (FIREBASE_DB_URL) {
                 const base = FIREBASE_DB_URL.replace(/\/+$/, '');
                 try {
@@ -912,7 +1404,7 @@
 
             const isNickTakenByOther = Object.values(allUsersMap).some(u => {
                 if (!u || String(u.id) === String(currentUser.id)) return false;
-                const existingNick = normalizeNick(u.atName || u.username || '', u.fullName || '').toLowerCase();
+                const existingNick = normalizeNick(u.atName || '', u.fullName || '').toLowerCase();
                 return existingNick === candidateNick;
             });
 
@@ -924,8 +1416,10 @@
             currentUser = {
                 ...currentUser,
                 atName: displayNick,
-                username: displayNick.replace(/^@/, ''),
                 photo: tempEditedPhoto || currentUser.photo || '',
+                gender: tempSelectedGender,
+                birthDate: birthDateVal,
+                bio: bioVal,
                 lastSeen: Date.now()
             };
 
@@ -934,6 +1428,123 @@
 
             if (tg && tg.HapticFeedback) {
                 tg.HapticFeedback.notificationOccurred('success');
+            }
+        }
+
+        /* PROFIL KO'RISH VA BOT LICHKASI FUNKSIYALARI */
+        function openViewUserModal(userId) {
+            const user = allUsersMap[String(userId)];
+            if (!user) return;
+            activePeerUser = user;
+
+            document.getElementById('peerProfilePhoto').src = user.photo || fallbackAvatar;
+            document.getElementById('peerProfilePhoto').onerror = function() { this.src = fallbackAvatar; };
+            document.getElementById('peerProfileNick').textContent = user.atName || '@foydalanuvchi';
+            document.getElementById('peerProfileGenderBadge').innerHTML = getGenderPremiumSvg(user.gender || 'male');
+            document.getElementById('peerProfileMeta').innerHTML = buildMetaPills(user);
+            document.getElementById('peerProfileBio').textContent = user.bio ? user.bio : 'Tavsif kiritilmagan.';
+            document.getElementById('viewUserModal').classList.add('open');
+        }
+
+        function closeViewUserModal() {
+            document.getElementById('viewUserModal').classList.remove('open');
+        }
+
+        function openExternalTgFromPeer() {
+            if (!activePeerUser) return;
+            if (activePeerUser.tgUsername) {
+                const link = 'https://t.me/' + activePeerUser.tgUsername;
+                if (tg && tg.openTelegramLink) {
+                    tg.openTelegramLink(link);
+                } else {
+                    window.open(link, '_blank', 'noopener,noreferrer');
+                }
+            } else if (activePeerUser.tgUserId) {
+                const link = 'tg://user?id=' + activePeerUser.tgUserId;
+                window.location.href = link;
+            } else {
+                alert('Bu foydalanuvchining Telegram profili topilmadi.');
+            }
+        }
+
+        function openBotDmFromPeer() {
+            if (!activePeerUser) return;
+            const peerId = String(activePeerUser.id);
+            closeViewUserModal();
+            openBotDmModal(peerId);
+        }
+
+        function openBotDmModal(peerId) {
+            activeDmPeerId = String(peerId);
+            const peer = allUsersMap[activeDmPeerId] || { id: activeDmPeerId, atName: '@foydalanuvchi', gender: 'male' };
+            document.getElementById('dmPeerTitle').textContent = peer.atName || '@foydalanuvchi';
+            document.getElementById('dmPeerBadge').innerHTML = getGenderPremiumSvg(peer.gender || 'male');
+            document.getElementById('dmMessageInput').value = '';
+            renderDmMessages(activeDmPeerId);
+            document.getElementById('botDmModal').classList.add('open');
+        }
+
+        function closeBotDmModal() {
+            activeDmPeerId = null;
+            document.getElementById('botDmModal').classList.remove('open');
+        }
+
+        function renderDmMessages(peerId) {
+            const box = document.getElementById('dmMessagesBox');
+            const key = getThreadKey(currentUser.id, peerId);
+            const threadObj = allChatsMap[key] || {};
+            const msgs = Object.values(threadObj).sort((a, b) => (a.ts || 0) - (b.ts || 0));
+
+            box.innerHTML = '';
+            if (msgs.length === 0) {
+                box.innerHTML = `<div class="panel-subtitle" style="text-align:center; padding:20px 8px;">Xabar yozing — bu suhbat bot ichidagi alohida lichkada saqlanadi.</div>`;
+                return;
+            }
+
+            msgs.forEach(m => {
+                const isMine = String(m.senderId) === String(currentUser.id);
+                const bubble = document.createElement('div');
+                bubble.className = 'chat-msg-bubble ' + (isMine ? 'mine' : 'theirs');
+                bubble.textContent = m.text || '';
+                box.appendChild(bubble);
+            });
+            box.scrollTop = box.scrollHeight;
+        }
+
+        async function sendBotDmMessage() {
+            if (!activeDmPeerId) return;
+            const inputEl = document.getElementById('dmMessageInput');
+            const text = inputEl.value.trim();
+            if (!text) return;
+
+            const key = getThreadKey(currentUser.id, activeDmPeerId);
+            const msgId = 'msg_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6);
+            const msgObj = {
+                id: msgId,
+                senderId: String(currentUser.id),
+                receiverId: String(activeDmPeerId),
+                text: text,
+                ts: Date.now()
+            };
+
+            if (!allChatsMap[key] || typeof allChatsMap[key] !== 'object') {
+                allChatsMap[key] = {};
+            }
+            allChatsMap[key][msgId] = msgObj;
+            saveLocalChats(allChatsMap);
+            inputEl.value = '';
+            renderDmMessages(activeDmPeerId);
+            renderDmThreadsList();
+
+            if (FIREBASE_DB_URL) {
+                const base = FIREBASE_DB_URL.replace(/\/+$/, '');
+                try {
+                    await fetch(`${base}/tanishuv_chats/${encodeURIComponent(key)}/${encodeURIComponent(msgId)}.json`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(msgObj)
+                    });
+                } catch (err) {}
             }
         }
 
