@@ -17,19 +17,16 @@
 
         :root {
             --bg-white: #ffffff;
-            --bg-soft: #fdf4ff;
-            --accent-pink: #ec4899;
-            --accent-purple: #a855f7;
-            --accent-magenta: #c026d3;
-            --text-plum: #86198f;
-            --text-muted: #a21caf;
-            --border-plum: rgba(192, 38, 211, 0.24);
+            --bg-soft: #f5f5f5;
+            --ink-black: #000000;
+            --ink-muted: #262626;
+            --border-black: rgba(0, 0, 0, 0.22);
         }
 
         body {
             min-height: 100vh;
             background-color: var(--bg-white);
-            color: var(--text-plum);
+            color: var(--ink-black);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -57,11 +54,11 @@
             pointer-events: auto;
         }
 
-        /* 1-EKRAN: X-BOX (O'RTADA, SOYASIZ, PUSHTI-BINAFSHA) */
+        /* 1-EKRAN: X-BOX */
         .xbox-title {
             font-size: clamp(38px, 10.5vw, 60px);
             font-weight: 900;
-            color: var(--accent-magenta);
+            color: var(--ink-black);
             letter-spacing: 6px;
             line-height: 1;
             text-align: center;
@@ -83,7 +80,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 14px 14px;
+            padding: 12px 14px;
             overflow-y: auto;
             background-color: var(--bg-white);
         }
@@ -95,8 +92,8 @@
             height: 100%;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 12px;
+            justify-content: flex-start;
+            gap: 10px;
             text-align: center;
         }
 
@@ -104,26 +101,19 @@
             display: flex;
         }
 
-        #panel-tanishuv,
-        #panel-lichka,
-        #panel-hisobim {
-            justify-content: flex-start;
-            padding-top: 4px;
-        }
-
         .panel-title {
             font-size: 22px;
             font-weight: 900;
-            color: var(--text-plum);
+            color: var(--ink-black);
             letter-spacing: 0.8px;
             text-transform: lowercase;
         }
 
         .panel-subtitle {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            font-size: 13.5px;
+            font-size: 13px;
             font-weight: 700;
-            color: var(--text-muted);
+            color: var(--ink-muted);
         }
 
         .section-header {
@@ -132,7 +122,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 4px 4px 10px;
-            border-bottom: 1.5px solid var(--border-plum);
+            border-bottom: 1.5px solid var(--border-black);
             flex-shrink: 0;
         }
 
@@ -141,12 +131,304 @@
             align-items: center;
             gap: 6px;
             background: var(--bg-soft);
-            border: 1.5px solid var(--accent-magenta);
+            border: 1.5px solid var(--ink-black);
             border-radius: 999px;
             padding: 5px 12px;
             font-size: 12px;
             font-weight: 900;
-            color: var(--accent-magenta);
+            color: var(--ink-black);
+        }
+
+        /* X-BOX ICHKI REJIM TUGMALARI */
+        .xbox-mode-switch {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .mode-btn {
+            background: var(--bg-soft);
+            color: var(--ink-black);
+            border: 1.5px solid var(--border-black);
+            border-radius: 14px;
+            padding: 10px 8px;
+            font-size: 12.5px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .mode-btn.active {
+            background: var(--ink-black);
+            color: var(--bg-white);
+            border-color: var(--ink-black);
+        }
+
+        .xbox-scroll-body {
+            width: 100%;
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding-bottom: 16px;
+        }
+
+        /* DO'ST 1V1 BLOKI */
+        .duel-1v1-box {
+            width: 100%;
+            background: var(--bg-soft);
+            border: 1.5px solid var(--ink-black);
+            border-radius: 18px;
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            text-align: left;
+        }
+
+        .duel-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .duel-block-label {
+            font-size: 14px;
+            font-weight: 900;
+            color: var(--ink-black);
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .duel-invite-btn {
+            background: var(--ink-black);
+            color: var(--bg-white);
+            border: none;
+            border-radius: 11px;
+            padding: 7px 12px;
+            font-size: 11.5px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .duel-status-line {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--ink-muted);
+        }
+
+        /* SO'Z TOPISH O'YINI */
+        .word-game-card {
+            width: 100%;
+            background: var(--bg-soft);
+            border: 1.5px solid var(--border-black);
+            border-radius: 20px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .word-hint-text {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--ink-black);
+        }
+
+        .word-slots-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 7px;
+        }
+
+        .letter-slot {
+            width: 34px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--bg-white);
+            border: 2px solid var(--ink-black);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--ink-black);
+        }
+
+        .alphabet-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+
+        .alpha-key-btn {
+            background: var(--bg-white);
+            color: var(--ink-black);
+            border: 1.5px solid var(--ink-black);
+            border-radius: 9px;
+            padding: 8px 2px;
+            font-size: 12.5px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .alpha-key-btn:disabled {
+            opacity: 0.35;
+            cursor: default;
+        }
+
+        .next-word-btn {
+            background: var(--ink-black);
+            color: var(--bg-white);
+            border: none;
+            border-radius: 13px;
+            padding: 10px 14px;
+            font-size: 12.5px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        /* VIDEOLAR VA KOMMENTARIYA (YOUTUBE HAVOLASI KO'RINMAYDI) */
+        .video-item-card {
+            width: 100%;
+            background: var(--bg-soft);
+            border: 1.5px solid var(--border-black);
+            border-radius: 20px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: left;
+        }
+
+        .video-poster-box {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 9 / 14;
+            max-height: 360px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: var(--ink-black);
+            border: 1.5px solid var(--ink-black);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-poster-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-center-play {
+            position: absolute;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.92);
+            border: 2px solid var(--ink-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-iframe-wrap {
+            width: 100%;
+            aspect-ratio: 9 / 14;
+            max-height: 360px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1.5px solid var(--ink-black);
+            background: var(--ink-black);
+            display: none;
+        }
+
+        .video-iframe-wrap.playing {
+            display: block;
+        }
+
+        .video-iframe-wrap iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+
+        .video-comments-section {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .comments-title {
+            font-size: 12.5px;
+            font-weight: 900;
+            color: var(--ink-black);
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+
+        .comment-item {
+            background: var(--bg-white);
+            border: 1px solid var(--border-black);
+            border-radius: 11px;
+            padding: 7px 10px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--ink-black);
+        }
+
+        .comment-author {
+            font-weight: 800;
+            margin-right: 5px;
+        }
+
+        .comment-form-row {
+            display: flex;
+            gap: 6px;
+        }
+
+        .comment-input {
+            flex: 1;
+            background: var(--bg-white);
+            color: var(--ink-black);
+            border: 1.5px solid var(--ink-black);
+            border-radius: 11px;
+            padding: 8px 10px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 12.5px;
+            font-weight: 700;
+            outline: none;
+            user-select: text;
+            -webkit-user-select: text;
+        }
+
+        .comment-send-btn {
+            background: var(--ink-black);
+            color: var(--bg-white);
+            border: none;
+            border-radius: 11px;
+            padding: 0 12px;
+            font-size: 12px;
+            font-weight: 900;
+            cursor: pointer;
         }
 
         /* JINSGA QARAB QIMIRLAB TURUVCHI PREMIUM SVG BELGI */
@@ -167,13 +449,6 @@
             75% { transform: scale(1.16) rotate(10deg); }
         }
 
-        .nick-with-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            min-width: 0;
-        }
-
         .nick-text-truncate {
             overflow: hidden;
             text-overflow: ellipsis;
@@ -187,14 +462,14 @@
             flex-direction: column;
             gap: 10px;
             overflow-y: auto;
-            padding-top: 10px;
+            padding-top: 6px;
             padding-bottom: 16px;
         }
 
         .user-profile-card {
             width: 100%;
             background: var(--bg-soft);
-            border: 1.5px solid var(--border-plum);
+            border: 1.5px solid var(--border-black);
             border-radius: 18px;
             padding: 12px 14px;
             display: flex;
@@ -205,8 +480,8 @@
         }
 
         .user-profile-card.is-me {
-            border-color: var(--accent-magenta);
-            background: #fae8ff;
+            border-color: var(--ink-black);
+            background: #e5e5e5;
         }
 
         .user-card-left {
@@ -222,7 +497,7 @@
             height: 50px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--accent-magenta);
+            border: 2px solid var(--ink-black);
             background: var(--bg-white);
             flex-shrink: 0;
         }
@@ -238,7 +513,7 @@
         .user-tg-username {
             font-size: 15px;
             font-weight: 900;
-            color: var(--text-plum);
+            color: var(--ink-black);
             display: flex;
             align-items: center;
             gap: 6px;
@@ -246,7 +521,7 @@
         }
 
         .view-profile-btn {
-            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            background: var(--ink-black);
             color: var(--bg-white);
             border: none;
             border-radius: 12px;
@@ -257,10 +532,6 @@
             flex-shrink: 0;
         }
 
-        .view-profile-btn:active {
-            transform: scale(0.95);
-        }
-
         /* X-LICHKA (INSTAGRAM DM USLUBIDA) */
         .lichka-container {
             width: 100%;
@@ -268,7 +539,6 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            padding-top: 8px;
         }
 
         .dm-threads-list {
@@ -277,13 +547,14 @@
             flex-direction: column;
             gap: 9px;
             overflow-y: auto;
+            padding-top: 8px;
             padding-bottom: 14px;
         }
 
         .dm-thread-card {
             width: 100%;
             background: var(--bg-soft);
-            border: 1.5px solid var(--border-plum);
+            border: 1.5px solid var(--border-black);
             border-radius: 18px;
             padding: 11px 13px;
             display: flex;
@@ -295,8 +566,8 @@
         }
 
         .dm-thread-card.has-unread {
-            border-color: var(--accent-magenta);
-            background: #fae8ff;
+            border-color: var(--ink-black);
+            background: #e5e5e5;
         }
 
         .dm-thread-left {
@@ -315,7 +586,7 @@
         .dm-thread-peer {
             font-size: 14.5px;
             font-weight: 900;
-            color: var(--text-plum);
+            color: var(--ink-black);
             display: flex;
             align-items: center;
             gap: 5px;
@@ -325,7 +596,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             font-size: 12.5px;
             font-weight: 700;
-            color: var(--text-muted);
+            color: var(--ink-muted);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -351,14 +622,14 @@
             justify-content: space-between;
             gap: 8px;
             padding: 8px 6px 10px;
-            border-bottom: 1.5px solid var(--border-plum);
+            border-bottom: 1.5px solid var(--border-black);
             flex-shrink: 0;
         }
 
         .ig-back-btn {
             background: var(--bg-soft);
-            color: var(--text-plum);
-            border: 1.5px solid var(--border-plum);
+            color: var(--ink-black);
+            border: 1.5px solid var(--ink-black);
             border-radius: 12px;
             padding: 7px 11px;
             font-size: 12px;
@@ -379,7 +650,7 @@
             height: 38px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--accent-magenta);
+            border: 2px solid var(--ink-black);
             background: var(--bg-soft);
             flex-shrink: 0;
         }
@@ -387,7 +658,7 @@
         .ig-peer-name {
             font-size: 14px;
             font-weight: 900;
-            color: var(--text-plum);
+            color: var(--ink-black);
             display: flex;
             align-items: center;
             gap: 5px;
@@ -405,7 +676,7 @@
         }
 
         .ig-bubble {
-            max-width: 78%;
+            max-width: 80%;
             padding: 10px 14px;
             border-radius: 20px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -418,7 +689,7 @@
 
         .ig-bubble.mine {
             align-self: flex-end;
-            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            background: var(--ink-black);
             color: var(--bg-white);
             border-bottom-right-radius: 6px;
         }
@@ -426,9 +697,32 @@
         .ig-bubble.theirs {
             align-self: flex-start;
             background: var(--bg-soft);
-            border: 1.5px solid var(--border-plum);
-            color: var(--text-plum);
+            border: 1.5px solid var(--ink-black);
+            color: var(--ink-black);
             border-bottom-left-radius: 6px;
+        }
+
+        .duel-invite-card {
+            margin-top: 8px;
+            background: var(--bg-white);
+            color: var(--ink-black);
+            border: 1.5px solid var(--ink-black);
+            border-radius: 14px;
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .duel-join-btn {
+            background: var(--ink-black);
+            color: var(--bg-white);
+            border: 1px solid var(--bg-white);
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-size: 12px;
+            font-weight: 900;
+            cursor: pointer;
         }
 
         .ig-input-bar {
@@ -437,15 +731,15 @@
             align-items: center;
             gap: 8px;
             padding-top: 8px;
-            border-top: 1.5px solid var(--border-plum);
+            border-top: 1.5px solid var(--border-black);
             flex-shrink: 0;
         }
 
         .ig-msg-input {
             flex: 1;
             background: var(--bg-soft);
-            color: var(--text-plum);
-            border: 1.8px solid var(--accent-purple);
+            color: var(--ink-black);
+            border: 1.8px solid var(--ink-black);
             border-radius: 999px;
             padding: 10px 14px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -457,7 +751,7 @@
         }
 
         .ig-send-btn {
-            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            background: var(--ink-black);
             color: var(--bg-white);
             border: none;
             border-radius: 999px;
@@ -468,11 +762,11 @@
             flex-shrink: 0;
         }
 
-        /* X-HISOBIM PROFIL KARTASI (TOZA PROFIL) */
+        /* X-HISOBIM PROFIL KARTASI */
         .hisobim-scroll {
             width: 100%;
             overflow-y: auto;
-            padding-top: 12px;
+            padding-top: 10px;
             padding-bottom: 18px;
             display: flex;
             flex-direction: column;
@@ -482,7 +776,7 @@
         .hisobim-card {
             width: 100%;
             background: var(--bg-soft);
-            border: 2px solid var(--border-plum);
+            border: 2px solid var(--border-black);
             border-radius: 24px;
             padding: 22px 16px;
             display: flex;
@@ -497,7 +791,7 @@
             height: 100px;
             border-radius: 50%;
             padding: 3px;
-            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            background: var(--ink-black);
         }
 
         .hisobim-avatar {
@@ -513,7 +807,7 @@
         .hisobim-nick-row {
             font-size: 20px;
             font-weight: 900;
-            color: var(--text-plum);
+            color: var(--ink-black);
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -532,9 +826,9 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             font-size: 12px;
             font-weight: 800;
-            color: var(--text-plum);
+            color: var(--ink-black);
             background: var(--bg-white);
-            border: 1px solid var(--border-plum);
+            border: 1px solid var(--ink-black);
             border-radius: 999px;
             padding: 4px 11px;
         }
@@ -542,13 +836,13 @@
         .profile-bio-box {
             width: 100%;
             background: var(--bg-white);
-            border: 1.5px solid var(--border-plum);
+            border: 1.5px solid var(--border-black);
             border-radius: 16px;
             padding: 11px 13px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             font-size: 13px;
             font-weight: 600;
-            color: var(--text-plum);
+            color: var(--ink-black);
             text-align: left;
             line-height: 1.45;
             white-space: pre-wrap;
@@ -559,7 +853,7 @@
             margin-top: 4px;
             width: 100%;
             max-width: 280px;
-            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            background: var(--ink-black);
             color: var(--bg-white);
             border: none;
             border-radius: 16px;
@@ -570,15 +864,11 @@
             cursor: pointer;
         }
 
-        .edit-profile-btn:active {
-            transform: scale(0.97);
-        }
-
         /* MODALLAR */
         .modal-backdrop {
             position: fixed;
             inset: 0;
-            background: rgba(88, 28, 135, 0.36);
+            background: rgba(0, 0, 0, 0.45);
             display: none;
             align-items: center;
             justify-content: center;
@@ -596,7 +886,7 @@
             max-height: 88vh;
             overflow-y: auto;
             background: var(--bg-white);
-            border: 2px solid var(--accent-magenta);
+            border: 2px solid var(--ink-black);
             border-radius: 24px;
             padding: 18px 16px;
             display: flex;
@@ -608,7 +898,7 @@
         .modal-title {
             font-size: 18px;
             font-weight: 900;
-            color: var(--text-plum);
+            color: var(--ink-black);
         }
 
         .modal-photo-picker {
@@ -623,14 +913,14 @@
             height: 84px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2.5px solid var(--accent-magenta);
+            border: 2.5px solid var(--ink-black);
             background: var(--bg-soft);
         }
 
         .choose-photo-btn {
             background: var(--bg-soft);
-            color: var(--accent-magenta);
-            border: 1.5px solid var(--accent-magenta);
+            color: var(--ink-black);
+            border: 1.5px solid var(--ink-black);
             border-radius: 12px;
             padding: 8px 14px;
             font-size: 12px;
@@ -649,7 +939,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             font-size: 12px;
             font-weight: 800;
-            color: var(--text-plum);
+            color: var(--ink-black);
         }
 
         .nick-input,
@@ -657,8 +947,8 @@
         .date-input {
             width: 100%;
             background: var(--bg-soft);
-            color: var(--text-plum);
-            border: 1.8px solid var(--accent-purple);
+            color: var(--ink-black);
+            border: 1.8px solid var(--ink-black);
             border-radius: 14px;
             padding: 10px 12px;
             font-size: 13.5px;
@@ -682,8 +972,8 @@
 
         .gender-choice-btn {
             background: var(--bg-soft);
-            color: var(--text-plum);
-            border: 1.8px solid var(--border-plum);
+            color: var(--ink-black);
+            border: 1.8px solid var(--border-black);
             border-radius: 14px;
             padding: 10px 8px;
             font-size: 12.5px;
@@ -696,8 +986,8 @@
         }
 
         .gender-choice-btn.selected {
-            border-color: var(--accent-magenta);
-            background: #fae8ff;
+            border-color: var(--ink-black);
+            background: #e5e5e5;
         }
 
         .modal-error {
@@ -705,7 +995,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             font-size: 12.5px;
             font-weight: 800;
-            color: #be185d;
+            color: var(--ink-black);
             text-align: center;
         }
 
@@ -717,8 +1007,8 @@
 
         .modal-cancel-btn {
             background: var(--bg-soft);
-            color: var(--text-plum);
-            border: 1.5px solid var(--border-plum);
+            color: var(--ink-black);
+            border: 1.5px solid var(--ink-black);
             border-radius: 14px;
             padding: 11px;
             font-size: 13px;
@@ -727,7 +1017,7 @@
         }
 
         .modal-save-btn {
-            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            background: var(--ink-black);
             color: var(--bg-white);
             border: none;
             border-radius: 14px;
@@ -739,7 +1029,7 @@
 
         .peer-top-card {
             background: var(--bg-soft);
-            border: 1.5px solid var(--border-plum);
+            border: 1.5px solid var(--border-black);
             border-radius: 20px;
             padding: 14px;
             display: flex;
@@ -755,11 +1045,31 @@
             gap: 8px;
         }
 
-        /* PASTKI 4 TA PUSHTI-BINAFSHA PREMIUM SVG IKONKA PANELI */
+        .picker-user-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 280px;
+            overflow-y: auto;
+        }
+
+        .picker-user-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            background: var(--bg-soft);
+            border: 1.5px solid var(--border-black);
+            border-radius: 14px;
+            padding: 9px 11px;
+            text-align: left;
+        }
+
+        /* PASTKI 4 TA QORA PREMIUM SVG IKONKA PANELI */
         .bottom-nav {
             width: 100%;
             background-color: var(--bg-white);
-            border-top: 1.5px solid var(--border-plum);
+            border-top: 1.5px solid var(--border-black);
             padding: 9px 6px calc(11px + env(safe-area-inset-bottom));
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -778,7 +1088,7 @@
             align-items: center;
             justify-content: center;
             gap: 5px;
-            color: var(--accent-purple);
+            color: var(--ink-black);
             font-size: 10.5px;
             font-weight: 900;
             letter-spacing: 0.2px;
@@ -787,16 +1097,16 @@
         }
 
         .nav-item-btn.active {
-            color: var(--accent-magenta);
+            color: var(--ink-black);
             background: var(--bg-soft);
-            border-color: var(--accent-magenta);
+            border-color: var(--ink-black);
         }
 
         .nav-unread-dot {
             position: absolute;
             top: 5px;
             right: 10px;
-            background: var(--accent-pink);
+            background: var(--ink-black);
             color: var(--bg-white);
             border-radius: 999px;
             padding: 1px 5px;
@@ -873,8 +1183,43 @@
         <div class="content-area">
             <!-- 1. X-BOX BO'LIMI -->
             <div id="panel-xbox" class="tab-panel active">
-                <div class="panel-title">x-box</div>
-                <div class="panel-subtitle">Asosiy boʻlim</div>
+                <div class="section-header">
+                    <div class="panel-title">x-box</div>
+                    <div class="count-badge" id="xboxBadgeLabel">Soʻz topish &amp; Video</div>
+                </div>
+
+                <div class="xbox-mode-switch">
+                    <button type="button" id="modeWordBtn" class="mode-btn active" onclick="switchXboxMode('word')">Soʻz topish</button>
+                    <button type="button" id="modeVideosBtn" class="mode-btn" onclick="switchXboxMode('videos')">Videolar</button>
+                </div>
+
+                <div class="xbox-scroll-body">
+                    <!-- SO'Z TOPISH O'YINI -->
+                    <div id="xboxWordSection" style="display:flex; flex-direction:column; gap:10px;">
+                        <div class="duel-1v1-box">
+                            <div class="duel-top-row">
+                                <span class="duel-block-label" onclick="openDuelFriendPicker()">Doʻst 1v1</span>
+                                <button type="button" class="duel-invite-btn" onclick="openDuelFriendPicker()">Doʻstga yuborish</button>
+                            </div>
+                            <div id="duelStatusLine" class="duel-status-line">
+                                Doʻst 1v1 ustiga bosib, istalgan foydalanuvchiga taklif yuboring.
+                            </div>
+                        </div>
+
+                        <div class="word-game-card">
+                            <div id="wordHintText" class="word-hint-text">Ishora yuklanmoqda...</div>
+                            <div id="wordSlotsRow" class="word-slots-row"></div>
+                            <div id="wordGameFeedback" class="panel-subtitle"></div>
+                            <div id="alphabetGrid" class="alphabet-grid"></div>
+                            <button type="button" class="next-word-btn" onclick="startNextWordRound()">Keyingi soʻz</button>
+                        </div>
+                    </div>
+
+                    <!-- VIDEOLAR VA KOMMENTARIYA -->
+                    <div id="xboxVideosSection" style="display:none; flex-direction:column; gap:12px;">
+                        <div id="videosFeedContainer" style="display:flex; flex-direction:column; gap:12px;"></div>
+                    </div>
+                </div>
             </div>
 
             <!-- 2. X-TANISHUV BO'LIMI -->
@@ -897,7 +1242,7 @@
                             <span id="lichkaThreadsCount">0</span> ta xabar
                         </div>
                     </div>
-                    <div id="lichkaThreadsList" class="dm-threads-list" style="padding-top:10px;"></div>
+                    <div id="lichkaThreadsList" class="dm-threads-list"></div>
                 </div>
 
                 <div id="igChatView" class="ig-chat-view">
@@ -921,7 +1266,7 @@
                 </div>
             </div>
 
-            <!-- 4. X-HISOBIM BO'LIMI (FAQAT PROFIL) -->
+            <!-- 4. X-HISOBIM BO'LIMI -->
             <div id="panel-hisobim" class="tab-panel">
                 <div class="section-header">
                     <div class="panel-title">x-hisobim</div>
@@ -945,38 +1290,22 @@
             </div>
         </div>
 
-        <!-- PASTKI 4 TA BO'LIM: x-box, x-tanishuv, x-lichka, x-hisobim -->
+        <!-- PASTKI 4 TA QORA PREMIUM SVG IKONKA PANELI -->
         <nav class="bottom-nav">
-            <!-- 1. x-box -->
             <button type="button" class="nav-item-btn active" onclick="openPanel('xbox', this)">
                 <span class="svg-icon-box anim-xbox-svg">
                     <svg viewBox="0 0 32 32" width="25" height="25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="pinkPurpleXbox" x1="3" y1="3" x2="29" y2="29" gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#f472b6"/>
-                                <stop offset="55%" stop-color="#c026d3"/>
-                                <stop offset="100%" stop-color="#7e22ce"/>
-                            </linearGradient>
-                        </defs>
-                        <rect x="3" y="3" width="26" height="26" rx="8" fill="url(#pinkPurpleXbox)" stroke="#a21caf" stroke-width="1.6"/>
+                        <rect x="3" y="3" width="26" height="26" rx="8" fill="#000000" stroke="#000000" stroke-width="1.6"/>
                         <path d="M10.5 10.5L21.5 21.5M21.5 10.5L10.5 21.5" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round"/>
                     </svg>
                 </span>
                 <span>x-box</span>
             </button>
 
-            <!-- 2. x-tanishuv -->
             <button type="button" class="nav-item-btn" onclick="openPanel('tanishuv', this)">
                 <span class="svg-icon-box anim-tanishuv-svg">
                     <svg viewBox="0 0 32 32" width="25" height="25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="pinkPurpleHeart" x1="4" y1="5" x2="28" y2="27" gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#f9a8d4"/>
-                                <stop offset="55%" stop-color="#db2777"/>
-                                <stop offset="100%" stop-color="#9333ea"/>
-                            </linearGradient>
-                        </defs>
-                        <path d="M16 27.2C16 27.2 4.5 19.8 4.5 11.4C4.5 7.7 7.4 5 10.9 5C13.1 5 15 6.1 16 7.8C17 6.1 18.9 5 21.1 5C24.6 5 27.5 7.7 27.5 11.4C27.5 19.8 16 27.2 16 27.2Z" fill="url(#pinkPurpleHeart)" stroke="#a21caf" stroke-width="1.6" stroke-linejoin="round"/>
+                        <path d="M16 27.2C16 27.2 4.5 19.8 4.5 11.4C4.5 7.7 7.4 5 10.9 5C13.1 5 15 6.1 16 7.8C17 6.1 18.9 5 21.1 5C24.6 5 27.5 7.7 27.5 11.4C27.5 19.8 16 27.2 16 27.2Z" fill="#000000" stroke="#000000" stroke-width="1.6" stroke-linejoin="round"/>
                         <circle cx="12.5" cy="13" r="1.5" fill="#ffffff"/>
                         <circle cx="19.5" cy="13" r="1.5" fill="#ffffff"/>
                     </svg>
@@ -984,19 +1313,11 @@
                 <span>x-tanishuv</span>
             </button>
 
-            <!-- 3. x-lichka (qimirlab turadigan premium SVG) -->
             <button type="button" class="nav-item-btn" onclick="openPanel('lichka', this)">
                 <span id="lichkaUnreadBadge" class="nav-unread-dot">0</span>
                 <span class="svg-icon-box anim-lichka-svg">
                     <svg viewBox="0 0 32 32" width="25" height="25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="pinkPurpleChat" x1="3" y1="4" x2="29" y2="28" gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#f472b6"/>
-                                <stop offset="55%" stop-color="#c026d3"/>
-                                <stop offset="100%" stop-color="#7e22ce"/>
-                            </linearGradient>
-                        </defs>
-                        <path d="M6 7.5C6 5.84315 7.34315 4.5 9 4.5H23C24.6569 4.5 26 5.84315 26 7.5V19.5C26 21.1569 24.6569 22.5 23 22.5H13.5L8.5 27V22.5H9C7.34315 22.5 6 21.1569 6 19.5V7.5Z" fill="url(#pinkPurpleChat)" stroke="#86198f" stroke-width="1.5" stroke-linejoin="round"/>
+                        <path d="M6 7.5C6 5.84315 7.34315 4.5 9 4.5H23C24.6569 4.5 26 5.84315 26 7.5V19.5C26 21.1569 24.6569 22.5 23 22.5H13.5L8.5 27V22.5H9C7.34315 22.5 6 21.1569 6 19.5V7.5Z" fill="#000000" stroke="#000000" stroke-width="1.5" stroke-linejoin="round"/>
                         <circle cx="11.5" cy="13.5" r="1.6" fill="#ffffff"/>
                         <circle cx="16" cy="13.5" r="1.6" fill="#ffffff"/>
                         <circle cx="20.5" cy="13.5" r="1.6" fill="#ffffff"/>
@@ -1005,20 +1326,12 @@
                 <span>x-lichka</span>
             </button>
 
-            <!-- 4. x-hisobim -->
             <button type="button" class="nav-item-btn" onclick="openPanel('hisobim', this)">
                 <span class="svg-icon-box anim-hisobim-svg">
                     <svg viewBox="0 0 32 32" width="25" height="25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="pinkPurpleCrown" x1="3" y1="4" x2="29" y2="28" gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#e879f9"/>
-                                <stop offset="50%" stop-color="#c026d3"/>
-                                <stop offset="100%" stop-color="#7e22ce"/>
-                            </linearGradient>
-                        </defs>
-                        <circle cx="16" cy="10.5" r="5.2" fill="url(#pinkPurpleCrown)" stroke="#86198f" stroke-width="1.5"/>
-                        <path d="M6.5 26.5C7.2 21.3 11.1 18 16 18C20.9 18 24.8 21.3 25.5 26.5" fill="url(#pinkPurpleCrown)" stroke="#86198f" stroke-width="1.6" stroke-linecap="round"/>
-                        <path d="M24 5.5L24.8 7.6L27 8.4L24.8 9.2L24 11.3L23.2 9.2L21 8.4L23.2 7.6L24 5.5Z" fill="#ec4899"/>
+                        <circle cx="16" cy="10.5" r="5.2" fill="#000000" stroke="#000000" stroke-width="1.5"/>
+                        <path d="M6.5 26.5C7.2 21.3 11.1 18 16 18C20.9 18 24.8 21.3 25.5 26.5" fill="#000000" stroke="#000000" stroke-width="1.6" stroke-linecap="round"/>
+                        <path d="M24 5.5L24.8 7.6L27 8.4L24.8 9.2L24 11.3L23.2 9.2L21 8.4L23.2 7.6L24 5.5Z" fill="#000000"/>
                     </svg>
                 </span>
                 <span>x-hisobim</span>
@@ -1103,6 +1416,16 @@
         </div>
     </div>
 
+    <!-- 3-MODAL: DO'ST 1V1 UCHUN FOYDALANUVCHI TANLASH -->
+    <div id="duelFriendModal" class="modal-backdrop">
+        <div class="modal-box">
+            <div class="modal-title">Doʻst 1v1 — kim bilan oʻynaysiz?</div>
+            <div class="panel-subtitle">Tanlagan foydalanuvchingizning x-lichkasiga oʻyin taklifi boradi.</div>
+            <div id="duelUsersPickerList" class="picker-user-list"></div>
+            <button type="button" class="modal-cancel-btn" style="width:100%;" onclick="closeDuelFriendPicker()">Yopish</button>
+        </div>
+    </div>
+
     <script>
         const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
         if (tg) {
@@ -1114,12 +1437,33 @@
         const LOCAL_USERS_KEY = "xbox_tanishuv_directory_v2";
         const LOCAL_CHATS_KEY = "xbox_bot_dm_chats_v1";
         const LOCAL_READ_KEY = "xbox_lichka_last_read_v1";
+        const LOCAL_COMMENTS_KEY = "xbox_video_comments_v1";
+
+        const VIDEO_ITEMS = [
+            { id: "vid_1", ytId: "Wwb_1xNW_io" },
+            { id: "vid_2", ytId: "cdheoBvl178" },
+            { id: "vid_3", ytId: "dGr1jpkiucQ" },
+            { id: "vid_4", ytId: "Z2LoGs2yAXE" }
+        ];
+
+        const WORD_BANK = [
+            { word: "SAMARQAND", hint: "Oʻzbekistondagi tarixiy shahar" },
+            { word: "TELEFON", hint: "Har kuni qoʻlda ishlatiladigan aloqa vositasi" },
+            { word: "DARYO", hint: "Tabiiy oqar suv yoʻli" },
+            { word: "KITOB", hint: "Bilim manbai" },
+            { word: "YULDUZ", hint: "Osmonda porlab turuvchi jism" }
+        ];
+
+        const ALPHABET_UZ = [
+            "A","B","D","E","F","G","H","I","J","K","L","M",
+            "N","O","P","Q","R","S","T","U","V","X","Y","Z","Oʻ","Gʻ","SH","CH"
+        ];
 
         const fallbackAvatar = "data:image/svg+xml;utf8," + encodeURIComponent(`
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                <rect width="100" height="100" fill="#fdf4ff"/>
-                <circle cx="50" cy="38" r="18" fill="#c026d3"/>
-                <path d="M20 86C24 68 36 60 50 60C64 60 76 68 80 86" fill="#e879f9"/>
+                <rect width="100" height="100" fill="#f5f5f5"/>
+                <circle cx="50" cy="38" r="18" fill="#000000"/>
+                <path d="M20 86C24 68 36 60 50 60C64 60 76 68 80 86" fill="#262626"/>
             </svg>
         `);
 
@@ -1128,14 +1472,8 @@
                 return `
                     <span class="gender-badge-svg" title="Qiz bola">
                         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="pinkStarGrad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
-                                    <stop offset="0%" stop-color="#f472b6"/>
-                                    <stop offset="100%" stop-color="#db2777"/>
-                                </linearGradient>
-                            </defs>
-                            <circle cx="12" cy="12" r="10" fill="url(#pinkStarGrad)" stroke="#be185d" stroke-width="1.4"/>
-                            <path d="M8.2 12.4L10.8 15L16.2 9.4" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="12" cy="12" r="10" fill="#000000" stroke="#000000" stroke-width="1.4"/>
+                            <path d="M12 6.8V13.6M8.8 10.4L12 13.6L15.2 10.4M8.2 16.8H15.8" stroke="#ffffff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </span>
                 `;
@@ -1144,7 +1482,7 @@
             return `
                 <span class="gender-badge-svg" title="O'g'il bola">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="10" fill="#09090b" stroke="#27272a" stroke-width="1.4"/>
+                        <circle cx="12" cy="12" r="10" fill="#000000" stroke="#000000" stroke-width="1.4"/>
                         <path d="M8.2 12.4L10.8 15L16.2 9.4" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </span>
@@ -1271,6 +1609,22 @@
             } catch (e) {}
         }
 
+        function loadLocalComments() {
+            try {
+                const raw = localStorage.getItem(LOCAL_COMMENTS_KEY);
+                const parsed = raw ? JSON.parse(raw) : {};
+                return (parsed && typeof parsed === 'object') ? parsed : {};
+            } catch (e) {
+                return {};
+            }
+        }
+
+        function saveLocalComments(commentsObj) {
+            try {
+                localStorage.setItem(LOCAL_COMMENTS_KEY, JSON.stringify(commentsObj));
+            } catch (e) {}
+        }
+
         const tgInitialUser = getInitialTgUser();
         const initialLocalMap = loadLocalDirectory();
         let currentUser = initialLocalMap[tgInitialUser.id]
@@ -1287,10 +1641,274 @@
         let allUsersMap = { ...initialLocalMap, [currentUser.id]: currentUser };
         let allChatsMap = loadLocalChats();
         let readMap = loadReadMap();
+        let allCommentsMap = loadLocalComments();
         let tempEditedPhoto = currentUser.photo || '';
         let tempSelectedGender = currentUser.gender || 'male';
         let activePeerUser = null;
         let activeChatPeerId = null;
+
+        /* SO'Z TOPISH O'YINI HOLATI */
+        let wordIndex = 0;
+        let guessedLetters = new Set();
+        let activeDuelPartnerId = null;
+        let activeDuelRoomId = null;
+
+        function tokenizeUzWord(wordStr) {
+            const tokens = [];
+            let i = 0;
+            const upper = String(wordStr || '').toUpperCase();
+            while (i < upper.length) {
+                const two = upper.slice(i, i + 2);
+                if (two === 'Oʻ' || two === 'Gʻ' || two === 'SH' || two === 'CH') {
+                    tokens.push(two);
+                    i += 2;
+                } else {
+                    tokens.push(upper[i]);
+                    i += 1;
+                }
+            }
+            return tokens;
+        }
+
+        function renderWordGame(customWordObj) {
+            const item = customWordObj || WORD_BANK[wordIndex % WORD_BANK.length];
+            const tokens = tokenizeUzWord(item.word);
+
+            document.getElementById('wordHintText').textContent = `Ishora: ${item.hint}`;
+            const slotsRow = document.getElementById('wordSlotsRow');
+            slotsRow.innerHTML = '';
+
+            let allFound = true;
+            tokens.forEach(tok => {
+                const slot = document.createElement('div');
+                slot.className = 'letter-slot';
+                const isOpen = guessedLetters.has(tok);
+                if (!isOpen) allFound = false;
+                slot.textContent = isOpen ? tok : '';
+                slotsRow.appendChild(slot);
+            });
+
+            const fb = document.getElementById('wordGameFeedback');
+            if (allFound && tokens.length > 0) {
+                fb.textContent = `Tabriklaymiz! Soʻz topildi: ${item.word}`;
+            } else {
+                fb.textContent = activeDuelPartnerId
+                    ? `1v1 rejim faol (${allUsersMap[activeDuelPartnerId]?.atName || 'Doʻst'})`
+                    : 'Harflarni bosib soʻzni toping';
+            }
+
+            const grid = document.getElementById('alphabetGrid');
+            grid.innerHTML = '';
+            ALPHABET_UZ.forEach(letter => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'alpha-key-btn';
+                btn.textContent = letter;
+                btn.disabled = guessedLetters.has(letter) || allFound;
+                btn.onclick = () => {
+                    guessedLetters.add(letter);
+                    renderWordGame(item);
+                };
+                grid.appendChild(btn);
+            });
+        }
+
+        function startNextWordRound(forcedIdx) {
+            if (typeof forcedIdx === 'number') {
+                wordIndex = forcedIdx;
+            } else {
+                wordIndex = (wordIndex + 1) % WORD_BANK.length;
+            }
+            guessedLetters = new Set();
+            renderWordGame();
+        }
+
+        function switchXboxMode(mode) {
+            const isWord = mode === 'word';
+            document.getElementById('modeWordBtn').classList.toggle('active', isWord);
+            document.getElementById('modeVideosBtn').classList.toggle('active', !isWord);
+            document.getElementById('xboxWordSection').style.display = isWord ? 'flex' : 'none';
+            document.getElementById('xboxVideosSection').style.display = isWord ? 'none' : 'flex';
+            if (!isWord) {
+                renderVideosFeed();
+            }
+        }
+
+        /* DO'ST 1V1 TAKLIF VA QO'SHILISH */
+        function openDuelFriendPicker() {
+            const listEl = document.getElementById('duelUsersPickerList');
+            const others = Object.values(allUsersMap || {})
+                .filter(u => u && u.id && String(u.id) !== String(currentUser.id));
+
+            listEl.innerHTML = '';
+            if (others.length === 0) {
+                listEl.innerHTML = `<div class="panel-subtitle" style="padding:12px;">Hozircha boshqa foydalanuvchilar koʻrinmayapti.</div>`;
+            } else {
+                others.forEach(u => {
+                    const row = document.createElement('div');
+                    row.className = 'picker-user-row';
+                    row.innerHTML = `
+                        <span style="font-size:13.5px; font-weight:900;">${escapeHtml(u.atName || '@foydalanuvchi')}</span>
+                        <button type="button" class="duel-invite-btn">Yuborish</button>
+                    `;
+                    row.querySelector('button').onclick = () => sendDuelInviteToUser(u.id);
+                    listEl.appendChild(row);
+                });
+            }
+            document.getElementById('duelFriendModal').classList.add('open');
+        }
+
+        function closeDuelFriendPicker() {
+            document.getElementById('duelFriendModal').classList.remove('open');
+        }
+
+        async function sendDuelInviteToUser(targetUserId) {
+            const peerId = String(targetUserId);
+            const roundIdx = wordIndex % WORD_BANK.length;
+            const roomId = `duel_${currentUser.id}_${peerId}_${Date.now()}`;
+            activeDuelPartnerId = peerId;
+            activeDuelRoomId = roomId;
+
+            document.getElementById('duelStatusLine').textContent =
+                `${allUsersMap[peerId]?.atName || 'Foydalanuvchi'} ga 1v1 taklif yuborildi.`;
+
+            closeDuelFriendPicker();
+            await pushMessageToThread(peerId, {
+                text: `1v1 Soʻz topish oʻyiniga taklif!`,
+                duelInvite: {
+                    roomId: roomId,
+                    wordIndex: roundIdx,
+                    hostId: String(currentUser.id),
+                    hostNick: currentUser.atName || '@foydalanuvchi'
+                }
+            });
+
+            const lichkaBtn = document.querySelector('.nav-item-btn:nth-child(3)');
+            openPanel('lichka', lichkaBtn);
+            openIgChat(peerId);
+        }
+
+        function joinDuelFromInvite(senderId, roundIdx, roomId) {
+            activeDuelPartnerId = String(senderId);
+            activeDuelRoomId = String(roomId || '');
+            startNextWordRound(Number(roundIdx) || 0);
+
+            document.getElementById('duelStatusLine').textContent =
+                `1v1 oʻyinga qoʻshildingiz! Raqib: ${allUsersMap[senderId]?.atName || '@foydalanuvchi'}`;
+
+            const xboxBtn = document.querySelector('.nav-item-btn:nth-child(1)');
+            openPanel('xbox', xboxBtn);
+            switchXboxMode('word');
+        }
+
+        /* VIDEOLAR VA KOMMENTARIYA */
+        function renderVideosFeed() {
+            const container = document.getElementById('videosFeedContainer');
+            if (!container) return;
+            container.innerHTML = '';
+
+            VIDEO_ITEMS.forEach((v, idx) => {
+                const card = document.createElement('div');
+                card.className = 'video-item-card';
+
+                const posterId = `poster_${v.id}`;
+                const frameWrapId = `framewrap_${v.id}`;
+                const iframeId = `iframe_${v.id}`;
+                const commentsListId = `comments_${v.id}`;
+                const commentInputId = `cinput_${v.id}`;
+
+                const commentsObj = allCommentsMap[v.id] || {};
+                const commentsArr = Object.values(commentsObj).sort((a, b) => (a.ts || 0) - (b.ts || 0));
+
+                const commentsHtml = commentsArr.length
+                    ? commentsArr.map(c => `
+                        <div class="comment-item">
+                            <span class="comment-author">${escapeHtml(c.author || '@foydalanuvchi')}:</span>
+                            <span>${escapeHtml(c.text || '')}</span>
+                        </div>
+                    `).join('')
+                    : `<div class="panel-subtitle" style="font-size:12px;">Hali kommentariya yoʻq.</div>`;
+
+                card.innerHTML = `
+                    <div id="${posterId}" class="video-poster-box" onclick="playEmbeddedVideo('${v.id}', '${v.ytId}')">
+                        <img class="video-poster-img" src="https://i.ytimg.com/vi/${escapeHtml(v.ytId)}/hqdefault.jpg" alt="Video ${idx + 1}">
+                        <div class="video-center-play">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="#000000">
+                                <path d="M8 5.5L19 12L8 18.5V5.5Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="${frameWrapId}" class="video-iframe-wrap">
+                        <iframe id="${iframeId}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-comments-section">
+                        <div class="comments-title">Kommentariyalar (${commentsArr.length})</div>
+                        <div id="${commentsListId}" class="comments-list">${commentsHtml}</div>
+                        <div class="comment-form-row">
+                            <input type="text" id="${commentInputId}" class="comment-input" maxlength="250" placeholder="Kommentariya yozing...">
+                            <button type="button" class="comment-send-btn" onclick="submitVideoComment('${v.id}')">Yozish</button>
+                        </div>
+                    </div>
+                `;
+
+                const pImg = card.querySelector('.video-poster-img');
+                if (pImg) {
+                    pImg.onerror = function() {
+                        this.src = fallbackAvatar;
+                    };
+                }
+
+                container.appendChild(card);
+            });
+        }
+
+        function playEmbeddedVideo(vidId, ytId) {
+            const poster = document.getElementById(`poster_${vidId}`);
+            const wrap = document.getElementById(`framewrap_${vidId}`);
+            const iframe = document.getElementById(`iframe_${vidId}`);
+            if (!poster || !wrap || !iframe) return;
+
+            poster.style.display = 'none';
+            wrap.classList.add('playing');
+            if (!iframe.src) {
+                iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(ytId)}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+            }
+        }
+
+        async function submitVideoComment(vidId) {
+            const inputEl = document.getElementById(`cinput_${vidId}`);
+            if (!inputEl) return;
+            const text = inputEl.value.trim();
+            if (!text) return;
+
+            const commentId = 'cmt_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6);
+            const commentObj = {
+                id: commentId,
+                userId: String(currentUser.id),
+                author: currentUser.atName || '@foydalanuvchi',
+                text: text,
+                ts: Date.now()
+            };
+
+            if (!allCommentsMap[vidId] || typeof allCommentsMap[vidId] !== 'object') {
+                allCommentsMap[vidId] = {};
+            }
+            allCommentsMap[vidId][commentId] = commentObj;
+            saveLocalComments(allCommentsMap);
+            inputEl.value = '';
+            renderVideosFeed();
+
+            if (FIREBASE_DB_URL) {
+                const base = FIREBASE_DB_URL.replace(/\/+$/, '');
+                try {
+                    await fetch(`${base}/tanishuv_comments/${encodeURIComponent(vidId)}/${encodeURIComponent(commentId)}.json`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(commentObj)
+                    });
+                } catch (err) {}
+            }
+        }
 
         function buildMetaPills(user) {
             const pills = [];
@@ -1521,26 +2139,39 @@
                 const isMine = String(m.senderId) === String(currentUser.id);
                 const bubble = document.createElement('div');
                 bubble.className = 'ig-bubble ' + (isMine ? 'mine' : 'theirs');
-                bubble.textContent = m.text || '';
+
+                const textDiv = document.createElement('div');
+                textDiv.textContent = m.text || '';
+                bubble.appendChild(textDiv);
+
+                if (m.duelInvite && !isMine) {
+                    const invBox = document.createElement('div');
+                    invBox.className = 'duel-invite-card';
+                    invBox.innerHTML = `
+                        <div style="font-size:12px; font-weight:900;">Soʻz topish 1v1</div>
+                        <button type="button" class="duel-join-btn">Oʻynash</button>
+                    `;
+                    invBox.querySelector('button').onclick = () => {
+                        joinDuelFromInvite(m.senderId, m.duelInvite.wordIndex, m.duelInvite.roomId);
+                    };
+                    bubble.appendChild(invBox);
+                }
+
                 stream.appendChild(bubble);
             });
             stream.scrollTop = stream.scrollHeight;
         }
 
-        async function sendIgMessage() {
-            if (!activeChatPeerId) return;
-            const inputEl = document.getElementById('igMessageInput');
-            const text = inputEl.value.trim();
-            if (!text) return;
-
+        async function pushMessageToThread(peerId, payload) {
             const nowTs = Date.now();
-            const key = getThreadKey(currentUser.id, activeChatPeerId);
+            const key = getThreadKey(currentUser.id, peerId);
             const msgId = 'msg_' + nowTs + '_' + Math.random().toString(36).slice(2, 6);
             const msgObj = {
                 id: msgId,
                 senderId: String(currentUser.id),
-                receiverId: String(activeChatPeerId),
-                text: text,
+                receiverId: String(peerId),
+                text: payload.text || '',
+                duelInvite: payload.duelInvite || null,
                 ts: nowTs
             };
 
@@ -1552,8 +2183,9 @@
             saveLocalChats(allChatsMap);
             saveReadMap(readMap);
 
-            inputEl.value = '';
-            renderIgMessages(activeChatPeerId);
+            if (String(activeChatPeerId) === String(peerId)) {
+                renderIgMessages(peerId);
+            }
             updateLichkaBadges();
 
             if (FIREBASE_DB_URL) {
@@ -1566,6 +2198,16 @@
                     });
                 } catch (err) {}
             }
+        }
+
+        async function sendIgMessage() {
+            if (!activeChatPeerId) return;
+            const inputEl = document.getElementById('igMessageInput');
+            const text = inputEl.value.trim();
+            if (!text) return;
+
+            inputEl.value = '';
+            await pushMessageToThread(activeChatPeerId, { text: text });
         }
 
         async function syncAndLoadUsers() {
@@ -1585,9 +2227,10 @@
                         body: JSON.stringify(currentUser)
                     });
 
-                    const [usersRes, chatsRes] = await Promise.all([
+                    const [usersRes, chatsRes, commentsRes] = await Promise.all([
                         fetch(`${base}/tanishuv_users.json`),
-                        fetch(`${base}/tanishuv_chats.json`)
+                        fetch(`${base}/tanishuv_chats.json`),
+                        fetch(`${base}/tanishuv_comments.json`)
                     ]);
 
                     if (usersRes.ok) {
@@ -1606,6 +2249,14 @@
                         if (remoteChats && typeof remoteChats === 'object') {
                             allChatsMap = { ...allChatsMap, ...remoteChats };
                             saveLocalChats(allChatsMap);
+                        }
+                    }
+
+                    if (commentsRes.ok) {
+                        const remoteComments = await commentsRes.json();
+                        if (remoteComments && typeof remoteComments === 'object') {
+                            allCommentsMap = { ...allCommentsMap, ...remoteComments };
+                            saveLocalComments(allCommentsMap);
                         }
                     }
                 } catch (err) {}
@@ -1788,6 +2439,7 @@
             openIgChat(peerId);
         }
 
+        renderWordGame();
         renderHisobimProfile();
         renderLichkaThreadsList();
         syncAndLoadUsers();
