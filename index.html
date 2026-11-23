@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XILCOIN</title>
+    <title>A C A Z E S</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
@@ -26,61 +26,55 @@
             position: relative;
         }
 
-        .screen {
+        /* ORQA FONDAGI NOZIK PREMIUM NURLANISH */
+        .ambient-glow {
             position: absolute;
-            inset: 0;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, rgba(250, 204, 21, 0.04) 40%, transparent 72%);
+            pointer-events: none;
+            animation: glowBreath 3.5s infinite ease-in-out;
+        }
+
+        @keyframes glowBreath {
+            0%, 100% { transform: scale(0.92); opacity: 0.65; }
+            50% { transform: scale(1.12); opacity: 1; }
+        }
+
+        .intro-container {
+            position: relative;
+            z-index: 2;
             width: 100%;
-            height: 100%;
-            background-color: #000000;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.35s ease;
+            gap: 36px;
+            padding: 24px;
         }
 
-        .screen.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        /* 1-EKRAN: XILCOIN + O'NGDAGI TANGA */
-        .xilcoin-brand {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            animation: brandAppear 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-
-        .xilcoin-word {
-            font-size: clamp(36px, 10vw, 56px);
+        /* A C A Z E S YOZUVI */
+        .acazes-title {
+            font-size: clamp(34px, 9.5vw, 54px);
             font-weight: 900;
             color: #ffffff;
-            letter-spacing: 5px;
-            line-height: 1;
+            letter-spacing: 8px;
+            text-align: center;
             text-transform: uppercase;
+            padding-left: 8px;
             text-shadow:
                 0 2px 0 #d4d4d8,
-                0 5px 0 #71717a,
-                0 10px 24px rgba(255, 255, 255, 0.22),
-                0 0 36px rgba(250, 204, 21, 0.14);
+                0 5px 0 #52525b,
+                0 12px 28px rgba(255, 255, 255, 0.24);
+            animation: titleFadeIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
-        .intro-coin-svg {
-            width: clamp(42px, 11vw, 58px);
-            height: clamp(42px, 11vw, 58px);
-            flex-shrink: 0;
-            animation: coinMove 2.1s infinite ease-in-out;
-            filter: drop-shadow(0 0 16px rgba(250, 204, 21, 0.55));
-        }
-
-        @keyframes brandAppear {
+        @keyframes titleFadeIn {
             0% {
                 opacity: 0;
-                transform: translateY(14px) scale(0.9);
+                transform: translateY(14px) scale(0.92);
             }
             100% {
                 opacity: 1;
@@ -88,700 +82,88 @@
             }
         }
 
-        @keyframes coinMove {
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg) scale(1);
-            }
-            30% {
-                transform: translateY(-5px) rotate(12deg) scale(1.1);
-            }
-            70% {
-                transform: translateY(2px) rotate(-10deg) scale(1.05);
-            }
-        }
-
-        /* QIMIRLAB TURADIGAN PREMIUM SVG TAPCOIN STIKERI */
-        .tapcoin-sticker-svg {
-            width: 24px;
-            height: 24px;
-            flex-shrink: 0;
-            display: inline-block;
-            animation: stickerWiggle 1.8s infinite ease-in-out;
-            filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.55));
-        }
-
-        @keyframes stickerWiggle {
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg) scale(1);
-            }
-            30% {
-                transform: translateY(-3px) rotate(14deg) scale(1.14);
-            }
-            70% {
-                transform: translateY(1px) rotate(-12deg) scale(1.06);
-            }
-        }
-
-        /* SARIQ QIMIRLOVCHI PREMIUM GALOCHKA SVG */
-        .gold-check-svg {
-            width: 21px;
-            height: 21px;
-            flex-shrink: 0;
-            display: inline-block;
-            animation: goldCheckMove 1.9s infinite ease-in-out;
-            filter: drop-shadow(0 0 9px rgba(250, 204, 21, 0.65));
-        }
-
-        @keyframes goldCheckMove {
-            0%, 100% {
-                transform: scale(1) rotate(0deg);
-            }
-            35% {
-                transform: scale(1.18) rotate(-10deg);
-            }
-            70% {
-                transform: scale(1.1) rotate(9deg);
-            }
-        }
-
-        /* 2-EKRAN: ASOSIY SAHIFA */
-        #appScreen {
-            justify-content: space-between;
-        }
-
-        .main-stage {
-            flex: 1;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
-            overflow-y: auto;
-        }
-
-        .tab-view {
-            display: none;
-            width: 100%;
-            max-width: 390px;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            text-align: center;
-        }
-
-        .tab-view.active {
-            display: flex;
-        }
-
-        .coin-counter-box {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 32px;
-            font-weight: 900;
-            color: #ffffff;
-            letter-spacing: 1px;
-        }
-
-        .big-tap-coin-btn {
-            width: 210px;
-            height: 210px;
-            border-radius: 50%;
-            border: none;
-            background: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: transform 0.08s ease;
-            filter: drop-shadow(0 0 24px rgba(250, 204, 21, 0.45));
-        }
-
-        .big-tap-coin-btn:active:not(:disabled) {
-            transform: scale(0.92);
-        }
-
-        .big-tap-coin-btn:disabled {
-            opacity: 0.45;
-            cursor: not-allowed;
-        }
-
-        .big-tap-coin-svg {
-            width: 196px;
-            height: 196px;
-            animation: bigCoinIdle 2.4s infinite ease-in-out;
-        }
-
-        @keyframes bigCoinIdle {
-            0%, 100% {
-                transform: scale(1) rotate(0deg);
-            }
-            50% {
-                transform: scale(1.03) rotate(3deg);
-            }
-        }
-
-        /* UZUN SARIQ ENERGIYA CHIZIG'I (ICHIDA YOZUV YO'Q) */
-        .yellow-energy-track {
-            width: 100%;
-            max-width: 340px;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.14);
-            border-radius: 999px;
-            overflow: hidden;
-            box-shadow: 0 0 14px rgba(250, 204, 21, 0.2);
-        }
-
-        .yellow-energy-fill {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, #eab308 0%, #facc15 55%, #fef08a 100%);
-            border-radius: 999px;
-            box-shadow: 0 0 16px rgba(250, 204, 21, 0.75);
-            transition: width 0.05s linear;
-        }
-
-        /* BOOST BO'LIMI BLOKLARI */
-        .boost-wrap {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .boost-card {
-            width: 100%;
-            background: #0b0b0b;
-            border: 1.5px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            text-align: left;
-        }
-
-        .boost-card-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-        }
-
-        .boost-title-line {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 16px;
-            font-weight: 900;
-            color: #ffffff;
-        }
-
-        .boost-price-line {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 14px;
-            font-weight: 900;
-            color: #facc15;
-        }
-
-        .boost-action-btn {
-            width: 100%;
-            padding: 12px 14px;
-            border-radius: 14px;
-            border: none;
-            background: #facc15;
-            color: #000000;
-            font-size: 14px;
-            font-weight: 900;
-            cursor: pointer;
-            transition: transform 0.12s ease, opacity 0.2s ease;
-        }
-
-        .boost-action-btn:active:not(:disabled) {
-            transform: scale(0.97);
-        }
-
-        .boost-action-btn:disabled {
-            opacity: 0.55;
-            cursor: not-allowed;
-        }
-
-        .yt-channel-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .yt-channel-photo {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #facc15;
-            flex-shrink: 0;
-            background: #18181b;
-        }
-
-        .yt-channel-info {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .yt-nick-line {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 16px;
-            font-weight: 900;
-            color: #ffffff;
-        }
-
-        .yt-bonus-line {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13.5px;
-            font-weight: 800;
-            color: #facc15;
-        }
-
-        /* HISOB BO'LIMI */
-        .profile-card-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-        }
-
-        .profile-avatar-circle {
+        /* DUMALOQ PREMIUM SVG 5 SEKUNDLIK TAYMER */
+        .circle-timer-box {
+            position: relative;
             width: 96px;
             height: 96px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2.5px solid #ffffff;
-            box-shadow: 0 0 22px rgba(255, 255, 255, 0.22);
-            background: #18181b;
-        }
-
-        .nick-with-sticker {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            font-size: 21px;
+            filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.18));
+        }
+
+        .timer-svg {
+            width: 96px;
+            height: 96px;
+            transform: rotate(-90deg);
+        }
+
+        .timer-bg-ring {
+            fill: rgba(255, 255, 255, 0.04);
+            stroke: rgba(255, 255, 255, 0.16);
+            stroke-width: 5;
+        }
+
+        .timer-progress-ring {
+            fill: none;
+            stroke: url(#premiumRingGrad);
+            stroke-width: 5.5;
+            stroke-linecap: round;
+            stroke-dasharray: 251.33;
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 0.1s linear;
+        }
+
+        .timer-orbit-dot {
+            animation: orbitSpin 2.4s infinite linear;
+            transform-origin: 48px 48px;
+        }
+
+        @keyframes orbitSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .timer-number {
+            position: absolute;
+            font-size: 30px;
             font-weight: 900;
             color: #ffffff;
             letter-spacing: 0.5px;
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.35);
+            animation: numTick 1s infinite ease-in-out;
         }
 
-        /* KITOBCHA MODALI (WALLET UCHUN) */
-        .book-modal-backdrop {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 60;
-            background: rgba(0, 0, 0, 0.85);
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
-        }
-
-        .book-modal-backdrop.open {
-            display: flex;
-        }
-
-        .book-sheet {
-            width: 100%;
-            max-width: 375px;
-            max-height: 86vh;
-            overflow-y: auto;
-            background: #0a0a0a;
-            border: 2px solid rgba(255, 255, 255, 0.28);
-            border-radius: 22px;
-            padding: 18px 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
-        }
-
-        .book-user-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.16);
-        }
-
-        .book-user-photo {
-            width: 54px;
-            height: 54px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #facc15;
-            flex-shrink: 0;
-            background: #18181b;
-        }
-
-        .book-greeting-row {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 6px;
-            font-size: 16px;
-            font-weight: 900;
-            color: #ffffff;
-        }
-
-        .book-body-text {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            line-height: 1.55;
-            color: #f4f4f5;
-            text-align: left;
-        }
-
-        .book-limits-box {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(250, 204, 21, 0.45);
-            border-radius: 14px;
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            text-align: left;
-        }
-
-        .book-limit-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13.5px;
-            font-weight: 800;
-            color: #ffffff;
-        }
-
-        .book-close-btn {
-            width: 100%;
-            padding: 12px;
-            border-radius: 14px;
-            border: none;
-            background: #ffffff;
-            color: #000000;
-            font-size: 14px;
-            font-weight: 900;
-            cursor: pointer;
-        }
-
-        /* PASTKI 4 TA BO'LIM PANELI */
-        .bottom-bar {
-            width: 100%;
-            background-color: #000000;
-            border-top: 1px solid rgba(255, 255, 255, 0.16);
-            padding: 10px 8px calc(12px + env(safe-area-inset-bottom));
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
-        }
-
-        .nav-tab-btn {
-            background: transparent;
-            border: 1px solid transparent;
-            border-radius: 14px;
-            padding: 10px 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            color: #a1a1aa;
-            font-size: 12px;
-            font-weight: 900;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .nav-tab-btn.active {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.22);
-        }
-
-        .nav-svg-wrap {
-            width: 20px;
-            height: 20px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .svg-move-tap { animation: svgTapWobble 1.9s infinite ease-in-out; }
-        .svg-move-boost { animation: svgRocketLift 1.7s infinite ease-in-out; }
-        .svg-move-wallet { animation: svgWalletBounce 2.1s infinite ease-in-out; }
-        .svg-move-user { animation: svgUserPulse 2.2s infinite ease-in-out; }
-
-        @keyframes svgTapWobble {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            45% { transform: rotate(-12deg) scale(1.14); }
-        }
-
-        @keyframes svgRocketLift {
-            0%, 100% { transform: translate(0px, 0px) scale(1); }
-            50% { transform: translate(1.5px, -3px) scale(1.14); }
-        }
-
-        @keyframes svgWalletBounce {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-2.5px) scale(1.12); }
-        }
-
-        @keyframes svgUserPulse {
+        @keyframes numTick {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
+            25% { transform: scale(1.14); }
         }
     </style>
 </head>
 <body>
 
-    <!-- QIMIRLAB TURADIGAN PREMIUM SVG TAPCOIN STIKER SHABLONI -->
-    <template id="tapcoinStickerTemplate">
-        <svg class="tapcoin-sticker-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="stCoinOuter" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#fef08a"/>
-                    <stop offset="50%" stop-color="#facc15"/>
-                    <stop offset="100%" stop-color="#ca8a04"/>
-                </linearGradient>
-                <linearGradient id="stCoinInner" x1="16" y1="14" x2="48" y2="50" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#fde047"/>
-                    <stop offset="100%" stop-color="#eab308"/>
-                </linearGradient>
-            </defs>
-            <circle cx="32" cy="32" r="27" fill="url(#stCoinOuter)" stroke="#fef08a" stroke-width="2"/>
-            <circle cx="32" cy="32" r="21" fill="url(#stCoinInner)" stroke="#ffffff" stroke-width="2" stroke-opacity="0.75"/>
-            <path d="M23 22L41 42M41 22L23 42" stroke="#ffffff" stroke-width="4.4" stroke-linecap="round"/>
-        </svg>
-    </template>
+    <div class="ambient-glow"></div>
 
-    <!-- SARIQ QIMIRLOVCHI PREMIUM GALOCHKA SVG SHABLONI -->
-    <template id="goldCheckTemplate">
-        <svg class="gold-check-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="goldCheckGrad" x1="3" y1="3" x2="29" y2="29" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#fef08a"/>
-                    <stop offset="55%" stop-color="#facc15"/>
-                    <stop offset="100%" stop-color="#ca8a04"/>
-                </linearGradient>
-            </defs>
-            <circle cx="16" cy="16" r="13" fill="url(#goldCheckGrad)" stroke="#ffffff" stroke-width="1.8"/>
-            <path d="M10.2 16.4L14.1 20.3L22.2 12" stroke="#000000" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-    </template>
+    <div class="intro-container">
+        <div class="acazes-title">A C A Z E S</div>
 
-    <!-- 1-EKRAN: KIRISH -->
-    <div id="introScreen" class="screen active">
-        <div class="xilcoin-brand">
-            <span class="xilcoin-word">XILCOIN</span>
-            <svg class="intro-coin-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="circle-timer-box">
+            <svg class="timer-svg" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                    <linearGradient id="coinOuterGrad" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stop-color="#fef08a"/>
-                        <stop offset="50%" stop-color="#facc15"/>
-                        <stop offset="100%" stop-color="#ca8a04"/>
-                    </linearGradient>
-                    <linearGradient id="coinInnerGrad" x1="16" y1="14" x2="48" y2="50" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stop-color="#fde047"/>
-                        <stop offset="100%" stop-color="#eab308"/>
+                    <linearGradient id="premiumRingGrad" x1="0" y1="0" x2="96" y2="96" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#ffffff"/>
+                        <stop offset="55%" stop-color="#fef08a"/>
+                        <stop offset="100%" stop-color="#facc15"/>
                     </linearGradient>
                 </defs>
-                <circle cx="32" cy="32" r="27" fill="url(#coinOuterGrad)" stroke="#fef08a" stroke-width="2"/>
-                <circle cx="32" cy="32" r="21" fill="url(#coinInnerGrad)" stroke="#ffffff" stroke-width="2" stroke-opacity="0.75"/>
-                <path d="M23 22L41 42M41 22L23 42" stroke="#ffffff" stroke-width="4.4" stroke-linecap="round"/>
+                <circle class="timer-bg-ring" cx="48" cy="48" r="40"/>
+                <circle id="timerProgressRing" class="timer-progress-ring" cx="48" cy="48" r="40"/>
+                <g class="timer-orbit-dot">
+                    <circle cx="88" cy="48" r="3.5" fill="#ffffff"/>
+                </g>
             </svg>
-        </div>
-    </div>
-
-    <!-- 2-EKRAN: ASOSIY SAHIFA -->
-    <div id="appScreen" class="screen">
-        <div class="main-stage">
-
-            <!-- COINTAP BO'LIMI -->
-            <div id="view-cointap" class="tab-view active">
-                <div class="coin-counter-box">
-                    <span id="topCoinStickerSlot"></span>
-                    <span id="coinBalanceText">0</span>
-                </div>
-
-                <button id="bigTapCoinBtn" type="button" class="big-tap-coin-btn" onclick="tapBigCoin()">
-                    <svg class="big-tap-coin-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="bigCoinOuter" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#fef08a"/>
-                                <stop offset="50%" stop-color="#facc15"/>
-                                <stop offset="100%" stop-color="#ca8a04"/>
-                            </linearGradient>
-                            <linearGradient id="bigCoinInner" x1="16" y1="14" x2="48" y2="50" gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#fde047"/>
-                                <stop offset="100%" stop-color="#eab308"/>
-                            </linearGradient>
-                        </defs>
-                        <circle cx="32" cy="32" r="27" fill="url(#bigCoinOuter)" stroke="#fef08a" stroke-width="2"/>
-                        <circle cx="32" cy="32" r="21" fill="url(#bigCoinInner)" stroke="#ffffff" stroke-width="2" stroke-opacity="0.75"/>
-                        <path d="M23 22L41 42M41 22L23 42" stroke="#ffffff" stroke-width="4.4" stroke-linecap="round"/>
-                    </svg>
-                </button>
-
-                <!-- UZUN SARIQ ENERGIYA CHIZIG'I (ICHIDA YOZUV YO'Q, 5,000,000 GACHA TUGAYDI) -->
-                <div class="yellow-energy-track">
-                    <div id="yellowEnergyFill" class="yellow-energy-fill"></div>
-                </div>
-            </div>
-
-            <!-- BOOST BO'LIMI -->
-            <div id="view-boost" class="tab-view">
-                <div class="boost-wrap">
-                    <!-- +2 TAPCOIN BOSISH -->
-                    <div class="boost-card">
-                        <div class="boost-card-top">
-                            <span class="boost-title-line">
-                                <span>+2 Tapcoin / bosish</span>
-                                <span id="boostTapStickerSlot"></span>
-                            </span>
-                            <span class="boost-price-line">
-                                <span>50,000</span>
-                                <span id="boostPriceStickerSlot"></span>
-                            </span>
-                        </div>
-                        <button id="btnBuyTapBoost" type="button" class="boost-action-btn" onclick="buyTapBoost()">
-                            50,000 tapcoinga sotib olish
-                        </button>
-                    </div>
-
-                    <!-- YOUTUBE KANALGA OBUNA VAZIFASI -->
-                    <div class="boost-card">
-                        <div class="yt-channel-row">
-                            <img id="ytChannelPhoto" class="yt-channel-photo" src="" alt="@xilcoin">
-                            <div class="yt-channel-info">
-                                <div class="yt-nick-line">
-                                    <span id="ytCheckSlot"></span>
-                                    <span>@xilcoin</span>
-                                </div>
-                                <div class="yt-bonus-line">
-                                    <span>+70,000</span>
-                                    <span id="ytBonusStickerSlot"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <button id="btnYtSubscribe" type="button" class="boost-action-btn" onclick="startYtSubscribeTask()">
-                            Obuna boʻlish (YouTube)
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- WALLET BO'LIMI (KIRISH MUMKIN EMAS, KITOBCHA OCHILADI) -->
-            <div id="view-wallet" class="tab-view"></div>
-
-            <!-- HISOB BO'LIMI -->
-            <div id="view-hisob" class="tab-view">
-                <div class="profile-card-box">
-                    <img id="hisobPhoto" class="profile-avatar-circle" src="" alt="Profil rasmi">
-                    <div class="nick-with-sticker">
-                        <span id="hisobName">@foydalanuvchi</span>
-                        <span id="hisobStickerSlot"></span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- 4 TA BO'LIM: IKONKA YOZUVNING OLDIDA -->
-        <nav class="bottom-bar">
-            <button type="button" class="nav-tab-btn active" data-view="cointap" onclick="switchView('cointap', this)">
-                <span class="nav-svg-wrap svg-move-tap">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="9" fill="#facc15" stroke="#ffffff" stroke-width="1.6"/>
-                        <path d="M9 9L15 15M15 9L9 15" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </span>
-                <span>CoinTap</span>
-            </button>
-
-            <button type="button" class="nav-tab-btn" data-view="boost" onclick="switchView('boost', this)">
-                <span class="nav-svg-wrap svg-move-boost">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M13 2L5 13H12L11 22L19 11H12L13 2Z" fill="#facc15" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round"/>
-                    </svg>
-                </span>
-                <span>Boost</span>
-            </button>
-
-            <button type="button" class="nav-tab-btn" data-view="wallet" onclick="openWalletBookModal()">
-                <span class="nav-svg-wrap svg-move-wallet">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="3" y="6" width="18" height="13" rx="3" fill="#ffffff" stroke="#ffffff" stroke-width="1.5"/>
-                        <path d="M3 10H21" stroke="#000000" stroke-width="2"/>
-                        <circle cx="16.5" cy="14.5" r="1.5" fill="#facc15"/>
-                    </svg>
-                </span>
-                <span>Wallet</span>
-            </button>
-
-            <button type="button" class="nav-tab-btn" data-view="hisob" onclick="switchView('hisob', this)">
-                <span class="nav-svg-wrap svg-move-user">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="8" r="4" fill="#ffffff"/>
-                        <path d="M4.5 20C5.3 16.3 8.3 14.5 12 14.5C15.7 14.5 18.7 16.3 19.5 20" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
-                    </svg>
-                </span>
-                <span>Hisob</span>
-            </button>
-        </nav>
-    </div>
-
-    <!-- WALLET KITOBCHASI -->
-    <div id="walletBookModal" class="book-modal-backdrop" onclick="closeWalletBookModal(event)">
-        <div class="book-sheet" onclick="event.stopPropagation()">
-            <div class="book-user-header">
-                <img id="bookPhoto" class="book-user-photo" src="" alt="Profil rasmi">
-                <div class="book-greeting-row">
-                    <span>Salom</span>
-                    <span id="bookName">@foydalanuvchi</span>
-                    <span id="bookStickerSlot"></span>
-                </div>
-            </div>
-
-            <p class="book-body-text">
-                siz bu bot orqali 1 hafta davomida oʻz tangalarizni yigʻb olib uni telegram wallet ichidagi Defi hisobizga yechib olishingiz mumkin.
-            </p>
-
-            <p class="book-body-text">
-                28.11.2026 yil soat kechasi 12:00 da yechib olishingiz mumkin.
-            </p>
-
-            <p class="book-body-text">
-                Bot hozirda yangi bot ichida 670 ta inson tapcoin bosyabdi. qani tezroq tapcoin qilib oling va pul yeching.
-            </p>
-
-            <div class="book-limits-box">
-                <div class="book-limit-item">
-                    <span>Minimal yechib olish 1M tapcoin</span>
-                    <span id="bookMinStickerSlot"></span>
-                </div>
-                <div class="book-limit-item">
-                    <span>Maximal yechib olish 10B tapcoin</span>
-                    <span id="bookMaxStickerSlot"></span>
-                </div>
-            </div>
-
-            <button type="button" class="book-close-btn" onclick="closeWalletBookModal()">Yopish</button>
+            <span id="timerNumber" class="timer-number">5</span>
         </div>
     </div>
 
@@ -792,251 +174,35 @@
             tg.expand();
         }
 
-        const tgUser = (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) ? tg.initDataUnsafe.user : null;
+        const TOTAL_SECONDS = 5;
+        const CIRCUMFERENCE = 2 * Math.PI * 40; // 251.33
+        const ringEl = document.getElementById('timerProgressRing');
+        const numEl = document.getElementById('timerNumber');
 
-        // YouTube kanal url va profil rasmi (rasmni o'zgartirsangiz shu URLni yangilang)
-        const YT_CHANNEL_URL = 'https://www.youtube.com/@xilcoin';
-        const YT_CHANNEL_PHOTO_URL = '';
+        ringEl.style.strokeDasharray = CIRCUMFERENCE;
+        ringEl.style.strokeDashoffset = '0';
 
-        const MAX_ENERGY = 5000000;
-        const TAP_BOOST_COST = 50000;
-        const YT_BONUS_COINS = 70000;
-        const YT_DELAY_MS = 10 * 60 * 1000; // 10 daqiqa
+        const startTime = Date.now();
+        const durationMs = TOTAL_SECONDS * 1000;
 
-        function getUniquePlayerKey() {
-            if (tgUser && tgUser.id) {
-                return 'xilcoin_user_' + String(tgUser.id);
+        const countdownInterval = setInterval(() => {
+            const elapsed = Date.now() - startTime;
+            const remainingMs = Math.max(0, durationMs - elapsed);
+            const progress = Math.min(1, elapsed / durationMs);
+
+            // Halqa asta-sekin tugab boradi
+            ringEl.style.strokeDashoffset = (CIRCUMFERENCE * progress).toFixed(2);
+
+            // Raqam 5 -> 4 -> 3 -> 2 -> 1 -> 0 sanaydi
+            const secLeft = Math.ceil(remainingMs / 1000);
+            numEl.textContent = String(secLeft);
+
+            if (remainingMs <= 0) {
+                clearInterval(countdownInterval);
+                numEl.textContent = '0';
+                // Keyingi bo'limlar keyin qo'shiladi
             }
-            let guestId = localStorage.getItem('xilcoin_guest_id_v1');
-            if (!guestId) {
-                guestId = 'guest_' + Math.random().toString(36).slice(2, 11) + '_' + Date.now().toString(36);
-                localStorage.setItem('xilcoin_guest_id_v1', guestId);
-            }
-            return guestId;
-        }
-
-        const playerKey = getUniquePlayerKey();
-        const COINS_STORAGE_KEY = playerKey + '_coins';
-        const ENERGY_STORAGE_KEY = playerKey + '_energy';
-        const PER_TAP_KEY = playerKey + '_per_tap';
-        const YT_PENDING_UNTIL_KEY = playerKey + '_yt_pending_until';
-        const YT_CLAIMED_KEY = playerKey + '_yt_claimed';
-
-        const fallbackAvatar = "data:image/svg+xml;utf8," + encodeURIComponent(`
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                <rect width="100" height="100" fill="#18181b"/>
-                <circle cx="50" cy="38" r="18" fill="#facc15"/>
-                <path d="M20 86C24 68 36 60 50 60C64 60 76 68 80 86" fill="#3f3f46"/>
-            </svg>
-        `);
-
-        const defaultYtAvatar = "data:image/svg+xml;utf8," + encodeURIComponent(`
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                <rect width="100" height="100" fill="#111111"/>
-                <circle cx="50" cy="50" r="34" fill="#facc15"/>
-                <path d="M36 36L64 64M64 36L36 64" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
-            </svg>
-        `);
-
-        function createStickerNode() {
-            const tpl = document.getElementById('tapcoinStickerTemplate');
-            return tpl.content.cloneNode(true);
-        }
-
-        function createGoldCheckNode() {
-            const tpl = document.getElementById('goldCheckTemplate');
-            return tpl.content.cloneNode(true);
-        }
-
-        function mountSvgs() {
-            [
-                'topCoinStickerSlot',
-                'boostTapStickerSlot',
-                'boostPriceStickerSlot',
-                'ytBonusStickerSlot',
-                'hisobStickerSlot',
-                'bookStickerSlot',
-                'bookMinStickerSlot',
-                'bookMaxStickerSlot'
-            ].forEach(id => {
-                const el = document.getElementById(id);
-                if (el) {
-                    el.innerHTML = '';
-                    el.appendChild(createStickerNode());
-                }
-            });
-
-            const checkSlot = document.getElementById('ytCheckSlot');
-            if (checkSlot) {
-                checkSlot.innerHTML = '';
-                checkSlot.appendChild(createGoldCheckNode());
-            }
-        }
-
-        function setupProfiles() {
-            let nickText = '@foydalanuvchi';
-            let photoUrl = fallbackAvatar;
-
-            if (tgUser) {
-                if (tgUser.username) {
-                    nickText = '@' + tgUser.username;
-                } else {
-                    const fullName = [tgUser.first_name, tgUser.last_name].filter(Boolean).join(' ');
-                    nickText = fullName || '@foydalanuvchi';
-                }
-                if (tgUser.photo_url) {
-                    photoUrl = tgUser.photo_url;
-                }
-            }
-
-            document.getElementById('hisobName').textContent = nickText;
-            document.getElementById('bookName').textContent = nickText;
-
-            const hisobImg = document.getElementById('hisobPhoto');
-            const bookImg = document.getElementById('bookPhoto');
-            hisobImg.src = photoUrl;
-            bookImg.src = photoUrl;
-            hisobImg.onerror = () => { hisobImg.src = fallbackAvatar; };
-            bookImg.onerror = () => { bookImg.src = fallbackAvatar; };
-
-            const ytImg = document.getElementById('ytChannelPhoto');
-            ytImg.src = YT_CHANNEL_PHOTO_URL || defaultYtAvatar;
-            ytImg.onerror = () => { ytImg.src = defaultYtAvatar; };
-        }
-
-        mountSvgs();
-        setupProfiles();
-
-        setTimeout(() => {
-            document.getElementById('introScreen').classList.remove('active');
-            document.getElementById('appScreen').classList.add('active');
-        }, 1500);
-
-        let coinsCount = Number(localStorage.getItem(COINS_STORAGE_KEY) || 0);
-        if (Number.isNaN(coinsCount) || coinsCount < 0) coinsCount = 0;
-
-        const savedEnergy = localStorage.getItem(ENERGY_STORAGE_KEY);
-        let energyCount = savedEnergy !== null ? Number(savedEnergy) : MAX_ENERGY;
-        if (Number.isNaN(energyCount) || energyCount < 0) energyCount = 0;
-        if (energyCount > MAX_ENERGY) energyCount = MAX_ENERGY;
-
-        let perTapPower = Number(localStorage.getItem(PER_TAP_KEY) || 1);
-        if (perTapPower < 2 && perTapPower !== 1) perTapPower = 1;
-
-        let ytPendingUntil = Number(localStorage.getItem(YT_PENDING_UNTIL_KEY) || 0);
-        let ytClaimed = localStorage.getItem(YT_CLAIMED_KEY) === '1';
-
-        const coinBalanceTextEl = document.getElementById('coinBalanceText');
-        const yellowEnergyFillEl = document.getElementById('yellowEnergyFill');
-        const bigTapCoinBtnEl = document.getElementById('bigTapCoinBtn');
-        const btnBuyTapBoostEl = document.getElementById('btnBuyTapBoost');
-        const btnYtSubscribeEl = document.getElementById('btnYtSubscribe');
-
-        function saveState() {
-            localStorage.setItem(COINS_STORAGE_KEY, String(coinsCount));
-            localStorage.setItem(ENERGY_STORAGE_KEY, String(energyCount));
-            localStorage.setItem(PER_TAP_KEY, String(perTapPower));
-            localStorage.setItem(YT_PENDING_UNTIL_KEY, String(ytPendingUntil));
-            localStorage.setItem(YT_CLAIMED_KEY, ytClaimed ? '1' : '0');
-        }
-
-        function updateBoostAndYtUI() {
-            if (perTapPower >= 2) {
-                btnBuyTapBoostEl.textContent = 'Sotib olingan (+2 / bosish)';
-                btnBuyTapBoostEl.disabled = true;
-            } else {
-                btnBuyTapBoostEl.textContent = '50,000 tapcoinga sotib olish';
-                btnBuyTapBoostEl.disabled = coinsCount < TAP_BOOST_COST;
-            }
-
-            if (ytClaimed) {
-                btnYtSubscribeEl.textContent = '70,000 tapcoin olindi';
-                btnYtSubscribeEl.disabled = true;
-            } else if (ytPendingUntil > 0) {
-                const leftSec = Math.max(0, Math.ceil((ytPendingUntil - Date.now()) / 1000));
-                const mins = Math.floor(leftSec / 60);
-                const secs = leftSec % 60;
-                btnYtSubscribeEl.textContent = `${mins}:${String(secs).padStart(2, '0')} kutilmoqda...`;
-                btnYtSubscribeEl.disabled = true;
-            } else {
-                btnYtSubscribeEl.textContent = 'Obuna boʻlish (YouTube)';
-                btnYtSubscribeEl.disabled = false;
-            }
-        }
-
-        function renderAllUI() {
-            coinBalanceTextEl.textContent = coinsCount.toLocaleString('en-US');
-            const energyPercent = Math.max(0, Math.min(100, (energyCount / MAX_ENERGY) * 100));
-            yellowEnergyFillEl.style.width = energyPercent + '%';
-            bigTapCoinBtnEl.disabled = energyCount <= 0;
-            updateBoostAndYtUI();
-            saveState();
-        }
-
-        function tapBigCoin() {
-            if (energyCount <= 0) return;
-            coinsCount += perTapPower;
-            energyCount -= 1;
-            renderAllUI();
-
-            if (tg && tg.HapticFeedback) {
-                tg.HapticFeedback.impactOccurred('light');
-            }
-        }
-
-        function buyTapBoost() {
-            if (perTapPower >= 2 || coinsCount < TAP_BOOST_COST) return;
-            coinsCount -= TAP_BOOST_COST;
-            perTapPower = 2;
-            renderAllUI();
-        }
-
-        function openYouTubeChannel() {
-            if (tg && tg.openLink) {
-                tg.openLink(YT_CHANNEL_URL, { try_instant_view: false });
-            } else {
-                window.open(YT_CHANNEL_URL, '_blank', 'noopener,noreferrer');
-            }
-        }
-
-        function startYtSubscribeTask() {
-            if (ytClaimed || ytPendingUntil > 0) return;
-            openYouTubeChannel();
-            ytPendingUntil = Date.now() + YT_DELAY_MS;
-            renderAllUI();
-        }
-
-        setInterval(() => {
-            if (!ytClaimed && ytPendingUntil > 0) {
-                if (Date.now() >= ytPendingUntil) {
-                    ytPendingUntil = 0;
-                    ytClaimed = true;
-                    coinsCount += YT_BONUS_COINS;
-                }
-                renderAllUI();
-            }
-        }, 1000);
-
-        renderAllUI();
-
-        function switchView(viewName, btnEl) {
-            document.querySelectorAll('.nav-tab-btn').forEach(btn => btn.classList.remove('active'));
-            if (btnEl) btnEl.classList.add('active');
-
-            document.querySelectorAll('.tab-view').forEach(v => v.classList.remove('active'));
-            const target = document.getElementById('view-' + viewName);
-            if (target) target.classList.add('active');
-        }
-
-        function openWalletBookModal() {
-            document.getElementById('walletBookModal').classList.add('open');
-        }
-
-        function closeWalletBookModal(e) {
-            if (!e || e.target.id === 'walletBookModal') {
-                document.getElementById('walletBookModal').classList.remove('open');
-            }
-        }
+        }, 50);
     </script>
 </body>
 </html>
