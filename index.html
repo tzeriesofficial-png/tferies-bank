@@ -15,10 +15,21 @@
             font-family: 'Arial Black', Impact, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
+        :root {
+            --bg-white: #ffffff;
+            --bg-soft: #fdf4ff;
+            --accent-pink: #ec4899;
+            --accent-purple: #a855f7;
+            --accent-magenta: #c026d3;
+            --text-plum: #86198f;
+            --text-muted: #a21caf;
+            --border-plum: rgba(192, 38, 211, 0.24);
+        }
+
         body {
             min-height: 100vh;
-            background-color: #000000;
-            color: #ffffff;
+            background-color: var(--bg-white);
+            color: var(--text-plum);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -31,7 +42,7 @@
             inset: 0;
             width: 100%;
             height: 100%;
-            background-color: #000000;
+            background-color: var(--bg-white);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -46,11 +57,11 @@
             pointer-events: auto;
         }
 
-        /* 1-EKRAN: X-BOX (O'RTADA, SOYASIZ) */
+        /* 1-EKRAN: X-BOX (O'RTADA, SOYASIZ, PUSHTI-BINAFSHA) */
         .xbox-title {
             font-size: clamp(38px, 10.5vw, 60px);
             font-weight: 900;
-            color: #ffffff;
+            color: var(--accent-magenta);
             letter-spacing: 6px;
             line-height: 1;
             text-align: center;
@@ -63,6 +74,7 @@
         /* 2-EKRAN: ASOSIY OYNA */
         #mainScreen {
             justify-content: space-between;
+            background-color: var(--bg-white);
         }
 
         .content-area {
@@ -73,12 +85,13 @@
             justify-content: center;
             padding: 16px;
             overflow-y: auto;
+            background-color: var(--bg-white);
         }
 
         .tab-panel {
             display: none;
             width: 100%;
-            max-width: 410px;
+            max-width: 420px;
             height: 100%;
             flex-direction: column;
             align-items: center;
@@ -91,7 +104,8 @@
             display: flex;
         }
 
-        #panel-tanishuv {
+        #panel-tanishuv,
+        #panel-hisobim {
             justify-content: flex-start;
             padding-top: 6px;
         }
@@ -99,7 +113,7 @@
         .panel-title {
             font-size: 24px;
             font-weight: 900;
-            color: #ffffff;
+            color: var(--text-plum);
             letter-spacing: 1px;
             text-transform: lowercase;
         }
@@ -107,8 +121,8 @@
         .panel-subtitle {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             font-size: 13.5px;
-            font-weight: 600;
-            color: #a1a1aa;
+            font-weight: 700;
+            color: var(--text-muted);
         }
 
         /* X-TANISHUV RO'YXATI */
@@ -118,20 +132,20 @@
             align-items: center;
             justify-content: space-between;
             padding: 4px 4px 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+            border-bottom: 1.5px solid var(--border-plum);
         }
 
         .tanishuv-count-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: var(--bg-soft);
+            border: 1.5px solid var(--accent-magenta);
             border-radius: 999px;
             padding: 5px 12px;
             font-size: 12px;
             font-weight: 900;
-            color: #facc15;
+            color: var(--accent-magenta);
         }
 
         .users-feed-list {
@@ -140,13 +154,14 @@
             flex-direction: column;
             gap: 10px;
             overflow-y: auto;
-            padding-bottom: 14px;
+            padding-top: 10px;
+            padding-bottom: 16px;
         }
 
         .user-profile-card {
             width: 100%;
-            background: #0b0b0b;
-            border: 1.5px solid rgba(255, 255, 255, 0.16);
+            background: var(--bg-soft);
+            border: 1.5px solid var(--border-plum);
             border-radius: 18px;
             padding: 12px 14px;
             display: flex;
@@ -158,8 +173,8 @@
         }
 
         .user-profile-card.is-me {
-            border-color: rgba(250, 204, 21, 0.55);
-            background: rgba(250, 204, 21, 0.05);
+            border-color: var(--accent-magenta);
+            background: #fae8ff;
         }
 
         .user-card-left {
@@ -174,8 +189,8 @@
             height: 52px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid #ffffff;
-            background: #18181b;
+            border: 2px solid var(--accent-magenta);
+            background: var(--bg-white);
             flex-shrink: 0;
         }
 
@@ -189,7 +204,7 @@
         .user-tg-username {
             font-size: 15px;
             font-weight: 900;
-            color: #ffffff;
+            color: var(--text-plum);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -198,16 +213,16 @@
         .user-tg-fullname {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             font-size: 12.5px;
-            font-weight: 600;
-            color: #a1a1aa;
+            font-weight: 700;
+            color: var(--text-muted);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
         .user-open-tg-btn {
-            background: #ffffff;
-            color: #000000;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            color: var(--bg-white);
             border: none;
             border-radius: 12px;
             padding: 8px 12px;
@@ -215,18 +230,215 @@
             font-weight: 900;
             cursor: pointer;
             flex-shrink: 0;
-            text-decoration: none;
         }
 
         .user-open-tg-btn:active {
             transform: scale(0.95);
         }
 
-        /* PASTKI 3 TA PREMIUM SVG IKONKA PANELI */
+        /* X-HISOBIM PROFIL KARTASI */
+        .hisobim-card {
+            width: 100%;
+            margin-top: 16px;
+            background: var(--bg-soft);
+            border: 2px solid var(--border-plum);
+            border-radius: 24px;
+            padding: 24px 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hisobim-avatar-wrap {
+            position: relative;
+            width: 102px;
+            height: 102px;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+        }
+
+        .hisobim-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--bg-white);
+            background: var(--bg-white);
+            display: block;
+        }
+
+        .hisobim-nick {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--text-plum);
+            word-break: break-word;
+        }
+
+        .hisobim-sub {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .edit-profile-btn {
+            margin-top: 6px;
+            width: 100%;
+            max-width: 260px;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            color: var(--bg-white);
+            border: none;
+            border-radius: 16px;
+            padding: 13px 18px;
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 0.4px;
+            cursor: pointer;
+            transition: transform 0.15s ease, opacity 0.2s ease;
+        }
+
+        .edit-profile-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* TAHRIRLASH MODALI */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(88, 28, 135, 0.35);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            z-index: 50;
+        }
+
+        .modal-backdrop.open {
+            display: flex;
+        }
+
+        .modal-box {
+            width: 100%;
+            max-width: 380px;
+            background: var(--bg-white);
+            border: 2px solid var(--accent-magenta);
+            border-radius: 24px;
+            padding: 20px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            text-align: center;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--text-plum);
+        }
+
+        .modal-photo-picker {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-preview-img {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2.5px solid var(--accent-magenta);
+            background: var(--bg-soft);
+        }
+
+        .choose-photo-btn {
+            background: var(--bg-soft);
+            color: var(--accent-magenta);
+            border: 1.5px solid var(--accent-magenta);
+            border-radius: 12px;
+            padding: 9px 14px;
+            font-size: 12.5px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            text-align: left;
+        }
+
+        .input-label {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 12.5px;
+            font-weight: 800;
+            color: var(--text-plum);
+        }
+
+        .nick-input {
+            width: 100%;
+            background: var(--bg-soft);
+            color: var(--text-plum);
+            border: 1.8px solid var(--accent-purple);
+            border-radius: 14px;
+            padding: 11px 13px;
+            font-size: 14px;
+            font-weight: 800;
+            outline: none;
+            user-select: text;
+            -webkit-user-select: text;
+        }
+
+        .nick-input:focus {
+            border-color: var(--accent-magenta);
+        }
+
+        .modal-error {
+            min-height: 18px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 12.5px;
+            font-weight: 800;
+            color: #be185d;
+            text-align: center;
+        }
+
+        .modal-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .modal-cancel-btn {
+            background: var(--bg-soft);
+            color: var(--text-plum);
+            border: 1.5px solid var(--border-plum);
+            border-radius: 14px;
+            padding: 11px;
+            font-size: 13px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .modal-save-btn {
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            color: var(--bg-white);
+            border: none;
+            border-radius: 14px;
+            padding: 11px;
+            font-size: 13px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        /* PASTKI 3 TA PUSHTI-BINAFSHA PREMIUM SVG IKONKA PANELI */
         .bottom-nav {
             width: 100%;
-            background-color: #000000;
-            border-top: 1px solid rgba(255, 255, 255, 0.16);
+            background-color: var(--bg-white);
+            border-top: 1.5px solid var(--border-plum);
             padding: 10px 10px calc(12px + env(safe-area-inset-bottom));
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -235,7 +447,7 @@
 
         .nav-item-btn {
             background: transparent;
-            border: 1px solid transparent;
+            border: 1.5px solid transparent;
             border-radius: 16px;
             padding: 9px 6px;
             display: flex;
@@ -243,18 +455,18 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
-            color: #a1a1aa;
-            font-size: 12px;
+            color: var(--accent-purple);
+            font-size: 11.5px;
             font-weight: 900;
-            letter-spacing: 0.4px;
+            letter-spacing: 0.3px;
             cursor: pointer;
             transition: all 0.2s ease;
         }
 
         .nav-item-btn.active {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.24);
+            color: var(--accent-magenta);
+            background: var(--bg-soft);
+            border-color: var(--accent-magenta);
         }
 
         .svg-icon-box {
@@ -268,17 +480,14 @@
         /* QIMIRLAB TURUVCHI PREMIUM ANIMATSIYALAR */
         .anim-xbox-svg {
             animation: xboxSpinFloat 2.2s infinite ease-in-out;
-            filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.45));
         }
 
         .anim-tanishuv-svg {
             animation: tanishuvBeat 1.7s infinite ease-in-out;
-            filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.5));
         }
 
-        .anim-wallet-svg {
-            animation: walletTilt 2.0s infinite ease-in-out;
-            filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.4));
+        .anim-hisobim-svg {
+            animation: hisobimDance 1.9s infinite ease-in-out;
         }
 
         @keyframes xboxSpinFloat {
@@ -294,10 +503,10 @@
             75% { transform: scale(1.15) rotate(6deg); }
         }
 
-        @keyframes walletTilt {
+        @keyframes hisobimDance {
             0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-            40% { transform: translateY(-3px) rotate(-8deg) scale(1.12); }
-            80% { transform: translateY(1px) rotate(6deg) scale(1.05); }
+            30% { transform: translateY(-3px) rotate(-9deg) scale(1.14); }
+            65% { transform: translateY(-1px) rotate(9deg) scale(1.1); }
         }
     </style>
 </head>
@@ -314,7 +523,7 @@
             <!-- X-BOX BO'LIMI -->
             <div id="panel-xbox" class="tab-panel active">
                 <div class="panel-title">x-box</div>
-                <div class="panel-subtitle">Asosiy lenta boʻlimi</div>
+                <div class="panel-subtitle">Asosiy boʻlim</div>
             </div>
 
             <!-- X-TANISHUV BO'LIMI -->
@@ -325,32 +534,42 @@
                         <span id="tanishuvUserCount">0</span> ta aʼzo
                     </div>
                 </div>
-
                 <div id="usersFeedList" class="users-feed-list"></div>
             </div>
 
-            <!-- X-WALLET BO'LIMI -->
-            <div id="panel-wallet" class="tab-panel">
-                <div class="panel-title">x-wallet</div>
-                <div class="panel-subtitle">Hamyon va balans boʻlimi</div>
+            <!-- X-HISOBIM BO'LIMI -->
+            <div id="panel-hisobim" class="tab-panel">
+                <div class="tanishuv-header">
+                    <div class="panel-title">x-hisobim</div>
+                    <div class="tanishuv-count-badge">Profil</div>
+                </div>
+
+                <div class="hisobim-card">
+                    <div class="hisobim-avatar-wrap">
+                        <img id="hisobimPhoto" class="hisobim-avatar" src="" alt="Profil rasmi">
+                    </div>
+                    <div id="hisobimNick" class="hisobim-nick">@nik</div>
+                    <div id="hisobimSub" class="hisobim-sub">Telegram profili</div>
+                    <button type="button" class="edit-profile-btn" onclick="openEditModal()">Profilni tahrirlash</button>
+                </div>
             </div>
         </div>
 
-        <!-- PASTKI 3 TA BO'LIM: x-box, x-tanishuv, x-wallet -->
+        <!-- PASTKI 3 TA BO'LIM: x-box, x-tanishuv, x-hisobim -->
         <nav class="bottom-nav">
             <!-- 1. x-box -->
             <button type="button" class="nav-item-btn active" onclick="openPanel('xbox', this)">
                 <span class="svg-icon-box anim-xbox-svg">
                     <svg viewBox="0 0 32 32" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="xboxBadgeGrad" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#fef08a"/>
-                                <stop offset="55%" stop-color="#facc15"/>
-                                <stop offset="100%" stop-color="#ca8a04"/>
+                            <linearGradient id="pinkPurpleXbox" x1="3" y1="3" x2="29" y2="29" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#f472b6"/>
+                                <stop offset="55%" stop-color="#c026d3"/>
+                                <stop offset="100%" stop-color="#7e22ce"/>
                             </linearGradient>
                         </defs>
-                        <rect x="3" y="3" width="26" height="26" rx="8" fill="url(#xboxBadgeGrad)" stroke="#ffffff" stroke-width="1.8"/>
-                        <path d="M10.5 10.5L21.5 21.5M21.5 10.5L10.5 21.5" stroke="#000000" stroke-width="3.2" stroke-linecap="round"/>
+                        <rect x="3" y="3" width="26" height="26" rx="8" fill="url(#pinkPurpleXbox)" stroke="#a21caf" stroke-width="1.6"/>
+                        <path d="M10.5 10.5L21.5 21.5M21.5 10.5L10.5 21.5" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round"/>
                     </svg>
                 </span>
                 <span>x-box</span>
@@ -361,38 +580,66 @@
                 <span class="svg-icon-box anim-tanishuv-svg">
                     <svg viewBox="0 0 32 32" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="tanishuvGrad" x1="4" y1="5" x2="28" y2="27" gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#fda4af"/>
-                                <stop offset="50%" stop-color="#ef4444"/>
-                                <stop offset="100%" stop-color="#b91c1c"/>
+                            <linearGradient id="pinkPurpleHeart" x1="4" y1="5" x2="28" y2="27" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#f9a8d4"/>
+                                <stop offset="55%" stop-color="#db2777"/>
+                                <stop offset="100%" stop-color="#9333ea"/>
                             </linearGradient>
                         </defs>
-                        <path d="M16 27.2C16 27.2 4.5 19.8 4.5 11.4C4.5 7.7 7.4 5 10.9 5C13.1 5 15 6.1 16 7.8C17 6.1 18.9 5 21.1 5C24.6 5 27.5 7.7 27.5 11.4C27.5 19.8 16 27.2 16 27.2Z" fill="url(#tanishuvGrad)" stroke="#ffffff" stroke-width="1.7" stroke-linejoin="round"/>
-                        <path d="M12.5 12.5L19.5 18.5M19.5 12.5L12.5 18.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+                        <path d="M16 27.2C16 27.2 4.5 19.8 4.5 11.4C4.5 7.7 7.4 5 10.9 5C13.1 5 15 6.1 16 7.8C17 6.1 18.9 5 21.1 5C24.6 5 27.5 7.7 27.5 11.4C27.5 19.8 16 27.2 16 27.2Z" fill="url(#pinkPurpleHeart)" stroke="#a21caf" stroke-width="1.6" stroke-linejoin="round"/>
+                        <circle cx="12.5" cy="13" r="1.5" fill="#ffffff"/>
+                        <circle cx="19.5" cy="13" r="1.5" fill="#ffffff"/>
                     </svg>
                 </span>
                 <span>x-tanishuv</span>
             </button>
 
-            <!-- 3. x-wallet -->
-            <button type="button" class="nav-item-btn" onclick="openPanel('wallet', this)">
-                <span class="svg-icon-box anim-wallet-svg">
+            <!-- 3. x-hisobim (qimirlab turadigan premium SVG) -->
+            <button type="button" class="nav-item-btn" onclick="openPanel('hisobim', this)">
+                <span class="svg-icon-box anim-hisobim-svg">
                     <svg viewBox="0 0 32 32" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="walletBodyGrad" x1="3" y1="7" x2="29" y2="26" gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#ffffff"/>
-                                <stop offset="100%" stop-color="#d4d4d8"/>
+                            <linearGradient id="pinkPurpleCrown" x1="3" y1="4" x2="29" y2="28" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#e879f9"/>
+                                <stop offset="50%" stop-color="#c026d3"/>
+                                <stop offset="100%" stop-color="#7e22ce"/>
                             </linearGradient>
                         </defs>
-                        <rect x="3.5" y="7.5" width="25" height="17" rx="4.5" fill="url(#walletBodyGrad)" stroke="#facc15" stroke-width="1.8"/>
-                        <path d="M3.5 12.5H28.5" stroke="#000000" stroke-width="2.2"/>
-                        <rect x="20" y="15.5" width="8.5" height="5.5" rx="2.2" fill="#000000"/>
-                        <circle cx="22.8" cy="18.25" r="1.5" fill="#facc15"/>
+                        <circle cx="16" cy="10.5" r="5.2" fill="url(#pinkPurpleCrown)" stroke="#86198f" stroke-width="1.5"/>
+                        <path d="M6.5 26.5C7.2 21.3 11.1 18 16 18C20.9 18 24.8 21.3 25.5 26.5" fill="url(#pinkPurpleCrown)" stroke="#86198f" stroke-width="1.6" stroke-linecap="round"/>
+                        <path d="M24 5.5L24.8 7.6L27 8.4L24.8 9.2L24 11.3L23.2 9.2L21 8.4L23.2 7.6L24 5.5Z" fill="#ec4899"/>
                     </svg>
                 </span>
-                <span>x-wallet</span>
+                <span>x-hisobim</span>
             </button>
         </nav>
+    </div>
+
+    <!-- PROFILNI TAHRIRLASH OYNASI -->
+    <div id="editProfileModal" class="modal-backdrop">
+        <div class="modal-box">
+            <div class="modal-title">Profilni tahrirlash</div>
+
+            <div class="modal-photo-picker">
+                <img id="modalPreviewPhoto" class="modal-preview-img" src="" alt="Tanlangan rasm">
+                <input type="file" id="photoFileInput" accept="image/*" style="display:none;" onchange="handlePhotoChosen(event)">
+                <button type="button" class="choose-photo-btn" onclick="document.getElementById('photoFileInput').click()">
+                    Rasm tanlash
+                </button>
+            </div>
+
+            <div class="input-group">
+                <label for="nickInput" class="input-label">Yangi nik (boshqalarnikiga oʻxshamasligi kerak)</label>
+                <input type="text" id="nickInput" class="nick-input" maxlength="28" placeholder="@yangi_nik">
+            </div>
+
+            <div id="modalErrorMsg" class="modal-error"></div>
+
+            <div class="modal-actions">
+                <button type="button" class="modal-cancel-btn" onclick="closeEditModal()">Bekor qilish</button>
+                <button type="button" class="modal-save-btn" onclick="saveProfileChanges()">Saqlash</button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -407,17 +654,28 @@
 
         const fallbackAvatar = "data:image/svg+xml;utf8," + encodeURIComponent(`
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-                <rect width="100" height="100" fill="#18181b"/>
-                <circle cx="50" cy="38" r="18" fill="#facc15"/>
-                <path d="M20 86C24 68 36 60 50 60C64 60 76 68 80 86" fill="#3f3f46"/>
+                <rect width="100" height="100" fill="#fdf4ff"/>
+                <circle cx="50" cy="38" r="18" fill="#c026d3"/>
+                <path d="M20 86C24 68 36 60 50 60C64 60 76 68 80 86" fill="#e879f9"/>
             </svg>
         `);
 
-        function getCurrentTgUser() {
+        function normalizeNick(rawNick, fallbackName) {
+            let clean = String(rawNick || '').trim().replace(/\s+/g, '_');
+            if (!clean) {
+                clean = String(fallbackName || 'foydalanuvchi').trim().replace(/\s+/g, '_');
+            }
+            if (!clean.startsWith('@')) {
+                clean = '@' + clean;
+            }
+            return clean;
+        }
+
+        function getInitialTgUser() {
             const u = (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) ? tg.initDataUnsafe.user : null;
             if (u && u.id) {
                 const fullName = [u.first_name, u.last_name].filter(Boolean).join(' ') || 'Foydalanuvchi';
-                const atName = u.username ? ('@' + u.username) : fullName;
+                const atName = normalizeNick(u.username ? ('@' + u.username) : fullName, fullName);
                 return {
                     id: String(u.id),
                     username: u.username || '',
@@ -443,8 +701,6 @@
             };
         }
 
-        const currentUser = getCurrentTgUser();
-
         function loadLocalDirectory() {
             try {
                 const raw = localStorage.getItem(LOCAL_USERS_KEY);
@@ -461,33 +717,20 @@
             } catch (e) {}
         }
 
-        async function syncAndLoadUsers() {
-            const localMap = loadLocalDirectory();
-            localMap[currentUser.id] = currentUser;
-            saveLocalDirectory(localMap);
+        const tgInitialUser = getInitialTgUser();
+        const initialLocalMap = loadLocalDirectory();
+        let currentUser = initialLocalMap[tgInitialUser.id]
+            ? { ...tgInitialUser, ...initialLocalMap[tgInitialUser.id], id: tgInitialUser.id, lastSeen: Date.now() }
+            : tgInitialUser;
 
-            let combinedMap = { ...localMap };
+        let allUsersMap = { ...initialLocalMap, [currentUser.id]: currentUser };
+        let tempEditedPhoto = currentUser.photo || '';
 
-            if (FIREBASE_DB_URL) {
-                const base = FIREBASE_DB_URL.replace(/\/+$/, '');
-                try {
-                    await fetch(`${base}/tanishuv_users/${encodeURIComponent(currentUser.id)}.json`, {
-                        method: 'PUT',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(currentUser)
-                    });
-                    const res = await fetch(`${base}/tanishuv_users.json`);
-                    if (res.ok) {
-                        const remoteData = await res.json();
-                        if (remoteData && typeof remoteData === 'object') {
-                            combinedMap = { ...combinedMap, ...remoteData };
-                            saveLocalDirectory(combinedMap);
-                        }
-                    }
-                } catch (err) {}
-            }
-
-            renderTanishuvUsers(combinedMap);
+        function renderHisobimProfile() {
+            document.getElementById('hisobimPhoto').src = currentUser.photo || fallbackAvatar;
+            document.getElementById('hisobimPhoto').onerror = function() { this.src = fallbackAvatar; };
+            document.getElementById('hisobimNick').textContent = currentUser.atName || '@nik';
+            document.getElementById('hisobimSub').textContent = currentUser.fullName || 'Telegram foydalanuvchisi';
         }
 
         function renderTanishuvUsers(usersMap) {
@@ -533,13 +776,14 @@
                 left.appendChild(meta);
                 card.appendChild(left);
 
-                if (user.username) {
+                const cleanHandle = (user.atName || '').replace(/^@/, '');
+                if (cleanHandle && !cleanHandle.startsWith('mehmon_')) {
                     const msgBtn = document.createElement('button');
                     msgBtn.type = 'button';
                     msgBtn.className = 'user-open-tg-btn';
                     msgBtn.textContent = 'Yozish';
                     msgBtn.onclick = () => {
-                        const link = 'https://t.me/' + user.username;
+                        const link = 'https://t.me/' + cleanHandle;
                         if (tg && tg.openTelegramLink) {
                             tg.openTelegramLink(link);
                         } else {
@@ -553,6 +797,147 @@
             });
         }
 
+        async function syncAndLoadUsers() {
+            currentUser.lastSeen = Date.now();
+            const localMap = loadLocalDirectory();
+            localMap[currentUser.id] = currentUser;
+            saveLocalDirectory(localMap);
+
+            allUsersMap = { ...localMap };
+
+            if (FIREBASE_DB_URL) {
+                const base = FIREBASE_DB_URL.replace(/\/+$/, '');
+                try {
+                    await fetch(`${base}/tanishuv_users/${encodeURIComponent(currentUser.id)}.json`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(currentUser)
+                    });
+                    const res = await fetch(`${base}/tanishuv_users.json`);
+                    if (res.ok) {
+                        const remoteData = await res.json();
+                        if (remoteData && typeof remoteData === 'object') {
+                            allUsersMap = { ...allUsersMap, ...remoteData };
+                            if (allUsersMap[currentUser.id]) {
+                                currentUser = { ...currentUser, ...allUsersMap[currentUser.id], id: currentUser.id };
+                            }
+                            saveLocalDirectory(allUsersMap);
+                        }
+                    }
+                } catch (err) {}
+            }
+
+            renderHisobimProfile();
+            renderTanishuvUsers(allUsersMap);
+        }
+
+        function openEditModal() {
+            tempEditedPhoto = currentUser.photo || '';
+            document.getElementById('modalPreviewPhoto').src = tempEditedPhoto || fallbackAvatar;
+            document.getElementById('modalPreviewPhoto').onerror = function() { this.src = fallbackAvatar; };
+            document.getElementById('nickInput').value = currentUser.atName || '@nik';
+            document.getElementById('modalErrorMsg').textContent = '';
+            document.getElementById('photoFileInput').value = '';
+            document.getElementById('editProfileModal').classList.add('open');
+        }
+
+        function closeEditModal() {
+            document.getElementById('editProfileModal').classList.remove('open');
+            document.getElementById('modalErrorMsg').textContent = '';
+        }
+
+        function handlePhotoChosen(event) {
+            const file = event.target.files && event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const maxSize = 240;
+                    let w = img.width;
+                    let h = img.height;
+
+                    if (w > h) {
+                        if (w > maxSize) {
+                            h = Math.round((h * maxSize) / w);
+                            w = maxSize;
+                        }
+                    } else {
+                        if (h > maxSize) {
+                            w = Math.round((w * maxSize) / h);
+                            h = maxSize;
+                        }
+                    }
+
+                    canvas.width = w;
+                    canvas.height = h;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, w, h);
+
+                    tempEditedPhoto = canvas.toDataURL('image/jpeg', 0.8);
+                    document.getElementById('modalPreviewPhoto').src = tempEditedPhoto;
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function saveProfileChanges() {
+            const errorEl = document.getElementById('modalErrorMsg');
+            const rawInput = document.getElementById('nickInput').value.trim();
+
+            if (!rawInput || rawInput === '@') {
+                errorEl.textContent = 'Iltimos, yangi nik kiriting!';
+                return;
+            }
+
+            const candidateNick = normalizeNick(rawInput, currentUser.fullName).toLowerCase();
+            const displayNick = normalizeNick(rawInput, currentUser.fullName);
+
+            // Avval bazadagi eng yangi ro'yxat bilan solishtiramiz
+            if (FIREBASE_DB_URL) {
+                const base = FIREBASE_DB_URL.replace(/\/+$/, '');
+                try {
+                    const res = await fetch(`${base}/tanishuv_users.json`);
+                    if (res.ok) {
+                        const remoteData = await res.json();
+                        if (remoteData && typeof remoteData === 'object') {
+                            allUsersMap = { ...allUsersMap, ...remoteData };
+                        }
+                    }
+                } catch (err) {}
+            }
+
+            const isNickTakenByOther = Object.values(allUsersMap).some(u => {
+                if (!u || String(u.id) === String(currentUser.id)) return false;
+                const existingNick = normalizeNick(u.atName || u.username || '', u.fullName || '').toLowerCase();
+                return existingNick === candidateNick;
+            });
+
+            if (isNickTakenByOther) {
+                errorEl.textContent = 'Bu nik allaqachon band! Boshqa nik kiriting.';
+                return;
+            }
+
+            currentUser = {
+                ...currentUser,
+                atName: displayNick,
+                username: displayNick.replace(/^@/, ''),
+                photo: tempEditedPhoto || currentUser.photo || '',
+                lastSeen: Date.now()
+            };
+
+            closeEditModal();
+            await syncAndLoadUsers();
+
+            if (tg && tg.HapticFeedback) {
+                tg.HapticFeedback.notificationOccurred('success');
+            }
+        }
+
+        renderHisobimProfile();
         syncAndLoadUsers();
 
         setTimeout(() => {
@@ -568,7 +953,7 @@
             const activePanel = document.getElementById('panel-' + panelName);
             if (activePanel) activePanel.classList.add('active');
 
-            if (panelName === 'tanishuv') {
+            if (panelName === 'tanishuv' || panelName === 'hisobim') {
                 syncAndLoadUsers();
             }
 
