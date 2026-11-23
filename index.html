@@ -18,7 +18,6 @@
         :root {
             --bg-white: #ffffff;
             --bg-soft: #fdf4ff;
-            --bg-card: #faf5ff;
             --accent-pink: #ec4899;
             --accent-purple: #a855f7;
             --accent-magenta: #c026d3;
@@ -84,7 +83,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 14px 16px;
+            padding: 14px 14px;
             overflow-y: auto;
             background-color: var(--bg-white);
         }
@@ -92,7 +91,7 @@
         .tab-panel {
             display: none;
             width: 100%;
-            max-width: 420px;
+            max-width: 430px;
             height: 100%;
             flex-direction: column;
             align-items: center;
@@ -106,16 +105,17 @@
         }
 
         #panel-tanishuv,
+        #panel-lichka,
         #panel-hisobim {
             justify-content: flex-start;
             padding-top: 4px;
         }
 
         .panel-title {
-            font-size: 23px;
+            font-size: 22px;
             font-weight: 900;
             color: var(--text-plum);
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
             text-transform: lowercase;
         }
 
@@ -126,7 +126,6 @@
             color: var(--text-muted);
         }
 
-        /* SARLAVHA QATORI */
         .section-header {
             width: 100%;
             display: flex;
@@ -134,6 +133,7 @@
             justify-content: space-between;
             padding: 4px 4px 10px;
             border-bottom: 1.5px solid var(--border-plum);
+            flex-shrink: 0;
         }
 
         .count-badge {
@@ -151,8 +151,8 @@
 
         /* JINSGA QARAB QIMIRLAB TURUVCHI PREMIUM SVG BELGI */
         .gender-badge-svg {
-            width: 20px;
-            height: 20px;
+            width: 19px;
+            height: 19px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -218,8 +218,8 @@
         }
 
         .user-tg-photo {
-            width: 52px;
-            height: 52px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid var(--accent-magenta);
@@ -261,11 +261,218 @@
             transform: scale(0.95);
         }
 
-        /* X-HISOBIM PROFIL KARTASI */
+        /* X-LICHKA (INSTAGRAM DM USLUBIDA) */
+        .lichka-container {
+            width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            padding-top: 8px;
+        }
+
+        .dm-threads-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            overflow-y: auto;
+            padding-bottom: 14px;
+        }
+
+        .dm-thread-card {
+            width: 100%;
+            background: var(--bg-soft);
+            border: 1.5px solid var(--border-plum);
+            border-radius: 18px;
+            padding: 11px 13px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .dm-thread-card.has-unread {
+            border-color: var(--accent-magenta);
+            background: #fae8ff;
+        }
+
+        .dm-thread-left {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            min-width: 0;
+            flex: 1;
+        }
+
+        .dm-thread-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .dm-thread-peer {
+            font-size: 14.5px;
+            font-weight: 900;
+            color: var(--text-plum);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dm-thread-last {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-top: 3px;
+        }
+
+        .ig-chat-view {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-white);
+        }
+
+        .ig-chat-view.active {
+            display: flex;
+        }
+
+        .ig-chat-topbar {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 8px 6px 10px;
+            border-bottom: 1.5px solid var(--border-plum);
+            flex-shrink: 0;
+        }
+
+        .ig-back-btn {
+            background: var(--bg-soft);
+            color: var(--text-plum);
+            border: 1.5px solid var(--border-plum);
+            border-radius: 12px;
+            padding: 7px 11px;
+            font-size: 12px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .ig-peer-header {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            min-width: 0;
+            flex: 1;
+        }
+
+        .ig-peer-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-magenta);
+            background: var(--bg-soft);
+            flex-shrink: 0;
+        }
+
+        .ig-peer-name {
+            font-size: 14px;
+            font-weight: 900;
+            color: var(--text-plum);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            min-width: 0;
+        }
+
+        .ig-messages-stream {
+            flex: 1;
+            width: 100%;
+            overflow-y: auto;
+            padding: 12px 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .ig-bubble {
+            max-width: 78%;
+            padding: 10px 14px;
+            border-radius: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 13.5px;
+            font-weight: 600;
+            line-height: 1.38;
+            word-break: break-word;
+            text-align: left;
+        }
+
+        .ig-bubble.mine {
+            align-self: flex-end;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            color: var(--bg-white);
+            border-bottom-right-radius: 6px;
+        }
+
+        .ig-bubble.theirs {
+            align-self: flex-start;
+            background: var(--bg-soft);
+            border: 1.5px solid var(--border-plum);
+            color: var(--text-plum);
+            border-bottom-left-radius: 6px;
+        }
+
+        .ig-input-bar {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-top: 8px;
+            border-top: 1.5px solid var(--border-plum);
+            flex-shrink: 0;
+        }
+
+        .ig-msg-input {
+            flex: 1;
+            background: var(--bg-soft);
+            color: var(--text-plum);
+            border: 1.8px solid var(--accent-purple);
+            border-radius: 999px;
+            padding: 10px 14px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 13.5px;
+            font-weight: 700;
+            outline: none;
+            user-select: text;
+            -webkit-user-select: text;
+        }
+
+        .ig-send-btn {
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            color: var(--bg-white);
+            border: none;
+            border-radius: 999px;
+            padding: 10px 16px;
+            font-size: 12.5px;
+            font-weight: 900;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        /* X-HISOBIM PROFIL KARTASI (TOZA PROFIL) */
         .hisobim-scroll {
             width: 100%;
             overflow-y: auto;
-            padding-top: 10px;
+            padding-top: 12px;
             padding-bottom: 18px;
             display: flex;
             flex-direction: column;
@@ -277,7 +484,7 @@
             background: var(--bg-soft);
             border: 2px solid var(--border-plum);
             border-radius: 24px;
-            padding: 20px 16px;
+            padding: 22px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -286,8 +493,8 @@
 
         .hisobim-avatar-wrap {
             position: relative;
-            width: 98px;
-            height: 98px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             padding: 3px;
             background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
@@ -367,71 +574,7 @@
             transform: scale(0.97);
         }
 
-        /* BOT ICHIDAGI LICHKA XABARLARI QUTISI */
-        .dm-inbox-card {
-            width: 100%;
-            background: var(--bg-soft);
-            border: 1.5px solid var(--border-plum);
-            border-radius: 20px;
-            padding: 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            text-align: left;
-        }
-
-        .dm-inbox-title {
-            font-size: 14px;
-            font-weight: 900;
-            color: var(--text-plum);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .dm-threads-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            max-height: 220px;
-            overflow-y: auto;
-        }
-
-        .dm-thread-item {
-            background: var(--bg-white);
-            border: 1px solid var(--border-plum);
-            border-radius: 14px;
-            padding: 10px 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            cursor: pointer;
-        }
-
-        .dm-thread-info {
-            min-width: 0;
-            flex: 1;
-        }
-
-        .dm-thread-peer {
-            font-size: 13px;
-            font-weight: 900;
-            color: var(--text-plum);
-        }
-
-        .dm-thread-last {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-muted);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            margin-top: 2px;
-        }
-
-        /* MODALLAR (TAHRIRLASH, PROFIL KO'RISH, BOT LICHKASI) */
+        /* MODALLAR */
         .modal-backdrop {
             position: fixed;
             inset: 0;
@@ -594,7 +737,6 @@
             cursor: pointer;
         }
 
-        /* FOYDALANUVCHI PROFILI VA LICHKA CHAT OYNALARI */
         .peer-top-card {
             background: var(--bg-soft);
             border: 1.5px solid var(--border-plum);
@@ -613,88 +755,33 @@
             gap: 8px;
         }
 
-        .chat-messages-box {
-            width: 100%;
-            min-height: 160px;
-            max-height: 240px;
-            overflow-y: auto;
-            background: var(--bg-soft);
-            border: 1.5px solid var(--border-plum);
-            border-radius: 16px;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            text-align: left;
-        }
-
-        .chat-msg-bubble {
-            max-width: 82%;
-            padding: 8px 12px;
-            border-radius: 14px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            font-size: 13px;
-            font-weight: 600;
-            line-height: 1.35;
-            word-break: break-word;
-        }
-
-        .chat-msg-bubble.mine {
-            align-self: flex-end;
-            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
-            color: var(--bg-white);
-        }
-
-        .chat-msg-bubble.theirs {
-            align-self: flex-start;
-            background: var(--bg-white);
-            border: 1px solid var(--border-plum);
-            color: var(--text-plum);
-        }
-
-        .chat-send-row {
-            display: flex;
-            gap: 8px;
-            width: 100%;
-        }
-
-        .chat-send-btn {
-            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
-            color: var(--bg-white);
-            border: none;
-            border-radius: 14px;
-            padding: 0 16px;
-            font-size: 13px;
-            font-weight: 900;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        /* PASTKI 3 TA PUSHTI-BINAFSHA PREMIUM SVG IKONKA PANELI */
+        /* PASTKI 4 TA PUSHTI-BINAFSHA PREMIUM SVG IKONKA PANELI */
         .bottom-nav {
             width: 100%;
             background-color: var(--bg-white);
             border-top: 1.5px solid var(--border-plum);
-            padding: 10px 10px calc(12px + env(safe-area-inset-bottom));
+            padding: 9px 6px calc(11px + env(safe-area-inset-bottom));
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+            flex-shrink: 0;
         }
 
         .nav-item-btn {
+            position: relative;
             background: transparent;
             border: 1.5px solid transparent;
-            border-radius: 16px;
-            padding: 9px 6px;
+            border-radius: 15px;
+            padding: 8px 3px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 5px;
             color: var(--accent-purple);
-            font-size: 11.5px;
+            font-size: 10.5px;
             font-weight: 900;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.2px;
             cursor: pointer;
             transition: all 0.2s ease;
         }
@@ -705,9 +792,26 @@
             border-color: var(--accent-magenta);
         }
 
+        .nav-unread-dot {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: var(--accent-pink);
+            color: var(--bg-white);
+            border-radius: 999px;
+            padding: 1px 5px;
+            font-size: 9.5px;
+            font-weight: 900;
+            display: none;
+        }
+
+        .nav-unread-dot.visible {
+            display: inline-block;
+        }
+
         .svg-icon-box {
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -720,6 +824,10 @@
 
         .anim-tanishuv-svg {
             animation: tanishuvBeat 1.7s infinite ease-in-out;
+        }
+
+        .anim-lichka-svg {
+            animation: lichkaWiggle 1.6s infinite ease-in-out;
         }
 
         .anim-hisobim-svg {
@@ -739,6 +847,13 @@
             75% { transform: scale(1.15) rotate(6deg); }
         }
 
+        @keyframes lichkaWiggle {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            20% { transform: translateY(-2px) rotate(-11deg) scale(1.14); }
+            45% { transform: translateY(-3px) rotate(11deg) scale(1.16); }
+            70% { transform: translateY(0px) rotate(-5deg) scale(1.05); }
+        }
+
         @keyframes hisobimDance {
             0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
             30% { transform: translateY(-3px) rotate(-9deg) scale(1.14); }
@@ -756,13 +871,13 @@
     <!-- 2-EKRAN: ASOSIY OYNA -->
     <div id="mainScreen" class="screen">
         <div class="content-area">
-            <!-- X-BOX BO'LIMI -->
+            <!-- 1. X-BOX BO'LIMI -->
             <div id="panel-xbox" class="tab-panel active">
                 <div class="panel-title">x-box</div>
                 <div class="panel-subtitle">Asosiy boʻlim</div>
             </div>
 
-            <!-- X-TANISHUV BO'LIMI -->
+            <!-- 2. X-TANISHUV BO'LIMI -->
             <div id="panel-tanishuv" class="tab-panel">
                 <div class="section-header">
                     <div class="panel-title">x-tanishuv</div>
@@ -773,7 +888,40 @@
                 <div id="usersFeedList" class="users-feed-list"></div>
             </div>
 
-            <!-- X-HISOBIM BO'LIMI -->
+            <!-- 3. X-LICHKA BO'LIMI (INSTAGRAM DM USLUBIDA) -->
+            <div id="panel-lichka" class="tab-panel">
+                <div id="lichkaThreadsView" class="lichka-container">
+                    <div class="section-header">
+                        <div class="panel-title">x-lichka</div>
+                        <div class="count-badge">
+                            <span id="lichkaThreadsCount">0</span> ta xabar
+                        </div>
+                    </div>
+                    <div id="lichkaThreadsList" class="dm-threads-list" style="padding-top:10px;"></div>
+                </div>
+
+                <div id="igChatView" class="ig-chat-view">
+                    <div class="ig-chat-topbar">
+                        <button type="button" class="ig-back-btn" onclick="backToThreadsList()">← Orqaga</button>
+                        <div class="ig-peer-header">
+                            <img id="igPeerAvatar" class="ig-peer-avatar" src="" alt="Rasm">
+                            <div class="ig-peer-name">
+                                <span id="igPeerNick" class="nick-text-truncate">@nik</span>
+                                <span id="igPeerBadge"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="igMessagesStream" class="ig-messages-stream"></div>
+
+                    <div class="ig-input-bar">
+                        <input type="text" id="igMessageInput" class="ig-msg-input" maxlength="400" placeholder="Xabar yozing...">
+                        <button type="button" class="ig-send-btn" onclick="sendIgMessage()">Yuborish</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. X-HISOBIM BO'LIMI (FAQAT PROFIL) -->
             <div id="panel-hisobim" class="tab-panel">
                 <div class="section-header">
                     <div class="panel-title">x-hisobim</div>
@@ -793,23 +941,16 @@
                         <div id="hisobimBio" class="profile-bio-box">Tavsif hali kiritilmagan.</div>
                         <button type="button" class="edit-profile-btn" onclick="openEditModal()">Profilni tahrirlash</button>
                     </div>
-
-                    <div class="dm-inbox-card">
-                        <div class="dm-inbox-title">
-                            <span>Bot lichkasi</span>
-                            <span id="dmThreadsCount" class="count-badge">0 ta suhbat</span>
-                        </div>
-                        <div id="dmThreadsList" class="dm-threads-list"></div>
-                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- PASTKI 3 TA BO'LIM: x-box, x-tanishuv, x-hisobim -->
+        <!-- PASTKI 4 TA BO'LIM: x-box, x-tanishuv, x-lichka, x-hisobim -->
         <nav class="bottom-nav">
+            <!-- 1. x-box -->
             <button type="button" class="nav-item-btn active" onclick="openPanel('xbox', this)">
                 <span class="svg-icon-box anim-xbox-svg">
-                    <svg viewBox="0 0 32 32" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg viewBox="0 0 32 32" width="25" height="25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                             <linearGradient id="pinkPurpleXbox" x1="3" y1="3" x2="29" y2="29" gradientUnits="userSpaceOnUse">
                                 <stop offset="0%" stop-color="#f472b6"/>
@@ -824,9 +965,10 @@
                 <span>x-box</span>
             </button>
 
+            <!-- 2. x-tanishuv -->
             <button type="button" class="nav-item-btn" onclick="openPanel('tanishuv', this)">
                 <span class="svg-icon-box anim-tanishuv-svg">
-                    <svg viewBox="0 0 32 32" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg viewBox="0 0 32 32" width="25" height="25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                             <linearGradient id="pinkPurpleHeart" x1="4" y1="5" x2="28" y2="27" gradientUnits="userSpaceOnUse">
                                 <stop offset="0%" stop-color="#f9a8d4"/>
@@ -842,9 +984,31 @@
                 <span>x-tanishuv</span>
             </button>
 
+            <!-- 3. x-lichka (qimirlab turadigan premium SVG) -->
+            <button type="button" class="nav-item-btn" onclick="openPanel('lichka', this)">
+                <span id="lichkaUnreadBadge" class="nav-unread-dot">0</span>
+                <span class="svg-icon-box anim-lichka-svg">
+                    <svg viewBox="0 0 32 32" width="25" height="25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="pinkPurpleChat" x1="3" y1="4" x2="29" y2="28" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#f472b6"/>
+                                <stop offset="55%" stop-color="#c026d3"/>
+                                <stop offset="100%" stop-color="#7e22ce"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M6 7.5C6 5.84315 7.34315 4.5 9 4.5H23C24.6569 4.5 26 5.84315 26 7.5V19.5C26 21.1569 24.6569 22.5 23 22.5H13.5L8.5 27V22.5H9C7.34315 22.5 6 21.1569 6 19.5V7.5Z" fill="url(#pinkPurpleChat)" stroke="#86198f" stroke-width="1.5" stroke-linejoin="round"/>
+                        <circle cx="11.5" cy="13.5" r="1.6" fill="#ffffff"/>
+                        <circle cx="16" cy="13.5" r="1.6" fill="#ffffff"/>
+                        <circle cx="20.5" cy="13.5" r="1.6" fill="#ffffff"/>
+                    </svg>
+                </span>
+                <span>x-lichka</span>
+            </button>
+
+            <!-- 4. x-hisobim -->
             <button type="button" class="nav-item-btn" onclick="openPanel('hisobim', this)">
                 <span class="svg-icon-box anim-hisobim-svg">
-                    <svg viewBox="0 0 32 32" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg viewBox="0 0 32 32" width="25" height="25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                             <linearGradient id="pinkPurpleCrown" x1="3" y1="4" x2="29" y2="28" gradientUnits="userSpaceOnUse">
                                 <stop offset="0%" stop-color="#e879f9"/>
@@ -931,30 +1095,11 @@
             </div>
 
             <div class="peer-action-row">
-                <button type="button" class="modal-save-btn" onclick="openBotDmFromPeer()">Botda yozish</button>
+                <button type="button" class="modal-save-btn" onclick="openLichkaFromPeer()">x-lichkada yozish</button>
                 <button type="button" class="modal-cancel-btn" onclick="openExternalTgFromPeer()">Telegram lichka</button>
             </div>
 
             <button type="button" class="modal-cancel-btn" style="width:100%;" onclick="closeViewUserModal()">Yopish</button>
-        </div>
-    </div>
-
-    <!-- 3-MODAL: BOT ICHIDAGI LICHKA CHAT -->
-    <div id="botDmModal" class="modal-backdrop">
-        <div class="modal-box">
-            <div class="hisobim-nick-row">
-                <span id="dmPeerTitle">@nik</span>
-                <span id="dmPeerBadge"></span>
-            </div>
-
-            <div id="dmMessagesBox" class="chat-messages-box"></div>
-
-            <div class="chat-send-row">
-                <input type="text" id="dmMessageInput" class="nick-input" maxlength="400" placeholder="Xabar yozing...">
-                <button type="button" class="chat-send-btn" onclick="sendBotDmMessage()">Yuborish</button>
-            </div>
-
-            <button type="button" class="modal-cancel-btn" style="width:100%;" onclick="closeBotDmModal()">Yopish</button>
         </div>
     </div>
 
@@ -968,6 +1113,7 @@
         const FIREBASE_DB_URL = "https://xbox-tanishuv-default-rtdb.firebaseio.com";
         const LOCAL_USERS_KEY = "xbox_tanishuv_directory_v2";
         const LOCAL_CHATS_KEY = "xbox_bot_dm_chats_v1";
+        const LOCAL_READ_KEY = "xbox_lichka_last_read_v1";
 
         const fallbackAvatar = "data:image/svg+xml;utf8," + encodeURIComponent(`
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
@@ -977,7 +1123,6 @@
             </svg>
         `);
 
-        // Qiz bola uchun pushti premium SVG, o'g'il bola uchun qora premium SVG
         function getGenderPremiumSvg(gender) {
             if (gender === 'female') {
                 return `
@@ -1110,6 +1255,22 @@
             } catch (e) {}
         }
 
+        function loadReadMap() {
+            try {
+                const raw = localStorage.getItem(LOCAL_READ_KEY);
+                const parsed = raw ? JSON.parse(raw) : {};
+                return (parsed && typeof parsed === 'object') ? parsed : {};
+            } catch (e) {
+                return {};
+            }
+        }
+
+        function saveReadMap(readObj) {
+            try {
+                localStorage.setItem(LOCAL_READ_KEY, JSON.stringify(readObj));
+            } catch (e) {}
+        }
+
         const tgInitialUser = getInitialTgUser();
         const initialLocalMap = loadLocalDirectory();
         let currentUser = initialLocalMap[tgInitialUser.id]
@@ -1125,10 +1286,11 @@
 
         let allUsersMap = { ...initialLocalMap, [currentUser.id]: currentUser };
         let allChatsMap = loadLocalChats();
+        let readMap = loadReadMap();
         let tempEditedPhoto = currentUser.photo || '';
         let tempSelectedGender = currentUser.gender || 'male';
         let activePeerUser = null;
-        let activeDmPeerId = null;
+        let activeChatPeerId = null;
 
         function buildMetaPills(user) {
             const pills = [];
@@ -1155,7 +1317,6 @@
             document.getElementById('hisobimGenderBadge').innerHTML = getGenderPremiumSvg(currentUser.gender || 'male');
             document.getElementById('hisobimMetaPills').innerHTML = buildMetaPills(currentUser);
             document.getElementById('hisobimBio').textContent = currentUser.bio ? currentUser.bio : 'Tavsif hali kiritilmagan.';
-            renderDmThreadsList();
         }
 
         function renderTanishuvUsers(usersMap) {
@@ -1219,45 +1380,192 @@
             return [String(uidA), String(uidB)].sort().join('__');
         }
 
-        function renderDmThreadsList() {
-            const listEl = document.getElementById('dmThreadsList');
-            const countEl = document.getElementById('dmThreadsCount');
-
-            const threads = Object.entries(allChatsMap || {})
+        function getThreadsForCurrentUser() {
+            return Object.entries(allChatsMap || {})
                 .filter(([key]) => key.split('__').includes(String(currentUser.id)))
                 .map(([key, msgsObj]) => {
                     const parts = key.split('__');
                     const peerId = parts[0] === String(currentUser.id) ? parts[1] : parts[0];
                     const msgs = Object.values(msgsObj || {}).sort((a, b) => (a.ts || 0) - (b.ts || 0));
                     const lastMsg = msgs[msgs.length - 1];
-                    return { peerId, msgs, lastMsg };
+                    const lastReadTs = Number(readMap[key] || 0);
+                    const unreadCount = msgs.filter(m => String(m.senderId) !== String(currentUser.id) && (m.ts || 0) > lastReadTs).length;
+                    return { key, peerId, msgs, lastMsg, unreadCount };
                 })
                 .filter(t => t.lastMsg)
                 .sort((a, b) => (b.lastMsg.ts || 0) - (a.lastMsg.ts || 0));
+        }
 
-            countEl.textContent = `${threads.length} ta suhbat`;
+        function updateLichkaBadges() {
+            const threads = getThreadsForCurrentUser();
+            const totalUnread = threads.reduce((sum, t) => sum + t.unreadCount, 0);
+            const navBadge = document.getElementById('lichkaUnreadBadge');
+            const countEl = document.getElementById('lichkaThreadsCount');
+
+            if (countEl) {
+                countEl.textContent = `${threads.length} ta xabar`;
+            }
+
+            if (navBadge) {
+                if (totalUnread > 0) {
+                    navBadge.textContent = String(totalUnread);
+                    navBadge.classList.add('visible');
+                } else {
+                    navBadge.textContent = '0';
+                    navBadge.classList.remove('visible');
+                }
+            }
+        }
+
+        function renderLichkaThreadsList() {
+            updateLichkaBadges();
+            const listEl = document.getElementById('lichkaThreadsList');
+            const threads = getThreadsForCurrentUser();
+
             listEl.innerHTML = '';
-
             if (threads.length === 0) {
-                listEl.innerHTML = `<div class="panel-subtitle" style="padding:8px 2px;">Hali bot ichida xabarlar yoʻq. x-tanishuv orqali profilga kirib yozishingiz mumkin.</div>`;
+                listEl.innerHTML = `
+                    <div class="panel-subtitle" style="padding:24px 10px;">
+                        x-lichka boʻsh. x-tanishuv boʻlimidan biror foydalanuvchini tanlab xabar yozing.
+                    </div>
+                `;
                 return;
             }
 
             threads.forEach(thread => {
-                const peer = allUsersMap[thread.peerId] || { id: thread.peerId, atName: '@foydalanuvchi' };
-                const item = document.createElement('div');
-                item.className = 'dm-thread-item';
-                item.onclick = () => openBotDmModal(thread.peerId);
+                const peer = allUsersMap[thread.peerId] || {
+                    id: thread.peerId,
+                    atName: '@foydalanuvchi',
+                    photo: '',
+                    gender: 'male'
+                };
 
-                item.innerHTML = `
-                    <div class="dm-thread-info">
-                        <div class="dm-thread-peer">${escapeHtml(peer.atName || '@foydalanuvchi')}</div>
-                        <div class="dm-thread-last">${escapeHtml(thread.lastMsg.text || '')}</div>
+                const card = document.createElement('div');
+                card.className = 'dm-thread-card' + (thread.unreadCount > 0 ? ' has-unread' : '');
+                card.onclick = () => openIgChat(thread.peerId);
+
+                const prefix = String(thread.lastMsg.senderId) === String(currentUser.id) ? 'Siz: ' : '';
+                card.innerHTML = `
+                    <div class="dm-thread-left">
+                        <img class="user-tg-photo" src="${escapeHtml(peer.photo || fallbackAvatar)}" alt="Rasm">
+                        <div class="dm-thread-info">
+                            <div class="dm-thread-peer">
+                                <span class="nick-text-truncate">${escapeHtml(peer.atName || '@foydalanuvchi')}</span>
+                                ${getGenderPremiumSvg(peer.gender || 'male')}
+                            </div>
+                            <div class="dm-thread-last">${escapeHtml(prefix + (thread.lastMsg.text || ''))}</div>
+                        </div>
                     </div>
-                    <span class="view-profile-btn" style="padding:6px 10px;">Ochish</span>
+                    <span class="view-profile-btn" style="padding:7px 11px;">
+                        ${thread.unreadCount > 0 ? thread.unreadCount + ' yangi' : 'Yozish'}
+                    </span>
                 `;
-                listEl.appendChild(item);
+
+                const imgEl = card.querySelector('img');
+                if (imgEl) {
+                    imgEl.onerror = function() { this.src = fallbackAvatar; };
+                }
+
+                listEl.appendChild(card);
             });
+        }
+
+        function openIgChat(peerId) {
+            activeChatPeerId = String(peerId);
+            const peer = allUsersMap[activeChatPeerId] || {
+                id: activeChatPeerId,
+                atName: '@foydalanuvchi',
+                photo: '',
+                gender: 'male'
+            };
+
+            const key = getThreadKey(currentUser.id, activeChatPeerId);
+            readMap[key] = Date.now();
+            saveReadMap(readMap);
+            updateLichkaBadges();
+
+            document.getElementById('lichkaThreadsView').style.display = 'none';
+            document.getElementById('igChatView').classList.add('active');
+
+            const avatarEl = document.getElementById('igPeerAvatar');
+            avatarEl.src = peer.photo || fallbackAvatar;
+            avatarEl.onerror = function() { this.src = fallbackAvatar; };
+
+            document.getElementById('igPeerNick').textContent = peer.atName || '@foydalanuvchi';
+            document.getElementById('igPeerBadge').innerHTML = getGenderPremiumSvg(peer.gender || 'male');
+            document.getElementById('igMessageInput').value = '';
+
+            renderIgMessages(activeChatPeerId);
+        }
+
+        function backToThreadsList() {
+            activeChatPeerId = null;
+            document.getElementById('igChatView').classList.remove('active');
+            document.getElementById('lichkaThreadsView').style.display = 'flex';
+            renderLichkaThreadsList();
+        }
+
+        function renderIgMessages(peerId) {
+            const stream = document.getElementById('igMessagesStream');
+            const key = getThreadKey(currentUser.id, peerId);
+            const threadObj = allChatsMap[key] || {};
+            const msgs = Object.values(threadObj).sort((a, b) => (a.ts || 0) - (b.ts || 0));
+
+            stream.innerHTML = '';
+            if (msgs.length === 0) {
+                stream.innerHTML = `<div class="panel-subtitle" style="margin:auto; padding:16px;">Suhbatni boshlang — xabarlar shu yerda koʻrinadi.</div>`;
+                return;
+            }
+
+            msgs.forEach(m => {
+                const isMine = String(m.senderId) === String(currentUser.id);
+                const bubble = document.createElement('div');
+                bubble.className = 'ig-bubble ' + (isMine ? 'mine' : 'theirs');
+                bubble.textContent = m.text || '';
+                stream.appendChild(bubble);
+            });
+            stream.scrollTop = stream.scrollHeight;
+        }
+
+        async function sendIgMessage() {
+            if (!activeChatPeerId) return;
+            const inputEl = document.getElementById('igMessageInput');
+            const text = inputEl.value.trim();
+            if (!text) return;
+
+            const nowTs = Date.now();
+            const key = getThreadKey(currentUser.id, activeChatPeerId);
+            const msgId = 'msg_' + nowTs + '_' + Math.random().toString(36).slice(2, 6);
+            const msgObj = {
+                id: msgId,
+                senderId: String(currentUser.id),
+                receiverId: String(activeChatPeerId),
+                text: text,
+                ts: nowTs
+            };
+
+            if (!allChatsMap[key] || typeof allChatsMap[key] !== 'object') {
+                allChatsMap[key] = {};
+            }
+            allChatsMap[key][msgId] = msgObj;
+            readMap[key] = nowTs;
+            saveLocalChats(allChatsMap);
+            saveReadMap(readMap);
+
+            inputEl.value = '';
+            renderIgMessages(activeChatPeerId);
+            updateLichkaBadges();
+
+            if (FIREBASE_DB_URL) {
+                const base = FIREBASE_DB_URL.replace(/\/+$/, '');
+                try {
+                    await fetch(`${base}/tanishuv_chats/${encodeURIComponent(key)}/${encodeURIComponent(msgId)}.json`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(msgObj)
+                    });
+                } catch (err) {}
+            }
         }
 
         async function syncAndLoadUsers() {
@@ -1305,12 +1613,16 @@
 
             renderHisobimProfile();
             renderTanishuvUsers(allUsersMap);
-            if (activeDmPeerId) {
-                renderDmMessages(activeDmPeerId);
+            renderLichkaThreadsList();
+            if (activeChatPeerId) {
+                const key = getThreadKey(currentUser.id, activeChatPeerId);
+                readMap[key] = Date.now();
+                saveReadMap(readMap);
+                renderIgMessages(activeChatPeerId);
+                updateLichkaBadges();
             }
         }
 
-        /* TAHRIRLASH MODALI FUNKSIYALARI */
         function selectGender(gender) {
             tempSelectedGender = gender === 'female' ? 'female' : 'male';
             document.getElementById('genderMaleBtn').classList.toggle('selected', tempSelectedGender === 'male');
@@ -1431,7 +1743,6 @@
             }
         }
 
-        /* PROFIL KO'RISH VA BOT LICHKASI FUNKSIYALARI */
         function openViewUserModal(userId) {
             const user = allUsersMap[String(userId)];
             if (!user) return;
@@ -1467,89 +1778,23 @@
             }
         }
 
-        function openBotDmFromPeer() {
+        function openLichkaFromPeer() {
             if (!activePeerUser) return;
             const peerId = String(activePeerUser.id);
             closeViewUserModal();
-            openBotDmModal(peerId);
-        }
 
-        function openBotDmModal(peerId) {
-            activeDmPeerId = String(peerId);
-            const peer = allUsersMap[activeDmPeerId] || { id: activeDmPeerId, atName: '@foydalanuvchi', gender: 'male' };
-            document.getElementById('dmPeerTitle').textContent = peer.atName || '@foydalanuvchi';
-            document.getElementById('dmPeerBadge').innerHTML = getGenderPremiumSvg(peer.gender || 'male');
-            document.getElementById('dmMessageInput').value = '';
-            renderDmMessages(activeDmPeerId);
-            document.getElementById('botDmModal').classList.add('open');
-        }
-
-        function closeBotDmModal() {
-            activeDmPeerId = null;
-            document.getElementById('botDmModal').classList.remove('open');
-        }
-
-        function renderDmMessages(peerId) {
-            const box = document.getElementById('dmMessagesBox');
-            const key = getThreadKey(currentUser.id, peerId);
-            const threadObj = allChatsMap[key] || {};
-            const msgs = Object.values(threadObj).sort((a, b) => (a.ts || 0) - (b.ts || 0));
-
-            box.innerHTML = '';
-            if (msgs.length === 0) {
-                box.innerHTML = `<div class="panel-subtitle" style="text-align:center; padding:20px 8px;">Xabar yozing — bu suhbat bot ichidagi alohida lichkada saqlanadi.</div>`;
-                return;
-            }
-
-            msgs.forEach(m => {
-                const isMine = String(m.senderId) === String(currentUser.id);
-                const bubble = document.createElement('div');
-                bubble.className = 'chat-msg-bubble ' + (isMine ? 'mine' : 'theirs');
-                bubble.textContent = m.text || '';
-                box.appendChild(bubble);
-            });
-            box.scrollTop = box.scrollHeight;
-        }
-
-        async function sendBotDmMessage() {
-            if (!activeDmPeerId) return;
-            const inputEl = document.getElementById('dmMessageInput');
-            const text = inputEl.value.trim();
-            if (!text) return;
-
-            const key = getThreadKey(currentUser.id, activeDmPeerId);
-            const msgId = 'msg_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6);
-            const msgObj = {
-                id: msgId,
-                senderId: String(currentUser.id),
-                receiverId: String(activeDmPeerId),
-                text: text,
-                ts: Date.now()
-            };
-
-            if (!allChatsMap[key] || typeof allChatsMap[key] !== 'object') {
-                allChatsMap[key] = {};
-            }
-            allChatsMap[key][msgId] = msgObj;
-            saveLocalChats(allChatsMap);
-            inputEl.value = '';
-            renderDmMessages(activeDmPeerId);
-            renderDmThreadsList();
-
-            if (FIREBASE_DB_URL) {
-                const base = FIREBASE_DB_URL.replace(/\/+$/, '');
-                try {
-                    await fetch(`${base}/tanishuv_chats/${encodeURIComponent(key)}/${encodeURIComponent(msgId)}.json`, {
-                        method: 'PUT',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(msgObj)
-                    });
-                } catch (err) {}
-            }
+            const lichkaBtn = document.querySelector('.nav-item-btn:nth-child(3)');
+            openPanel('lichka', lichkaBtn);
+            openIgChat(peerId);
         }
 
         renderHisobimProfile();
+        renderLichkaThreadsList();
         syncAndLoadUsers();
+
+        setInterval(() => {
+            syncAndLoadUsers();
+        }, 5000);
 
         setTimeout(() => {
             document.getElementById('splashScreen').classList.remove('active');
@@ -1564,9 +1809,11 @@
             const activePanel = document.getElementById('panel-' + panelName);
             if (activePanel) activePanel.classList.add('active');
 
-            if (panelName === 'tanishuv' || panelName === 'hisobim') {
-                syncAndLoadUsers();
+            if (panelName === 'lichka' && !activeChatPeerId) {
+                backToThreadsList();
             }
+
+            syncAndLoadUsers();
 
             if (tg && tg.HapticFeedback) {
                 tg.HapticFeedback.selectionChanged();
