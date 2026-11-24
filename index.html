@@ -19,9 +19,9 @@
             --bg-black: #000000;
             --ink-white: #ffffff;
             --accent-gold: #ffd400;
-            --glass-white: rgba(255, 255, 255, 0.07);
-            --glass-soft: rgba(255, 255, 255, 0.13);
-            --line-white: rgba(255, 255, 255, 0.32);
+            --glass-white: rgba(255, 255, 255, 0.08);
+            --glass-soft: rgba(255, 255, 255, 0.14);
+            --line-white: rgba(255, 255, 255, 0.35);
         }
 
         html, body {
@@ -164,6 +164,17 @@
             cursor: pointer;
         }
 
+        .btn-gold {
+            background: var(--accent-gold);
+            color: #000000;
+            border: 2px solid var(--accent-gold);
+            border-radius: 15px;
+            padding: 10px 15px;
+            font-size: 13px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
         .btn-outline-white {
             background: transparent;
             color: var(--ink-white);
@@ -182,12 +193,126 @@
             color: var(--ink-white);
         }
 
-        .mention-chip {
+        /* GREDY O'YINI USLUBLARI */
+        .gredy-lobby-card {
+            width: 100%;
+            background: linear-gradient(155deg, rgba(255, 59, 92, 0.22) 0%, rgba(255, 212, 0, 0.14) 55%, rgba(255, 255, 255, 0.06) 100%);
+            border: 2px solid var(--accent-gold);
+            border-radius: 22px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .svg-live-motion {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            animation: gredyBob 1.9s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 212, 0, 0.35));
+        }
+
+        @keyframes gredyBob {
+            0%, 100% { transform: translateY(0px) scale(1) rotate(0deg); }
+            35% { transform: translateY(-4px) scale(1.1) rotate(-4deg); }
+            70% { transform: translateY(1px) scale(1.04) rotate(4deg); }
+        }
+
+        .gredy-stage-wrap {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            gap: 10px;
+        }
+
+        .gredy-stage-wrap.open {
+            display: flex;
+        }
+
+        .gredy-track-row {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.8px solid rgba(255, 212, 0, 0.5);
+            border-radius: 18px;
+            padding: 10px 6px;
+        }
+
+        .gredy-slot-cell {
+            background: rgba(0, 0, 0, 0.65);
+            border: 1.6px solid rgba(255, 255, 255, 0.22);
+            border-radius: 14px;
+            padding: 6px 2px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+        }
+
+        .gredy-slot-cell.active-spin {
+            border-color: var(--accent-gold);
+            background: rgba(255, 212, 0, 0.25);
+            transform: scale(1.08);
+            box-shadow: 0 0 14px rgba(255, 212, 0, 0.65);
+        }
+
+        .gredy-slot-cell.winner-hit {
+            border-color: #39ff88;
+            background: rgba(57, 255, 136, 0.24);
+            transform: scale(1.1);
+            box-shadow: 0 0 18px rgba(57, 255, 136, 0.8);
+        }
+
+        .gredy-bet-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .gredy-bet-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1.6px solid rgba(255, 255, 255, 0.22);
+            border-radius: 16px;
+            padding: 9px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            text-align: left;
+        }
+
+        .gredy-bet-card.has-bet {
+            border-color: var(--accent-gold);
+            background: rgba(255, 212, 0, 0.12);
+        }
+
+        .gredy-chip-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+        }
+
+        .gredy-chip-btn {
+            background: var(--glass-soft);
+            border: 1.6px solid var(--accent-gold);
             color: var(--accent-gold);
+            border-radius: 12px;
+            padding: 7px 4px;
+            font-size: 11.5px;
             font-weight: 900;
-            background: rgba(255, 212, 0, 0.14);
-            padding: 1px 6px;
-            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .gredy-chip-btn.selected {
+            background: var(--accent-gold);
+            color: #000000;
         }
 
         /* PROFIL SAHIFASI */
@@ -271,6 +396,7 @@
             align-items: center;
             justify-content: space-between;
             gap: 12px;
+            box-shadow: 0 0 24px rgba(255, 212, 0, 0.14);
         }
 
         .balansim-left {
@@ -288,6 +414,7 @@
             align-items: center;
             justify-content: center;
             animation: coinSpinFloat 2.4s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 212, 0, 0.55));
         }
 
         @keyframes coinSpinFloat {
@@ -308,12 +435,14 @@
             font-size: 12px;
             font-weight: 800;
             color: var(--accent-gold);
+            letter-spacing: 0.4px;
         }
 
         .balansim-amount {
-            font-size: 21px;
+            font-size: 22px;
             font-weight: 900;
             color: var(--ink-white);
+            letter-spacing: 0.5px;
         }
 
         .ref-stats-3 {
@@ -377,6 +506,11 @@
             cursor: pointer;
         }
 
+        .ref-4-btn:hover {
+            border-color: var(--line-white);
+            background: var(--glass-white);
+        }
+
         .ref-list-rows {
             display: flex;
             flex-direction: column;
@@ -424,18 +558,18 @@
             width: 15%;
             background: var(--ink-white);
             border-radius: 999px;
+            transition: width 0.25s ease;
         }
 
-        /* BIRINMA-KETIN KIRISH BANNERI */
         .entry-marquee-banner {
             position: fixed;
             top: 14px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 95;
-            background: rgba(14, 14, 14, 0.96);
+            background: var(--bg-black);
             color: var(--ink-white);
-            border: 2px solid var(--accent-gold);
+            border: 2px solid var(--ink-white);
             border-radius: 999px;
             padding: 7px 14px;
             display: none;
@@ -446,12 +580,12 @@
 
         .entry-marquee-banner.active {
             display: inline-flex;
-            animation: marqueeSlideIn 2.2s ease forwards;
+            animation: marqueeSlideIn 3.4s ease forwards;
         }
 
         @keyframes marqueeSlideIn {
             0% { transform: translateX(115%); opacity: 0; }
-            18% { transform: translateX(-50%); opacity: 1; }
+            15% { transform: translateX(-50%); opacity: 1; }
             82% { transform: translateX(-50%); opacity: 1; }
             100% { transform: translateX(-160%); opacity: 0; }
         }
@@ -461,66 +595,10 @@
             height: 30px;
             border-radius: 50%;
             object-fit: cover;
-            border: 1.5px solid var(--accent-gold);
+            border: 1.5px solid var(--ink-white);
             flex-shrink: 0;
         }
 
-        /* HAMMAGA KO'RINADIGAN VIDEO PADARKA OVERLAYI */
-        .gift-stage-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 105;
-            background: rgba(0, 0, 0, 0.92);
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 18px;
-            gap: 14px;
-        }
-
-        .gift-stage-overlay.open {
-            display: flex;
-        }
-
-        .gift-announcement-banner {
-            width: 100%;
-            max-width: 420px;
-            background: linear-gradient(135deg, rgba(255, 212, 0, 0.25), rgba(255, 60, 110, 0.2));
-            border: 2px solid var(--accent-gold);
-            border-radius: 20px;
-            padding: 13px 15px;
-            text-align: center;
-            font-size: 16px;
-            font-weight: 900;
-            color: var(--ink-white);
-            animation: popBanner 0.45s ease;
-        }
-
-        @keyframes popBanner {
-            from { transform: scale(0.88); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .gift-video-frame {
-            width: 100%;
-            max-width: 360px;
-            max-height: 62vh;
-            border-radius: 22px;
-            border: 2.5px solid var(--accent-gold);
-            overflow: hidden;
-            background: #080808;
-        }
-
-        .gift-video-frame video {
-            width: 100%;
-            height: 100%;
-            max-height: 62vh;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* XONALAR VA 1795556232609.jpeg USLUBIDAGI SAHNA */
         .room-list-card {
             width: 100%;
             background: var(--glass-white);
@@ -592,14 +670,14 @@
 
         .stage-board {
             width: 100%;
-            background: radial-gradient(circle at top, rgba(255, 212, 0, 0.14), rgba(20, 16, 10, 0.92));
-            border: 1.8px solid rgba(255, 255, 255, 0.42);
+            background: var(--glass-white);
+            border: 1.8px solid var(--ink-white);
             border-radius: 22px;
             padding: 14px 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
         }
 
         .host-seat-wrap {
@@ -614,7 +692,7 @@
             width: 100%;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 12px 6px;
+            gap: 10px 6px;
             justify-items: center;
         }
 
@@ -622,17 +700,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
             cursor: pointer;
             max-width: 78px;
         }
 
         .seat-ring {
-            width: 56px;
-            height: 56px;
+            width: 54px;
+            height: 54px;
             border-radius: 50%;
-            border: 2px solid rgba(255, 232, 160, 0.65);
-            background: rgba(255, 255, 255, 0.04);
+            border: 2px solid var(--ink-white);
+            background: rgba(255, 255, 255, 0.06);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -640,10 +718,9 @@
         }
 
         .seat-ring.host-ring {
-            width: 66px;
-            height: 66px;
+            width: 64px;
+            height: 64px;
             border-width: 2.5px;
-            border-color: var(--accent-gold);
         }
 
         .seat-ring img {
@@ -656,23 +733,11 @@
         .seat-caption {
             font-size: 11.5px;
             font-weight: 900;
-            color: rgba(255, 255, 255, 0.88);
+            color: var(--ink-white);
             max-width: 76px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-        }
-
-        .pro-mic-motion {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            animation: proMicFloat 2.1s ease-in-out infinite;
-        }
-
-        @keyframes proMicFloat {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-2.5px) scale(1.09); }
         }
 
         .room-controls-3 {
@@ -692,27 +757,6 @@
             flex-direction: column;
             gap: 8px;
             text-align: left;
-        }
-
-        .mention-quick-bar {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            overflow-x: auto;
-            padding-bottom: 2px;
-        }
-
-        .mention-tag-btn {
-            background: rgba(255, 212, 0, 0.14);
-            border: 1.2px solid var(--accent-gold);
-            color: var(--accent-gold);
-            border-radius: 999px;
-            padding: 3px 9px;
-            font-family: sans-serif;
-            font-size: 11px;
-            font-weight: 800;
-            cursor: pointer;
-            flex-shrink: 0;
         }
 
         .room-msgs-five {
@@ -756,7 +800,6 @@
             display: flex;
         }
 
-        /* PADARKA QUTISI */
         .gift-studio-sheet {
             width: 100%;
             max-width: 430px;
@@ -849,7 +892,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
             color: var(--ink-white);
             cursor: pointer;
             position: relative;
@@ -870,11 +913,12 @@
             padding: 1px 5px;
             font-size: 8px;
             font-weight: 900;
+            letter-spacing: 0.3px;
         }
 
         .svg-gift-motion {
-            width: 52px;
-            height: 52px;
+            width: 50px;
+            height: 50px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -913,6 +957,7 @@
             color: #000000;
             border-radius: 999px;
             overflow: hidden;
+            border: none;
         }
 
         .gift-qty-btn {
@@ -1074,8 +1119,8 @@
         }
 
         @keyframes premiumPulse {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.08) rotate(3deg); }
+            0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 8px rgba(255, 212, 0, 0.45)); }
+            50% { transform: scale(1.08) rotate(3deg); filter: drop-shadow(0 0 18px rgba(255, 212, 0, 0.85)); }
         }
 
         .modal-title {
@@ -1224,7 +1269,7 @@
         @keyframes profilePulse {
             0%, 100% { transform: scale(1) translateY(0); }
             30% { transform: scale(1.15) translateY(-2px); }
-            65% { transform: translateY(0) scale(1.05); }
+            65% { transform: scale(1.05) translateY(0); }
         }
     </style>
 </head>
@@ -1232,21 +1277,12 @@
 
     <div id="entryBanner" class="entry-marquee-banner">
         <span class="anim-bell" style="display:inline-flex;">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="#ffd400">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="#ffffff">
                 <path d="M12 3a6 6 0 0 0-6 6v4l-2 2.5V17h16v-1.5L18 13V9a6 6 0 0 0-6-6z"/>
             </svg>
         </span>
         <img id="entryBannerAvatar" class="marquee-avatar" src="" alt="">
         <span id="entryBannerText" style="font-size:12px; font-weight:900; white-space:nowrap;">Efirga kirdi</span>
-    </div>
-
-    <!-- HAMMAGA KO'RINADIGAN VIDEO PADARKA OVERLAYI -->
-    <div id="giftStageOverlay" class="gift-stage-overlay">
-        <div id="giftAnnouncementText" class="gift-announcement-banner"></div>
-        <div class="gift-video-frame">
-            <video id="giftShowcaseVideo" playsinline autoplay></video>
-        </div>
-        <button type="button" class="btn-white" onclick="closeGiftStageOverlay()">Yopish</button>
     </div>
 
     <div id="splashScreen" class="screen active">
@@ -1335,10 +1371,9 @@
 
                         <div class="room-chat-box">
                             <div style="font-size:13px; font-weight:900;">Chat (oxirgi 5 ta xabar)</div>
-                            <div id="mentionQuickBar" class="mention-quick-bar"></div>
                             <div id="roomMsgsFiveBox" class="room-msgs-five"></div>
                             <div style="display:flex; gap:6px;">
-                                <input type="text" id="roomChatInput" class="txt-input" maxlength="220" placeholder="@nik deb meta qilib yozing...">
+                                <input type="text" id="roomChatInput" class="txt-input" maxlength="220" placeholder="Xabarni yozing...">
                                 <button type="button" class="btn-white" onclick="sendRoomChatMsg()">Yuborish</button>
                             </div>
                         </div>
@@ -1380,14 +1415,71 @@
                 </div>
             </section>
 
-            <!-- 3. O'YINLAR -->
+            <!-- 3. O'YINLAR (GREDY) -->
             <section id="tab-oyinlar" class="section-view">
-                <div class="top-bar">
-                    <div class="section-heading">Oʻyinlar</div>
+                <div id="gamesLobbyPane" style="display:flex; flex-direction:column; height:100%; gap:10px;">
+                    <div class="top-bar">
+                        <div class="section-heading">Oʻyinlar</div>
+                        <div class="people-count-badge" style="border-color:#ffd400; color:#ffd400;">
+                            <span id="gamesTopBalance">10,000</span>
+                        </div>
+                    </div>
+
+                    <div class="scroll-area">
+                        <div class="gredy-lobby-card">
+                            <div style="display:flex; align-items:center; gap:12px; min-width:0; flex:1;">
+                                <span class="svg-live-motion" style="width:58px; height:58px; flex-shrink:0;">
+                                    <svg viewBox="0 0 64 64" width="56" height="56">
+                                        <defs>
+                                            <radialGradient id="lobbyAppleGrad" cx="35%" cy="30%" r="70%">
+                                                <stop offset="0%" stop-color="#ff8fa3"/>
+                                                <stop offset="45%" stop-color="#ff1e42"/>
+                                                <stop offset="100%" stop-color="#8a0018"/>
+                                            </radialGradient>
+                                        </defs>
+                                        <path d="M32 18c-2-7 3-12 9-12-1 6-5 10-9 12z" fill="#39ff88"/>
+                                        <path d="M32 18c-8-3-18 2-20 13-2 11 5 23 13 25 3 .7 5-.4 7-.4s4 1.1 7 .4c8-2 15-14 13-25-2-11-12-16-20-13z" fill="url(#lobbyAppleGrad)" stroke="#ffd400" stroke-width="2"/>
+                                        <ellipse cx="22" cy="27" rx="3.5" ry="6" transform="rotate(-18 22 27)" fill="#ffffff" opacity="0.55"/>
+                                    </svg>
+                                </span>
+                                <div style="min-width:0; flex:1;">
+                                    <div style="font-size:18px; font-weight:900; color:#ffd400;">Gredy</div>
+                                    <div class="soft-copy" style="font-size:11.5px; opacity:0.9; margin-top:2px;">
+                                        500k — 1,000,000 • Goʻsht 77x
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-gold" onclick="openGredyGame()">Oʻynash</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="scroll-area">
-                    <div class="white-card" style="text-align:center;">
-                        <div class="soft-copy">Oʻyinlar boʻlimi tayyor.</div>
+
+                <div id="gredyGamePane" class="gredy-stage-wrap">
+                    <div class="top-bar">
+                        <button type="button" class="btn-outline-white" onclick="closeGredyGame()">← Orqaga</button>
+                        <div class="section-heading" style="font-size:18px; color:#ffd400;">Gredy</div>
+                        <div class="people-count-badge" style="border-color:#ffd400; color:#ffd400;">
+                            <span id="gredyLiveBalance">10,000</span>
+                        </div>
+                    </div>
+
+                    <div class="scroll-area">
+                        <div id="gredyTrackRow" class="gredy-track-row"></div>
+
+                        <div class="gredy-chip-bar">
+                            <button type="button" class="gredy-chip-btn selected" onclick="selectGredyChip(500000, this)">+500k</button>
+                            <button type="button" class="gredy-chip-btn" onclick="selectGredyChip(750000, this)">+750k</button>
+                            <button type="button" class="gredy-chip-btn" onclick="selectGredyChip(1000000, this)">+1M (Max)</button>
+                        </div>
+
+                        <div id="gredyBetGrid" class="gredy-bet-grid"></div>
+
+                        <div id="gredyStatusBanner" class="soft-copy" style="text-align:center; min-height:20px; color:#ffd400;"></div>
+
+                        <div class="row-2">
+                            <button type="button" class="btn-outline-white" onclick="clearGredyBets()">Tikishni tozalash</button>
+                            <button type="button" id="gredySpinBtn" class="btn-gold" onclick="spinGredyWheel()">Aylantirish</button>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1425,10 +1517,15 @@
                                                 <stop offset="45%" stop-color="#ffd400"/>
                                                 <stop offset="100%" stop-color="#c98700"/>
                                             </linearGradient>
+                                            <linearGradient id="coinInnerGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                                                <stop offset="0%" stop-color="#b87300"/>
+                                                <stop offset="60%" stop-color="#ffe359"/>
+                                                <stop offset="100%" stop-color="#fff7c2"/>
+                                            </linearGradient>
                                         </defs>
                                         <circle cx="32" cy="32" r="29" fill="url(#coinGoldGrad)" stroke="#fff3b0" stroke-width="2.5"/>
-                                        <circle cx="32" cy="32" r="20" fill="#ffe359" stroke="#9e6200" stroke-width="1.8"/>
-                                        <path d="M32 16L36.2 26.8L47.5 27.6L38.8 34.9L41.6 46L32 39.8L22.4 46L25.2 34.9L16.5 27.6L27.8 26.8L32 16Z" fill="#fff8d6"/>
+                                        <circle cx="32" cy="32" r="22" fill="url(#coinInnerGrad)" stroke="#9e6200" stroke-width="1.8"/>
+                                        <path d="M32 16L36.2 26.8L47.5 27.6L38.8 34.9L41.6 46L32 39.8L22.4 46L25.2 34.9L16.5 27.6L27.8 26.8L32 16Z" fill="#fff8d6" stroke="#a66800" stroke-width="1.2"/>
                                     </svg>
                                 </span>
                                 <div class="balansim-text-group">
@@ -1462,11 +1559,13 @@
                         </div>
 
                         <div class="ref-banner-2">
-                            <div class="ref-big-banner" onclick="openMaintenanceModal('Level')">
+                            <div class="ref-big-banner" onclick="openLevelLockedModal()">
                                 <div style="display:flex; flex-direction:column; gap:5px; min-width:0; flex:1;">
-                                    <div style="font-size:16px; font-weight:900; font-style:italic;">Level 1</div>
-                                    <div class="xp-track"><div class="xp-fill"></div></div>
-                                    <div style="font-family:sans-serif; font-size:10.5px; font-weight:800;">0 / 1000 XP</div>
+                                    <div id="profileLevelHeading" style="font-size:16px; font-weight:900; font-style:italic; color:#ffd400;">Level 1</div>
+                                    <div class="xp-track">
+                                        <div id="profileXpBarFill" class="xp-fill"></div>
+                                    </div>
+                                    <div id="profileXpSubText" style="font-family:sans-serif; font-size:10.5px; font-weight:800;">0 / 1000 XP</div>
                                 </div>
                                 <span class="anim-gift" style="display:inline-flex; flex-shrink:0;">
                                     <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="2.2">
@@ -1534,27 +1633,77 @@
 
                         <div class="ref-list-rows">
                             <button type="button" class="ref-menu-row" onclick="openMaintenanceModal('Taklif qilish orqali tangalar olish')">
-                                <span class="ref-menu-left"><span>Taklif qilish orqali tangalar olish</span></span>
+                                <span class="ref-menu-left">
+                                    <span class="anim-gift" style="display:inline-flex;">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2">
+                                            <rect x="3" y="9" width="18" height="12" rx="2"/>
+                                            <path d="M12 9v12M7 5h10"/>
+                                        </svg>
+                                    </span>
+                                    <span>Taklif qilish orqali tangalar olish</span>
+                                </span>
                                 <span>›</span>
                             </button>
+
                             <button type="button" class="ref-menu-row" onclick="openMaintenanceModal('Rekvizitlar ombori')">
-                                <span class="ref-menu-left"><span>Rekvizitlar ombori</span></span>
+                                <span class="ref-menu-left">
+                                    <span class="anim-wallet" style="display:inline-flex;">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2">
+                                            <rect x="4" y="6" width="16" height="14" rx="3"/>
+                                            <path d="M9 6V4h6v2"/>
+                                        </svg>
+                                    </span>
+                                    <span>Rekvizitlar ombori</span>
+                                </span>
                                 <span>›</span>
                             </button>
+
                             <button type="button" class="ref-menu-row" onclick="openMaintenanceModal('Sevgi uyi')">
-                                <span class="ref-menu-left"><span>Sevgi uyi</span></span>
+                                <span class="ref-menu-left">
+                                    <span class="anim-house" style="display:inline-flex;">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2">
+                                            <path d="M3 11l9-7 9 7v9H3v-9z"/>
+                                        </svg>
+                                    </span>
+                                    <span>Sevgi uyi</span>
+                                </span>
                                 <span>›</span>
                             </button>
+
                             <button type="button" class="ref-menu-row" onclick="openMaintenanceModal('CP Darajasi')">
-                                <span class="ref-menu-left"><span>CP Darajasi</span></span>
+                                <span class="ref-menu-left">
+                                    <span class="anim-profile" style="display:inline-flex;">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2">
+                                            <circle cx="12" cy="12" r="9"/>
+                                            <circle cx="12" cy="12" r="3.5"/>
+                                        </svg>
+                                    </span>
+                                    <span>CP Darajasi</span>
+                                </span>
                                 <span>›</span>
                             </button>
+
                             <button type="button" class="ref-menu-row" onclick="openMaintenanceModal('Oila')">
-                                <span class="ref-menu-left"><span>Oila</span></span>
+                                <span class="ref-menu-left">
+                                    <span class="anim-chat" style="display:inline-flex;">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2">
+                                            <path d="M12 3l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V7l8-4z"/>
+                                        </svg>
+                                    </span>
+                                    <span>Oila</span>
+                                </span>
                                 <span>›</span>
                             </button>
+
                             <button type="button" class="ref-menu-row" onclick="openMaintenanceModal('Kolleksiya Zali')">
-                                <span class="ref-menu-left"><span>Kolleksiya Zali</span></span>
+                                <span class="ref-menu-left">
+                                    <span class="anim-bell" style="display:inline-flex;">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2">
+                                            <path d="M3 9h18L12 4 3 9zm2 2v8m5-8v8m4-8v8m5-8v8M3 20h18"/>
+                                        </svg>
+                                    </span>
+                                    <span>Kolleksiya Zali</span>
+                                </span>
                                 <span>›</span>
                             </button>
                         </div>
@@ -1710,11 +1859,11 @@
         </div>
     </div>
 
-    <!-- MODAL 5: PADARKA BO'LIMI (1.5B VIDEO PADARKA + SVG PADARKALAR) -->
+    <!-- MODAL 5: PADARKA BO'LIMI -->
     <div id="giftBoxModal" class="modal-overlay">
         <div class="gift-studio-sheet">
             <div style="display:flex; align-items:center; justify-content:space-between;">
-                <div style="font-size:15px; font-weight:900; color:#ffd400;">Padarka urish boʻlimi</div>
+                <div style="font-size:15px; font-weight:900; color:#ffd400;">Stolda oʻtirganlarga padarka</div>
                 <button type="button" class="btn-outline-white" style="padding:4px 10px; font-size:11px;" onclick="closeGiftBoxModal()">✕</button>
             </div>
 
@@ -1726,7 +1875,7 @@
             </div>
 
             <div style="font-family:sans-serif; font-size:11.5px; font-weight:800; opacity:0.88;">
-                Kimga urishni tanlang (oʻzingizga ham urish mumkin):
+                Kimga urishni tanlang (faqat stolda oʻtirganlar, oʻzingizga emas):
             </div>
             <div id="tableRecipientsRow" class="gift-top-targets"></div>
 
@@ -1754,7 +1903,7 @@
         </div>
     </div>
 
-    <!-- MODAL 6: PROFILM BO'LIMLARI -->
+    <!-- MODAL 6: PROFILM BO'LIMLARI UCHUN PREMIUM SVG XABAR -->
     <div id="maintenanceModal" class="modal-overlay">
         <div class="modal-sheet">
             <div class="premium-status-box">
@@ -1766,9 +1915,13 @@
                                 <stop offset="50%" stop-color="#ffd400"/>
                                 <stop offset="100%" stop-color="#c47f00"/>
                             </linearGradient>
+                            <linearGradient id="premCrown" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#ffffff"/>
+                                <stop offset="100%" stop-color="#ffe066"/>
+                            </linearGradient>
                         </defs>
                         <path d="M36 6L60 17V36C60 51.5 49.8 62.5 36 67C22.2 62.5 12 51.5 12 36V17L36 6Z" fill="rgba(255,212,0,0.16)" stroke="url(#premGold)" stroke-width="3"/>
-                        <path d="M21 43L18 27L29 34L36 22L43 34L54 27L51 43H21Z" fill="#ffffff" stroke="#ffd400" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M21 43L18 27L29 34L36 22L43 34L54 27L51 43H21Z" fill="url(#premCrown)" stroke="#ffd400" stroke-width="2" stroke-linejoin="round"/>
                         <circle cx="36" cy="49" r="3" fill="#ffd400"/>
                     </svg>
                 </span>
@@ -1782,9 +1935,6 @@
     </div>
 
     <script>
-        // Shu yerga video_1.mp4 yuklangan to'g'ridan-to'g'ri .mp4 havolasini qo'ying:
-        const VIDEO_GIFT_URL = "";
-
         const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
         if (tg) {
             tg.ready();
@@ -1793,11 +1943,11 @@
 
         const FIREBASE_DB = "https://xbox-tanishuv-default-rtdb.firebaseio.com";
         const STORAGE_KEYS = {
-            profile: "fungo_uz_profile_v8",
-            rooms: "fungo_uz_rooms_v8",
-            users: "fungo_uz_users_v8",
-            dms: "fungo_uz_dms_v8",
-            uid: "fungo_uz_uid_v8"
+            profile: "fungo_uz_profile_v9",
+            rooms: "fungo_uz_rooms_v9",
+            users: "fungo_uz_users_v9",
+            dms: "fungo_uz_dms_v9",
+            uid: "fungo_uz_uid_v9"
         };
 
         const ENGLISH_HANDLES = [
@@ -1805,13 +1955,239 @@
             "@apex_room", "@sky_pulse", "@royal_play", "@neon_wave"
         ];
 
-        const PREMIUM_GIFTS = [
-            { id: "video_1_5b", name: "Video Padarka", cost: 1500000000, costLabel: "1.5B", jackpot: true, freq: 880, kind: "video", isVideo: true },
-            { id: "lucky_bell", name: "Lucky Bell", cost: 500, costLabel: "500", jackpot: true, freq: 780, kind: "bell", isVideo: false },
-            { id: "lucky_diamond", name: "Lucky Diamond", cost: 20000, costLabel: "20,000", jackpot: true, freq: 920, kind: "diamond", isVideo: false },
-            { id: "fireworks", name: "Fireworks", cost: 10000, costLabel: "10,000", jackpot: true, freq: 840, kind: "firework", isVideo: false },
-            { id: "cake", name: "Celebration Cake", cost: 300, costLabel: "300", jackpot: false, freq: 620, kind: "cake", isVideo: false },
-            { id: "crown", name: "Royal Crown", cost: 5000, costLabel: "5,000", jackpot: false, freq: 710, kind: "crown", isVideo: false }
+        const GREDY_ITEMS = [
+            { id: "apple", label: "Olma", mult: 5, weight: 22 },
+            { id: "meat", label: "Goʻsht", mult: 77, weight: 4 },
+            { id: "kiwi", label: "Kivi", mult: 8, weight: 18 },
+            { id: "lemon", label: "Limon", mult: 10, weight: 16 },
+            { id: "watermelon", label: "Tarvuz", mult: 12, weight: 14 },
+            { id: "tomato", label: "Pomidor", mult: 15, weight: 11 }
+        ];
+
+        const GREDY_MIN_BET = 500000;
+        const GREDY_MAX_BET = 1000000;
+
+        let gredySelectedChip = 500000;
+        let gredyBets = { apple: 0, meat: 0, kiwi: 0, lemon: 0, watermelon: 0, tomato: 0 };
+        let gredySpinning = false;
+        let gredyActiveIdx = -1;
+        let gredyWinnerIdx = -1;
+
+        function buildGredySvg(id, size = 34) {
+            if (id === "apple") {
+                return `<svg viewBox="0 0 64 64" width="${size}" height="${size}"><defs><radialGradient id="gApp" cx="35%" cy="30%" r="70%"><stop offset="0%" stop-color="#ff99ad"/><stop offset="50%" stop-color="#ff1e42"/><stop offset="100%" stop-color="#8c0018"/></radialGradient></defs><path d="M32 17c-2-7 3-11 8-11-1 5-4 9-8 11z" fill="#39ff88"/><path d="M32 17c-8-3-17 2-19 13-2 11 5 22 13 24 3 .7 5-.4 7-.4s4 1.1 7 .4c8-2 15-13 13-24-2-11-11-16-19-13z" fill="url(#gApp)" stroke="#ffd400" stroke-width="1.8"/><ellipse cx="22" cy="27" rx="3" ry="5.5" transform="rotate(-18 22 27)" fill="#ffffff" opacity="0.55"/></svg>`;
+            }
+            if (id === "meat") {
+                return `<svg viewBox="0 0 64 64" width="${size}" height="${size}"><defs><linearGradient id="gMeat" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff758f"/><stop offset="55%" stop-color="#d90429"/><stop offset="100%" stop-color="#6a040f"/></linearGradient></defs><path d="M14 24c0-9 10-14 22-12 11 2 18 10 17 20-1 11-11 19-23 19-10 0-16-6-16-14 0-6 3-10 0-13z" fill="url(#gMeat)" stroke="#ffd400" stroke-width="2"/><ellipse cx="36" cy="31" rx="7" ry="5" fill="#fff0f3" stroke="#9d0208" stroke-width="1.5"/><circle cx="36" cy="31" r="2.2" fill="#9d0208"/></svg>`;
+            }
+            if (id === "kiwi") {
+                return `<svg viewBox="0 0 64 64" width="${size}" height="${size}"><circle cx="32" cy="32" r="22" fill="#8d5b32" stroke="#ffd400" stroke-width="1.8"/><circle cx="32" cy="32" r="17" fill="#9ef01a"/><ellipse cx="32" cy="32" rx="7" ry="5" fill="#f2ffcf"/><circle cx="32" cy="21" r="1.4" fill="#111"/><circle cx="42" cy="27" r="1.4" fill="#111"/><circle cx="41" cy="39" r="1.4" fill="#111"/><circle cx="32" cy="44" r="1.4" fill="#111"/><circle cx="22" cy="39" r="1.4" fill="#111"/><circle cx="22" cy="27" r="1.4" fill="#111"/></svg>`;
+            }
+            if (id === "lemon") {
+                return `<svg viewBox="0 0 64 64" width="${size}" height="${size}"><defs><linearGradient id="gLem" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fff799"/><stop offset="55%" stop-color="#ffd400"/><stop offset="100%" stop-color="#e09f00"/></linearGradient></defs><ellipse cx="32" cy="33" rx="19" ry="14" transform="rotate(-25 32 33)" fill="url(#gLem)" stroke="#fff3b0" stroke-width="2"/><path d="M35 16c2-5 7-7 11-6-1 4-5 7-11 6z" fill="#39ff88"/><ellipse cx="27" cy="28" rx="3" ry="5" transform="rotate(-25 27 28)" fill="#ffffff" opacity="0.5"/></svg>`;
+            }
+            if (id === "watermelon") {
+                return `<svg viewBox="0 0 64 64" width="${size}" height="${size}"><path d="M10 24c0 20 10 28 22 28s22-8 22-28H10z" fill="#2b9348" stroke="#ffd400" stroke-width="1.8"/><path d="M15 24c0 15 7.5 22 17 22s17-7 17-22H15z" fill="#ff3b5c"/><circle cx="26" cy="32" r="1.7" fill="#111"/><circle cx="32" cy="36" r="1.7" fill="#111"/><circle cx="38" cy="32" r="1.7" fill="#111"/></svg>`;
+            }
+            return `<svg viewBox="0 0 64 64" width="${size}" height="${size}"><defs><radialGradient id="gTom" cx="35%" cy="30%" r="70%"><stop offset="0%" stop-color="#ff8fa3"/><stop offset="55%" stop-color="#e6192e"/><stop offset="100%" stop-color="#7a000c"/></radialGradient></defs><circle cx="32" cy="35" r="19" fill="url(#gTom)" stroke="#ffd400" stroke-width="1.8"/><path d="M32 14l-4 6-6-2 4 5-6 3 7 1 1 5 2-5 7-1-6-3 4-5-6 2-4-6z" fill="#39ff88"/><ellipse cx="24" cy="29" rx="3" ry="5.5" transform="rotate(-15 24 29)" fill="#ffffff" opacity="0.5"/></svg>`;
+        }
+
+        function openGredyGame() {
+            document.getElementById("gamesLobbyPane").style.display = "none";
+            document.getElementById("gredyGamePane").classList.add("open");
+            renderGredyUi();
+        }
+
+        function closeGredyGame() {
+            if (gredySpinning) return;
+            document.getElementById("gredyGamePane").classList.remove("open");
+            document.getElementById("gamesLobbyPane").style.display = "flex";
+            renderProfile();
+        }
+
+        function selectGredyChip(amount, btnEl) {
+            if (gredySpinning) return;
+            gredySelectedChip = Math.min(GREDY_MAX_BET, Math.max(GREDY_MIN_BET, amount));
+            document.querySelectorAll(".gredy-chip-btn").forEach(b => b.classList.remove("selected"));
+            if (btnEl) btnEl.classList.add("selected");
+        }
+
+        function persistMeState() {
+            meProfile.updatedAt = Date.now();
+            saveJson(STORAGE_KEYS.profile, meProfile);
+            allUsers[meProfile.id] = { ...meProfile };
+            saveJson(STORAGE_KEYS.users, allUsers);
+        }
+
+        function addGredyBet(itemId) {
+            if (gredySpinning) return;
+            const fb = document.getElementById("gredyStatusBanner");
+            const currentBet = Number(gredyBets[itemId] || 0);
+            const nextBet = currentBet + gredySelectedChip;
+
+            if (nextBet > GREDY_MAX_BET) {
+                fb.textContent = "Har bir elementga maksimal tikish 1,000,000 (1M)!";
+                return;
+            }
+            if (Number(meProfile.coins || 0) < gredySelectedChip) {
+                fb.textContent = "Balansda yetarli moneta yoʻq.";
+                return;
+            }
+
+            meProfile.coins = Number(meProfile.coins || 0) - gredySelectedChip;
+            gredyBets[itemId] = nextBet;
+            persistMeState();
+
+            fb.textContent = "";
+            renderProfile();
+            renderGredyUi();
+        }
+
+        function clearGredyBets() {
+            if (gredySpinning) return;
+            let refunded = 0;
+            Object.keys(gredyBets).forEach(k => {
+                refunded += Number(gredyBets[k] || 0);
+                gredyBets[k] = 0;
+            });
+            if (refunded > 0) {
+                meProfile.coins = Number(meProfile.coins || 0) + refunded;
+                persistMeState();
+                renderProfile();
+            }
+            gredyWinnerIdx = -1;
+            document.getElementById("gredyStatusBanner").textContent = "Tikishlar qaytarildi.";
+            renderGredyUi();
+        }
+
+        function pickBotOutcomeIndex() {
+            const totalW = GREDY_ITEMS.reduce((acc, it) => acc + it.weight, 0);
+            let r = Math.random() * totalW;
+            for (let i = 0; i < GREDY_ITEMS.length; i++) {
+                r -= GREDY_ITEMS[i].weight;
+                if (r <= 0) return i;
+            }
+            return 0;
+        }
+
+        function spinGredyWheel() {
+            if (gredySpinning) return;
+            const fb = document.getElementById("gredyStatusBanner");
+
+            let invalidMin = false;
+            let totalStake = 0;
+            Object.keys(gredyBets).forEach(k => {
+                const v = Number(gredyBets[k] || 0);
+                totalStake += v;
+                if (v > 0 && v < GREDY_MIN_BET) invalidMin = true;
+            });
+
+            if (totalStake === 0) {
+                fb.textContent = "Avval kamida 500k (500,000) moneta tiking!";
+                return;
+            }
+            if (invalidMin) {
+                fb.textContent = "Minimal tikish har bir elementga 500,000 (500k)!";
+                return;
+            }
+
+            gredySpinning = true;
+            gredyWinnerIdx = -1;
+            document.getElementById("gredySpinBtn").disabled = true;
+            fb.textContent = "Aylanmoqda... omad!";
+
+            const targetIdx = pickBotOutcomeIndex();
+            const totalSteps = 18 + targetIdx;
+            let step = 0;
+
+            const timer = setInterval(() => {
+                gredyActiveIdx = step % GREDY_ITEMS.length;
+                renderGredyUi();
+                step++;
+                if (step > totalSteps) {
+                    clearInterval(timer);
+                    gredyActiveIdx = -1;
+                    gredyWinnerIdx = targetIdx;
+                    gredySpinning = false;
+                    document.getElementById("gredySpinBtn").disabled = false;
+
+                    const landed = GREDY_ITEMS[targetIdx];
+                    const userBetOnLanded = Number(gredyBets[landed.id] || 0);
+
+                    if (userBetOnLanded > 0) {
+                        const payout = userBetOnLanded * landed.mult;
+                        meProfile.coins = Number(meProfile.coins || 0) + payout;
+                        persistMeState();
+                        playChimeSound(landed.mult >= 77 ? 980 : 760);
+                        fb.textContent = `OMAD! ${landed.label} (${landed.mult}x) tushdi! +${formatCommaNumber(payout)} yutdingiz!`;
+                    } else {
+                        playChimeSound(340);
+                        fb.textContent = `${landed.label} (${landed.mult}x) tushdi. Siz bu elementga tikmagan edingiz.`;
+                    }
+
+                    Object.keys(gredyBets).forEach(k => { gredyBets[k] = 0; });
+                    renderProfile();
+                    renderGredyUi();
+                }
+            }, 95);
+        }
+
+        function renderGredyUi() {
+            const topBal = document.getElementById("gamesTopBalance");
+            const liveBal = document.getElementById("gredyLiveBalance");
+            if (topBal) topBal.textContent = formatCommaNumber(meProfile.coins);
+            if (liveBal) liveBal.textContent = formatCommaNumber(meProfile.coins);
+
+            const track = document.getElementById("gredyTrackRow");
+            const betGrid = document.getElementById("gredyBetGrid");
+            if (!track || !betGrid) return;
+
+            track.innerHTML = "";
+            GREDY_ITEMS.forEach((item, idx) => {
+                const cell = document.createElement("div");
+                let cls = "gredy-slot-cell";
+                if (idx === gredyActiveIdx) cls += " active-spin";
+                if (idx === gredyWinnerIdx) cls += " winner-hit";
+                cell.className = cls;
+                cell.innerHTML = `
+                    <span class="svg-live-motion" style="width:36px; height:36px;">${buildGredySvg(item.id, 34)}</span>
+                    <span style="font-size:10px; font-weight:900; color:${item.mult === 77 ? '#ffd400' : '#ffffff'};">${item.mult}x</span>
+                `;
+                track.appendChild(cell);
+            });
+
+            betGrid.innerHTML = "";
+            GREDY_ITEMS.forEach(item => {
+                const placed = Number(gredyBets[item.id] || 0);
+                const card = document.createElement("div");
+                card.className = "gredy-bet-card" + (placed > 0 ? " has-bet" : "");
+                card.innerHTML = `
+                    <div style="display:flex; align-items:center; justify-content:space-between; gap:6px;">
+                        <div style="display:flex; align-items:center; gap:6px;">
+                            <span class="svg-live-motion" style="width:34px; height:34px;">${buildGredySvg(item.id, 32)}</span>
+                            <div>
+                                <div style="font-size:12.5px; font-weight:900;">${escHtml(item.label)}</div>
+                                <div style="font-size:10.5px; font-weight:900; color:#ffd400;">${item.mult}x</div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-white" style="padding:5px 9px; font-size:11px;" onclick="addGredyBet('${item.id}')">Tikish</button>
+                    </div>
+                    <div class="soft-copy" style="font-size:11.5px; color:${placed > 0 ? '#ffd400' : '#ffffff'};">
+                        Tikilgan: ${placed > 0 ? formatCommaNumber(placed) : "0"}
+                    </div>
+                `;
+                betGrid.appendChild(card);
+            });
+        }
+
+        // PADARKALAR QIMMATROQ VA KO'PROQ XP BERADI
+        const PREMIUM_SVG_GIFTS = [
+            { id: "lucky_bell", name: "Lucky Bell", cost: 2500, xpPerUnit: 350, jackpot: true, freq: 780, kind: "bell" },
+            { id: "cake", name: "Celebration Cake", cost: 1500, xpPerUnit: 250, jackpot: false, freq: 620, kind: "cake" },
+            { id: "starburst", name: "Cosmic Star", cost: 5000, xpPerUnit: 600, jackpot: false, freq: 880, kind: "star" },
+            { id: "crown", name: "Royal Crown", cost: 15000, xpPerUnit: 1200, jackpot: false, freq: 710, kind: "crown" },
+            { id: "fireworks", name: "Fireworks", cost: 35000, xpPerUnit: 2200, jackpot: true, freq: 840, kind: "firework" },
+            { id: "lucky_diamond", name: "Lucky Diamond", cost: 75000, xpPerUnit: 4000, jackpot: true, freq: 920, kind: "diamond" }
         ];
 
         const DEFAULT_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(`
@@ -1832,11 +2208,6 @@
                 .replace(/</g, "&lt;")
                 .replace(/>/g, "&gt;")
                 .replace(/"/g, "&quot;");
-        }
-
-        function formatMentionsHtml(rawText) {
-            const safe = escHtml(rawText || "");
-            return safe.replace(/(@[A-Za-z0-9_]+)/g, `<span class="mention-chip">$1</span>`);
         }
 
         function normalizeAtUsername(raw, fallback) {
@@ -1904,6 +2275,8 @@
                 photo: (u && u.photo_url) ? u.photo_url : "",
                 bio: "",
                 coins: 10000,
+                xp: 0,
+                level: 1,
                 updatedAt: Date.now()
             };
         }
@@ -1914,12 +2287,14 @@
                 ...buildDefaultProfile(),
                 ...savedProfile,
                 sixId: savedProfile.sixId || generateSixDigitId(savedProfile.id || "1"),
-                coins: Number(savedProfile.coins !== undefined ? savedProfile.coins : 10000)
+                coins: Number(savedProfile.coins !== undefined ? savedProfile.coins : 10000),
+                xp: Number(savedProfile.xp || 0),
+                level: Number(savedProfile.level || 1)
             }
             : buildDefaultProfile();
         saveJson(STORAGE_KEYS.profile, meProfile);
 
-        let allUsers = { ...loadJson(STORAGE_KEYS.users, {}), [meProfile.id]: meProfile };
+        let allUsers = { ...loadJson(STORAGE_KEYS.users, {}), [meProfile.id]: { ...meProfile } };
         let allRooms = loadJson(STORAGE_KEYS.rooms, {});
         let allDms = loadJson(STORAGE_KEYS.dms, {});
 
@@ -1929,12 +2304,7 @@
         let activeDmPeerId = null;
         let targetModalUserId = null;
         let seenGiftSoundIds = new Set();
-        let seenEntryKeys = new Set();
-
-        // Birinma-ketin navbat banner tizimi
-        const entryQueue = [];
-        let isPlayingEntryQueue = false;
-        let giftOverlayTimer = null;
+        let bannerTimer = null;
 
         let roomMicActive = false;
         let micStream = null;
@@ -1942,28 +2312,39 @@
         let voiceSendTimer = null;
         let seenVoiceIds = new Set();
 
-        let selectedGiftId = PREMIUM_GIFTS[0].id;
-        let selectedRecipientId = String(meProfile.id);
+        let selectedGiftId = PREMIUM_SVG_GIFTS[0].id;
+        let selectedTableRecipientId = null;
         let giftQuantity = 1;
         let activeGiftCategory = "Gift";
 
+        function addXpAndRecalcLevel(addedXp) {
+            const totalXp = Math.max(0, Number(meProfile.xp || 0) + Number(addedXp || 0));
+            meProfile.xp = totalXp;
+            meProfile.level = 1 + Math.floor(totalXp / 1000);
+            persistMeState();
+        }
+
+        function openLevelLockedModal() {
+            openMaintenanceModal(`Level ${meProfile.level || 1}`);
+        }
+
         function buildPremiumGiftSvg(kind) {
-            if (kind === "video") {
-                return `<svg viewBox="0 0 64 64" width="50" height="50"><defs><linearGradient id="gVid" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff4d79"/><stop offset="50%" stop-color="#ffd400"/><stop offset="100%" stop-color="#8a2be2"/></linearGradient></defs><rect x="8" y="14" width="36" height="36" rx="10" fill="url(#gVid)" stroke="#ffffff" stroke-width="2"/><polygon points="22,23 36,32 22,41" fill="#ffffff"/><circle cx="50" cy="20" r="6" fill="#ffd400"/></svg>`;
-            }
             if (kind === "bell") {
-                return `<svg viewBox="0 0 64 64" width="50" height="50"><path d="M32 10c-9 0-15 6-15 15v9l-4 6h38l-4-6v-9c0-9-6-15-15-15z" fill="#ffd000" stroke="#fff7cc" stroke-width="2"/><circle cx="32" cy="46" r="5" fill="#ffae00"/></svg>`;
+                return `<svg viewBox="0 0 64 64" width="50" height="50"><defs><linearGradient id="gBell" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fff2a6"/><stop offset="50%" stop-color="#ffd000"/><stop offset="100%" stop-color="#c97b00"/></linearGradient></defs><path d="M32 10c-9 0-15 6-15 15v9l-4 6h38l-4-6v-9c0-9-6-15-15-15z" fill="url(#gBell)" stroke="#fff7cc" stroke-width="2"/><circle cx="32" cy="46" r="5" fill="#ffae00"/></svg>`;
             }
             if (kind === "diamond") {
-                return `<svg viewBox="0 0 64 64" width="50" height="50"><polygon points="18,14 46,14 56,26 32,54 8,26" fill="#ffd400" stroke="#ffffff" stroke-width="2"/><line x1="8" y1="26" x2="56" y2="26" stroke="#fff3b0" stroke-width="1.6"/></svg>`;
+                return `<svg viewBox="0 0 64 64" width="50" height="50"><defs><linearGradient id="gDia" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fff8c4"/><stop offset="45%" stop-color="#ffd400"/><stop offset="100%" stop-color="#ff8800"/></linearGradient></defs><polygon points="18,14 46,14 56,26 32,54 8,26" fill="url(#gDia)" stroke="#ffffff" stroke-width="2"/><line x1="8" y1="26" x2="56" y2="26" stroke="#fff3b0" stroke-width="1.6"/></svg>`;
             }
             if (kind === "firework") {
-                return `<svg viewBox="0 0 64 64" width="50" height="50"><circle cx="32" cy="30" r="9" fill="#ff3b7f"/><circle cx="18" cy="18" r="5" fill="#ffd400"/><circle cx="46" cy="18" r="5" fill="#00e5ff"/><line x1="32" y1="30" x2="18" y2="18" stroke="#ffd400" stroke-width="2.2"/><line x1="32" y1="30" x2="46" y2="18" stroke="#00e5ff" stroke-width="2.2"/></svg>`;
+                return `<svg viewBox="0 0 64 64" width="50" height="50"><circle cx="32" cy="30" r="9" fill="#ff3b7f"/><circle cx="18" cy="18" r="5" fill="#ffd400"/><circle cx="46" cy="18" r="5" fill="#00e5ff"/><circle cx="16" cy="38" r="5" fill="#b366ff"/><circle cx="48" cy="38" r="5" fill="#4dff88"/><line x1="32" y1="30" x2="18" y2="18" stroke="#ffd400" stroke-width="2.2"/><line x1="32" y1="30" x2="46" y2="18" stroke="#00e5ff" stroke-width="2.2"/><line x1="32" y1="30" x2="16" y2="38" stroke="#b366ff" stroke-width="2.2"/><line x1="32" y1="30" x2="48" y2="38" stroke="#4dff88" stroke-width="2.2"/></svg>`;
             }
             if (kind === "cake") {
-                return `<svg viewBox="0 0 64 64" width="50" height="50"><rect x="14" y="30" width="36" height="20" rx="6" fill="#4da6ff" stroke="#cce6ff" stroke-width="2"/><path d="M14 34c4 5 8 0 12 4s8-4 12 4 8-4 12 0v-6H14v6z" fill="#ffffff"/><circle cx="32" cy="13" r="4" fill="#ff4d6d"/></svg>`;
+                return `<svg viewBox="0 0 64 64" width="50" height="50"><rect x="14" y="30" width="36" height="20" rx="6" fill="#4da6ff" stroke="#cce6ff" stroke-width="2"/><path d="M14 34c4 5 8 0 12 4s8-4 12 4 8-4 12 0v-6H14v6z" fill="#ffffff"/><line x1="32" y1="16" x2="32" y2="28" stroke="#ffd400" stroke-width="3"/><circle cx="32" cy="13" r="4" fill="#ff4d6d"/></svg>`;
             }
-            return `<svg viewBox="0 0 64 64" width="50" height="50"><path d="M12 44L8 22L23 32L32 16L41 32L56 22L52 44H12Z" fill="#ffd400" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/><rect x="12" y="46" width="40" height="6" rx="3" fill="#ffaa00"/></svg>`;
+            if (kind === "crown") {
+                return `<svg viewBox="0 0 64 64" width="50" height="50"><path d="M12 44L8 22L23 32L32 16L41 32L56 22L52 44H12Z" fill="#ffd400" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/><rect x="12" y="46" width="40" height="6" rx="3" fill="#ffaa00"/></svg>`;
+            }
+            return `<svg viewBox="0 0 64 64" width="50" height="50"><polygon points="32,10 38,24 53,25 41,35 45,50 32,42 19,50 23,35 11,25 26,24" fill="#ffd400" stroke="#fff7c2" stroke-width="2" stroke-linejoin="round"/></svg>`;
         }
 
         function playVoiceDataUrl(url) {
@@ -2042,83 +2423,26 @@
             if (st) st.textContent = "";
         }
 
-        // Birinma-ketin navbat bilan ko'rsatish
-        function enqueueEntryBanner(name, photo) {
-            entryQueue.push({ name: name || "Foydalanuvchi", photo: photo || DEFAULT_AVATAR });
-            if (!isPlayingEntryQueue) {
-                drainEntryQueue();
-            }
-        }
-
-        function drainEntryQueue() {
-            if (!entryQueue.length) {
-                isPlayingEntryQueue = false;
-                return;
-            }
-            isPlayingEntryQueue = true;
-            const item = entryQueue.shift();
+        function showEntryBanner(name, photo) {
             const banner = document.getElementById("entryBanner");
             const img = document.getElementById("entryBannerAvatar");
             const txt = document.getElementById("entryBannerText");
-            if (!banner || !img || !txt) {
-                isPlayingEntryQueue = false;
-                return;
-            }
-            img.src = item.photo;
+            if (!banner || !img || !txt) return;
+            img.src = photo || DEFAULT_AVATAR;
             img.onerror = () => { img.src = DEFAULT_AVATAR; };
-            txt.textContent = `${item.name} efirga kirdi`;
+            txt.textContent = `${name} efirga kirdi`;
             banner.classList.remove("active");
             void banner.offsetWidth;
             banner.classList.add("active");
-
-            setTimeout(() => {
-                banner.classList.remove("active");
-                drainEntryQueue();
-            }, 2250);
+            if (bannerTimer) clearTimeout(bannerTimer);
+            bannerTimer = setTimeout(() => banner.classList.remove("active"), 3450);
         }
 
-        function triggerGiftShowcaseOverlay(senderName, targetName, giftName, qty, isVideoGift) {
-            const ov = document.getElementById("giftStageOverlay");
-            const ann = document.getElementById("giftAnnouncementText");
-            const vid = document.getElementById("giftShowcaseVideo");
-            if (!ov || !ann || !vid) return;
-
-            ann.textContent = `${senderName} → ${targetName} ga ${qty}x ${giftName} padarka urdi!`;
-
-            if (isVideoGift && VIDEO_GIFT_URL) {
-                vid.src = VIDEO_GIFT_URL;
-                vid.style.display = "block";
-                vid.currentTime = 0;
-                vid.play().catch(() => {});
-            } else {
-                vid.pause();
-                vid.removeAttribute("src");
-                vid.style.display = "none";
-            }
-
-            ov.classList.add("open");
-            if (giftOverlayTimer) clearTimeout(giftOverlayTimer);
-            giftOverlayTimer = setTimeout(() => {
-                closeGiftStageOverlay();
-            }, 7200);
-        }
-
-        function closeGiftStageOverlay() {
-            const ov = document.getElementById("giftStageOverlay");
-            const vid = document.getElementById("giftShowcaseVideo");
-            if (vid) {
-                vid.pause();
-                vid.removeAttribute("src");
-            }
-            if (ov) ov.classList.remove("open");
-        }
-
-        // Rasm 1795556232609.jpeg uslubidagi professional SVG mikrofon
         function seatMicSvg(isLocked) {
             if (isLocked) {
                 return `
                     <span class="anim-lock" style="display:inline-flex;">
-                        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="#ffd400" stroke-width="2.1">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2.2">
                             <rect x="5" y="11" width="14" height="10" rx="2.5"/>
                             <path d="M8 11V7.5a4 4 0 0 1 8 0V11"/>
                         </svg>
@@ -2126,19 +2450,11 @@
                 `;
             }
             return `
-                <span class="pro-mic-motion">
-                    <svg viewBox="0 0 32 32" width="24" height="24" fill="none">
-                        <defs>
-                            <linearGradient id="micGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#fff3b0"/>
-                                <stop offset="55%" stop-color="#f2cf7e"/>
-                                <stop offset="100%" stop-color="#b8862d"/>
-                            </linearGradient>
-                        </defs>
-                        <rect x="11.5" y="5" width="9" height="14" rx="4.5" stroke="url(#micGrad)" stroke-width="2.1"/>
-                        <path d="M7.5 14.5C7.5 19.2 11.3 22.5 16 22.5C20.7 22.5 24.5 19.2 24.5 14.5" stroke="url(#micGrad)" stroke-width="2.1" stroke-linecap="round"/>
-                        <line x1="16" y1="22.5" x2="16" y2="27" stroke="url(#micGrad)" stroke-width="2.1" stroke-linecap="round"/>
-                        <line x1="11.5" y1="27" x2="20.5" y2="27" stroke="url(#micGrad)" stroke-width="2.1" stroke-linecap="round"/>
+                <span class="anim-mic" style="display:inline-flex;">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2">
+                        <rect x="9" y="2.5" width="6" height="11" rx="3"/>
+                        <path d="M5.5 10.5a6.5 6.5 0 0 0 13 0"/>
+                        <line x1="12" y1="17" x2="12" y2="21.5"/>
                     </svg>
                 </span>
             `;
@@ -2168,10 +2484,27 @@
             document.getElementById("profileBioText").textContent = meProfile.bio ? meProfile.bio : "Tavsif hali yozilmagan.";
             document.getElementById("profileCoinsVal").textContent = formatCommaNumber(meProfile.coins !== undefined ? meProfile.coins : 10000);
 
+            const lvl = Math.max(1, Number(meProfile.level || 1));
+            const xpVal = Math.max(0, Number(meProfile.xp || 0));
+            const currentLvlXp = xpVal % 1000;
+            const pct = Math.min(100, Math.max(4, Math.round((currentLvlXp / 1000) * 100)));
+
+            const lvlHeading = document.getElementById("profileLevelHeading");
+            const xpBar = document.getElementById("profileXpBarFill");
+            const xpSub = document.getElementById("profileXpSubText");
+            if (lvlHeading) lvlHeading.textContent = `Level ${lvl}`;
+            if (xpBar) xpBar.style.width = `${pct}%`;
+            if (xpSub) xpSub.textContent = `${formatCommaNumber(xpVal)} XP (Lvl ${lvl})`;
+
             const adminBox = document.getElementById("onlyFungoMonetaBox");
             if (adminBox) {
                 adminBox.style.display = isFungoMonetaAdmin() ? "flex" : "none";
             }
+
+            const topBal = document.getElementById("gamesTopBalance");
+            const liveBal = document.getElementById("gredyLiveBalance");
+            if (topBal) topBal.textContent = formatCommaNumber(meProfile.coins);
+            if (liveBal) liveBal.textContent = formatCommaNumber(meProfile.coins);
         }
 
         async function sendTargetedMonetaOnly() {
@@ -2270,7 +2603,7 @@
                 bio: newBio,
                 updatedAt: Date.now()
             };
-            allUsers[meProfile.id] = meProfile;
+            allUsers[meProfile.id] = { ...meProfile };
             Object.values(allRooms || {}).forEach(r => {
                 if (r && String(r.ownerId) === String(meProfile.id)) {
                     r.ownerPhoto = updatedPhoto || DEFAULT_AVATAR;
@@ -2287,43 +2620,22 @@
             await syncRemote();
         }
 
-        // O'ziga ham urish mumkin bo'lgan qabul qiluvchilar ro'yxati
-        function getAllPossibleRecipients(room) {
-            const map = new Map();
-            map.set(String(meProfile.id), {
-                userId: String(meProfile.id),
-                name: meProfile.displayName || meProfile.username || "Men",
-                photo: meProfile.photo || DEFAULT_AVATAR
-            });
-
-            if (room && room.seats) {
-                Object.values(room.seats).forEach(s => {
-                    if (s && s.userId) {
-                        const uid = String(s.userId);
-                        const u = allUsers[uid] || {};
-                        map.set(uid, {
-                            userId: uid,
-                            name: s.label || u.displayName || u.username || "Foydalanuvchi",
-                            photo: s.photo || u.photo || DEFAULT_AVATAR
-                        });
-                    }
-                });
-            }
-
-            Object.values(allUsers || {}).forEach(u => {
-                if (u && u.id) {
-                    const uid = String(u.id);
-                    if (!map.has(uid)) {
-                        map.set(uid, {
-                            userId: uid,
-                            name: u.displayName || u.username || "Foydalanuvchi",
-                            photo: u.photo || DEFAULT_AVATAR
-                        });
-                    }
+        function getSeatedTableTargets(room) {
+            if (!room || !room.seats) return [];
+            const targets = [];
+            for (const seatKey of Object.keys(room.seats)) {
+                const s = room.seats[seatKey];
+                if (s && s.userId && String(s.userId) !== String(meProfile.id)) {
+                    const u = allUsers[String(s.userId)] || {};
+                    targets.push({
+                        seatKey,
+                        userId: String(s.userId),
+                        name: s.label || u.displayName || u.username || "Foydalanuvchi",
+                        photo: s.photo || u.photo || DEFAULT_AVATAR
+                    });
                 }
-            });
-
-            return Array.from(map.values());
+            }
+            return targets;
         }
 
         function selectGiftCategory(catName, btnEl) {
@@ -2354,7 +2666,7 @@
 
         function renderGiftBoxContent() {
             const room = allRooms[currentStageRoomId];
-            const recipients = getAllPossibleRecipients(room);
+            const seatedTargets = getSeatedTableTargets(room);
             const recRow = document.getElementById("tableRecipientsRow");
             const grid = document.getElementById("premiumGiftsGrid");
             const qtyBtn = document.querySelector(".gift-qty-btn");
@@ -2363,35 +2675,40 @@
             if (qtyBtn) qtyBtn.textContent = giftQuantity + "x";
 
             recRow.innerHTML = "";
-            if (!recipients.some(r => String(r.userId) === String(selectedRecipientId))) {
-                selectedRecipientId = String(meProfile.id);
+            if (!seatedTargets.length) {
+                selectedTableRecipientId = null;
+                recRow.innerHTML = `<div class="soft-copy" style="font-size:12px;">Hozir stolda boshqa odam yoʻq.</div>`;
+            } else {
+                if (!seatedTargets.some(t => String(t.userId) === String(selectedTableRecipientId))) {
+                    selectedTableRecipientId = seatedTargets[0].userId;
+                }
+                seatedTargets.forEach(t => {
+                    const isSel = String(t.userId) === String(selectedTableRecipientId);
+                    const chip = document.createElement("button");
+                    chip.type = "button";
+                    chip.className = "gift-target-chip" + (isSel ? " selected" : "");
+                    chip.innerHTML = `<img src="${escHtml(t.photo)}" alt=""><span>${escHtml(t.name)}</span>`;
+                    chip.onclick = () => {
+                        selectedTableRecipientId = t.userId;
+                        document.getElementById("giftBoxFeedback").textContent = "";
+                        renderGiftBoxContent();
+                    };
+                    recRow.appendChild(chip);
+                });
             }
 
-            recipients.forEach(t => {
-                const isSel = String(t.userId) === String(selectedRecipientId);
-                const chip = document.createElement("button");
-                chip.type = "button";
-                chip.className = "gift-target-chip" + (isSel ? " selected" : "");
-                chip.innerHTML = `<img src="${escHtml(t.photo)}" alt=""><span>${escHtml(t.name)}</span>`;
-                chip.onclick = () => {
-                    selectedRecipientId = t.userId;
-                    document.getElementById("giftBoxFeedback").textContent = "";
-                    renderGiftBoxContent();
-                };
-                recRow.appendChild(chip);
-            });
-
             grid.innerHTML = "";
-            PREMIUM_GIFTS.forEach(item => {
+            PREMIUM_SVG_GIFTS.forEach(item => {
                 const isSel = item.id === selectedGiftId;
                 const card = document.createElement("button");
                 card.type = "button";
                 card.className = "premium-gift-card" + (isSel ? " selected" : "");
                 card.innerHTML = `
-                    ${item.jackpot ? `<span class="jackpot-tag">${item.isVideo ? "VIDEO" : "JACKPOT"}</span>` : ""}
+                    ${item.jackpot ? `<span class="jackpot-tag">JACKPOT</span>` : ""}
                     <span class="svg-gift-motion">${buildPremiumGiftSvg(item.kind)}</span>
                     <span style="font-family:sans-serif; font-size:11px; font-weight:800; text-align:center;">${escHtml(item.name)}</span>
-                    <span style="font-size:11px; font-weight:900; color:#ffd400;">${escHtml(item.costLabel)}</span>
+                    <span style="font-size:11px; font-weight:900; color:#ffd400;">${formatCommaNumber(item.cost)}</span>
+                    <span style="font-size:10px; font-weight:800; color:#39ff88;">+${formatCommaNumber(item.xpPerUnit)} XP</span>
                 `;
                 card.onclick = () => {
                     selectedGiftId = item.id;
@@ -2404,61 +2721,54 @@
         async function executeTableGiftSend() {
             const fb = document.getElementById("giftBoxFeedback");
             const room = allRooms[currentStageRoomId];
-            const recipients = getAllPossibleRecipients(room);
-            const targetObj = recipients.find(t => String(t.userId) === String(selectedRecipientId));
+            const seatedTargets = getSeatedTableTargets(room);
+            const targetObj = seatedTargets.find(t => String(t.userId) === String(selectedTableRecipientId));
 
             if (!targetObj) {
-                fb.textContent = "Kimga padarka urishni tanlang.";
+                fb.textContent = "Stolda oʻtirgan boshqa odamni tanlang!";
                 return;
             }
 
-            const giftObj = PREMIUM_GIFTS.find(g => g.id === selectedGiftId) || PREMIUM_GIFTS[0];
+            if (String(targetObj.userId) === String(meProfile.id)) {
+                fb.textContent = "Oʻzingizga padarka urib boʻlmaydi!";
+                return;
+            }
+
+            const giftObj = PREMIUM_SVG_GIFTS.find(g => g.id === selectedGiftId) || PREMIUM_SVG_GIFTS[0];
             const totalCost = giftObj.cost * giftQuantity;
+            const gainedXp = giftObj.xpPerUnit * giftQuantity;
 
             if (Number(meProfile.coins || 0) < totalCost) {
-                fb.textContent = "Balansda yetarli moneta yoʻq.";
+                fb.textContent = "Balansda yetarli mablagʻ yoʻq.";
                 return;
             }
 
-            const senderName = meProfile.displayName || meProfile.username || "Foydalanuvchi";
-            const isSelf = String(targetObj.userId) === String(meProfile.id);
+            meProfile.coins = Number(meProfile.coins || 0) - totalCost;
+            addXpAndRecalcLevel(gainedXp);
 
-            if (isSelf) {
-                // O'ziga o'zi urganda balans o'zgarmaydi, faqat padarka effekti chiqadi
-                allUsers[meProfile.id] = meProfile;
-            } else {
-                meProfile.coins = Number(meProfile.coins || 0) - totalCost;
-                allUsers[meProfile.id] = meProfile;
-
-                const recipientUser = allUsers[targetObj.userId] || {
-                    id: targetObj.userId,
-                    displayName: targetObj.name,
-                    photo: targetObj.photo,
-                    coins: 10000
-                };
-                recipientUser.coins = Number(recipientUser.coins || 0) + totalCost;
-                allUsers[targetObj.userId] = recipientUser;
-            }
-
-            saveJson(STORAGE_KEYS.profile, meProfile);
+            const recipientUser = allUsers[targetObj.userId] || {
+                id: targetObj.userId,
+                displayName: targetObj.name,
+                photo: targetObj.photo,
+                coins: 10000
+            };
+            recipientUser.coins = Number(recipientUser.coins || 0) + totalCost;
+            allUsers[targetObj.userId] = recipientUser;
             saveJson(STORAGE_KEYS.users, allUsers);
+
             renderProfile();
             renderGiftBoxContent();
             playChimeSound(giftObj.freq);
 
-            closeGiftBoxModal();
-            triggerGiftShowcaseOverlay(senderName, targetObj.name, giftObj.name, giftQuantity, Boolean(giftObj.isVideo));
+            fb.textContent = `${targetObj.name} ga ${giftQuantity}x ${giftObj.name} urildi! +${formatCommaNumber(gainedXp)} XP`;
 
             const gid = "gft_" + Date.now() + "_" + Math.random().toString(36).slice(2, 5);
             const giftEvt = {
                 id: gid,
                 senderId: String(meProfile.id),
-                senderName: senderName,
                 targetId: String(targetObj.userId),
-                targetName: targetObj.name,
                 giftName: giftObj.name,
                 qty: giftQuantity,
-                isVideo: Boolean(giftObj.isVideo),
                 freq: giftObj.freq,
                 ts: Date.now()
             };
@@ -2470,13 +2780,11 @@
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(giftEvt)
                 });
-                if (!isSelf && allUsers[targetObj.userId]) {
-                    await fetch(`${FIREBASE_DB}/fungo_users/${encodeURIComponent(targetObj.userId)}.json`, {
-                        method: "PUT",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(allUsers[targetObj.userId])
-                    });
-                }
+                await fetch(`${FIREBASE_DB}/fungo_users/${encodeURIComponent(recipientUser.id)}.json`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(recipientUser)
+                });
             } catch (e) {}
         }
 
@@ -2601,26 +2909,13 @@
             document.getElementById("roomStagePane").classList.add("open");
             renderRoomStage();
 
-            const myName = meProfile.displayName || meProfile.username;
-            const myPhoto = meProfile.photo || DEFAULT_AVATAR;
-
-            // Xonadagi mavjud ishtirokchilar + o'zi birinma-ketin ketma-ket ko'rsatiladi
-            if (room.seats) {
-                Object.values(room.seats).forEach(s => {
-                    if (s && s.userId && String(s.userId) !== String(meProfile.id)) {
-                        enqueueEntryBanner(s.label || "Foydalanuvchi", s.photo || DEFAULT_AVATAR);
-                    }
-                });
-            }
-            enqueueEntryBanner(myName, myPhoto);
-
             const entryEvt = {
-                id: "ent_" + Date.now() + "_" + Math.random().toString(36).slice(2, 5),
                 userId: meProfile.id,
-                name: myName,
-                photo: myPhoto,
+                name: meProfile.displayName || meProfile.username,
+                photo: meProfile.photo || DEFAULT_AVATAR,
                 ts: Date.now()
             };
+            showEntryBanner(entryEvt.name, entryEvt.photo);
 
             try {
                 await fetch(`${FIREBASE_DB}/fungo_rooms/${encodeURIComponent(currentStageRoomId)}/messages.json`, { method: "DELETE" });
@@ -2699,40 +2994,6 @@
             renderRoomsDirectory();
         }
 
-        function renderMentionQuickBar(room) {
-            const bar = document.getElementById("mentionQuickBar");
-            if (!bar) return;
-            const handles = new Set();
-
-            if (room && room.seats) {
-                Object.values(room.seats).forEach(s => {
-                    if (s && s.userId) {
-                        const u = allUsers[String(s.userId)];
-                        if (u && u.username) handles.add(u.username);
-                        else if (s.label) handles.add(normalizeAtUsername(s.label, "@user"));
-                    }
-                });
-            }
-            Object.values(allUsers || {}).slice(0, 6).forEach(u => {
-                if (u && u.username) handles.add(u.username);
-            });
-
-            bar.innerHTML = "";
-            Array.from(handles).slice(0, 7).forEach(h => {
-                const btn = document.createElement("button");
-                btn.type = "button";
-                btn.className = "mention-tag-btn";
-                btn.textContent = h;
-                btn.onclick = () => {
-                    const inp = document.getElementById("roomChatInput");
-                    const cur = inp.value;
-                    inp.value = cur ? `${cur} ${h} ` : `${h} `;
-                    inp.focus();
-                };
-                bar.appendChild(btn);
-            });
-        }
-
         function renderRoomStage() {
             if (!currentStageRoomId || roomMinimized) return;
             const room = allRooms[currentStageRoomId];
@@ -2794,7 +3055,6 @@
                 grid8.appendChild(node);
             }
 
-            renderMentionQuickBar(room);
             renderRoomMessagesFive(room);
         }
 
@@ -2918,13 +3178,13 @@
 
             box.innerHTML = "";
             if (!msgs.length) {
-                box.innerHTML = `<div class="soft-copy" style="font-size:13px;">@nik bilan meta qilib yozing...</div>`;
+                box.innerHTML = `<div class="soft-copy" style="font-size:13px;">Xabar yozing...</div>`;
                 return;
             }
             msgs.forEach(m => {
                 const div = document.createElement("div");
                 div.className = "room-msg-big";
-                div.innerHTML = `<b>${escHtml(m.sender)}:</b> ${formatMentionsHtml(m.text)}`;
+                div.innerHTML = `<b>${escHtml(m.sender)}:</b> ${escHtml(m.text)}`;
                 box.appendChild(div);
             });
         }
@@ -3082,7 +3342,7 @@
                 const mine = String(m.senderId) === String(meProfile.id);
                 const div = document.createElement("div");
                 div.className = "tg-bubble " + (mine ? "mine" : "theirs");
-                div.innerHTML = formatMentionsHtml(m.text || "");
+                div.textContent = m.text || "";
                 stream.appendChild(div);
             });
             stream.scrollTop = stream.scrollHeight;
@@ -3137,8 +3397,12 @@
                     const ru = await uRes.json();
                     if (ru && typeof ru === "object") {
                         allUsers = { ...allUsers, ...ru };
-                        if (allUsers[meProfile.id] && allUsers[meProfile.id].coins !== undefined) {
-                            meProfile.coins = Number(allUsers[meProfile.id].coins);
+                        const remoteMe = allUsers[meProfile.id];
+                        if (!gredySpinning && remoteMe && (remoteMe.updatedAt || 0) > (meProfile.updatedAt || 0)) {
+                            if (remoteMe.coins !== undefined) meProfile.coins = Number(remoteMe.coins);
+                            if (remoteMe.xp !== undefined) meProfile.xp = Number(remoteMe.xp);
+                            if (remoteMe.level !== undefined) meProfile.level = Number(remoteMe.level);
+                            meProfile.updatedAt = remoteMe.updatedAt;
                             saveJson(STORAGE_KEYS.profile, meProfile);
                             renderProfile();
                         }
@@ -3180,27 +3444,16 @@
 
                     if (eRes.ok) {
                         const ev = await eRes.json();
-                        const eid = ev && (ev.id || `${ev.userId}_${ev.ts}`);
-                        if (ev && eid && !seenEntryKeys.has(eid) && String(ev.userId) !== String(meProfile.id) && (Date.now() - (ev.ts || 0)) < 7000) {
-                            seenEntryKeys.add(eid);
-                            enqueueEntryBanner(ev.name || "Foydalanuvchi", ev.photo || DEFAULT_AVATAR);
+                        if (ev && ev.userId && String(ev.userId) !== String(meProfile.id) && (Date.now() - (ev.ts || 0)) < 5000) {
+                            showEntryBanner(ev.name || "Foydalanuvchi", ev.photo || DEFAULT_AVATAR);
                         }
                     }
 
                     if (gRes.ok) {
                         const ge = await gRes.json();
-                        if (ge && ge.id && !seenGiftSoundIds.has(ge.id) && (Date.now() - (ge.ts || 0)) < 9000) {
+                        if (ge && ge.id && !seenGiftSoundIds.has(ge.id) && (Date.now() - (ge.ts || 0)) < 7000) {
                             seenGiftSoundIds.add(ge.id);
                             playChimeSound(ge.freq || 740);
-                            if (String(ge.senderId) !== String(meProfile.id)) {
-                                triggerGiftShowcaseOverlay(
-                                    ge.senderName || "Foydalanuvchi",
-                                    ge.targetName || "Ishtirokchi",
-                                    ge.giftName || "Padarka",
-                                    ge.qty || 1,
-                                    Boolean(ge.isVideo)
-                                );
-                            }
                         }
                     }
 
@@ -3247,6 +3500,9 @@
                 if (!activeDmPeerId) renderDmThreads();
                 else renderTgDmStream();
             }
+            if (tabName === "oyinlar") {
+                renderGredyUi();
+            }
             if (tabName === "profilm") renderProfile();
 
             if (tg && tg.HapticFeedback) tg.HapticFeedback.selectionChanged();
@@ -3255,6 +3511,7 @@
         renderProfile();
         renderRoomsDirectory();
         renderDmThreads();
+        renderGredyUi();
         syncRemote();
 
         setInterval(() => { syncRemote(); }, 2000);
