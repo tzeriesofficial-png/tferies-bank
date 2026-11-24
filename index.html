@@ -17,11 +17,10 @@
 
         :root {
             --bg-yellow: #ffd400;
-            --bg-yellow-dark: #e6be00;
             --ink-white: #ffffff;
             --ink-black: #000000;
-            --glass-white: rgba(255, 255, 255, 0.22);
-            --glass-dark: rgba(0, 0, 0, 0.18);
+            --glass-white: rgba(255, 255, 255, 0.24);
+            --glass-dark: rgba(0, 0, 0, 0.24);
             --line-white: rgba(255, 255, 255, 0.55);
         }
 
@@ -54,7 +53,6 @@
             pointer-events: auto;
         }
 
-        /* KIRISH QISMI: FUNGO.UZ */
         .splash-title {
             font-size: clamp(54px, 16.5vw, 118px);
             font-weight: 900;
@@ -73,7 +71,6 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
-        /* ASOSIY OYNA */
         #mainApp {
             justify-content: space-between;
             background-color: var(--bg-yellow);
@@ -91,7 +88,7 @@
         .section-view {
             display: none;
             width: 100%;
-            max-width: 440px;
+            max-width: 445px;
             height: 100%;
             flex-direction: column;
             gap: 10px;
@@ -116,7 +113,7 @@
             font-size: 24px;
             font-weight: 900;
             color: var(--ink-white);
-            text-shadow: 0 2px 0 rgba(0, 0, 0, 0.15);
+            text-shadow: 0 2px 0 rgba(0, 0, 0, 0.16);
         }
 
         .home-trigger-btn {
@@ -162,8 +159,8 @@
             color: var(--ink-black);
             border: 2px solid var(--ink-black);
             border-radius: 14px;
-            padding: 10px 14px;
-            font-size: 12.5px;
+            padding: 9px 13px;
+            font-size: 12px;
             font-weight: 900;
             cursor: pointer;
         }
@@ -173,7 +170,7 @@
             color: var(--ink-white);
             border: 1.8px solid var(--ink-white);
             border-radius: 14px;
-            padding: 9px 13px;
+            padding: 8px 12px;
             font-size: 12px;
             font-weight: 900;
             cursor: pointer;
@@ -187,7 +184,7 @@
             text-shadow: 0 1px 0 rgba(0, 0, 0, 0.16);
         }
 
-        /* PROFILIM BO'LIMI */
+        /* PROFILIM */
         .profile-hero {
             align-items: center;
             text-align: center;
@@ -195,12 +192,13 @@
         }
 
         .avatar-frame {
-            width: 98px;
-            height: 98px;
+            width: 96px;
+            height: 96px;
             border-radius: 50%;
             border: 3px solid var(--ink-white);
             overflow: hidden;
             background: var(--glass-dark);
+            flex-shrink: 0;
         }
 
         .avatar-frame img {
@@ -231,6 +229,20 @@
             font-weight: 900;
         }
 
+        .six-id-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--glass-dark);
+            color: var(--ink-white);
+            border: 1.8px solid var(--ink-white);
+            border-radius: 999px;
+            padding: 5px 14px;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
         .black-check-svg {
             width: 18px;
             height: 18px;
@@ -248,127 +260,179 @@
             80% { transform: scale(1.16) rotate(-4deg); }
         }
 
-        /* 6 TA ID KARTA */
-        .id-cards-title {
-            font-size: 14px;
-            font-weight: 900;
-            color: var(--ink-white);
-            text-align: left;
-            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.18);
-        }
-
-        .id-cards-grid {
+        /* CHAT RO'YXATI KARTASI */
+        .room-list-card {
             width: 100%;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 9px;
-        }
-
-        .id-card-item {
-            background: var(--glass-dark);
+            background: var(--glass-white);
             border: 2px solid var(--ink-white);
-            border-radius: 16px;
-            padding: 10px;
+            border-radius: 20px;
+            padding: 12px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 8px;
-            cursor: pointer;
+            gap: 10px;
             text-align: left;
-            transition: transform 0.18s ease, background 0.18s ease;
+            cursor: pointer;
+            color: var(--ink-white);
         }
 
-        .id-card-item.active-id {
+        .room-cover-thumb {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2.5px solid var(--ink-white);
+            background: var(--glass-dark);
+            flex-shrink: 0;
+        }
+
+        .live-tag {
             background: var(--ink-white);
             color: var(--ink-black);
-            border-color: var(--ink-black);
-        }
-
-        .id-card-item.active-id .id-card-code,
-        .id-card-item.active-id .id-card-sub {
-            color: var(--ink-black);
-        }
-
-        .id-card-code {
-            font-size: 12.5px;
-            font-weight: 900;
-            color: var(--ink-white);
-        }
-
-        .id-card-sub {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            border: 1.5px solid var(--ink-black);
+            border-radius: 999px;
+            padding: 4px 10px;
             font-size: 11px;
-            font-weight: 800;
-            color: var(--ink-white);
-            opacity: 0.9;
-        }
-
-        .id-svg-wiggle {
-            width: 26px;
-            height: 26px;
+            font-weight: 900;
             flex-shrink: 0;
-            animation: idWiggle 1.6s infinite ease-in-out;
         }
 
-        @keyframes idWiggle {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            30% { transform: rotate(-11deg) scale(1.14); }
-            70% { transform: rotate(11deg) scale(1.14); }
-        }
-
-        /* CHAT XONALAR VA 6 TA O'RINDIQ */
-        .room-desc-text {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--ink-white);
-            background: var(--glass-dark);
-            border-radius: 12px;
-            padding: 8px 10px;
-            line-height: 1.35;
-            word-break: break-word;
-        }
-
-        .seats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+        /* XONA ICHKI KO'RINISHI (RASM USLUBIDA + PREMIUM SVG) */
+        .room-stage-view {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
             gap: 8px;
-            margin-top: 4px;
         }
 
-        .seat-box {
+        .room-stage-view.open {
+            display: flex;
+        }
+
+        .room-stage-scroll {
+            flex: 1;
+            width: 100%;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-bottom: 14px;
+        }
+
+        .stage-board {
+            width: 100%;
             background: var(--glass-dark);
-            border: 1.8px solid var(--ink-white);
-            border-radius: 14px;
-            padding: 9px 6px;
+            border: 2px solid var(--ink-white);
+            border-radius: 22px;
+            padding: 14px 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            gap: 14px;
+        }
+
+        .host-seat-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .seats-8-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px 6px;
+            justify-items: center;
+        }
+
+        .seat-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             gap: 4px;
             cursor: pointer;
+            max-width: 78px;
+        }
+
+        .seat-ring {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            border: 2px solid var(--ink-white);
+            background: rgba(0, 0, 0, 0.28);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .seat-ring.host-ring {
+            width: 64px;
+            height: 64px;
+            border-width: 2.5px;
+        }
+
+        .seat-ring.locked-ring {
+            background: rgba(0, 0, 0, 0.55);
+        }
+
+        .seat-ring img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .seat-caption {
+            font-size: 11.5px;
+            font-weight: 900;
             color: var(--ink-white);
-            min-height: 68px;
-        }
-
-        .seat-box.occupied {
-            background: var(--ink-white);
-            color: var(--ink-black);
-            border-color: var(--ink-black);
-        }
-
-        .seat-num {
-            font-size: 11px;
-            font-weight: 900;
-        }
-
-        .seat-who {
-            font-size: 11px;
-            font-weight: 900;
-            max-width: 100%;
+            max-width: 76px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+        }
+
+        .room-controls-row {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .room-chat-box {
+            width: 100%;
+            background: var(--glass-white);
+            border: 2px solid var(--ink-white);
+            border-radius: 18px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            text-align: left;
+        }
+
+        .room-msgs {
+            max-height: 120px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .room-msg-line {
+            background: var(--ink-white);
+            color: var(--ink-black);
+            border-radius: 11px;
+            padding: 6px 9px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            word-break: break-word;
         }
 
         /* MODALLAR */
@@ -389,7 +453,7 @@
 
         .modal-sheet {
             width: 100%;
-            max-width: 400px;
+            max-width: 395px;
             max-height: 88vh;
             overflow-y: auto;
             background: var(--bg-yellow);
@@ -406,7 +470,6 @@
         .modal-title {
             font-size: 19px;
             font-weight: 900;
-            color: var(--ink-white);
             text-shadow: 0 2px 0 rgba(0, 0, 0, 0.18);
         }
 
@@ -421,7 +484,6 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             font-size: 12px;
             font-weight: 900;
-            color: var(--ink-white);
         }
 
         .txt-input,
@@ -441,7 +503,7 @@
         }
 
         .txt-area {
-            min-height: 66px;
+            min-height: 64px;
             resize: vertical;
         }
 
@@ -493,8 +555,17 @@
             justify-content: center;
         }
 
+        /* QIMIRLAB TURUVCHI SVG ANIMATSIYALAR */
         .anim-house {
             animation: houseBounce 1.6s infinite ease-in-out;
+        }
+
+        .anim-mic {
+            animation: micPulse 1.5s infinite ease-in-out;
+        }
+
+        .anim-lock {
+            animation: lockShake 1.4s infinite ease-in-out;
         }
 
         .anim-chat {
@@ -518,6 +589,18 @@
             0%, 100% { transform: translateY(0) scale(1); }
             35% { transform: translateY(-3px) scale(1.15); }
             70% { transform: translateY(0) scale(1.05); }
+        }
+
+        @keyframes micPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            35% { transform: scale(1.14) rotate(-5deg); }
+            70% { transform: scale(1.08) rotate(5deg); }
+        }
+
+        @keyframes lockShake {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-12deg) scale(1.12); }
+            75% { transform: rotate(12deg) scale(1.12); }
         }
 
         @keyframes chatFloat {
@@ -559,19 +642,69 @@
 
             <!-- 1. CHATLAR BO'LIMI -->
             <section id="tab-chatlar" class="section-view active">
-                <div class="top-bar">
-                    <div class="section-heading">Chatlar</div>
-                    <button type="button" class="home-trigger-btn" onclick="openCreateRoomModal()">
-                        <span class="svg-slot anim-house" style="width:22px; height:22px;">
-                            <svg viewBox="0 0 28 28" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4 12.5L14 4L24 12.5V23.5C24 24.1 23.5 24.5 23 24.5H17V17.5H11V24.5H5C4.5 24.5 4 24.1 4 23.5V12.5Z" fill="#ffffff" stroke="#000000" stroke-width="1.8" stroke-linejoin="round"/>
-                            </svg>
-                        </span>
-                        <span>Xona</span>
-                    </button>
+                <div id="roomsDirectoryPane" style="display:flex; flex-direction:column; height:100%; gap:10px;">
+                    <div class="top-bar">
+                        <div class="section-heading">Chatlar</div>
+                        <button type="button" class="home-trigger-btn" onclick="openCreateRoomModal()">
+                            <span class="svg-slot anim-house" style="width:22px; height:22px;">
+                                <svg viewBox="0 0 28 28" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 12.5L14 4L24 12.5V23.5C24 24.1 23.5 24.5 23 24.5H17V17.5H11V24.5H5C4.5 24.5 4 24.1 4 23.5V12.5Z" fill="#ffffff" stroke="#000000" stroke-width="1.8" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
+                            <span>Xona</span>
+                        </button>
+                    </div>
+
+                    <div id="roomsListContainer" class="scroll-area"></div>
                 </div>
 
-                <div id="roomsListContainer" class="scroll-area"></div>
+                <div id="roomStagePane" class="room-stage-view">
+                    <div class="top-bar">
+                        <button type="button" class="btn-outline-white" onclick="leaveRoomStage()">← Roʻyxat</button>
+                        <div id="stageRoomTitle" class="section-heading" style="font-size:18px; max-width:210px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Xona</div>
+                        <span class="live-tag">Faol</span>
+                    </div>
+
+                    <div class="room-stage-scroll">
+                        <div id="stageRoomDesc" class="soft-copy" style="text-align:left; background:rgba(0,0,0,0.18); padding:8px 12px; border-radius:14px;"></div>
+
+                        <div class="stage-board">
+                            <div class="host-seat-wrap" onclick="handleSeatClick('0')">
+                                <div id="seatRing_0" class="seat-ring host-ring"></div>
+                                <div id="seatLabel_0" class="seat-caption">Egasi</div>
+                            </div>
+
+                            <div id="seatsGrid8" class="seats-8-grid"></div>
+                        </div>
+
+                        <div class="room-controls-row">
+                            <button type="button" id="roomMicToggleBtn" class="btn-white" onclick="toggleRoomMic()">
+                                <span style="display:inline-flex; align-items:center; justify-content:center; gap:6px;">
+                                    <span class="anim-mic" style="display:inline-flex;">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="9" y="2" width="6" height="11" rx="3"/>
+                                            <path d="M5 10a7 7 0 0 0 14 0"/>
+                                            <line x1="12" y1="17" x2="12" y2="22"/>
+                                        </svg>
+                                    </span>
+                                    <span id="roomMicBtnText">Mikro: Oʻchiq</span>
+                                </span>
+                            </button>
+                            <button type="button" class="btn-outline-white" onclick="standUpFromSeats()">Oʻrindan turish</button>
+                        </div>
+
+                        <div id="roomVoiceStatus" class="soft-copy" style="text-align:center;"></div>
+
+                        <div class="room-chat-box">
+                            <div style="font-size:13px; font-weight:900;">Xona chati</div>
+                            <div id="roomMsgsList" class="room-msgs"></div>
+                            <div style="display:flex; gap:6px;">
+                                <input type="text" id="roomChatInput" class="txt-input" maxlength="250" placeholder="Xonada yozing...">
+                                <button type="button" class="btn-white" onclick="sendRoomChatMsg()">Yuborish</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <!-- 2. XABARLAR BO'LIMI -->
@@ -581,7 +714,7 @@
                 </div>
                 <div class="scroll-area">
                     <div class="white-card" style="text-align:center;">
-                        <div class="soft-copy">Yangilanishlar va xabarnomalar shu boʻlimda koʻrinadi.</div>
+                        <div class="soft-copy">Foydalanuvchilar 6 xonali ID raqami orqali bir-birini chaqirishi va xabarlashishi mumkin.</div>
                     </div>
                 </div>
             </section>
@@ -610,7 +743,7 @@
                             <img id="profileAvatarImg" src="" alt="Profil rasmi">
                         </div>
 
-                        <div id="profileDisplayName" class="display-name-line">User</div>
+                        <div id="profileDisplayName" class="display-name-line">Fungo User</div>
 
                         <div class="username-badge-row">
                             <span id="profileUsernameText">@username1</span>
@@ -622,15 +755,17 @@
                             </span>
                         </div>
 
+                        <div class="six-id-pill">
+                            <span>ID:</span>
+                            <span id="profileSixIdText">100001</span>
+                        </div>
+
                         <div id="profileBioText" class="soft-copy">Tavsif hali yozilmagan.</div>
 
                         <button type="button" class="btn-white" style="width:100%; max-width:260px;" onclick="openProfileEditModal()">
                             Tahrirlash
                         </button>
                     </div>
-
-                    <div class="id-cards-title">ID kartalar (6 tagacha)</div>
-                    <div id="idCardsGrid" class="id-cards-grid"></div>
                 </div>
             </section>
 
@@ -685,7 +820,7 @@
         </nav>
     </div>
 
-    <!-- MODAL 1: PROFILNI TAHRIRLASH -->
+    <!-- MODAL 1: PROFIL TAHRIRLASH -->
     <div id="editProfileModal" class="modal-overlay">
         <div class="modal-sheet">
             <div class="modal-title">Profilni tahrirlash</div>
@@ -700,7 +835,7 @@
 
             <div class="field-group">
                 <label for="editDisplayNameInput" class="field-lbl">Bot ichidagi ism (Name)</label>
-                <input type="text" id="editDisplayNameInput" class="txt-input" maxlength="32" placeholder="Ismingizni yozing">
+                <input type="text" id="editDisplayNameInput" class="txt-input" maxlength="32" placeholder="Ismingiz">
             </div>
 
             <div class="field-group">
@@ -710,7 +845,7 @@
 
             <div class="field-group">
                 <label for="editBioInput" class="field-lbl">Tavsif</label>
-                <textarea id="editBioInput" class="txt-area" maxlength="160" placeholder="Qisqacha tavsif..."></textarea>
+                <textarea id="editBioInput" class="txt-area" maxlength="160" placeholder="Tavsif..."></textarea>
             </div>
 
             <div id="editProfileErr" class="soft-copy" style="min-height:16px;"></div>
@@ -729,7 +864,7 @@
 
             <div class="field-group">
                 <label for="roomNameInput" class="field-lbl">Chat xona nomi</label>
-                <input type="text" id="roomNameInput" class="txt-input" maxlength="36" placeholder="Masalan: VIP Lounge">
+                <input type="text" id="roomNameInput" class="txt-input" maxlength="36" placeholder="Xona nomi">
             </div>
 
             <div class="field-group">
@@ -746,6 +881,18 @@
         </div>
     </div>
 
+    <!-- MODAL 3: XONA EGASI O'RINDIQNI QULFLASH -->
+    <div id="lockSeatModal" class="modal-overlay">
+        <div class="modal-sheet">
+            <div id="lockModalTitle" class="modal-title">Oʻrindiq</div>
+            <div id="lockModalDesc" class="soft-copy">Bu oʻrindiqni qulflamoqchimisiz?</div>
+            <div class="row-2">
+                <button type="button" class="btn-outline-white" onclick="closeLockModal()">Bekor qilish</button>
+                <button type="button" id="confirmLockBtn" class="btn-white">Qulflash</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
         if (tg) {
@@ -755,12 +902,12 @@
 
         const FIREBASE_DB = "https://xbox-tanishuv-default-rtdb.firebaseio.com";
         const STORAGE_KEYS = {
-            profile: "fungo_uz_profile_v1",
-            rooms: "fungo_uz_rooms_v1",
-            uid: "fungo_uz_uid_v1"
+            profile: "fungo_uz_profile_v2",
+            rooms: "fungo_uz_rooms_v2",
+            uid: "fungo_uz_uid_v2"
         };
 
-        const ENGLISH_BOT_HANDLES = [
+        const ENGLISH_HANDLES = [
             "@username1",
             "@fungo_star",
             "@gold_nova",
@@ -795,6 +942,16 @@
             return clean.startsWith("@") ? clean : "@" + clean;
         }
 
+        function generateSixDigitId(seedStr) {
+            let hash = 0;
+            const str = String(seedStr || Date.now());
+            for (let i = 0; i < str.length; i++) {
+                hash = (hash * 31 + str.charCodeAt(i)) % 900000;
+            }
+            const randPart = Math.floor(100000 + ((hash + Math.floor(Math.random() * 899999)) % 900000));
+            return String(randPart);
+        }
+
         function loadJson(key, fallback) {
             try {
                 const raw = localStorage.getItem(key);
@@ -819,61 +976,57 @@
                 localStorage.setItem(STORAGE_KEYS.uid, uid);
             }
 
-            const pickedHandle = ENGLISH_BOT_HANDLES[Math.abs(uid.split("").reduce((a, b) => a + b.charCodeAt(0), 0)) % ENGLISH_BOT_HANDLES.length];
+            const pickedHandle = ENGLISH_HANDLES[Math.abs(uid.split("").reduce((a, b) => a + b.charCodeAt(0), 0)) % ENGLISH_HANDLES.length];
             const defaultName = u ? ([u.first_name, u.last_name].filter(Boolean).join(" ") || "Fungo User") : "Fungo User";
             const defaultNick = u && u.username ? normalizeAtUsername("@" + u.username, pickedHandle) : pickedHandle;
 
             return {
                 id: uid,
+                sixId: generateSixDigitId(uid),
                 displayName: defaultName,
                 username: defaultNick,
                 photo: (u && u.photo_url) ? u.photo_url : "",
                 bio: "",
-                activeCard: 1,
                 updatedAt: Date.now()
             };
         }
 
         const savedProfile = loadJson(STORAGE_KEYS.profile, null);
-        let meProfile = savedProfile ? { ...buildDefaultProfile(), ...savedProfile } : buildDefaultProfile();
+        let meProfile = savedProfile
+            ? { ...buildDefaultProfile(), ...savedProfile, sixId: savedProfile.sixId || generateSixDigitId(savedProfile.id || "1") }
+            : buildDefaultProfile();
+        saveJson(STORAGE_KEYS.profile, meProfile);
+
         let allRooms = loadJson(STORAGE_KEYS.rooms, {});
         let pendingPhotoData = meProfile.photo || "";
+        let currentStageRoomId = null;
+        let pendingLockSeatKey = null;
 
-        function renderIdCards() {
-            const grid = document.getElementById("idCardsGrid");
-            grid.innerHTML = "";
-            const activeNum = Number(meProfile.activeCard || 1);
+        /* MIKROFON HOLATI */
+        let roomMicOn = false;
+        let micMediaStream = null;
 
-            for (let i = 1; i <= 6; i++) {
-                const isSelected = i === activeNum;
-                const card = document.createElement("div");
-                card.className = "id-card-item" + (isSelected ? " active-id" : "");
-                card.onclick = () => selectIdCard(i);
-
-                card.innerHTML = `
-                    <div>
-                        <div class="id-card-code">ID KARTA #${i}</div>
-                        <div class="id-card-sub">${isSelected ? "Tanlangan" : "Bosish"}</div>
-                    </div>
-                    <span class="id-svg-wiggle">
-                        <svg viewBox="0 0 28 28" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="2.5" y="5" width="23" height="18" rx="4" fill="${isSelected ? '#ffd400' : '#ffffff'}" stroke="#000000" stroke-width="1.8"/>
-                            <circle cx="9.5" cy="14" r="3" fill="#000000"/>
-                            <line x1="15" y1="11.5" x2="22" y2="11.5" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
-                            <line x1="15" y1="16" x2="20" y2="16" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+        function seatMicSvg(isLocked) {
+            if (isLocked) {
+                return `
+                    <span class="anim-lock" style="display:inline-flex;">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="5" y="11" width="14" height="10" rx="2.5" fill="rgba(255,212,0,0.22)"/>
+                            <path d="M8 11V7.5a4 4 0 0 1 8 0V11"/>
                         </svg>
                     </span>
                 `;
-                grid.appendChild(card);
             }
-        }
-
-        async function selectIdCard(cardNum) {
-            meProfile.activeCard = cardNum;
-            meProfile.updatedAt = Date.now();
-            saveJson(STORAGE_KEYS.profile, meProfile);
-            renderIdCards();
-            await syncRemote();
+            return `
+                <span class="anim-mic" style="display:inline-flex;">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="2.5" width="6" height="11" rx="3"/>
+                        <path d="M5.5 10.5a6.5 6.5 0 0 0 13 0"/>
+                        <line x1="12" y1="17" x2="12" y2="21.5"/>
+                        <line x1="8.5" y1="21.5" x2="15.5" y2="21.5"/>
+                    </svg>
+                </span>
+            `;
         }
 
         function renderProfile() {
@@ -883,8 +1036,8 @@
 
             document.getElementById("profileDisplayName").textContent = meProfile.displayName || "Fungo User";
             document.getElementById("profileUsernameText").textContent = meProfile.username || "@username1";
+            document.getElementById("profileSixIdText").textContent = meProfile.sixId || "100001";
             document.getElementById("profileBioText").textContent = meProfile.bio ? meProfile.bio : "Tavsif hali yozilmagan.";
-            renderIdCards();
         }
 
         function openProfileEditModal() {
@@ -944,22 +1097,36 @@
                 return;
             }
 
+            const updatedPhoto = pendingPhotoData || meProfile.photo || "";
+            const updatedDisplayName = newName;
+
             meProfile = {
                 ...meProfile,
-                displayName: newName,
+                displayName: updatedDisplayName,
                 username: normalizeAtUsername(rawNick, meProfile.username || "@username1"),
-                photo: pendingPhotoData || meProfile.photo || "",
+                photo: updatedPhoto,
                 bio: newBio,
                 updatedAt: Date.now()
             };
 
+            /* XONA EGASIDA TURGAN RASM YANGILANSA, YARATGAN XONASINING RASMI HAM YANGILANADI */
+            Object.values(allRooms || {}).forEach(r => {
+                if (r && String(r.ownerId) === String(meProfile.id)) {
+                    r.ownerPhoto = updatedPhoto || DEFAULT_AVATAR;
+                    r.ownerName = updatedDisplayName;
+                }
+            });
+
             saveJson(STORAGE_KEYS.profile, meProfile);
+            saveJson(STORAGE_KEYS.rooms, allRooms);
             closeProfileEditModal();
             renderProfile();
+            renderRoomsDirectory();
+            if (currentStageRoomId) renderRoomStage();
             await syncRemote();
         }
 
-        /* CHAT XONALAR VA 6 TA O'RINDIQ */
+        /* XONA YARATISH VA RO'YXAT */
         function openCreateRoomModal() {
             document.getElementById("roomNameInput").value = "";
             document.getElementById("roomDescInput").value = "";
@@ -981,7 +1148,7 @@
                 return;
             }
             if (!descVal || descVal.length < 1 || descVal.length > 150) {
-                errEl.textContent = "Tavsif 1 dan 150 belgigacha (yoki 1–15 ta soʻz) boʻlishi kerak.";
+                errEl.textContent = "Tavsif 1 dan 150 belgigacha (1–15) boʻlishi kerak.";
                 return;
             }
 
@@ -992,26 +1159,32 @@
             }
 
             const roomId = "room_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6);
+            const ownerPhoto = meProfile.photo || DEFAULT_AVATAR;
+            const ownerLabel = meProfile.displayName || meProfile.username;
+
+            const seatsInit = {
+                "0": { userId: meProfile.id, label: ownerLabel, photo: ownerPhoto, locked: false }
+            };
+            for (let i = 1; i <= 8; i++) {
+                seatsInit[String(i)] = { userId: null, label: String(i), photo: "", locked: false };
+            }
+
             const roomObj = {
                 id: roomId,
                 name: nameVal,
                 description: descVal,
-                ownerName: meProfile.displayName || meProfile.username,
+                ownerId: meProfile.id,
+                ownerName: ownerLabel,
+                ownerPhoto: ownerPhoto,
                 createdAt: Date.now(),
-                seats: {
-                    "1": null,
-                    "2": null,
-                    "3": null,
-                    "4": null,
-                    "5": null,
-                    "6": null
-                }
+                seats: seatsInit,
+                messages: {}
             };
 
             allRooms[roomId] = roomObj;
             saveJson(STORAGE_KEYS.rooms, allRooms);
             closeCreateRoomModal();
-            renderRooms();
+            renderRoomsDirectory();
 
             try {
                 await fetch(`${FIREBASE_DB}/fungo_rooms/${encodeURIComponent(roomId)}.json`, {
@@ -1022,45 +1195,7 @@
             } catch (e) {}
         }
 
-        async function toggleSeat(roomId, seatNum) {
-            const room = allRooms[roomId];
-            if (!room) return;
-            if (!room.seats || typeof room.seats !== "object") {
-                room.seats = { "1": null, "2": null, "3": null, "4": null, "5": null, "6": null };
-            }
-
-            const key = String(seatNum);
-            const currentOccupant = room.seats[key];
-
-            if (currentOccupant && String(currentOccupant.userId) === String(meProfile.id)) {
-                room.seats[key] = null;
-            } else if (!currentOccupant) {
-                Object.keys(room.seats).forEach(k => {
-                    if (room.seats[k] && String(room.seats[k].userId) === String(meProfile.id)) {
-                        room.seats[k] = null;
-                    }
-                });
-                room.seats[key] = {
-                    userId: meProfile.id,
-                    label: meProfile.displayName || meProfile.username
-                };
-            } else {
-                return;
-            }
-
-            saveJson(STORAGE_KEYS.rooms, allRooms);
-            renderRooms();
-
-            try {
-                await fetch(`${FIREBASE_DB}/fungo_rooms/${encodeURIComponent(roomId)}/seats/${encodeURIComponent(key)}.json`, {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(room.seats[key])
-                });
-            } catch (e) {}
-        }
-
-        function renderRooms() {
+        function renderRoomsDirectory() {
             const container = document.getElementById("roomsListContainer");
             const roomsArr = Object.values(allRooms || {})
                 .filter(r => r && r.id && r.name)
@@ -1070,52 +1205,302 @@
             if (!roomsArr.length) {
                 container.innerHTML = `
                     <div class="white-card" style="text-align:center;">
-                        <div class="soft-copy">Hali chat xona yoʻq. Yuqoridagi uycha tugmasini bosib yangi xona yarating!</div>
+                        <div class="soft-copy">Hali faol chat xona yoʻq. Yuqoridagi uycha tugmasini bosib xona yarating!</div>
                     </div>
                 `;
                 return;
             }
 
             roomsArr.forEach(room => {
+                const ownerImg = room.ownerPhoto || DEFAULT_AVATAR;
                 const card = document.createElement("div");
-                card.className = "white-card";
+                card.className = "room-list-card";
+                card.onclick = () => enterRoomStage(room.id);
 
-                const titleEl = document.createElement("div");
-                titleEl.style.fontSize = "17px";
-                titleEl.style.fontWeight = "900";
-                titleEl.textContent = room.name;
-
-                const descEl = document.createElement("div");
-                descEl.className = "room-desc-text";
-                descEl.textContent = room.description || "";
-
-                const seatsGrid = document.createElement("div");
-                seatsGrid.className = "seats-grid";
-
-                const seatsObj = room.seats || {};
-                for (let s = 1; s <= 6; s++) {
-                    const occupant = seatsObj[String(s)] || null;
-                    const isMine = occupant && String(occupant.userId) === String(meProfile.id);
-
-                    const seatBtn = document.createElement("div");
-                    seatBtn.className = "seat-box" + (occupant ? " occupied" : "");
-                    seatBtn.onclick = () => toggleSeat(room.id, s);
-
-                    seatBtn.innerHTML = `
-                        <div class="seat-num">${s}-oʻrin</div>
-                        <div class="seat-who">${occupant ? escHtml(occupant.label) : "Boʻsh"}</div>
-                        <div class="seat-num">${isMine ? "Chiqish" : (occupant ? "Band" : "Oʻtirish")}</div>
-                    `;
-                    seatsGrid.appendChild(seatBtn);
-                }
-
-                card.appendChild(titleEl);
-                card.appendChild(descEl);
-                card.appendChild(seatsGrid);
+                card.innerHTML = `
+                    <div style="display:flex; align-items:center; gap:10px; min-width:0; flex:1;">
+                        <img class="room-cover-thumb" src="${escHtml(ownerImg)}" alt="">
+                        <div style="min-width:0; flex:1;">
+                            <div style="font-size:15px; font-weight:900; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escHtml(room.name)}</div>
+                            <div class="soft-copy" style="font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-top:2px;">${escHtml(room.description || "")}</div>
+                            <div class="soft-copy" style="font-size:11px; opacity:0.9; margin-top:2px;">Egasi: ${escHtml(room.ownerName || "Foydalanuvchi")}</div>
+                        </div>
+                    </div>
+                    <span class="live-tag">Ishlamoqda</span>
+                `;
+                const thumb = card.querySelector("img");
+                if (thumb) thumb.onerror = function() { this.src = DEFAULT_AVATAR; };
                 container.appendChild(card);
             });
         }
 
+        function enterRoomStage(roomId) {
+            currentStageRoomId = String(roomId);
+            document.getElementById("roomsDirectoryPane").style.display = "none";
+            document.getElementById("roomStagePane").classList.add("open");
+            renderRoomStage();
+        }
+
+        function leaveRoomStage() {
+            disableRoomMic();
+            currentStageRoomId = null;
+            document.getElementById("roomStagePane").classList.remove("open");
+            document.getElementById("roomsDirectoryPane").style.display = "flex";
+            renderRoomsDirectory();
+        }
+
+        function renderRoomStage() {
+            if (!currentStageRoomId) return;
+            const room = allRooms[currentStageRoomId];
+            if (!room) {
+                leaveRoomStage();
+                return;
+            }
+
+            document.getElementById("stageRoomTitle").textContent = room.name;
+            document.getElementById("stageRoomDesc").textContent = room.description || "";
+
+            const seats = room.seats || {};
+            const hostSeat = seats["0"] || { userId: room.ownerId, label: "Egasi", photo: room.ownerPhoto || DEFAULT_AVATAR, locked: false };
+            const hostRing = document.getElementById("seatRing_0");
+            const hostLabel = document.getElementById("seatLabel_0");
+
+            hostRing.className = "seat-ring host-ring" + (hostSeat.locked ? " locked-ring" : "");
+            if (hostSeat.locked) {
+                hostRing.innerHTML = seatMicSvg(true);
+            } else if (hostSeat.userId) {
+                hostRing.innerHTML = `<img src="${escHtml(hostSeat.photo || room.ownerPhoto || DEFAULT_AVATAR)}" alt="">`;
+                const hImg = hostRing.querySelector("img");
+                if (hImg) hImg.onerror = function() { this.src = DEFAULT_AVATAR; };
+            } else {
+                hostRing.innerHTML = `<img src="${escHtml(room.ownerPhoto || DEFAULT_AVATAR)}" alt="">`;
+            }
+            hostLabel.textContent = hostSeat.locked ? "Qulflangan" : "Egasi";
+
+            const grid8 = document.getElementById("seatsGrid8");
+            grid8.innerHTML = "";
+
+            for (let i = 1; i <= 8; i++) {
+                const key = String(i);
+                const sData = seats[key] || { userId: null, label: String(i), photo: "", locked: false };
+
+                const node = document.createElement("div");
+                node.className = "seat-node";
+                node.onclick = () => handleSeatClick(key);
+
+                const ring = document.createElement("div");
+                ring.className = "seat-ring" + (sData.locked ? " locked-ring" : "");
+
+                if (sData.locked) {
+                    ring.innerHTML = seatMicSvg(true);
+                } else if (sData.userId) {
+                    ring.innerHTML = `<img src="${escHtml(sData.photo || DEFAULT_AVATAR)}" alt="">`;
+                    const sImg = ring.querySelector("img");
+                    if (sImg) sImg.onerror = function() { this.src = DEFAULT_AVATAR; };
+                } else {
+                    ring.innerHTML = seatMicSvg(false);
+                }
+
+                const cap = document.createElement("div");
+                cap.className = "seat-caption";
+                cap.textContent = sData.locked ? "Qulf" : (sData.userId ? sData.label : String(i));
+
+                node.appendChild(ring);
+                node.appendChild(cap);
+                grid8.appendChild(node);
+            }
+
+            renderRoomMessages(room);
+        }
+
+        function handleSeatClick(seatKey) {
+            if (!currentStageRoomId) return;
+            const room = allRooms[currentStageRoomId];
+            if (!room) return;
+            if (!room.seats) room.seats = {};
+
+            const sData = room.seats[seatKey] || { userId: null, label: seatKey, photo: "", locked: false };
+            const isOwner = String(room.ownerId) === String(meProfile.id);
+
+            /* AGAR XONA EGASI BOSGANDA: QULFLASH / OCHISH MODALI */
+            if (isOwner && seatKey !== "0") {
+                pendingLockSeatKey = seatKey;
+                const btn = document.getElementById("confirmLockBtn");
+                if (sData.locked) {
+                    document.getElementById("lockModalTitle").textContent = `${seatKey}-oʻrindiq`;
+                    document.getElementById("lockModalDesc").textContent = "Bu oʻrindiq qulflangan. Qulfni ochmoqchimisiz?";
+                    btn.textContent = "Qulfni ochish";
+                    btn.onclick = () => applySeatLockToggle(seatKey, false);
+                } else {
+                    document.getElementById("lockModalTitle").textContent = `${seatKey}-oʻrindiq`;
+                    document.getElementById("lockModalDesc").textContent = "Qulflash — bu joyga boshqalar oʻtira olmaydi.";
+                    btn.textContent = "Qulflash";
+                    btn.onclick = () => applySeatLockToggle(seatKey, true);
+                }
+                document.getElementById("lockSeatModal").classList.add("open");
+                return;
+            }
+
+            if (sData.locked) {
+                document.getElementById("roomVoiceStatus").textContent = "Bu oʻrindiq xona egasi tomonidan qulflangan.";
+                return;
+            }
+
+            /* BOSH O'RINDIYGA O'TIRISH */
+            Object.keys(room.seats).forEach(k => {
+                if (room.seats[k] && String(room.seats[k].userId) === String(meProfile.id)) {
+                    room.seats[k].userId = null;
+                    room.seats[k].label = k === "0" ? "Egasi" : k;
+                    room.seats[k].photo = "";
+                }
+            });
+
+            room.seats[seatKey] = {
+                userId: meProfile.id,
+                label: meProfile.displayName || meProfile.username,
+                photo: meProfile.photo || DEFAULT_AVATAR,
+                locked: false
+            };
+
+            saveJson(STORAGE_KEYS.rooms, allRooms);
+            renderRoomStage();
+            pushRoomSeatsToFirebase(room.id, seatKey, room.seats[seatKey]);
+        }
+
+        function closeLockModal() {
+            pendingLockSeatKey = null;
+            document.getElementById("lockSeatModal").classList.remove("open");
+        }
+
+        async function applySeatLockToggle(seatKey, shouldLock) {
+            if (!currentStageRoomId) return;
+            const room = allRooms[currentStageRoomId];
+            if (!room) return;
+            if (!room.seats) room.seats = {};
+
+            room.seats[seatKey] = {
+                userId: null,
+                label: shouldLock ? "Qulf" : seatKey,
+                photo: "",
+                locked: Boolean(shouldLock)
+            };
+
+            closeLockModal();
+            saveJson(STORAGE_KEYS.rooms, allRooms);
+            renderRoomStage();
+            await pushRoomSeatsToFirebase(room.id, seatKey, room.seats[seatKey]);
+        }
+
+        async function standUpFromSeats() {
+            if (!currentStageRoomId) return;
+            const room = allRooms[currentStageRoomId];
+            if (!room || !room.seats) return;
+
+            for (const k of Object.keys(room.seats)) {
+                if (room.seats[k] && String(room.seats[k].userId) === String(meProfile.id)) {
+                    room.seats[k].userId = null;
+                    room.seats[k].label = k === "0" ? "Egasi" : k;
+                    room.seats[k].photo = "";
+                    await pushRoomSeatsToFirebase(room.id, k, room.seats[k]);
+                }
+            }
+            saveJson(STORAGE_KEYS.rooms, allRooms);
+            renderRoomStage();
+        }
+
+        async function pushRoomSeatsToFirebase(roomId, seatKey, seatObj) {
+            try {
+                await fetch(`${FIREBASE_DB}/fungo_rooms/${encodeURIComponent(roomId)}/seats/${encodeURIComponent(seatKey)}.json`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(seatObj)
+                });
+            } catch (e) {}
+        }
+
+        /* MIKROFON ORQALI GAPLASHISH */
+        async function toggleRoomMic() {
+            if (!roomMicOn) {
+                if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                    document.getElementById("roomVoiceStatus").textContent = "Mikrofon bu qurilmada qoʻllab-quvvatlanmaydi.";
+                    return;
+                }
+                try {
+                    micMediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    roomMicOn = true;
+                    document.getElementById("roomMicBtnText").textContent = "Mikro: Yoniq";
+                    document.getElementById("roomVoiceStatus").textContent = "Mikrofon yoqildi — xonada gaplashishingiz mumkin.";
+                } catch (e) {
+                    document.getElementById("roomVoiceStatus").textContent = "Mikrofonga ruxsat berilmadi.";
+                }
+            } else {
+                disableRoomMic();
+            }
+        }
+
+        function disableRoomMic() {
+            if (micMediaStream) {
+                micMediaStream.getTracks().forEach(t => t.stop());
+                micMediaStream = null;
+            }
+            roomMicOn = false;
+            const btnText = document.getElementById("roomMicBtnText");
+            const st = document.getElementById("roomVoiceStatus");
+            if (btnText) btnText.textContent = "Mikro: Oʻchiq";
+            if (st) st.textContent = "";
+        }
+
+        /* XONA ICHKI CHATI */
+        function renderRoomMessages(room) {
+            const box = document.getElementById("roomMsgsList");
+            const msgs = Object.values((room && room.messages) || {}).sort((a, b) => (a.ts || 0) - (b.ts || 0));
+            box.innerHTML = "";
+            if (!msgs.length) {
+                box.innerHTML = `<div class="soft-copy" style="font-size:12px;">Hali xona chatida xabar yoʻq.</div>`;
+                return;
+            }
+            msgs.forEach(m => {
+                const div = document.createElement("div");
+                div.className = "room-msg-line";
+                div.innerHTML = `<b>${escHtml(m.sender)}:</b> ${escHtml(m.text)}`;
+                box.appendChild(div);
+            });
+            box.scrollTop = box.scrollHeight;
+        }
+
+        async function sendRoomChatMsg() {
+            if (!currentStageRoomId) return;
+            const room = allRooms[currentStageRoomId];
+            if (!room) return;
+
+            const inp = document.getElementById("roomChatInput");
+            const txt = inp.value.trim();
+            if (!txt) return;
+
+            const mid = "rmsg_" + Date.now() + "_" + Math.random().toString(36).slice(2, 5);
+            const msgObj = {
+                id: mid,
+                sender: meProfile.displayName || meProfile.username,
+                text: txt,
+                ts: Date.now()
+            };
+
+            if (!room.messages) room.messages = {};
+            room.messages[mid] = msgObj;
+            inp.value = "";
+            saveJson(STORAGE_KEYS.rooms, allRooms);
+            renderRoomMessages(room);
+
+            try {
+                await fetch(`${FIREBASE_DB}/fungo_rooms/${encodeURIComponent(room.id)}/messages/${encodeURIComponent(mid)}.json`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(msgObj)
+                });
+            } catch (e) {}
+        }
+
+        /* BAZADAN SINXRONLASH */
         async function syncRemote() {
             try {
                 await fetch(`${FIREBASE_DB}/fungo_users/${encodeURIComponent(meProfile.id)}.json`, {
@@ -1124,19 +1509,23 @@
                     body: JSON.stringify(meProfile)
                 });
 
-                const roomsRes = await fetch(`${FIREBASE_DB}/fungo_rooms.json`);
-                if (roomsRes.ok) {
-                    const remoteRooms = await roomsRes.json();
+                const res = await fetch(`${FIREBASE_DB}/fungo_rooms.json`);
+                if (res.ok) {
+                    const remoteRooms = await res.json();
                     if (remoteRooms && typeof remoteRooms === "object") {
                         allRooms = { ...allRooms, ...remoteRooms };
                         saveJson(STORAGE_KEYS.rooms, allRooms);
-                        renderRooms();
+                        renderRoomsDirectory();
+                        if (currentStageRoomId) renderRoomStage();
                     }
                 }
             } catch (e) {}
         }
 
         function switchTab(tabName, btnEl) {
+            if (tabName !== "chatlar") {
+                disableRoomMic();
+            }
             document.querySelectorAll(".dock-btn").forEach(btn => btn.classList.remove("active"));
             if (btnEl) btnEl.classList.add("active");
 
@@ -1144,8 +1533,13 @@
             const activeSec = document.getElementById("tab-" + tabName);
             if (activeSec) activeSec.classList.add("active");
 
-            if (tabName === "chatlar") renderRooms();
-            if (tabName === "profilm") renderProfile();
+            if (tabName === "chatlar") {
+                renderRoomsDirectory();
+                if (currentStageRoomId) renderRoomStage();
+            }
+            if (tabName === "profilm") {
+                renderProfile();
+            }
 
             if (tg && tg.HapticFeedback) {
                 tg.HapticFeedback.selectionChanged();
@@ -1153,12 +1547,12 @@
         }
 
         renderProfile();
-        renderRooms();
+        renderRoomsDirectory();
         syncRemote();
 
         setInterval(() => {
             syncRemote();
-        }, 5000);
+        }, 4500);
 
         setTimeout(() => {
             document.getElementById("splashScreen").classList.remove("active");
