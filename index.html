@@ -17,10 +17,12 @@
 
         :root {
             --bg-yellow: #ffd400;
-            --bg-yellow-deep: #f2c400;
+            --bg-yellow-dark: #e6be00;
             --ink-white: #ffffff;
             --ink-black: #000000;
-            --line-white: rgba(255, 255, 255, 0.45);
+            --glass-white: rgba(255, 255, 255, 0.22);
+            --glass-dark: rgba(0, 0, 0, 0.18);
+            --line-white: rgba(255, 255, 255, 0.55);
         }
 
         html, body {
@@ -61,7 +63,7 @@
             color: var(--ink-white);
             text-align: center;
             padding: 0 14px;
-            text-shadow: 0 4px 0 rgba(0, 0, 0, 0.16);
+            text-shadow: 0 4px 0 rgba(0, 0, 0, 0.18);
             animation: splashPop 1.2s ease-out;
         }
 
@@ -82,18 +84,17 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            padding: 14px;
+            padding: 12px 14px;
             overflow-y: auto;
         }
 
         .section-view {
             display: none;
             width: 100%;
-            max-width: 430px;
+            max-width: 440px;
+            height: 100%;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
+            gap: 10px;
             text-align: center;
         }
 
@@ -101,23 +102,353 @@
             display: flex;
         }
 
-        .section-heading {
-            font-size: 28px;
-            font-weight: 900;
-            color: var(--ink-white);
-            text-shadow: 0 2px 0 rgba(0, 0, 0, 0.14);
+        .top-bar {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4px 2px 10px;
+            border-bottom: 2px solid var(--line-white);
+            flex-shrink: 0;
         }
 
-        .section-note {
+        .section-heading {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--ink-white);
+            text-shadow: 0 2px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .home-trigger-btn {
+            background: var(--glass-white);
+            border: 2px solid var(--ink-white);
+            border-radius: 16px;
+            padding: 6px 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--ink-white);
+            font-size: 12px;
+            font-weight: 900;
+            cursor: pointer;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-area {
+            width: 100%;
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            padding-bottom: 18px;
+        }
+
+        .white-card {
+            width: 100%;
+            background: var(--glass-white);
+            border: 2px solid var(--ink-white);
+            border-radius: 20px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: left;
+            color: var(--ink-white);
+        }
+
+        .btn-white {
+            background: var(--ink-white);
+            color: var(--ink-black);
+            border: 2px solid var(--ink-black);
+            border-radius: 14px;
+            padding: 10px 14px;
+            font-size: 12.5px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .btn-outline-white {
+            background: var(--glass-dark);
+            color: var(--ink-white);
+            border: 1.8px solid var(--ink-white);
+            border-radius: 14px;
+            padding: 9px 13px;
+            font-size: 12px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .soft-copy {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 800;
             color: var(--ink-white);
-            background: rgba(0, 0, 0, 0.14);
-            border: 1.5px solid var(--ink-white);
-            border-radius: 16px;
-            padding: 12px 16px;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.16);
+        }
+
+        /* PROFILIM BO'LIMI */
+        .profile-hero {
+            align-items: center;
+            text-align: center;
+            padding: 18px 14px;
+        }
+
+        .avatar-frame {
+            width: 98px;
+            height: 98px;
+            border-radius: 50%;
+            border: 3px solid var(--ink-white);
+            overflow: hidden;
+            background: var(--glass-dark);
+        }
+
+        .avatar-frame img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .display-name-line {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--ink-white);
+            text-shadow: 0 2px 0 rgba(0, 0, 0, 0.18);
+        }
+
+        .username-badge-row {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: var(--ink-white);
+            color: var(--ink-black);
+            border: 2px solid var(--ink-black);
+            border-radius: 999px;
+            padding: 5px 13px;
+            font-size: 13px;
+            font-weight: 900;
+        }
+
+        .black-check-svg {
+            width: 18px;
+            height: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            animation: checkSpinBounce 1.9s infinite ease-in-out;
+        }
+
+        @keyframes checkSpinBounce {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.2) rotate(-10deg); }
+            55% { transform: scale(1.08) rotate(8deg); }
+            80% { transform: scale(1.16) rotate(-4deg); }
+        }
+
+        /* 6 TA ID KARTA */
+        .id-cards-title {
+            font-size: 14px;
+            font-weight: 900;
+            color: var(--ink-white);
+            text-align: left;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.18);
+        }
+
+        .id-cards-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 9px;
+        }
+
+        .id-card-item {
+            background: var(--glass-dark);
+            border: 2px solid var(--ink-white);
+            border-radius: 16px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            cursor: pointer;
+            text-align: left;
+            transition: transform 0.18s ease, background 0.18s ease;
+        }
+
+        .id-card-item.active-id {
+            background: var(--ink-white);
+            color: var(--ink-black);
+            border-color: var(--ink-black);
+        }
+
+        .id-card-item.active-id .id-card-code,
+        .id-card-item.active-id .id-card-sub {
+            color: var(--ink-black);
+        }
+
+        .id-card-code {
+            font-size: 12.5px;
+            font-weight: 900;
+            color: var(--ink-white);
+        }
+
+        .id-card-sub {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--ink-white);
+            opacity: 0.9;
+        }
+
+        .id-svg-wiggle {
+            width: 26px;
+            height: 26px;
+            flex-shrink: 0;
+            animation: idWiggle 1.6s infinite ease-in-out;
+        }
+
+        @keyframes idWiggle {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            30% { transform: rotate(-11deg) scale(1.14); }
+            70% { transform: rotate(11deg) scale(1.14); }
+        }
+
+        /* CHAT XONALAR VA 6 TA O'RINDIQ */
+        .room-desc-text {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--ink-white);
+            background: var(--glass-dark);
+            border-radius: 12px;
+            padding: 8px 10px;
+            line-height: 1.35;
+            word-break: break-word;
+        }
+
+        .seats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .seat-box {
+            background: var(--glass-dark);
+            border: 1.8px solid var(--ink-white);
+            border-radius: 14px;
+            padding: 9px 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            cursor: pointer;
+            color: var(--ink-white);
+            min-height: 68px;
+        }
+
+        .seat-box.occupied {
+            background: var(--ink-white);
+            color: var(--ink-black);
+            border-color: var(--ink-black);
+        }
+
+        .seat-num {
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+        .seat-who {
+            font-size: 11px;
+            font-weight: 900;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* MODALLAR */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            z-index: 80;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal-sheet {
+            width: 100%;
+            max-width: 400px;
+            max-height: 88vh;
+            overflow-y: auto;
+            background: var(--bg-yellow);
+            border: 2.5px solid var(--ink-white);
+            border-radius: 22px;
+            padding: 18px 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            text-align: center;
+            color: var(--ink-white);
+        }
+
+        .modal-title {
+            font-size: 19px;
+            font-weight: 900;
+            color: var(--ink-white);
+            text-shadow: 0 2px 0 rgba(0, 0, 0, 0.18);
+        }
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            text-align: left;
+        }
+
+        .field-lbl {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 900;
+            color: var(--ink-white);
+        }
+
+        .txt-input,
+        .txt-area {
+            width: 100%;
+            background: var(--ink-white);
+            color: var(--ink-black);
+            border: 2px solid var(--ink-black);
+            border-radius: 13px;
+            padding: 9px 11px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+            outline: none;
+            user-select: text;
+            -webkit-user-select: text;
+        }
+
+        .txt-area {
+            min-height: 66px;
+            resize: vertical;
+        }
+
+        .row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
         }
 
         /* PASTKI 4 TA BO'LIM */
@@ -146,12 +477,11 @@
             font-size: 11px;
             font-weight: 900;
             cursor: pointer;
-            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.16);
-            transition: all 0.2s ease;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.18);
         }
 
         .dock-btn.active {
-            background: rgba(255, 255, 255, 0.24);
+            background: rgba(255, 255, 255, 0.25);
             border-color: var(--ink-white);
         }
 
@@ -163,7 +493,10 @@
             justify-content: center;
         }
 
-        /* QIMIRLAB TURUVCHI PREMIUM SVG ANIMATSIYALAR */
+        .anim-house {
+            animation: houseBounce 1.6s infinite ease-in-out;
+        }
+
         .anim-chat {
             animation: chatFloat 1.7s infinite ease-in-out;
         }
@@ -179,6 +512,12 @@
 
         .anim-profile {
             animation: profilePulse 1.8s infinite ease-in-out;
+        }
+
+        @keyframes houseBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            35% { transform: translateY(-3px) scale(1.15); }
+            70% { transform: translateY(0) scale(1.05); }
         }
 
         @keyframes chatFloat {
@@ -217,25 +556,84 @@
     <!-- ASOSIY OYNA -->
     <div id="mainApp" class="screen">
         <div class="content-wrap">
+
+            <!-- 1. CHATLAR BO'LIMI -->
             <section id="tab-chatlar" class="section-view active">
-                <div class="section-heading">Chatlar</div>
-                <div class="section-note">Chatlar boʻlimi tayyor. Qanday funksiyalar qoʻshamiz?</div>
+                <div class="top-bar">
+                    <div class="section-heading">Chatlar</div>
+                    <button type="button" class="home-trigger-btn" onclick="openCreateRoomModal()">
+                        <span class="svg-slot anim-house" style="width:22px; height:22px;">
+                            <svg viewBox="0 0 28 28" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 12.5L14 4L24 12.5V23.5C24 24.1 23.5 24.5 23 24.5H17V17.5H11V24.5H5C4.5 24.5 4 24.1 4 23.5V12.5Z" fill="#ffffff" stroke="#000000" stroke-width="1.8" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                        <span>Xona</span>
+                    </button>
+                </div>
+
+                <div id="roomsListContainer" class="scroll-area"></div>
             </section>
 
+            <!-- 2. XABARLAR BO'LIMI -->
             <section id="tab-xabarlar" class="section-view">
-                <div class="section-heading">Xabarlar</div>
-                <div class="section-note">Xabarlar boʻlimi tayyor. Qanday funksiyalar qoʻshamiz?</div>
+                <div class="top-bar">
+                    <div class="section-heading">Xabarlar</div>
+                </div>
+                <div class="scroll-area">
+                    <div class="white-card" style="text-align:center;">
+                        <div class="soft-copy">Yangilanishlar va xabarnomalar shu boʻlimda koʻrinadi.</div>
+                    </div>
+                </div>
             </section>
 
+            <!-- 3. O'YINLAR BO'LIMI -->
             <section id="tab-oyinlar" class="section-view">
-                <div class="section-heading">Oʻyinlar</div>
-                <div class="section-note">Oʻyinlar boʻlimi tayyor. Qanday funksiyalar qoʻshamiz?</div>
+                <div class="top-bar">
+                    <div class="section-heading">Oʻyinlar</div>
+                </div>
+                <div class="scroll-area">
+                    <div class="white-card" style="text-align:center;">
+                        <div class="soft-copy">Oʻyinlar boʻlimi tayyor.</div>
+                    </div>
+                </div>
             </section>
 
+            <!-- 4. PROFILM BO'LIMI -->
             <section id="tab-profilm" class="section-view">
-                <div class="section-heading">Profilm</div>
-                <div class="section-note">Profilm boʻlimi tayyor. Qanday funksiyalar qoʻshamiz?</div>
+                <div class="top-bar">
+                    <div class="section-heading">Profilm</div>
+                </div>
+
+                <div class="scroll-area">
+                    <div class="white-card profile-hero">
+                        <div class="avatar-frame">
+                            <img id="profileAvatarImg" src="" alt="Profil rasmi">
+                        </div>
+
+                        <div id="profileDisplayName" class="display-name-line">User</div>
+
+                        <div class="username-badge-row">
+                            <span id="profileUsernameText">@username1</span>
+                            <span class="black-check-svg" title="Tasdiqlangan">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10.5" fill="#000000"/>
+                                    <path d="M7.5 12.3L10.5 15.3L16.8 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
+                        </div>
+
+                        <div id="profileBioText" class="soft-copy">Tavsif hali yozilmagan.</div>
+
+                        <button type="button" class="btn-white" style="width:100%; max-width:260px;" onclick="openProfileEditModal()">
+                            Tahrirlash
+                        </button>
+                    </div>
+
+                    <div class="id-cards-title">ID kartalar (6 tagacha)</div>
+                    <div id="idCardsGrid" class="id-cards-grid"></div>
+                </div>
             </section>
+
         </div>
 
         <!-- PASTKI 4 TA BO'LIM -->
@@ -287,6 +685,67 @@
         </nav>
     </div>
 
+    <!-- MODAL 1: PROFILNI TAHRIRLASH -->
+    <div id="editProfileModal" class="modal-overlay">
+        <div class="modal-sheet">
+            <div class="modal-title">Profilni tahrirlash</div>
+
+            <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+                <div class="avatar-frame" style="width:82px; height:82px;">
+                    <img id="editPhotoPreview" src="" alt="">
+                </div>
+                <input type="file" id="editPhotoFile" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
+                <button type="button" class="btn-outline-white" onclick="document.getElementById('editPhotoFile').click()">Rasmni yangilash</button>
+            </div>
+
+            <div class="field-group">
+                <label for="editDisplayNameInput" class="field-lbl">Bot ichidagi ism (Name)</label>
+                <input type="text" id="editDisplayNameInput" class="txt-input" maxlength="32" placeholder="Ismingizni yozing">
+            </div>
+
+            <div class="field-group">
+                <label for="editUsernameInput" class="field-lbl">Nik (@username)</label>
+                <input type="text" id="editUsernameInput" class="txt-input" maxlength="28" placeholder="@username1">
+            </div>
+
+            <div class="field-group">
+                <label for="editBioInput" class="field-lbl">Tavsif</label>
+                <textarea id="editBioInput" class="txt-area" maxlength="160" placeholder="Qisqacha tavsif..."></textarea>
+            </div>
+
+            <div id="editProfileErr" class="soft-copy" style="min-height:16px;"></div>
+
+            <div class="row-2">
+                <button type="button" class="btn-outline-white" onclick="closeProfileEditModal()">Bekor qilish</button>
+                <button type="button" class="btn-white" onclick="saveProfileEdit()">Saqlash</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: CHAT XONA YARATISH -->
+    <div id="createRoomModal" class="modal-overlay">
+        <div class="modal-sheet">
+            <div class="modal-title">Yangi Chat Xona</div>
+
+            <div class="field-group">
+                <label for="roomNameInput" class="field-lbl">Chat xona nomi</label>
+                <input type="text" id="roomNameInput" class="txt-input" maxlength="36" placeholder="Masalan: VIP Lounge">
+            </div>
+
+            <div class="field-group">
+                <label for="roomDescInput" class="field-lbl">Tavsif (1 dan 15 gacha)</label>
+                <textarea id="roomDescInput" class="txt-area" maxlength="150" placeholder="1 dan 15 gacha tavsif yozing..."></textarea>
+            </div>
+
+            <div id="createRoomErr" class="soft-copy" style="min-height:16px;"></div>
+
+            <div class="row-2">
+                <button type="button" class="btn-outline-white" onclick="closeCreateRoomModal()">Bekor qilish</button>
+                <button type="button" class="btn-white" onclick="createChatRoom()">Yaratish</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
         if (tg) {
@@ -294,23 +753,417 @@
             tg.expand();
         }
 
-        setTimeout(() => {
-            document.getElementById('splashScreen').classList.remove('active');
-            document.getElementById('mainApp').classList.add('active');
-        }, 1600);
+        const FIREBASE_DB = "https://xbox-tanishuv-default-rtdb.firebaseio.com";
+        const STORAGE_KEYS = {
+            profile: "fungo_uz_profile_v1",
+            rooms: "fungo_uz_rooms_v1",
+            uid: "fungo_uz_uid_v1"
+        };
+
+        const ENGLISH_BOT_HANDLES = [
+            "@username1",
+            "@fungo_star",
+            "@gold_nova",
+            "@turbo_vibe",
+            "@apex_room",
+            "@sky_pulse",
+            "@royal_play",
+            "@neon_wave"
+        ];
+
+        const DEFAULT_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(`
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+                <rect width="120" height="120" fill="#000000"/>
+                <circle cx="60" cy="44" r="22" fill="#ffd400"/>
+                <path d="M22 104C28 80 42 70 60 70C78 70 92 80 98 104" fill="#ffffff"/>
+            </svg>
+        `);
+
+        function escHtml(str) {
+            return String(str || "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;");
+        }
+
+        function normalizeAtUsername(raw, fallback) {
+            let clean = String(raw || "").trim().replace(/\s+/g, "_").replace(/[^A-Za-z0-9_@]/g, "");
+            if (!clean || clean === "@") {
+                clean = fallback || "@username1";
+            }
+            return clean.startsWith("@") ? clean : "@" + clean;
+        }
+
+        function loadJson(key, fallback) {
+            try {
+                const raw = localStorage.getItem(key);
+                const parsed = raw ? JSON.parse(raw) : fallback;
+                return parsed && typeof parsed === "object" ? parsed : fallback;
+            } catch (e) {
+                return fallback;
+            }
+        }
+
+        function saveJson(key, val) {
+            try {
+                localStorage.setItem(key, JSON.stringify(val));
+            } catch (e) {}
+        }
+
+        function buildDefaultProfile() {
+            const u = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user : null;
+            let uid = localStorage.getItem(STORAGE_KEYS.uid);
+            if (!uid) {
+                uid = u && u.id ? String(u.id) : ("user_" + Math.random().toString(36).slice(2, 8));
+                localStorage.setItem(STORAGE_KEYS.uid, uid);
+            }
+
+            const pickedHandle = ENGLISH_BOT_HANDLES[Math.abs(uid.split("").reduce((a, b) => a + b.charCodeAt(0), 0)) % ENGLISH_BOT_HANDLES.length];
+            const defaultName = u ? ([u.first_name, u.last_name].filter(Boolean).join(" ") || "Fungo User") : "Fungo User";
+            const defaultNick = u && u.username ? normalizeAtUsername("@" + u.username, pickedHandle) : pickedHandle;
+
+            return {
+                id: uid,
+                displayName: defaultName,
+                username: defaultNick,
+                photo: (u && u.photo_url) ? u.photo_url : "",
+                bio: "",
+                activeCard: 1,
+                updatedAt: Date.now()
+            };
+        }
+
+        const savedProfile = loadJson(STORAGE_KEYS.profile, null);
+        let meProfile = savedProfile ? { ...buildDefaultProfile(), ...savedProfile } : buildDefaultProfile();
+        let allRooms = loadJson(STORAGE_KEYS.rooms, {});
+        let pendingPhotoData = meProfile.photo || "";
+
+        function renderIdCards() {
+            const grid = document.getElementById("idCardsGrid");
+            grid.innerHTML = "";
+            const activeNum = Number(meProfile.activeCard || 1);
+
+            for (let i = 1; i <= 6; i++) {
+                const isSelected = i === activeNum;
+                const card = document.createElement("div");
+                card.className = "id-card-item" + (isSelected ? " active-id" : "");
+                card.onclick = () => selectIdCard(i);
+
+                card.innerHTML = `
+                    <div>
+                        <div class="id-card-code">ID KARTA #${i}</div>
+                        <div class="id-card-sub">${isSelected ? "Tanlangan" : "Bosish"}</div>
+                    </div>
+                    <span class="id-svg-wiggle">
+                        <svg viewBox="0 0 28 28" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2.5" y="5" width="23" height="18" rx="4" fill="${isSelected ? '#ffd400' : '#ffffff'}" stroke="#000000" stroke-width="1.8"/>
+                            <circle cx="9.5" cy="14" r="3" fill="#000000"/>
+                            <line x1="15" y1="11.5" x2="22" y2="11.5" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="15" y1="16" x2="20" y2="16" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                `;
+                grid.appendChild(card);
+            }
+        }
+
+        async function selectIdCard(cardNum) {
+            meProfile.activeCard = cardNum;
+            meProfile.updatedAt = Date.now();
+            saveJson(STORAGE_KEYS.profile, meProfile);
+            renderIdCards();
+            await syncRemote();
+        }
+
+        function renderProfile() {
+            const img = document.getElementById("profileAvatarImg");
+            img.src = meProfile.photo || DEFAULT_AVATAR;
+            img.onerror = () => { img.src = DEFAULT_AVATAR; };
+
+            document.getElementById("profileDisplayName").textContent = meProfile.displayName || "Fungo User";
+            document.getElementById("profileUsernameText").textContent = meProfile.username || "@username1";
+            document.getElementById("profileBioText").textContent = meProfile.bio ? meProfile.bio : "Tavsif hali yozilmagan.";
+            renderIdCards();
+        }
+
+        function openProfileEditModal() {
+            pendingPhotoData = meProfile.photo || "";
+            const prev = document.getElementById("editPhotoPreview");
+            prev.src = pendingPhotoData || DEFAULT_AVATAR;
+            prev.onerror = () => { prev.src = DEFAULT_AVATAR; };
+
+            document.getElementById("editDisplayNameInput").value = meProfile.displayName || "";
+            document.getElementById("editUsernameInput").value = meProfile.username || "@username1";
+            document.getElementById("editBioInput").value = meProfile.bio || "";
+            document.getElementById("editProfileErr").textContent = "";
+            document.getElementById("editPhotoFile").value = "";
+            document.getElementById("editProfileModal").classList.add("open");
+        }
+
+        function closeProfileEditModal() {
+            document.getElementById("editProfileModal").classList.remove("open");
+        }
+
+        function handlePhotoUpload(event) {
+            const file = event.target.files && event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement("canvas");
+                    const maxSide = 240;
+                    let w = img.width;
+                    let h = img.height;
+                    if (w > h) {
+                        if (w > maxSide) { h = Math.round((h * maxSide) / w); w = maxSide; }
+                    } else {
+                        if (h > maxSide) { w = Math.round((w * maxSide) / h); h = maxSide; }
+                    }
+                    canvas.width = w;
+                    canvas.height = h;
+                    canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+                    pendingPhotoData = canvas.toDataURL("image/jpeg", 0.8);
+                    document.getElementById("editPhotoPreview").src = pendingPhotoData;
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function saveProfileEdit() {
+            const errEl = document.getElementById("editProfileErr");
+            const newName = document.getElementById("editDisplayNameInput").value.trim();
+            const rawNick = document.getElementById("editUsernameInput").value.trim();
+            const newBio = document.getElementById("editBioInput").value.trim();
+
+            if (!newName) {
+                errEl.textContent = "Iltimos, bot ichidagi ismingizni kiriting.";
+                return;
+            }
+
+            meProfile = {
+                ...meProfile,
+                displayName: newName,
+                username: normalizeAtUsername(rawNick, meProfile.username || "@username1"),
+                photo: pendingPhotoData || meProfile.photo || "",
+                bio: newBio,
+                updatedAt: Date.now()
+            };
+
+            saveJson(STORAGE_KEYS.profile, meProfile);
+            closeProfileEditModal();
+            renderProfile();
+            await syncRemote();
+        }
+
+        /* CHAT XONALAR VA 6 TA O'RINDIQ */
+        function openCreateRoomModal() {
+            document.getElementById("roomNameInput").value = "";
+            document.getElementById("roomDescInput").value = "";
+            document.getElementById("createRoomErr").textContent = "";
+            document.getElementById("createRoomModal").classList.add("open");
+        }
+
+        function closeCreateRoomModal() {
+            document.getElementById("createRoomModal").classList.remove("open");
+        }
+
+        async function createChatRoom() {
+            const errEl = document.getElementById("createRoomErr");
+            const nameVal = document.getElementById("roomNameInput").value.trim();
+            const descVal = document.getElementById("roomDescInput").value.trim();
+
+            if (!nameVal) {
+                errEl.textContent = "Chat xona nomini kiriting.";
+                return;
+            }
+            if (!descVal || descVal.length < 1 || descVal.length > 150) {
+                errEl.textContent = "Tavsif 1 dan 150 belgigacha (yoki 1–15 ta soʻz) boʻlishi kerak.";
+                return;
+            }
+
+            const wordsCount = descVal.split(/\s+/).filter(Boolean).length;
+            if (wordsCount > 15) {
+                errEl.textContent = "Tavsif 1 dan 15 gacha boʻlsin (hozir " + wordsCount + " ta).";
+                return;
+            }
+
+            const roomId = "room_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6);
+            const roomObj = {
+                id: roomId,
+                name: nameVal,
+                description: descVal,
+                ownerName: meProfile.displayName || meProfile.username,
+                createdAt: Date.now(),
+                seats: {
+                    "1": null,
+                    "2": null,
+                    "3": null,
+                    "4": null,
+                    "5": null,
+                    "6": null
+                }
+            };
+
+            allRooms[roomId] = roomObj;
+            saveJson(STORAGE_KEYS.rooms, allRooms);
+            closeCreateRoomModal();
+            renderRooms();
+
+            try {
+                await fetch(`${FIREBASE_DB}/fungo_rooms/${encodeURIComponent(roomId)}.json`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(roomObj)
+                });
+            } catch (e) {}
+        }
+
+        async function toggleSeat(roomId, seatNum) {
+            const room = allRooms[roomId];
+            if (!room) return;
+            if (!room.seats || typeof room.seats !== "object") {
+                room.seats = { "1": null, "2": null, "3": null, "4": null, "5": null, "6": null };
+            }
+
+            const key = String(seatNum);
+            const currentOccupant = room.seats[key];
+
+            if (currentOccupant && String(currentOccupant.userId) === String(meProfile.id)) {
+                room.seats[key] = null;
+            } else if (!currentOccupant) {
+                Object.keys(room.seats).forEach(k => {
+                    if (room.seats[k] && String(room.seats[k].userId) === String(meProfile.id)) {
+                        room.seats[k] = null;
+                    }
+                });
+                room.seats[key] = {
+                    userId: meProfile.id,
+                    label: meProfile.displayName || meProfile.username
+                };
+            } else {
+                return;
+            }
+
+            saveJson(STORAGE_KEYS.rooms, allRooms);
+            renderRooms();
+
+            try {
+                await fetch(`${FIREBASE_DB}/fungo_rooms/${encodeURIComponent(roomId)}/seats/${encodeURIComponent(key)}.json`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(room.seats[key])
+                });
+            } catch (e) {}
+        }
+
+        function renderRooms() {
+            const container = document.getElementById("roomsListContainer");
+            const roomsArr = Object.values(allRooms || {})
+                .filter(r => r && r.id && r.name)
+                .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+            container.innerHTML = "";
+            if (!roomsArr.length) {
+                container.innerHTML = `
+                    <div class="white-card" style="text-align:center;">
+                        <div class="soft-copy">Hali chat xona yoʻq. Yuqoridagi uycha tugmasini bosib yangi xona yarating!</div>
+                    </div>
+                `;
+                return;
+            }
+
+            roomsArr.forEach(room => {
+                const card = document.createElement("div");
+                card.className = "white-card";
+
+                const titleEl = document.createElement("div");
+                titleEl.style.fontSize = "17px";
+                titleEl.style.fontWeight = "900";
+                titleEl.textContent = room.name;
+
+                const descEl = document.createElement("div");
+                descEl.className = "room-desc-text";
+                descEl.textContent = room.description || "";
+
+                const seatsGrid = document.createElement("div");
+                seatsGrid.className = "seats-grid";
+
+                const seatsObj = room.seats || {};
+                for (let s = 1; s <= 6; s++) {
+                    const occupant = seatsObj[String(s)] || null;
+                    const isMine = occupant && String(occupant.userId) === String(meProfile.id);
+
+                    const seatBtn = document.createElement("div");
+                    seatBtn.className = "seat-box" + (occupant ? " occupied" : "");
+                    seatBtn.onclick = () => toggleSeat(room.id, s);
+
+                    seatBtn.innerHTML = `
+                        <div class="seat-num">${s}-oʻrin</div>
+                        <div class="seat-who">${occupant ? escHtml(occupant.label) : "Boʻsh"}</div>
+                        <div class="seat-num">${isMine ? "Chiqish" : (occupant ? "Band" : "Oʻtirish")}</div>
+                    `;
+                    seatsGrid.appendChild(seatBtn);
+                }
+
+                card.appendChild(titleEl);
+                card.appendChild(descEl);
+                card.appendChild(seatsGrid);
+                container.appendChild(card);
+            });
+        }
+
+        async function syncRemote() {
+            try {
+                await fetch(`${FIREBASE_DB}/fungo_users/${encodeURIComponent(meProfile.id)}.json`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(meProfile)
+                });
+
+                const roomsRes = await fetch(`${FIREBASE_DB}/fungo_rooms.json`);
+                if (roomsRes.ok) {
+                    const remoteRooms = await roomsRes.json();
+                    if (remoteRooms && typeof remoteRooms === "object") {
+                        allRooms = { ...allRooms, ...remoteRooms };
+                        saveJson(STORAGE_KEYS.rooms, allRooms);
+                        renderRooms();
+                    }
+                }
+            } catch (e) {}
+        }
 
         function switchTab(tabName, btnEl) {
-            document.querySelectorAll('.dock-btn').forEach(btn => btn.classList.remove('active'));
-            if (btnEl) btnEl.classList.add('active');
+            document.querySelectorAll(".dock-btn").forEach(btn => btn.classList.remove("active"));
+            if (btnEl) btnEl.classList.add("active");
 
-            document.querySelectorAll('.section-view').forEach(sec => sec.classList.remove('active'));
-            const activeSec = document.getElementById('tab-' + tabName);
-            if (activeSec) activeSec.classList.add('active');
+            document.querySelectorAll(".section-view").forEach(sec => sec.classList.remove("active"));
+            const activeSec = document.getElementById("tab-" + tabName);
+            if (activeSec) activeSec.classList.add("active");
+
+            if (tabName === "chatlar") renderRooms();
+            if (tabName === "profilm") renderProfile();
 
             if (tg && tg.HapticFeedback) {
                 tg.HapticFeedback.selectionChanged();
             }
         }
+
+        renderProfile();
+        renderRooms();
+        syncRemote();
+
+        setInterval(() => {
+            syncRemote();
+        }, 5000);
+
+        setTimeout(() => {
+            document.getElementById("splashScreen").classList.remove("active");
+            document.getElementById("mainApp").classList.add("active");
+        }, 1500);
     </script>
 </body>
 </html>
