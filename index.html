@@ -185,7 +185,7 @@
         /* RASM USLUBIDAGI PROFIL SAHIFASI */
         .ref-profile-card {
             width: 100%;
-            background: linear-gradient(180deg, rgba(255, 212, 0, 0.20) 0%, rgba(255, 255, 255, 0.06) 52%, rgba(0, 0, 0, 0.95) 100%);
+            background: linear-gradient(180deg, rgba(255, 212, 0, 0.22) 0%, rgba(255, 255, 255, 0.06) 52%, rgba(0, 0, 0, 0.96) 100%);
             border: 1.8px solid var(--ink-white);
             border-radius: 22px;
             padding: 14px 12px;
@@ -251,7 +251,66 @@
             font-size: 12px;
             font-weight: 800;
             opacity: 0.9;
-            cursor: pointer;
+        }
+
+        /* CHIROYLI QIMIRLAB TURUVCHI BALANSIM KARTASI */
+        .balansim-showcase {
+            width: 100%;
+            background: linear-gradient(135deg, rgba(255, 212, 0, 0.24) 0%, rgba(255, 255, 255, 0.08) 55%, rgba(255, 170, 0, 0.18) 100%);
+            border: 2px solid var(--accent-gold);
+            border-radius: 20px;
+            padding: 13px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            box-shadow: 0 0 24px rgba(255, 212, 0, 0.14);
+        }
+
+        .balansim-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .animated-gold-coin {
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            animation: coinSpinFloat 2.4s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 212, 0, 0.55));
+        }
+
+        @keyframes coinSpinFloat {
+            0%, 100% { transform: translateY(0px) rotateY(0deg) scale(1); }
+            35% { transform: translateY(-4px) rotateY(22deg) scale(1.08); }
+            70% { transform: translateY(1px) rotateY(-18deg) scale(1.03); }
+        }
+
+        .balansim-text-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+        }
+
+        .balansim-label {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--accent-gold);
+            letter-spacing: 0.4px;
+        }
+
+        .balansim-amount {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--ink-white);
+            letter-spacing: 0.5px;
         }
 
         .ref-stats-3 {
@@ -364,10 +423,9 @@
 
         .xp-fill {
             height: 100%;
-            width: 0%;
+            width: 15%;
             background: var(--ink-white);
             border-radius: 999px;
-            transition: width 0.3s ease;
         }
 
         /* BANNER VA BOSHQA QISMLAR */
@@ -719,7 +777,7 @@
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.78);
+            background: rgba(0, 0, 0, 0.82);
             display: none;
             align-items: center;
             justify-content: center;
@@ -742,9 +800,35 @@
             padding: 18px 15px;
             display: flex;
             flex-direction: column;
-            gap: 11px;
+            gap: 12px;
             text-align: center;
             color: var(--ink-white);
+        }
+
+        /* PREMIUM SVG HOLAT KARTASI */
+        .premium-status-box {
+            background: linear-gradient(160deg, rgba(255, 212, 0, 0.16) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border: 1.8px solid var(--accent-gold);
+            border-radius: 18px;
+            padding: 18px 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .premium-badge-anim {
+            width: 68px;
+            height: 68px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            animation: premiumPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes premiumPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 8px rgba(255, 212, 0, 0.45)); }
+            50% { transform: scale(1.08) rotate(3deg); filter: drop-shadow(0 0 18px rgba(255, 212, 0, 0.85)); }
         }
 
         .modal-title {
@@ -851,7 +935,7 @@
         @keyframes micPulse {
             0%, 100% { transform: scale(1) rotate(0deg); }
             35% { transform: scale(1.14) rotate(-5deg); }
-            70% { transform: scale(1.08) rotate(5deg); }
+            70% { transform: translateY(0) scale(1.08) rotate(5deg); }
         }
 
         @keyframes lockShake {
@@ -1034,15 +1118,6 @@
                     <div id="tgDmMessagesStream" class="tg-dm-stream"></div>
                     <div class="tg-dm-bar">
                         <input type="text" id="tgDmInput" class="txt-input" maxlength="400" placeholder="Xabar yozing...">
-                        <button type="button" class="btn-outline-white" style="padding:8px 10px;" onclick="sendDmVoiceNote()" title="Ovozli xabar (Level 10+)">
-                            <span class="anim-mic" style="display:inline-flex;">
-                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ffffff" stroke-width="2.2">
-                                    <rect x="9" y="2" width="6" height="11" rx="3"/>
-                                    <path d="M5 10a7 7 0 0 0 14 0"/>
-                                    <line x1="12" y1="17" x2="12" y2="22"/>
-                                </svg>
-                            </span>
-                        </button>
                         <button type="button" class="btn-white" onclick="sendTgDmMessage()">Yuborish</button>
                     </div>
                 </div>
@@ -1060,7 +1135,7 @@
                 </div>
             </section>
 
-            <!-- 4. PROFILM (RASM 1795553887003.jpeg USLUBIDA) -->
+            <!-- 4. PROFILM -->
             <section id="tab-profilm" class="section-view">
                 <div class="scroll-area">
                     <div class="ref-profile-card">
@@ -1075,37 +1150,66 @@
                                     <span class="ref-badge-pill">FUNGO.UZ</span>
                                     <span class="ref-badge-pill" id="profileUsernameText">@username1</span>
                                 </div>
-                                <div class="ref-id-line" onclick="copyMySixId()">
-                                    ID: <span id="profileSixIdText">100001</span> • Moneta: <span id="profileCoinsVal">0</span>
+                                <div class="ref-id-line">
+                                    ID: <span id="profileSixIdText">100001</span>
                                 </div>
                             </div>
 
                             <button type="button" class="btn-outline-white" style="padding:7px 10px; font-size:11px;" onclick="openProfileEditModal()">Rasm / Ism</button>
                         </div>
 
+                        <!-- BALANSIM + QIMIRLAB TURUVCHI TANGA -->
+                        <div class="balansim-showcase">
+                            <div class="balansim-left">
+                                <span class="animated-gold-coin" aria-hidden="true">
+                                    <svg viewBox="0 0 64 64" width="44" height="44">
+                                        <defs>
+                                            <linearGradient id="coinGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" stop-color="#fff099"/>
+                                                <stop offset="45%" stop-color="#ffd400"/>
+                                                <stop offset="100%" stop-color="#c98700"/>
+                                            </linearGradient>
+                                            <linearGradient id="coinInnerGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                                                <stop offset="0%" stop-color="#b87300"/>
+                                                <stop offset="60%" stop-color="#ffe359"/>
+                                                <stop offset="100%" stop-color="#fff7c2"/>
+                                            </linearGradient>
+                                        </defs>
+                                        <circle cx="32" cy="32" r="29" fill="url(#coinGoldGrad)" stroke="#fff3b0" stroke-width="2.5"/>
+                                        <circle cx="32" cy="32" r="22" fill="url(#coinInnerGrad)" stroke="#9e6200" stroke-width="1.8"/>
+                                        <path d="M32 16L36.2 26.8L47.5 27.6L38.8 34.9L41.6 46L32 39.8L22.4 46L25.2 34.9L16.5 27.6L27.8 26.8L32 16Z" fill="#fff8d6" stroke="#a66800" stroke-width="1.2"/>
+                                    </svg>
+                                </span>
+                                <div class="balansim-text-group">
+                                    <span class="balansim-label">Balansim</span>
+                                    <span class="balansim-amount" id="profileCoinsVal">10,000</span>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="ref-stats-3">
-                            <div>
-                                <div class="ref-stat-num" id="myFollowingCount">0</div>
+                            <div onclick="openMaintenanceModal('Obuna boʻlish')" style="cursor:pointer;">
+                                <div class="ref-stat-num">0</div>
                                 <div class="ref-stat-lbl">Obuna boʻlish</div>
                             </div>
-                            <div>
-                                <div class="ref-stat-num" id="myFollowersCount">0</div>
+                            <div onclick="openMaintenanceModal('Obunachilar')" style="cursor:pointer;">
+                                <div class="ref-stat-num">0</div>
                                 <div class="ref-stat-lbl">Obunachilar</div>
                             </div>
-                            <div>
-                                <div class="ref-stat-num" id="myLikesCount">0</div>
+                            <div onclick="openMaintenanceModal('xabar yoqdi')" style="cursor:pointer;">
+                                <div class="ref-stat-num">0</div>
                                 <div class="ref-stat-lbl">xabar yoqdi</div>
                             </div>
                         </div>
 
                         <div class="ref-banner-2">
-                            <div class="ref-big-banner" onclick="openLevelInfoModal()">
+                            <div class="ref-big-banner" onclick="openMaintenanceModal('Level')">
                                 <div style="display:flex; flex-direction:column; gap:5px; min-width:0; flex:1;">
-                                    <div style="font-size:16px; font-weight:900; font-style:italic;">Level <span id="profileLevelVal">1</span></div>
+                                    <div style="font-size:16px; font-weight:900; font-style:italic;">Level 1</div>
                                     <div class="xp-track">
-                                        <div id="profileXpBarFill" class="xp-fill"></div>
+                                        <div class="xp-fill"></div>
                                     </div>
-                                    <div style="font-family:sans-serif; font-size:10.5px; font-weight:800;" id="profileXpProgressText">0 / 1000 XP</div>
+                                    <div style="font-family:sans-serif; font-size:10.5px; font-weight:800;">0 / 1000 XP</div>
                                 </div>
                                 <span class="anim-gift" style="display:inline-flex; flex-shrink:0;">
                                     <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="2.2">
@@ -1115,7 +1219,7 @@
                                 </span>
                             </div>
 
-                            <div class="ref-big-banner" onclick="openFeatureToast('SVIP boʻlimi faol')">
+                            <div class="ref-big-banner" onclick="openMaintenanceModal('SVIP')">
                                 <div style="display:flex; flex-direction:column; gap:4px;">
                                     <div style="font-size:16px; font-weight:900; font-style:italic;">SVIP</div>
                                     <div style="font-family:sans-serif; font-size:11px; font-weight:800; opacity:0.85;">Maxsus status</div>
@@ -1130,7 +1234,7 @@
                         </div>
 
                         <div class="ref-4-icons">
-                            <button type="button" class="ref-4-btn" onclick="openWalletModal()">
+                            <button type="button" class="ref-4-btn" onclick="openMaintenanceModal('Hamyon')">
                                 <span class="anim-wallet" style="display:inline-flex;">
                                     <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="2.2">
                                         <rect x="5" y="9" width="26" height="18" rx="4"/>
@@ -1140,7 +1244,7 @@
                                 <span>Hamyon</span>
                             </button>
 
-                            <button type="button" class="ref-4-btn" onclick="openFeatureToast('Aristokratiya boʻlimi')">
+                            <button type="button" class="ref-4-btn" onclick="openMaintenanceModal('Aristokratiya')">
                                 <span class="anim-profile" style="display:inline-flex;">
                                     <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="2.2">
                                         <path d="M18 5l10 5v8c0 6.5-4.2 11.2-10 13-5.8-1.8-10-6.5-10-13v-8l10-5z"/>
@@ -1150,7 +1254,7 @@
                                 <span>Aristokratiya</span>
                             </button>
 
-                            <button type="button" class="ref-4-btn" onclick="openFeatureToast('Medal boʻlimi')">
+                            <button type="button" class="ref-4-btn" onclick="openMaintenanceModal('Medal')">
                                 <span class="anim-bell" style="display:inline-flex;">
                                     <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="2.2">
                                         <circle cx="18" cy="20" r="9"/>
@@ -1160,7 +1264,7 @@
                                 <span>Medal</span>
                             </button>
 
-                            <button type="button" class="ref-4-btn" onclick="openWalletModal()">
+                            <button type="button" class="ref-4-btn" onclick="openMaintenanceModal('Doʻkon')">
                                 <span class="anim-house" style="display:inline-flex;">
                                     <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="2.2">
                                         <path d="M6 14l3-7h18l3 7v16H6V14z"/>
@@ -1172,7 +1276,7 @@
                         </div>
 
                         <div class="ref-list-rows">
-                            <button type="button" class="ref-menu-row" onclick="openWalletModal()">
+                            <button type="button" class="ref-menu-row" onclick="openMaintenanceModal('Taklif qilish orqali tangalar olish')">
                                 <span class="ref-menu-left">
                                     <span class="anim-gift" style="display:inline-flex;">
                                         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2">
@@ -1185,7 +1289,7 @@
                                 <span>›</span>
                             </button>
 
-                            <button type="button" class="ref-menu-row" onclick="openFeatureToast('Rekvizitlar ombori')">
+                            <button type="button" class="ref-menu-row" onclick="openMaintenanceModal('Rekvizitlar ombori')">
                                 <span class="ref-menu-left">
                                     <span class="anim-wallet" style="display:inline-flex;">
                                         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2">
@@ -1198,7 +1302,7 @@
                                 <span>›</span>
                             </button>
 
-                            <button type="button" class="ref-menu-row" onclick="openFeatureToast('Sevgi uyi')">
+                            <button type="button" class="ref-menu-row" onclick="openMaintenanceModal('Sevgi uyi')">
                                 <span class="ref-menu-left">
                                     <span class="anim-house" style="display:inline-flex;">
                                         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2">
@@ -1210,7 +1314,7 @@
                                 <span>›</span>
                             </button>
 
-                            <button type="button" class="ref-menu-row" onclick="openLevelInfoModal()">
+                            <button type="button" class="ref-menu-row" onclick="openMaintenanceModal('CP Darajasi')">
                                 <span class="ref-menu-left">
                                     <span class="anim-profile" style="display:inline-flex;">
                                         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2">
@@ -1223,7 +1327,7 @@
                                 <span>›</span>
                             </button>
 
-                            <button type="button" class="ref-menu-row" onclick="openFeatureToast('Oila boʻlimi')">
+                            <button type="button" class="ref-menu-row" onclick="openMaintenanceModal('Oila')">
                                 <span class="ref-menu-left">
                                     <span class="anim-chat" style="display:inline-flex;">
                                         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2">
@@ -1235,7 +1339,7 @@
                                 <span>›</span>
                             </button>
 
-                            <button type="button" class="ref-menu-row" onclick="openFeatureToast('Kolleksiya Zali')">
+                            <button type="button" class="ref-menu-row" onclick="openMaintenanceModal('Kolleksiya Zali')">
                                 <span class="ref-menu-left">
                                     <span class="anim-bell" style="display:inline-flex;">
                                         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2">
@@ -1392,14 +1496,9 @@
                 </div>
                 <div id="targetUserDisplayName" style="font-size:18px; font-weight:900;">User</div>
                 <div class="ref-badge-pill" id="targetUserNick">@username1</div>
-                <div class="soft-copy">ID: <span id="targetUserSixId">100001</span> • Level <span id="targetUserLvl">1</span></div>
+                <div class="soft-copy">ID: <span id="targetUserSixId">100001</span></div>
             </div>
-            <div class="row-2">
-                <button type="button" class="btn-white" onclick="toggleFollowTargetUser()">
-                    <span id="followBtnLabel">Obuna boʻlish</span>
-                </button>
-                <button type="button" class="btn-outline-white" onclick="openDmFromTargetUser()">Xabar yozish</button>
-            </div>
+            <button type="button" class="btn-white" onclick="openDmFromTargetUser()">Xabar yozish</button>
             <button type="button" class="btn-outline-white" onclick="closeTargetUserModal()">Yopish</button>
         </div>
     </div>
@@ -1408,46 +1507,41 @@
     <div id="giftBoxModal" class="modal-overlay">
         <div class="modal-sheet">
             <div class="modal-title">Padarka qutisi</div>
-            <div class="soft-copy">Har biri 2000 • Bosganda ovoz chiqadi va Levelga XP qoʻshiladi</div>
+            <div class="soft-copy">Har biri 2,000 • Bosganda ovoz chiqadi</div>
             <div id="giftsGridContainer" class="gifts-grid"></div>
             <div id="giftBoxFeedback" class="soft-copy"></div>
             <button type="button" class="btn-outline-white" onclick="closeGiftBoxModal()">Yopish</button>
         </div>
     </div>
 
-    <!-- MODAL 6: HAMYON -->
-    <div id="walletModal" class="modal-overlay">
+    <!-- MODAL 6: PROFILM BO'LIMLARI UCHUN PREMIUM SVG XABAR -->
+    <div id="maintenanceModal" class="modal-overlay">
         <div class="modal-sheet">
-            <div class="modal-title">Hamyon</div>
-            <div class="soft-copy">Balans: <span id="walletCoinsDisplay">0</span> • Har bir paket 12 000 soʻm</div>
-
-            <div class="gifts-grid">
-                <button type="button" class="gift-item-btn" onclick="buyWalletPack('3k')"><b>3k</b><span>12 000 soʻm</span></button>
-                <button type="button" class="gift-item-btn" onclick="buyWalletPack('5k')"><b>5k</b><span>12 000 soʻm</span></button>
-                <button type="button" class="gift-item-btn" onclick="buyWalletPack('6k')"><b>6k</b><span>12 000 soʻm</span></button>
-                <button type="button" class="gift-item-btn" onclick="buyWalletPack('8k')"><b>8k</b><span>12 000 soʻm</span></button>
-                <button type="button" class="gift-item-btn" onclick="buyWalletPack('11k')"><b>11k</b><span>12 000 soʻm</span></button>
-                <button type="button" class="gift-item-btn" onclick="buyWalletPack('23k')"><b>23k</b><span>12 000 soʻm</span></button>
+            <div class="premium-status-box">
+                <span class="premium-badge-anim" aria-hidden="true">
+                    <svg viewBox="0 0 72 72" width="68" height="68">
+                        <defs>
+                            <linearGradient id="premGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#fff099"/>
+                                <stop offset="50%" stop-color="#ffd400"/>
+                                <stop offset="100%" stop-color="#c47f00"/>
+                            </linearGradient>
+                            <linearGradient id="premCrown" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#ffffff"/>
+                                <stop offset="100%" stop-color="#ffe066"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M36 6L60 17V36C60 51.5 49.8 62.5 36 67C22.2 62.5 12 51.5 12 36V17L36 6Z" fill="rgba(255,212,0,0.16)" stroke="url(#premGold)" stroke-width="3"/>
+                        <path d="M21 43L18 27L29 34L36 22L43 34L54 27L51 43H21Z" fill="url(#premCrown)" stroke="#ffd400" stroke-width="2" stroke-linejoin="round"/>
+                        <circle cx="36" cy="49" r="3" fill="#ffd400"/>
+                    </svg>
+                </span>
+                <div id="maintenanceSectionName" class="modal-title" style="color:#ffd400;">Boʻlim</div>
+                <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; font-size:15px; font-weight:900; line-height:1.45; color:#ffffff;">
+                    Hozir ishlamayabdi.<br>24 soatdan keyin bot toʻliq ishga tushadi.
+                </div>
             </div>
-
-            <div id="monetaSecretPanel" class="white-card" style="display:none;">
-                <div style="font-size:14px; font-weight:900;">Tekin moneta</div>
-                <input type="text" id="giftTargetSixIdInput" class="txt-input" maxlength="6" placeholder="Odamning 6 xonali IDsi">
-                <input type="number" id="giftCoinsAmountInput" class="txt-input" min="1" placeholder="Moneta miqdori">
-                <button type="button" class="btn-white" onclick="sendFreeMonetaById()">Hisobga tashlash</button>
-                <div id="freeMonetaStatus" class="soft-copy" style="font-size:12px;"></div>
-            </div>
-
-            <button type="button" class="btn-outline-white" onclick="closeWalletModal()">Yopish</button>
-        </div>
-    </div>
-
-    <!-- MODAL 7: LEVEL / BO'LIM MA'LUMOTI -->
-    <div id="infoToastModal" class="modal-overlay">
-        <div class="modal-sheet">
-            <div id="infoToastTitle" class="modal-title">Maʻlumot</div>
-            <div id="infoToastBody" class="soft-copy"></div>
-            <button type="button" class="btn-white" onclick="closeFeatureToast()">Tushunarli</button>
+            <button type="button" class="btn-white" onclick="closeMaintenanceModal()">Yopish</button>
         </div>
     </div>
 
@@ -1460,12 +1554,11 @@
 
         const FIREBASE_DB = "https://xbox-tanishuv-default-rtdb.firebaseio.com";
         const STORAGE_KEYS = {
-            profile: "fungo_uz_profile_v5",
-            rooms: "fungo_uz_rooms_v5",
-            users: "fungo_uz_users_v5",
-            dms: "fungo_uz_dms_v5",
-            following: "fungo_uz_following_v5",
-            uid: "fungo_uz_uid_v5"
+            profile: "fungo_uz_profile_v6",
+            rooms: "fungo_uz_rooms_v6",
+            users: "fungo_uz_users_v6",
+            dms: "fungo_uz_dms_v6",
+            uid: "fungo_uz_uid_v6"
         };
 
         const ENGLISH_HANDLES = [
@@ -1474,17 +1567,17 @@
         ];
 
         const GIFT_ITEMS = [
-            { id: "sparkler", label: "🎇", cost: 2000, xp: 2000, freq: 660 },
-            { id: "fireworks", label: "🎆", cost: 2000, xp: 2000, freq: 780 },
-            { id: "moon_ceremony", label: "🎑", cost: 2000, xp: 2000, freq: 520 },
-            { id: "city_dusk", label: "🌆", cost: 2000, xp: 2000, freq: 590 },
-            { id: "night_stars", label: "🌃", cost: 2000, xp: 2000, freq: 720 },
-            { id: "bridge_night", label: "🌉", cost: 2000, xp: 2000, freq: 610 },
-            { id: "sunset", label: "🌇", cost: 2000, xp: 2000, freq: 540 },
-            { id: "sunrise", label: "🌄", cost: 2000, xp: 2000, freq: 840 },
-            { id: "foggy", label: "🌁", cost: 2000, xp: 2000, freq: 490 },
-            { id: "milky_way", label: "🌌", cost: 2000, xp: 2000, freq: 880 },
-            { id: "shooting_star", label: "🌠", cost: 2000, xp: 2000, freq: 960 }
+            { id: "sparkler", label: "🎇", cost: 2000, freq: 660 },
+            { id: "fireworks", label: "🎆", cost: 2000, freq: 780 },
+            { id: "moon_ceremony", label: "🎑", cost: 2000, freq: 520 },
+            { id: "city_dusk", label: "🌆", cost: 2000, freq: 590 },
+            { id: "night_stars", label: "🌃", cost: 2000, freq: 720 },
+            { id: "bridge_night", label: "🌉", cost: 2000, freq: 610 },
+            { id: "sunset", label: "🌇", cost: 2000, freq: 540 },
+            { id: "sunrise", label: "🌄", cost: 2000, freq: 840 },
+            { id: "foggy", label: "🌁", cost: 2000, freq: 490 },
+            { id: "milky_way", label: "🌌", cost: 2000, freq: 880 },
+            { id: "shooting_star", label: "🌠", cost: 2000, freq: 960 }
         ];
 
         const DEFAULT_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(`
@@ -1494,6 +1587,10 @@
                 <path d="M22 104C28 80 42 70 60 70C78 70 92 80 98 104" fill="#ffffff"/>
             </svg>
         `);
+
+        function formatCommaNumber(num) {
+            return Number(num || 0).toLocaleString("en-US");
+        }
 
         function escHtml(str) {
             return String(str || "")
@@ -1514,29 +1611,6 @@
             const str = String(seedStr || Date.now());
             for (let i = 0; i < str.length; i++) hash = (hash * 31 + str.charCodeAt(i)) % 900000;
             return String(100000 + ((hash + Math.floor(Math.random() * 899999)) % 900000));
-        }
-
-        function xpRequiredForLevel(targetLevel) {
-            if (targetLevel <= 1) return 0;
-            if (targetLevel === 2) return 1000;
-            if (targetLevel === 3) return 1500;
-            if (targetLevel === 4) return 2400;
-            return Math.round(2400 * Math.pow(1.22, targetLevel - 4));
-        }
-
-        function computeLevelFromXp(totalXp) {
-            let xpPool = Math.max(0, Number(totalXp || 0));
-            let lvl = 1;
-            while (lvl < 160) {
-                const need = xpRequiredForLevel(lvl + 1);
-                if (xpPool >= need) {
-                    xpPool -= need;
-                    lvl++;
-                } else {
-                    return { level: lvl, currentInLevel: xpPool, neededForNext: need };
-                }
-            }
-            return { level: 160, currentInLevel: xpPool, neededForNext: xpPool || 1 };
         }
 
         function playChimeSound(freq = 720) {
@@ -1590,8 +1664,7 @@
                 username: defaultNick,
                 photo: (u && u.photo_url) ? u.photo_url : "",
                 bio: "",
-                xp: 0,
-                coins: 6000,
+                coins: 10000,
                 updatedAt: Date.now()
             };
         }
@@ -1602,8 +1675,7 @@
                 ...buildDefaultProfile(),
                 ...savedProfile,
                 sixId: savedProfile.sixId || generateSixDigitId(savedProfile.id || "1"),
-                xp: Number(savedProfile.xp || 0),
-                coins: Number(savedProfile.coins !== undefined ? savedProfile.coins : 6000)
+                coins: Number(savedProfile.coins !== undefined ? savedProfile.coins : 10000)
             }
             : buildDefaultProfile();
         saveJson(STORAGE_KEYS.profile, meProfile);
@@ -1611,7 +1683,6 @@
         let allUsers = { ...loadJson(STORAGE_KEYS.users, {}), [meProfile.id]: meProfile };
         let allRooms = loadJson(STORAGE_KEYS.rooms, {});
         let allDms = loadJson(STORAGE_KEYS.dms, {});
-        let followingMap = loadJson(STORAGE_KEYS.following, {});
 
         let pendingPhotoData = meProfile.photo || "";
         let currentStageRoomId = null;
@@ -1703,56 +1774,6 @@
             if (st) st.textContent = "";
         }
 
-        async function sendDmVoiceNote() {
-            if (!activeDmPeerId) return;
-            const myLvlInfo = computeLevelFromXp(meProfile.xp);
-            if (myLvlInfo.level < 10) {
-                openFeatureToast("Ovozli xabar yuborish uchun Level 10 boʻlishi kerak! Hozirgi level: " + myLvlInfo.level);
-                return;
-            }
-            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === "undefined") return;
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                const rec = new MediaRecorder(stream);
-                const chunks = [];
-                rec.ondataavailable = (ev) => { if (ev.data && ev.data.size > 0) chunks.push(ev.data); };
-                rec.onstop = () => {
-                    stream.getTracks().forEach(t => t.stop());
-                    const blob = new Blob(chunks, { type: rec.mimeType || "audio/webm" });
-                    const reader = new FileReader();
-                    reader.onloadend = async () => {
-                        const b64 = String(reader.result || "");
-                        if (!b64 || b64.length > 950000) return;
-                        const k = dmThreadKey(meProfile.id, activeDmPeerId);
-                        const mid = "dmv_" + Date.now() + "_" + Math.random().toString(36).slice(2, 5);
-                        const msgObj = {
-                            id: mid,
-                            senderId: String(meProfile.id),
-                            receiverId: String(activeDmPeerId),
-                            type: "audio",
-                            audio: b64,
-                            text: "Ovozli xabar",
-                            ts: Date.now()
-                        };
-                        if (!allDms[k]) allDms[k] = {};
-                        allDms[k][mid] = msgObj;
-                        saveJson(STORAGE_KEYS.dms, allDms);
-                        renderTgDmStream();
-                        try {
-                            await fetch(`${FIREBASE_DB}/fungo_dms/${encodeURIComponent(k)}/${encodeURIComponent(mid)}.json`, {
-                                method: "PUT",
-                                headers: { "Content-Type": "application/json" },
-                                body: JSON.stringify(msgObj)
-                            });
-                        } catch (e) {}
-                    };
-                    reader.readAsDataURL(blob);
-                };
-                rec.start();
-                setTimeout(() => { if (rec.state !== "inactive") rec.stop(); }, 2500);
-            } catch (e) {}
-        }
-
         function showEntryBanner(name, photo) {
             const banner = document.getElementById("entryBanner");
             const img = document.getElementById("entryBannerAvatar");
@@ -1799,31 +1820,17 @@
                     </svg>
                 </span>
                 <span style="font-size:15px; font-weight:900;">${item.label}</span>
-                <span style="font-size:11px; font-weight:900;">${item.cost}</span>
+                <span style="font-size:11px; font-weight:900;">${formatCommaNumber(item.cost)}</span>
             `;
         }
 
-        function copyMySixId() {
-            const val = String(meProfile.sixId || "100001");
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(val).catch(() => {});
-            }
-            openFeatureToast(`ID: ${val}`);
+        function openMaintenanceModal(sectionTitle) {
+            document.getElementById("maintenanceSectionName").textContent = sectionTitle || "Profilm";
+            document.getElementById("maintenanceModal").classList.add("open");
         }
 
-        function openLevelInfoModal() {
-            const lvl = computeLevelFromXp(meProfile.xp);
-            openFeatureToast(`Level ${lvl.level} / 160 (${lvl.currentInLevel} / ${lvl.neededForNext} XP). Xonada padarka urganda XP koʻpayadi.`);
-        }
-
-        function openFeatureToast(msg) {
-            document.getElementById("infoToastTitle").textContent = "FUNGO.UZ";
-            document.getElementById("infoToastBody").textContent = msg;
-            document.getElementById("infoToastModal").classList.add("open");
-        }
-
-        function closeFeatureToast() {
-            document.getElementById("infoToastModal").classList.remove("open");
+        function closeMaintenanceModal() {
+            document.getElementById("maintenanceModal").classList.remove("open");
         }
 
         function renderProfile() {
@@ -1835,18 +1842,7 @@
             document.getElementById("profileUsernameText").textContent = meProfile.username || "@username1";
             document.getElementById("profileSixIdText").textContent = meProfile.sixId || "100001";
             document.getElementById("profileBioText").textContent = meProfile.bio ? meProfile.bio : "Tavsif hali yozilmagan.";
-            document.getElementById("profileCoinsVal").textContent = String(Number(meProfile.coins || 0));
-
-            const followingCnt = Object.values(followingMap || {}).filter(Boolean).length;
-            document.getElementById("myFollowingCount").textContent = String(followingCnt);
-            document.getElementById("myFollowersCount").textContent = String(followingCnt);
-            document.getElementById("myLikesCount").textContent = String(Math.floor(Number(meProfile.xp || 0) / 1000));
-
-            const lvl = computeLevelFromXp(meProfile.xp);
-            document.getElementById("profileLevelVal").textContent = String(lvl.level);
-            document.getElementById("profileXpProgressText").textContent = `${lvl.currentInLevel} / ${lvl.neededForNext} XP`;
-            const pct = Math.min(100, Math.max(0, Math.round((lvl.currentInLevel / (lvl.neededForNext || 1)) * 100)));
-            document.getElementById("profileXpBarFill").style.width = pct + "%";
+            document.getElementById("profileCoinsVal").textContent = formatCommaNumber(meProfile.coins !== undefined ? meProfile.coins : 10000);
         }
 
         function openProfileEditModal() {
@@ -1923,58 +1919,6 @@
             await syncRemote();
         }
 
-        function openWalletModal() {
-            document.getElementById("walletCoinsDisplay").textContent = String(Number(meProfile.coins || 0));
-            const isMonetaOwner = String(meProfile.username || "").toLowerCase() === "@fungo_moneta";
-            document.getElementById("monetaSecretPanel").style.display = isMonetaOwner ? "flex" : "none";
-            document.getElementById("freeMonetaStatus").textContent = "";
-            document.getElementById("walletModal").classList.add("open");
-        }
-
-        function closeWalletModal() {
-            document.getElementById("walletModal").classList.remove("open");
-        }
-
-        function buyWalletPack(packLabel) {
-            const text = encodeURIComponent(`Salom @fungo_moneta, ${packLabel} paket (12 000 so'm) olmoqchiman. ID: ${meProfile.sixId}`);
-            const url = `https://t.me/fungo_moneta?text=${text}`;
-            if (tg && tg.openTelegramLink) tg.openTelegramLink(url);
-            else window.open(url, "_blank");
-        }
-
-        async function sendFreeMonetaById() {
-            if (String(meProfile.username || "").toLowerCase() !== "@fungo_moneta") return;
-            const targetSix = document.getElementById("giftTargetSixIdInput").value.trim();
-            const amount = Number(document.getElementById("giftCoinsAmountInput").value || 0);
-            const st = document.getElementById("freeMonetaStatus");
-
-            if (!targetSix || !amount || amount <= 0) {
-                st.textContent = "6 xonali ID va toʻgʻri miqdorni kiriting.";
-                return;
-            }
-            const targetUser = Object.values(allUsers || {}).find(u => u && String(u.sixId) === targetSix);
-            if (!targetUser) {
-                st.textContent = "Bu 6 xonali ID bilan foydalanuvchi topilmadi.";
-                return;
-            }
-            targetUser.coins = Number(targetUser.coins || 0) + amount;
-            if (String(targetUser.id) === String(meProfile.id)) meProfile.coins = targetUser.coins;
-            allUsers[targetUser.id] = targetUser;
-            saveJson(STORAGE_KEYS.users, allUsers);
-            saveJson(STORAGE_KEYS.profile, meProfile);
-            renderProfile();
-            document.getElementById("walletCoinsDisplay").textContent = String(Number(meProfile.coins || 0));
-            st.textContent = `${targetUser.username} (ID: ${targetSix}) hisobiga ${amount} moneta tashlandi!`;
-
-            try {
-                await fetch(`${FIREBASE_DB}/fungo_users/${encodeURIComponent(targetUser.id)}.json`, {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(targetUser)
-                });
-            } catch (e) {}
-        }
-
         function openGiftBoxModal() {
             if (!currentStageRoomId) return;
             const grid = document.getElementById("giftsGridContainer");
@@ -1999,11 +1943,10 @@
             if (!currentStageRoomId) return;
             const fb = document.getElementById("giftBoxFeedback");
             if (Number(meProfile.coins || 0) < item.cost) {
-                fb.textContent = "Monetalar yetarli emas (2000 kerak).";
+                fb.textContent = "Balansda yetarli mablagʻ yoʻq.";
                 return;
             }
             meProfile.coins = Number(meProfile.coins || 0) - item.cost;
-            meProfile.xp = Number(meProfile.xp || 0) + item.xp;
             allUsers[meProfile.id] = meProfile;
             saveJson(STORAGE_KEYS.profile, meProfile);
             saveJson(STORAGE_KEYS.users, allUsers);
@@ -2016,24 +1959,17 @@
                 senderId: String(meProfile.id),
                 senderName: meProfile.displayName || meProfile.username,
                 label: item.label,
-                xp: item.xp,
                 freq: item.freq,
                 ts: Date.now()
             };
             seenGiftSoundIds.add(gid);
-            const lvlNow = computeLevelFromXp(meProfile.xp);
-            fb.textContent = `${item.label} padarka urildi! +${item.xp} XP (Level ${lvlNow.level})`;
+            fb.textContent = `${item.label} yuborildi! Balansim: ${formatCommaNumber(meProfile.coins)}`;
 
             try {
                 await fetch(`${FIREBASE_DB}/fungo_room_gifts/${encodeURIComponent(currentStageRoomId)}.json`, {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(giftEvt)
-                });
-                await fetch(`${FIREBASE_DB}/fungo_users/${encodeURIComponent(meProfile.id)}.json`, {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(meProfile)
                 });
             } catch (e) {}
         }
@@ -2476,8 +2412,7 @@
                 sixId: generateSixDigitId(uid),
                 displayName: "Foydalanuvchi",
                 username: "@username1",
-                photo: DEFAULT_AVATAR,
-                xp: 0
+                photo: DEFAULT_AVATAR
             };
             targetModalUserId = String(u.id);
             const img = document.getElementById("targetUserAvatar");
@@ -2486,22 +2421,12 @@
             document.getElementById("targetUserDisplayName").textContent = u.displayName || "Foydalanuvchi";
             document.getElementById("targetUserNick").textContent = u.username || "@username1";
             document.getElementById("targetUserSixId").textContent = u.sixId || "100001";
-            document.getElementById("targetUserLvl").textContent = String(computeLevelFromXp(u.xp).level);
-            document.getElementById("followBtnLabel").textContent = followingMap[targetModalUserId] ? "Obuna boʻlingan" : "Obuna boʻlish";
             document.getElementById("targetUserModal").classList.add("open");
         }
 
         function closeTargetUserModal() {
             targetModalUserId = null;
             document.getElementById("targetUserModal").classList.remove("open");
-        }
-
-        function toggleFollowTargetUser() {
-            if (!targetModalUserId) return;
-            followingMap[targetModalUserId] = !Boolean(followingMap[targetModalUserId]);
-            saveJson(STORAGE_KEYS.following, followingMap);
-            document.getElementById("followBtnLabel").textContent = followingMap[targetModalUserId] ? "Obuna boʻlingan" : "Obuna boʻlish";
-            renderProfile();
         }
 
         function openDmFromTargetUser() {
@@ -2603,11 +2528,7 @@
                 const mine = String(m.senderId) === String(meProfile.id);
                 const div = document.createElement("div");
                 div.className = "tg-bubble " + (mine ? "mine" : "theirs");
-                if (m.type === "audio" && m.audio) {
-                    div.innerHTML = `<div>Ovozli xabar</div><audio controls src="${m.audio}" style="width:180px; height:30px; margin-top:4px;"></audio>`;
-                } else {
-                    div.textContent = m.text || "";
-                }
+                div.textContent = m.text || "";
                 stream.appendChild(div);
             });
             stream.scrollTop = stream.scrollHeight;
@@ -2662,12 +2583,7 @@
                     const ru = await uRes.json();
                     if (ru && typeof ru === "object") {
                         allUsers = { ...allUsers, ...ru };
-                        if (allUsers[meProfile.id]) {
-                            meProfile.coins = Number(allUsers[meProfile.id].coins !== undefined ? allUsers[meProfile.id].coins : meProfile.coins);
-                        }
                         saveJson(STORAGE_KEYS.users, allUsers);
-                        saveJson(STORAGE_KEYS.profile, meProfile);
-                        renderProfile();
                     }
                 }
 
@@ -2715,11 +2631,6 @@
                         if (ge && ge.id && !seenGiftSoundIds.has(ge.id) && (Date.now() - (ge.ts || 0)) < 7000) {
                             seenGiftSoundIds.add(ge.id);
                             playChimeSound(ge.freq || 740);
-                            if (String(ge.senderId) !== String(meProfile.id)) {
-                                meProfile.xp = Number(meProfile.xp || 0) + Number(ge.xp || 2000);
-                                saveJson(STORAGE_KEYS.profile, meProfile);
-                                renderProfile();
-                            }
                         }
                     }
 
