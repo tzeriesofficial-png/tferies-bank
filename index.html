@@ -16,18 +16,18 @@
         }
 
         :root {
-            --bg-yellow: #ffd400;
+            --bg-black: #000000;
             --ink-white: #ffffff;
-            --ink-black: #000000;
-            --glass-white: rgba(255, 255, 255, 0.24);
-            --glass-dark: rgba(0, 0, 0, 0.24);
-            --line-white: rgba(255, 255, 255, 0.55);
+            --accent-gold: #ffd400;
+            --glass-white: rgba(255, 255, 255, 0.08);
+            --glass-soft: rgba(255, 255, 255, 0.14);
+            --line-white: rgba(255, 255, 255, 0.35);
         }
 
         html, body {
             width: 100%;
             height: 100%;
-            background-color: var(--bg-yellow);
+            background-color: var(--bg-black);
             color: var(--ink-white);
             overflow: hidden;
             position: relative;
@@ -38,7 +38,7 @@
             inset: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--bg-yellow);
+            background-color: var(--bg-black);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -61,7 +61,6 @@
             color: var(--ink-white);
             text-align: center;
             padding: 0 14px;
-            text-shadow: 0 4px 0 rgba(0, 0, 0, 0.18);
             animation: splashPop 1.2s ease-out;
         }
 
@@ -73,7 +72,7 @@
 
         #mainApp {
             justify-content: space-between;
-            background-color: var(--bg-yellow);
+            background-color: var(--bg-black);
         }
 
         .content-wrap {
@@ -105,21 +104,21 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 8px;
             padding: 4px 2px 10px;
-            border-bottom: 2px solid var(--line-white);
+            border-bottom: 1.5px solid var(--line-white);
             flex-shrink: 0;
         }
 
         .section-heading {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 900;
             color: var(--ink-white);
-            text-shadow: 0 2px 0 rgba(0, 0, 0, 0.16);
         }
 
         .home-trigger-btn {
-            background: var(--glass-white);
-            border: 2px solid var(--ink-white);
+            background: var(--glass-soft);
+            border: 1.8px solid var(--ink-white);
             border-radius: 16px;
             padding: 6px 12px;
             display: inline-flex;
@@ -129,7 +128,6 @@
             font-size: 12px;
             font-weight: 900;
             cursor: pointer;
-            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
         }
 
         .scroll-area {
@@ -145,7 +143,7 @@
         .white-card {
             width: 100%;
             background: var(--glass-white);
-            border: 2px solid var(--ink-white);
+            border: 1.8px solid var(--ink-white);
             border-radius: 20px;
             padding: 14px;
             display: flex;
@@ -157,8 +155,8 @@
 
         .btn-white {
             background: var(--ink-white);
-            color: var(--ink-black);
-            border: 2px solid var(--ink-black);
+            color: var(--bg-black);
+            border: 2px solid var(--ink-white);
             border-radius: 14px;
             padding: 9px 13px;
             font-size: 12px;
@@ -167,7 +165,7 @@
         }
 
         .btn-outline-white {
-            background: var(--glass-dark);
+            background: transparent;
             color: var(--ink-white);
             border: 1.8px solid var(--ink-white);
             border-radius: 14px;
@@ -182,26 +180,24 @@
             font-size: 13px;
             font-weight: 800;
             color: var(--ink-white);
-            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.16);
         }
 
-        /* SUZIB O'TUVCHI EFIRGA KIRISH BANNERI */
+        /* SUZIB O'TUVCHI BANNER */
         .entry-marquee-banner {
             position: fixed;
             top: 14px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 95;
-            background: var(--ink-black);
+            background: var(--bg-black);
             color: var(--ink-white);
-            border: 2.5px solid var(--ink-white);
+            border: 2px solid var(--ink-white);
             border-radius: 999px;
             padding: 7px 14px;
             display: none;
             align-items: center;
             gap: 9px;
             max-width: 92vw;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
         }
 
         .entry-marquee-banner.active {
@@ -221,7 +217,7 @@
             height: 30px;
             border-radius: 50%;
             object-fit: cover;
-            border: 1.5px solid var(--bg-yellow);
+            border: 1.5px solid var(--ink-white);
             flex-shrink: 0;
         }
 
@@ -229,16 +225,16 @@
         .profile-hero {
             align-items: center;
             text-align: center;
-            padding: 18px 14px;
+            padding: 16px 14px;
         }
 
         .avatar-frame {
-            width: 96px;
-            height: 96px;
+            width: 92px;
+            height: 92px;
             border-radius: 50%;
-            border: 3px solid var(--ink-white);
+            border: 2.5px solid var(--ink-white);
             overflow: hidden;
-            background: var(--glass-dark);
+            background: var(--glass-white);
             flex-shrink: 0;
         }
 
@@ -250,10 +246,9 @@
         }
 
         .display-name-line {
-            font-size: 22px;
+            font-size: 21px;
             font-weight: 900;
             color: var(--ink-white);
-            text-shadow: 0 2px 0 rgba(0, 0, 0, 0.18);
         }
 
         .username-badge-row {
@@ -262,8 +257,7 @@
             justify-content: center;
             gap: 6px;
             background: var(--ink-white);
-            color: var(--ink-black);
-            border: 2px solid var(--ink-black);
+            color: var(--bg-black);
             border-radius: 999px;
             padding: 5px 13px;
             font-size: 13px;
@@ -274,14 +268,42 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: var(--glass-dark);
+            background: var(--glass-soft);
             color: var(--ink-white);
-            border: 1.8px solid var(--ink-white);
+            border: 1.5px solid var(--ink-white);
             border-radius: 999px;
             padding: 5px 14px;
             font-size: 13px;
             font-weight: 900;
             letter-spacing: 1px;
+        }
+
+        .level-box {
+            width: 100%;
+            background: var(--glass-soft);
+            border: 1.8px solid var(--ink-white);
+            border-radius: 16px;
+            padding: 11px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            text-align: left;
+        }
+
+        .xp-track {
+            width: 100%;
+            height: 9px;
+            background: rgba(255, 255, 255, 0.16);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .xp-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--ink-white);
+            border-radius: 999px;
+            transition: width 0.3s ease;
         }
 
         .black-check-svg {
@@ -305,7 +327,7 @@
         .room-list-card {
             width: 100%;
             background: var(--glass-white);
-            border: 2px solid var(--ink-white);
+            border: 1.8px solid var(--ink-white);
             border-radius: 20px;
             padding: 12px;
             display: flex;
@@ -318,24 +340,35 @@
         }
 
         .room-cover-thumb {
-            width: 56px;
-            height: 56px;
+            width: 54px;
+            height: 54px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2.5px solid var(--ink-white);
-            background: var(--glass-dark);
+            border: 2px solid var(--ink-white);
             flex-shrink: 0;
         }
 
         .live-tag {
             background: var(--ink-white);
-            color: var(--ink-black);
-            border: 1.5px solid var(--ink-black);
+            color: var(--bg-black);
             border-radius: 999px;
             padding: 4px 10px;
             font-size: 11px;
             font-weight: 900;
             flex-shrink: 0;
+        }
+
+        .people-count-badge {
+            background: var(--glass-soft);
+            border: 1.5px solid var(--ink-white);
+            border-radius: 999px;
+            padding: 4px 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            font-weight: 900;
+            color: var(--ink-white);
         }
 
         /* XONA ICHKI SAHNASI */
@@ -363,8 +396,8 @@
 
         .stage-board {
             width: 100%;
-            background: var(--glass-dark);
-            border: 2px solid var(--ink-white);
+            background: var(--glass-white);
+            border: 1.8px solid var(--ink-white);
             border-radius: 22px;
             padding: 14px 10px;
             display: flex;
@@ -403,11 +436,10 @@
             height: 54px;
             border-radius: 50%;
             border: 2px solid var(--ink-white);
-            background: rgba(0, 0, 0, 0.28);
+            background: rgba(255, 255, 255, 0.06);
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
             overflow: hidden;
         }
 
@@ -415,10 +447,6 @@
             width: 64px;
             height: 64px;
             border-width: 2.5px;
-        }
-
-        .seat-ring.locked-ring {
-            background: rgba(0, 0, 0, 0.55);
         }
 
         .seat-ring img {
@@ -436,20 +464,20 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
         }
 
-        .room-controls-row {
+        .room-controls-3 {
             width: 100%;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 6px;
         }
 
+        /* XONA CHATIDA 5 TA XABAR KO'RINADIGAN VA KATTAROQ SHRIBT */
         .room-chat-box {
             width: 100%;
             background: var(--glass-white);
-            border: 2px solid var(--ink-white);
+            border: 1.8px solid var(--ink-white);
             border-radius: 18px;
             padding: 10px;
             display: flex;
@@ -458,26 +486,69 @@
             text-align: left;
         }
 
-        .room-msgs {
-            max-height: 115px;
-            overflow-y: auto;
+        .room-msgs-five {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 6px;
         }
 
-        .room-msg-line {
-            background: var(--ink-white);
-            color: var(--ink-black);
-            border-radius: 11px;
-            padding: 6px 9px;
+        .room-msg-big {
+            background: var(--glass-soft);
+            border: 1.2px solid rgba(255, 255, 255, 0.45);
+            color: var(--ink-white);
+            border-radius: 12px;
+            padding: 8px 11px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            font-size: 12px;
-            font-weight: 700;
+            font-size: 15.5px;
+            font-weight: 800;
+            line-height: 1.35;
             word-break: break-word;
+            animation: msgReveal 0.35s ease;
         }
 
-        /* XABARLAR BO'LIMIDA TELEGRAM LICHKA USLUBIDAGI ICHKI CHAT */
+        @keyframes msgReveal {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* KICHRAYTIRILGAN XONA PANELI (BOSHQA BO'LIMLARDA HAM TURADI) */
+        .mini-room-bar {
+            display: none;
+            width: 100%;
+            background: var(--glass-soft);
+            border-top: 1.5px solid var(--ink-white);
+            padding: 7px 12px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .mini-room-bar.active {
+            display: flex;
+        }
+
+        /* PADARKA QUTISI (11 TA SVG PADARKA) */
+        .gifts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .gift-item-btn {
+            background: var(--glass-white);
+            border: 1.8px solid var(--ink-white);
+            border-radius: 16px;
+            padding: 10px 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--ink-white);
+            cursor: pointer;
+        }
+
+        /* TELEGRAM LICHKA */
         .dm-list-pane {
             display: flex;
             flex-direction: column;
@@ -490,8 +561,8 @@
             flex-direction: column;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.16);
-            border: 2px solid var(--ink-white);
+            background: var(--glass-white);
+            border: 1.8px solid var(--ink-white);
             border-radius: 20px;
             overflow: hidden;
         }
@@ -501,13 +572,13 @@
         }
 
         .tg-dm-header {
-            background: var(--ink-black);
+            background: var(--bg-black);
             color: var(--ink-white);
             padding: 9px 11px;
             display: flex;
             align-items: center;
             gap: 9px;
-            border-bottom: 2px solid var(--ink-white);
+            border-bottom: 1.5px solid var(--ink-white);
             flex-shrink: 0;
         }
 
@@ -516,7 +587,7 @@
             height: 36px;
             border-radius: 50%;
             object-fit: cover;
-            border: 1.5px solid var(--bg-yellow);
+            border: 1.5px solid var(--ink-white);
             flex-shrink: 0;
         }
 
@@ -530,7 +601,7 @@
         }
 
         .tg-bubble {
-            max-width: 80%;
+            max-width: 82%;
             padding: 9px 13px;
             border-radius: 16px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -543,23 +614,23 @@
         .tg-bubble.mine {
             align-self: flex-end;
             background: var(--ink-white);
-            color: var(--ink-black);
-            border: 1.5px solid var(--ink-black);
+            color: var(--bg-black);
             border-bottom-right-radius: 4px;
         }
 
         .tg-bubble.theirs {
             align-self: flex-start;
-            background: var(--ink-black);
+            background: var(--glass-soft);
             color: var(--ink-white);
-            border: 1.5px solid var(--ink-white);
+            border: 1.2px solid var(--ink-white);
             border-bottom-left-radius: 4px;
         }
 
         .tg-dm-bar {
-            background: rgba(0, 0, 0, 0.25);
+            background: var(--bg-black);
             padding: 8px;
             display: flex;
+            align-items: center;
             gap: 6px;
             border-top: 1.5px solid var(--line-white);
             flex-shrink: 0;
@@ -569,7 +640,7 @@
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.58);
+            background: rgba(0, 0, 0, 0.78);
             display: none;
             align-items: center;
             justify-content: center;
@@ -583,11 +654,11 @@
 
         .modal-sheet {
             width: 100%;
-            max-width: 395px;
+            max-width: 400px;
             max-height: 88vh;
             overflow-y: auto;
-            background: var(--bg-yellow);
-            border: 2.5px solid var(--ink-white);
+            background: var(--bg-black);
+            border: 2px solid var(--ink-white);
             border-radius: 22px;
             padding: 18px 15px;
             display: flex;
@@ -600,7 +671,6 @@
         .modal-title {
             font-size: 19px;
             font-weight: 900;
-            text-shadow: 0 2px 0 rgba(0, 0, 0, 0.18);
         }
 
         .field-group {
@@ -620,8 +690,8 @@
         .txt-area {
             width: 100%;
             background: var(--ink-white);
-            color: var(--ink-black);
-            border: 2px solid var(--ink-black);
+            color: var(--bg-black);
+            border: 2px solid var(--ink-white);
             border-radius: 13px;
             padding: 9px 11px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -646,8 +716,8 @@
         /* PASTKI 4 TA BO'LIM */
         .bottom-dock {
             width: 100%;
-            background-color: var(--bg-yellow);
-            border-top: 2px solid var(--line-white);
+            background-color: var(--bg-black);
+            border-top: 1.5px solid var(--line-white);
             padding: 8px 6px calc(10px + env(safe-area-inset-bottom));
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -669,11 +739,10 @@
             font-size: 11px;
             font-weight: 900;
             cursor: pointer;
-            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.18);
         }
 
         .dock-btn.active {
-            background: rgba(255, 255, 255, 0.25);
+            background: var(--glass-soft);
             border-color: var(--ink-white);
         }
 
@@ -688,6 +757,8 @@
         .anim-house { animation: houseBounce 1.6s infinite ease-in-out; }
         .anim-mic { animation: micPulse 1.5s infinite ease-in-out; }
         .anim-lock { animation: lockShake 1.4s infinite ease-in-out; }
+        .anim-gift { animation: giftBounce 1.5s infinite ease-in-out; }
+        .anim-wallet { animation: walletFloat 1.7s infinite ease-in-out; }
         .anim-chat { animation: chatFloat 1.7s infinite ease-in-out; }
         .anim-bell { animation: bellSwing 1.5s infinite ease-in-out; transform-origin: top center; }
         .anim-game { animation: gameTilt 1.9s infinite ease-in-out; }
@@ -709,6 +780,17 @@
             0%, 100% { transform: rotate(0deg) scale(1); }
             25% { transform: rotate(-12deg) scale(1.12); }
             75% { transform: rotate(12deg) scale(1.12); }
+        }
+
+        @keyframes giftBounce {
+            0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+            30% { transform: translateY(-3px) scale(1.14) rotate(-7deg); }
+            70% { transform: translateY(-1px) scale(1.1) rotate(7deg); }
+        }
+
+        @keyframes walletFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            40% { transform: translateY(-2.5px) scale(1.12); }
         }
 
         @keyframes chatFloat {
@@ -739,10 +821,10 @@
 </head>
 <body>
 
-    <!-- EFIRGA KIRGAN ODAM HAQIDA SUZIB O'TUVCHI BANNER -->
+    <!-- EFIRGA KIRGAN ODAM BANNERI -->
     <div id="entryBanner" class="entry-marquee-banner">
         <span class="anim-bell" style="display:inline-flex;">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="#ffd400" stroke="#ffffff" stroke-width="1.6">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="#ffffff">
                 <path d="M12 3a6 6 0 0 0-6 6v4l-2 2.5V17h16v-1.5L18 13V9a6 6 0 0 0-6-6z"/>
             </svg>
         </span>
@@ -766,8 +848,8 @@
                         <div class="section-heading">Chatlar</div>
                         <button type="button" class="home-trigger-btn" onclick="openCreateRoomModal()">
                             <span class="svg-slot anim-house" style="width:22px; height:22px;">
-                                <svg viewBox="0 0 28 28" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4 12.5L14 4L24 12.5V23.5C24 24.1 23.5 24.5 23 24.5H17V17.5H11V24.5H5C4.5 24.5 4 24.1 4 23.5V12.5Z" fill="#ffffff" stroke="#000000" stroke-width="1.8" stroke-linejoin="round"/>
+                                <svg viewBox="0 0 28 28" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2" stroke-linejoin="round">
+                                    <path d="M4 12.5L14 4L24 12.5V23.5C24 24.1 23.5 24.5 23 24.5H17V17.5H11V24.5H5C4.5 24.5 4 24.1 4 23.5V12.5Z"/>
                                 </svg>
                             </span>
                             <span>Xona</span>
@@ -779,13 +861,25 @@
 
                 <div id="roomStagePane" class="room-stage-view">
                     <div class="top-bar">
-                        <button type="button" class="btn-outline-white" onclick="leaveRoomStage()">← Chiqish</button>
-                        <div id="stageRoomTitle" class="section-heading" style="font-size:18px; max-width:205px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Xona</div>
-                        <span class="live-tag">Efir</span>
+                        <button type="button" class="btn-outline-white" onclick="leaveRoomStage()">Chiqish</button>
+                        <div id="stageRoomTitle" class="section-heading" style="font-size:16px; max-width:155px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Xona</div>
+
+                        <div style="display:flex; align-items:center; gap:6px;">
+                            <div class="people-count-badge" title="Xonadagi odamlar soni">
+                                <span class="anim-profile" style="display:inline-flex;">
+                                    <svg viewBox="0 0 24 24" width="15" height="15" fill="#ffffff">
+                                        <circle cx="12" cy="7.5" r="3.5"/>
+                                        <path d="M5 19.5c.7-3.4 3.4-5.5 7-5.5s6.3 2.1 7 5.5"/>
+                                    </svg>
+                                </span>
+                                <span id="stagePeopleCount">0</span>
+                            </div>
+                            <button type="button" id="deleteRoomOwnerBtn" class="btn-outline-white" style="display:none; padding:5px 8px; font-size:11px;" onclick="deleteCurrentRoomByOwner()">Oʻchirish</button>
+                        </div>
                     </div>
 
                     <div class="room-stage-scroll">
-                        <div id="stageRoomDesc" class="soft-copy" style="text-align:left; background:rgba(0,0,0,0.18); padding:8px 12px; border-radius:14px;"></div>
+                        <div id="stageRoomDesc" class="soft-copy" style="text-align:left; background:var(--glass-white); padding:8px 12px; border-radius:14px;"></div>
 
                         <div class="stage-board">
                             <div class="host-seat-wrap" onclick="handleSeatClick('0')">
@@ -796,29 +890,42 @@
                             <div id="seatsGrid8" class="seats-8-grid"></div>
                         </div>
 
-                        <div class="room-controls-row">
-                            <button type="button" id="roomMicToggleBtn" class="btn-white" onclick="toggleRoomMic()">
-                                <span style="display:inline-flex; align-items:center; justify-content:center; gap:6px;">
+                        <div class="room-controls-3">
+                            <button type="button" class="btn-white" onclick="toggleRoomMic()">
+                                <span style="display:inline-flex; align-items:center; justify-content:center; gap:4px;">
                                     <span class="anim-mic" style="display:inline-flex;">
-                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#000000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#000000" stroke-width="2.2">
                                             <rect x="9" y="2" width="6" height="11" rx="3"/>
                                             <path d="M5 10a7 7 0 0 0 14 0"/>
                                             <line x1="12" y1="17" x2="12" y2="22"/>
                                         </svg>
                                     </span>
-                                    <span id="roomMicBtnText">Mikro: Oʻchiq</span>
+                                    <span id="roomMicBtnText">Mikro</span>
                                 </span>
                             </button>
-                            <button type="button" class="btn-outline-white" onclick="standUpFromSeats()">Oʻrindan turish</button>
+
+                            <button type="button" class="btn-white" onclick="openGiftBoxModal()">
+                                <span style="display:inline-flex; align-items:center; justify-content:center; gap:4px;">
+                                    <span class="anim-gift" style="display:inline-flex;">
+                                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#000000" stroke-width="2.2">
+                                            <rect x="3" y="10" width="18" height="11" rx="2"/>
+                                            <path d="M12 10v11M3 10l9-6 9 6"/>
+                                        </svg>
+                                    </span>
+                                    <span>Padarka</span>
+                                </span>
+                            </button>
+
+                            <button type="button" class="btn-outline-white" onclick="standUpFromSeats()">Turish</button>
                         </div>
 
                         <div id="roomVoiceStatus" class="soft-copy" style="text-align:center;"></div>
 
                         <div class="room-chat-box">
-                            <div style="font-size:13px; font-weight:900;">Efir chati</div>
-                            <div id="roomMsgsList" class="room-msgs"></div>
+                            <div style="font-size:13px; font-weight:900;">Chat (oxirgi 5 ta xabar)</div>
+                            <div id="roomMsgsFiveBox" class="room-msgs-five"></div>
                             <div style="display:flex; gap:6px;">
-                                <input type="text" id="roomChatInput" class="txt-input" maxlength="250" placeholder="Xonada yozing...">
+                                <input type="text" id="roomChatInput" class="txt-input" maxlength="220" placeholder="Xabarni yozing...">
                                 <button type="button" class="btn-white" onclick="sendRoomChatMsg()">Yuborish</button>
                             </div>
                         </div>
@@ -826,7 +933,7 @@
                 </div>
             </section>
 
-            <!-- 2. XABARLAR BO'LIMI (TELEGRAM LICHKA USLUBIDA) -->
+            <!-- 2. XABARLAR BO'LIMI -->
             <section id="tab-xabarlar" class="section-view">
                 <div id="dmThreadsPane" class="dm-list-pane">
                     <div class="top-bar">
@@ -834,7 +941,7 @@
                     </div>
 
                     <div class="white-card">
-                        <div style="font-size:13px; font-weight:900;">ID raqam orqali topish va yozish</div>
+                        <div style="font-size:13px; font-weight:900;">6 xonali ID orqali lichka ochish</div>
                         <div style="display:flex; gap:6px;">
                             <input type="text" id="findSixIdInput" class="txt-input" maxlength="6" placeholder="6 xonali ID...">
                             <button type="button" class="btn-white" onclick="openDmBySixId()">Yozish</button>
@@ -859,6 +966,15 @@
 
                     <div class="tg-dm-bar">
                         <input type="text" id="tgDmInput" class="txt-input" maxlength="400" placeholder="Xabar yozing...">
+                        <button type="button" class="btn-outline-white" style="padding:8px 10px;" onclick="sendDmVoiceNote()" title="Ovozli xabar (Level 10+)">
+                            <span class="anim-mic" style="display:inline-flex;">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ffffff" stroke-width="2.2">
+                                    <rect x="9" y="2" width="6" height="11" rx="3"/>
+                                    <path d="M5 10a7 7 0 0 0 14 0"/>
+                                    <line x1="12" y1="17" x2="12" y2="22"/>
+                                </svg>
+                            </span>
+                        </button>
                         <button type="button" class="btn-white" onclick="sendTgDmMessage()">Yuborish</button>
                     </div>
                 </div>
@@ -892,8 +1008,8 @@
 
                         <div class="username-badge-row">
                             <span id="profileUsernameText">@username1</span>
-                            <span class="black-check-svg" title="Tasdiqlangan">
-                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <span class="black-check-svg">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
                                     <circle cx="12" cy="12" r="10.5" fill="#000000"/>
                                     <path d="M7.5 12.3L10.5 15.3L16.8 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -905,28 +1021,62 @@
                             <span id="profileSixIdText">100001</span>
                         </div>
 
-                        <div class="soft-copy" id="profileFollowStats">Obunalar: <span id="myFollowingCount">0</span></div>
+                        <div class="level-box">
+                            <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:900;">
+                                <span>Level: <span id="profileLevelVal">1</span> / 160</span>
+                                <span id="profileXpProgressText">0 / 1000 XP</span>
+                            </div>
+                            <div class="xp-track">
+                                <div id="profileXpBarFill" class="xp-fill"></div>
+                            </div>
+                        </div>
 
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; width:100%;">
+                            <button type="button" class="btn-white" onclick="openProfileEditModal()">Tahrirlash</button>
+                            <button type="button" class="btn-outline-white" onclick="openWalletModal()">
+                                <span style="display:inline-flex; align-items:center; justify-content:center; gap:6px;">
+                                    <span class="anim-wallet" style="display:inline-flex;">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ffffff" stroke-width="2.2">
+                                            <rect x="2" y="5" width="20" height="14" rx="3"/>
+                                            <circle cx="16.5" cy="12" r="1.5" fill="#ffffff"/>
+                                        </svg>
+                                    </span>
+                                    <span>Hamyon</span>
+                                </span>
+                            </button>
+                        </div>
+
+                        <div class="soft-copy">Monetalar: <span id="profileCoinsVal">0</span> • Obunalar: <span id="myFollowingCount">0</span></div>
                         <div id="profileBioText" class="soft-copy">Tavsif hali yozilmagan.</div>
-
-                        <button type="button" class="btn-white" style="width:100%; max-width:260px;" onclick="openProfileEditModal()">
-                            Tahrirlash
-                        </button>
                     </div>
                 </div>
             </section>
 
         </div>
 
+        <!-- KICHRAYTIRILGAN XONA PANELI (BOSHQA BO'LIMLARGA O'TGANDA HAM TURADI) -->
+        <div id="miniRoomBar" class="mini-room-bar">
+            <div onclick="restoreRoomFromMini()" style="display:flex; align-items:center; gap:8px; cursor:pointer; min-width:0; flex:1;">
+                <span class="anim-mic" style="display:inline-flex;">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ffffff" stroke-width="2.2">
+                        <rect x="9" y="2" width="6" height="11" rx="3"/>
+                        <path d="M5 10a7 7 0 0 0 14 0"/>
+                    </svg>
+                </span>
+                <span id="miniRoomTitle" style="font-size:12px; font-weight:900; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Xona faol</span>
+            </div>
+            <div style="display:flex; gap:6px;">
+                <button type="button" class="btn-white" style="padding:5px 9px; font-size:11px;" onclick="restoreRoomFromMini()">Ochish</button>
+                <button type="button" class="btn-outline-white" style="padding:5px 9px; font-size:11px;" onclick="leaveRoomStage()">Chiqish</button>
+            </div>
+        </div>
+
         <!-- PASTKI 4 TA BO'LIM -->
         <nav class="bottom-dock">
             <button type="button" class="dock-btn active" onclick="switchTab('chatlar', this)">
                 <span class="svg-slot anim-chat">
-                    <svg viewBox="0 0 32 32" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 7.5C5 5.84315 6.34315 4.5 8 4.5H24C25.6569 4.5 27 5.84315 27 7.5V19.5C27 21.1569 25.6569 22.5 24 22.5H13.5L8 27.5V22.5H8C6.34315 22.5 5 21.1569 5 19.5V7.5Z" fill="#ffffff" stroke="#000000" stroke-width="1.8" stroke-linejoin="round"/>
-                        <circle cx="11.5" cy="13.5" r="1.7" fill="#ffd400" stroke="#000000" stroke-width="0.8"/>
-                        <circle cx="16" cy="13.5" r="1.7" fill="#ffd400" stroke="#000000" stroke-width="0.8"/>
-                        <circle cx="20.5" cy="13.5" r="1.7" fill="#ffd400" stroke="#000000" stroke-width="0.8"/>
+                    <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="#ffffff" stroke-width="2">
+                        <path d="M5 7.5C5 5.84315 6.34315 4.5 8 4.5H24C25.6569 4.5 27 5.84315 27 7.5V19.5C27 21.1569 25.6569 22.5 24 22.5H13.5L8 27.5V22.5H8C6.34315 22.5 5 21.1569 5 19.5V7.5Z"/>
                     </svg>
                 </span>
                 <span>Chatlar</span>
@@ -934,10 +1084,9 @@
 
             <button type="button" class="dock-btn" onclick="switchTab('xabarlar', this)">
                 <span class="svg-slot anim-bell">
-                    <svg viewBox="0 0 32 32" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16 4.5C11.3 4.5 8 8.1 8 12.8V18.5L5.5 21.8V23H26.5V21.8L24 18.5V12.8C24 8.1 20.7 4.5 16 4.5Z" fill="#ffffff" stroke="#000000" stroke-width="1.8" stroke-linejoin="round"/>
-                        <path d="M13 23C13 24.7 14.3 26 16 26C17.7 26 19 24.7 19 23" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
-                        <circle cx="22.5" cy="8.5" r="3.2" fill="#ffffff" stroke="#000000" stroke-width="1.5"/>
+                    <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="#ffffff" stroke-width="2">
+                        <path d="M16 4.5C11.3 4.5 8 8.1 8 12.8V18.5L5.5 21.8V23H26.5V21.8L24 18.5V12.8C24 8.1 20.7 4.5 16 4.5Z"/>
+                        <path d="M13 23C13 24.7 14.3 26 16 26C17.7 26 19 24.7 19 23"/>
                     </svg>
                 </span>
                 <span>Xabarlar</span>
@@ -945,11 +1094,9 @@
 
             <button type="button" class="dock-btn" onclick="switchTab('oyinlar', this)">
                 <span class="svg-slot anim-game">
-                    <svg viewBox="0 0 32 32" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="4" y="9" width="24" height="14" rx="7" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
-                        <path d="M11 13.5V18.5M8.5 16H13.5" stroke="#000000" stroke-width="2.2" stroke-linecap="round"/>
-                        <circle cx="20.5" cy="14.2" r="1.5" fill="#000000"/>
-                        <circle cx="23.2" cy="17.2" r="1.5" fill="#000000"/>
+                    <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="#ffffff" stroke-width="2">
+                        <rect x="4" y="9" width="24" height="14" rx="7"/>
+                        <path d="M11 13.5V18.5M8.5 16H13.5M20.5 14.5h.01M23.5 17.5h.01" stroke-linecap="round"/>
                     </svg>
                 </span>
                 <span>Oʻyinlar</span>
@@ -957,9 +1104,9 @@
 
             <button type="button" class="dock-btn" onclick="switchTab('profilm', this)">
                 <span class="svg-slot anim-profile">
-                    <svg viewBox="0 0 32 32" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="16" cy="10.5" r="5.2" fill="#ffffff" stroke="#000000" stroke-width="1.8"/>
-                        <path d="M6.5 26.5C7.3 21.4 11.2 18.2 16 18.2C20.8 18.2 24.7 21.4 25.5 26.5" fill="#ffffff" stroke="#000000" stroke-width="1.8" stroke-linecap="round"/>
+                    <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="#ffffff" stroke-width="2">
+                        <circle cx="16" cy="10.5" r="5.2"/>
+                        <path d="M6.5 26.5C7.3 21.4 11.2 18.2 16 18.2C20.8 18.2 24.7 21.4 25.5 26.5" stroke-linecap="round"/>
                     </svg>
                 </span>
                 <span>Profilm</span>
@@ -982,17 +1129,17 @@
 
             <div class="field-group">
                 <label for="editDisplayNameInput" class="field-lbl">Bot ichidagi ism (Name)</label>
-                <input type="text" id="editDisplayNameInput" class="txt-input" maxlength="32" placeholder="Ismingiz">
+                <input type="text" id="editDisplayNameInput" class="txt-input" maxlength="32">
             </div>
 
             <div class="field-group">
                 <label for="editUsernameInput" class="field-lbl">Nik (@username)</label>
-                <input type="text" id="editUsernameInput" class="txt-input" maxlength="28" placeholder="@username1">
+                <input type="text" id="editUsernameInput" class="txt-input" maxlength="28">
             </div>
 
             <div class="field-group">
                 <label for="editBioInput" class="field-lbl">Tavsif</label>
-                <textarea id="editBioInput" class="txt-area" maxlength="160" placeholder="Tavsif..."></textarea>
+                <textarea id="editBioInput" class="txt-area" maxlength="160"></textarea>
             </div>
 
             <div id="editProfileErr" class="soft-copy" style="min-height:16px;"></div>
@@ -1016,7 +1163,7 @@
 
             <div class="field-group">
                 <label for="roomDescInput" class="field-lbl">Tavsif (1 dan 15 gacha)</label>
-                <textarea id="roomDescInput" class="txt-area" maxlength="150" placeholder="1 dan 15 gacha tavsif yozing..."></textarea>
+                <textarea id="roomDescInput" class="txt-area" maxlength="150" placeholder="1 dan 15 gacha tavsif..."></textarea>
             </div>
 
             <div id="createRoomErr" class="soft-copy" style="min-height:16px;"></div>
@@ -1028,11 +1175,11 @@
         </div>
     </div>
 
-    <!-- MODAL 3: XONA EGASI O'RINDIQNI QULFLASH -->
+    <!-- MODAL 3: QULFLASH -->
     <div id="lockSeatModal" class="modal-overlay">
         <div class="modal-sheet">
             <div id="lockModalTitle" class="modal-title">Oʻrindiq</div>
-            <div id="lockModalDesc" class="soft-copy">Bu oʻrindiqni qulflamoqchimisiz?</div>
+            <div id="lockModalDesc" class="soft-copy"></div>
             <div class="row-2">
                 <button type="button" class="btn-outline-white" onclick="closeLockModal()">Bekor qilish</button>
                 <button type="button" id="confirmLockBtn" class="btn-white">Qulflash</button>
@@ -1040,7 +1187,7 @@
         </div>
     </div>
 
-    <!-- MODAL 4: FOYDALANUVCHI PROFILI (OBUNA BO'LISH + XABAR YOZISH) -->
+    <!-- MODAL 4: FOYDALANUVCHI PROFILI -->
     <div id="targetUserModal" class="modal-overlay">
         <div class="modal-sheet">
             <div class="modal-title">Foydalanuvchi profili</div>
@@ -1059,34 +1206,56 @@
                         </svg>
                     </span>
                 </div>
-                <div class="six-id-pill">ID: <span id="targetUserSixId">100001</span></div>
+                <div class="six-id-pill">ID: <span id="targetUserSixId">100001</span> • Level <span id="targetUserLvl">1</span></div>
             </div>
 
             <div class="row-2">
-                <button type="button" id="followActionBtn" class="btn-white" onclick="toggleFollowTargetUser()">
-                    <span style="display:inline-flex; align-items:center; justify-content:center; gap:5px;">
-                        <span class="anim-profile" style="display:inline-flex;">
-                            <svg viewBox="0 0 24 24" width="15" height="15" fill="#000000">
-                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                            </svg>
-                        </span>
-                        <span id="followBtnLabel">Obuna boʻlish</span>
-                    </span>
+                <button type="button" class="btn-white" onclick="toggleFollowTargetUser()">
+                    <span id="followBtnLabel">Obuna boʻlish</span>
                 </button>
-
-                <button type="button" class="btn-outline-white" onclick="openDmFromTargetUser()">
-                    <span style="display:inline-flex; align-items:center; justify-content:center; gap:5px;">
-                        <span class="anim-chat" style="display:inline-flex;">
-                            <svg viewBox="0 0 24 24" width="15" height="15" fill="#ffffff">
-                                <path d="M4 4h16v12H7l-3 3V4z"/>
-                            </svg>
-                        </span>
-                        <span>Xabar yozish</span>
-                    </span>
-                </button>
+                <button type="button" class="btn-outline-white" onclick="openDmFromTargetUser()">Xabar yozish</button>
             </div>
 
             <button type="button" class="btn-outline-white" onclick="closeTargetUserModal()">Yopish</button>
+        </div>
+    </div>
+
+    <!-- MODAL 5: PADARKA QUTISI (11 TA SVG PADARKA, 2000 DAN) -->
+    <div id="giftBoxModal" class="modal-overlay">
+        <div class="modal-sheet">
+            <div class="modal-title">Padarka qutisi</div>
+            <div class="soft-copy">Har biri 2000 • Bosganda chiroyli ovoz chiqadi va Levelga XP qoʻshiladi</div>
+            <div id="giftsGridContainer" class="gifts-grid"></div>
+            <div id="giftBoxFeedback" class="soft-copy"></div>
+            <button type="button" class="btn-outline-white" onclick="closeGiftBoxModal()">Yopish</button>
+        </div>
+    </div>
+
+    <!-- MODAL 6: HAMYON (PAKETLAR + @fungo_moneta UCHUN TEKIN MONETA) -->
+    <div id="walletModal" class="modal-overlay">
+        <div class="modal-sheet">
+            <div class="modal-title">Hamyon</div>
+            <div class="soft-copy">Balans: <span id="walletCoinsDisplay">0</span> • Har bir paket 12 000 soʻm</div>
+
+            <div class="gifts-grid">
+                <button type="button" class="gift-item-btn" onclick="buyWalletPack('3k')"><b>3k</b><span>12 000 soʻm</span></button>
+                <button type="button" class="gift-item-btn" onclick="buyWalletPack('5k')"><b>5k</b><span>12 000 soʻm</span></button>
+                <button type="button" class="gift-item-btn" onclick="buyWalletPack('6k')"><b>6k</b><span>12 000 soʻm</span></button>
+                <button type="button" class="gift-item-btn" onclick="buyWalletPack('8k')"><b>8k</b><span>12 000 soʻm</span></button>
+                <button type="button" class="gift-item-btn" onclick="buyWalletPack('11k')"><b>11k</b><span>12 000 soʻm</span></button>
+                <button type="button" class="gift-item-btn" onclick="buyWalletPack('23k')"><b>23k</b><span>12 000 soʻm</span></button>
+            </div>
+
+            <!-- FAQAT @fungo_moneta UCHUN KO'RINADIGAN TEKIN MONETA -->
+            <div id="monetaSecretPanel" class="white-card" style="display:none;">
+                <div style="font-size:14px; font-weight:900;">Tekin moneta</div>
+                <input type="text" id="giftTargetSixIdInput" class="txt-input" maxlength="6" placeholder="Odamning 6 xonali IDsi">
+                <input type="number" id="giftCoinsAmountInput" class="txt-input" min="1" placeholder="Moneta miqdori">
+                <button type="button" class="btn-white" onclick="sendFreeMonetaById()">Hisobga tashlash</button>
+                <div id="freeMonetaStatus" class="soft-copy" style="font-size:12px;"></div>
+            </div>
+
+            <button type="button" class="btn-outline-white" onclick="closeWalletModal()">Yopish</button>
         </div>
     </div>
 
@@ -1099,12 +1268,12 @@
 
         const FIREBASE_DB = "https://xbox-tanishuv-default-rtdb.firebaseio.com";
         const STORAGE_KEYS = {
-            profile: "fungo_uz_profile_v3",
-            rooms: "fungo_uz_rooms_v3",
-            users: "fungo_uz_users_v3",
-            dms: "fungo_uz_dms_v3",
-            following: "fungo_uz_following_v3",
-            uid: "fungo_uz_uid_v3"
+            profile: "fungo_uz_profile_v4",
+            rooms: "fungo_uz_rooms_v4",
+            users: "fungo_uz_users_v4",
+            dms: "fungo_uz_dms_v4",
+            following: "fungo_uz_following_v4",
+            uid: "fungo_uz_uid_v4"
         };
 
         const ENGLISH_HANDLES = [
@@ -1112,10 +1281,24 @@
             "@apex_room", "@sky_pulse", "@royal_play", "@neon_wave"
         ];
 
+        const GIFT_ITEMS = [
+            { id: "sparkler", label: "🎇", cost: 2000, xp: 2000, freq: 660 },
+            { id: "fireworks", label: "🎆", cost: 2000, xp: 2000, freq: 780 },
+            { id: "moon_ceremony", label: "🎑", cost: 2000, xp: 2000, freq: 520 },
+            { id: "city_dusk", label: "🌆", cost: 2000, xp: 2000, freq: 590 },
+            { id: "night_stars", label: "🌃", cost: 2000, xp: 2000, freq: 720 },
+            { id: "bridge_night", label: "🌉", cost: 2000, xp: 2000, freq: 610 },
+            { id: "sunset", label: "🌇", cost: 2000, xp: 2000, freq: 540 },
+            { id: "sunrise", label: "🌄", cost: 2000, xp: 2000, freq: 840 },
+            { id: "foggy", label: "🌁", cost: 2000, xp: 2000, freq: 490 },
+            { id: "milky_way", label: "🌌", cost: 2000, xp: 2000, freq: 880 },
+            { id: "shooting_star", label: "🌠", cost: 2000, xp: 2000, freq: 960 }
+        ];
+
         const DEFAULT_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(`
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
-                <rect width="120" height="120" fill="#000000"/>
-                <circle cx="60" cy="44" r="22" fill="#ffd400"/>
+                <rect width="120" height="120" fill="#111111"/>
+                <circle cx="60" cy="44" r="22" fill="#ffffff"/>
                 <path d="M22 104C28 80 42 70 60 70C78 70 92 80 98 104" fill="#ffffff"/>
             </svg>
         `);
@@ -1143,6 +1326,49 @@
                 hash = (hash * 31 + str.charCodeAt(i)) % 900000;
             }
             return String(100000 + ((hash + Math.floor(Math.random() * 899999)) % 900000));
+        }
+
+        /* LEVEL 1 -> 160: 2-LEVEL 1000 XP, 3-LEVEL 1500 XP, 4-LEVEL 2400 XP, KEYIN QIYINLASHIB BORADI */
+        function xpRequiredForLevel(targetLevel) {
+            if (targetLevel <= 1) return 0;
+            if (targetLevel === 2) return 1000;
+            if (targetLevel === 3) return 1500;
+            if (targetLevel === 4) return 2400;
+            return Math.round(2400 * Math.pow(1.22, targetLevel - 4));
+        }
+
+        function computeLevelFromXp(totalXp) {
+            let xpPool = Math.max(0, Number(totalXp || 0));
+            let lvl = 1;
+            while (lvl < 160) {
+                const need = xpRequiredForLevel(lvl + 1);
+                if (xpPool >= need) {
+                    xpPool -= need;
+                    lvl++;
+                } else {
+                    return { level: lvl, currentInLevel: xpPool, neededForNext: need };
+                }
+            }
+            return { level: 160, currentInLevel: xpPool, neededForNext: xpPool || 1 };
+        }
+
+        function playChimeSound(freq = 720) {
+            try {
+                const Ctx = window.AudioContext || window.webkitAudioContext;
+                if (!Ctx) return;
+                const ctx = new Ctx();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = "triangle";
+                osc.frequency.setValueAtTime(freq, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(freq * 1.45, ctx.currentTime + 0.28);
+                gain.gain.setValueAtTime(0.18, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.42);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.44);
+            } catch (e) {}
         }
 
         function loadJson(key, fallback) {
@@ -1179,13 +1405,21 @@
                 username: defaultNick,
                 photo: (u && u.photo_url) ? u.photo_url : "",
                 bio: "",
+                xp: 0,
+                coins: 6000,
                 updatedAt: Date.now()
             };
         }
 
         const savedProfile = loadJson(STORAGE_KEYS.profile, null);
         let meProfile = savedProfile
-            ? { ...buildDefaultProfile(), ...savedProfile, sixId: savedProfile.sixId || generateSixDigitId(savedProfile.id || "1") }
+            ? {
+                ...buildDefaultProfile(),
+                ...savedProfile,
+                sixId: savedProfile.sixId || generateSixDigitId(savedProfile.id || "1"),
+                xp: Number(savedProfile.xp || 0),
+                coins: Number(savedProfile.coins !== undefined ? savedProfile.coins : 6000)
+            }
             : buildDefaultProfile();
         saveJson(STORAGE_KEYS.profile, meProfile);
 
@@ -1196,40 +1430,29 @@
 
         let pendingPhotoData = meProfile.photo || "";
         let currentStageRoomId = null;
+        let roomMinimized = false;
         let activeDmPeerId = null;
         let targetModalUserId = null;
-        let seenVoicePacketIds = new Set();
+        let seenGiftSoundIds = new Set();
         let bannerTimer = null;
 
-        /* HAQIQIY OVOZLI CHAT (MIKROFON YUBORISH + DINAMIKDAN ESHITISH) */
+        /* OVOZLI CHAT (XONA) */
         let roomMicActive = false;
         let micStream = null;
         let micRecorder = null;
         let voiceSendTimer = null;
-        let playbackAudioCtx = null;
+        let seenVoiceIds = new Set();
 
-        function ensureAudioCtx() {
-            if (!playbackAudioCtx && (window.AudioContext || window.webkitAudioContext)) {
-                const Ctx = window.AudioContext || window.webkitAudioContext;
-                playbackAudioCtx = new Ctx();
-            }
-            if (playbackAudioCtx && playbackAudioCtx.state === "suspended") {
-                playbackAudioCtx.resume().catch(() => {});
-            }
-        }
-
-        function playIncomingVoiceBase64(dataUrl) {
-            if (!dataUrl || typeof dataUrl !== "string") return;
+        function playVoiceDataUrl(url) {
+            if (!url) return;
             try {
-                const audio = new Audio(dataUrl);
-                audio.play().catch(() => {});
+                const a = new Audio(url);
+                a.play().catch(() => {});
             } catch (e) {}
         }
 
         async function toggleRoomMic() {
             if (!currentStageRoomId) return;
-            ensureAudioCtx();
-
             if (!roomMicActive) {
                 if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === "undefined") {
                     document.getElementById("roomVoiceStatus").textContent = "Bu qurilmada mikrofon qoʻllab-quvvatlanmaydi.";
@@ -1238,33 +1461,26 @@
                 try {
                     micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
                     roomMicActive = true;
-                    document.getElementById("roomMicBtnText").textContent = "Mikro: Yoniq";
-                    document.getElementById("roomVoiceStatus").textContent = "Mikrofon yoqildi — ovozingiz xonaga uzatilmoqda.";
+                    document.getElementById("roomMicBtnText").textContent = "Mikro Yoniq";
+                    document.getElementById("roomVoiceStatus").textContent = "Mikrofon yoqildi — ovozingiz uzatilmoqda.";
 
-                    const startChunkCycle = () => {
+                    const cycle = () => {
                         if (!roomMicActive || !micStream || !currentStageRoomId) return;
                         try {
                             const rec = new MediaRecorder(micStream);
-                            const localChunks = [];
-                            rec.ondataavailable = (ev) => {
-                                if (ev.data && ev.data.size > 0) localChunks.push(ev.data);
-                            };
+                            const chunks = [];
+                            rec.ondataavailable = (ev) => { if (ev.data && ev.data.size > 0) chunks.push(ev.data); };
                             rec.onstop = () => {
-                                if (!localChunks.length || !currentStageRoomId || !roomMicActive) return;
-                                const blob = new Blob(localChunks, { type: rec.mimeType || "audio/webm" });
+                                if (!chunks.length || !currentStageRoomId || !roomMicActive) return;
+                                const blob = new Blob(chunks, { type: rec.mimeType || "audio/webm" });
                                 const reader = new FileReader();
                                 reader.onloadend = async () => {
                                     const b64 = String(reader.result || "");
                                     if (b64 && b64.length < 950000 && currentStageRoomId) {
-                                        const pktId = "vp_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6);
-                                        const pkt = {
-                                            id: pktId,
-                                            senderId: String(meProfile.id),
-                                            audio: b64,
-                                            ts: Date.now()
-                                        };
+                                        const vid = "rv_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6);
+                                        const pkt = { id: vid, senderId: String(meProfile.id), audio: b64, ts: Date.now() };
                                         try {
-                                            await fetch(`${FIREBASE_DB}/fungo_voice/${encodeURIComponent(currentStageRoomId)}/${encodeURIComponent(pktId)}.json`, {
+                                            await fetch(`${FIREBASE_DB}/fungo_voice/${encodeURIComponent(currentStageRoomId)}/${encodeURIComponent(vid)}.json`, {
                                                 method: "PUT",
                                                 headers: { "Content-Type": "application/json" },
                                                 body: JSON.stringify(pkt)
@@ -1277,15 +1493,12 @@
                             micRecorder = rec;
                             rec.start();
                             voiceSendTimer = setTimeout(() => {
-                                if (rec.state !== "inactive") {
-                                    try { rec.stop(); } catch (e) {}
-                                }
-                                if (roomMicActive) startChunkCycle();
+                                if (rec.state !== "inactive") { try { rec.stop(); } catch (e) {} }
+                                if (roomMicActive) cycle();
                             }, 1300);
                         } catch (e) {}
                     };
-
-                    startChunkCycle();
+                    cycle();
                 } catch (e) {
                     document.getElementById("roomVoiceStatus").textContent = "Mikrofonga ruxsat berilmadi.";
                 }
@@ -1296,73 +1509,90 @@
 
         function stopRoomMic() {
             roomMicActive = false;
-            if (voiceSendTimer) {
-                clearTimeout(voiceSendTimer);
-                voiceSendTimer = null;
-            }
-            if (micRecorder && micRecorder.state !== "inactive") {
-                try { micRecorder.stop(); } catch (e) {}
-            }
+            if (voiceSendTimer) { clearTimeout(voiceSendTimer); voiceSendTimer = null; }
+            if (micRecorder && micRecorder.state !== "inactive") { try { micRecorder.stop(); } catch (e) {} }
             micRecorder = null;
-            if (micStream) {
-                micStream.getTracks().forEach(t => t.stop());
-                micStream = null;
-            }
-            const btnText = document.getElementById("roomMicBtnText");
+            if (micStream) { micStream.getTracks().forEach(t => t.stop()); micStream = null; }
+            const txt = document.getElementById("roomMicBtnText");
             const st = document.getElementById("roomVoiceStatus");
-            if (btnText) btnText.textContent = "Mikro: Oʻchiq";
+            if (txt) txt.textContent = "Mikro";
             if (st) st.textContent = "";
         }
 
-        async function pollIncomingVoicePackets() {
-            if (!currentStageRoomId) return;
+        /* LICHKA ICHIDA OVOZLI XABAR (FAQAT LEVEL 10+) */
+        async function sendDmVoiceNote() {
+            if (!activeDmPeerId) return;
+            const myLvlInfo = computeLevelFromXp(meProfile.xp);
+            if (myLvlInfo.level < 10) {
+                alert("Ovozli xabar yuborish uchun Level 10 boʻlishi kerak! Sizning hozirgi levelingiz: " + myLvlInfo.level);
+                return;
+            }
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === "undefined") {
+                return;
+            }
             try {
-                const res = await fetch(`${FIREBASE_DB}/fungo_voice/${encodeURIComponent(currentStageRoomId)}.json`);
-                if (!res.ok) return;
-                const data = await res.json();
-                if (!data || typeof data !== "object") return;
-
-                const now = Date.now();
-                const pkts = Object.values(data)
-                    .filter(p => p && p.id && p.audio && String(p.senderId) !== String(meProfile.id) && (now - (p.ts || 0)) < 12000)
-                    .sort((a, b) => (a.ts || 0) - (b.ts || 0));
-
-                for (const pkt of pkts) {
-                    if (!seenVoicePacketIds.has(pkt.id)) {
-                        seenVoicePacketIds.add(pkt.id);
-                        playIncomingVoiceBase64(pkt.audio);
-                    }
-                }
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                const rec = new MediaRecorder(stream);
+                const chunks = [];
+                rec.ondataavailable = (ev) => { if (ev.data && ev.data.size > 0) chunks.push(ev.data); };
+                rec.onstop = () => {
+                    stream.getTracks().forEach(t => t.stop());
+                    const blob = new Blob(chunks, { type: rec.mimeType || "audio/webm" });
+                    const reader = new FileReader();
+                    reader.onloadend = async () => {
+                        const b64 = String(reader.result || "");
+                        if (!b64 || b64.length > 950000) return;
+                        const k = dmThreadKey(meProfile.id, activeDmPeerId);
+                        const mid = "dmv_" + Date.now() + "_" + Math.random().toString(36).slice(2, 5);
+                        const msgObj = {
+                            id: mid,
+                            senderId: String(meProfile.id),
+                            receiverId: String(activeDmPeerId),
+                            type: "audio",
+                            audio: b64,
+                            text: "Ovozli xabar",
+                            ts: Date.now()
+                        };
+                        if (!allDms[k]) allDms[k] = {};
+                        allDms[k][mid] = msgObj;
+                        saveJson(STORAGE_KEYS.dms, allDms);
+                        renderTgDmStream();
+                        try {
+                            await fetch(`${FIREBASE_DB}/fungo_dms/${encodeURIComponent(k)}/${encodeURIComponent(mid)}.json`, {
+                                method: "PUT",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify(msgObj)
+                            });
+                        } catch (e) {}
+                    };
+                    reader.readAsDataURL(blob);
+                };
+                rec.start();
+                setTimeout(() => { if (rec.state !== "inactive") rec.stop(); }, 2500);
             } catch (e) {}
         }
 
-        /* SUZIB O'TUVCHI BANNER */
-        function showEntryBanner(userName, userPhoto) {
+        function showEntryBanner(name, photo) {
             const banner = document.getElementById("entryBanner");
             const img = document.getElementById("entryBannerAvatar");
             const txt = document.getElementById("entryBannerText");
             if (!banner || !img || !txt) return;
-
-            img.src = userPhoto || DEFAULT_AVATAR;
+            img.src = photo || DEFAULT_AVATAR;
             img.onerror = () => { img.src = DEFAULT_AVATAR; };
-            txt.textContent = `${userName} efirga kirdi`;
-
+            txt.textContent = `${name} efirga kirdi`;
             banner.classList.remove("active");
             void banner.offsetWidth;
             banner.classList.add("active");
-
             if (bannerTimer) clearTimeout(bannerTimer);
-            bannerTimer = setTimeout(() => {
-                banner.classList.remove("active");
-            }, 3450);
+            bannerTimer = setTimeout(() => banner.classList.remove("active"), 3450);
         }
 
         function seatMicSvg(isLocked) {
             if (isLocked) {
                 return `
                     <span class="anim-lock" style="display:inline-flex;">
-                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="5" y="11" width="14" height="10" rx="2.5" fill="rgba(255,212,0,0.22)"/>
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2.2">
+                            <rect x="5" y="11" width="14" height="10" rx="2.5"/>
                             <path d="M8 11V7.5a4 4 0 0 1 8 0V11"/>
                         </svg>
                     </span>
@@ -1370,17 +1600,29 @@
             }
             return `
                 <span class="anim-mic" style="display:inline-flex;">
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2">
                         <rect x="9" y="2.5" width="6" height="11" rx="3"/>
                         <path d="M5.5 10.5a6.5 6.5 0 0 0 13 0"/>
                         <line x1="12" y1="17" x2="12" y2="21.5"/>
-                        <line x1="8.5" y1="21.5" x2="15.5" y2="21.5"/>
                     </svg>
                 </span>
             `;
         }
 
-        /* PROFILIM */
+        function giftSvgGraphic(item) {
+            return `
+                <span class="anim-gift" style="display:inline-flex;">
+                    <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="2">
+                        <rect x="6" y="15" width="24" height="15" rx="3"/>
+                        <path d="M18 15v15M18 15c-3-6-9-6-9-2s6 2 9 2zm0 0c3-6 9-6 9-2s-6 2-9 2z"/>
+                    </svg>
+                </span>
+                <span style="font-size:15px; font-weight:900;">${item.label}</span>
+                <span style="font-size:11px; font-weight:900;">${item.cost}</span>
+            `;
+        }
+
+        /* PROFIL VA LEVEL RENDER */
         function renderProfile() {
             const img = document.getElementById("profileAvatarImg");
             img.src = meProfile.photo || DEFAULT_AVATAR;
@@ -1390,8 +1632,14 @@
             document.getElementById("profileUsernameText").textContent = meProfile.username || "@username1";
             document.getElementById("profileSixIdText").textContent = meProfile.sixId || "100001";
             document.getElementById("profileBioText").textContent = meProfile.bio ? meProfile.bio : "Tavsif hali yozilmagan.";
-            const count = Object.values(followingMap || {}).filter(Boolean).length;
-            document.getElementById("myFollowingCount").textContent = String(count);
+            document.getElementById("profileCoinsVal").textContent = String(Number(meProfile.coins || 0));
+            document.getElementById("myFollowingCount").textContent = String(Object.values(followingMap || {}).filter(Boolean).length);
+
+            const lvl = computeLevelFromXp(meProfile.xp);
+            document.getElementById("profileLevelVal").textContent = String(lvl.level);
+            document.getElementById("profileXpProgressText").textContent = `${lvl.currentInLevel} / ${lvl.neededForNext} XP`;
+            const pct = Math.min(100, Math.max(0, Math.round((lvl.currentInLevel / (lvl.neededForNext || 1)) * 100)));
+            document.getElementById("profileXpBarFill").style.width = pct + "%";
         }
 
         function openProfileEditModal() {
@@ -1399,7 +1647,6 @@
             const prev = document.getElementById("editPhotoPreview");
             prev.src = pendingPhotoData || DEFAULT_AVATAR;
             prev.onerror = () => { prev.src = DEFAULT_AVATAR; };
-
             document.getElementById("editDisplayNameInput").value = meProfile.displayName || "";
             document.getElementById("editUsernameInput").value = meProfile.username || "@username1";
             document.getElementById("editBioInput").value = meProfile.bio || "";
@@ -1415,22 +1662,16 @@
         function handlePhotoUpload(event) {
             const file = event.target.files && event.target.files[0];
             if (!file) return;
-
             const reader = new FileReader();
             reader.onload = (e) => {
                 const img = new Image();
                 img.onload = () => {
                     const canvas = document.createElement("canvas");
                     const maxSide = 240;
-                    let w = img.width;
-                    let h = img.height;
-                    if (w > h) {
-                        if (w > maxSide) { h = Math.round((h * maxSide) / w); w = maxSide; }
-                    } else {
-                        if (h > maxSide) { w = Math.round((w * maxSide) / h); h = maxSide; }
-                    }
-                    canvas.width = w;
-                    canvas.height = h;
+                    let w = img.width, h = img.height;
+                    if (w > h) { if (w > maxSide) { h = Math.round((h * maxSide) / w); w = maxSide; } }
+                    else { if (h > maxSide) { w = Math.round((w * maxSide) / h); h = maxSide; } }
+                    canvas.width = w; canvas.height = h;
                     canvas.getContext("2d").drawImage(img, 0, 0, w, h);
                     pendingPhotoData = canvas.toDataURL("image/jpeg", 0.8);
                     document.getElementById("editPhotoPreview").src = pendingPhotoData;
@@ -1445,44 +1686,165 @@
             const newName = document.getElementById("editDisplayNameInput").value.trim();
             const rawNick = document.getElementById("editUsernameInput").value.trim();
             const newBio = document.getElementById("editBioInput").value.trim();
-
             if (!newName) {
                 errEl.textContent = "Iltimos, bot ichidagi ismingizni kiriting.";
                 return;
             }
-
             const updatedPhoto = pendingPhotoData || meProfile.photo || "";
-            const updatedDisplayName = newName;
-
             meProfile = {
                 ...meProfile,
-                displayName: updatedDisplayName,
+                displayName: newName,
                 username: normalizeAtUsername(rawNick, meProfile.username || "@username1"),
                 photo: updatedPhoto,
                 bio: newBio,
                 updatedAt: Date.now()
             };
-
             allUsers[meProfile.id] = meProfile;
-
             Object.values(allRooms || {}).forEach(r => {
                 if (r && String(r.ownerId) === String(meProfile.id)) {
                     r.ownerPhoto = updatedPhoto || DEFAULT_AVATAR;
-                    r.ownerName = updatedDisplayName;
+                    r.ownerName = newName;
                 }
             });
-
             saveJson(STORAGE_KEYS.profile, meProfile);
             saveJson(STORAGE_KEYS.users, allUsers);
             saveJson(STORAGE_KEYS.rooms, allRooms);
             closeProfileEditModal();
             renderProfile();
             renderRoomsDirectory();
-            if (currentStageRoomId) renderRoomStage();
+            if (currentStageRoomId && !roomMinimized) renderRoomStage();
             await syncRemote();
         }
 
-        /* CHAT XONALAR */
+        /* HAMYON VA @fungo_moneta UCHUN TEKIN MONETA */
+        function openWalletModal() {
+            document.getElementById("walletCoinsDisplay").textContent = String(Number(meProfile.coins || 0));
+            const isMonetaOwner = String(meProfile.username || "").toLowerCase() === "@fungo_moneta";
+            document.getElementById("monetaSecretPanel").style.display = isMonetaOwner ? "flex" : "none";
+            document.getElementById("freeMonetaStatus").textContent = "";
+            document.getElementById("walletModal").classList.add("open");
+        }
+
+        function closeWalletModal() {
+            document.getElementById("walletModal").classList.remove("open");
+        }
+
+        function buyWalletPack(packLabel) {
+            const text = encodeURIComponent(`Salom @fungo_moneta, ${packLabel} paket (12 000 so'm) olmoqchiman. ID: ${meProfile.sixId}`);
+            const url = `https://t.me/fungo_moneta?text=${text}`;
+            if (tg && tg.openTelegramLink) {
+                tg.openTelegramLink(url);
+            } else {
+                window.open(url, "_blank");
+            }
+        }
+
+        async function sendFreeMonetaById() {
+            if (String(meProfile.username || "").toLowerCase() !== "@fungo_moneta") return;
+            const targetSix = document.getElementById("giftTargetSixIdInput").value.trim();
+            const amount = Number(document.getElementById("giftCoinsAmountInput").value || 0);
+            const st = document.getElementById("freeMonetaStatus");
+
+            if (!targetSix || !amount || amount <= 0) {
+                st.textContent = "6 xonali ID va toʻgʻri miqdorni kiriting.";
+                return;
+            }
+
+            const targetUser = Object.values(allUsers || {}).find(u => u && String(u.sixId) === targetSix);
+            if (!targetUser) {
+                st.textContent = "Bu 6 xonali ID bilan foydalanuvchi topilmadi.";
+                return;
+            }
+
+            targetUser.coins = Number(targetUser.coins || 0) + amount;
+            if (String(targetUser.id) === String(meProfile.id)) {
+                meProfile.coins = targetUser.coins;
+            }
+            allUsers[targetUser.id] = targetUser;
+            saveJson(STORAGE_KEYS.users, allUsers);
+            saveJson(STORAGE_KEYS.profile, meProfile);
+            renderProfile();
+            document.getElementById("walletCoinsDisplay").textContent = String(Number(meProfile.coins || 0));
+            st.textContent = `${targetUser.username} (ID: ${targetSix}) hisobiga ${amount} moneta tashlandi!`;
+
+            try {
+                await fetch(`${FIREBASE_DB}/fungo_users/${encodeURIComponent(targetUser.id)}.json`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(targetUser)
+                });
+            } catch (e) {}
+        }
+
+        /* PADARKA QUTISI (11 TA SVG PADARKA) */
+        function openGiftBoxModal() {
+            if (!currentStageRoomId) return;
+            const grid = document.getElementById("giftsGridContainer");
+            grid.innerHTML = "";
+            document.getElementById("giftBoxFeedback").textContent = "";
+
+            GIFT_ITEMS.forEach(item => {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "gift-item-btn";
+                btn.innerHTML = giftSvgGraphic(item);
+                btn.onclick = () => sendRoomGift(item);
+                grid.appendChild(btn);
+            });
+            document.getElementById("giftBoxModal").classList.add("open");
+        }
+
+        function closeGiftBoxModal() {
+            document.getElementById("giftBoxModal").classList.remove("open");
+        }
+
+        async function sendRoomGift(item) {
+            if (!currentStageRoomId) return;
+            const fb = document.getElementById("giftBoxFeedback");
+            if (Number(meProfile.coins || 0) < item.cost) {
+                fb.textContent = "Monetalar yetarli emas (2000 kerak).";
+                return;
+            }
+
+            meProfile.coins = Number(meProfile.coins || 0) - item.cost;
+            meProfile.xp = Number(meProfile.xp || 0) + item.xp;
+            allUsers[meProfile.id] = meProfile;
+            saveJson(STORAGE_KEYS.profile, meProfile);
+            saveJson(STORAGE_KEYS.users, allUsers);
+            renderProfile();
+
+            playChimeSound(item.freq);
+
+            const gid = "gft_" + Date.now() + "_" + Math.random().toString(36).slice(2, 5);
+            const giftEvt = {
+                id: gid,
+                senderId: String(meProfile.id),
+                senderName: meProfile.displayName || meProfile.username,
+                label: item.label,
+                xp: item.xp,
+                freq: item.freq,
+                ts: Date.now()
+            };
+            seenGiftSoundIds.add(gid);
+
+            const lvlNow = computeLevelFromXp(meProfile.xp);
+            fb.textContent = `${item.label} padarka urildi! +${item.xp} XP (Level ${lvlNow.level})`;
+
+            try {
+                await fetch(`${FIREBASE_DB}/fungo_room_gifts/${encodeURIComponent(currentStageRoomId)}.json`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(giftEvt)
+                });
+                await fetch(`${FIREBASE_DB}/fungo_users/${encodeURIComponent(meProfile.id)}.json`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(meProfile)
+                });
+            } catch (e) {}
+        }
+
+        /* CHAT XONALAR, KICHRAYTIRISH VA O'CHIRISH */
         function openCreateRoomModal() {
             document.getElementById("roomNameInput").value = "";
             document.getElementById("roomDescInput").value = "";
@@ -1499,12 +1861,9 @@
             const nameVal = document.getElementById("roomNameInput").value.trim();
             const descVal = document.getElementById("roomDescInput").value.trim();
 
-            if (!nameVal) {
-                errEl.textContent = "Chat xona nomini kiriting.";
-                return;
-            }
+            if (!nameVal) { errEl.textContent = "Chat xona nomini kiriting."; return; }
             if (!descVal || descVal.length < 1 || descVal.length > 150) {
-                errEl.textContent = "Tavsif 1 dan 150 belgigacha (1–15) boʻlishi kerak.";
+                errEl.textContent = "Tavsif 1 dan 150 belgigacha boʻlsin.";
                 return;
             }
             const wordsCount = descVal.split(/\s+/).filter(Boolean).length;
@@ -1514,12 +1873,7 @@
             }
 
             const roomId = "room_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6);
-            const ownerPhoto = meProfile.photo || DEFAULT_AVATAR;
-            const ownerLabel = meProfile.displayName || meProfile.username;
-
-            const seatsInit = {
-                "0": { userId: null, label: "Egasi", photo: "", locked: false }
-            };
+            const seatsInit = { "0": { userId: null, label: "Egasi", photo: "", locked: false } };
             for (let i = 1; i <= 8; i++) {
                 seatsInit[String(i)] = { userId: null, label: String(i), photo: "", locked: false };
             }
@@ -1529,8 +1883,8 @@
                 name: nameVal,
                 description: descVal,
                 ownerId: meProfile.id,
-                ownerName: ownerLabel,
-                ownerPhoto: ownerPhoto,
+                ownerName: meProfile.displayName || meProfile.username,
+                ownerPhoto: meProfile.photo || DEFAULT_AVATAR,
                 createdAt: Date.now(),
                 seats: seatsInit,
                 messages: {}
@@ -1553,16 +1907,12 @@
         function renderRoomsDirectory() {
             const container = document.getElementById("roomsListContainer");
             const roomsArr = Object.values(allRooms || {})
-                .filter(r => r && r.id && r.name)
+                .filter(r => r && r.id && r.name && !r.deleted)
                 .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
 
             container.innerHTML = "";
             if (!roomsArr.length) {
-                container.innerHTML = `
-                    <div class="white-card" style="text-align:center;">
-                        <div class="soft-copy">Hali faol chat xona yoʻq. Yuqoridagi uycha tugmasini bosib xona yarating!</div>
-                    </div>
-                `;
+                container.innerHTML = `<div class="white-card" style="text-align:center;"><div class="soft-copy">Hali faol chat xona yoʻq. Yuqoridagi uycha tugmasini bosib xona yarating!</div></div>`;
                 return;
             }
 
@@ -1571,14 +1921,12 @@
                 const card = document.createElement("div");
                 card.className = "room-list-card";
                 card.onclick = () => enterRoomStage(room.id);
-
                 card.innerHTML = `
                     <div style="display:flex; align-items:center; gap:10px; min-width:0; flex:1;">
                         <img class="room-cover-thumb" src="${escHtml(ownerImg)}" alt="">
                         <div style="min-width:0; flex:1;">
                             <div style="font-size:15px; font-weight:900; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escHtml(room.name)}</div>
                             <div class="soft-copy" style="font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-top:2px;">${escHtml(room.description || "")}</div>
-                            <div class="soft-copy" style="font-size:11px; opacity:0.9; margin-top:2px;">Egasi: ${escHtml(room.ownerName || "Foydalanuvchi")}</div>
                         </div>
                     </div>
                     <span class="live-tag">Ishlamoqda</span>
@@ -1589,31 +1937,34 @@
             });
         }
 
-        async function enterRoomStage(roomId) {
-            ensureAudioCtx();
-            currentStageRoomId = String(roomId);
-            seenVoicePacketIds = new Set();
+        function countRoomPeople(room) {
+            if (!room || !room.seats) return 1;
+            let cnt = 0;
+            Object.values(room.seats).forEach(s => { if (s && s.userId) cnt++; });
+            return Math.max(1, cnt);
+        }
 
-            /* EFIRGA QAYTA KIRGANDA AVVALGI CHAT SO'ZLARINI TOZALASH VA O'RINDIQNI BO'SHATISH */
+        async function enterRoomStage(roomId) {
+            currentStageRoomId = String(roomId);
+            roomMinimized = false;
+            seenVoiceIds = new Set();
+            seenGiftSoundIds = new Set();
+
             const room = allRooms[currentStageRoomId];
-            if (room) {
-                room.messages = {};
-                if (room.seats) {
-                    Object.keys(room.seats).forEach(k => {
-                        if (room.seats[k] && String(room.seats[k].userId) === String(meProfile.id)) {
-                            room.seats[k].userId = null;
-                            room.seats[k].label = k === "0" ? "Egasi" : k;
-                            room.seats[k].photo = "";
-                        }
-                    });
-                }
-                saveJson(STORAGE_KEYS.rooms, allRooms);
-                try {
-                    await fetch(`${FIREBASE_DB}/fungo_rooms/${encodeURIComponent(currentStageRoomId)}/messages.json`, {
-                        method: "DELETE"
-                    });
-                } catch (e) {}
+            if (!room || room.deleted) return;
+
+            room.messages = {};
+            if (room.seats) {
+                Object.keys(room.seats).forEach(k => {
+                    if (room.seats[k] && String(room.seats[k].userId) === String(meProfile.id)) {
+                        room.seats[k].userId = null;
+                        room.seats[k].label = k === "0" ? "Egasi" : k;
+                        room.seats[k].photo = "";
+                    }
+                });
             }
+            saveJson(STORAGE_KEYS.rooms, allRooms);
+            updateMiniRoomBar();
 
             document.getElementById("roomsDirectoryPane").style.display = "none";
             document.getElementById("roomStagePane").classList.add("open");
@@ -1628,6 +1979,7 @@
             showEntryBanner(entryEvt.name, entryEvt.photo);
 
             try {
+                await fetch(`${FIREBASE_DB}/fungo_rooms/${encodeURIComponent(currentStageRoomId)}/messages.json`, { method: "DELETE" });
                 await fetch(`${FIREBASE_DB}/fungo_room_entries/${encodeURIComponent(currentStageRoomId)}.json`, {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
@@ -1636,23 +1988,64 @@
             } catch (e) {}
         }
 
+        function restoreRoomFromMini() {
+            if (!currentStageRoomId) return;
+            roomMinimized = false;
+            updateMiniRoomBar();
+            document.querySelectorAll(".dock-btn").forEach((b, idx) => b.classList.toggle("active", idx === 0));
+            document.querySelectorAll(".section-view").forEach(s => s.classList.remove("active"));
+            document.getElementById("tab-chatlar").classList.add("active");
+            document.getElementById("roomsDirectoryPane").style.display = "none";
+            document.getElementById("roomStagePane").classList.add("open");
+            renderRoomStage();
+        }
+
+        function updateMiniRoomBar() {
+            const bar = document.getElementById("miniRoomBar");
+            if (!bar) return;
+            if (currentStageRoomId && roomMinimized && allRooms[currentStageRoomId] && !allRooms[currentStageRoomId].deleted) {
+                document.getElementById("miniRoomTitle").textContent = allRooms[currentStageRoomId].name;
+                bar.classList.add("active");
+            } else {
+                bar.classList.remove("active");
+            }
+        }
+
+        async function deleteCurrentRoomByOwner() {
+            if (!currentStageRoomId) return;
+            const room = allRooms[currentStageRoomId];
+            if (!room || String(room.ownerId) !== String(meProfile.id)) return;
+            room.deleted = true;
+            saveJson(STORAGE_KEYS.rooms, allRooms);
+            try {
+                await fetch(`${FIREBASE_DB}/fungo_rooms/${encodeURIComponent(room.id)}.json`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(room)
+                });
+            } catch (e) {}
+            leaveRoomStage();
+        }
+
         async function leaveRoomStage() {
             stopRoomMic();
-            const leavingRoomId = currentStageRoomId;
+            const leavingId = currentStageRoomId;
             currentStageRoomId = null;
+            roomMinimized = false;
+            updateMiniRoomBar();
 
-            if (leavingRoomId && allRooms[leavingRoomId]) {
-                const r = allRooms[leavingRoomId];
+            if (leavingId && allRooms[leavingId]) {
+                const r = allRooms[leavingId];
                 r.messages = {};
                 if (r.seats) {
-                    Object.keys(r.seats).forEach(k => {
+                    for (const k of Object.keys(r.seats)) {
                         if (r.seats[k] && String(r.seats[k].userId) === String(meProfile.id)) {
                             r.seats[k].userId = null;
                             r.seats[k].label = k === "0" ? "Egasi" : k;
                             r.seats[k].photo = "";
-                            pushRoomSeatsToFirebase(leavingRoomId, k, r.seats[k]);
+                            await pushRoomSeatsToFirebase(leavingId, k, r.seats[k]);
                         }
-                    });
+                    }
                 }
                 saveJson(STORAGE_KEYS.rooms, allRooms);
             }
@@ -1663,22 +2056,24 @@
         }
 
         function renderRoomStage() {
-            if (!currentStageRoomId) return;
+            if (!currentStageRoomId || roomMinimized) return;
             const room = allRooms[currentStageRoomId];
-            if (!room) {
+            if (!room || room.deleted) {
                 leaveRoomStage();
                 return;
             }
 
             document.getElementById("stageRoomTitle").textContent = room.name;
             document.getElementById("stageRoomDesc").textContent = room.description || "";
+            document.getElementById("stagePeopleCount").textContent = String(countRoomPeople(room));
+            document.getElementById("deleteRoomOwnerBtn").style.display =
+                String(room.ownerId) === String(meProfile.id) ? "inline-flex" : "none";
 
             const seats = room.seats || {};
             const hostSeat = seats["0"] || { userId: null, label: "Egasi", photo: "", locked: false };
             const hostRing = document.getElementById("seatRing_0");
             const hostLabel = document.getElementById("seatLabel_0");
 
-            hostRing.className = "seat-ring host-ring" + (hostSeat.locked ? " locked-ring" : "");
             if (hostSeat.locked) {
                 hostRing.innerHTML = seatMicSvg(true);
                 hostLabel.textContent = "Qulf";
@@ -1698,13 +2093,12 @@
             for (let i = 1; i <= 8; i++) {
                 const key = String(i);
                 const sData = seats[key] || { userId: null, label: String(i), photo: "", locked: false };
-
                 const node = document.createElement("div");
                 node.className = "seat-node";
                 node.onclick = () => handleSeatClick(key);
 
                 const ring = document.createElement("div");
-                ring.className = "seat-ring" + (sData.locked ? " locked-ring" : "");
+                ring.className = "seat-ring";
 
                 if (sData.locked) {
                     ring.innerHTML = seatMicSvg(true);
@@ -1725,7 +2119,7 @@
                 grid8.appendChild(node);
             }
 
-            renderRoomMessages(room);
+            renderRoomMessagesFive(room);
         }
 
         function getMyCurrentSeatKey(seatsObj) {
@@ -1746,24 +2140,20 @@
             const sData = room.seats[seatKey] || { userId: null, label: seatKey === "0" ? "Egasi" : seatKey, photo: "", locked: false };
             const isOwner = String(room.ownerId) === String(meProfile.id);
 
-            /* AGAR O'RINDIQDA BOSHQA ODAM O'TIRGAN BO'LSA -> PROFIL MODALI OCHILADI */
             if (sData.userId && String(sData.userId) !== String(meProfile.id)) {
                 openTargetUserModal(sData.userId);
                 return;
             }
 
-            /* AGAR XONA EGASI BO'SH O'RINDIQNI BOSGANDA -> QULFLASH MODALI */
             if (isOwner && seatKey !== "0" && !sData.userId) {
-                pendingLockSeatKey = seatKey;
                 const btn = document.getElementById("confirmLockBtn");
+                document.getElementById("lockModalTitle").textContent = `${seatKey}-oʻrindiq`;
                 if (sData.locked) {
-                    document.getElementById("lockModalTitle").textContent = `${seatKey}-oʻrindiq`;
                     document.getElementById("lockModalDesc").textContent = "Bu oʻrindiq qulflangan. Qulfni ochmoqchimisiz?";
                     btn.textContent = "Qulfni ochish";
                     btn.onclick = () => applySeatLockToggle(seatKey, false);
                 } else {
-                    document.getElementById("lockModalTitle").textContent = `${seatKey}-oʻrindiq`;
-                    document.getElementById("lockModalDesc").textContent = "Qulflash — bu oʻrindiqqa hech kim oʻtira olmaydi.";
+                    document.getElementById("lockModalDesc").textContent = "Qulflash — bu joyga odamlar oʻtira olmaydi.";
                     btn.textContent = "Qulflash";
                     btn.onclick = () => applySeatLockToggle(seatKey, true);
                 }
@@ -1776,16 +2166,12 @@
                 return;
             }
 
-            /* O'RINDIQDAN TURMASDAN BOSHQA O'RINDIQQA O'TISH MUMKIN EMAS */
             const currentMySeat = getMyCurrentSeatKey(room.seats);
             if (currentMySeat && currentMySeat !== seatKey) {
-                document.getElementById("roomVoiceStatus").textContent = "Avval «Oʻrindan turish» ni bosing, keyin boshqa oʻrindiqqa oʻting!";
+                document.getElementById("roomVoiceStatus").textContent = "Avval «Turish» tugmasini bosing, keyin boshqa oʻrindiqqa oʻting!";
                 return;
             }
-
-            if (currentMySeat === seatKey) {
-                return;
-            }
+            if (currentMySeat === seatKey) return;
 
             room.seats[seatKey] = {
                 userId: meProfile.id,
@@ -1794,14 +2180,12 @@
                 locked: false
             };
 
-            document.getElementById("roomVoiceStatus").textContent = `${seatKey === "0" ? "Egasi" : seatKey + "-oʻrindiq"} ga oʻtirdingiz.`;
             saveJson(STORAGE_KEYS.rooms, allRooms);
             renderRoomStage();
             pushRoomSeatsToFirebase(room.id, seatKey, room.seats[seatKey]);
         }
 
         function closeLockModal() {
-            pendingLockSeatKey = null;
             document.getElementById("lockSeatModal").classList.remove("open");
         }
 
@@ -1837,7 +2221,7 @@
                     await pushRoomSeatsToFirebase(room.id, k, room.seats[k]);
                 }
             }
-            document.getElementById("roomVoiceStatus").textContent = "Oʻrindan turdingiz. Endi xohlagan boʻsh oʻrindiqqa oʻtira olasiz.";
+            document.getElementById("roomVoiceStatus").textContent = "Oʻrindan turdingiz.";
             saveJson(STORAGE_KEYS.rooms, allRooms);
             renderRoomStage();
         }
@@ -1852,28 +2236,30 @@
             } catch (e) {}
         }
 
-        function renderRoomMessages(room) {
-            const box = document.getElementById("roomMsgsList");
-            const msgs = Object.values((room && room.messages) || {}).sort((a, b) => (a.ts || 0) - (b.ts || 0));
+        /* OXIRGI 5 TA XABAR KO'RINADIGAN CHAT */
+        function renderRoomMessagesFive(room) {
+            const box = document.getElementById("roomMsgsFiveBox");
+            const msgs = Object.values((room && room.messages) || {})
+                .sort((a, b) => (a.ts || 0) - (b.ts || 0))
+                .slice(-5);
+
             box.innerHTML = "";
             if (!msgs.length) {
-                box.innerHTML = `<div class="soft-copy" style="font-size:12px;">Efir chati toza.</div>`;
+                box.innerHTML = `<div class="soft-copy" style="font-size:13px;">Xabar yozing...</div>`;
                 return;
             }
             msgs.forEach(m => {
                 const div = document.createElement("div");
-                div.className = "room-msg-line";
+                div.className = "room-msg-big";
                 div.innerHTML = `<b>${escHtml(m.sender)}:</b> ${escHtml(m.text)}`;
                 box.appendChild(div);
             });
-            box.scrollTop = box.scrollHeight;
         }
 
         async function sendRoomChatMsg() {
             if (!currentStageRoomId) return;
             const room = allRooms[currentStageRoomId];
             if (!room) return;
-
             const inp = document.getElementById("roomChatInput");
             const txt = inp.value.trim();
             if (!txt) return;
@@ -1890,7 +2276,7 @@
             room.messages[mid] = msgObj;
             inp.value = "";
             saveJson(STORAGE_KEYS.rooms, allRooms);
-            renderRoomMessages(room);
+            renderRoomMessagesFive(room);
 
             try {
                 await fetch(`${FIREBASE_DB}/fungo_rooms/${encodeURIComponent(room.id)}/messages/${encodeURIComponent(mid)}.json`, {
@@ -1901,28 +2287,25 @@
             } catch (e) {}
         }
 
-        /* PROFIL MODALI (OBUNA BO'LISH + XABAR YOZISH) */
+        /* FOYDALANUVCHI PROFILI */
         function openTargetUserModal(uid) {
             const u = allUsers[String(uid)] || {
                 id: String(uid),
                 sixId: generateSixDigitId(uid),
                 displayName: "Foydalanuvchi",
                 username: "@username1",
-                photo: DEFAULT_AVATAR
+                photo: DEFAULT_AVATAR,
+                xp: 0
             };
             targetModalUserId = String(u.id);
-
             const img = document.getElementById("targetUserAvatar");
             img.src = u.photo || DEFAULT_AVATAR;
             img.onerror = () => { img.src = DEFAULT_AVATAR; };
-
             document.getElementById("targetUserDisplayName").textContent = u.displayName || "Foydalanuvchi";
             document.getElementById("targetUserNick").textContent = u.username || "@username1";
             document.getElementById("targetUserSixId").textContent = u.sixId || "100001";
-
-            const isSub = Boolean(followingMap[targetModalUserId]);
-            document.getElementById("followBtnLabel").textContent = isSub ? "Obuna boʻlingan" : "Obuna boʻlish";
-
+            document.getElementById("targetUserLvl").textContent = String(computeLevelFromXp(u.xp).level);
+            document.getElementById("followBtnLabel").textContent = followingMap[targetModalUserId] ? "Obuna boʻlingan" : "Obuna boʻlish";
             document.getElementById("targetUserModal").classList.add("open");
         }
 
@@ -1947,7 +2330,7 @@
             openTgDmChat(peerId);
         }
 
-        /* XABARLAR (TELEGRAM LICHKA USLUBIDA) */
+        /* TELEGRAM LICHKA */
         function dmThreadKey(a, b) {
             return [String(a), String(b)].sort().join("__");
         }
@@ -1956,15 +2339,9 @@
             const inp = document.getElementById("findSixIdInput");
             const fb = document.getElementById("findIdFeedback");
             const targetSix = inp.value.trim();
-            if (!targetSix) {
-                fb.textContent = "6 xonali ID raqam kiriting.";
-                return;
-            }
+            if (!targetSix) { fb.textContent = "6 xonali ID raqam kiriting."; return; }
             const found = Object.values(allUsers || {}).find(u => u && String(u.sixId) === targetSix && String(u.id) !== String(meProfile.id));
-            if (!found) {
-                fb.textContent = "Bu ID bilan foydalanuvchi topilmadi.";
-                return;
-            }
+            if (!found) { fb.textContent = "Bu ID bilan foydalanuvchi topilmadi."; return; }
             fb.textContent = "";
             inp.value = "";
             openTgDmChat(found.id);
@@ -1985,12 +2362,12 @@
 
             box.innerHTML = "";
             if (!threads.length) {
-                box.innerHTML = `<div class="white-card" style="text-align:center;"><div class="soft-copy">Hali shaxsiy yozishmalar yoʻq. 6 xonali ID kiriting yoki profildan «Xabar yozish» ni bosing.</div></div>`;
+                box.innerHTML = `<div class="white-card" style="text-align:center;"><div class="soft-copy">Hali shaxsiy yozishmalar yoʻq.</div></div>`;
                 return;
             }
 
             threads.forEach(t => {
-                const peer = allUsers[t.peerId] || { id: t.peerId, username: "@username1", displayName: "Foydalanuvchi", photo: DEFAULT_AVATAR, sixId: "100001" };
+                const peer = allUsers[t.peerId] || { id: t.peerId, username: "@username1", displayName: "Foydalanuvchi", photo: DEFAULT_AVATAR };
                 const card = document.createElement("div");
                 card.className = "room-list-card";
                 card.onclick = () => openTgDmChat(t.peerId);
@@ -2013,14 +2390,11 @@
         function openTgDmChat(peerId) {
             activeDmPeerId = String(peerId);
             const peer = allUsers[activeDmPeerId] || { id: activeDmPeerId, username: "@username1", sixId: "100001", photo: DEFAULT_AVATAR };
-
             document.getElementById("dmThreadsPane").style.display = "none";
             document.getElementById("tgDmChatPane").classList.add("open");
-
             const av = document.getElementById("tgDmPeerAvatar");
             av.src = peer.photo || DEFAULT_AVATAR;
             av.onerror = () => { av.src = DEFAULT_AVATAR; };
-
             document.getElementById("tgDmPeerNick").textContent = peer.username || "@username1";
             document.getElementById("tgDmPeerSub").textContent = `ID: ${peer.sixId || "100001"}`;
             document.getElementById("tgDmInput").value = "";
@@ -2039,18 +2413,20 @@
             const stream = document.getElementById("tgDmMessagesStream");
             const k = dmThreadKey(meProfile.id, activeDmPeerId);
             const msgs = Object.values(allDms[k] || {}).sort((a, b) => (a.ts || 0) - (b.ts || 0));
-
             stream.innerHTML = "";
             if (!msgs.length) {
-                stream.innerHTML = `<div class="soft-copy" style="margin:auto;">Telegram lichka kabi xabar yozishni boshlang.</div>`;
+                stream.innerHTML = `<div class="soft-copy" style="margin:auto;">Telegram lichka kabi yozing...</div>`;
                 return;
             }
-
             msgs.forEach(m => {
                 const mine = String(m.senderId) === String(meProfile.id);
                 const div = document.createElement("div");
                 div.className = "tg-bubble " + (mine ? "mine" : "theirs");
-                div.textContent = m.text || "";
+                if (m.type === "audio" && m.audio) {
+                    div.innerHTML = `<div>Ovozli xabar</div><audio controls src="${m.audio}" style="width:180px; height:30px; margin-top:4px;"></audio>`;
+                } else {
+                    div.textContent = m.text || "";
+                }
                 stream.appendChild(div);
             });
             stream.scrollTop = stream.scrollHeight;
@@ -2106,7 +2482,12 @@
                     const ru = await uRes.json();
                     if (ru && typeof ru === "object") {
                         allUsers = { ...allUsers, ...ru };
+                        if (allUsers[meProfile.id]) {
+                            meProfile.coins = Number(allUsers[meProfile.id].coins !== undefined ? allUsers[meProfile.id].coins : meProfile.coins);
+                        }
                         saveJson(STORAGE_KEYS.users, allUsers);
+                        saveJson(STORAGE_KEYS.profile, meProfile);
+                        renderProfile();
                     }
                 }
 
@@ -2115,8 +2496,13 @@
                     if (rr && typeof rr === "object") {
                         allRooms = { ...allRooms, ...rr };
                         saveJson(STORAGE_KEYS.rooms, allRooms);
-                        renderRoomsDirectory();
-                        if (currentStageRoomId) renderRoomStage();
+                        if (currentStageRoomId && allRooms[currentStageRoomId] && allRooms[currentStageRoomId].deleted) {
+                            leaveRoomStage();
+                        } else {
+                            renderRoomsDirectory();
+                            if (currentStageRoomId && !roomMinimized) renderRoomStage();
+                            updateMiniRoomBar();
+                        }
                     }
                 }
 
@@ -2131,22 +2517,60 @@
                 }
 
                 if (currentStageRoomId) {
-                    const eRes = await fetch(`${FIREBASE_DB}/fungo_room_entries/${encodeURIComponent(currentStageRoomId)}.json`);
+                    const [eRes, gRes, vRes] = await Promise.all([
+                        fetch(`${FIREBASE_DB}/fungo_room_entries/${encodeURIComponent(currentStageRoomId)}.json`),
+                        fetch(`${FIREBASE_DB}/fungo_room_gifts/${encodeURIComponent(currentStageRoomId)}.json`),
+                        fetch(`${FIREBASE_DB}/fungo_voice/${encodeURIComponent(currentStageRoomId)}.json`)
+                    ]);
+
                     if (eRes.ok) {
                         const ev = await eRes.json();
-                        if (ev && ev.userId && String(ev.userId) !== String(meProfile.id) && (Date.now() - (ev.ts || 0)) < 6000) {
+                        if (ev && ev.userId && String(ev.userId) !== String(meProfile.id) && (Date.now() - (ev.ts || 0)) < 5000) {
                             showEntryBanner(ev.name || "Foydalanuvchi", ev.photo || DEFAULT_AVATAR);
                         }
                     }
-                    await pollIncomingVoicePackets();
+
+                    if (gRes.ok) {
+                        const ge = await gRes.json();
+                        if (ge && ge.id && !seenGiftSoundIds.has(ge.id) && (Date.now() - (ge.ts || 0)) < 7000) {
+                            seenGiftSoundIds.add(ge.id);
+                            playChimeSound(ge.freq || 740);
+                            if (String(ge.senderId) !== String(meProfile.id)) {
+                                meProfile.xp = Number(meProfile.xp || 0) + Number(ge.xp || 2000);
+                                saveJson(STORAGE_KEYS.profile, meProfile);
+                                renderProfile();
+                            }
+                        }
+                    }
+
+                    if (vRes.ok) {
+                        const vd = await vRes.json();
+                        if (vd && typeof vd === "object") {
+                            const now = Date.now();
+                            const pkts = Object.values(vd)
+                                .filter(p => p && p.id && p.audio && String(p.senderId) !== String(meProfile.id) && (now - (p.ts || 0)) < 9000)
+                                .sort((a, b) => (a.ts || 0) - (b.ts || 0));
+                            for (const p of pkts) {
+                                if (!seenVoiceIds.has(p.id)) {
+                                    seenVoiceIds.add(p.id);
+                                    playVoiceDataUrl(p.audio);
+                                }
+                            }
+                        }
+                    }
                 }
             } catch (e) {}
         }
 
         function switchTab(tabName, btnEl) {
             if (tabName !== "chatlar" && currentStageRoomId) {
-                leaveRoomStage();
+                roomMinimized = true;
+                updateMiniRoomBar();
+            } else if (tabName === "chatlar" && currentStageRoomId && !roomMinimized) {
+                document.getElementById("roomsDirectoryPane").style.display = "none";
+                document.getElementById("roomStagePane").classList.add("open");
             }
+
             document.querySelectorAll(".dock-btn").forEach(btn => btn.classList.remove("active"));
             if (btnEl) btnEl.classList.add("active");
 
@@ -2154,7 +2578,13 @@
             const activeSec = document.getElementById("tab-" + tabName);
             if (activeSec) activeSec.classList.add("active");
 
-            if (tabName === "chatlar") renderRoomsDirectory();
+            if (tabName === "chatlar") {
+                if (currentStageRoomId && !roomMinimized) {
+                    renderRoomStage();
+                } else {
+                    renderRoomsDirectory();
+                }
+            }
             if (tabName === "xabarlar") {
                 if (!activeDmPeerId) renderDmThreads();
                 else renderTgDmStream();
@@ -2173,7 +2603,7 @@
 
         setInterval(() => {
             syncRemote();
-        }, 2200);
+        }, 2000);
 
         setTimeout(() => {
             document.getElementById("splashScreen").classList.remove("active");
