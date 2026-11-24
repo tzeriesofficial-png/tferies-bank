@@ -83,6 +83,7 @@
             justify-content: center;
             padding: 12px 14px;
             overflow-y: auto;
+            position: relative;
         }
 
         .section-view {
@@ -184,6 +185,46 @@
             text-shadow: 0 1px 0 rgba(0, 0, 0, 0.16);
         }
 
+        /* SUZIB O'TUVCHI EFIRGA KIRISH BANNERI */
+        .entry-marquee-banner {
+            position: fixed;
+            top: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 95;
+            background: var(--ink-black);
+            color: var(--ink-white);
+            border: 2.5px solid var(--ink-white);
+            border-radius: 999px;
+            padding: 7px 14px;
+            display: none;
+            align-items: center;
+            gap: 9px;
+            max-width: 92vw;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+        }
+
+        .entry-marquee-banner.active {
+            display: inline-flex;
+            animation: marqueeSlideIn 3.4s ease forwards;
+        }
+
+        @keyframes marqueeSlideIn {
+            0% { transform: translateX(115%); opacity: 0; }
+            15% { transform: translateX(-50%); opacity: 1; }
+            82% { transform: translateX(-50%); opacity: 1; }
+            100% { transform: translateX(-160%); opacity: 0; }
+        }
+
+        .marquee-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid var(--bg-yellow);
+            flex-shrink: 0;
+        }
+
         /* PROFILIM */
         .profile-hero {
             align-items: center;
@@ -260,7 +301,7 @@
             80% { transform: scale(1.16) rotate(-4deg); }
         }
 
-        /* CHAT RO'YXATI KARTASI */
+        /* CHAT RO'YXATI */
         .room-list-card {
             width: 100%;
             background: var(--glass-white);
@@ -297,7 +338,7 @@
             flex-shrink: 0;
         }
 
-        /* XONA ICHKI KO'RINISHI (RASM USLUBIDA + PREMIUM SVG) */
+        /* XONA ICHKI SAHNASI */
         .room-stage-view {
             display: none;
             flex-direction: column;
@@ -337,6 +378,7 @@
             flex-direction: column;
             align-items: center;
             gap: 5px;
+            cursor: pointer;
         }
 
         .seats-8-grid {
@@ -417,7 +459,7 @@
         }
 
         .room-msgs {
-            max-height: 120px;
+            max-height: 115px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
@@ -435,16 +477,104 @@
             word-break: break-word;
         }
 
+        /* XABARLAR BO'LIMIDA TELEGRAM LICHKA USLUBIDAGI ICHKI CHAT */
+        .dm-list-pane {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            gap: 10px;
+        }
+
+        .tg-dm-pane {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.16);
+            border: 2px solid var(--ink-white);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .tg-dm-pane.open {
+            display: flex;
+        }
+
+        .tg-dm-header {
+            background: var(--ink-black);
+            color: var(--ink-white);
+            padding: 9px 11px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            border-bottom: 2px solid var(--ink-white);
+            flex-shrink: 0;
+        }
+
+        .tg-dm-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid var(--bg-yellow);
+            flex-shrink: 0;
+        }
+
+        .tg-dm-stream {
+            flex: 1;
+            overflow-y: auto;
+            padding: 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .tg-bubble {
+            max-width: 80%;
+            padding: 9px 13px;
+            border-radius: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: left;
+            word-break: break-word;
+        }
+
+        .tg-bubble.mine {
+            align-self: flex-end;
+            background: var(--ink-white);
+            color: var(--ink-black);
+            border: 1.5px solid var(--ink-black);
+            border-bottom-right-radius: 4px;
+        }
+
+        .tg-bubble.theirs {
+            align-self: flex-start;
+            background: var(--ink-black);
+            color: var(--ink-white);
+            border: 1.5px solid var(--ink-white);
+            border-bottom-left-radius: 4px;
+        }
+
+        .tg-dm-bar {
+            background: rgba(0, 0, 0, 0.25);
+            padding: 8px;
+            display: flex;
+            gap: 6px;
+            border-top: 1.5px solid var(--line-white);
+            flex-shrink: 0;
+        }
+
         /* MODALLAR */
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.55);
+            background: rgba(0, 0, 0, 0.58);
             display: none;
             align-items: center;
             justify-content: center;
             padding: 16px;
-            z-index: 80;
+            z-index: 85;
         }
 
         .modal-overlay.open {
@@ -555,35 +685,13 @@
             justify-content: center;
         }
 
-        /* QIMIRLAB TURUVCHI SVG ANIMATSIYALAR */
-        .anim-house {
-            animation: houseBounce 1.6s infinite ease-in-out;
-        }
-
-        .anim-mic {
-            animation: micPulse 1.5s infinite ease-in-out;
-        }
-
-        .anim-lock {
-            animation: lockShake 1.4s infinite ease-in-out;
-        }
-
-        .anim-chat {
-            animation: chatFloat 1.7s infinite ease-in-out;
-        }
-
-        .anim-bell {
-            animation: bellSwing 1.5s infinite ease-in-out;
-            transform-origin: top center;
-        }
-
-        .anim-game {
-            animation: gameTilt 1.9s infinite ease-in-out;
-        }
-
-        .anim-profile {
-            animation: profilePulse 1.8s infinite ease-in-out;
-        }
+        .anim-house { animation: houseBounce 1.6s infinite ease-in-out; }
+        .anim-mic { animation: micPulse 1.5s infinite ease-in-out; }
+        .anim-lock { animation: lockShake 1.4s infinite ease-in-out; }
+        .anim-chat { animation: chatFloat 1.7s infinite ease-in-out; }
+        .anim-bell { animation: bellSwing 1.5s infinite ease-in-out; transform-origin: top center; }
+        .anim-game { animation: gameTilt 1.9s infinite ease-in-out; }
+        .anim-profile { animation: profilePulse 1.8s infinite ease-in-out; }
 
         @keyframes houseBounce {
             0%, 100% { transform: translateY(0) scale(1); }
@@ -631,6 +739,17 @@
 </head>
 <body>
 
+    <!-- EFIRGA KIRGAN ODAM HAQIDA SUZIB O'TUVCHI BANNER -->
+    <div id="entryBanner" class="entry-marquee-banner">
+        <span class="anim-bell" style="display:inline-flex;">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="#ffd400" stroke="#ffffff" stroke-width="1.6">
+                <path d="M12 3a6 6 0 0 0-6 6v4l-2 2.5V17h16v-1.5L18 13V9a6 6 0 0 0-6-6z"/>
+            </svg>
+        </span>
+        <img id="entryBannerAvatar" class="marquee-avatar" src="" alt="">
+        <span id="entryBannerText" style="font-size:12px; font-weight:900; white-space:nowrap;">Efirga kirdi</span>
+    </div>
+
     <!-- KIRISH QISMI -->
     <div id="splashScreen" class="screen active">
         <div class="splash-title">FUNGO.UZ</div>
@@ -660,9 +779,9 @@
 
                 <div id="roomStagePane" class="room-stage-view">
                     <div class="top-bar">
-                        <button type="button" class="btn-outline-white" onclick="leaveRoomStage()">← Roʻyxat</button>
-                        <div id="stageRoomTitle" class="section-heading" style="font-size:18px; max-width:210px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Xona</div>
-                        <span class="live-tag">Faol</span>
+                        <button type="button" class="btn-outline-white" onclick="leaveRoomStage()">← Chiqish</button>
+                        <div id="stageRoomTitle" class="section-heading" style="font-size:18px; max-width:205px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Xona</div>
+                        <span class="live-tag">Efir</span>
                     </div>
 
                     <div class="room-stage-scroll">
@@ -696,7 +815,7 @@
                         <div id="roomVoiceStatus" class="soft-copy" style="text-align:center;"></div>
 
                         <div class="room-chat-box">
-                            <div style="font-size:13px; font-weight:900;">Xona chati</div>
+                            <div style="font-size:13px; font-weight:900;">Efir chati</div>
                             <div id="roomMsgsList" class="room-msgs"></div>
                             <div style="display:flex; gap:6px;">
                                 <input type="text" id="roomChatInput" class="txt-input" maxlength="250" placeholder="Xonada yozing...">
@@ -707,14 +826,40 @@
                 </div>
             </section>
 
-            <!-- 2. XABARLAR BO'LIMI -->
+            <!-- 2. XABARLAR BO'LIMI (TELEGRAM LICHKA USLUBIDA) -->
             <section id="tab-xabarlar" class="section-view">
-                <div class="top-bar">
-                    <div class="section-heading">Xabarlar</div>
+                <div id="dmThreadsPane" class="dm-list-pane">
+                    <div class="top-bar">
+                        <div class="section-heading">Xabarlar</div>
+                    </div>
+
+                    <div class="white-card">
+                        <div style="font-size:13px; font-weight:900;">ID raqam orqali topish va yozish</div>
+                        <div style="display:flex; gap:6px;">
+                            <input type="text" id="findSixIdInput" class="txt-input" maxlength="6" placeholder="6 xonali ID...">
+                            <button type="button" class="btn-white" onclick="openDmBySixId()">Yozish</button>
+                        </div>
+                        <div id="findIdFeedback" class="soft-copy" style="font-size:12px;"></div>
+                    </div>
+
+                    <div id="dmThreadsContainer" class="scroll-area"></div>
                 </div>
-                <div class="scroll-area">
-                    <div class="white-card" style="text-align:center;">
-                        <div class="soft-copy">Foydalanuvchilar 6 xonali ID raqami orqali bir-birini chaqirishi va xabarlashishi mumkin.</div>
+
+                <div id="tgDmChatPane" class="tg-dm-pane">
+                    <div class="tg-dm-header">
+                        <button type="button" class="btn-outline-white" style="padding:6px 10px;" onclick="closeTgDmChat()">←</button>
+                        <img id="tgDmPeerAvatar" class="tg-dm-avatar" src="" alt="">
+                        <div style="text-align:left; min-width:0; flex:1;">
+                            <div id="tgDmPeerNick" style="font-size:14px; font-weight:900; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">@username1</div>
+                            <div id="tgDmPeerSub" style="font-family:sans-serif; font-size:11px; font-weight:700; opacity:0.85;">ID: 100001</div>
+                        </div>
+                    </div>
+
+                    <div id="tgDmMessagesStream" class="tg-dm-stream"></div>
+
+                    <div class="tg-dm-bar">
+                        <input type="text" id="tgDmInput" class="txt-input" maxlength="400" placeholder="Xabar yozing...">
+                        <button type="button" class="btn-white" onclick="sendTgDmMessage()">Yuborish</button>
                     </div>
                 </div>
             </section>
@@ -759,6 +904,8 @@
                             <span>ID:</span>
                             <span id="profileSixIdText">100001</span>
                         </div>
+
+                        <div class="soft-copy" id="profileFollowStats">Obunalar: <span id="myFollowingCount">0</span></div>
 
                         <div id="profileBioText" class="soft-copy">Tavsif hali yozilmagan.</div>
 
@@ -893,6 +1040,56 @@
         </div>
     </div>
 
+    <!-- MODAL 4: FOYDALANUVCHI PROFILI (OBUNA BO'LISH + XABAR YOZISH) -->
+    <div id="targetUserModal" class="modal-overlay">
+        <div class="modal-sheet">
+            <div class="modal-title">Foydalanuvchi profili</div>
+
+            <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+                <div class="avatar-frame" style="width:84px; height:84px;">
+                    <img id="targetUserAvatar" src="" alt="">
+                </div>
+                <div id="targetUserDisplayName" class="display-name-line" style="font-size:19px;">User</div>
+                <div class="username-badge-row">
+                    <span id="targetUserNick">@username1</span>
+                    <span class="black-check-svg">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+                            <circle cx="12" cy="12" r="10.5" fill="#000000"/>
+                            <path d="M7.5 12.3L10.5 15.3L16.8 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </div>
+                <div class="six-id-pill">ID: <span id="targetUserSixId">100001</span></div>
+            </div>
+
+            <div class="row-2">
+                <button type="button" id="followActionBtn" class="btn-white" onclick="toggleFollowTargetUser()">
+                    <span style="display:inline-flex; align-items:center; justify-content:center; gap:5px;">
+                        <span class="anim-profile" style="display:inline-flex;">
+                            <svg viewBox="0 0 24 24" width="15" height="15" fill="#000000">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                        </span>
+                        <span id="followBtnLabel">Obuna boʻlish</span>
+                    </span>
+                </button>
+
+                <button type="button" class="btn-outline-white" onclick="openDmFromTargetUser()">
+                    <span style="display:inline-flex; align-items:center; justify-content:center; gap:5px;">
+                        <span class="anim-chat" style="display:inline-flex;">
+                            <svg viewBox="0 0 24 24" width="15" height="15" fill="#ffffff">
+                                <path d="M4 4h16v12H7l-3 3V4z"/>
+                            </svg>
+                        </span>
+                        <span>Xabar yozish</span>
+                    </span>
+                </button>
+            </div>
+
+            <button type="button" class="btn-outline-white" onclick="closeTargetUserModal()">Yopish</button>
+        </div>
+    </div>
+
     <script>
         const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
         if (tg) {
@@ -902,20 +1099,17 @@
 
         const FIREBASE_DB = "https://xbox-tanishuv-default-rtdb.firebaseio.com";
         const STORAGE_KEYS = {
-            profile: "fungo_uz_profile_v2",
-            rooms: "fungo_uz_rooms_v2",
-            uid: "fungo_uz_uid_v2"
+            profile: "fungo_uz_profile_v3",
+            rooms: "fungo_uz_rooms_v3",
+            users: "fungo_uz_users_v3",
+            dms: "fungo_uz_dms_v3",
+            following: "fungo_uz_following_v3",
+            uid: "fungo_uz_uid_v3"
         };
 
         const ENGLISH_HANDLES = [
-            "@username1",
-            "@fungo_star",
-            "@gold_nova",
-            "@turbo_vibe",
-            "@apex_room",
-            "@sky_pulse",
-            "@royal_play",
-            "@neon_wave"
+            "@username1", "@fungo_star", "@gold_nova", "@turbo_vibe",
+            "@apex_room", "@sky_pulse", "@royal_play", "@neon_wave"
         ];
 
         const DEFAULT_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(`
@@ -948,8 +1142,7 @@
             for (let i = 0; i < str.length; i++) {
                 hash = (hash * 31 + str.charCodeAt(i)) % 900000;
             }
-            const randPart = Math.floor(100000 + ((hash + Math.floor(Math.random() * 899999)) % 900000));
-            return String(randPart);
+            return String(100000 + ((hash + Math.floor(Math.random() * 899999)) % 900000));
         }
 
         function loadJson(key, fallback) {
@@ -975,7 +1168,6 @@
                 uid = u && u.id ? String(u.id) : ("user_" + Math.random().toString(36).slice(2, 8));
                 localStorage.setItem(STORAGE_KEYS.uid, uid);
             }
-
             const pickedHandle = ENGLISH_HANDLES[Math.abs(uid.split("").reduce((a, b) => a + b.charCodeAt(0), 0)) % ENGLISH_HANDLES.length];
             const defaultName = u ? ([u.first_name, u.last_name].filter(Boolean).join(" ") || "Fungo User") : "Fungo User";
             const defaultNick = u && u.username ? normalizeAtUsername("@" + u.username, pickedHandle) : pickedHandle;
@@ -997,14 +1189,173 @@
             : buildDefaultProfile();
         saveJson(STORAGE_KEYS.profile, meProfile);
 
+        let allUsers = { ...loadJson(STORAGE_KEYS.users, {}), [meProfile.id]: meProfile };
         let allRooms = loadJson(STORAGE_KEYS.rooms, {});
+        let allDms = loadJson(STORAGE_KEYS.dms, {});
+        let followingMap = loadJson(STORAGE_KEYS.following, {});
+
         let pendingPhotoData = meProfile.photo || "";
         let currentStageRoomId = null;
-        let pendingLockSeatKey = null;
+        let activeDmPeerId = null;
+        let targetModalUserId = null;
+        let seenVoicePacketIds = new Set();
+        let bannerTimer = null;
 
-        /* MIKROFON HOLATI */
-        let roomMicOn = false;
-        let micMediaStream = null;
+        /* HAQIQIY OVOZLI CHAT (MIKROFON YUBORISH + DINAMIKDAN ESHITISH) */
+        let roomMicActive = false;
+        let micStream = null;
+        let micRecorder = null;
+        let voiceSendTimer = null;
+        let playbackAudioCtx = null;
+
+        function ensureAudioCtx() {
+            if (!playbackAudioCtx && (window.AudioContext || window.webkitAudioContext)) {
+                const Ctx = window.AudioContext || window.webkitAudioContext;
+                playbackAudioCtx = new Ctx();
+            }
+            if (playbackAudioCtx && playbackAudioCtx.state === "suspended") {
+                playbackAudioCtx.resume().catch(() => {});
+            }
+        }
+
+        function playIncomingVoiceBase64(dataUrl) {
+            if (!dataUrl || typeof dataUrl !== "string") return;
+            try {
+                const audio = new Audio(dataUrl);
+                audio.play().catch(() => {});
+            } catch (e) {}
+        }
+
+        async function toggleRoomMic() {
+            if (!currentStageRoomId) return;
+            ensureAudioCtx();
+
+            if (!roomMicActive) {
+                if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === "undefined") {
+                    document.getElementById("roomVoiceStatus").textContent = "Bu qurilmada mikrofon qoʻllab-quvvatlanmaydi.";
+                    return;
+                }
+                try {
+                    micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    roomMicActive = true;
+                    document.getElementById("roomMicBtnText").textContent = "Mikro: Yoniq";
+                    document.getElementById("roomVoiceStatus").textContent = "Mikrofon yoqildi — ovozingiz xonaga uzatilmoqda.";
+
+                    const startChunkCycle = () => {
+                        if (!roomMicActive || !micStream || !currentStageRoomId) return;
+                        try {
+                            const rec = new MediaRecorder(micStream);
+                            const localChunks = [];
+                            rec.ondataavailable = (ev) => {
+                                if (ev.data && ev.data.size > 0) localChunks.push(ev.data);
+                            };
+                            rec.onstop = () => {
+                                if (!localChunks.length || !currentStageRoomId || !roomMicActive) return;
+                                const blob = new Blob(localChunks, { type: rec.mimeType || "audio/webm" });
+                                const reader = new FileReader();
+                                reader.onloadend = async () => {
+                                    const b64 = String(reader.result || "");
+                                    if (b64 && b64.length < 950000 && currentStageRoomId) {
+                                        const pktId = "vp_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6);
+                                        const pkt = {
+                                            id: pktId,
+                                            senderId: String(meProfile.id),
+                                            audio: b64,
+                                            ts: Date.now()
+                                        };
+                                        try {
+                                            await fetch(`${FIREBASE_DB}/fungo_voice/${encodeURIComponent(currentStageRoomId)}/${encodeURIComponent(pktId)}.json`, {
+                                                method: "PUT",
+                                                headers: { "Content-Type": "application/json" },
+                                                body: JSON.stringify(pkt)
+                                            });
+                                        } catch (e) {}
+                                    }
+                                };
+                                reader.readAsDataURL(blob);
+                            };
+                            micRecorder = rec;
+                            rec.start();
+                            voiceSendTimer = setTimeout(() => {
+                                if (rec.state !== "inactive") {
+                                    try { rec.stop(); } catch (e) {}
+                                }
+                                if (roomMicActive) startChunkCycle();
+                            }, 1300);
+                        } catch (e) {}
+                    };
+
+                    startChunkCycle();
+                } catch (e) {
+                    document.getElementById("roomVoiceStatus").textContent = "Mikrofonga ruxsat berilmadi.";
+                }
+            } else {
+                stopRoomMic();
+            }
+        }
+
+        function stopRoomMic() {
+            roomMicActive = false;
+            if (voiceSendTimer) {
+                clearTimeout(voiceSendTimer);
+                voiceSendTimer = null;
+            }
+            if (micRecorder && micRecorder.state !== "inactive") {
+                try { micRecorder.stop(); } catch (e) {}
+            }
+            micRecorder = null;
+            if (micStream) {
+                micStream.getTracks().forEach(t => t.stop());
+                micStream = null;
+            }
+            const btnText = document.getElementById("roomMicBtnText");
+            const st = document.getElementById("roomVoiceStatus");
+            if (btnText) btnText.textContent = "Mikro: Oʻchiq";
+            if (st) st.textContent = "";
+        }
+
+        async function pollIncomingVoicePackets() {
+            if (!currentStageRoomId) return;
+            try {
+                const res = await fetch(`${FIREBASE_DB}/fungo_voice/${encodeURIComponent(currentStageRoomId)}.json`);
+                if (!res.ok) return;
+                const data = await res.json();
+                if (!data || typeof data !== "object") return;
+
+                const now = Date.now();
+                const pkts = Object.values(data)
+                    .filter(p => p && p.id && p.audio && String(p.senderId) !== String(meProfile.id) && (now - (p.ts || 0)) < 12000)
+                    .sort((a, b) => (a.ts || 0) - (b.ts || 0));
+
+                for (const pkt of pkts) {
+                    if (!seenVoicePacketIds.has(pkt.id)) {
+                        seenVoicePacketIds.add(pkt.id);
+                        playIncomingVoiceBase64(pkt.audio);
+                    }
+                }
+            } catch (e) {}
+        }
+
+        /* SUZIB O'TUVCHI BANNER */
+        function showEntryBanner(userName, userPhoto) {
+            const banner = document.getElementById("entryBanner");
+            const img = document.getElementById("entryBannerAvatar");
+            const txt = document.getElementById("entryBannerText");
+            if (!banner || !img || !txt) return;
+
+            img.src = userPhoto || DEFAULT_AVATAR;
+            img.onerror = () => { img.src = DEFAULT_AVATAR; };
+            txt.textContent = `${userName} efirga kirdi`;
+
+            banner.classList.remove("active");
+            void banner.offsetWidth;
+            banner.classList.add("active");
+
+            if (bannerTimer) clearTimeout(bannerTimer);
+            bannerTimer = setTimeout(() => {
+                banner.classList.remove("active");
+            }, 3450);
+        }
 
         function seatMicSvg(isLocked) {
             if (isLocked) {
@@ -1029,6 +1380,7 @@
             `;
         }
 
+        /* PROFILIM */
         function renderProfile() {
             const img = document.getElementById("profileAvatarImg");
             img.src = meProfile.photo || DEFAULT_AVATAR;
@@ -1038,6 +1390,8 @@
             document.getElementById("profileUsernameText").textContent = meProfile.username || "@username1";
             document.getElementById("profileSixIdText").textContent = meProfile.sixId || "100001";
             document.getElementById("profileBioText").textContent = meProfile.bio ? meProfile.bio : "Tavsif hali yozilmagan.";
+            const count = Object.values(followingMap || {}).filter(Boolean).length;
+            document.getElementById("myFollowingCount").textContent = String(count);
         }
 
         function openProfileEditModal() {
@@ -1109,7 +1463,8 @@
                 updatedAt: Date.now()
             };
 
-            /* XONA EGASIDA TURGAN RASM YANGILANSA, YARATGAN XONASINING RASMI HAM YANGILANADI */
+            allUsers[meProfile.id] = meProfile;
+
             Object.values(allRooms || {}).forEach(r => {
                 if (r && String(r.ownerId) === String(meProfile.id)) {
                     r.ownerPhoto = updatedPhoto || DEFAULT_AVATAR;
@@ -1118,6 +1473,7 @@
             });
 
             saveJson(STORAGE_KEYS.profile, meProfile);
+            saveJson(STORAGE_KEYS.users, allUsers);
             saveJson(STORAGE_KEYS.rooms, allRooms);
             closeProfileEditModal();
             renderProfile();
@@ -1126,7 +1482,7 @@
             await syncRemote();
         }
 
-        /* XONA YARATISH VA RO'YXAT */
+        /* CHAT XONALAR */
         function openCreateRoomModal() {
             document.getElementById("roomNameInput").value = "";
             document.getElementById("roomDescInput").value = "";
@@ -1151,7 +1507,6 @@
                 errEl.textContent = "Tavsif 1 dan 150 belgigacha (1–15) boʻlishi kerak.";
                 return;
             }
-
             const wordsCount = descVal.split(/\s+/).filter(Boolean).length;
             if (wordsCount > 15) {
                 errEl.textContent = "Tavsif 1 dan 15 gacha boʻlsin (hozir " + wordsCount + " ta).";
@@ -1163,7 +1518,7 @@
             const ownerLabel = meProfile.displayName || meProfile.username;
 
             const seatsInit = {
-                "0": { userId: meProfile.id, label: ownerLabel, photo: ownerPhoto, locked: false }
+                "0": { userId: null, label: "Egasi", photo: "", locked: false }
             };
             for (let i = 1; i <= 8; i++) {
                 seatsInit[String(i)] = { userId: null, label: String(i), photo: "", locked: false };
@@ -1234,16 +1589,74 @@
             });
         }
 
-        function enterRoomStage(roomId) {
+        async function enterRoomStage(roomId) {
+            ensureAudioCtx();
             currentStageRoomId = String(roomId);
+            seenVoicePacketIds = new Set();
+
+            /* EFIRGA QAYTA KIRGANDA AVVALGI CHAT SO'ZLARINI TOZALASH VA O'RINDIQNI BO'SHATISH */
+            const room = allRooms[currentStageRoomId];
+            if (room) {
+                room.messages = {};
+                if (room.seats) {
+                    Object.keys(room.seats).forEach(k => {
+                        if (room.seats[k] && String(room.seats[k].userId) === String(meProfile.id)) {
+                            room.seats[k].userId = null;
+                            room.seats[k].label = k === "0" ? "Egasi" : k;
+                            room.seats[k].photo = "";
+                        }
+                    });
+                }
+                saveJson(STORAGE_KEYS.rooms, allRooms);
+                try {
+                    await fetch(`${FIREBASE_DB}/fungo_rooms/${encodeURIComponent(currentStageRoomId)}/messages.json`, {
+                        method: "DELETE"
+                    });
+                } catch (e) {}
+            }
+
             document.getElementById("roomsDirectoryPane").style.display = "none";
             document.getElementById("roomStagePane").classList.add("open");
             renderRoomStage();
+
+            const entryEvt = {
+                userId: meProfile.id,
+                name: meProfile.displayName || meProfile.username,
+                photo: meProfile.photo || DEFAULT_AVATAR,
+                ts: Date.now()
+            };
+            showEntryBanner(entryEvt.name, entryEvt.photo);
+
+            try {
+                await fetch(`${FIREBASE_DB}/fungo_room_entries/${encodeURIComponent(currentStageRoomId)}.json`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(entryEvt)
+                });
+            } catch (e) {}
         }
 
-        function leaveRoomStage() {
-            disableRoomMic();
+        async function leaveRoomStage() {
+            stopRoomMic();
+            const leavingRoomId = currentStageRoomId;
             currentStageRoomId = null;
+
+            if (leavingRoomId && allRooms[leavingRoomId]) {
+                const r = allRooms[leavingRoomId];
+                r.messages = {};
+                if (r.seats) {
+                    Object.keys(r.seats).forEach(k => {
+                        if (r.seats[k] && String(r.seats[k].userId) === String(meProfile.id)) {
+                            r.seats[k].userId = null;
+                            r.seats[k].label = k === "0" ? "Egasi" : k;
+                            r.seats[k].photo = "";
+                            pushRoomSeatsToFirebase(leavingRoomId, k, r.seats[k]);
+                        }
+                    });
+                }
+                saveJson(STORAGE_KEYS.rooms, allRooms);
+            }
+
             document.getElementById("roomStagePane").classList.remove("open");
             document.getElementById("roomsDirectoryPane").style.display = "flex";
             renderRoomsDirectory();
@@ -1261,21 +1674,23 @@
             document.getElementById("stageRoomDesc").textContent = room.description || "";
 
             const seats = room.seats || {};
-            const hostSeat = seats["0"] || { userId: room.ownerId, label: "Egasi", photo: room.ownerPhoto || DEFAULT_AVATAR, locked: false };
+            const hostSeat = seats["0"] || { userId: null, label: "Egasi", photo: "", locked: false };
             const hostRing = document.getElementById("seatRing_0");
             const hostLabel = document.getElementById("seatLabel_0");
 
             hostRing.className = "seat-ring host-ring" + (hostSeat.locked ? " locked-ring" : "");
             if (hostSeat.locked) {
                 hostRing.innerHTML = seatMicSvg(true);
+                hostLabel.textContent = "Qulf";
             } else if (hostSeat.userId) {
-                hostRing.innerHTML = `<img src="${escHtml(hostSeat.photo || room.ownerPhoto || DEFAULT_AVATAR)}" alt="">`;
+                hostRing.innerHTML = `<img src="${escHtml(hostSeat.photo || DEFAULT_AVATAR)}" alt="">`;
                 const hImg = hostRing.querySelector("img");
                 if (hImg) hImg.onerror = function() { this.src = DEFAULT_AVATAR; };
+                hostLabel.textContent = hostSeat.label || "Egasi";
             } else {
-                hostRing.innerHTML = `<img src="${escHtml(room.ownerPhoto || DEFAULT_AVATAR)}" alt="">`;
+                hostRing.innerHTML = seatMicSvg(false);
+                hostLabel.textContent = "Egasi";
             }
-            hostLabel.textContent = hostSeat.locked ? "Qulflangan" : "Egasi";
 
             const grid8 = document.getElementById("seatsGrid8");
             grid8.innerHTML = "";
@@ -1313,17 +1728,32 @@
             renderRoomMessages(room);
         }
 
+        function getMyCurrentSeatKey(seatsObj) {
+            for (const k of Object.keys(seatsObj || {})) {
+                if (seatsObj[k] && String(seatsObj[k].userId) === String(meProfile.id)) {
+                    return k;
+                }
+            }
+            return null;
+        }
+
         function handleSeatClick(seatKey) {
             if (!currentStageRoomId) return;
             const room = allRooms[currentStageRoomId];
             if (!room) return;
             if (!room.seats) room.seats = {};
 
-            const sData = room.seats[seatKey] || { userId: null, label: seatKey, photo: "", locked: false };
+            const sData = room.seats[seatKey] || { userId: null, label: seatKey === "0" ? "Egasi" : seatKey, photo: "", locked: false };
             const isOwner = String(room.ownerId) === String(meProfile.id);
 
-            /* AGAR XONA EGASI BOSGANDA: QULFLASH / OCHISH MODALI */
-            if (isOwner && seatKey !== "0") {
+            /* AGAR O'RINDIQDA BOSHQA ODAM O'TIRGAN BO'LSA -> PROFIL MODALI OCHILADI */
+            if (sData.userId && String(sData.userId) !== String(meProfile.id)) {
+                openTargetUserModal(sData.userId);
+                return;
+            }
+
+            /* AGAR XONA EGASI BO'SH O'RINDIQNI BOSGANDA -> QULFLASH MODALI */
+            if (isOwner && seatKey !== "0" && !sData.userId) {
                 pendingLockSeatKey = seatKey;
                 const btn = document.getElementById("confirmLockBtn");
                 if (sData.locked) {
@@ -1333,7 +1763,7 @@
                     btn.onclick = () => applySeatLockToggle(seatKey, false);
                 } else {
                     document.getElementById("lockModalTitle").textContent = `${seatKey}-oʻrindiq`;
-                    document.getElementById("lockModalDesc").textContent = "Qulflash — bu joyga boshqalar oʻtira olmaydi.";
+                    document.getElementById("lockModalDesc").textContent = "Qulflash — bu oʻrindiqqa hech kim oʻtira olmaydi.";
                     btn.textContent = "Qulflash";
                     btn.onclick = () => applySeatLockToggle(seatKey, true);
                 }
@@ -1342,18 +1772,20 @@
             }
 
             if (sData.locked) {
-                document.getElementById("roomVoiceStatus").textContent = "Bu oʻrindiq xona egasi tomonidan qulflangan.";
+                document.getElementById("roomVoiceStatus").textContent = "Bu oʻrindiq qulflangan.";
                 return;
             }
 
-            /* BOSH O'RINDIYGA O'TIRISH */
-            Object.keys(room.seats).forEach(k => {
-                if (room.seats[k] && String(room.seats[k].userId) === String(meProfile.id)) {
-                    room.seats[k].userId = null;
-                    room.seats[k].label = k === "0" ? "Egasi" : k;
-                    room.seats[k].photo = "";
-                }
-            });
+            /* O'RINDIQDAN TURMASDAN BOSHQA O'RINDIQQA O'TISH MUMKIN EMAS */
+            const currentMySeat = getMyCurrentSeatKey(room.seats);
+            if (currentMySeat && currentMySeat !== seatKey) {
+                document.getElementById("roomVoiceStatus").textContent = "Avval «Oʻrindan turish» ni bosing, keyin boshqa oʻrindiqqa oʻting!";
+                return;
+            }
+
+            if (currentMySeat === seatKey) {
+                return;
+            }
 
             room.seats[seatKey] = {
                 userId: meProfile.id,
@@ -1362,6 +1794,7 @@
                 locked: false
             };
 
+            document.getElementById("roomVoiceStatus").textContent = `${seatKey === "0" ? "Egasi" : seatKey + "-oʻrindiq"} ga oʻtirdingiz.`;
             saveJson(STORAGE_KEYS.rooms, allRooms);
             renderRoomStage();
             pushRoomSeatsToFirebase(room.id, seatKey, room.seats[seatKey]);
@@ -1404,6 +1837,7 @@
                     await pushRoomSeatsToFirebase(room.id, k, room.seats[k]);
                 }
             }
+            document.getElementById("roomVoiceStatus").textContent = "Oʻrindan turdingiz. Endi xohlagan boʻsh oʻrindiqqa oʻtira olasiz.";
             saveJson(STORAGE_KEYS.rooms, allRooms);
             renderRoomStage();
         }
@@ -1418,45 +1852,12 @@
             } catch (e) {}
         }
 
-        /* MIKROFON ORQALI GAPLASHISH */
-        async function toggleRoomMic() {
-            if (!roomMicOn) {
-                if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-                    document.getElementById("roomVoiceStatus").textContent = "Mikrofon bu qurilmada qoʻllab-quvvatlanmaydi.";
-                    return;
-                }
-                try {
-                    micMediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                    roomMicOn = true;
-                    document.getElementById("roomMicBtnText").textContent = "Mikro: Yoniq";
-                    document.getElementById("roomVoiceStatus").textContent = "Mikrofon yoqildi — xonada gaplashishingiz mumkin.";
-                } catch (e) {
-                    document.getElementById("roomVoiceStatus").textContent = "Mikrofonga ruxsat berilmadi.";
-                }
-            } else {
-                disableRoomMic();
-            }
-        }
-
-        function disableRoomMic() {
-            if (micMediaStream) {
-                micMediaStream.getTracks().forEach(t => t.stop());
-                micMediaStream = null;
-            }
-            roomMicOn = false;
-            const btnText = document.getElementById("roomMicBtnText");
-            const st = document.getElementById("roomVoiceStatus");
-            if (btnText) btnText.textContent = "Mikro: Oʻchiq";
-            if (st) st.textContent = "";
-        }
-
-        /* XONA ICHKI CHATI */
         function renderRoomMessages(room) {
             const box = document.getElementById("roomMsgsList");
             const msgs = Object.values((room && room.messages) || {}).sort((a, b) => (a.ts || 0) - (b.ts || 0));
             box.innerHTML = "";
             if (!msgs.length) {
-                box.innerHTML = `<div class="soft-copy" style="font-size:12px;">Hali xona chatida xabar yoʻq.</div>`;
+                box.innerHTML = `<div class="soft-copy" style="font-size:12px;">Efir chati toza.</div>`;
                 return;
             }
             msgs.forEach(m => {
@@ -1500,7 +1901,193 @@
             } catch (e) {}
         }
 
-        /* BAZADAN SINXRONLASH */
+        /* PROFIL MODALI (OBUNA BO'LISH + XABAR YOZISH) */
+        function openTargetUserModal(uid) {
+            const u = allUsers[String(uid)] || {
+                id: String(uid),
+                sixId: generateSixDigitId(uid),
+                displayName: "Foydalanuvchi",
+                username: "@username1",
+                photo: DEFAULT_AVATAR
+            };
+            targetModalUserId = String(u.id);
+
+            const img = document.getElementById("targetUserAvatar");
+            img.src = u.photo || DEFAULT_AVATAR;
+            img.onerror = () => { img.src = DEFAULT_AVATAR; };
+
+            document.getElementById("targetUserDisplayName").textContent = u.displayName || "Foydalanuvchi";
+            document.getElementById("targetUserNick").textContent = u.username || "@username1";
+            document.getElementById("targetUserSixId").textContent = u.sixId || "100001";
+
+            const isSub = Boolean(followingMap[targetModalUserId]);
+            document.getElementById("followBtnLabel").textContent = isSub ? "Obuna boʻlingan" : "Obuna boʻlish";
+
+            document.getElementById("targetUserModal").classList.add("open");
+        }
+
+        function closeTargetUserModal() {
+            targetModalUserId = null;
+            document.getElementById("targetUserModal").classList.remove("open");
+        }
+
+        function toggleFollowTargetUser() {
+            if (!targetModalUserId) return;
+            followingMap[targetModalUserId] = !Boolean(followingMap[targetModalUserId]);
+            saveJson(STORAGE_KEYS.following, followingMap);
+            document.getElementById("followBtnLabel").textContent = followingMap[targetModalUserId] ? "Obuna boʻlingan" : "Obuna boʻlish";
+            renderProfile();
+        }
+
+        function openDmFromTargetUser() {
+            if (!targetModalUserId) return;
+            const peerId = targetModalUserId;
+            closeTargetUserModal();
+            switchTab("xabarlar", document.querySelectorAll(".dock-btn")[1]);
+            openTgDmChat(peerId);
+        }
+
+        /* XABARLAR (TELEGRAM LICHKA USLUBIDA) */
+        function dmThreadKey(a, b) {
+            return [String(a), String(b)].sort().join("__");
+        }
+
+        async function openDmBySixId() {
+            const inp = document.getElementById("findSixIdInput");
+            const fb = document.getElementById("findIdFeedback");
+            const targetSix = inp.value.trim();
+            if (!targetSix) {
+                fb.textContent = "6 xonali ID raqam kiriting.";
+                return;
+            }
+            const found = Object.values(allUsers || {}).find(u => u && String(u.sixId) === targetSix && String(u.id) !== String(meProfile.id));
+            if (!found) {
+                fb.textContent = "Bu ID bilan foydalanuvchi topilmadi.";
+                return;
+            }
+            fb.textContent = "";
+            inp.value = "";
+            openTgDmChat(found.id);
+        }
+
+        function renderDmThreads() {
+            const box = document.getElementById("dmThreadsContainer");
+            const threads = Object.entries(allDms || {})
+                .filter(([k]) => k.split("__").includes(String(meProfile.id)))
+                .map(([k, msgsObj]) => {
+                    const parts = k.split("__");
+                    const peerId = parts[0] === String(meProfile.id) ? parts[1] : parts[0];
+                    const msgs = Object.values(msgsObj || {}).sort((a, b) => (a.ts || 0) - (b.ts || 0));
+                    return { peerId, last: msgs[msgs.length - 1] };
+                })
+                .filter(t => t.last)
+                .sort((a, b) => (b.last.ts || 0) - (a.last.ts || 0));
+
+            box.innerHTML = "";
+            if (!threads.length) {
+                box.innerHTML = `<div class="white-card" style="text-align:center;"><div class="soft-copy">Hali shaxsiy yozishmalar yoʻq. 6 xonali ID kiriting yoki profildan «Xabar yozish» ni bosing.</div></div>`;
+                return;
+            }
+
+            threads.forEach(t => {
+                const peer = allUsers[t.peerId] || { id: t.peerId, username: "@username1", displayName: "Foydalanuvchi", photo: DEFAULT_AVATAR, sixId: "100001" };
+                const card = document.createElement("div");
+                card.className = "room-list-card";
+                card.onclick = () => openTgDmChat(t.peerId);
+                card.innerHTML = `
+                    <div style="display:flex; align-items:center; gap:10px; min-width:0; flex:1;">
+                        <img class="room-cover-thumb" style="width:48px; height:48px;" src="${escHtml(peer.photo || DEFAULT_AVATAR)}" alt="">
+                        <div style="min-width:0; flex:1;">
+                            <div style="font-size:14px; font-weight:900; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escHtml(peer.username || peer.displayName)}</div>
+                            <div class="soft-copy" style="font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-top:2px;">${escHtml(t.last.text || "")}</div>
+                        </div>
+                    </div>
+                    <span class="live-tag">Lichka</span>
+                `;
+                const img = card.querySelector("img");
+                if (img) img.onerror = function() { this.src = DEFAULT_AVATAR; };
+                box.appendChild(card);
+            });
+        }
+
+        function openTgDmChat(peerId) {
+            activeDmPeerId = String(peerId);
+            const peer = allUsers[activeDmPeerId] || { id: activeDmPeerId, username: "@username1", sixId: "100001", photo: DEFAULT_AVATAR };
+
+            document.getElementById("dmThreadsPane").style.display = "none";
+            document.getElementById("tgDmChatPane").classList.add("open");
+
+            const av = document.getElementById("tgDmPeerAvatar");
+            av.src = peer.photo || DEFAULT_AVATAR;
+            av.onerror = () => { av.src = DEFAULT_AVATAR; };
+
+            document.getElementById("tgDmPeerNick").textContent = peer.username || "@username1";
+            document.getElementById("tgDmPeerSub").textContent = `ID: ${peer.sixId || "100001"}`;
+            document.getElementById("tgDmInput").value = "";
+            renderTgDmStream();
+        }
+
+        function closeTgDmChat() {
+            activeDmPeerId = null;
+            document.getElementById("tgDmChatPane").classList.remove("open");
+            document.getElementById("dmThreadsPane").style.display = "flex";
+            renderDmThreads();
+        }
+
+        function renderTgDmStream() {
+            if (!activeDmPeerId) return;
+            const stream = document.getElementById("tgDmMessagesStream");
+            const k = dmThreadKey(meProfile.id, activeDmPeerId);
+            const msgs = Object.values(allDms[k] || {}).sort((a, b) => (a.ts || 0) - (b.ts || 0));
+
+            stream.innerHTML = "";
+            if (!msgs.length) {
+                stream.innerHTML = `<div class="soft-copy" style="margin:auto;">Telegram lichka kabi xabar yozishni boshlang.</div>`;
+                return;
+            }
+
+            msgs.forEach(m => {
+                const mine = String(m.senderId) === String(meProfile.id);
+                const div = document.createElement("div");
+                div.className = "tg-bubble " + (mine ? "mine" : "theirs");
+                div.textContent = m.text || "";
+                stream.appendChild(div);
+            });
+            stream.scrollTop = stream.scrollHeight;
+        }
+
+        async function sendTgDmMessage() {
+            if (!activeDmPeerId) return;
+            const inp = document.getElementById("tgDmInput");
+            const txt = inp.value.trim();
+            if (!txt) return;
+
+            const k = dmThreadKey(meProfile.id, activeDmPeerId);
+            const mid = "dm_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6);
+            const msgObj = {
+                id: mid,
+                senderId: String(meProfile.id),
+                receiverId: String(activeDmPeerId),
+                text: txt,
+                ts: Date.now()
+            };
+
+            if (!allDms[k]) allDms[k] = {};
+            allDms[k][mid] = msgObj;
+            inp.value = "";
+            saveJson(STORAGE_KEYS.dms, allDms);
+            renderTgDmStream();
+
+            try {
+                await fetch(`${FIREBASE_DB}/fungo_dms/${encodeURIComponent(k)}/${encodeURIComponent(mid)}.json`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(msgObj)
+                });
+            } catch (e) {}
+        }
+
+        /* SINXRONLASH */
         async function syncRemote() {
             try {
                 await fetch(`${FIREBASE_DB}/fungo_users/${encodeURIComponent(meProfile.id)}.json`, {
@@ -1509,22 +2096,56 @@
                     body: JSON.stringify(meProfile)
                 });
 
-                const res = await fetch(`${FIREBASE_DB}/fungo_rooms.json`);
-                if (res.ok) {
-                    const remoteRooms = await res.json();
-                    if (remoteRooms && typeof remoteRooms === "object") {
-                        allRooms = { ...allRooms, ...remoteRooms };
+                const [uRes, rRes, dRes] = await Promise.all([
+                    fetch(`${FIREBASE_DB}/fungo_users.json`),
+                    fetch(`${FIREBASE_DB}/fungo_rooms.json`),
+                    fetch(`${FIREBASE_DB}/fungo_dms.json`)
+                ]);
+
+                if (uRes.ok) {
+                    const ru = await uRes.json();
+                    if (ru && typeof ru === "object") {
+                        allUsers = { ...allUsers, ...ru };
+                        saveJson(STORAGE_KEYS.users, allUsers);
+                    }
+                }
+
+                if (rRes.ok) {
+                    const rr = await rRes.json();
+                    if (rr && typeof rr === "object") {
+                        allRooms = { ...allRooms, ...rr };
                         saveJson(STORAGE_KEYS.rooms, allRooms);
                         renderRoomsDirectory();
                         if (currentStageRoomId) renderRoomStage();
                     }
                 }
+
+                if (dRes.ok) {
+                    const rd = await dRes.json();
+                    if (rd && typeof rd === "object") {
+                        allDms = { ...allDms, ...rd };
+                        saveJson(STORAGE_KEYS.dms, allDms);
+                        if (activeDmPeerId) renderTgDmStream();
+                        else renderDmThreads();
+                    }
+                }
+
+                if (currentStageRoomId) {
+                    const eRes = await fetch(`${FIREBASE_DB}/fungo_room_entries/${encodeURIComponent(currentStageRoomId)}.json`);
+                    if (eRes.ok) {
+                        const ev = await eRes.json();
+                        if (ev && ev.userId && String(ev.userId) !== String(meProfile.id) && (Date.now() - (ev.ts || 0)) < 6000) {
+                            showEntryBanner(ev.name || "Foydalanuvchi", ev.photo || DEFAULT_AVATAR);
+                        }
+                    }
+                    await pollIncomingVoicePackets();
+                }
             } catch (e) {}
         }
 
         function switchTab(tabName, btnEl) {
-            if (tabName !== "chatlar") {
-                disableRoomMic();
+            if (tabName !== "chatlar" && currentStageRoomId) {
+                leaveRoomStage();
             }
             document.querySelectorAll(".dock-btn").forEach(btn => btn.classList.remove("active"));
             if (btnEl) btnEl.classList.add("active");
@@ -1533,13 +2154,12 @@
             const activeSec = document.getElementById("tab-" + tabName);
             if (activeSec) activeSec.classList.add("active");
 
-            if (tabName === "chatlar") {
-                renderRoomsDirectory();
-                if (currentStageRoomId) renderRoomStage();
+            if (tabName === "chatlar") renderRoomsDirectory();
+            if (tabName === "xabarlar") {
+                if (!activeDmPeerId) renderDmThreads();
+                else renderTgDmStream();
             }
-            if (tabName === "profilm") {
-                renderProfile();
-            }
+            if (tabName === "profilm") renderProfile();
 
             if (tg && tg.HapticFeedback) {
                 tg.HapticFeedback.selectionChanged();
@@ -1548,11 +2168,12 @@
 
         renderProfile();
         renderRoomsDirectory();
+        renderDmThreads();
         syncRemote();
 
         setInterval(() => {
             syncRemote();
-        }, 4500);
+        }, 2200);
 
         setTimeout(() => {
             document.getElementById("splashScreen").classList.remove("active");
