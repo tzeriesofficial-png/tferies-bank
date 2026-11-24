@@ -182,7 +182,7 @@
             color: var(--ink-white);
         }
 
-        /* RASM USLUBIDAGI PROFIL SAHIFASI */
+        /* PROFIL SAHIFASI */
         .ref-profile-card {
             width: 100%;
             background: linear-gradient(180deg, rgba(255, 212, 0, 0.22) 0%, rgba(255, 255, 255, 0.06) 52%, rgba(0, 0, 0, 0.96) 100%);
@@ -253,7 +253,6 @@
             opacity: 0.9;
         }
 
-        /* CHIROYLI QIMIRLAB TURUVCHI BALANSIM KARTASI */
         .balansim-showcase {
             width: 100%;
             background: linear-gradient(135deg, rgba(255, 212, 0, 0.24) 0%, rgba(255, 255, 255, 0.08) 55%, rgba(255, 170, 0, 0.18) 100%);
@@ -668,22 +667,184 @@
             display: flex;
         }
 
-        .gifts-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+        /* RASM 1795555309316.jpeg USLUBIDAGI PADARKA QUTISI */
+        .gift-studio-sheet {
+            width: 100%;
+            max-width: 430px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: linear-gradient(180deg, #1b1507 0%, #090909 100%);
+            border: 2px solid rgba(255, 212, 0, 0.55);
+            border-radius: 24px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            color: var(--ink-white);
+            text-align: left;
         }
 
-        .gift-item-btn {
-            background: var(--glass-white);
-            border: 1.8px solid var(--ink-white);
+        .gift-top-targets {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .gift-target-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1.6px solid rgba(255, 255, 255, 0.25);
+            border-radius: 999px;
+            padding: 5px 10px 5px 5px;
+            color: var(--ink-white);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .gift-target-chip.selected {
+            background: rgba(255, 212, 0, 0.22);
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        .gift-target-chip img {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .gift-cat-tabs {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+            padding-bottom: 8px;
+        }
+
+        .gift-cat-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.72);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            padding: 4px 6px;
+        }
+
+        .gift-cat-btn.active {
+            color: var(--ink-white);
+            border-bottom: 2.5px solid var(--accent-gold);
+        }
+
+        .premium-gifts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 9px;
+        }
+
+        .premium-gift-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.6px solid rgba(255, 255, 255, 0.16);
             border-radius: 16px;
             padding: 10px 6px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
             color: var(--ink-white);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .premium-gift-card.selected {
+            border-color: var(--accent-gold);
+            background: rgba(255, 212, 0, 0.14);
+        }
+
+        .jackpot-tag {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background: #ff2a55;
+            color: #ffffff;
+            border-radius: 6px;
+            padding: 1px 5px;
+            font-size: 8px;
+            font-weight: 900;
+            letter-spacing: 0.3px;
+        }
+
+        .svg-gift-motion {
+            width: 52px;
+            height: 52px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            animation: giftDance 2s ease-in-out infinite;
+        }
+
+        @keyframes giftDance {
+            0%, 100% { transform: translateY(0px) scale(1) rotate(0deg); }
+            35% { transform: translateY(-4px) scale(1.1) rotate(-4deg); }
+            70% { transform: translateY(1px) scale(1.04) rotate(4deg); }
+        }
+
+        .gift-bottom-dock {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding-top: 6px;
+            border-top: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        .gift-join-pill {
+            background: rgba(255, 212, 0, 0.18);
+            border: 1.4px solid var(--accent-gold);
+            color: var(--accent-gold);
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .gift-send-capsule {
+            display: inline-flex;
+            align-items: center;
+            background: var(--accent-gold);
+            color: #000000;
+            border-radius: 999px;
+            overflow: hidden;
+            border: none;
+        }
+
+        .gift-qty-btn {
+            background: #1d1806;
+            color: var(--accent-gold);
+            border: none;
+            padding: 8px 11px;
+            font-size: 13px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .gift-send-main {
+            background: var(--accent-gold);
+            color: #000000;
+            border: none;
+            padding: 8px 15px;
+            font-size: 13px;
+            font-weight: 900;
             cursor: pointer;
         }
 
@@ -805,7 +966,6 @@
             color: var(--ink-white);
         }
 
-        /* PREMIUM SVG HOLAT KARTASI */
         .premium-status-box {
             background: linear-gradient(160deg, rgba(255, 212, 0, 0.16) 0%, rgba(255, 255, 255, 0.05) 100%);
             border: 1.8px solid var(--accent-gold);
@@ -1187,6 +1347,15 @@
                             </div>
                         </div>
 
+                        <!-- FAQAT @fungo_moneta UCHUN TEKIN MONETA TUSHIRISH -->
+                        <div id="onlyFungoMonetaBox" class="white-card" style="display:none; border-color:#ffd400;">
+                            <div style="font-size:13px; font-weight:900; color:#ffd400;">Tekin moneta tushirish (@fungo_moneta)</div>
+                            <input type="text" id="directMonetaTargetId" class="txt-input" maxlength="6" placeholder="Faqat 1 ta odamning 6 xonali IDsi">
+                            <input type="number" id="directMonetaAmount" class="txt-input" min="1" placeholder="Moneta miqdori">
+                            <button type="button" class="btn-white" onclick="sendTargetedMonetaOnly()">Faqat shu insonga tushirish</button>
+                            <div id="directMonetaFeedback" class="soft-copy" style="font-size:12px;"></div>
+                        </div>
+
                         <div class="ref-stats-3">
                             <div onclick="openMaintenanceModal('Obuna boʻlish')" style="cursor:pointer;">
                                 <div class="ref-stat-num">0</div>
@@ -1417,7 +1586,7 @@
         </nav>
     </div>
 
-    <!-- MODAL 1: PROFIL TAHRIRLASH (RASM, ISM, NIK, TAVSIF) -->
+    <!-- MODAL 1: PROFIL TAHRIRLASH -->
     <div id="editProfileModal" class="modal-overlay">
         <div class="modal-sheet">
             <div class="modal-title">Profilni tahrirlash</div>
@@ -1503,14 +1672,47 @@
         </div>
     </div>
 
-    <!-- MODAL 5: PADARKA QUTISI -->
+    <!-- MODAL 5: RASM 1795555309316.jpeg USLUBIDAGI PADARKA BO'LIMI -->
     <div id="giftBoxModal" class="modal-overlay">
-        <div class="modal-sheet">
-            <div class="modal-title">Padarka qutisi</div>
-            <div class="soft-copy">Har biri 2,000 • Bosganda ovoz chiqadi</div>
-            <div id="giftsGridContainer" class="gifts-grid"></div>
-            <div id="giftBoxFeedback" class="soft-copy"></div>
-            <button type="button" class="btn-outline-white" onclick="closeGiftBoxModal()">Yopish</button>
+        <div class="gift-studio-sheet">
+            <div style="display:flex; align-items:center; justify-content:space-between;">
+                <div style="font-size:15px; font-weight:900; color:#ffd400;">Stolda oʻtirganlarga padarka</div>
+                <button type="button" class="btn-outline-white" style="padding:4px 10px; font-size:11px;" onclick="closeGiftBoxModal()">✕</button>
+            </div>
+
+            <div class="gift-cat-tabs">
+                <button type="button" class="gift-cat-btn active" onclick="selectGiftCategory('Gift', this)">Gift</button>
+                <button type="button" class="gift-cat-btn" onclick="selectGiftCategory('Lucky', this)">Lucky</button>
+                <button type="button" class="gift-cat-btn" onclick="selectGiftCategory('Lucky firut', this)">Lucky firut</button>
+                <button type="button" class="gift-cat-btn" onclick="selectGiftCategory('Relationship', this)">Relationship</button>
+            </div>
+
+            <div style="font-family:sans-serif; font-size:11.5px; font-weight:800; opacity:0.88;">
+                Kimga urishni tanlang (faqat stolda oʻtirganlar, oʻzingizga emas):
+            </div>
+            <div id="tableRecipientsRow" class="gift-top-targets"></div>
+
+            <div id="premiumGiftsGrid" class="premium-gifts-grid"></div>
+
+            <div id="giftBoxFeedback" class="soft-copy" style="text-align:center; min-height:18px; color:#ffd400;"></div>
+
+            <div class="gift-bottom-dock">
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <span class="animated-gold-coin" style="width:24px; height:24px; animation:none;">
+                        <svg viewBox="0 0 64 64" width="24" height="24">
+                            <circle cx="32" cy="32" r="29" fill="#ffd400" stroke="#fff3b0" stroke-width="3"/>
+                            <circle cx="32" cy="32" r="17" fill="#ffe359"/>
+                        </svg>
+                    </span>
+                    <span id="giftModalBalanceText" style="font-size:13px; font-weight:900;">10,000</span>
+                    <span class="gift-join-pill">Join</span>
+                </div>
+
+                <div class="gift-send-capsule">
+                    <button type="button" class="gift-qty-btn" onclick="cycleGiftQuantity()">1x</button>
+                    <button type="button" class="gift-send-main" onclick="executeTableGiftSend()">Jo'natish</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1554,11 +1756,11 @@
 
         const FIREBASE_DB = "https://xbox-tanishuv-default-rtdb.firebaseio.com";
         const STORAGE_KEYS = {
-            profile: "fungo_uz_profile_v6",
-            rooms: "fungo_uz_rooms_v6",
-            users: "fungo_uz_users_v6",
-            dms: "fungo_uz_dms_v6",
-            uid: "fungo_uz_uid_v6"
+            profile: "fungo_uz_profile_v7",
+            rooms: "fungo_uz_rooms_v7",
+            users: "fungo_uz_users_v7",
+            dms: "fungo_uz_dms_v7",
+            uid: "fungo_uz_uid_v7"
         };
 
         const ENGLISH_HANDLES = [
@@ -1566,18 +1768,13 @@
             "@apex_room", "@sky_pulse", "@royal_play", "@neon_wave"
         ];
 
-        const GIFT_ITEMS = [
-            { id: "sparkler", label: "🎇", cost: 2000, freq: 660 },
-            { id: "fireworks", label: "🎆", cost: 2000, freq: 780 },
-            { id: "moon_ceremony", label: "🎑", cost: 2000, freq: 520 },
-            { id: "city_dusk", label: "🌆", cost: 2000, freq: 590 },
-            { id: "night_stars", label: "🌃", cost: 2000, freq: 720 },
-            { id: "bridge_night", label: "🌉", cost: 2000, freq: 610 },
-            { id: "sunset", label: "🌇", cost: 2000, freq: 540 },
-            { id: "sunrise", label: "🌄", cost: 2000, freq: 840 },
-            { id: "foggy", label: "🌁", cost: 2000, freq: 490 },
-            { id: "milky_way", label: "🌌", cost: 2000, freq: 880 },
-            { id: "shooting_star", label: "🌠", cost: 2000, freq: 960 }
+        const PREMIUM_SVG_GIFTS = [
+            { id: "lucky_bell", name: "Lucky Bell", cost: 500, jackpot: true, freq: 780, kind: "bell" },
+            { id: "lucky_diamond", name: "Lucky Diamond", cost: 20000, jackpot: true, freq: 920, kind: "diamond" },
+            { id: "fireworks", name: "Fireworks", cost: 10000, jackpot: true, freq: 840, kind: "firework" },
+            { id: "cake", name: "Celebration Cake", cost: 300, jackpot: false, freq: 620, kind: "cake" },
+            { id: "crown", name: "Royal Crown", cost: 5000, jackpot: false, freq: 710, kind: "crown" },
+            { id: "starburst", name: "Cosmic Star", cost: 1500, jackpot: false, freq: 880, kind: "star" }
         ];
 
         const DEFAULT_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(`
@@ -1698,6 +1895,30 @@
         let voiceSendTimer = null;
         let seenVoiceIds = new Set();
 
+        let selectedGiftId = PREMIUM_SVG_GIFTS[0].id;
+        let selectedTableRecipientId = null;
+        let giftQuantity = 1;
+        let activeGiftCategory = "Gift";
+
+        function buildPremiumGiftSvg(kind) {
+            if (kind === "bell") {
+                return `<svg viewBox="0 0 64 64" width="50" height="50"><defs><linearGradient id="gBell" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fff2a6"/><stop offset="50%" stop-color="#ffd000"/><stop offset="100%" stop-color="#c97b00"/></linearGradient></defs><path d="M32 10c-9 0-15 6-15 15v9l-4 6h38l-4-6v-9c0-9-6-15-15-15z" fill="url(#gBell)" stroke="#fff7cc" stroke-width="2"/><circle cx="32" cy="46" r="5" fill="#ffae00"/></svg>`;
+            }
+            if (kind === "diamond") {
+                return `<svg viewBox="0 0 64 64" width="50" height="50"><defs><linearGradient id="gDia" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fff8c4"/><stop offset="45%" stop-color="#ffd400"/><stop offset="100%" stop-color="#ff8800"/></linearGradient></defs><polygon points="18,14 46,14 56,26 32,54 8,26" fill="url(#gDia)" stroke="#ffffff" stroke-width="2"/><line x1="8" y1="26" x2="56" y2="26" stroke="#fff3b0" stroke-width="1.6"/></svg>`;
+            }
+            if (kind === "firework") {
+                return `<svg viewBox="0 0 64 64" width="50" height="50"><circle cx="32" cy="30" r="9" fill="#ff3b7f"/><circle cx="18" cy="18" r="5" fill="#ffd400"/><circle cx="46" cy="18" r="5" fill="#00e5ff"/><circle cx="16" cy="38" r="5" fill="#b366ff"/><circle cx="48" cy="38" r="5" fill="#4dff88"/><line x1="32" y1="30" x2="18" y2="18" stroke="#ffd400" stroke-width="2.2"/><line x1="32" y1="30" x2="46" y2="18" stroke="#00e5ff" stroke-width="2.2"/><line x1="32" y1="30" x2="16" y2="38" stroke="#b366ff" stroke-width="2.2"/><line x1="32" y1="30" x2="48" y2="38" stroke="#4dff88" stroke-width="2.2"/></svg>`;
+            }
+            if (kind === "cake") {
+                return `<svg viewBox="0 0 64 64" width="50" height="50"><rect x="14" y="30" width="36" height="20" rx="6" fill="#4da6ff" stroke="#cce6ff" stroke-width="2"/><path d="M14 34c4 5 8 0 12 4s8-4 12 4 8-4 12 0v-6H14v6z" fill="#ffffff"/><line x1="32" y1="16" x2="32" y2="28" stroke="#ffd400" stroke-width="3"/><circle cx="32" cy="13" r="4" fill="#ff4d6d"/></svg>`;
+            }
+            if (kind === "crown") {
+                return `<svg viewBox="0 0 64 64" width="50" height="50"><path d="M12 44L8 22L23 32L32 16L41 32L56 22L52 44H12Z" fill="#ffd400" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/><rect x="12" y="46" width="40" height="6" rx="3" fill="#ffaa00"/></svg>`;
+            }
+            return `<svg viewBox="0 0 64 64" width="50" height="50"><polygon points="32,10 38,24 53,25 41,35 45,50 32,42 19,50 23,35 11,25 26,24" fill="#ffd400" stroke="#fff7c2" stroke-width="2" stroke-linejoin="round"/></svg>`;
+        }
+
         function playVoiceDataUrl(url) {
             if (!url) return;
             try {
@@ -1811,19 +2032,6 @@
             `;
         }
 
-        function giftSvgGraphic(item) {
-            return `
-                <span class="anim-gift" style="display:inline-flex;">
-                    <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="2">
-                        <rect x="6" y="15" width="24" height="15" rx="3"/>
-                        <path d="M18 15v15M18 15c-3-6-9-6-9-2s6 2 9 2zm0 0c3-6 9-6 9-2s-6 2-9 2z"/>
-                    </svg>
-                </span>
-                <span style="font-size:15px; font-weight:900;">${item.label}</span>
-                <span style="font-size:11px; font-weight:900;">${formatCommaNumber(item.cost)}</span>
-            `;
-        }
-
         function openMaintenanceModal(sectionTitle) {
             document.getElementById("maintenanceSectionName").textContent = sectionTitle || "Profilm";
             document.getElementById("maintenanceModal").classList.add("open");
@@ -1831,6 +2039,10 @@
 
         function closeMaintenanceModal() {
             document.getElementById("maintenanceModal").classList.remove("open");
+        }
+
+        function isFungoMonetaAdmin() {
+            return String(meProfile.username || "").trim().toLowerCase() === "@fungo_moneta";
         }
 
         function renderProfile() {
@@ -1843,6 +2055,51 @@
             document.getElementById("profileSixIdText").textContent = meProfile.sixId || "100001";
             document.getElementById("profileBioText").textContent = meProfile.bio ? meProfile.bio : "Tavsif hali yozilmagan.";
             document.getElementById("profileCoinsVal").textContent = formatCommaNumber(meProfile.coins !== undefined ? meProfile.coins : 10000);
+
+            const adminBox = document.getElementById("onlyFungoMonetaBox");
+            if (adminBox) {
+                adminBox.style.display = isFungoMonetaAdmin() ? "flex" : "none";
+            }
+        }
+
+        async function sendTargetedMonetaOnly() {
+            if (!isFungoMonetaAdmin()) return;
+            const fb = document.getElementById("directMonetaFeedback");
+            const targetSix = String(document.getElementById("directMonetaTargetId").value || "").trim();
+            const amount = Number(document.getElementById("directMonetaAmount").value || 0);
+
+            if (!targetSix || !amount || amount <= 0) {
+                fb.textContent = "6 xonali ID va miqdorni kiriting.";
+                return;
+            }
+
+            const targetUser = Object.values(allUsers || {}).find(u => u && String(u.sixId) === targetSix);
+            if (!targetUser) {
+                fb.textContent = "Bu 6 xonali ID bilan foydalanuvchi topilmadi.";
+                return;
+            }
+
+            // Faqat shu bitta foydalanuvchiga o'tkaziladi
+            targetUser.coins = Number(targetUser.coins || 0) + amount;
+            allUsers[targetUser.id] = targetUser;
+            if (String(targetUser.id) === String(meProfile.id)) {
+                meProfile.coins = targetUser.coins;
+                saveJson(STORAGE_KEYS.profile, meProfile);
+            }
+            saveJson(STORAGE_KEYS.users, allUsers);
+            renderProfile();
+
+            fb.textContent = `Faqat ${targetUser.username} (ID: ${targetSix}) ga +${formatCommaNumber(amount)} moneta oʻtdi.`;
+            document.getElementById("directMonetaTargetId").value = "";
+            document.getElementById("directMonetaAmount").value = "";
+
+            try {
+                await fetch(`${FIREBASE_DB}/fungo_users/${encodeURIComponent(targetUser.id)}.json`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(targetUser)
+                });
+            } catch (e) {}
         }
 
         function openProfileEditModal() {
@@ -1919,19 +2176,44 @@
             await syncRemote();
         }
 
+        function getSeatedTableTargets(room) {
+            if (!room || !room.seats) return [];
+            const targets = [];
+            // Faqat stolda o'tirganlar (0: Egasi, 1..8: stol o'rindiqlari), o'ziga-o'zi emas
+            for (const seatKey of Object.keys(room.seats)) {
+                const s = room.seats[seatKey];
+                if (s && s.userId && String(s.userId) !== String(meProfile.id)) {
+                    const u = allUsers[String(s.userId)] || {};
+                    targets.push({
+                        seatKey,
+                        userId: String(s.userId),
+                        name: s.label || u.displayName || u.username || "Foydalanuvchi",
+                        photo: s.photo || u.photo || DEFAULT_AVATAR
+                    });
+                }
+            }
+            return targets;
+        }
+
+        function selectGiftCategory(catName, btnEl) {
+            activeGiftCategory = catName;
+            document.querySelectorAll(".gift-cat-btn").forEach(b => b.classList.remove("active"));
+            if (btnEl) btnEl.classList.add("active");
+            renderGiftBoxContent();
+        }
+
+        function cycleGiftQuantity() {
+            const steps = [1, 5, 10, 99];
+            const idx = steps.indexOf(giftQuantity);
+            giftQuantity = steps[(idx + 1) % steps.length];
+            renderGiftBoxContent();
+        }
+
         function openGiftBoxModal() {
             if (!currentStageRoomId) return;
-            const grid = document.getElementById("giftsGridContainer");
-            grid.innerHTML = "";
+            giftQuantity = 1;
             document.getElementById("giftBoxFeedback").textContent = "";
-            GIFT_ITEMS.forEach(item => {
-                const btn = document.createElement("button");
-                btn.type = "button";
-                btn.className = "gift-item-btn";
-                btn.innerHTML = giftSvgGraphic(item);
-                btn.onclick = () => sendRoomGift(item);
-                grid.appendChild(btn);
-            });
+            renderGiftBoxContent();
             document.getElementById("giftBoxModal").classList.add("open");
         }
 
@@ -1939,37 +2221,126 @@
             document.getElementById("giftBoxModal").classList.remove("open");
         }
 
-        async function sendRoomGift(item) {
-            if (!currentStageRoomId) return;
+        function renderGiftBoxContent() {
+            const room = allRooms[currentStageRoomId];
+            const seatedTargets = getSeatedTableTargets(room);
+            const recRow = document.getElementById("tableRecipientsRow");
+            const grid = document.getElementById("premiumGiftsGrid");
+            const qtyBtn = document.querySelector(".gift-qty-btn");
+
+            document.getElementById("giftModalBalanceText").textContent = formatCommaNumber(meProfile.coins);
+            if (qtyBtn) qtyBtn.textContent = giftQuantity + "x";
+
+            recRow.innerHTML = "";
+            if (!seatedTargets.length) {
+                selectedTableRecipientId = null;
+                recRow.innerHTML = `<div class="soft-copy" style="font-size:12px;">Hozir stolda boshqa odam yoʻq.</div>`;
+            } else {
+                if (!seatedTargets.some(t => String(t.userId) === String(selectedTableRecipientId))) {
+                    selectedTableRecipientId = seatedTargets[0].userId;
+                }
+                seatedTargets.forEach(t => {
+                    const isSel = String(t.userId) === String(selectedTableRecipientId);
+                    const chip = document.createElement("button");
+                    chip.type = "button";
+                    chip.className = "gift-target-chip" + (isSel ? " selected" : "");
+                    chip.innerHTML = `<img src="${escHtml(t.photo)}" alt=""><span>${escHtml(t.name)}</span>`;
+                    chip.onclick = () => {
+                        selectedTableRecipientId = t.userId;
+                        document.getElementById("giftBoxFeedback").textContent = "";
+                        renderGiftBoxContent();
+                    };
+                    recRow.appendChild(chip);
+                });
+            }
+
+            grid.innerHTML = "";
+            PREMIUM_SVG_GIFTS.forEach(item => {
+                const isSel = item.id === selectedGiftId;
+                const card = document.createElement("button");
+                card.type = "button";
+                card.className = "premium-gift-card" + (isSel ? " selected" : "");
+                card.innerHTML = `
+                    ${item.jackpot ? `<span class="jackpot-tag">JACKPOT</span>` : ""}
+                    <span class="svg-gift-motion">${buildPremiumGiftSvg(item.kind)}</span>
+                    <span style="font-family:sans-serif; font-size:11px; font-weight:800; text-align:center;">${escHtml(item.name)}</span>
+                    <span style="font-size:11px; font-weight:900; color:#ffd400;">${formatCommaNumber(item.cost)}</span>
+                `;
+                card.onclick = () => {
+                    selectedGiftId = item.id;
+                    renderGiftBoxContent();
+                };
+                grid.appendChild(card);
+            });
+        }
+
+        async function executeTableGiftSend() {
             const fb = document.getElementById("giftBoxFeedback");
-            if (Number(meProfile.coins || 0) < item.cost) {
+            const room = allRooms[currentStageRoomId];
+            const seatedTargets = getSeatedTableTargets(room);
+            const targetObj = seatedTargets.find(t => String(t.userId) === String(selectedTableRecipientId));
+
+            if (!targetObj) {
+                fb.textContent = "Stolda oʻtirgan boshqa odamni tanlang!";
+                return;
+            }
+
+            if (String(targetObj.userId) === String(meProfile.id)) {
+                fb.textContent = "Oʻzingizga padarka urib boʻlmaydi!";
+                return;
+            }
+
+            const giftObj = PREMIUM_SVG_GIFTS.find(g => g.id === selectedGiftId) || PREMIUM_SVG_GIFTS[0];
+            const totalCost = giftObj.cost * giftQuantity;
+
+            if (Number(meProfile.coins || 0) < totalCost) {
                 fb.textContent = "Balansda yetarli mablagʻ yoʻq.";
                 return;
             }
-            meProfile.coins = Number(meProfile.coins || 0) - item.cost;
+
+            // Faqat yuboruvchidan yechiladi va faqat tanlangan stoldagi odamga o'tadi
+            meProfile.coins = Number(meProfile.coins || 0) - totalCost;
             allUsers[meProfile.id] = meProfile;
+
+            const recipientUser = allUsers[targetObj.userId] || {
+                id: targetObj.userId,
+                displayName: targetObj.name,
+                photo: targetObj.photo,
+                coins: 10000
+            };
+            recipientUser.coins = Number(recipientUser.coins || 0) + totalCost;
+            allUsers[targetObj.userId] = recipientUser;
+
             saveJson(STORAGE_KEYS.profile, meProfile);
             saveJson(STORAGE_KEYS.users, allUsers);
             renderProfile();
-            playChimeSound(item.freq);
+            renderGiftBoxContent();
+            playChimeSound(giftObj.freq);
+
+            fb.textContent = `${targetObj.name} ga ${giftQuantity}x ${giftObj.name} yuborildi!`;
 
             const gid = "gft_" + Date.now() + "_" + Math.random().toString(36).slice(2, 5);
             const giftEvt = {
                 id: gid,
                 senderId: String(meProfile.id),
-                senderName: meProfile.displayName || meProfile.username,
-                label: item.label,
-                freq: item.freq,
+                targetId: String(targetObj.userId),
+                giftName: giftObj.name,
+                qty: giftQuantity,
+                freq: giftObj.freq,
                 ts: Date.now()
             };
             seenGiftSoundIds.add(gid);
-            fb.textContent = `${item.label} yuborildi! Balansim: ${formatCommaNumber(meProfile.coins)}`;
 
             try {
                 await fetch(`${FIREBASE_DB}/fungo_room_gifts/${encodeURIComponent(currentStageRoomId)}.json`, {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(giftEvt)
+                });
+                await fetch(`${FIREBASE_DB}/fungo_users/${encodeURIComponent(recipientUser.id)}.json`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(recipientUser)
                 });
             } catch (e) {}
         }
@@ -2583,6 +2954,11 @@
                     const ru = await uRes.json();
                     if (ru && typeof ru === "object") {
                         allUsers = { ...allUsers, ...ru };
+                        if (allUsers[meProfile.id] && allUsers[meProfile.id].coins !== undefined) {
+                            meProfile.coins = Number(allUsers[meProfile.id].coins);
+                            saveJson(STORAGE_KEYS.profile, meProfile);
+                            renderProfile();
+                        }
                         saveJson(STORAGE_KEYS.users, allUsers);
                     }
                 }
