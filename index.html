@@ -80,7 +80,7 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            padding: 12px 14px;
+            padding: 10px 12px;
             overflow-y: auto;
             position: relative;
         }
@@ -136,8 +136,8 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 11px;
-            padding-bottom: 18px;
+            gap: 10px;
+            padding-bottom: 20px;
         }
 
         .white-card {
@@ -182,7 +182,195 @@
             color: var(--ink-white);
         }
 
-        /* SUZIB O'TUVCHI BANNER */
+        /* RASM USLUBIDAGI PROFIL SAHIFASI */
+        .ref-profile-card {
+            width: 100%;
+            background: linear-gradient(180deg, rgba(255, 212, 0, 0.20) 0%, rgba(255, 255, 255, 0.06) 52%, rgba(0, 0, 0, 0.95) 100%);
+            border: 1.8px solid var(--ink-white);
+            border-radius: 22px;
+            padding: 14px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .ref-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .ref-avatar-circle {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            border: 2.5px solid var(--ink-white);
+            overflow: hidden;
+            background: var(--glass-soft);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .ref-avatar-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .ref-identity-col {
+            flex: 1;
+            min-width: 0;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .ref-name-line {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            font-size: 17px;
+            font-weight: 900;
+        }
+
+        .ref-badge-pill {
+            background: var(--ink-white);
+            color: var(--bg-black);
+            border-radius: 999px;
+            padding: 2px 7px;
+            font-size: 10px;
+            font-weight: 900;
+        }
+
+        .ref-id-line {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            opacity: 0.9;
+            cursor: pointer;
+        }
+
+        .ref-stats-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            text-align: center;
+        }
+
+        .ref-stat-num {
+            font-size: 17px;
+            font-weight: 900;
+        }
+
+        .ref-stat-lbl {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            opacity: 0.85;
+        }
+
+        .ref-banner-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .ref-big-banner {
+            background: var(--glass-soft);
+            border: 1.8px solid var(--ink-white);
+            border-radius: 16px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .ref-4-icons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            text-align: center;
+        }
+
+        .ref-4-btn {
+            background: transparent;
+            border: 1.5px solid transparent;
+            border-radius: 14px;
+            padding: 8px 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: var(--ink-white);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .ref-4-btn:hover {
+            border-color: var(--line-white);
+            background: var(--glass-white);
+        }
+
+        .ref-list-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .ref-menu-row {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+            padding: 12px 6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            color: var(--ink-white);
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .ref-menu-row:last-child {
+            border-bottom: none;
+        }
+
+        .ref-menu-left {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .xp-track {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.16);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .xp-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--ink-white);
+            border-radius: 999px;
+            transition: width 0.3s ease;
+        }
+
+        /* BANNER VA BOSHQA QISMLAR */
         .entry-marquee-banner {
             position: fixed;
             top: 14px;
@@ -221,109 +409,6 @@
             flex-shrink: 0;
         }
 
-        /* PROFILIM */
-        .profile-hero {
-            align-items: center;
-            text-align: center;
-            padding: 16px 14px;
-        }
-
-        .avatar-frame {
-            width: 92px;
-            height: 92px;
-            border-radius: 50%;
-            border: 2.5px solid var(--ink-white);
-            overflow: hidden;
-            background: var(--glass-white);
-            flex-shrink: 0;
-        }
-
-        .avatar-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .display-name-line {
-            font-size: 21px;
-            font-weight: 900;
-            color: var(--ink-white);
-        }
-
-        .username-badge-row {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            background: var(--ink-white);
-            color: var(--bg-black);
-            border-radius: 999px;
-            padding: 5px 13px;
-            font-size: 13px;
-            font-weight: 900;
-        }
-
-        .six-id-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--glass-soft);
-            color: var(--ink-white);
-            border: 1.5px solid var(--ink-white);
-            border-radius: 999px;
-            padding: 5px 14px;
-            font-size: 13px;
-            font-weight: 900;
-            letter-spacing: 1px;
-        }
-
-        .level-box {
-            width: 100%;
-            background: var(--glass-soft);
-            border: 1.8px solid var(--ink-white);
-            border-radius: 16px;
-            padding: 11px 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 7px;
-            text-align: left;
-        }
-
-        .xp-track {
-            width: 100%;
-            height: 9px;
-            background: rgba(255, 255, 255, 0.16);
-            border-radius: 999px;
-            overflow: hidden;
-        }
-
-        .xp-fill {
-            height: 100%;
-            width: 0%;
-            background: var(--ink-white);
-            border-radius: 999px;
-            transition: width 0.3s ease;
-        }
-
-        .black-check-svg {
-            width: 18px;
-            height: 18px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            animation: checkSpinBounce 1.9s infinite ease-in-out;
-        }
-
-        @keyframes checkSpinBounce {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            25% { transform: scale(1.2) rotate(-10deg); }
-            55% { transform: scale(1.08) rotate(8deg); }
-            80% { transform: scale(1.16) rotate(-4deg); }
-        }
-
-        /* CHAT RO'YXATI */
         .room-list-card {
             width: 100%;
             background: var(--glass-white);
@@ -371,7 +456,6 @@
             color: var(--ink-white);
         }
 
-        /* XONA ICHKI SAHNASI */
         .room-stage-view {
             display: none;
             flex-direction: column;
@@ -473,7 +557,6 @@
             gap: 6px;
         }
 
-        /* XONA CHATIDA 5 TA XABAR KO'RINADIGAN VA KATTAROQ SHRIBT */
         .room-chat-box {
             width: 100%;
             background: var(--glass-white);
@@ -511,7 +594,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* KICHRAYTIRILGAN XONA PANELI (BOSHQA BO'LIMLARDA HAM TURADI) */
         .mini-room-bar {
             display: none;
             width: 100%;
@@ -528,7 +610,6 @@
             display: flex;
         }
 
-        /* PADARKA QUTISI (11 TA SVG PADARKA) */
         .gifts-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -548,7 +629,6 @@
             cursor: pointer;
         }
 
-        /* TELEGRAM LICHKA */
         .dm-list-pane {
             display: flex;
             flex-direction: column;
@@ -636,7 +716,6 @@
             flex-shrink: 0;
         }
 
-        /* MODALLAR */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -713,7 +792,6 @@
             gap: 8px;
         }
 
-        /* PASTKI 4 TA BO'LIM */
         .bottom-dock {
             width: 100%;
             background-color: var(--bg-black);
@@ -821,7 +899,6 @@
 </head>
 <body>
 
-    <!-- EFIRGA KIRGAN ODAM BANNERI -->
     <div id="entryBanner" class="entry-marquee-banner">
         <span class="anim-bell" style="display:inline-flex;">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="#ffffff">
@@ -832,16 +909,14 @@
         <span id="entryBannerText" style="font-size:12px; font-weight:900; white-space:nowrap;">Efirga kirdi</span>
     </div>
 
-    <!-- KIRISH QISMI -->
     <div id="splashScreen" class="screen active">
         <div class="splash-title">FUNGO.UZ</div>
     </div>
 
-    <!-- ASOSIY OYNA -->
     <div id="mainApp" class="screen">
         <div class="content-wrap">
 
-            <!-- 1. CHATLAR BO'LIMI -->
+            <!-- 1. CHATLAR -->
             <section id="tab-chatlar" class="section-view active">
                 <div id="roomsDirectoryPane" style="display:flex; flex-direction:column; height:100%; gap:10px;">
                     <div class="top-bar">
@@ -855,7 +930,6 @@
                             <span>Xona</span>
                         </button>
                     </div>
-
                     <div id="roomsListContainer" class="scroll-area"></div>
                 </div>
 
@@ -863,9 +937,8 @@
                     <div class="top-bar">
                         <button type="button" class="btn-outline-white" onclick="leaveRoomStage()">Chiqish</button>
                         <div id="stageRoomTitle" class="section-heading" style="font-size:16px; max-width:155px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Xona</div>
-
                         <div style="display:flex; align-items:center; gap:6px;">
-                            <div class="people-count-badge" title="Xonadagi odamlar soni">
+                            <div class="people-count-badge">
                                 <span class="anim-profile" style="display:inline-flex;">
                                     <svg viewBox="0 0 24 24" width="15" height="15" fill="#ffffff">
                                         <circle cx="12" cy="7.5" r="3.5"/>
@@ -886,7 +959,6 @@
                                 <div id="seatRing_0" class="seat-ring host-ring"></div>
                                 <div id="seatLabel_0" class="seat-caption">Egasi</div>
                             </div>
-
                             <div id="seatsGrid8" class="seats-8-grid"></div>
                         </div>
 
@@ -933,13 +1005,12 @@
                 </div>
             </section>
 
-            <!-- 2. XABARLAR BO'LIMI -->
+            <!-- 2. XABARLAR -->
             <section id="tab-xabarlar" class="section-view">
                 <div id="dmThreadsPane" class="dm-list-pane">
                     <div class="top-bar">
                         <div class="section-heading">Xabarlar</div>
                     </div>
-
                     <div class="white-card">
                         <div style="font-size:13px; font-weight:900;">6 xonali ID orqali lichka ochish</div>
                         <div style="display:flex; gap:6px;">
@@ -948,7 +1019,6 @@
                         </div>
                         <div id="findIdFeedback" class="soft-copy" style="font-size:12px;"></div>
                     </div>
-
                     <div id="dmThreadsContainer" class="scroll-area"></div>
                 </div>
 
@@ -961,9 +1031,7 @@
                             <div id="tgDmPeerSub" style="font-family:sans-serif; font-size:11px; font-weight:700; opacity:0.85;">ID: 100001</div>
                         </div>
                     </div>
-
                     <div id="tgDmMessagesStream" class="tg-dm-stream"></div>
-
                     <div class="tg-dm-bar">
                         <input type="text" id="tgDmInput" class="txt-input" maxlength="400" placeholder="Xabar yozing...">
                         <button type="button" class="btn-outline-white" style="padding:8px 10px;" onclick="sendDmVoiceNote()" title="Ovozli xabar (Level 10+)">
@@ -980,7 +1048,7 @@
                 </div>
             </section>
 
-            <!-- 3. O'YINLAR BO'LIMI -->
+            <!-- 3. O'YINLAR -->
             <section id="tab-oyinlar" class="section-view">
                 <div class="top-bar">
                     <div class="section-heading">Oʻyinlar</div>
@@ -992,69 +1060,201 @@
                 </div>
             </section>
 
-            <!-- 4. PROFILM BO'LIMI -->
+            <!-- 4. PROFILM (RASM 1795553887003.jpeg USLUBIDA) -->
             <section id="tab-profilm" class="section-view">
-                <div class="top-bar">
-                    <div class="section-heading">Profilm</div>
-                </div>
-
                 <div class="scroll-area">
-                    <div class="white-card profile-hero">
-                        <div class="avatar-frame">
-                            <img id="profileAvatarImg" src="" alt="Profil rasmi">
-                        </div>
-
-                        <div id="profileDisplayName" class="display-name-line">Fungo User</div>
-
-                        <div class="username-badge-row">
-                            <span id="profileUsernameText">@username1</span>
-                            <span class="black-check-svg">
-                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
-                                    <circle cx="12" cy="12" r="10.5" fill="#000000"/>
-                                    <path d="M7.5 12.3L10.5 15.3L16.8 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </span>
-                        </div>
-
-                        <div class="six-id-pill">
-                            <span>ID:</span>
-                            <span id="profileSixIdText">100001</span>
-                        </div>
-
-                        <div class="level-box">
-                            <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:900;">
-                                <span>Level: <span id="profileLevelVal">1</span> / 160</span>
-                                <span id="profileXpProgressText">0 / 1000 XP</span>
+                    <div class="ref-profile-card">
+                        <div class="ref-header-row">
+                            <div class="ref-avatar-circle" onclick="openProfileEditModal()" title="Rasmni oʻzgartirish">
+                                <img id="profileAvatarImg" src="" alt="Profil rasmi">
                             </div>
-                            <div class="xp-track">
-                                <div id="profileXpBarFill" class="xp-fill"></div>
+
+                            <div class="ref-identity-col">
+                                <div class="ref-name-line">
+                                    <span id="profileDisplayName">Fungo User</span>
+                                    <span class="ref-badge-pill">FUNGO.UZ</span>
+                                    <span class="ref-badge-pill" id="profileUsernameText">@username1</span>
+                                </div>
+                                <div class="ref-id-line" onclick="copyMySixId()">
+                                    ID: <span id="profileSixIdText">100001</span> • Moneta: <span id="profileCoinsVal">0</span>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn-outline-white" style="padding:7px 10px; font-size:11px;" onclick="openProfileEditModal()">Rasm / Ism</button>
+                        </div>
+
+                        <div class="ref-stats-3">
+                            <div>
+                                <div class="ref-stat-num" id="myFollowingCount">0</div>
+                                <div class="ref-stat-lbl">Obuna boʻlish</div>
+                            </div>
+                            <div>
+                                <div class="ref-stat-num" id="myFollowersCount">0</div>
+                                <div class="ref-stat-lbl">Obunachilar</div>
+                            </div>
+                            <div>
+                                <div class="ref-stat-num" id="myLikesCount">0</div>
+                                <div class="ref-stat-lbl">xabar yoqdi</div>
                             </div>
                         </div>
 
-                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; width:100%;">
-                            <button type="button" class="btn-white" onclick="openProfileEditModal()">Tahrirlash</button>
-                            <button type="button" class="btn-outline-white" onclick="openWalletModal()">
-                                <span style="display:inline-flex; align-items:center; justify-content:center; gap:6px;">
-                                    <span class="anim-wallet" style="display:inline-flex;">
-                                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ffffff" stroke-width="2.2">
-                                            <rect x="2" y="5" width="20" height="14" rx="3"/>
-                                            <circle cx="16.5" cy="12" r="1.5" fill="#ffffff"/>
-                                        </svg>
-                                    </span>
-                                    <span>Hamyon</span>
+                        <div class="ref-banner-2">
+                            <div class="ref-big-banner" onclick="openLevelInfoModal()">
+                                <div style="display:flex; flex-direction:column; gap:5px; min-width:0; flex:1;">
+                                    <div style="font-size:16px; font-weight:900; font-style:italic;">Level <span id="profileLevelVal">1</span></div>
+                                    <div class="xp-track">
+                                        <div id="profileXpBarFill" class="xp-fill"></div>
+                                    </div>
+                                    <div style="font-family:sans-serif; font-size:10.5px; font-weight:800;" id="profileXpProgressText">0 / 1000 XP</div>
+                                </div>
+                                <span class="anim-gift" style="display:inline-flex; flex-shrink:0;">
+                                    <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="2.2">
+                                        <path d="M18 4l11 6v8c0 7-4.7 12-11 14-6.3-2-11-7-11-14v-8l11-6z"/>
+                                        <circle cx="18" cy="17" r="4.5"/>
+                                    </svg>
                                 </span>
+                            </div>
+
+                            <div class="ref-big-banner" onclick="openFeatureToast('SVIP boʻlimi faol')">
+                                <div style="display:flex; flex-direction:column; gap:4px;">
+                                    <div style="font-size:16px; font-weight:900; font-style:italic;">SVIP</div>
+                                    <div style="font-family:sans-serif; font-size:11px; font-weight:800; opacity:0.85;">Maxsus status</div>
+                                </div>
+                                <span class="anim-wallet" style="display:inline-flex; flex-shrink:0;">
+                                    <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="2.2">
+                                        <polygon points="8,11 18,6 28,11 18,30"/>
+                                        <line x1="8" y1="11" x2="28" y2="11"/>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="ref-4-icons">
+                            <button type="button" class="ref-4-btn" onclick="openWalletModal()">
+                                <span class="anim-wallet" style="display:inline-flex;">
+                                    <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="2.2">
+                                        <rect x="5" y="9" width="26" height="18" rx="4"/>
+                                        <circle cx="24" cy="18" r="2.2" fill="#ffffff"/>
+                                    </svg>
+                                </span>
+                                <span>Hamyon</span>
+                            </button>
+
+                            <button type="button" class="ref-4-btn" onclick="openFeatureToast('Aristokratiya boʻlimi')">
+                                <span class="anim-profile" style="display:inline-flex;">
+                                    <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="2.2">
+                                        <path d="M18 5l10 5v8c0 6.5-4.2 11.2-10 13-5.8-1.8-10-6.5-10-13v-8l10-5z"/>
+                                        <path d="M14 20l4-8 4 8"/>
+                                    </svg>
+                                </span>
+                                <span>Aristokratiya</span>
+                            </button>
+
+                            <button type="button" class="ref-4-btn" onclick="openFeatureToast('Medal boʻlimi')">
+                                <span class="anim-bell" style="display:inline-flex;">
+                                    <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="2.2">
+                                        <circle cx="18" cy="20" r="9"/>
+                                        <path d="M13 5h10l-2 6h-6l-2-6z"/>
+                                    </svg>
+                                </span>
+                                <span>Medal</span>
+                            </button>
+
+                            <button type="button" class="ref-4-btn" onclick="openWalletModal()">
+                                <span class="anim-house" style="display:inline-flex;">
+                                    <svg viewBox="0 0 36 36" width="32" height="32" fill="none" stroke="#ffffff" stroke-width="2.2">
+                                        <path d="M6 14l3-7h18l3 7v16H6V14z"/>
+                                        <rect x="14" y="20" width="8" height="10"/>
+                                    </svg>
+                                </span>
+                                <span>Doʻkon</span>
                             </button>
                         </div>
 
-                        <div class="soft-copy">Monetalar: <span id="profileCoinsVal">0</span> • Obunalar: <span id="myFollowingCount">0</span></div>
-                        <div id="profileBioText" class="soft-copy">Tavsif hali yozilmagan.</div>
+                        <div class="ref-list-rows">
+                            <button type="button" class="ref-menu-row" onclick="openWalletModal()">
+                                <span class="ref-menu-left">
+                                    <span class="anim-gift" style="display:inline-flex;">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2">
+                                            <rect x="3" y="9" width="18" height="12" rx="2"/>
+                                            <path d="M12 9v12M7 5h10"/>
+                                        </svg>
+                                    </span>
+                                    <span>Taklif qilish orqali tangalar olish</span>
+                                </span>
+                                <span>›</span>
+                            </button>
+
+                            <button type="button" class="ref-menu-row" onclick="openFeatureToast('Rekvizitlar ombori')">
+                                <span class="ref-menu-left">
+                                    <span class="anim-wallet" style="display:inline-flex;">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2">
+                                            <rect x="4" y="6" width="16" height="14" rx="3"/>
+                                            <path d="M9 6V4h6v2"/>
+                                        </svg>
+                                    </span>
+                                    <span>Rekvizitlar ombori</span>
+                                </span>
+                                <span>›</span>
+                            </button>
+
+                            <button type="button" class="ref-menu-row" onclick="openFeatureToast('Sevgi uyi')">
+                                <span class="ref-menu-left">
+                                    <span class="anim-house" style="display:inline-flex;">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2">
+                                            <path d="M3 11l9-7 9 7v9H3v-9z"/>
+                                        </svg>
+                                    </span>
+                                    <span>Sevgi uyi</span>
+                                </span>
+                                <span>›</span>
+                            </button>
+
+                            <button type="button" class="ref-menu-row" onclick="openLevelInfoModal()">
+                                <span class="ref-menu-left">
+                                    <span class="anim-profile" style="display:inline-flex;">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2">
+                                            <circle cx="12" cy="12" r="9"/>
+                                            <circle cx="12" cy="12" r="3.5"/>
+                                        </svg>
+                                    </span>
+                                    <span>CP Darajasi</span>
+                                </span>
+                                <span>›</span>
+                            </button>
+
+                            <button type="button" class="ref-menu-row" onclick="openFeatureToast('Oila boʻlimi')">
+                                <span class="ref-menu-left">
+                                    <span class="anim-chat" style="display:inline-flex;">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2">
+                                            <path d="M12 3l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V7l8-4z"/>
+                                        </svg>
+                                    </span>
+                                    <span>Oila</span>
+                                </span>
+                                <span>›</span>
+                            </button>
+
+                            <button type="button" class="ref-menu-row" onclick="openFeatureToast('Kolleksiya Zali')">
+                                <span class="ref-menu-left">
+                                    <span class="anim-bell" style="display:inline-flex;">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2">
+                                            <path d="M3 9h18L12 4 3 9zm2 2v8m5-8v8m4-8v8m5-8v8M3 20h18"/>
+                                        </svg>
+                                    </span>
+                                    <span>Kolleksiya Zali</span>
+                                </span>
+                                <span>›</span>
+                            </button>
+                        </div>
+
+                        <div id="profileBioText" class="soft-copy" style="text-align:left; opacity:0.85;">Tavsif hali yozilmagan.</div>
                     </div>
                 </div>
             </section>
 
         </div>
 
-        <!-- KICHRAYTIRILGAN XONA PANELI (BOSHQA BO'LIMLARGA O'TGANDA HAM TURADI) -->
         <div id="miniRoomBar" class="mini-room-bar">
             <div onclick="restoreRoomFromMini()" style="display:flex; align-items:center; gap:8px; cursor:pointer; min-width:0; flex:1;">
                 <span class="anim-mic" style="display:inline-flex;">
@@ -1071,7 +1271,6 @@
             </div>
         </div>
 
-        <!-- PASTKI 4 TA BO'LIM -->
         <nav class="bottom-dock">
             <button type="button" class="dock-btn active" onclick="switchTab('chatlar', this)">
                 <span class="svg-slot anim-chat">
@@ -1114,21 +1313,21 @@
         </nav>
     </div>
 
-    <!-- MODAL 1: PROFIL TAHRIRLASH -->
+    <!-- MODAL 1: PROFIL TAHRIRLASH (RASM, ISM, NIK, TAVSIF) -->
     <div id="editProfileModal" class="modal-overlay">
         <div class="modal-sheet">
             <div class="modal-title">Profilni tahrirlash</div>
 
             <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
-                <div class="avatar-frame" style="width:82px; height:82px;">
+                <div class="ref-avatar-circle" style="width:84px; height:84px;">
                     <img id="editPhotoPreview" src="" alt="">
                 </div>
                 <input type="file" id="editPhotoFile" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
-                <button type="button" class="btn-outline-white" onclick="document.getElementById('editPhotoFile').click()">Rasmni yangilash</button>
+                <button type="button" class="btn-outline-white" onclick="document.getElementById('editPhotoFile').click()">Xohlagan rasmni tanlash</button>
             </div>
 
             <div class="field-group">
-                <label for="editDisplayNameInput" class="field-lbl">Bot ichidagi ism (Name)</label>
+                <label for="editDisplayNameInput" class="field-lbl">Ism</label>
                 <input type="text" id="editDisplayNameInput" class="txt-input" maxlength="32">
             </div>
 
@@ -1151,23 +1350,19 @@
         </div>
     </div>
 
-    <!-- MODAL 2: CHAT XONA YARATISH -->
+    <!-- MODAL 2: XONA YARATISH -->
     <div id="createRoomModal" class="modal-overlay">
         <div class="modal-sheet">
             <div class="modal-title">Yangi Chat Xona</div>
-
             <div class="field-group">
                 <label for="roomNameInput" class="field-lbl">Chat xona nomi</label>
                 <input type="text" id="roomNameInput" class="txt-input" maxlength="36" placeholder="Xona nomi">
             </div>
-
             <div class="field-group">
                 <label for="roomDescInput" class="field-lbl">Tavsif (1 dan 15 gacha)</label>
                 <textarea id="roomDescInput" class="txt-area" maxlength="150" placeholder="1 dan 15 gacha tavsif..."></textarea>
             </div>
-
             <div id="createRoomErr" class="soft-copy" style="min-height:16px;"></div>
-
             <div class="row-2">
                 <button type="button" class="btn-outline-white" onclick="closeCreateRoomModal()">Bekor qilish</button>
                 <button type="button" class="btn-white" onclick="createChatRoom()">Yaratish</button>
@@ -1187,51 +1382,40 @@
         </div>
     </div>
 
-    <!-- MODAL 4: FOYDALANUVCHI PROFILI -->
+    <!-- MODAL 4: BOSHQA FOYDALANUVCHI PROFILI -->
     <div id="targetUserModal" class="modal-overlay">
         <div class="modal-sheet">
             <div class="modal-title">Foydalanuvchi profili</div>
-
             <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
-                <div class="avatar-frame" style="width:84px; height:84px;">
+                <div class="ref-avatar-circle" style="width:82px; height:82px;">
                     <img id="targetUserAvatar" src="" alt="">
                 </div>
-                <div id="targetUserDisplayName" class="display-name-line" style="font-size:19px;">User</div>
-                <div class="username-badge-row">
-                    <span id="targetUserNick">@username1</span>
-                    <span class="black-check-svg">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                            <circle cx="12" cy="12" r="10.5" fill="#000000"/>
-                            <path d="M7.5 12.3L10.5 15.3L16.8 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </span>
-                </div>
-                <div class="six-id-pill">ID: <span id="targetUserSixId">100001</span> • Level <span id="targetUserLvl">1</span></div>
+                <div id="targetUserDisplayName" style="font-size:18px; font-weight:900;">User</div>
+                <div class="ref-badge-pill" id="targetUserNick">@username1</div>
+                <div class="soft-copy">ID: <span id="targetUserSixId">100001</span> • Level <span id="targetUserLvl">1</span></div>
             </div>
-
             <div class="row-2">
                 <button type="button" class="btn-white" onclick="toggleFollowTargetUser()">
                     <span id="followBtnLabel">Obuna boʻlish</span>
                 </button>
                 <button type="button" class="btn-outline-white" onclick="openDmFromTargetUser()">Xabar yozish</button>
             </div>
-
             <button type="button" class="btn-outline-white" onclick="closeTargetUserModal()">Yopish</button>
         </div>
     </div>
 
-    <!-- MODAL 5: PADARKA QUTISI (11 TA SVG PADARKA, 2000 DAN) -->
+    <!-- MODAL 5: PADARKA QUTISI -->
     <div id="giftBoxModal" class="modal-overlay">
         <div class="modal-sheet">
             <div class="modal-title">Padarka qutisi</div>
-            <div class="soft-copy">Har biri 2000 • Bosganda chiroyli ovoz chiqadi va Levelga XP qoʻshiladi</div>
+            <div class="soft-copy">Har biri 2000 • Bosganda ovoz chiqadi va Levelga XP qoʻshiladi</div>
             <div id="giftsGridContainer" class="gifts-grid"></div>
             <div id="giftBoxFeedback" class="soft-copy"></div>
             <button type="button" class="btn-outline-white" onclick="closeGiftBoxModal()">Yopish</button>
         </div>
     </div>
 
-    <!-- MODAL 6: HAMYON (PAKETLAR + @fungo_moneta UCHUN TEKIN MONETA) -->
+    <!-- MODAL 6: HAMYON -->
     <div id="walletModal" class="modal-overlay">
         <div class="modal-sheet">
             <div class="modal-title">Hamyon</div>
@@ -1246,7 +1430,6 @@
                 <button type="button" class="gift-item-btn" onclick="buyWalletPack('23k')"><b>23k</b><span>12 000 soʻm</span></button>
             </div>
 
-            <!-- FAQAT @fungo_moneta UCHUN KO'RINADIGAN TEKIN MONETA -->
             <div id="monetaSecretPanel" class="white-card" style="display:none;">
                 <div style="font-size:14px; font-weight:900;">Tekin moneta</div>
                 <input type="text" id="giftTargetSixIdInput" class="txt-input" maxlength="6" placeholder="Odamning 6 xonali IDsi">
@@ -1259,6 +1442,15 @@
         </div>
     </div>
 
+    <!-- MODAL 7: LEVEL / BO'LIM MA'LUMOTI -->
+    <div id="infoToastModal" class="modal-overlay">
+        <div class="modal-sheet">
+            <div id="infoToastTitle" class="modal-title">Maʻlumot</div>
+            <div id="infoToastBody" class="soft-copy"></div>
+            <button type="button" class="btn-white" onclick="closeFeatureToast()">Tushunarli</button>
+        </div>
+    </div>
+
     <script>
         const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
         if (tg) {
@@ -1268,12 +1460,12 @@
 
         const FIREBASE_DB = "https://xbox-tanishuv-default-rtdb.firebaseio.com";
         const STORAGE_KEYS = {
-            profile: "fungo_uz_profile_v4",
-            rooms: "fungo_uz_rooms_v4",
-            users: "fungo_uz_users_v4",
-            dms: "fungo_uz_dms_v4",
-            following: "fungo_uz_following_v4",
-            uid: "fungo_uz_uid_v4"
+            profile: "fungo_uz_profile_v5",
+            rooms: "fungo_uz_rooms_v5",
+            users: "fungo_uz_users_v5",
+            dms: "fungo_uz_dms_v5",
+            following: "fungo_uz_following_v5",
+            uid: "fungo_uz_uid_v5"
         };
 
         const ENGLISH_HANDLES = [
@@ -1297,7 +1489,7 @@
 
         const DEFAULT_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(`
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
-                <rect width="120" height="120" fill="#111111"/>
+                <rect width="120" height="120" fill="#181818"/>
                 <circle cx="60" cy="44" r="22" fill="#ffffff"/>
                 <path d="M22 104C28 80 42 70 60 70C78 70 92 80 98 104" fill="#ffffff"/>
             </svg>
@@ -1313,22 +1505,17 @@
 
         function normalizeAtUsername(raw, fallback) {
             let clean = String(raw || "").trim().replace(/\s+/g, "_").replace(/[^A-Za-z0-9_@]/g, "");
-            if (!clean || clean === "@") {
-                clean = fallback || "@username1";
-            }
+            if (!clean || clean === "@") clean = fallback || "@username1";
             return clean.startsWith("@") ? clean : "@" + clean;
         }
 
         function generateSixDigitId(seedStr) {
             let hash = 0;
             const str = String(seedStr || Date.now());
-            for (let i = 0; i < str.length; i++) {
-                hash = (hash * 31 + str.charCodeAt(i)) % 900000;
-            }
+            for (let i = 0; i < str.length; i++) hash = (hash * 31 + str.charCodeAt(i)) % 900000;
             return String(100000 + ((hash + Math.floor(Math.random() * 899999)) % 900000));
         }
 
-        /* LEVEL 1 -> 160: 2-LEVEL 1000 XP, 3-LEVEL 1500 XP, 4-LEVEL 2400 XP, KEYIN QIYINLASHIB BORADI */
         function xpRequiredForLevel(targetLevel) {
             if (targetLevel <= 1) return 0;
             if (targetLevel === 2) return 1000;
@@ -1382,9 +1569,7 @@
         }
 
         function saveJson(key, val) {
-            try {
-                localStorage.setItem(key, JSON.stringify(val));
-            } catch (e) {}
+            try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {}
         }
 
         function buildDefaultProfile() {
@@ -1436,7 +1621,6 @@
         let seenGiftSoundIds = new Set();
         let bannerTimer = null;
 
-        /* OVOZLI CHAT (XONA) */
         let roomMicActive = false;
         let micStream = null;
         let micRecorder = null;
@@ -1519,17 +1703,14 @@
             if (st) st.textContent = "";
         }
 
-        /* LICHKA ICHIDA OVOZLI XABAR (FAQAT LEVEL 10+) */
         async function sendDmVoiceNote() {
             if (!activeDmPeerId) return;
             const myLvlInfo = computeLevelFromXp(meProfile.xp);
             if (myLvlInfo.level < 10) {
-                alert("Ovozli xabar yuborish uchun Level 10 boʻlishi kerak! Sizning hozirgi levelingiz: " + myLvlInfo.level);
+                openFeatureToast("Ovozli xabar yuborish uchun Level 10 boʻlishi kerak! Hozirgi level: " + myLvlInfo.level);
                 return;
             }
-            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === "undefined") {
-                return;
-            }
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === "undefined") return;
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
                 const rec = new MediaRecorder(stream);
@@ -1622,7 +1803,29 @@
             `;
         }
 
-        /* PROFIL VA LEVEL RENDER */
+        function copyMySixId() {
+            const val = String(meProfile.sixId || "100001");
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(val).catch(() => {});
+            }
+            openFeatureToast(`ID: ${val}`);
+        }
+
+        function openLevelInfoModal() {
+            const lvl = computeLevelFromXp(meProfile.xp);
+            openFeatureToast(`Level ${lvl.level} / 160 (${lvl.currentInLevel} / ${lvl.neededForNext} XP). Xonada padarka urganda XP koʻpayadi.`);
+        }
+
+        function openFeatureToast(msg) {
+            document.getElementById("infoToastTitle").textContent = "FUNGO.UZ";
+            document.getElementById("infoToastBody").textContent = msg;
+            document.getElementById("infoToastModal").classList.add("open");
+        }
+
+        function closeFeatureToast() {
+            document.getElementById("infoToastModal").classList.remove("open");
+        }
+
         function renderProfile() {
             const img = document.getElementById("profileAvatarImg");
             img.src = meProfile.photo || DEFAULT_AVATAR;
@@ -1633,7 +1836,11 @@
             document.getElementById("profileSixIdText").textContent = meProfile.sixId || "100001";
             document.getElementById("profileBioText").textContent = meProfile.bio ? meProfile.bio : "Tavsif hali yozilmagan.";
             document.getElementById("profileCoinsVal").textContent = String(Number(meProfile.coins || 0));
-            document.getElementById("myFollowingCount").textContent = String(Object.values(followingMap || {}).filter(Boolean).length);
+
+            const followingCnt = Object.values(followingMap || {}).filter(Boolean).length;
+            document.getElementById("myFollowingCount").textContent = String(followingCnt);
+            document.getElementById("myFollowersCount").textContent = String(followingCnt);
+            document.getElementById("myLikesCount").textContent = String(Math.floor(Number(meProfile.xp || 0) / 1000));
 
             const lvl = computeLevelFromXp(meProfile.xp);
             document.getElementById("profileLevelVal").textContent = String(lvl.level);
@@ -1667,13 +1874,13 @@
                 const img = new Image();
                 img.onload = () => {
                     const canvas = document.createElement("canvas");
-                    const maxSide = 240;
+                    const maxSide = 260;
                     let w = img.width, h = img.height;
                     if (w > h) { if (w > maxSide) { h = Math.round((h * maxSide) / w); w = maxSide; } }
                     else { if (h > maxSide) { w = Math.round((w * maxSide) / h); h = maxSide; } }
                     canvas.width = w; canvas.height = h;
                     canvas.getContext("2d").drawImage(img, 0, 0, w, h);
-                    pendingPhotoData = canvas.toDataURL("image/jpeg", 0.8);
+                    pendingPhotoData = canvas.toDataURL("image/jpeg", 0.82);
                     document.getElementById("editPhotoPreview").src = pendingPhotoData;
                 };
                 img.src = e.target.result;
@@ -1687,7 +1894,7 @@
             const rawNick = document.getElementById("editUsernameInput").value.trim();
             const newBio = document.getElementById("editBioInput").value.trim();
             if (!newName) {
-                errEl.textContent = "Iltimos, bot ichidagi ismingizni kiriting.";
+                errEl.textContent = "Iltimos, ismingizni kiriting.";
                 return;
             }
             const updatedPhoto = pendingPhotoData || meProfile.photo || "";
@@ -1716,7 +1923,6 @@
             await syncRemote();
         }
 
-        /* HAMYON VA @fungo_moneta UCHUN TEKIN MONETA */
         function openWalletModal() {
             document.getElementById("walletCoinsDisplay").textContent = String(Number(meProfile.coins || 0));
             const isMonetaOwner = String(meProfile.username || "").toLowerCase() === "@fungo_moneta";
@@ -1732,11 +1938,8 @@
         function buyWalletPack(packLabel) {
             const text = encodeURIComponent(`Salom @fungo_moneta, ${packLabel} paket (12 000 so'm) olmoqchiman. ID: ${meProfile.sixId}`);
             const url = `https://t.me/fungo_moneta?text=${text}`;
-            if (tg && tg.openTelegramLink) {
-                tg.openTelegramLink(url);
-            } else {
-                window.open(url, "_blank");
-            }
+            if (tg && tg.openTelegramLink) tg.openTelegramLink(url);
+            else window.open(url, "_blank");
         }
 
         async function sendFreeMonetaById() {
@@ -1749,17 +1952,13 @@
                 st.textContent = "6 xonali ID va toʻgʻri miqdorni kiriting.";
                 return;
             }
-
             const targetUser = Object.values(allUsers || {}).find(u => u && String(u.sixId) === targetSix);
             if (!targetUser) {
                 st.textContent = "Bu 6 xonali ID bilan foydalanuvchi topilmadi.";
                 return;
             }
-
             targetUser.coins = Number(targetUser.coins || 0) + amount;
-            if (String(targetUser.id) === String(meProfile.id)) {
-                meProfile.coins = targetUser.coins;
-            }
+            if (String(targetUser.id) === String(meProfile.id)) meProfile.coins = targetUser.coins;
             allUsers[targetUser.id] = targetUser;
             saveJson(STORAGE_KEYS.users, allUsers);
             saveJson(STORAGE_KEYS.profile, meProfile);
@@ -1776,13 +1975,11 @@
             } catch (e) {}
         }
 
-        /* PADARKA QUTISI (11 TA SVG PADARKA) */
         function openGiftBoxModal() {
             if (!currentStageRoomId) return;
             const grid = document.getElementById("giftsGridContainer");
             grid.innerHTML = "";
             document.getElementById("giftBoxFeedback").textContent = "";
-
             GIFT_ITEMS.forEach(item => {
                 const btn = document.createElement("button");
                 btn.type = "button";
@@ -1805,14 +2002,12 @@
                 fb.textContent = "Monetalar yetarli emas (2000 kerak).";
                 return;
             }
-
             meProfile.coins = Number(meProfile.coins || 0) - item.cost;
             meProfile.xp = Number(meProfile.xp || 0) + item.xp;
             allUsers[meProfile.id] = meProfile;
             saveJson(STORAGE_KEYS.profile, meProfile);
             saveJson(STORAGE_KEYS.users, allUsers);
             renderProfile();
-
             playChimeSound(item.freq);
 
             const gid = "gft_" + Date.now() + "_" + Math.random().toString(36).slice(2, 5);
@@ -1826,7 +2021,6 @@
                 ts: Date.now()
             };
             seenGiftSoundIds.add(gid);
-
             const lvlNow = computeLevelFromXp(meProfile.xp);
             fb.textContent = `${item.label} padarka urildi! +${item.xp} XP (Level ${lvlNow.level})`;
 
@@ -1844,7 +2038,6 @@
             } catch (e) {}
         }
 
-        /* CHAT XONALAR, KICHRAYTIRISH VA O'CHIRISH */
         function openCreateRoomModal() {
             document.getElementById("roomNameInput").value = "";
             document.getElementById("roomDescInput").value = "";
@@ -1860,7 +2053,6 @@
             const errEl = document.getElementById("createRoomErr");
             const nameVal = document.getElementById("roomNameInput").value.trim();
             const descVal = document.getElementById("roomDescInput").value.trim();
-
             if (!nameVal) { errEl.textContent = "Chat xona nomini kiriting."; return; }
             if (!descVal || descVal.length < 1 || descVal.length > 150) {
                 errEl.textContent = "Tavsif 1 dan 150 belgigacha boʻlsin.";
@@ -1871,12 +2063,9 @@
                 errEl.textContent = "Tavsif 1 dan 15 gacha boʻlsin (hozir " + wordsCount + " ta).";
                 return;
             }
-
             const roomId = "room_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6);
             const seatsInit = { "0": { userId: null, label: "Egasi", photo: "", locked: false } };
-            for (let i = 1; i <= 8; i++) {
-                seatsInit[String(i)] = { userId: null, label: String(i), photo: "", locked: false };
-            }
+            for (let i = 1; i <= 8; i++) seatsInit[String(i)] = { userId: null, label: String(i), photo: "", locked: false };
 
             const roomObj = {
                 id: roomId,
@@ -2100,15 +2289,12 @@
                 const ring = document.createElement("div");
                 ring.className = "seat-ring";
 
-                if (sData.locked) {
-                    ring.innerHTML = seatMicSvg(true);
-                } else if (sData.userId) {
+                if (sData.locked) ring.innerHTML = seatMicSvg(true);
+                else if (sData.userId) {
                     ring.innerHTML = `<img src="${escHtml(sData.photo || DEFAULT_AVATAR)}" alt="">`;
                     const sImg = ring.querySelector("img");
                     if (sImg) sImg.onerror = function() { this.src = DEFAULT_AVATAR; };
-                } else {
-                    ring.innerHTML = seatMicSvg(false);
-                }
+                } else ring.innerHTML = seatMicSvg(false);
 
                 const cap = document.createElement("div");
                 cap.className = "seat-caption";
@@ -2124,9 +2310,7 @@
 
         function getMyCurrentSeatKey(seatsObj) {
             for (const k of Object.keys(seatsObj || {})) {
-                if (seatsObj[k] && String(seatsObj[k].userId) === String(meProfile.id)) {
-                    return k;
-                }
+                if (seatsObj[k] && String(seatsObj[k].userId) === String(meProfile.id)) return k;
             }
             return null;
         }
@@ -2236,7 +2420,6 @@
             } catch (e) {}
         }
 
-        /* OXIRGI 5 TA XABAR KO'RINADIGAN CHAT */
         function renderRoomMessagesFive(room) {
             const box = document.getElementById("roomMsgsFiveBox");
             const msgs = Object.values((room && room.messages) || {})
@@ -2287,7 +2470,6 @@
             } catch (e) {}
         }
 
-        /* FOYDALANUVCHI PROFILI */
         function openTargetUserModal(uid) {
             const u = allUsers[String(uid)] || {
                 id: String(uid),
@@ -2330,7 +2512,6 @@
             openTgDmChat(peerId);
         }
 
-        /* TELEGRAM LICHKA */
         function dmThreadKey(a, b) {
             return [String(a), String(b)].sort().join("__");
         }
@@ -2463,7 +2644,6 @@
             } catch (e) {}
         }
 
-        /* SINXRONLASH */
         async function syncRemote() {
             try {
                 await fetch(`${FIREBASE_DB}/fungo_users/${encodeURIComponent(meProfile.id)}.json`, {
@@ -2579,11 +2759,8 @@
             if (activeSec) activeSec.classList.add("active");
 
             if (tabName === "chatlar") {
-                if (currentStageRoomId && !roomMinimized) {
-                    renderRoomStage();
-                } else {
-                    renderRoomsDirectory();
-                }
+                if (currentStageRoomId && !roomMinimized) renderRoomStage();
+                else renderRoomsDirectory();
             }
             if (tabName === "xabarlar") {
                 if (!activeDmPeerId) renderDmThreads();
@@ -2591,9 +2768,7 @@
             }
             if (tabName === "profilm") renderProfile();
 
-            if (tg && tg.HapticFeedback) {
-                tg.HapticFeedback.selectionChanged();
-            }
+            if (tg && tg.HapticFeedback) tg.HapticFeedback.selectionChanged();
         }
 
         renderProfile();
@@ -2601,9 +2776,7 @@
         renderDmThreads();
         syncRemote();
 
-        setInterval(() => {
-            syncRemote();
-        }, 2000);
+        setInterval(() => { syncRemote(); }, 2000);
 
         setTimeout(() => {
             document.getElementById("splashScreen").classList.remove("active");
