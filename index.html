@@ -593,7 +593,7 @@
     <div id="tgMainShell" class="tg-main-shell">
         <div class="tg-content-area">
 
-            <!-- 1. CHATLAR BO'LIMI -->
+            <!-- 1. CHATLAR BO'LIMI (BOTDA KIM BOR BO'LSA REAL VAQTDA AVTOMATIK CHIQADI) -->
             <section id="sec-chatlar" class="tg-section active">
                 <div id="chatListView" style="display:flex; flex-direction:column; height:100%; gap:10px;">
                     <div class="sec-header">
@@ -602,7 +602,7 @@
                     <div id="chatsListContainer" class="list-stack"></div>
                 </div>
 
-                <!-- ICHKI CHAT OYNASI (TEPADAGI NIK @ BILAN + QORA GALOCHKA) -->
+                <!-- ICHKI CHAT OYNASI -->
                 <div id="chatRoomView" class="chat-window">
                     <div class="chat-win-header">
                         <button type="button" class="btn-light-border" onclick="closeActiveChat()">←</button>
@@ -698,8 +698,8 @@
                         <div style="display:flex; align-items:center; gap:12px; min-width:0;">
                             <img id="profilePhotoView" class="profile-avatar-big" src="" alt="Profil" onclick="openEditProfileModal()">
                             <div style="min-width:0;">
-                                <div id="profileNameView" style="font-size:19px; font-weight:800; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">ISNOOSH</div>
-                                <div id="profileNikView" style="font-size:13.5px; font-weight:700; color:#333333; margin-top:2px;">@FarzonaTurayeva</div>
+                                <div id="profileNameView" style="font-size:19px; font-weight:800; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Foydalanuvchi</div>
+                                <div id="profileNikView" style="font-size:13.5px; font-weight:700; color:#333333; margin-top:2px;">@foydalanuvchi</div>
                             </div>
                         </div>
                     </div>
@@ -765,7 +765,7 @@
         </nav>
     </div>
 
-    <!-- MODAL 1: KONTAKT QO'SHISH (@ BILAN BOSHLANADIGAN NOYOB USERNAME ORQALI) -->
+    <!-- MODAL 1: KONTAKT QO'SHISH -->
     <div id="addContactModal" class="modal-backdrop">
         <div class="modal-box">
             <div class="modal-heading">Kontakt qoʻshish</div>
@@ -789,7 +789,7 @@
         </div>
     </div>
 
-    <!-- MODAL 2: PROFIL TAHRIRLASH (@ BILAN BOSHLANADIGAN NOYOB NIK) -->
+    <!-- MODAL 2: PROFIL TAHRIRLASH -->
     <div id="editProfileModal" class="modal-backdrop">
         <div class="modal-box">
             <div class="modal-heading">Profilni tahrirlash</div>
@@ -802,12 +802,12 @@
 
             <div class="field-wrap">
                 <label for="editNameInput" class="field-title">Ism</label>
-                <input type="text" id="editNameInput" class="inp-field" maxlength="32" placeholder="ISNOOSH">
+                <input type="text" id="editNameInput" class="inp-field" maxlength="32" placeholder="Ismingiz...">
             </div>
 
             <div class="field-wrap">
                 <label for="editNikInput" class="field-title">Nik (@ bilan boshlanadi, takrorlanmaydi)</label>
-                <input type="text" id="editNikInput" class="inp-field" maxlength="30" placeholder="@FarzonaTurayeva">
+                <input type="text" id="editNikInput" class="inp-field" maxlength="30" placeholder="@username">
             </div>
 
             <div class="field-wrap">
@@ -832,6 +832,7 @@
         }
 
         const RT_DB_URL = "https://xbox-tanishuv-default-rtdb.firebaseio.com";
+        const ONLINE_WINDOW_MS = 25000;
 
         const DEFAULT_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(`
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
@@ -842,11 +843,12 @@
         `);
 
         const KEYS = {
-            profile: "tg_clone_profile_v5",
-            contacts: "tg_clone_contacts_v5",
-            messages: "tg_clone_messages_v5",
-            unread: "tg_clone_unread_v5",
-            seenMsgIds: "tg_clone_seen_msg_ids_v5"
+            clientId: "tg_clone_client_id_v6",
+            profile: "tg_clone_profile_v6",
+            contacts: "tg_clone_contacts_v6",
+            messages: "tg_clone_messages_v6",
+            unread: "tg_clone_unread_v6",
+            seenMsgIds: "tg_clone_seen_msg_ids_v6"
         };
 
         function readStore(key, fallback) {
@@ -872,7 +874,6 @@
             return `+91 ${p1} ${p2} ${p3}`;
         }
 
-        // Har doim @ bilan boshlanadigan toza username
         function normalizeAtUsername(rawInput) {
             const cleaned = String(rawInput || "")
                 .trim()
@@ -887,25 +888,46 @@
             return normalizeAtUsername(u).toLowerCase();
         }
 
-        const defaultProfile = {
-            name: "ISNOOSH",
-            nik: "@FarzonaTurayeva",
-            bio: "",
-            photo: "",
-            virtualPhone: generateUniqueVirtualIndianNumber()
-        };
+        let myClientId = readStore(KEYS.clientId, "");
+        if (!myClientId) {
+            myClientId = "u_" + Date.now() + "_" + Math.random().toString(36).slice(2, 7);
+            writeStore(KEYS.clientId, myClientId);
+        }
 
-        let profileData = { ...defaultProfile, ...readStore(KEYS.profile, {}) };
-        profileData.nik = normalizeAtUsername(profileData.nik) || "@FarzonaTurayeva";
+        function buildDynamicDefaultUser(cid) {
+            const tgUser = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user : null;
+            const suffix = String(cid).replace(/[^a-zA-Z0-9]/g, "").slice(-5) || String(Math.floor(1000 + Math.random() * 8999));
+            if (tgUser && tgUser.username) {
+                return {
+                    name: [tgUser.first_name, tgUser.last_name].filter(Boolean).join(" ") || ("User_" + suffix),
+                    nik: normalizeAtUsername(tgUser.username),
+                    bio: "",
+                    photo: tgUser.photo_url || "",
+                    virtualPhone: generateUniqueVirtualIndianNumber()
+                };
+            }
+            return {
+                name: "Foydalanuvchi " + suffix.slice(-3),
+                nik: "@foydalanuvchi_" + suffix.toLowerCase(),
+                bio: "",
+                photo: "",
+                virtualPhone: generateUniqueVirtualIndianNumber()
+            };
+        }
+
+        const dynInit = buildDynamicDefaultUser(myClientId);
+        let profileData = { ...dynInit, ...readStore(KEYS.profile, {}) };
+        profileData.nik = normalizeAtUsername(profileData.nik) || dynInit.nik;
         if (!profileData.virtualPhone) profileData.virtualPhone = generateUniqueVirtualIndianNumber();
         writeStore(KEYS.profile, profileData);
 
         let contactsList = readStore(KEYS.contacts, []);
+        let livePresencePeers = [];
         let messagesByContact = readStore(KEYS.messages, {});
         let unreadSmsCount = Number(readStore(KEYS.unread, 0)) || 0;
         let seenMsgIds = new Set(readStore(KEYS.seenMsgIds, []));
 
-        let currentOpenContactId = null;
+        let currentOpenChatKey = null;
         let draftPhotoData = profileData.photo || "";
 
         // Ovozli xabar (golos)
@@ -936,14 +958,60 @@
                 .replace(/"/g, "&quot;");
         }
 
-        function getContactAtUsername(contact) {
-            return normalizeAtUsername(contact.username || contact.nik || contact.name) || "@user";
+        function getPeerAtUsername(peer) {
+            return normalizeAtUsername(peer.username || peer.nik || peer.name) || "@foydalanuvchi";
         }
 
         function getThreadChannelKey(peerUsername) {
-            const meCanon = canonUsername(profileData.nik) || "owner";
+            const meCanon = canonUsername(profileData.nik) || myClientId;
             const peerCanon = canonUsername(peerUsername) || "peer";
             return [meCanon, peerCanon].sort().join("__");
+        }
+
+        // Botda hozir kim bor bo'lsa, kontaktga qo'shmasdan Chatlar ro'yxatiga avtomatik birlashtirish
+        function getAllChatEntries() {
+            const mapByCanon = new Map();
+
+            livePresencePeers.forEach(p => {
+                const nick = getPeerAtUsername(p);
+                const cKey = canonUsername(nick);
+                if (!cKey || cKey === canonUsername(profileData.nik)) return;
+                mapByCanon.set(cKey, {
+                    chatKey: "live__" + cKey,
+                    canonUsername: cKey,
+                    username: nick,
+                    name: p.name || nick.slice(1),
+                    photo: p.photo || DEFAULT_AVATAR,
+                    isLive: true
+                });
+            });
+
+            contactsList.forEach(c => {
+                const nick = getPeerAtUsername(c);
+                const cKey = canonUsername(nick);
+                if (!cKey || cKey === canonUsername(profileData.nik)) return;
+                if (mapByCanon.has(cKey)) {
+                    const existing = mapByCanon.get(cKey);
+                    existing.name = c.name || existing.name;
+                    existing.photo = c.photo || existing.photo || DEFAULT_AVATAR;
+                    existing.chatKey = "cnt__" + c.id;
+                } else {
+                    mapByCanon.set(cKey, {
+                        chatKey: "cnt__" + c.id,
+                        canonUsername: cKey,
+                        username: nick,
+                        name: c.name || nick.slice(1),
+                        photo: c.photo || DEFAULT_AVATAR,
+                        isLive: false
+                    });
+                }
+            });
+
+            return Array.from(mapByCanon.values());
+        }
+
+        function findChatEntryByKey(chatKey) {
+            return getAllChatEntries().find(item => item.chatKey === chatKey) || null;
         }
 
         // PROFILNI CHIZISH VA TAHRIRLASH
@@ -952,8 +1020,8 @@
             imgEl.src = profileData.photo || DEFAULT_AVATAR;
             imgEl.onerror = () => { imgEl.src = DEFAULT_AVATAR; };
 
-            document.getElementById("profileNameView").textContent = profileData.name || "ISNOOSH";
-            document.getElementById("profileNikView").textContent = normalizeAtUsername(profileData.nik) || "@FarzonaTurayeva";
+            document.getElementById("profileNameView").textContent = profileData.name || "Foydalanuvchi";
+            document.getElementById("profileNikView").textContent = normalizeAtUsername(profileData.nik) || "@foydalanuvchi";
             document.getElementById("profileBioView").textContent = profileData.bio || "Tavsif kiritilmagan.";
             document.getElementById("profileVirtualPhoneView").textContent = profileData.virtualPhone || "+91 748 29 41";
         }
@@ -964,8 +1032,8 @@
             prev.src = draftPhotoData || DEFAULT_AVATAR;
             prev.onerror = () => { prev.src = DEFAULT_AVATAR; };
 
-            document.getElementById("editNameInput").value = profileData.name || "ISNOOSH";
-            document.getElementById("editNikInput").value = normalizeAtUsername(profileData.nik) || "@FarzonaTurayeva";
+            document.getElementById("editNameInput").value = profileData.name || "";
+            document.getElementById("editNikInput").value = normalizeAtUsername(profileData.nik) || "";
             document.getElementById("editBioInput").value = profileData.bio || "";
             document.getElementById("editProfileErr").textContent = "";
             document.getElementById("editProfileModal").classList.add("open");
@@ -1000,11 +1068,18 @@
             reader.readAsDataURL(file);
         }
 
-        function isUsernameTakenByContact(candidateCanon, excludeContactId = null) {
-            return contactsList.some(c =>
+        function isUsernameAlreadyUsed(candidateCanon, excludeContactId = null) {
+            if (!candidateCanon) return false;
+            const usedInContacts = contactsList.some(c =>
                 c.id !== excludeContactId &&
-                canonUsername(getContactAtUsername(c)) === candidateCanon
+                canonUsername(getPeerAtUsername(c)) === candidateCanon
             );
+            if (usedInContacts) return true;
+            const usedByOtherLive = livePresencePeers.some(p =>
+                p.clientId && p.clientId !== myClientId &&
+                canonUsername(getPeerAtUsername(p)) === candidateCanon
+            );
+            return usedByOtherLive;
         }
 
         function saveProfileChanges() {
@@ -1024,8 +1099,8 @@
                 return;
             }
 
-            if (isUsernameTakenByContact(canonUsername(formattedNik))) {
-                errEl.textContent = "Bu username allaqachon boshqa kontaktda band.";
+            if (isUsernameAlreadyUsed(canonUsername(formattedNik))) {
+                errEl.textContent = "Bu username allaqachon boshqa odamda band, takrorlanmaydi.";
                 return;
             }
 
@@ -1037,9 +1112,11 @@
             writeStore(KEYS.profile, profileData);
             closeEditProfileModal();
             renderProfileSection();
+            renderChatsList();
+            sendMyPresenceHeartbeat();
         }
 
-        // KONTAKT QO'SHISH (@ BILAN BOSHLANADIGAN NOYOB USERNAME ORQALI)
+        // KONTAKT QO'SHISH
         function openAddContactModal() {
             document.getElementById("contactUsernameInput").value = "@";
             document.getElementById("contactNameInput").value = "";
@@ -1068,8 +1145,9 @@
                 return;
             }
 
-            if (isUsernameTakenByContact(candidateCanon)) {
-                errEl.textContent = "Bu username allaqachon boshqa odamga berilgan, takrorlanmaydi.";
+            const duplicateContact = contactsList.some(c => canonUsername(getPeerAtUsername(c)) === candidateCanon);
+            if (duplicateContact) {
+                errEl.textContent = "Bu username allaqachon kontaktlarda bor, qayta takrorlanmaydi.";
                 return;
             }
 
@@ -1111,13 +1189,14 @@
             }
 
             contactsList.forEach(c => {
-                const nickLabel = getContactAtUsername(c);
+                const nickLabel = getPeerAtUsername(c);
+                const cKey = canonUsername(nickLabel);
                 const row = document.createElement("div");
                 row.className = "row-card";
                 row.onclick = () => {
                     const chatNavBtn = document.getElementById("navBtn-chatlar");
                     openSection("chatlar", chatNavBtn);
-                    openChatWithContact(c.id);
+                    openChatByKey("cnt__" + c.id);
                 };
                 row.innerHTML = `
                     <div style="display:flex; align-items:center; gap:10px; min-width:0; flex:1;">
@@ -1135,19 +1214,27 @@
             });
         }
 
+        function getMessagesForCanonUser(cKey) {
+            if (!cKey) return [];
+            if (!Array.isArray(messagesByContact[cKey])) {
+                messagesByContact[cKey] = [];
+            }
+            return messagesByContact[cKey];
+        }
+
         function renderChatsList() {
             const box = document.getElementById("chatsListContainer");
             box.innerHTML = "";
 
-            if (!contactsList.length) {
-                box.innerHTML = `<div class="row-card" style="justify-content:center; cursor:default;"><span style="font-size:13px; color:#555555;">Hali chatlar yoʻq. Kontaktlar boʻlimidan @username orqali odam qoʻshing.</span></div>`;
+            const entries = getAllChatEntries();
+            if (!entries.length) {
+                box.innerHTML = `<div class="row-card" style="justify-content:center; cursor:default;"><span style="font-size:13px; color:#555555;">Botda hozir boshqa foydalanuvchi kutilyapti...</span></div>`;
                 return;
             }
 
-            contactsList.forEach(c => {
-                const nickLabel = getContactAtUsername(c);
-                const msgs = messagesByContact[c.id] || [];
-                let previewText = nickLabel;
+            entries.forEach(item => {
+                const msgs = getMessagesForCanonUser(item.canonUsername);
+                let previewText = item.username;
                 if (msgs.length) {
                     const last = msgs[msgs.length - 1];
                     if (last.type === "image") previewText = "Rasm";
@@ -1158,16 +1245,16 @@
 
                 const row = document.createElement("div");
                 row.className = "row-card";
-                row.onclick = () => openChatWithContact(c.id);
+                row.onclick = () => openChatByKey(item.chatKey);
                 row.innerHTML = `
                     <div style="display:flex; align-items:center; gap:10px; min-width:0; flex:1;">
-                        <img class="avatar-circle" src="${escapeText(c.photo || DEFAULT_AVATAR)}" alt="">
+                        <img class="avatar-circle" src="${escapeText(item.photo || DEFAULT_AVATAR)}" alt="">
                         <div style="min-width:0; flex:1;">
-                            <div style="font-size:14.5px; font-weight:800; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeText(c.name)}</div>
+                            <div style="font-size:14.5px; font-weight:800; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeText(item.name)}</div>
                             <div style="font-size:12px; font-weight:600; color:#555555; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-top:2px;">${escapeText(previewText)}</div>
                         </div>
                     </div>
-                    <span style="font-size:11.5px; font-weight:700; color:#111111;">${escapeText(nickLabel)}</span>
+                    <span style="font-size:11.5px; font-weight:700; color:#111111;">${escapeText(item.username)}</span>
                 `;
                 const im = row.querySelector("img");
                 if (im) im.onerror = function() { this.src = DEFAULT_AVATAR; };
@@ -1175,34 +1262,34 @@
             });
         }
 
-        function openChatWithContact(contactId) {
-            const contact = contactsList.find(x => x.id === contactId);
-            if (!contact) return;
+        function openChatByKey(chatKey) {
+            const entry = findChatEntryByKey(chatKey);
+            if (!entry) return;
 
-            currentOpenContactId = contact.id;
+            currentOpenChatKey = entry.chatKey;
             document.getElementById("chatListView").style.display = "none";
             document.getElementById("chatRoomView").classList.add("open");
 
             const av = document.getElementById("activeChatAvatar");
-            av.src = contact.photo || DEFAULT_AVATAR;
+            av.src = entry.photo || DEFAULT_AVATAR;
             av.onerror = () => { av.src = DEFAULT_AVATAR; };
 
-            document.getElementById("activeChatNick").textContent = getContactAtUsername(contact);
+            document.getElementById("activeChatNick").textContent = entry.username;
             setUnreadSmsCount(0);
-            renderChatMessages(contact.id);
+            renderChatMessages(entry.canonUsername);
             syncRealtimeMessages();
         }
 
         function closeActiveChat() {
-            currentOpenContactId = null;
+            currentOpenChatKey = null;
             document.getElementById("chatRoomView").classList.remove("open");
             document.getElementById("chatListView").style.display = "flex";
             renderChatsList();
         }
 
-        function renderChatMessages(contactId) {
+        function renderChatMessages(cKey) {
             const stream = document.getElementById("chatMessagesStream");
-            const list = (messagesByContact[contactId] || []).slice().sort((a, b) => (a.ts || 0) - (b.ts || 0));
+            const list = getMessagesForCanonUser(cKey).slice().sort((a, b) => (a.ts || 0) - (b.ts || 0));
             stream.innerHTML = "";
 
             list.forEach(m => {
@@ -1235,8 +1322,8 @@
             stream.scrollTop = stream.scrollHeight;
         }
 
-        async function publishRealtimeMessage(contact, payload) {
-            if (!contact) return;
+        async function publishRealtimeMessage(entry, payload) {
+            if (!entry) return;
             const msgId = "rtm_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6);
             const fullMsg = {
                 id: msgId,
@@ -1252,18 +1339,17 @@
             seenMsgIds.add(msgId);
             writeStore(KEYS.seenMsgIds, Array.from(seenMsgIds).slice(-400));
 
-            if (!Array.isArray(messagesByContact[contact.id])) {
-                messagesByContact[contact.id] = [];
-            }
-            messagesByContact[contact.id].push(fullMsg);
+            const list = getMessagesForCanonUser(entry.canonUsername);
+            list.push(fullMsg);
             writeStore(KEYS.messages, messagesByContact);
 
-            if (currentOpenContactId === contact.id) {
-                renderChatMessages(contact.id);
+            const activeEntry = currentOpenChatKey ? findChatEntryByKey(currentOpenChatKey) : null;
+            if (activeEntry && activeEntry.canonUsername === entry.canonUsername) {
+                renderChatMessages(entry.canonUsername);
             }
             renderChatsList();
 
-            const chanKey = getThreadChannelKey(getContactAtUsername(contact));
+            const chanKey = getThreadChannelKey(entry.username);
             try {
                 await fetch(`${RT_DB_URL}/tg_clone_rt_messages/${encodeURIComponent(chanKey)}/${encodeURIComponent(msgId)}.json`, {
                     method: "PUT",
@@ -1274,29 +1360,29 @@
         }
 
         function sendChatMessage() {
-            if (!currentOpenContactId) return;
-            const contact = contactsList.find(x => x.id === currentOpenContactId);
-            if (!contact) return;
+            if (!currentOpenChatKey) return;
+            const entry = findChatEntryByKey(currentOpenChatKey);
+            if (!entry) return;
             const inp = document.getElementById("chatMsgInput");
             const txt = inp.value.trim();
             if (!txt) return;
             inp.value = "";
-            publishRealtimeMessage(contact, { type: "text", text: txt });
+            publishRealtimeMessage(entry, { type: "text", text: txt });
         }
 
         function onChatMediaPicked(ev) {
-            if (!currentOpenContactId) return;
-            const contact = contactsList.find(x => x.id === currentOpenContactId);
+            if (!currentOpenChatKey) return;
+            const entry = findChatEntryByKey(currentOpenChatKey);
             const file = ev.target.files && ev.target.files[0];
             ev.target.value = "";
-            if (!file || !contact) return;
+            if (!file || !entry) return;
 
             const isVideo = file.type.startsWith("video/");
             const reader = new FileReader();
             reader.onload = (e) => {
                 const url = String(e.target.result || "");
                 if (!url) return;
-                publishRealtimeMessage(contact, {
+                publishRealtimeMessage(entry, {
                     type: isVideo ? "video" : "image",
                     mediaUrl: url
                 });
@@ -1306,7 +1392,7 @@
 
         // MIKROFON STIKERIGA BOSIB TURIB GOLOS TASHLASH
         async function startHoldVoice(ev) {
-            if (!currentOpenContactId || isHoldingMic) return;
+            if (!currentOpenChatKey || isHoldingMic) return;
             if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === "undefined") return;
 
             try {
@@ -1327,16 +1413,16 @@
                         holdMicStream.getTracks().forEach(t => t.stop());
                         holdMicStream = null;
                     }
-                    if (!chunksCopy.length || !currentOpenContactId) return;
-                    const targetContact = contactsList.find(x => x.id === currentOpenContactId);
-                    if (!targetContact) return;
+                    if (!chunksCopy.length || !currentOpenChatKey) return;
+                    const targetEntry = findChatEntryByKey(currentOpenChatKey);
+                    if (!targetEntry) return;
 
                     const blob = new Blob(chunksCopy, { type: mime });
                     const reader = new FileReader();
                     reader.onloadend = () => {
                         const dataUrl = String(reader.result || "");
                         if (dataUrl) {
-                            publishRealtimeMessage(targetContact, {
+                            publishRealtimeMessage(targetEntry, {
                                 type: "voice",
                                 audioUrl: dataUrl
                             });
@@ -1362,25 +1448,73 @@
             holdMicRecorder = null;
         }
 
-        // REAL VAQTDA KELGAN SMS / RASM / GOLOSNI SINXRONLASH
+        // BOTDA KIM BORLIGINI REAL VAQTDA YUBORISH VA OLISH
+        async function sendMyPresenceHeartbeat() {
+            const payload = {
+                clientId: myClientId,
+                username: normalizeAtUsername(profileData.nik),
+                name: profileData.name || "Foydalanuvchi",
+                photo: profileData.photo || DEFAULT_AVATAR,
+                lastSeen: Date.now()
+            };
+            try {
+                await fetch(`${RT_DB_URL}/tg_clone_rt_presence/${encodeURIComponent(myClientId)}.json`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+            } catch (e) {}
+        }
+
+        async function syncPresenceAndMessages() {
+            const now = Date.now();
+            try {
+                const pRes = await fetch(`${RT_DB_URL}/tg_clone_rt_presence.json`);
+                if (pRes.ok) {
+                    const pData = await pRes.json();
+                    if (pData && typeof pData === "object") {
+                        const activePeers = [];
+                        Object.values(pData).forEach(u => {
+                            if (!u || !u.clientId || u.clientId === myClientId) return;
+                            if (!u.lastSeen || (now - Number(u.lastSeen)) > ONLINE_WINDOW_MS) return;
+                            const nick = normalizeAtUsername(u.username);
+                            if (!nick) return;
+                            activePeers.push({
+                                clientId: u.clientId,
+                                username: nick,
+                                name: u.name || nick.slice(1),
+                                photo: u.photo || DEFAULT_AVATAR,
+                                lastSeen: Number(u.lastSeen) || now
+                            });
+                        });
+                        activePeers.sort((a, b) => b.lastSeen - a.lastSeen);
+                        livePresencePeers = activePeers;
+                        renderChatsList();
+                    }
+                }
+            } catch (e) {}
+
+            await syncRealtimeMessages();
+        }
+
         async function syncRealtimeMessages() {
-            if (!contactsList.length) return;
+            const entries = getAllChatEntries();
+            if (!entries.length) return;
             const myCanon = canonUsername(profileData.nik);
+            const activeEntry = currentOpenChatKey ? findChatEntryByKey(currentOpenChatKey) : null;
             let addedUnread = 0;
             let anyUpdated = false;
 
-            for (const contact of contactsList) {
-                const chanKey = getThreadChannelKey(getContactAtUsername(contact));
+            for (const entry of entries) {
+                const chanKey = getThreadChannelKey(entry.username);
                 try {
                     const res = await fetch(`${RT_DB_URL}/tg_clone_rt_messages/${encodeURIComponent(chanKey)}.json`);
                     if (!res.ok) continue;
                     const data = await res.json();
                     if (!data || typeof data !== "object") continue;
 
-                    if (!Array.isArray(messagesByContact[contact.id])) {
-                        messagesByContact[contact.id] = [];
-                    }
-                    const existingIds = new Set(messagesByContact[contact.id].map(m => m.id));
+                    const list = getMessagesForCanonUser(entry.canonUsername);
+                    const existingIds = new Set(list.map(m => m.id));
 
                     Object.values(data).forEach(pkt => {
                         if (!pkt || !pkt.id || existingIds.has(pkt.id)) return;
@@ -1394,14 +1528,14 @@
                             audioUrl: pkt.audioUrl || "",
                             ts: pkt.ts || Date.now()
                         };
-                        messagesByContact[contact.id].push(localMsg);
+                        list.push(localMsg);
                         existingIds.add(pkt.id);
                         anyUpdated = true;
 
                         if (isFromPeer && !seenMsgIds.has(pkt.id)) {
                             seenMsgIds.add(pkt.id);
                             const chatSecActive = document.getElementById("sec-chatlar").classList.contains("active");
-                            const viewingNow = chatSecActive && currentOpenContactId === contact.id;
+                            const viewingNow = chatSecActive && activeEntry && activeEntry.canonUsername === entry.canonUsername;
                             if (!viewingNow) {
                                 addedUnread += 1;
                             }
@@ -1416,8 +1550,8 @@
                 if (addedUnread > 0) {
                     setUnreadSmsCount(unreadSmsCount + addedUnread);
                 }
-                if (currentOpenContactId) {
-                    renderChatMessages(currentOpenContactId);
+                if (activeEntry) {
+                    renderChatMessages(activeEntry.canonUsername);
                 }
                 renderChatsList();
             }
@@ -1432,9 +1566,10 @@
 
             if (secId === "chatlar") {
                 setUnreadSmsCount(0);
-                if (currentOpenContactId) renderChatMessages(currentOpenContactId);
+                const activeEntry = currentOpenChatKey ? findChatEntryByKey(currentOpenChatKey) : null;
+                if (activeEntry) renderChatMessages(activeEntry.canonUsername);
                 else renderChatsList();
-                syncRealtimeMessages();
+                syncPresenceAndMessages();
             } else if (secId === "kontaktlar") {
                 renderContactsList();
             } else if (secId === "profil") {
@@ -1446,8 +1581,11 @@
         renderProfileSection();
         renderContactsList();
         renderChatsList();
-        syncRealtimeMessages();
-        setInterval(() => { syncRealtimeMessages(); }, 1400);
+        sendMyPresenceHeartbeat();
+        syncPresenceAndMessages();
+
+        setInterval(() => { sendMyPresenceHeartbeat(); }, 8000);
+        setInterval(() => { syncPresenceAndMessages(); }, 1500);
 
         setTimeout(() => {
             const splash = document.getElementById("tgSplash");
