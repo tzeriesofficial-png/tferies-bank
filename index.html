@@ -602,14 +602,14 @@
                     <div id="chatsListContainer" class="list-stack"></div>
                 </div>
 
-                <!-- ICHKI CHAT OYNASI -->
+                <!-- ICHKI CHAT OYNASI (TEPADAGI NIK @ BELGISISIZ ODDIY NIK + QORA GALOCHKA) -->
                 <div id="chatRoomView" class="chat-window">
                     <div class="chat-win-header">
                         <button type="button" class="btn-light-border" onclick="closeActiveChat()">←</button>
                         <img id="activeChatAvatar" class="avatar-circle" style="width:38px; height:38px;" src="" alt="">
                         <div style="min-width:0; flex:1;">
                             <div class="peer-nick-row">
-                                <span id="activeChatNick" class="peer-nick-text">@kontakt_nik</span>
+                                <span id="activeChatNick" class="peer-nick-text">kontakt_nik</span>
                                 <span class="static-black-check" title="Tasdiqlangan">
                                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <defs>
@@ -768,7 +768,7 @@
         </nav>
     </div>
 
-    <!-- MODAL 1: KONTAKT QO'SHISH (YO'Q RAQAMLAR KIRITILMAYDI) -->
+    <!-- MODAL 1: KONTAKT QO'SHISH (RAQAM ORQALI SAQLANGANDA @ BELGISISIZ ODDIY NIK BERILADI) -->
     <div id="addContactModal" class="modal-backdrop">
         <div class="modal-box">
             <div class="modal-heading">Kontakt qoʻshish</div>
@@ -792,7 +792,7 @@
         </div>
     </div>
 
-    <!-- MODAL 2: PROFIL TAHRIRLASH -->
+    <!-- MODAL 2: PROFIL TAHRIRLASH (@ BILAN BOSHLANADIGAN NIK) -->
     <div id="editProfileModal" class="modal-backdrop">
         <div class="modal-box">
             <div class="modal-heading">Profilni tahrirlash</div>
@@ -809,7 +809,7 @@
             </div>
 
             <div class="field-wrap">
-                <label for="editNikInput" class="field-title">Nik (xohlagan nik yoki 1 xonali son ham qoʻyish mumkin)</label>
+                <label for="editNikInput" class="field-title">Nik (@ bilan boshlanadi)</label>
                 <input type="text" id="editNikInput" class="inp-field" maxlength="28" placeholder="@FarzonaTurayeva">
             </div>
 
@@ -843,10 +843,10 @@
         `);
 
         const KEYS = {
-            profile: "tg_clone_profile_v3",
-            contacts: "tg_clone_contacts_v3",
-            messages: "tg_clone_messages_v3",
-            unread: "tg_clone_unread_v3"
+            profile: "tg_clone_profile_v4",
+            contacts: "tg_clone_contacts_v4",
+            messages: "tg_clone_messages_v4",
+            unread: "tg_clone_unread_v4"
         };
 
         function readStore(key, fallback) {
@@ -877,6 +877,26 @@
             return `+91 ${String(Date.now()).slice(-3)} ${String(Math.floor(10 + Math.random() * 89))} ${String(Math.floor(10 + Math.random() * 89))}`;
         }
 
+        // Har doim @ bilan boshlanadigan nik formatlash
+        function ensureAtNick(rawInput) {
+            const trimmed = String(rawInput || "").trim();
+            if (!trimmed) return "";
+            const withoutLeadingAt = trimmed.replace(/^@+/, "").trim();
+            if (!withoutLeadingAt) return "";
+            return "@" + withoutLeadingAt;
+        }
+
+        // Raqam orqali saqlangan kontaktga @ belgisiz oddiy nik yaratish
+        function generatePlainNickForPhoneContact(nameVal, phoneVal) {
+            const baseName = String(nameVal || "")
+                .toLowerCase()
+                .replace(/[^a-z0-9_]+/g, "_")
+                .replace(/^_+|_+$/g, "");
+            const digitsTail = String(phoneVal || "").replace(/\D/g, "").slice(-4);
+            const plain = [baseName, digitsTail].filter(Boolean).join("_");
+            return (plain || ("user_" + (digitsTail || "1000"))).replace(/^@+/, "");
+        }
+
         const defaultProfile = {
             name: "ISNOOSH",
             nik: "@FarzonaTurayeva",
@@ -886,7 +906,7 @@
         };
 
         let profileData = { ...defaultProfile, ...readStore(KEYS.profile, {}) };
-        if (!profileData.nik) profileData.nik = "@FarzonaTurayeva";
+        profileData.nik = ensureAtNick(profileData.nik) || "@FarzonaTurayeva";
         if (!profileData.virtualPhone) profileData.virtualPhone = generateUniqueVirtualIndianNumber();
         writeStore(KEYS.profile, profileData);
 
@@ -897,7 +917,6 @@
         let currentOpenContactId = null;
         let draftPhotoData = profileData.photo || "";
 
-        // Ovozli xabar (bosib turib yuborish)
         let isHoldingMic = false;
         let holdMicStream = null;
         let holdMicRecorder = null;
@@ -949,14 +968,6 @@
                 .replace(/"/g, "&quot;");
         }
 
-        function buildContactNick(contact) {
-            const raw = (contact.name || "user")
-                .toLowerCase()
-                .replace(/\s+/g, "_")
-                .replace(/[^a-z0-9_]/g, "");
-            return "@" + (raw || "kontakt");
-        }
-
         // PROFILNI CHIZISH VA TAHRIRLASH
         function renderProfileSection() {
             const imgEl = document.getElementById("profilePhotoView");
@@ -964,7 +975,7 @@
             imgEl.onerror = () => { imgEl.src = DEFAULT_AVATAR; };
 
             document.getElementById("profileNameView").textContent = profileData.name || "ISNOOSH";
-            document.getElementById("profileNikView").textContent = profileData.nik || "@FarzonaTurayeva";
+            document.getElementById("profileNikView").textContent = ensureAtNick(profileData.nik) || "@FarzonaTurayeva";
             document.getElementById("profileBioView").textContent = profileData.bio || "Tavsif kiritilmagan.";
             document.getElementById("profileVirtualPhoneView").textContent = profileData.virtualPhone || "+91 748 29 41";
         }
@@ -976,7 +987,7 @@
             prev.onerror = () => { prev.src = DEFAULT_AVATAR; };
 
             document.getElementById("editNameInput").value = profileData.name || "ISNOOSH";
-            document.getElementById("editNikInput").value = profileData.nik || "@FarzonaTurayeva";
+            document.getElementById("editNikInput").value = ensureAtNick(profileData.nik) || "@FarzonaTurayeva";
             document.getElementById("editBioInput").value = profileData.bio || "";
             document.getElementById("editProfileErr").textContent = "";
             document.getElementById("editProfileModal").classList.add("open");
@@ -1011,15 +1022,6 @@
             reader.readAsDataURL(file);
         }
 
-        function formatOwnerNik(rawInput) {
-            const trimmed = String(rawInput || "").trim();
-            if (!trimmed) return "";
-            if (trimmed.startsWith("@")) {
-                return trimmed.length > 1 ? trimmed : "@";
-            }
-            return "@" + trimmed;
-        }
-
         function saveProfileChanges() {
             const errEl = document.getElementById("editProfileErr");
             const nameVal = document.getElementById("editNameInput").value.trim();
@@ -1031,8 +1033,8 @@
                 return;
             }
 
-            const formattedNik = formatOwnerNik(nikRaw);
-            if (!formattedNik || formattedNik === "@") {
+            const formattedNik = ensureAtNick(nikRaw);
+            if (!formattedNik) {
                 errEl.textContent = "Nik maydoniga qiymat kiriting.";
                 return;
             }
@@ -1047,7 +1049,6 @@
             renderProfileSection();
         }
 
-        // YO'Q RAQAMLARNI TEKSHIRISH (FAQAT HAQIQIY RAQAM KIRITILADI)
         function validateRealPhone(rawPhone) {
             const clean = String(rawPhone || "").trim();
             const digitsOnly = clean.replace(/\D/g, "");
@@ -1063,7 +1064,6 @@
             return { value: clean };
         }
 
-        // KONTAKTLAR VA CHATLAR
         function openAddContactModal() {
             document.getElementById("contactPhoneInput").value = "";
             document.getElementById("contactNameInput").value = "";
@@ -1091,9 +1091,12 @@
             }
 
             const uniqueId = "cnt_" + Date.now() + "_" + Math.random().toString(36).slice(2, 7);
+            const plainNick = generatePlainNickForPhoneContact(nameVal, phoneRes.value);
+
             const newContact = {
                 id: uniqueId,
                 name: nameVal,
+                plainNick: plainNick,
                 phone: phoneRes.value,
                 photo: DEFAULT_AVATAR,
                 createdAt: Date.now()
@@ -1110,6 +1113,13 @@
             renderChatsList();
         }
 
+        function getPlainNick(contact) {
+            if (contact && contact.plainNick) {
+                return String(contact.plainNick).replace(/^@+/, "");
+            }
+            return generatePlainNickForPhoneContact(contact.name, contact.phone);
+        }
+
         function renderContactsList() {
             const box = document.getElementById("contactsListContainer");
             box.innerHTML = "";
@@ -1120,6 +1130,7 @@
             }
 
             contactsList.forEach(c => {
+                const nickLabel = getPlainNick(c);
                 const row = document.createElement("div");
                 row.className = "row-card";
                 row.onclick = () => {
@@ -1132,7 +1143,7 @@
                         <img class="avatar-circle" src="${escapeText(c.photo || DEFAULT_AVATAR)}" alt="">
                         <div style="min-width:0; flex:1;">
                             <div style="font-size:14.5px; font-weight:800; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeText(c.name)}</div>
-                            <div style="font-size:12px; font-weight:600; color:#555555; margin-top:2px;">${escapeText(buildContactNick(c))}</div>
+                            <div style="font-size:12px; font-weight:600; color:#555555; margin-top:2px;">${escapeText(nickLabel)}</div>
                         </div>
                     </div>
                     <span class="btn-light-border" style="padding:5px 9px; font-size:11px;">Chat</span>
@@ -1153,8 +1164,9 @@
             }
 
             contactsList.forEach(c => {
+                const nickLabel = getPlainNick(c);
                 const msgs = messagesByContact[c.id] || [];
-                let previewText = buildContactNick(c);
+                let previewText = nickLabel;
                 if (msgs.length) {
                     const last = msgs[msgs.length - 1];
                     if (last.type === "image") previewText = "Rasm";
@@ -1174,7 +1186,7 @@
                             <div style="font-size:12px; font-weight:600; color:#555555; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-top:2px;">${escapeText(previewText)}</div>
                         </div>
                     </div>
-                    <span style="font-size:11.5px; font-weight:700; color:#111111;">${escapeText(buildContactNick(c))}</span>
+                    <span style="font-size:11.5px; font-weight:700; color:#111111;">${escapeText(nickLabel)}</span>
                 `;
                 const im = row.querySelector("img");
                 if (im) im.onerror = function() { this.src = DEFAULT_AVATAR; };
@@ -1194,7 +1206,7 @@
             av.src = contact.photo || DEFAULT_AVATAR;
             av.onerror = () => { av.src = DEFAULT_AVATAR; };
 
-            document.getElementById("activeChatNick").textContent = buildContactNick(contact);
+            document.getElementById("activeChatNick").textContent = getPlainNick(contact);
             setUnreadSmsCount(0);
             renderChatMessages(contact.id);
         }
@@ -1268,7 +1280,6 @@
             inp.value = "";
         }
 
-        // RASM VA VIDEO YUBORISH
         function onChatMediaPicked(ev) {
             if (!currentOpenContactId) return;
             const file = ev.target.files && ev.target.files[0];
@@ -1291,7 +1302,6 @@
             reader.readAsDataURL(file);
         }
 
-        // MIKROFON STIKERIGA BOSIB TURIB OVOZLI XABAR JO'NATISH
         async function startHoldVoice(ev) {
             if (!currentOpenContactId || isHoldingMic) return;
             if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === "undefined") return;
