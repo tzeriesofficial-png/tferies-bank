@@ -40,22 +40,9 @@
             pointer-events: none;
         }
 
-        .plane-stage {
-            width: 156px;
-            height: 156px;
-            border-radius: 40px;
-            background: linear-gradient(155deg, #f3f9ff 0%, #e4f2fd 100%);
-            border: 1.5px solid rgba(36, 161, 222, 0.22);
-            box-shadow: 0 18px 38px rgba(36, 161, 222, 0.14);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
         .plane-svg-wrap {
-            width: 98px;
-            height: 98px;
+            width: 104px;
+            height: 104px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -88,51 +75,49 @@
 </head>
 <body>
 
-    <!-- KIRISH QISMI: OQ FON, YOZUVSIZ, QIMIRLAB TURUVCHI PREMIUM SVG SAMOLYOT -->
+    <!-- KIRISH QISMI: OQ FON, YOZUVSIZ, BLOKSIZ QORA PREMIUM SVG SAMOLYOT -->
     <div id="tgSplash" class="tg-splash-screen">
-        <div class="plane-stage">
-            <div class="plane-svg-wrap">
-                <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="planeBodyGrad" x1="16" y1="22" x2="104" y2="96" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#37aee2"/>
-                            <stop offset="55%" stop-color="#249fd8"/>
-                            <stop offset="100%" stop-color="#1884be"/>
-                        </linearGradient>
-                        <linearGradient id="planeWingLeft" x1="20" y1="54" x2="54" y2="74" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#76ccf2"/>
-                            <stop offset="100%" stop-color="#39a8dc"/>
-                        </linearGradient>
-                        <linearGradient id="planeWingRight" x1="48" y1="66" x2="88" y2="96" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#218ec4"/>
-                            <stop offset="100%" stop-color="#146d9e"/>
-                        </linearGradient>
-                        <linearGradient id="planeFoldShade" x1="44" y1="62" x2="66" y2="86" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#156fa0"/>
-                            <stop offset="100%" stop-color="#0d5278"/>
-                        </linearGradient>
-                    </defs>
+        <div class="plane-svg-wrap">
+            <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="planeBlackMain" x1="16" y1="22" x2="104" y2="96" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#1a1a1a"/>
+                        <stop offset="55%" stop-color="#0a0a0a"/>
+                        <stop offset="100%" stop-color="#000000"/>
+                    </linearGradient>
+                    <linearGradient id="planeBlackLeft" x1="20" y1="54" x2="54" y2="74" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#2c2c2c"/>
+                        <stop offset="100%" stop-color="#111111"/>
+                    </linearGradient>
+                    <linearGradient id="planeBlackRight" x1="48" y1="66" x2="88" y2="96" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#0f0f0f"/>
+                        <stop offset="100%" stop-color="#000000"/>
+                    </linearGradient>
+                    <linearGradient id="planeBlackFold" x1="44" y1="62" x2="66" y2="86" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#050505"/>
+                        <stop offset="100%" stop-color="#1f1f1f"/>
+                    </linearGradient>
+                </defs>
 
-                    <!-- Yengil qog'oz/samolyot izi chiziqlari -->
-                    <path d="M18 86C26 84 32 87 37 92" stroke="#57bce8" stroke-width="2.4" stroke-linecap="round" opacity="0.55"/>
-                    <path d="M12 73C19 72 24 75 28 79" stroke="#7ccbf0" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+                <!-- Yengil harakat chiziqlari -->
+                <path d="M18 86C26 84 32 87 37 92" stroke="#111111" stroke-width="2.4" stroke-linecap="round" opacity="0.5"/>
+                <path d="M12 73C19 72 24 75 28 79" stroke="#262626" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
 
-                    <!-- Asosiy samolyot korpusi -->
-                    <path d="M102 24L18 57.5C15.5 58.5 15.6 61.9 18.2 62.7L39.5 69.3L95.5 32.2C97.8 30.7 100.3 33.7 98.3 35.6L51.5 76.2L84.4 98.8C86.6 100.3 89.6 99 90.2 96.4L106.4 28.1C107.1 25.1 104.7 22.8 102 24Z" fill="url(#planeBodyGrad)"/>
+                <!-- Asosiy samolyot korpusi -->
+                <path d="M102 24L18 57.5C15.5 58.5 15.6 61.9 18.2 62.7L39.5 69.3L95.5 32.2C97.8 30.7 100.3 33.7 98.3 35.6L51.5 76.2L84.4 98.8C86.6 100.3 89.6 99 90.2 96.4L106.4 28.1C107.1 25.1 104.7 22.8 102 24Z" fill="url(#planeBlackMain)"/>
 
-                    <!-- Chap qanot / yuqori qirra -->
-                    <path d="M18 57.5L102 24L39.5 69.3L18.2 62.7C15.6 61.9 15.5 58.5 18 57.5Z" fill="url(#planeWingLeft)"/>
+                <!-- Chap qanot / yuqori qirra -->
+                <path d="M18 57.5L102 24L39.5 69.3L18.2 62.7C15.6 61.9 15.5 58.5 18 57.5Z" fill="url(#planeBlackLeft)"/>
 
-                    <!-- O'ng pastki qanot -->
-                    <path d="M51.5 76.2L98.3 35.6L90.2 96.4C89.6 99 86.6 100.3 84.4 98.8L51.5 76.2Z" fill="url(#planeWingRight)"/>
+                <!-- O'ng pastki qanot -->
+                <path d="M51.5 76.2L98.3 35.6L90.2 96.4C89.6 99 86.6 100.3 84.4 98.8L51.5 76.2Z" fill="url(#planeBlackRight)"/>
 
-                    <!-- Ichki buklama soyasi -->
-                    <path d="M39.5 69.3L98.3 35.6L51.5 76.2L47.8 91.8C47.2 94.3 43.9 94.8 42.6 92.6L39.5 69.3Z" fill="url(#planeFoldShade)"/>
+                <!-- Ichki buklama soyasi -->
+                <path d="M39.5 69.3L98.3 35.6L51.5 76.2L47.8 91.8C47.2 94.3 43.9 94.8 42.6 92.6L39.5 69.3Z" fill="url(#planeBlackFold)"/>
 
-                    <!-- Yaltiroq oq qirra -->
-                    <path d="M22 59.4L98.5 27.6" stroke="#e6f7ff" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
-                </svg>
-            </div>
+                <!-- Yengil qirra chizig'i -->
+                <path d="M22 59.4L98.5 27.6" stroke="#525252" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+            </svg>
         </div>
     </div>
 
