@@ -19,8 +19,7 @@
             --bg-black: #000000;
             --ink-white: #ffffff;
             --pink-bg: #ff3b8d;
-            --pink-deep: #d81b68;
-            --pink-soft: rgba(255, 59, 141, 0.16);
+            --pink-deep: #c4135d;
             --glass-white: rgba(255, 255, 255, 0.08);
             --glass-soft: rgba(255, 255, 255, 0.15);
             --line-white: rgba(255, 255, 255, 0.35);
@@ -85,7 +84,6 @@
             align-items: center;
             justify-content: space-between;
             gap: 10px;
-            box-shadow: 0 8px 24px rgba(255, 59, 141, 0.45);
         }
 
         .pocket-top-banner.active {
@@ -186,7 +184,7 @@
             color: var(--ink-white);
             border: 1.8px solid var(--ink-white);
             border-radius: 13px;
-            padding: 7px 11px;
+            padding: 7px 10px;
             font-size: 12px;
             font-weight: 900;
             cursor: pointer;
@@ -197,7 +195,7 @@
             color: #ffffff;
             border: 2px solid #ffffff;
             border-radius: 13px;
-            padding: 8px 12px;
+            padding: 8px 10px;
             font-size: 12px;
             font-weight: 900;
             cursor: pointer;
@@ -208,6 +206,46 @@
             font-size: 13px;
             font-weight: 800;
             color: var(--ink-white);
+        }
+
+        /* QIMIRLAB TURUVCHI ANIMATSIYALAR */
+        .wiggle-item {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            animation: itemWiggle 1.8s ease-in-out infinite;
+        }
+
+        .wiggle-sticker {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            animation: stickerFloatWiggle 1.6s ease-in-out infinite;
+        }
+
+        .nav-svg-wiggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            animation: navWiggle 2.1s ease-in-out infinite;
+        }
+
+        @keyframes itemWiggle {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            35% { transform: translateY(-2.5px) rotate(-6deg) scale(1.08); }
+            70% { transform: translateY(1px) rotate(6deg) scale(1.04); }
+        }
+
+        @keyframes stickerFloatWiggle {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            30% { transform: translateY(-3px) rotate(-7deg) scale(1.1); }
+            65% { transform: translateY(1px) rotate(7deg) scale(1.05); }
+        }
+
+        @keyframes navWiggle {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            40% { transform: translateY(-2px) rotate(-5deg) scale(1.08); }
+            75% { transform: translateY(0px) rotate(5deg) scale(1.03); }
         }
 
         /* CHAT ROOM RO'YXATI */
@@ -268,34 +306,6 @@
             padding-bottom: 14px;
         }
 
-        .rocket-progress-card {
-            width: 100%;
-            background: rgba(255, 59, 141, 0.14);
-            border: 1.8px solid #ffffff;
-            border-radius: 18px;
-            padding: 10px 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            text-align: left;
-        }
-
-        .rocket-track {
-            width: 100%;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 999px;
-            overflow: hidden;
-        }
-
-        .rocket-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #ff7ab8 0%, #ffffff 100%);
-            border-radius: 999px;
-            transition: width 0.25s ease;
-        }
-
         .stage-board-5 {
             width: 100%;
             background: var(--glass-white);
@@ -308,10 +318,10 @@
             gap: 14px;
         }
 
-        .seats-5-row {
+        .seats-4-row {
             width: 100%;
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 6px;
             justify-items: center;
         }
@@ -389,11 +399,38 @@
             cursor: pointer;
         }
 
-        .room-controls-row {
+        /* KICHKINA TO'RTBURCHAK RAKETA STIKER TUGMASI + PASTKI QATOR TUGMALARI */
+        .room-controls-dock {
             width: 100%;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: 46px 1fr 48px 1fr 1fr;
             gap: 6px;
+            align-items: stretch;
+        }
+
+        .mini-rocket-square-btn {
+            width: 46px;
+            height: 38px;
+            background: linear-gradient(145deg, rgba(255, 59, 141, 0.28) 0%, rgba(255, 255, 255, 0.1) 100%);
+            border: 1.8px solid #ffffff;
+            border-radius: 11px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .gift-sticker-only-btn {
+            height: 38px;
+            background: var(--pink-bg);
+            border: 2px solid #ffffff;
+            border-radius: 13px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 0 8px;
         }
 
         .room-chat-box {
@@ -526,7 +563,21 @@
         .pink-sticker-card.selected {
             background: rgba(255, 255, 255, 0.34);
             border-color: #ffffff;
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.45);
+        }
+
+        .rocket-track {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.16);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .rocket-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff7ab8 0%, #ffffff 100%);
+            border-radius: 999px;
         }
 
         /* LICHKA CHAT */
@@ -766,10 +817,12 @@
     <!-- 3 SONIYA KO'RINADIGAN POCKET BANNERI -->
     <div id="pocketTopBanner" class="pocket-top-banner">
         <div style="display:flex; align-items:center; gap:8px; min-width:0; flex:1;">
-            <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="#ffffff" stroke-width="2.2">
-                <rect x="4" y="7" width="24" height="18" rx="4"/>
-                <path d="M4 11h24M11 16h10"/>
-            </svg>
+            <span class="wiggle-item">
+                <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="#ffffff" stroke-width="2.2">
+                    <rect x="4" y="7" width="24" height="18" rx="4"/>
+                    <path d="M4 11h24M11 16h10"/>
+                </svg>
+            </span>
             <div style="min-width:0; flex:1; text-align:left;">
                 <div style="font-size:12px; font-weight:900; color:#ffffff;">Pocket tashlandi!</div>
                 <div id="pocketBannerSub" style="font-family:sans-serif; font-size:11px; font-weight:800; color:#ffffff; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Xonada moneta bor</div>
@@ -793,9 +846,11 @@
                     <div class="top-bar">
                         <div class="section-heading">chat</div>
                         <button type="button" class="home-trigger-btn" onclick="openCreateRoomModal()">
-                            <svg viewBox="0 0 28 28" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linejoin="round">
-                                <path d="M4 12.5L14 4L24 12.5V23.5C24 24.1 23.5 24.5 23 24.5H17V17.5H11V24.5H5C4.5 24.5 4 24.1 4 23.5V12.5Z"/>
-                            </svg>
+                            <span class="wiggle-item">
+                                <svg viewBox="0 0 28 28" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linejoin="round">
+                                    <path d="M4 12.5L14 4L24 12.5V23.5C24 24.1 23.5 24.5 23 24.5H17V17.5H11V24.5H5C4.5 24.5 4 24.1 4 23.5V12.5Z"/>
+                                </svg>
+                            </span>
                             <span>Xona yaratish</span>
                         </button>
                     </div>
@@ -811,33 +866,13 @@
                     </div>
 
                     <div class="room-stage-scroll">
-                        <!-- RAKETA SHKALASI: 1,200,000 MONETA -->
-                        <div class="rocket-progress-card">
-                            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
-                                <div style="display:flex; align-items:center; gap:7px;">
-                                    <svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="#ffffff" stroke-width="2.1">
-                                        <path d="M16 4c5 3 8 9 8 15l-4 3h-8l-4-3c0-6 3-12 8-15z"/>
-                                        <path d="M12 24l4 5 4-5"/>
-                                    </svg>
-                                    <span style="font-size:12px; font-weight:900;">Raketa: <span id="rocketCollectedVal">0</span> / 1,200,000</span>
-                                </div>
-                                <span id="rocketPctVal" style="font-size:11.5px; font-weight:900;">0%</span>
-                            </div>
-                            <div class="rocket-track">
-                                <div id="rocketProgressBar" class="rocket-fill"></div>
-                            </div>
-                            <div id="rocketRewardNotice" class="soft-copy" style="font-size:11px; opacity:0.9;">
-                                1-oʻrin: 400k • 2-oʻrin: 250k • 3-oʻrin: 120k • Tomoshabin: 10k
-                            </div>
-                        </div>
-
-                        <!-- 5 TA PREMIUM SVG O'RINDIQ -->
+                        <!-- 5 TA PREMIUM SVG O'RINDIQ (1-O'RIN FAQAT XONA EGASIGA) -->
                         <div class="stage-board-5">
                             <div class="seat-node" onclick="handleSeatClick('0')">
                                 <div id="seatRing_0" class="seat-ring host-seat"></div>
-                                <div id="seatLabel_0" class="seat-caption">1-oʻrin (Ega)</div>
+                                <div id="seatLabel_0" class="seat-caption">1-oʻrin</div>
                             </div>
-                            <div id="seatsGrid4" class="seats-5-row" style="grid-template-columns: repeat(4, 1fr);"></div>
+                            <div id="seatsGrid4" class="seats-4-row"></div>
                         </div>
 
                         <!-- TOMOSHABINLAR -->
@@ -846,19 +881,29 @@
                             <div id="audienceChipsRow" class="audience-chips"></div>
                         </div>
 
-                        <!-- BOSHQARUV TUGMALARI: MIKRO, PADARKA (PUSHTI SVG), POCKET, TURISH -->
-                        <div class="room-controls-row">
+                        <!-- PASTKI BOSHQARUV QATORI: KICHKINA TO'RTBURCHAK RAKETA + MIKRO + PADARKA (FAQAT STIKER) + POCKET + TURISH -->
+                        <div class="room-controls-dock">
+                            <button type="button" class="mini-rocket-square-btn" onclick="openRocketModal()" title="Raketa">
+                                <span class="wiggle-sticker">
+                                    <svg viewBox="0 0 32 32" width="24" height="24" fill="none">
+                                        <path d="M16 4c4.5 2.8 7 8 7 13.5l-3.5 2.5h-7L9 17.5C9 12 11.5 6.8 16 4z" fill="#ffffff" stroke="#ff3b8d" stroke-width="1.6"/>
+                                        <circle cx="16" cy="13" r="2.3" fill="#ff3b8d"/>
+                                        <path d="M13 21l3 5 3-5" fill="#ff7ab8"/>
+                                    </svg>
+                                </span>
+                            </button>
+
                             <button type="button" class="btn-white" onclick="toggleRoomMic()">
                                 <span id="roomMicBtnText">Mikro</span>
                             </button>
 
-                            <button type="button" class="btn-pink" onclick="openPinkGiftModal()" title="Padarka">
-                                <span style="display:inline-flex; align-items:center; justify-content:center; gap:4px;">
-                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ffffff" stroke-width="2.2">
-                                        <rect x="3" y="10" width="18" height="11" rx="2"/>
-                                        <path d="M12 10v11M3 10l9-6 9 6"/>
+                            <button type="button" class="gift-sticker-only-btn" onclick="openPinkGiftModal()" aria-label="Padarka">
+                                <span class="wiggle-sticker">
+                                    <svg viewBox="0 0 28 28" width="24" height="24" fill="none">
+                                        <rect x="4" y="12" width="20" height="12" rx="2.5" fill="#ffffff"/>
+                                        <path d="M14 12v12M4 12l10-7 10 7" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+                                        <circle cx="14" cy="18" r="2.2" fill="#ff3b8d"/>
                                     </svg>
-                                    <span>Padarka</span>
                                 </span>
                             </button>
 
@@ -968,42 +1013,75 @@
 
         </div>
 
-        <!-- 4 TA QIMIRLAMAYDIGAN PREMIUM SVG MENYU TUGMASI -->
+        <!-- 4 TA QIMIRLAB TURUVCHI PREMIUM SVG MENYU TUGMASI -->
         <nav class="bottom-dock">
             <button type="button" class="dock-btn active" onclick="switchTab('chat', this)">
-                <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="#ffffff" stroke-width="2.1">
-                    <path d="M5 7.5C5 5.84 6.34 4.5 8 4.5H24C25.66 4.5 27 5.84 27 7.5V19.5C27 21.16 25.66 22.5 24 22.5H13.5L8 27.5V22.5H8C6.34 22.5 5 21.16 5 19.5V7.5Z"/>
-                    <circle cx="12" cy="13.5" r="1.4" fill="#ffffff"/>
-                    <circle cx="16" cy="13.5" r="1.4" fill="#ffffff"/>
-                    <circle cx="20" cy="13.5" r="1.4" fill="#ffffff"/>
-                </svg>
+                <span class="nav-svg-wiggle">
+                    <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="#ffffff" stroke-width="2.1">
+                        <path d="M5 7.5C5 5.84 6.34 4.5 8 4.5H24C25.66 4.5 27 5.84 27 7.5V19.5C27 21.16 25.66 22.5 24 22.5H13.5L8 27.5V22.5H8C6.34 22.5 5 21.16 5 19.5V7.5Z"/>
+                        <circle cx="12" cy="13.5" r="1.4" fill="#ffffff"/>
+                        <circle cx="16" cy="13.5" r="1.4" fill="#ffffff"/>
+                        <circle cx="20" cy="13.5" r="1.4" fill="#ffffff"/>
+                    </svg>
+                </span>
                 <span>chat</span>
             </button>
 
             <button type="button" class="dock-btn" onclick="switchTab('xabar', this)">
-                <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="#ffffff" stroke-width="2.1">
-                    <rect x="4" y="7" width="24" height="18" rx="4"/>
-                    <path d="M5.5 8.5L16 16.5L26.5 8.5"/>
-                </svg>
+                <span class="nav-svg-wiggle">
+                    <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="#ffffff" stroke-width="2.1">
+                        <rect x="4" y="7" width="24" height="18" rx="4"/>
+                        <path d="M5.5 8.5L16 16.5L26.5 8.5"/>
+                    </svg>
+                </span>
                 <span>xabar</span>
             </button>
 
             <button type="button" class="dock-btn" onclick="switchTab('murojat', this)">
-                <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="#ffffff" stroke-width="2.1">
-                    <path d="M16 4L27 9V16.5C27 23.2 22.3 27.4 16 29.5C9.7 27.4 5 23.2 5 16.5V9L16 4Z"/>
-                    <path d="M16 11V17M16 21.5h.02" stroke-linecap="round"/>
-                </svg>
+                <span class="nav-svg-wiggle">
+                    <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="#ffffff" stroke-width="2.1">
+                        <path d="M16 4L27 9V16.5C27 23.2 22.3 27.4 16 29.5C9.7 27.4 5 23.2 5 16.5V9L16 4Z"/>
+                        <path d="M16 11V17M16 21.5h.02" stroke-linecap="round"/>
+                    </svg>
+                </span>
                 <span>murojat</span>
             </button>
 
             <button type="button" class="dock-btn" onclick="switchTab('profilm', this)">
-                <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="#ffffff" stroke-width="2.1">
-                    <circle cx="16" cy="10.5" r="5.2"/>
-                    <path d="M6.5 26.5C7.3 21.4 11.2 18.2 16 18.2C20.8 18.2 24.7 21.4 25.5 26.5" stroke-linecap="round"/>
-                </svg>
+                <span class="nav-svg-wiggle">
+                    <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="#ffffff" stroke-width="2.1">
+                        <circle cx="16" cy="10.5" r="5.2"/>
+                        <path d="M6.5 26.5C7.3 21.4 11.2 18.2 16 18.2C20.8 18.2 24.7 21.4 25.5 26.5" stroke-linecap="round"/>
+                    </svg>
+                </span>
                 <span>profilm</span>
             </button>
         </nav>
+    </div>
+
+    <!-- RAKETA HOLATI OYNASI -->
+    <div id="rocketModal" class="modal-overlay">
+        <div class="modal-sheet">
+            <div style="display:flex; align-items:center; justify-content:center; gap:8px;">
+                <span class="wiggle-sticker">
+                    <svg viewBox="0 0 32 32" width="28" height="28" fill="none">
+                        <path d="M16 4c4.5 2.8 7 8 7 13.5l-3.5 2.5h-7L9 17.5C9 12 11.5 6.8 16 4z" fill="#ffffff" stroke="#ff3b8d" stroke-width="1.6"/>
+                        <path d="M13 21l3 5 3-5" fill="#ff7ab8"/>
+                    </svg>
+                </span>
+                <div class="modal-title">Raketa (1,200,000)</div>
+            </div>
+            <div class="soft-copy">
+                Yigʻilgan: <span id="modalRocketCoins">0</span> / 1,200,000 (<span id="modalRocketPct">0%</span>)
+            </div>
+            <div class="rocket-track">
+                <div id="modalRocketBar" class="rocket-fill"></div>
+            </div>
+            <div class="soft-copy" style="font-size:12px;">
+                1-oʻrin: 400k • 2-oʻrin: 250k • 3-oʻrin: 120k • Tomoshabin: 10k
+            </div>
+            <button type="button" class="btn-white" onclick="closeRocketModal()">Yopish</button>
+        </div>
     </div>
 
     <!-- MODAL 1: XONA YARATISH (RASM + NOM) -->
@@ -1033,11 +1111,11 @@
         </div>
     </div>
 
-    <!-- MODAL 2: PUSHTI FON, OQ YOZUV VA PREMIUM SVG STIKERLAR (LUCKY & SVIP) -->
+    <!-- MODAL 2: PUSHTI FON, OQ YOZUV VA QIMIRLAB TURUVCHI PREMIUM SVG STIKERLAR -->
     <div id="pinkGiftModal" class="modal-overlay">
         <div class="pink-gift-sheet">
             <div style="display:flex; align-items:center; justify-content:space-between;">
-                <div style="font-size:15px; font-weight:900; color:#ffffff;">Padarka tanlash</div>
+                <div style="font-size:15px; font-weight:900; color:#ffffff;">Padarka</div>
                 <button type="button" class="btn-outline-white" style="padding:3px 9px; font-size:11px;" onclick="closePinkGiftModal()">✕</button>
             </div>
 
@@ -1053,7 +1131,7 @@
             </div>
             <div id="pinkGiftTargetsRow" class="pink-target-row"></div>
 
-            <!-- 20 TA PREMIUM SVG STIKER -->
+            <!-- 20 TA QIMIRLAB TURUVCHI PREMIUM SVG STIKER -->
             <div id="pinkStickersGrid" class="pink-stickers-grid"></div>
 
             <div id="pinkGiftFeedback" class="soft-copy" style="text-align:center; min-height:18px; color:#ffffff;"></div>
@@ -1156,12 +1234,12 @@
         const ROCKET_GOAL = 1200000;
 
         const STORAGE_KEYS = {
-            profile: "fakstar_profile_v1",
-            rooms: "fakstar_rooms_v1",
-            users: "fakstar_users_v1",
-            dms: "fakstar_dms_v1",
-            murojat: "fakstar_murojat_v1",
-            uid: "fakstar_uid_v1"
+            profile: "fakstar_profile_v2",
+            rooms: "fakstar_rooms_v2",
+            users: "fakstar_users_v2",
+            dms: "fakstar_dms_v2",
+            murojat: "fakstar_murojat_v2",
+            uid: "fakstar_uid_v2"
         };
 
         const DEFAULT_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(`
@@ -1172,7 +1250,6 @@
             </svg>
         `);
 
-        // QIMIRLAMAYDIGAN PREMIUM SVG O'RINDIQ IKONKASI
         function staticSeatSvg() {
             return `
                 <svg viewBox="0 0 28 28" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2.1">
@@ -1182,7 +1259,6 @@
             `;
         }
 
-        // PUSHTI + OQ PREMIUM SVG STIKERLAR (HAR BIR BO'LIMDA 20 TADAN)
         function buildPinkPremiumSvg(idx, suite) {
             const shapes = [
                 `<path d="M16 26L6 16c-3-3-3-8 0-11 3-3 7.5-2.5 10 1 2.5-3.5 7-4 10-1 3 3 3 8 0 11L16 26z" fill="#ffffff" stroke="#ffe3ef" stroke-width="1.2"/>`,
@@ -1193,7 +1269,7 @@
             ];
             const sh = shapes[idx % shapes.length];
             const badge = suite === "Svip" ? `<circle cx="25" cy="7" r="3" fill="#ffffff"/>` : `<circle cx="25" cy="7" r="2.2" fill="#ffe6f1"/>`;
-            return `<svg viewBox="0 0 32 32" width="44" height="44">${sh}${badge}</svg>`;
+            return `<span class="wiggle-sticker"><svg viewBox="0 0 32 32" width="44" height="44">${sh}${badge}</svg></span>`;
         }
 
         const LUCKY_20 = Array.from({ length: 20 }, (_, i) => ({
@@ -1276,72 +1352,85 @@
 
         let pocketBannerTimer = null;
         let seenPocketId = null;
-        let seenRocketLaunchTs = 0;
 
-        // RAVON MIKROFON OVOZ NAVBATI (USTMA-UST TUSHMASDAN KETMA-KET IJRO ETISH)
+        // HAQIQIY RAVON MIKROFON (UZVIY KETMA-KET OVOZ IJROSI)
         let micOn = false;
         let micStream = null;
         let micRecorder = null;
-        let micLoopTimer = null;
-        let audioQueue = [];
-        let isPlayingVoiceQueue = false;
-        let seenVoicePacketIds = new Set();
+        let micSliceTimer = null;
+        let voicePlayQueue = [];
+        let playingVoiceNow = false;
+        let seenVoiceIds = new Set();
 
-        function enqueueSmoothVoice(dataUrl) {
+        function queueVoiceAudio(dataUrl) {
             if (!dataUrl) return;
-            audioQueue.push(dataUrl);
-            if (!isPlayingVoiceQueue) playNextVoiceInQueue();
+            voicePlayQueue.push(dataUrl);
+            if (!playingVoiceNow) drainVoiceQueue();
         }
 
-        function playNextVoiceInQueue() {
-            if (!audioQueue.length) { isPlayingVoiceQueue = false; return; }
-            isPlayingVoiceQueue = true;
-            const nextUrl = audioQueue.shift();
-            try {
-                const snd = new Audio(nextUrl);
-                snd.onended = () => playNextVoiceInQueue();
-                snd.onerror = () => playNextVoiceInQueue();
-                snd.play().catch(() => playNextVoiceInQueue());
-            } catch (e) {
-                playNextVoiceInQueue();
+        function drainVoiceQueue() {
+            if (!voicePlayQueue.length) {
+                playingVoiceNow = false;
+                return;
             }
+            playingVoiceNow = true;
+            const url = voicePlayQueue.shift();
+            try {
+                const audio = new Audio(url);
+                audio.onended = () => drainVoiceQueue();
+                audio.onerror = () => drainVoiceQueue();
+                const p = audio.play();
+                if (p && typeof p.catch === "function") p.catch(() => drainVoiceQueue());
+            } catch (e) {
+                drainVoiceQueue();
+            }
+        }
+
+        function pickSupportedMime() {
+            if (typeof MediaRecorder === "undefined" || typeof MediaRecorder.isTypeSupported !== "function") return "";
+            const types = ["audio/webm;codecs=opus", "audio/webm", "audio/ogg;codecs=opus", "audio/mp4"];
+            for (const t of types) {
+                if (MediaRecorder.isTypeSupported(t)) return t;
+            }
+            return "";
         }
 
         async function toggleRoomMic() {
             if (!currentRoomId) return;
             if (!micOn) {
                 if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === "undefined") {
-                    document.getElementById("roomStatusLine").textContent = "Mikrofon qoʻllab-quvvatlanmaydi.";
+                    document.getElementById("roomStatusLine").textContent = "Qurilmada mikrofon qoʻllab-quvvatlanmaydi.";
                     return;
                 }
                 try {
                     micStream = await navigator.mediaDevices.getUserMedia({
-                        audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
+                        audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 }
                     });
                     micOn = true;
                     document.getElementById("roomMicBtnText").textContent = "Mikro Yoniq";
-                    document.getElementById("roomStatusLine").textContent = "Mikrofon tiniq va ravon uzatilmoqda.";
+                    document.getElementById("roomStatusLine").textContent = "Mikrofon yoqildi — ovoz ravon uzatilmoqda.";
 
-                    const recordChunk = () => {
+                    const mime = pickSupportedMime();
+                    const runRecorderLoop = () => {
                         if (!micOn || !micStream || !currentRoomId) return;
                         try {
-                            const rec = new MediaRecorder(micStream);
-                            const chunks = [];
-                            rec.ondataavailable = (ev) => { if (ev.data && ev.data.size > 0) chunks.push(ev.data); };
+                            const rec = mime ? new MediaRecorder(micStream, { mimeType: mime }) : new MediaRecorder(micStream);
+                            const parts = [];
+                            rec.ondataavailable = (ev) => {
+                                if (ev.data && ev.data.size > 0) parts.push(ev.data);
+                            };
                             rec.onstop = () => {
-                                if (!chunks.length || !micOn || !currentRoomId) return;
-                                const blob = new Blob(chunks, { type: rec.mimeType || "audio/webm" });
+                                if (!parts.length || !micOn || !currentRoomId) return;
+                                const blob = new Blob(parts, { type: rec.mimeType || mime || "audio/webm" });
                                 const reader = new FileReader();
                                 reader.onloadend = async () => {
                                     const b64 = String(reader.result || "");
-                                    if (b64 && b64.length < 900000 && currentRoomId) {
+                                    if (b64 && b64.length < 920000 && currentRoomId) {
                                         const vid = "vp_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6);
                                         const pkt = { id: vid, senderId: String(meProfile.id), audio: b64, ts: Date.now() };
                                         try {
                                             await fetch(`${FIREBASE_DB}/fakstar_voice/${encodeURIComponent(currentRoomId)}/${encodeURIComponent(vid)}.json`, {
-                                                method: "PUT",
-                                                headers: { "Content-Type": "application/json" },
-                                                body: JSON.stringify(pkt)
+                                                method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(pkt)
                                             });
                                         } catch (e) {}
                                     }
@@ -1350,13 +1439,13 @@
                             };
                             micRecorder = rec;
                             rec.start();
-                            micLoopTimer = setTimeout(() => {
+                            micSliceTimer = setTimeout(() => {
                                 if (rec.state !== "inactive") { try { rec.stop(); } catch (e) {} }
-                                if (micOn) recordChunk();
-                            }, 900);
+                                if (micOn) runRecorderLoop();
+                            }, 750);
                         } catch (e) {}
                     };
-                    recordChunk();
+                    runRecorderLoop();
                 } catch (e) {
                     document.getElementById("roomStatusLine").textContent = "Mikrofonga ruxsat berilmadi.";
                 }
@@ -1367,12 +1456,27 @@
 
         function stopRoomMic() {
             micOn = false;
-            if (micLoopTimer) { clearTimeout(micLoopTimer); micLoopTimer = null; }
+            if (micSliceTimer) { clearTimeout(micSliceTimer); micSliceTimer = null; }
             if (micRecorder && micRecorder.state !== "inactive") { try { micRecorder.stop(); } catch (e) {} }
             micRecorder = null;
             if (micStream) { micStream.getTracks().forEach(t => t.stop()); micStream = null; }
             const txt = document.getElementById("roomMicBtnText");
             if (txt) txt.textContent = "Mikro";
+        }
+
+        function openRocketModal() {
+            if (!currentRoomId) return;
+            const room = allRooms[currentRoomId] || {};
+            const rCoins = Number(room.rocketCoins || 0);
+            const pct = Math.min(100, Math.round((rCoins / ROCKET_GOAL) * 100));
+            document.getElementById("modalRocketCoins").textContent = formatComma(rCoins);
+            document.getElementById("modalRocketPct").textContent = pct + "%";
+            document.getElementById("modalRocketBar").style.width = pct + "%";
+            document.getElementById("rocketModal").classList.add("open");
+        }
+
+        function closeRocketModal() {
+            document.getElementById("rocketModal").classList.remove("open");
         }
 
         function saveMe() {
@@ -1449,7 +1553,6 @@
             } catch (e) {}
         }
 
-        // XONA YARATISH VA BOSHQARISH
         function openCreateRoomModal() {
             newRoomPhotoData = "";
             const prev = document.getElementById("newRoomPhotoPreview");
@@ -1489,7 +1592,6 @@
             if (!rName) { err.textContent = "Xona nomini kiriting."; return; }
 
             const roomId = "fkroom_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6);
-            // ASOSIY 5 TA O'RIN (0 = Ega/1-o'rin, 1..4 = 2..5 o'rinlar)
             const seats = {};
             for (let i = 0; i < 5; i++) {
                 seats[String(i)] = { userId: null, label: String(i + 1), photo: "" };
@@ -1628,12 +1730,6 @@
             document.getElementById("deleteRoomOwnerBtn").style.display =
                 String(room.ownerId) === String(meProfile.id) ? "inline-flex" : "none";
 
-            const rCoins = Number(room.rocketCoins || 0);
-            const pct = Math.min(100, Math.round((rCoins / ROCKET_GOAL) * 100));
-            document.getElementById("rocketCollectedVal").textContent = formatComma(rCoins);
-            document.getElementById("rocketPctVal").textContent = pct + "%";
-            document.getElementById("rocketProgressBar").style.width = pct + "%";
-
             const seats = room.seats || {};
             const s0 = seats["0"] || { userId: null, label: "1", photo: "" };
             const ring0 = document.getElementById("seatRing_0");
@@ -1700,6 +1796,12 @@
             if (!room.seats) room.seats = {};
             const sd = room.seats[seatKey] || { userId: null, label: String(Number(seatKey) + 1), photo: "" };
             const isOwner = String(room.ownerId) === String(meProfile.id);
+
+            // 1-O'RINGA FAQAT XONA EGASI O'TIRA OLADI
+            if (seatKey === "0" && !isOwner) {
+                document.getElementById("roomStatusLine").textContent = "1-oʻringa faqat xona egasi oʻtira oladi!";
+                return;
+            }
 
             if (sd.userId && String(sd.userId) !== String(meProfile.id)) {
                 if (isOwner) {
@@ -1956,12 +2058,11 @@
                         allUsers[uid].coins = Number(allUsers[uid].coins || 0) + pr;
                     }
                 });
-                // Tomoshabinlarga faqat omadi kelsa 10k dan
                 const audIds = Object.keys(room.audience || {});
-                let luckyAudNames = [];
+                let gotAud = false;
                 audIds.forEach(aid => {
                     if (Math.random() < 0.45) {
-                        luckyAudNames.push(room.audience[aid].name || "Tomoshabin");
+                        gotAud = true;
                         if (String(aid) === String(meProfile.id)) {
                             meProfile.coins = Number(meProfile.coins || 0) + 10000;
                             saveMe();
@@ -1971,13 +2072,7 @@
                     }
                 });
                 room.rocketContributions = {};
-                rocketLaunchedText = ` RAKETA UCHDI! (1-oʻrin 400k, 2-oʻrin 250k, 3-oʻrin 120k${luckyAudNames.length ? ", omadli tomoshabinga +10k" : ""})`;
-                try {
-                    await fetch(`${FIREBASE_DB}/fakstar_rockets/${encodeURIComponent(room.id)}.json`, {
-                        method: "PUT", headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ roomName: room.name, ts: Date.now() })
-                    });
-                } catch (e) {}
+                rocketLaunchedText = ` RAKETA UCHDI! (1-oʻrin 400k, 2-oʻrin 250k, 3-oʻrin 120k${gotAud ? ", omadli tomoshabinga +10k" : ""})`;
             }
 
             saveJson(STORAGE_KEYS.rooms, allRooms);
@@ -2293,12 +2388,12 @@
                         if (vd && typeof vd === "object") {
                             const now = Date.now();
                             const pkts = Object.values(vd)
-                                .filter(p => p && p.id && p.audio && String(p.senderId) !== String(meProfile.id) && (now - (p.ts || 0)) < 6000)
+                                .filter(p => p && p.id && p.audio && String(p.senderId) !== String(meProfile.id) && (now - (p.ts || 0)) < 5000)
                                 .sort((a, b) => (a.ts || 0) - (b.ts || 0));
                             for (const p of pkts) {
-                                if (!seenVoicePacketIds.has(p.id)) {
-                                    seenVoicePacketIds.add(p.id);
-                                    enqueueSmoothVoice(p.audio);
+                                if (!seenVoiceIds.has(p.id)) {
+                                    seenVoiceIds.add(p.id);
+                                    queueVoiceAudio(p.audio);
                                 }
                             }
                         }
@@ -2331,7 +2426,7 @@
         renderDmThreads();
         renderMurojatList();
         syncAll();
-        setInterval(() => { syncAll(); }, 1200);
+        setInterval(() => { syncAll(); }, 950);
 
         setTimeout(() => {
             document.getElementById("splashScreen").classList.remove("active");
