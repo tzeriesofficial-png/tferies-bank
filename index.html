@@ -329,7 +329,7 @@
             display: block;
         }
 
-        /* YOZISH PANELI: RASM STIKERI + POISK/INPUT + MIKRO STIKERI (QIMIRLAMAYDI, YOZUVSIZ) */
+        /* YOZISH PANELI: RASM STIKERI + INPUT + QIMIRLAMAYDIGAN MIKRO STIKERI */
         .chat-composer-bar {
             display: flex;
             align-items: center;
@@ -602,14 +602,14 @@
                     <div id="chatsListContainer" class="list-stack"></div>
                 </div>
 
-                <!-- ICHKI CHAT OYNASI (TEPADAGI NIK @ BELGISISIZ ODDIY NIK + QORA GALOCHKA) -->
+                <!-- ICHKI CHAT OYNASI (TEPADAGI NIK @ BILAN + QORA GALOCHKA) -->
                 <div id="chatRoomView" class="chat-window">
                     <div class="chat-win-header">
                         <button type="button" class="btn-light-border" onclick="closeActiveChat()">←</button>
                         <img id="activeChatAvatar" class="avatar-circle" style="width:38px; height:38px;" src="" alt="">
                         <div style="min-width:0; flex:1;">
                             <div class="peer-nick-row">
-                                <span id="activeChatNick" class="peer-nick-text">kontakt_nik</span>
+                                <span id="activeChatNick" class="peer-nick-text">@username</span>
                                 <span class="static-black-check" title="Tasdiqlangan">
                                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <defs>
@@ -628,11 +628,10 @@
 
                     <div id="chatMessagesStream" class="chat-msgs-area"></div>
 
-                    <!-- RASM/VIDEO STIKERI + YOZISH (POISK/INPUT) + QIMIRLAMAYDIGAN MIKRO STIKERI -->
+                    <!-- RASM/VIDEO STIKERI + YOZISH + QIMIRLAMAYDIGAN MIKRO STIKERI -->
                     <div class="chat-composer-bar">
                         <input type="file" id="chatMediaFileInput" accept="image/*,video/*" style="display:none;" onchange="onChatMediaPicked(event)">
 
-                        <!-- QIMIRLAMAYDIGAN PREMIUM SVG RASM STIKERI -->
                         <button type="button" class="still-premium-btn" onclick="document.getElementById('chatMediaFileInput').click()" aria-label="Rasm va video">
                             <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <defs>
@@ -647,10 +646,8 @@
                             </svg>
                         </button>
 
-                        <!-- YOZISH / POISK MAYDONI -->
-                        <input type="text" id="chatMsgInput" class="inp-field" maxlength="400" placeholder="Yozish...">
+                        <input type="text" id="chatMsgInput" class="inp-field" maxlength="400" placeholder="Xabar yozing...">
 
-                        <!-- QIMIRLAMAYDIGAN PREMIUM SVG MIKRO STIKERI (BOSIB TURIB OVOZLI XABAR) -->
                         <button
                             type="button"
                             id="holdMicBtn"
@@ -768,14 +765,14 @@
         </nav>
     </div>
 
-    <!-- MODAL 1: KONTAKT QO'SHISH (RAQAM ORQALI SAQLANGANDA @ BELGISISIZ ODDIY NIK BERILADI) -->
+    <!-- MODAL 1: KONTAKT QO'SHISH (@ BILAN BOSHLANADIGAN NOYOB USERNAME ORQALI) -->
     <div id="addContactModal" class="modal-backdrop">
         <div class="modal-box">
             <div class="modal-heading">Kontakt qoʻshish</div>
 
             <div class="field-wrap">
-                <label for="contactPhoneInput" class="field-title">Raqami (haqiqiy raqam kiriting)</label>
-                <input type="text" id="contactPhoneInput" class="inp-field" maxlength="24" placeholder="+998 90 123 45 67">
+                <label for="contactUsernameInput" class="field-title">Username (@ bilan boshlanadi, takrorlanmaydi)</label>
+                <input type="text" id="contactUsernameInput" class="inp-field" maxlength="30" placeholder="@foydalanuvchi_nik">
             </div>
 
             <div class="field-wrap">
@@ -792,7 +789,7 @@
         </div>
     </div>
 
-    <!-- MODAL 2: PROFIL TAHRIRLASH (@ BILAN BOSHLANADIGAN NIK) -->
+    <!-- MODAL 2: PROFIL TAHRIRLASH (@ BILAN BOSHLANADIGAN NOYOB NIK) -->
     <div id="editProfileModal" class="modal-backdrop">
         <div class="modal-box">
             <div class="modal-heading">Profilni tahrirlash</div>
@@ -809,8 +806,8 @@
             </div>
 
             <div class="field-wrap">
-                <label for="editNikInput" class="field-title">Nik (@ bilan boshlanadi)</label>
-                <input type="text" id="editNikInput" class="inp-field" maxlength="28" placeholder="@FarzonaTurayeva">
+                <label for="editNikInput" class="field-title">Nik (@ bilan boshlanadi, takrorlanmaydi)</label>
+                <input type="text" id="editNikInput" class="inp-field" maxlength="30" placeholder="@FarzonaTurayeva">
             </div>
 
             <div class="field-wrap">
@@ -834,6 +831,8 @@
             tg.expand();
         }
 
+        const RT_DB_URL = "https://xbox-tanishuv-default-rtdb.firebaseio.com";
+
         const DEFAULT_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(`
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
                 <rect width="120" height="120" fill="#eeeeee"/>
@@ -843,10 +842,11 @@
         `);
 
         const KEYS = {
-            profile: "tg_clone_profile_v4",
-            contacts: "tg_clone_contacts_v4",
-            messages: "tg_clone_messages_v4",
-            unread: "tg_clone_unread_v4"
+            profile: "tg_clone_profile_v5",
+            contacts: "tg_clone_contacts_v5",
+            messages: "tg_clone_messages_v5",
+            unread: "tg_clone_unread_v5",
+            seenMsgIds: "tg_clone_seen_msg_ids_v5"
         };
 
         function readStore(key, fallback) {
@@ -865,36 +865,26 @@
             } catch (e) {}
         }
 
-        function generateUniqueVirtualIndianNumber(existingPhones = new Set()) {
-            let candidate = "";
-            for (let i = 0; i < 50; i++) {
-                const part1 = String(Math.floor(100 + Math.random() * 900));
-                const part2 = String(Math.floor(10 + Math.random() * 90));
-                const part3 = String(Math.floor(10 + Math.random() * 90));
-                candidate = `+91 ${part1} ${part2} ${part3}`;
-                if (!existingPhones.has(candidate)) return candidate;
-            }
-            return `+91 ${String(Date.now()).slice(-3)} ${String(Math.floor(10 + Math.random() * 89))} ${String(Math.floor(10 + Math.random() * 89))}`;
+        function generateUniqueVirtualIndianNumber() {
+            const p1 = String(Math.floor(100 + Math.random() * 900));
+            const p2 = String(Math.floor(10 + Math.random() * 90));
+            const p3 = String(Math.floor(10 + Math.random() * 90));
+            return `+91 ${p1} ${p2} ${p3}`;
         }
 
-        // Har doim @ bilan boshlanadigan nik formatlash
-        function ensureAtNick(rawInput) {
-            const trimmed = String(rawInput || "").trim();
-            if (!trimmed) return "";
-            const withoutLeadingAt = trimmed.replace(/^@+/, "").trim();
-            if (!withoutLeadingAt) return "";
-            return "@" + withoutLeadingAt;
+        // Har doim @ bilan boshlanadigan toza username
+        function normalizeAtUsername(rawInput) {
+            const cleaned = String(rawInput || "")
+                .trim()
+                .replace(/^@+/, "")
+                .replace(/\s+/g, "_")
+                .replace(/[^A-Za-z0-9_]/g, "");
+            if (!cleaned) return "";
+            return "@" + cleaned;
         }
 
-        // Raqam orqali saqlangan kontaktga @ belgisiz oddiy nik yaratish
-        function generatePlainNickForPhoneContact(nameVal, phoneVal) {
-            const baseName = String(nameVal || "")
-                .toLowerCase()
-                .replace(/[^a-z0-9_]+/g, "_")
-                .replace(/^_+|_+$/g, "");
-            const digitsTail = String(phoneVal || "").replace(/\D/g, "").slice(-4);
-            const plain = [baseName, digitsTail].filter(Boolean).join("_");
-            return (plain || ("user_" + (digitsTail || "1000"))).replace(/^@+/, "");
+        function canonUsername(u) {
+            return normalizeAtUsername(u).toLowerCase();
         }
 
         const defaultProfile = {
@@ -906,17 +896,19 @@
         };
 
         let profileData = { ...defaultProfile, ...readStore(KEYS.profile, {}) };
-        profileData.nik = ensureAtNick(profileData.nik) || "@FarzonaTurayeva";
+        profileData.nik = normalizeAtUsername(profileData.nik) || "@FarzonaTurayeva";
         if (!profileData.virtualPhone) profileData.virtualPhone = generateUniqueVirtualIndianNumber();
         writeStore(KEYS.profile, profileData);
 
         let contactsList = readStore(KEYS.contacts, []);
         let messagesByContact = readStore(KEYS.messages, {});
         let unreadSmsCount = Number(readStore(KEYS.unread, 0)) || 0;
+        let seenMsgIds = new Set(readStore(KEYS.seenMsgIds, []));
 
         let currentOpenContactId = null;
         let draftPhotoData = profileData.photo || "";
 
+        // Ovozli xabar (golos)
         let isHoldingMic = false;
         let holdMicStream = null;
         let holdMicRecorder = null;
@@ -936,36 +928,22 @@
             }
         }
 
-        function pushIncomingSmsToContact(contactId, text) {
-            if (!contactId) return;
-            if (!Array.isArray(messagesByContact[contactId])) {
-                messagesByContact[contactId] = [];
-            }
-            messagesByContact[contactId].push({
-                id: "m_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6),
-                sender: "them",
-                type: "text",
-                text: String(text || ""),
-                ts: Date.now()
-            });
-            writeStore(KEYS.messages, messagesByContact);
-
-            const chatSectionActive = document.getElementById("sec-chatlar").classList.contains("active");
-            const isViewingThisChat = chatSectionActive && currentOpenContactId === contactId;
-            if (!isViewingThisChat) {
-                setUnreadSmsCount(unreadSmsCount + 1);
-            } else {
-                renderChatMessages(contactId);
-            }
-            renderChatsList();
-        }
-
         function escapeText(s) {
             return String(s || "")
                 .replace(/&/g, "&amp;")
                 .replace(/</g, "&lt;")
                 .replace(/>/g, "&gt;")
                 .replace(/"/g, "&quot;");
+        }
+
+        function getContactAtUsername(contact) {
+            return normalizeAtUsername(contact.username || contact.nik || contact.name) || "@user";
+        }
+
+        function getThreadChannelKey(peerUsername) {
+            const meCanon = canonUsername(profileData.nik) || "owner";
+            const peerCanon = canonUsername(peerUsername) || "peer";
+            return [meCanon, peerCanon].sort().join("__");
         }
 
         // PROFILNI CHIZISH VA TAHRIRLASH
@@ -975,7 +953,7 @@
             imgEl.onerror = () => { imgEl.src = DEFAULT_AVATAR; };
 
             document.getElementById("profileNameView").textContent = profileData.name || "ISNOOSH";
-            document.getElementById("profileNikView").textContent = ensureAtNick(profileData.nik) || "@FarzonaTurayeva";
+            document.getElementById("profileNikView").textContent = normalizeAtUsername(profileData.nik) || "@FarzonaTurayeva";
             document.getElementById("profileBioView").textContent = profileData.bio || "Tavsif kiritilmagan.";
             document.getElementById("profileVirtualPhoneView").textContent = profileData.virtualPhone || "+91 748 29 41";
         }
@@ -987,7 +965,7 @@
             prev.onerror = () => { prev.src = DEFAULT_AVATAR; };
 
             document.getElementById("editNameInput").value = profileData.name || "ISNOOSH";
-            document.getElementById("editNikInput").value = ensureAtNick(profileData.nik) || "@FarzonaTurayeva";
+            document.getElementById("editNikInput").value = normalizeAtUsername(profileData.nik) || "@FarzonaTurayeva";
             document.getElementById("editBioInput").value = profileData.bio || "";
             document.getElementById("editProfileErr").textContent = "";
             document.getElementById("editProfileModal").classList.add("open");
@@ -1022,6 +1000,13 @@
             reader.readAsDataURL(file);
         }
 
+        function isUsernameTakenByContact(candidateCanon, excludeContactId = null) {
+            return contactsList.some(c =>
+                c.id !== excludeContactId &&
+                canonUsername(getContactAtUsername(c)) === candidateCanon
+            );
+        }
+
         function saveProfileChanges() {
             const errEl = document.getElementById("editProfileErr");
             const nameVal = document.getElementById("editNameInput").value.trim();
@@ -1033,9 +1018,14 @@
                 return;
             }
 
-            const formattedNik = ensureAtNick(nikRaw);
+            const formattedNik = normalizeAtUsername(nikRaw);
             if (!formattedNik) {
-                errEl.textContent = "Nik maydoniga qiymat kiriting.";
+                errEl.textContent = "@ bilan boshlanadigan username kiriting.";
+                return;
+            }
+
+            if (isUsernameTakenByContact(canonUsername(formattedNik))) {
+                errEl.textContent = "Bu username allaqachon boshqa kontaktda band.";
                 return;
             }
 
@@ -1049,23 +1039,9 @@
             renderProfileSection();
         }
 
-        function validateRealPhone(rawPhone) {
-            const clean = String(rawPhone || "").trim();
-            const digitsOnly = clean.replace(/\D/g, "");
-            if (digitsOnly.length < 7 || digitsOnly.length > 15) {
-                return { error: "Haqiqiy telefon raqamini kiriting (kamida 7 ta raqam)." };
-            }
-            if (/^(\d)\1+$/.test(digitsOnly)) {
-                return { error: "Bunday yoʻq raqam (bir xil raqamlar) kiritib boʻlmaydi." };
-            }
-            if (/^0+$/.test(digitsOnly)) {
-                return { error: "Yoʻq raqam kiritib boʻlmaydi." };
-            }
-            return { value: clean };
-        }
-
+        // KONTAKT QO'SHISH (@ BILAN BOSHLANADIGAN NOYOB USERNAME ORQALI)
         function openAddContactModal() {
-            document.getElementById("contactPhoneInput").value = "";
+            document.getElementById("contactUsernameInput").value = "@";
             document.getElementById("contactNameInput").value = "";
             document.getElementById("addContactErr").textContent = "";
             document.getElementById("addContactModal").classList.add("open");
@@ -1077,32 +1053,43 @@
 
         function saveNewContact() {
             const errEl = document.getElementById("addContactErr");
-            const phoneRaw = document.getElementById("contactPhoneInput").value;
+            const userRaw = document.getElementById("contactUsernameInput").value;
             const nameVal = document.getElementById("contactNameInput").value.trim();
 
-            const phoneRes = validateRealPhone(phoneRaw);
-            if (phoneRes.error) {
-                errEl.textContent = phoneRes.error;
+            const formattedUser = normalizeAtUsername(userRaw);
+            if (!formattedUser) {
+                errEl.textContent = "@ bilan boshlanadigan username kiriting.";
                 return;
             }
+
+            const candidateCanon = canonUsername(formattedUser);
+            if (candidateCanon === canonUsername(profileData.nik)) {
+                errEl.textContent = "Oʻzingizning usernameingizni takrorlab boʻlmaydi.";
+                return;
+            }
+
+            if (isUsernameTakenByContact(candidateCanon)) {
+                errEl.textContent = "Bu username allaqachon boshqa odamga berilgan, takrorlanmaydi.";
+                return;
+            }
+
             if (!nameVal) {
                 errEl.textContent = "Odamga nom bering.";
                 return;
             }
 
-            const uniqueId = "cnt_" + Date.now() + "_" + Math.random().toString(36).slice(2, 7);
-            const plainNick = generatePlainNickForPhoneContact(nameVal, phoneRes.value);
-
+            const uniqueId = "cnt_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6);
             const newContact = {
                 id: uniqueId,
+                username: formattedUser,
                 name: nameVal,
-                plainNick: plainNick,
-                phone: phoneRes.value,
                 photo: DEFAULT_AVATAR,
                 createdAt: Date.now()
             };
 
-            messagesByContact[uniqueId] = [];
+            if (!Array.isArray(messagesByContact[uniqueId])) {
+                messagesByContact[uniqueId] = [];
+            }
             contactsList.unshift(newContact);
 
             writeStore(KEYS.contacts, contactsList);
@@ -1111,13 +1098,7 @@
             closeAddContactModal();
             renderContactsList();
             renderChatsList();
-        }
-
-        function getPlainNick(contact) {
-            if (contact && contact.plainNick) {
-                return String(contact.plainNick).replace(/^@+/, "");
-            }
-            return generatePlainNickForPhoneContact(contact.name, contact.phone);
+            syncRealtimeMessages();
         }
 
         function renderContactsList() {
@@ -1130,7 +1111,7 @@
             }
 
             contactsList.forEach(c => {
-                const nickLabel = getPlainNick(c);
+                const nickLabel = getContactAtUsername(c);
                 const row = document.createElement("div");
                 row.className = "row-card";
                 row.onclick = () => {
@@ -1143,7 +1124,7 @@
                         <img class="avatar-circle" src="${escapeText(c.photo || DEFAULT_AVATAR)}" alt="">
                         <div style="min-width:0; flex:1;">
                             <div style="font-size:14.5px; font-weight:800; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeText(c.name)}</div>
-                            <div style="font-size:12px; font-weight:600; color:#555555; margin-top:2px;">${escapeText(nickLabel)}</div>
+                            <div style="font-size:12px; font-weight:700; color:#333333; margin-top:2px;">${escapeText(nickLabel)}</div>
                         </div>
                     </div>
                     <span class="btn-light-border" style="padding:5px 9px; font-size:11px;">Chat</span>
@@ -1159,19 +1140,19 @@
             box.innerHTML = "";
 
             if (!contactsList.length) {
-                box.innerHTML = `<div class="row-card" style="justify-content:center; cursor:default;"><span style="font-size:13px; color:#555555;">Hali chatlar yoʻq. Kontaktlar boʻlimidan odam qoʻshing.</span></div>`;
+                box.innerHTML = `<div class="row-card" style="justify-content:center; cursor:default;"><span style="font-size:13px; color:#555555;">Hali chatlar yoʻq. Kontaktlar boʻlimidan @username orqali odam qoʻshing.</span></div>`;
                 return;
             }
 
             contactsList.forEach(c => {
-                const nickLabel = getPlainNick(c);
+                const nickLabel = getContactAtUsername(c);
                 const msgs = messagesByContact[c.id] || [];
                 let previewText = nickLabel;
                 if (msgs.length) {
                     const last = msgs[msgs.length - 1];
                     if (last.type === "image") previewText = "Rasm";
                     else if (last.type === "video") previewText = "Video";
-                    else if (last.type === "voice") previewText = "Ovozli xabar";
+                    else if (last.type === "voice") previewText = "Golos";
                     else previewText = last.text || "";
                 }
 
@@ -1206,9 +1187,10 @@
             av.src = contact.photo || DEFAULT_AVATAR;
             av.onerror = () => { av.src = DEFAULT_AVATAR; };
 
-            document.getElementById("activeChatNick").textContent = getPlainNick(contact);
+            document.getElementById("activeChatNick").textContent = getContactAtUsername(contact);
             setUnreadSmsCount(0);
             renderChatMessages(contact.id);
+            syncRealtimeMessages();
         }
 
         function closeActiveChat() {
@@ -1220,7 +1202,7 @@
 
         function renderChatMessages(contactId) {
             const stream = document.getElementById("chatMessagesStream");
-            const list = messagesByContact[contactId] || [];
+            const list = (messagesByContact[contactId] || []).slice().sort((a, b) => (a.ts || 0) - (b.ts || 0));
             stream.innerHTML = "";
 
             list.forEach(m => {
@@ -1253,55 +1235,76 @@
             stream.scrollTop = stream.scrollHeight;
         }
 
-        function appendMsgToCurrentChat(msgObj) {
-            if (!currentOpenContactId) return;
-            if (!Array.isArray(messagesByContact[currentOpenContactId])) {
-                messagesByContact[currentOpenContactId] = [];
+        async function publishRealtimeMessage(contact, payload) {
+            if (!contact) return;
+            const msgId = "rtm_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6);
+            const fullMsg = {
+                id: msgId,
+                senderCanon: canonUsername(profileData.nik),
+                sender: "me",
+                type: payload.type || "text",
+                text: payload.text || "",
+                mediaUrl: payload.mediaUrl || "",
+                audioUrl: payload.audioUrl || "",
+                ts: Date.now()
+            };
+
+            seenMsgIds.add(msgId);
+            writeStore(KEYS.seenMsgIds, Array.from(seenMsgIds).slice(-400));
+
+            if (!Array.isArray(messagesByContact[contact.id])) {
+                messagesByContact[contact.id] = [];
             }
-            messagesByContact[currentOpenContactId].push(msgObj);
+            messagesByContact[contact.id].push(fullMsg);
             writeStore(KEYS.messages, messagesByContact);
-            renderChatMessages(currentOpenContactId);
+
+            if (currentOpenContactId === contact.id) {
+                renderChatMessages(contact.id);
+            }
             renderChatsList();
+
+            const chanKey = getThreadChannelKey(getContactAtUsername(contact));
+            try {
+                await fetch(`${RT_DB_URL}/tg_clone_rt_messages/${encodeURIComponent(chanKey)}/${encodeURIComponent(msgId)}.json`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(fullMsg)
+                });
+            } catch (e) {}
         }
 
         function sendChatMessage() {
             if (!currentOpenContactId) return;
+            const contact = contactsList.find(x => x.id === currentOpenContactId);
+            if (!contact) return;
             const inp = document.getElementById("chatMsgInput");
             const txt = inp.value.trim();
             if (!txt) return;
-
-            appendMsgToCurrentChat({
-                id: "m_" + Date.now(),
-                sender: "me",
-                type: "text",
-                text: txt,
-                ts: Date.now()
-            });
             inp.value = "";
+            publishRealtimeMessage(contact, { type: "text", text: txt });
         }
 
         function onChatMediaPicked(ev) {
             if (!currentOpenContactId) return;
+            const contact = contactsList.find(x => x.id === currentOpenContactId);
             const file = ev.target.files && ev.target.files[0];
             ev.target.value = "";
-            if (!file) return;
+            if (!file || !contact) return;
 
             const isVideo = file.type.startsWith("video/");
             const reader = new FileReader();
             reader.onload = (e) => {
                 const url = String(e.target.result || "");
                 if (!url) return;
-                appendMsgToCurrentChat({
-                    id: "m_" + Date.now(),
-                    sender: "me",
+                publishRealtimeMessage(contact, {
                     type: isVideo ? "video" : "image",
-                    mediaUrl: url,
-                    ts: Date.now()
+                    mediaUrl: url
                 });
             };
             reader.readAsDataURL(file);
         }
 
+        // MIKROFON STIKERIGA BOSIB TURIB GOLOS TASHLASH
         async function startHoldVoice(ev) {
             if (!currentOpenContactId || isHoldingMic) return;
             if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === "undefined") return;
@@ -1325,17 +1328,17 @@
                         holdMicStream = null;
                     }
                     if (!chunksCopy.length || !currentOpenContactId) return;
+                    const targetContact = contactsList.find(x => x.id === currentOpenContactId);
+                    if (!targetContact) return;
+
                     const blob = new Blob(chunksCopy, { type: mime });
                     const reader = new FileReader();
                     reader.onloadend = () => {
                         const dataUrl = String(reader.result || "");
                         if (dataUrl) {
-                            appendMsgToCurrentChat({
-                                id: "m_" + Date.now(),
-                                sender: "me",
+                            publishRealtimeMessage(targetContact, {
                                 type: "voice",
-                                audioUrl: dataUrl,
-                                ts: Date.now()
+                                audioUrl: dataUrl
                             });
                         }
                     };
@@ -1359,6 +1362,67 @@
             holdMicRecorder = null;
         }
 
+        // REAL VAQTDA KELGAN SMS / RASM / GOLOSNI SINXRONLASH
+        async function syncRealtimeMessages() {
+            if (!contactsList.length) return;
+            const myCanon = canonUsername(profileData.nik);
+            let addedUnread = 0;
+            let anyUpdated = false;
+
+            for (const contact of contactsList) {
+                const chanKey = getThreadChannelKey(getContactAtUsername(contact));
+                try {
+                    const res = await fetch(`${RT_DB_URL}/tg_clone_rt_messages/${encodeURIComponent(chanKey)}.json`);
+                    if (!res.ok) continue;
+                    const data = await res.json();
+                    if (!data || typeof data !== "object") continue;
+
+                    if (!Array.isArray(messagesByContact[contact.id])) {
+                        messagesByContact[contact.id] = [];
+                    }
+                    const existingIds = new Set(messagesByContact[contact.id].map(m => m.id));
+
+                    Object.values(data).forEach(pkt => {
+                        if (!pkt || !pkt.id || existingIds.has(pkt.id)) return;
+                        const isFromPeer = pkt.senderCanon && pkt.senderCanon !== myCanon;
+                        const localMsg = {
+                            id: pkt.id,
+                            sender: isFromPeer ? "them" : "me",
+                            type: pkt.type || "text",
+                            text: pkt.text || "",
+                            mediaUrl: pkt.mediaUrl || "",
+                            audioUrl: pkt.audioUrl || "",
+                            ts: pkt.ts || Date.now()
+                        };
+                        messagesByContact[contact.id].push(localMsg);
+                        existingIds.add(pkt.id);
+                        anyUpdated = true;
+
+                        if (isFromPeer && !seenMsgIds.has(pkt.id)) {
+                            seenMsgIds.add(pkt.id);
+                            const chatSecActive = document.getElementById("sec-chatlar").classList.contains("active");
+                            const viewingNow = chatSecActive && currentOpenContactId === contact.id;
+                            if (!viewingNow) {
+                                addedUnread += 1;
+                            }
+                        }
+                    });
+                } catch (e) {}
+            }
+
+            if (anyUpdated) {
+                writeStore(KEYS.messages, messagesByContact);
+                writeStore(KEYS.seenMsgIds, Array.from(seenMsgIds).slice(-400));
+                if (addedUnread > 0) {
+                    setUnreadSmsCount(unreadSmsCount + addedUnread);
+                }
+                if (currentOpenContactId) {
+                    renderChatMessages(currentOpenContactId);
+                }
+                renderChatsList();
+            }
+        }
+
         function openSection(secId, btnEl) {
             document.querySelectorAll(".tg-nav-btn").forEach(b => b.classList.remove("active"));
             if (btnEl) btnEl.classList.add("active");
@@ -1370,6 +1434,7 @@
                 setUnreadSmsCount(0);
                 if (currentOpenContactId) renderChatMessages(currentOpenContactId);
                 else renderChatsList();
+                syncRealtimeMessages();
             } else if (secId === "kontaktlar") {
                 renderContactsList();
             } else if (secId === "profil") {
@@ -1381,6 +1446,8 @@
         renderProfileSection();
         renderContactsList();
         renderChatsList();
+        syncRealtimeMessages();
+        setInterval(() => { syncRealtimeMessages(); }, 1400);
 
         setTimeout(() => {
             const splash = document.getElementById("tgSplash");
