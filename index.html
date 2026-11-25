@@ -36,7 +36,7 @@
             justify-content: center;
             opacity: 1;
             transition: opacity 0.45s ease;
-            z-index: 50;
+            z-index: 60;
         }
 
         .tg-splash-screen.fade-out {
@@ -55,18 +55,10 @@
         }
 
         @keyframes tgPlaneMotion {
-            0% {
-                transform: translate(0px, 0px) rotate(0deg) scale(1);
-            }
-            35% {
-                transform: translate(5px, -8px) rotate(-4deg) scale(1.04);
-            }
-            70% {
-                transform: translate(-3px, -4px) rotate(3deg) scale(1.02);
-            }
-            100% {
-                transform: translate(0px, 0px) rotate(0deg) scale(1);
-            }
+            0% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
+            35% { transform: translate(5px, -8px) rotate(-4deg) scale(1.04); }
+            70% { transform: translate(-3px, -4px) rotate(3deg) scale(1.02); }
+            100% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
         }
 
         .plane-svg-wrap svg {
@@ -76,7 +68,7 @@
             overflow: visible;
         }
 
-        /* ASOSIY SAHIFA */
+        /* ASOSIY OYNA */
         .tg-main-shell {
             width: 100%;
             height: 100%;
@@ -90,7 +82,7 @@
             flex: 1;
             width: 100%;
             overflow-y: auto;
-            padding: 18px 16px;
+            padding: 16px 14px;
         }
 
         .tg-section {
@@ -100,14 +92,282 @@
         }
 
         .tg-section.active {
-            display: block;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        /* PASTKI 3 TA IKONKALI MENYU */
+        .sec-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            flex-shrink: 0;
+        }
+
+        .sec-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #000000;
+        }
+
+        .btn-dark {
+            background: #000000;
+            color: #ffffff;
+            border: 1.5px solid #000000;
+            border-radius: 12px;
+            padding: 7px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-light-border {
+            background: #ffffff;
+            color: #000000;
+            border: 1.5px solid rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 7px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .list-stack {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-bottom: 12px;
+        }
+
+        .row-card {
+            background: #fafafa;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .row-card:active {
+            background: #f0f0f0;
+        }
+
+        .avatar-circle {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid rgba(0, 0, 0, 0.14);
+            background: #f2f2f2;
+            flex-shrink: 0;
+        }
+
+        /* PROFIL KARTASI */
+        .profile-card {
+            background: #fafafa;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            border-radius: 20px;
+            padding: 16px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .profile-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .profile-avatar-big {
+            width: 74px;
+            height: 74px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #000000;
+            background: #eeeeee;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .info-box {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 14px;
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .info-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #666666;
+        }
+
+        .info-val {
+            font-size: 14px;
+            font-weight: 700;
+            color: #000000;
+            word-break: break-word;
+        }
+
+        /* CHAT OYNASI */
+        .chat-window {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            background: #ffffff;
+        }
+
+        .chat-window.open {
+            display: flex;
+        }
+
+        .chat-win-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+        }
+
+        .chat-msgs-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px 2px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .msg-bubble {
+            max-width: 80%;
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-size: 13.5px;
+            font-weight: 500;
+            word-break: break-word;
+        }
+
+        .msg-bubble.me {
+            align-self: flex-end;
+            background: #000000;
+            color: #ffffff;
+            border-bottom-right-radius: 4px;
+        }
+
+        .msg-bubble.them {
+            align-self: flex-start;
+            background: #efefef;
+            color: #000000;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-input-bar {
+            display: flex;
+            gap: 6px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            flex-shrink: 0;
+        }
+
+        /* MODAL */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            z-index: 80;
+        }
+
+        .modal-backdrop.open {
+            display: flex;
+        }
+
+        .modal-box {
+            width: 100%;
+            max-width: 390px;
+            max-height: 88vh;
+            overflow-y: auto;
+            background: #ffffff;
+            color: #000000;
+            border: 1.5px solid #000000;
+            border-radius: 20px;
+            padding: 16px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .modal-heading {
+            font-size: 17px;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .field-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .field-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #222222;
+        }
+
+        .inp-field, .area-field {
+            width: 100%;
+            background: #ffffff;
+            color: #000000;
+            border: 1.5px solid #000000;
+            border-radius: 12px;
+            padding: 8px 10px;
+            font-size: 13px;
+            font-weight: 600;
+            outline: none;
+            user-select: text;
+            -webkit-user-select: text;
+        }
+
+        .area-field {
+            min-height: 64px;
+            resize: vertical;
+        }
+
+        .err-msg {
+            font-size: 12px;
+            font-weight: 700;
+            color: #c62828;
+            min-height: 16px;
+        }
+
+        .two-btns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        /* PASTKI 3 TA QORA TUGMALI MENYU */
         .tg-bottom-nav {
             width: 100%;
             background-color: #ffffff;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-top: 1px solid rgba(0, 0, 0, 0.12);
             padding: 8px 10px calc(10px + env(safe-area-inset-bottom));
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -126,17 +386,17 @@
             align-items: center;
             justify-content: center;
             gap: 4px;
-            color: #111111;
+            color: #000000;
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 800;
             cursor: pointer;
             transition: background-color 0.2s ease, border-color 0.2s ease;
         }
 
         .tg-nav-btn.active {
-            background-color: rgba(36, 161, 222, 0.12);
-            border-color: rgba(36, 161, 222, 0.28);
-            color: #1687c4;
+            background-color: rgba(0, 0, 0, 0.06);
+            border-color: #000000;
+            color: #000000;
         }
 
         /* DINAMIK SMS HISOBLAGICH (49 YO'Q, FAQAT KELGAN SMS SONI) */
@@ -148,7 +408,7 @@
             height: 20px;
             padding: 0 5px;
             border-radius: 999px;
-            background: #24a1de;
+            background: #000000;
             color: #ffffff;
             border: 2px solid #ffffff;
             font-size: 11px;
@@ -156,7 +416,6 @@
             line-height: 16px;
             text-align: center;
             display: none;
-            box-shadow: 0 2px 6px rgba(36, 161, 222, 0.35);
             z-index: 3;
         }
 
@@ -191,15 +450,9 @@
         }
 
         @keyframes iconWigglePremium {
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg) scale(1);
-            }
-            35% {
-                transform: translateY(-2.5px) rotate(-6deg) scale(1.07);
-            }
-            70% {
-                transform: translateY(1px) rotate(6deg) scale(1.04);
-            }
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            35% { transform: translateY(-2.5px) rotate(-6deg) scale(1.07); }
+            70% { transform: translateY(1px) rotate(6deg) scale(1.04); }
         }
 
         .premium-nav-svg svg {
@@ -251,70 +504,181 @@
     <!-- ASOSIY SAHIFA -->
     <div id="tgMainShell" class="tg-main-shell">
         <div class="tg-content-area">
-            <section id="sec-chatlar" class="tg-section active"></section>
-            <section id="sec-kontaktlar" class="tg-section"></section>
-            <section id="sec-profil" class="tg-section"></section>
+
+            <!-- 1. CHATLAR BO'LIMI -->
+            <section id="sec-chatlar" class="tg-section active">
+                <div id="chatListView" style="display:flex; flex-direction:column; height:100%; gap:10px;">
+                    <div class="sec-header">
+                        <div class="sec-title">Chatlar</div>
+                    </div>
+                    <div id="chatsListContainer" class="list-stack"></div>
+                </div>
+
+                <!-- ICHKI CHAT OYNASI -->
+                <div id="chatRoomView" class="chat-window">
+                    <div class="chat-win-header">
+                        <button type="button" class="btn-light-border" onclick="closeActiveChat()">←</button>
+                        <img id="activeChatAvatar" class="avatar-circle" style="width:38px; height:38px;" src="" alt="">
+                        <div style="min-width:0; flex:1;">
+                            <div id="activeChatName" style="font-size:15px; font-weight:800; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Ism</div>
+                            <div id="activeChatPhone" style="font-size:12px; font-weight:600; color:#666666;">+91 ??? ?? ??</div>
+                        </div>
+                    </div>
+
+                    <div id="chatMessagesStream" class="chat-msgs-area"></div>
+
+                    <div class="chat-input-bar">
+                        <input type="text" id="chatMsgInput" class="inp-field" maxlength="400" placeholder="Xabar yozing...">
+                        <button type="button" class="btn-dark" onclick="sendChatMessage()">Yuborish</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. KONTAKTLAR BO'LIMI -->
+            <section id="sec-kontaktlar" class="tg-section">
+                <div class="sec-header">
+                    <div class="sec-title">Kontaktlar</div>
+                    <button type="button" class="btn-dark" onclick="openAddContactModal()">Odam qoʻshish</button>
+                </div>
+                <div id="contactsListContainer" class="list-stack"></div>
+            </section>
+
+            <!-- 3. PROFIL BO'LIMI -->
+            <section id="sec-profil" class="tg-section">
+                <div class="sec-header">
+                    <div class="sec-title">Profil</div>
+                    <button type="button" class="btn-dark" onclick="openEditProfileModal()">Tahrirlash</button>
+                </div>
+
+                <div class="profile-card">
+                    <div class="profile-top-row">
+                        <div style="display:flex; align-items:center; gap:12px; min-width:0;">
+                            <img id="profilePhotoView" class="profile-avatar-big" src="" alt="Profil" onclick="openEditProfileModal()">
+                            <div style="min-width:0;">
+                                <div id="profileNameView" style="font-size:19px; font-weight:800; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">ISNOOSH</div>
+                                <div id="profileNikView" style="font-size:13.5px; font-weight:700; color:#333333; margin-top:2px;">@isnoosh_uz</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Tavsif</div>
+                        <div id="profileBioView" class="info-val">Tavsif kiritilmagan.</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-label">Virtual raqam</div>
+                        <div id="profileVirtualPhoneView" class="info-val">+91 748 29 41</div>
+                    </div>
+                </div>
+            </section>
+
         </div>
 
-        <!-- 3 TA QIMIRLAB TURUVCHI PREMIUM SVG IKONKA -->
+        <!-- PASTKI 3 TA QORA TUGMA VA BIR-BIRIGA O'XSHAMAYDIGAN QIMIRLAB TURUVCHI PREMIUM SVG STIKERLAR -->
         <nav class="tg-bottom-nav">
-            <!-- 1. CHATLAR (DINAMIK SMS SONI BILAN, 49 YO'Q) -->
-            <button type="button" class="tg-nav-btn active" onclick="openSection('chatlar', this)">
+            <!-- 1. CHATLAR -->
+            <button type="button" id="navBtn-chatlar" class="tg-nav-btn active" onclick="openSection('chatlar', this)">
                 <span id="chatUnreadBadge" class="sms-count-badge">0</span>
                 <span class="premium-nav-svg">
                     <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="chatBubbleGrad" x1="5" y1="6" x2="31" y2="28" gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#35ade6"/>
-                                <stop offset="100%" stop-color="#177eb3"/>
-                            </linearGradient>
-                        </defs>
-                        <path d="M6 10.5C6 7.74 8.24 5.5 11 5.5H25C27.76 5.5 30 7.74 30 10.5V21.5C30 24.26 27.76 26.5 25 26.5H15.5L9.5 31.5V26.5H11C8.24 26.5 6 24.26 6 21.5V10.5Z" fill="url(#chatBubbleGrad)"/>
-                        <circle cx="13" cy="16" r="1.8" fill="#ffffff"/>
-                        <circle cx="18" cy="16" r="1.8" fill="#ffffff"/>
-                        <circle cx="23" cy="16" r="1.8" fill="#ffffff"/>
-                        <path d="M10.5 8.2H25.5" stroke="#a6e2ff" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+                        <path d="M5.5 10.5C5.5 7.74 7.74 5.5 10.5 5.5H25.5C28.26 5.5 30.5 7.74 30.5 10.5V21C30.5 23.76 28.26 26 25.5 26H15.5L9.5 31V26H10.5C7.74 26 5.5 23.76 5.5 21V10.5Z" fill="#000000"/>
+                        <circle cx="13" cy="15.8" r="1.7" fill="#ffffff"/>
+                        <circle cx="18" cy="15.8" r="1.7" fill="#ffffff"/>
+                        <circle cx="23" cy="15.8" r="1.7" fill="#ffffff"/>
                     </svg>
                 </span>
                 <span>Chatlar</span>
             </button>
 
-            <!-- 2. KONTAKTLAR -->
-            <button type="button" class="tg-nav-btn" onclick="openSection('kontaktlar', this)">
+            <!-- 2. KONTAKTLAR (DAFTAR + KONTAKT STIKERI — PROFILGA O'XSHAMAYDI) -->
+            <button type="button" id="navBtn-kontaktlar" class="tg-nav-btn" onclick="openSection('kontaktlar', this)">
                 <span class="premium-nav-svg">
                     <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="contactBodyGrad" x1="6" y1="6" x2="30" y2="30" gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#2d2d2d"/>
-                                <stop offset="100%" stop-color="#070707"/>
-                            </linearGradient>
-                        </defs>
-                        <circle cx="18" cy="18" r="13" stroke="url(#contactBodyGrad)" stroke-width="2.3" fill="rgba(0,0,0,0.02)"/>
-                        <circle cx="18" cy="14" r="4.3" fill="url(#contactBodyGrad)"/>
-                        <path d="M10.5 27C11.8 23.4 14.6 21.4 18 21.4C21.4 21.4 24.2 23.4 25.5 27" stroke="url(#contactBodyGrad)" stroke-width="2.4" stroke-linecap="round"/>
+                        <rect x="7" y="5" width="21" height="26" rx="4" fill="#000000"/>
+                        <line x1="5" y1="10" x2="9" y2="10" stroke="#000000" stroke-width="2.4" stroke-linecap="round"/>
+                        <line x1="5" y1="18" x2="9" y2="18" stroke="#000000" stroke-width="2.4" stroke-linecap="round"/>
+                        <line x1="5" y1="26" x2="9" y2="26" stroke="#000000" stroke-width="2.4" stroke-linecap="round"/>
+                        <circle cx="18.5" cy="14.5" r="3.4" fill="#ffffff"/>
+                        <path d="M13 24.5C13.8 21.4 15.9 19.8 18.5 19.8C21.1 19.8 23.2 21.4 24 24.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
                     </svg>
                 </span>
                 <span>Kontaktlar</span>
             </button>
 
-            <!-- 3. PROFIL -->
-            <button type="button" class="tg-nav-btn" onclick="openSection('profil', this)">
+            <!-- 3. PROFIL (NISHON/KARTA USLUBIDAGI SHAXSIY PROFIL STIKERI) -->
+            <button type="button" id="navBtn-profil" class="tg-nav-btn" onclick="openSection('profil', this)">
                 <span class="premium-nav-svg">
                     <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="profileRingGrad" x1="5" y1="5" x2="31" y2="31" gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#2a2a2a"/>
-                                <stop offset="100%" stop-color="#040404"/>
-                            </linearGradient>
-                        </defs>
-                        <circle cx="18" cy="18" r="13" stroke="url(#profileRingGrad)" stroke-width="2.4" fill="rgba(0,0,0,0.03)"/>
-                        <circle cx="18" cy="14" r="4.5" fill="url(#profileRingGrad)"/>
-                        <path d="M10.5 27.2C11.7 23.4 14.5 21.3 18 21.3C21.5 21.3 24.3 23.4 25.5 27.2" stroke="url(#profileRingGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                        <rect x="5" y="7" width="26" height="22" rx="6" fill="#000000"/>
+                        <circle cx="13.5" cy="16" r="3.2" fill="#ffffff"/>
+                        <path d="M9.5 24.5C10.2 21.8 11.7 20.5 13.5 20.5C15.3 20.5 16.8 21.8 17.5 24.5" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="20.5" y1="14.5" x2="27.5" y2="14.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+                        <line x1="20.5" y1="20.5" x2="25.5" y2="20.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
                     </svg>
                 </span>
                 <span>Profil</span>
             </button>
         </nav>
+    </div>
+
+    <!-- MODAL 1: KONTAKT QO'SHISH (RAQAM + NOM BERISH) -->
+    <div id="addContactModal" class="modal-backdrop">
+        <div class="modal-box">
+            <div class="modal-heading">Kontakt qoʻshish</div>
+
+            <div class="field-wrap">
+                <label for="contactPhoneInput" class="field-title">Raqami</label>
+                <input type="text" id="contactPhoneInput" class="inp-field" maxlength="24" placeholder="+91 748 29 41">
+            </div>
+
+            <div class="field-wrap">
+                <label for="contactNameInput" class="field-title">Ismi (nom berish)</label>
+                <input type="text" id="contactNameInput" class="inp-field" maxlength="32" placeholder="Odamga nom bering...">
+            </div>
+
+            <div id="addContactErr" class="err-msg"></div>
+
+            <div class="two-btns">
+                <button type="button" class="btn-light-border" onclick="closeAddContactModal()">Bekor qilish</button>
+                <button type="button" class="btn-dark" onclick="saveNewContact()">Saqlash</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: PROFIL TAHRIRLASH (RASM, NIK, TAVSIF) -->
+    <div id="editProfileModal" class="modal-backdrop">
+        <div class="modal-box">
+            <div class="modal-heading">Profilni tahrirlash</div>
+
+            <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+                <img id="editPhotoPreview" class="profile-avatar-big" src="" alt="Rasm">
+                <input type="file" id="editPhotoInput" accept="image/*" style="display:none;" onchange="onProfilePhotoPicked(event)">
+                <button type="button" class="btn-light-border" onclick="document.getElementById('editPhotoInput').click()">Rasm tanlash</button>
+            </div>
+
+            <div class="field-wrap">
+                <label for="editNameInput" class="field-title">Ism</label>
+                <input type="text" id="editNameInput" class="inp-field" maxlength="32" placeholder="ISNOOSH">
+            </div>
+
+            <div class="field-wrap">
+                <label for="editNikInput" class="field-title">Nik (kamida 6 ta belgi, son bilan boshlanmaydi, @ shart emas)</label>
+                <input type="text" id="editNikInput" class="inp-field" maxlength="28" placeholder="masalan: isnoosh_pro">
+            </div>
+
+            <div class="field-wrap">
+                <label for="editBioInput" class="field-title">Tavsif</label>
+                <textarea id="editBioInput" class="area-field" maxlength="160" placeholder="Oʻzingiz haqingizda tavsif yozing..."></textarea>
+            </div>
+
+            <div id="editProfileErr" class="err-msg"></div>
+
+            <div class="two-btns">
+                <button type="button" class="btn-light-border" onclick="closeEditProfileModal()">Bekor qilish</button>
+                <button type="button" class="btn-dark" onclick="saveProfileChanges()">Saqlash</button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -324,11 +688,68 @@
             tg.expand();
         }
 
-        // Kelgan o'qilmagan SMSlar soni (boshida 0 — hech qanday 49 yo'q)
-        let unreadSmsCount = 0;
+        const DEFAULT_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(`
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+                <rect width="120" height="120" fill="#eeeeee"/>
+                <circle cx="60" cy="45" r="21" fill="#111111"/>
+                <path d="M24 103C30 80 43 70 60 70C77 70 90 80 96 103" fill="#111111"/>
+            </svg>
+        `);
 
-        function setUnreadSmsCount(count) {
-            unreadSmsCount = Math.max(0, Number(count) || 0);
+        const KEYS = {
+            profile: "tg_clone_profile_v1",
+            contacts: "tg_clone_contacts_v1",
+            messages: "tg_clone_messages_v1",
+            unread: "tg_clone_unread_v1"
+        };
+
+        function readStore(key, fallback) {
+            try {
+                const raw = localStorage.getItem(key);
+                const parsed = raw ? JSON.parse(raw) : fallback;
+                return parsed !== null && parsed !== undefined ? parsed : fallback;
+            } catch (e) {
+                return fallback;
+            }
+        }
+
+        function writeStore(key, val) {
+            try {
+                localStorage.setItem(key, JSON.stringify(val));
+            } catch (e) {}
+        }
+
+        function generateVirtualIndianNumber() {
+            const part1 = String(Math.floor(100 + Math.random() * 900));
+            const part2 = String(Math.floor(10 + Math.random() * 90));
+            const part3 = String(Math.floor(10 + Math.random() * 90));
+            return `+91 ${part1} ${part2} ${part3}`;
+        }
+
+        const defaultProfile = {
+            name: "ISNOOSH",
+            nik: "@isnoosh_uz",
+            bio: "",
+            photo: "",
+            virtualPhone: generateVirtualIndianNumber()
+        };
+
+        let profileData = { ...defaultProfile, ...readStore(KEYS.profile, {}) };
+        if (!profileData.virtualPhone) {
+            profileData.virtualPhone = generateVirtualIndianNumber();
+        }
+        writeStore(KEYS.profile, profileData);
+
+        let contactsList = readStore(KEYS.contacts, []);
+        let messagesByContact = readStore(KEYS.messages, {});
+        let unreadSmsCount = Number(readStore(KEYS.unread, 0)) || 0;
+
+        let currentOpenContactId = null;
+        let draftPhotoData = profileData.photo || "";
+
+        function setUnreadSmsCount(val) {
+            unreadSmsCount = Math.max(0, Number(val) || 0);
+            writeStore(KEYS.unread, unreadSmsCount);
             const badge = document.getElementById("chatUnreadBadge");
             if (!badge) return;
             if (unreadSmsCount > 0) {
@@ -340,9 +761,298 @@
             }
         }
 
-        // Boshqa foydalanuvchidan bitta SMS kelganda chaqiriladigan funksiya (+1 ko'payadi)
-        function receiveIncomingSms() {
-            setUnreadSmsCount(unreadSmsCount + 1);
+        // Boshqa odamdan SMS kelganda chaqiriladi (masalan 6 ta SMS kelsa badge 6 bo'ladi)
+        function pushIncomingSmsToContact(contactId, text) {
+            if (!contactId) return;
+            if (!messagesByContact[contactId]) messagesByContact[contactId] = [];
+            messagesByContact[contactId].push({
+                id: "m_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6),
+                sender: "them",
+                text: String(text || ""),
+                ts: Date.now()
+            });
+            writeStore(KEYS.messages, messagesByContact);
+
+            const chatSectionActive = document.getElementById("sec-chatlar").classList.contains("active");
+            const isViewingThisChat = chatSectionActive && currentOpenContactId === contactId;
+            if (!isViewingThisChat) {
+                setUnreadSmsCount(unreadSmsCount + 1);
+            } else {
+                renderChatMessages(contactId);
+            }
+            renderChatsList();
+        }
+
+        function escapeText(s) {
+            return String(s || "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;");
+        }
+
+        // PROFILNI CHIZISH VA TAHRIRLASH
+        function renderProfileSection() {
+            const imgEl = document.getElementById("profilePhotoView");
+            imgEl.src = profileData.photo || DEFAULT_AVATAR;
+            imgEl.onerror = () => { imgEl.src = DEFAULT_AVATAR; };
+
+            document.getElementById("profileNameView").textContent = profileData.name || "ISNOOSH";
+            document.getElementById("profileNikView").textContent = profileData.nik || "@isnoosh_uz";
+            document.getElementById("profileBioView").textContent = profileData.bio || "Tavsif kiritilmagan.";
+            document.getElementById("profileVirtualPhoneView").textContent = profileData.virtualPhone || "+91 748 29 41";
+        }
+
+        function openEditProfileModal() {
+            draftPhotoData = profileData.photo || "";
+            const prev = document.getElementById("editPhotoPreview");
+            prev.src = draftPhotoData || DEFAULT_AVATAR;
+            prev.onerror = () => { prev.src = DEFAULT_AVATAR; };
+
+            document.getElementById("editNameInput").value = profileData.name || "ISNOOSH";
+            const rawNik = (profileData.nik || "").replace(/^@+/, "");
+            document.getElementById("editNikInput").value = rawNik;
+            document.getElementById("editBioInput").value = profileData.bio || "";
+            document.getElementById("editProfileErr").textContent = "";
+            document.getElementById("editProfileModal").classList.add("open");
+        }
+
+        function closeEditProfileModal() {
+            document.getElementById("editProfileModal").classList.remove("open");
+        }
+
+        function onProfilePhotoPicked(ev) {
+            const file = ev.target.files && ev.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement("canvas");
+                    let w = img.width, h = img.height, maxSide = 260;
+                    if (w > h) {
+                        if (w > maxSide) { h = Math.round((h * maxSide) / w); w = maxSide; }
+                    } else {
+                        if (h > maxSide) { w = Math.round((w * maxSide) / h); h = maxSide; }
+                    }
+                    canvas.width = w;
+                    canvas.height = h;
+                    canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+                    draftPhotoData = canvas.toDataURL("image/jpeg", 0.85);
+                    document.getElementById("editPhotoPreview").src = draftPhotoData;
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function validateAndFormatNik(rawInput) {
+            let cleaned = String(rawInput || "").trim().replace(/^@+/, "").replace(/\s+/g, "");
+            if (!cleaned) {
+                return { error: "Nikni kiriting (kamida 6 ta belgi)." };
+            }
+            if (/^[0-9]/.test(cleaned)) {
+                return { error: "Nik boshlanish qismida son bilan boshlanmaydi." };
+            }
+            if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(cleaned)) {
+                return { error: "Nik faqat harf, son va _ belgilaridan iborat boʻlsin." };
+            }
+            if (cleaned.length < 6) {
+                return { error: "Nik kamida 6 ta belgidan iborat boʻlishi kerak." };
+            }
+            return { value: "@" + cleaned };
+        }
+
+        function saveProfileChanges() {
+            const errEl = document.getElementById("editProfileErr");
+            const nameVal = document.getElementById("editNameInput").value.trim();
+            const nikRaw = document.getElementById("editNikInput").value;
+            const bioVal = document.getElementById("editBioInput").value.trim();
+
+            if (!nameVal) {
+                errEl.textContent = "Ismni kiriting.";
+                return;
+            }
+
+            const nikRes = validateAndFormatNik(nikRaw);
+            if (nikRes.error) {
+                errEl.textContent = nikRes.error;
+                return;
+            }
+
+            profileData.name = nameVal;
+            profileData.nik = nikRes.value;
+            profileData.bio = bioVal;
+            profileData.photo = draftPhotoData || profileData.photo || "";
+
+            writeStore(KEYS.profile, profileData);
+            closeEditProfileModal();
+            renderProfileSection();
+        }
+
+        // KONTAKTLAR VA CHATLAR BOG'LANISHI
+        function openAddContactModal() {
+            document.getElementById("contactPhoneInput").value = "";
+            document.getElementById("contactNameInput").value = "";
+            document.getElementById("addContactErr").textContent = "";
+            document.getElementById("addContactModal").classList.add("open");
+        }
+
+        function closeAddContactModal() {
+            document.getElementById("addContactModal").classList.remove("open");
+        }
+
+        function saveNewContact() {
+            const errEl = document.getElementById("addContactErr");
+            const phoneVal = document.getElementById("contactPhoneInput").value.trim();
+            const nameVal = document.getElementById("contactNameInput").value.trim();
+
+            if (!phoneVal) {
+                errEl.textContent = "Raqamni kiriting.";
+                return;
+            }
+            if (!nameVal) {
+                errEl.textContent = "Odamga nom bering.";
+                return;
+            }
+
+            const newContact = {
+                id: "cnt_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6),
+                name: nameVal,
+                phone: phoneVal,
+                photo: DEFAULT_AVATAR,
+                createdAt: Date.now()
+            };
+
+            contactsList.unshift(newContact);
+            writeStore(KEYS.contacts, contactsList);
+
+            closeAddContactModal();
+            renderContactsList();
+            renderChatsList();
+        }
+
+        function renderContactsList() {
+            const box = document.getElementById("contactsListContainer");
+            box.innerHTML = "";
+
+            if (!contactsList.length) {
+                box.innerHTML = `<div class="row-card" style="justify-content:center; cursor:default;"><span style="font-size:13px; color:#555555;">Hali kontakt yoʻq. «Odam qoʻshish» tugmasini bosing.</span></div>`;
+                return;
+            }
+
+            contactsList.forEach(c => {
+                const row = document.createElement("div");
+                row.className = "row-card";
+                row.onclick = () => {
+                    const chatNavBtn = document.getElementById("navBtn-chatlar");
+                    openSection("chatlar", chatNavBtn);
+                    openChatWithContact(c.id);
+                };
+                row.innerHTML = `
+                    <div style="display:flex; align-items:center; gap:10px; min-width:0; flex:1;">
+                        <img class="avatar-circle" src="${escapeText(c.photo || DEFAULT_AVATAR)}" alt="">
+                        <div style="min-width:0; flex:1;">
+                            <div style="font-size:14.5px; font-weight:800; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeText(c.name)}</div>
+                            <div style="font-size:12px; font-weight:600; color:#555555; margin-top:2px;">${escapeText(c.phone)}</div>
+                        </div>
+                    </div>
+                    <span class="btn-light-border" style="padding:5px 9px; font-size:11px;">Chat</span>
+                `;
+                const im = row.querySelector("img");
+                if (im) im.onerror = function() { this.src = DEFAULT_AVATAR; };
+                box.appendChild(row);
+            });
+        }
+
+        function renderChatsList() {
+            const box = document.getElementById("chatsListContainer");
+            box.innerHTML = "";
+
+            if (!contactsList.length) {
+                box.innerHTML = `<div class="row-card" style="justify-content:center; cursor:default;"><span style="font-size:13px; color:#555555;">Hali chatlar yoʻq. Kontaktlar boʻlimidan odam qoʻshing.</span></div>`;
+                return;
+            }
+
+            contactsList.forEach(c => {
+                const msgs = messagesByContact[c.id] || [];
+                const lastMsg = msgs.length ? msgs[msgs.length - 1].text : c.phone;
+
+                const row = document.createElement("div");
+                row.className = "row-card";
+                row.onclick = () => openChatWithContact(c.id);
+                row.innerHTML = `
+                    <div style="display:flex; align-items:center; gap:10px; min-width:0; flex:1;">
+                        <img class="avatar-circle" src="${escapeText(c.photo || DEFAULT_AVATAR)}" alt="">
+                        <div style="min-width:0; flex:1;">
+                            <div style="font-size:14.5px; font-weight:800; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeText(c.name)}</div>
+                            <div style="font-size:12px; font-weight:600; color:#555555; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-top:2px;">${escapeText(lastMsg)}</div>
+                        </div>
+                    </div>
+                    <span style="font-size:11.5px; font-weight:700; color:#666666;">${escapeText(c.phone)}</span>
+                `;
+                const im = row.querySelector("img");
+                if (im) im.onerror = function() { this.src = DEFAULT_AVATAR; };
+                box.appendChild(row);
+            });
+        }
+
+        function openChatWithContact(contactId) {
+            const contact = contactsList.find(x => x.id === contactId);
+            if (!contact) return;
+
+            currentOpenContactId = contact.id;
+            document.getElementById("chatListView").style.display = "none";
+            document.getElementById("chatRoomView").classList.add("open");
+
+            const av = document.getElementById("activeChatAvatar");
+            av.src = contact.photo || DEFAULT_AVATAR;
+            av.onerror = () => { av.src = DEFAULT_AVATAR; };
+
+            document.getElementById("activeChatName").textContent = contact.name;
+            document.getElementById("activeChatPhone").textContent = contact.phone;
+            setUnreadSmsCount(0);
+            renderChatMessages(contact.id);
+        }
+
+        function closeActiveChat() {
+            currentOpenContactId = null;
+            document.getElementById("chatRoomView").classList.remove("open");
+            document.getElementById("chatListView").style.display = "flex";
+            renderChatsList();
+        }
+
+        function renderChatMessages(contactId) {
+            const stream = document.getElementById("chatMessagesStream");
+            const list = messagesByContact[contactId] || [];
+            stream.innerHTML = "";
+
+            list.forEach(m => {
+                const bubble = document.createElement("div");
+                bubble.className = "msg-bubble " + (m.sender === "me" ? "me" : "them");
+                bubble.textContent = m.text || "";
+                stream.appendChild(bubble);
+            });
+            stream.scrollTop = stream.scrollHeight;
+        }
+
+        function sendChatMessage() {
+            if (!currentOpenContactId) return;
+            const inp = document.getElementById("chatMsgInput");
+            const txt = inp.value.trim();
+            if (!txt) return;
+
+            if (!messagesByContact[currentOpenContactId]) messagesByContact[currentOpenContactId] = [];
+            messagesByContact[currentOpenContactId].push({
+                id: "m_" + Date.now(),
+                sender: "me",
+                text: txt,
+                ts: Date.now()
+            });
+            writeStore(KEYS.messages, messagesByContact);
+            inp.value = "";
+            renderChatMessages(currentOpenContactId);
+            renderChatsList();
         }
 
         function openSection(secId, btnEl) {
@@ -352,13 +1062,21 @@
             const target = document.getElementById("sec-" + secId);
             if (target) target.classList.add("active");
 
-            // Chatlar bo'limi ochilganda o'qilmagan SMS hisoblagichi tozalanadi
             if (secId === "chatlar") {
                 setUnreadSmsCount(0);
+                if (currentOpenContactId) renderChatMessages(currentOpenContactId);
+                else renderChatsList();
+            } else if (secId === "kontaktlar") {
+                renderContactsList();
+            } else if (secId === "profil") {
+                renderProfileSection();
             }
         }
 
-        setUnreadSmsCount(0);
+        setUnreadSmsCount(unreadSmsCount);
+        renderProfileSection();
+        renderContactsList();
+        renderChatsList();
 
         setTimeout(() => {
             const splash = document.getElementById("tgSplash");
