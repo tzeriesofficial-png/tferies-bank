@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram</title>
+    <title>K</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
@@ -24,8 +24,8 @@
             position: relative;
         }
 
-        /* KIRISH QISMI: OQ FON, YOZUVSIZ, BLOKSIZ KATTA QORA PREMIUM SVG SAMOLYOT */
-        .tg-splash-screen {
+        /* KIRISH QISMI: OQ FON, QIMIRLAMAYDIGAN PREMIUM SVG "K" BELGISI */
+        .k-splash-screen {
             position: fixed;
             inset: 0;
             width: 100%;
@@ -39,29 +39,20 @@
             z-index: 60;
         }
 
-        .tg-splash-screen.fade-out {
+        .k-splash-screen.fade-out {
             opacity: 0;
             pointer-events: none;
         }
 
-        .plane-svg-wrap {
-            width: 146px;
-            height: 146px;
+        .k-still-svg-wrap {
+            width: 148px;
+            height: 148px;
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: tgPlaneMotion 2.4s ease-in-out infinite;
-            transform-origin: center;
         }
 
-        @keyframes tgPlaneMotion {
-            0% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
-            35% { transform: translate(5px, -8px) rotate(-4deg) scale(1.04); }
-            70% { transform: translate(-3px, -4px) rotate(3deg) scale(1.02); }
-            100% { transform: translate(0px, 0px) rotate(0deg) scale(1); }
-        }
-
-        .plane-svg-wrap svg {
+        .k-still-svg-wrap svg {
             width: 100%;
             height: 100%;
             display: block;
@@ -69,7 +60,7 @@
         }
 
         /* ASOSIY OYNA */
-        .tg-main-shell {
+        .k-main-shell {
             width: 100%;
             height: 100%;
             background-color: #ffffff;
@@ -78,20 +69,20 @@
             justify-content: space-between;
         }
 
-        .tg-content-area {
+        .k-content-area {
             flex: 1;
             width: 100%;
             overflow-y: auto;
             padding: 16px 14px;
         }
 
-        .tg-section {
+        .k-section {
             display: none;
             width: 100%;
             height: 100%;
         }
 
-        .tg-section.active {
+        .k-section.active {
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -112,438 +103,95 @@
             color: #000000;
         }
 
-        .btn-dark {
-            background: #000000;
-            color: #ffffff;
-            border: 1.5px solid #000000;
-            border-radius: 12px;
-            padding: 8px 12px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        .btn-light-border {
-            background: #ffffff;
-            color: #000000;
-            border: 1.5px solid rgba(0, 0, 0, 0.2);
-            border-radius: 12px;
-            padding: 7px 12px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        .list-stack {
-            flex: 1;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            padding-bottom: 12px;
-        }
-
-        .row-card {
+        .empty-note {
             background: #fafafa;
             border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 16px;
-            padding: 10px 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            cursor: pointer;
-        }
-
-        .row-card:active {
-            background: #f0f0f0;
-        }
-
-        .avatar-circle {
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 1.5px solid rgba(0, 0, 0, 0.14);
-            background: #f2f2f2;
-            flex-shrink: 0;
-        }
-
-        /* PROFIL KARTASI */
-        .profile-card {
-            background: #fafafa;
-            border: 1px solid rgba(0, 0, 0, 0.12);
-            border-radius: 20px;
-            padding: 16px 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .profile-top-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-        }
-
-        .profile-avatar-big {
-            width: 74px;
-            height: 74px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #000000;
-            background: #eeeeee;
-            flex-shrink: 0;
-            cursor: pointer;
-        }
-
-        .info-box {
-            background: #ffffff;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 14px;
-            padding: 10px 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .info-label {
-            font-size: 11px;
-            font-weight: 700;
-            color: #666666;
-        }
-
-        .info-val {
-            font-size: 14px;
-            font-weight: 700;
-            color: #000000;
-            word-break: break-word;
-        }
-
-        /* CHAT OYNASI */
-        .chat-window {
-            display: none;
-            flex-direction: column;
-            height: 100%;
-            background: #ffffff;
-        }
-
-        .chat-window.open {
-            display: flex;
-        }
-
-        .chat-win-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            flex-shrink: 0;
-        }
-
-        .peer-nick-row {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            max-width: 100%;
-        }
-
-        .peer-nick-text {
-            font-size: 15px;
-            font-weight: 800;
-            color: #000000;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        /* QIMIRLAMAYDIGAN QORA PREMIUM SVG GALOCHKA */
-        .static-black-check {
-            width: 17px;
-            height: 17px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .static-black-check svg {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
-        .chat-msgs-area {
-            flex: 1;
-            overflow-y: auto;
-            padding: 10px 2px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .msg-bubble {
-            max-width: 82%;
-            padding: 8px 12px;
-            border-radius: 15px;
-            font-size: 13.5px;
-            font-weight: 500;
-            word-break: break-word;
-        }
-
-        .msg-bubble.me {
-            align-self: flex-end;
-            background: #000000;
-            color: #ffffff;
-            border-bottom-right-radius: 4px;
-        }
-
-        .msg-bubble.them {
-            align-self: flex-start;
-            background: #efefef;
-            color: #000000;
-            border-bottom-left-radius: 4px;
-        }
-
-        .msg-media-img {
-            max-width: 210px;
-            max-height: 220px;
-            border-radius: 11px;
-            display: block;
-        }
-
-        .msg-media-vid {
-            max-width: 220px;
-            max-height: 220px;
-            border-radius: 11px;
-            display: block;
-            background: #000000;
-        }
-
-        .msg-voice-player {
-            width: 195px;
-            height: 34px;
-            display: block;
-        }
-
-        /* YOZISH PANELI: RASM STIKERI + INPUT + QIMIRLAMAYDIGAN MIKRO STIKERI */
-        .chat-composer-bar {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding-top: 8px;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-            flex-shrink: 0;
-        }
-
-        .still-premium-btn {
-            width: 38px;
-            height: 38px;
-            border-radius: 12px;
-            border: 1.5px solid #000000;
-            background: #ffffff;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            flex-shrink: 0;
-            padding: 0;
-        }
-
-        .still-premium-btn.recording {
-            background: #000000;
-            border-color: #000000;
-        }
-
-        .still-premium-btn.recording svg path,
-        .still-premium-btn.recording svg rect,
-        .still-premium-btn.recording svg circle {
-            fill: #ffffff;
-            stroke: #ffffff;
-        }
-
-        .still-premium-btn svg {
-            width: 22px;
-            height: 22px;
-            display: block;
-        }
-
-        /* MODAL */
-        .modal-backdrop {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.55);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
-            z-index: 80;
-        }
-
-        .modal-backdrop.open {
-            display: flex;
-        }
-
-        .modal-box {
-            width: 100%;
-            max-width: 390px;
-            max-height: 88vh;
-            overflow-y: auto;
-            background: #ffffff;
-            color: #000000;
-            border: 1.5px solid #000000;
-            border-radius: 20px;
-            padding: 16px 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 11px;
-        }
-
-        .modal-heading {
-            font-size: 17px;
-            font-weight: 800;
+            padding: 14px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #555555;
             text-align: center;
         }
 
-        .field-wrap {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .field-title {
-            font-size: 12px;
-            font-weight: 700;
-            color: #222222;
-        }
-
-        .inp-field, .area-field {
-            width: 100%;
-            background: #ffffff;
-            color: #000000;
-            border: 1.5px solid #000000;
-            border-radius: 12px;
-            padding: 8px 10px;
-            font-size: 13px;
-            font-weight: 600;
-            outline: none;
-            user-select: text;
-            -webkit-user-select: text;
-        }
-
-        .area-field {
-            min-height: 64px;
-            resize: vertical;
-        }
-
-        .err-msg {
-            font-size: 12px;
-            font-weight: 700;
-            color: #c62828;
-            min-height: 16px;
-        }
-
-        .two-btns {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-
-        /* PASTKI 3 TA QORA TUGMALI MENYU */
-        .tg-bottom-nav {
+        /* PASTKI 4 TA QIMIRLAB TURUVCHI PREMIUM SVG IKONKALI MENYU */
+        .k-bottom-nav {
             width: 100%;
             background-color: #ffffff;
             border-top: 1px solid rgba(0, 0, 0, 0.12);
-            padding: 8px 10px calc(10px + env(safe-area-inset-bottom));
+            padding: 8px 8px calc(10px + env(safe-area-inset-bottom));
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
             flex-shrink: 0;
         }
 
-        .tg-nav-btn {
+        .k-nav-btn {
             position: relative;
             background: transparent;
             border: 1.5px solid transparent;
-            border-radius: 18px;
-            padding: 7px 4px;
+            border-radius: 16px;
+            padding: 6px 2px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 4px;
             color: #000000;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 800;
             cursor: pointer;
             transition: background-color 0.2s ease, border-color 0.2s ease;
         }
 
-        .tg-nav-btn.active {
+        .k-nav-btn.active {
             background-color: rgba(0, 0, 0, 0.06);
             border-color: #000000;
-            color: #000000;
         }
 
-        .sms-count-badge {
-            position: absolute;
-            top: 2px;
-            right: calc(50% - 26px);
-            min-width: 20px;
-            height: 20px;
-            padding: 0 5px;
-            border-radius: 999px;
-            background: #000000;
-            color: #ffffff;
-            border: 2px solid #ffffff;
-            font-size: 11px;
-            font-weight: 800;
-            line-height: 16px;
-            text-align: center;
-            display: none;
-            z-index: 3;
+        .k-nav-btn span:last-child {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
         }
 
-        .sms-count-badge.visible {
-            display: inline-block;
-            animation: badgePop 0.25s ease;
-        }
-
-        @keyframes badgePop {
-            0% { transform: scale(0.65); }
-            70% { transform: scale(1.14); }
-            100% { transform: scale(1); }
-        }
-
-        /* QIMIRLAB TURUVCHI PREMIUM SVG IKONKALAR (PASTKI MENYU UCHUN) */
-        .premium-nav-svg {
-            width: 30px;
-            height: 30px;
+        /* DOIMIY QIMIRLAB TURUVCHI PREMIUM SVG */
+        .k-wiggle-svg {
+            width: 28px;
+            height: 28px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            animation: iconWigglePremium 2.1s ease-in-out infinite;
+            animation: kIconMove 2.1s ease-in-out infinite;
             transform-origin: center;
         }
 
-        .tg-nav-btn:nth-child(2) .premium-nav-svg {
-            animation-delay: 0.35s;
+        .k-nav-btn:nth-child(2) .k-wiggle-svg {
+            animation-delay: 0.25s;
         }
 
-        .tg-nav-btn:nth-child(3) .premium-nav-svg {
-            animation-delay: 0.7s;
+        .k-nav-btn:nth-child(3) .k-wiggle-svg {
+            animation-delay: 0.5s;
         }
 
-        @keyframes iconWigglePremium {
-            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-            35% { transform: translateY(-2.5px) rotate(-6deg) scale(1.07); }
-            70% { transform: translateY(1px) rotate(6deg) scale(1.04); }
+        .k-nav-btn:nth-child(4) .k-wiggle-svg {
+            animation-delay: 0.75s;
         }
 
-        .premium-nav-svg svg {
+        @keyframes kIconMove {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+            }
+            35% {
+                transform: translateY(-2.5px) rotate(-6deg) scale(1.07);
+            }
+            70% {
+                transform: translateY(1px) rotate(6deg) scale(1.04);
+            }
+        }
+
+        .k-wiggle-svg svg {
             width: 100%;
             height: 100%;
             display: block;
@@ -553,179 +201,75 @@
 </head>
 <body>
 
-    <!-- KIRISH QISMI: OQ FON, YOZUVSIZ, BLOKSIZ KATTA QORA PREMIUM SVG SAMOLYOT -->
-    <div id="tgSplash" class="tg-splash-screen">
-        <div class="plane-svg-wrap">
+    <!-- KIRISH QISMI: QIMIRLAMAYDIGAN PREMIUM SVG "K" BELGISI -->
+    <div id="kSplash" class="k-splash-screen">
+        <div class="k-still-svg-wrap">
             <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                    <linearGradient id="planeBlackMain" x1="16" y1="22" x2="104" y2="96" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stop-color="#1a1a1a"/>
-                        <stop offset="55%" stop-color="#0a0a0a"/>
+                    <linearGradient id="kSplashGrad" x1="14" y1="14" x2="106" y2="106" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#292929"/>
+                        <stop offset="55%" stop-color="#0d0d0d"/>
                         <stop offset="100%" stop-color="#000000"/>
-                    </linearGradient>
-                    <linearGradient id="planeBlackLeft" x1="20" y1="54" x2="54" y2="74" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stop-color="#2c2c2c"/>
-                        <stop offset="100%" stop-color="#111111"/>
-                    </linearGradient>
-                    <linearGradient id="planeBlackRight" x1="48" y1="66" x2="88" y2="96" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stop-color="#0f0f0f"/>
-                        <stop offset="100%" stop-color="#000000"/>
-                    </linearGradient>
-                    <linearGradient id="planeBlackFold" x1="44" y1="62" x2="66" y2="86" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stop-color="#050505"/>
-                        <stop offset="100%" stop-color="#1f1f1f"/>
                     </linearGradient>
                 </defs>
-
-                <path d="M18 86C26 84 32 87 37 92" stroke="#111111" stroke-width="2.4" stroke-linecap="round" opacity="0.5"/>
-                <path d="M12 73C19 72 24 75 28 79" stroke="#262626" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
-
-                <path d="M102 24L18 57.5C15.5 58.5 15.6 61.9 18.2 62.7L39.5 69.3L95.5 32.2C97.8 30.7 100.3 33.7 98.3 35.6L51.5 76.2L84.4 98.8C86.6 100.3 89.6 99 90.2 96.4L106.4 28.1C107.1 25.1 104.7 22.8 102 24Z" fill="url(#planeBlackMain)"/>
-                <path d="M18 57.5L102 24L39.5 69.3L18.2 62.7C15.6 61.9 15.5 58.5 18 57.5Z" fill="url(#planeBlackLeft)"/>
-                <path d="M51.5 76.2L98.3 35.6L90.2 96.4C89.6 99 86.6 100.3 84.4 98.8L51.5 76.2Z" fill="url(#planeBlackRight)"/>
-                <path d="M39.5 69.3L98.3 35.6L51.5 76.2L47.8 91.8C47.2 94.3 43.9 94.8 42.6 92.6L39.5 69.3Z" fill="url(#planeBlackFold)"/>
-                <path d="M22 59.4L98.5 27.6" stroke="#525252" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+                <rect x="12" y="12" width="96" height="96" rx="28" fill="url(#kSplashGrad)"/>
+                <path d="M38 32H52V56.5L77.5 32H95L65.5 59.5L96.5 88H78L52 63.5V88H38V32Z" fill="#ffffff"/>
+                <circle cx="88" cy="30" r="5" fill="#ffffff" opacity="0.25"/>
             </svg>
         </div>
     </div>
 
-    <!-- ASOSIY SAHIFA -->
-    <div id="tgMainShell" class="tg-main-shell">
-        <div class="tg-content-area">
+    <!-- ASOSIY OYNA -->
+    <div id="kMainShell" class="k-main-shell">
+        <div class="k-content-area">
 
-            <!-- 1. CHATLAR BO'LIMI (BOTDA KIM BOR BO'LSA REAL VAQTDA AVTOMATIK CHIQADI) -->
-            <section id="sec-chatlar" class="tg-section active">
-                <div id="chatListView" style="display:flex; flex-direction:column; height:100%; gap:10px;">
-                    <div class="sec-header">
-                        <div class="sec-title">Chatlar</div>
-                    </div>
-                    <div id="chatsListContainer" class="list-stack"></div>
+            <!-- 1. CHATLAR -->
+            <section id="sec-chatlar" class="k-section active">
+                <div class="sec-header">
+                    <div class="sec-title">Chatlar</div>
                 </div>
-
-                <!-- ICHKI CHAT OYNASI -->
-                <div id="chatRoomView" class="chat-window">
-                    <div class="chat-win-header">
-                        <button type="button" class="btn-light-border" onclick="closeActiveChat()">←</button>
-                        <img id="activeChatAvatar" class="avatar-circle" style="width:38px; height:38px;" src="" alt="">
-                        <div style="min-width:0; flex:1;">
-                            <div class="peer-nick-row">
-                                <span id="activeChatNick" class="peer-nick-text">@username</span>
-                                <span class="static-black-check" title="Tasdiqlangan">
-                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <defs>
-                                            <linearGradient id="blackBadgeGrad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
-                                                <stop offset="0%" stop-color="#2b2b2b"/>
-                                                <stop offset="100%" stop-color="#000000"/>
-                                            </linearGradient>
-                                        </defs>
-                                        <path d="M12 2.2L14.5 4.1L17.6 3.9L18.6 6.9L21.3 8.5L20.4 11.5L21.8 14.3L19.5 16.4L19.1 19.5L16 20.1L14 22.3L11.2 21.1L8.2 21.8L6.7 19.1L3.7 18.2L4 15.1L2.1 12.6L4 10.1L3.7 7L6.7 6.1L8.2 3.4L11.2 4.1L12 2.2Z" fill="url(#blackBadgeGrad)"/>
-                                        <path d="M8.3 12.3L10.8 14.8L16.1 9.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="chatMessagesStream" class="chat-msgs-area"></div>
-
-                    <!-- RASM/VIDEO STIKERI + YOZISH + QIMIRLAMAYDIGAN MIKRO STIKERI -->
-                    <div class="chat-composer-bar">
-                        <input type="file" id="chatMediaFileInput" accept="image/*,video/*" style="display:none;" onchange="onChatMediaPicked(event)">
-
-                        <button type="button" class="still-premium-btn" onclick="document.getElementById('chatMediaFileInput').click()" aria-label="Rasm va video">
-                            <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="imgStickerGrad" x1="3" y1="4" x2="25" y2="24" gradientUnits="userSpaceOnUse">
-                                        <stop offset="0%" stop-color="#2a2a2a"/>
-                                        <stop offset="100%" stop-color="#000000"/>
-                                    </linearGradient>
-                                </defs>
-                                <rect x="3.5" y="4.5" width="21" height="19" rx="4" fill="url(#imgStickerGrad)"/>
-                                <circle cx="9.5" cy="10" r="2" fill="#ffffff"/>
-                                <path d="M6 20L11.5 14L15.5 18L19 14.5L22.5 20H6Z" fill="#ffffff"/>
-                            </svg>
-                        </button>
-
-                        <input type="text" id="chatMsgInput" class="inp-field" maxlength="400" placeholder="Xabar yozing...">
-
-                        <button
-                            type="button"
-                            id="holdMicBtn"
-                            class="still-premium-btn"
-                            aria-label="Mikrofon"
-                            onpointerdown="startHoldVoice(event)"
-                            onpointerup="stopHoldVoice(event)"
-                            onpointercancel="stopHoldVoice(event)"
-                            onpointerleave="if(isHoldingMic) stopHoldVoice(event)"
-                        >
-                            <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="micStickerGrad" x1="8" y1="3" x2="20" y2="25" gradientUnits="userSpaceOnUse">
-                                        <stop offset="0%" stop-color="#2b2b2b"/>
-                                        <stop offset="100%" stop-color="#000000"/>
-                                    </linearGradient>
-                                </defs>
-                                <rect x="10.2" y="4" width="7.6" height="12.5" rx="3.8" fill="url(#micStickerGrad)"/>
-                                <path d="M7.2 13.5C7.2 17.3 10.2 20.3 14 20.3C17.8 20.3 20.8 17.3 20.8 13.5" stroke="#000000" stroke-width="2.1" stroke-linecap="round"/>
-                                <line x1="14" y1="20.3" x2="14" y2="24.2" stroke="#000000" stroke-width="2.1" stroke-linecap="round"/>
-                                <line x1="10.2" y1="24.2" x2="17.8" y2="24.2" stroke="#000000" stroke-width="2.1" stroke-linecap="round"/>
-                            </svg>
-                        </button>
-
-                        <button type="button" class="btn-dark" onclick="sendChatMessage()">Yuborish</button>
-                    </div>
-                </div>
+                <div class="empty-note">Chatlar boʻlimi tayyor.</div>
             </section>
 
-            <!-- 2. KONTAKTLAR BO'LIMI -->
-            <section id="sec-kontaktlar" class="tg-section">
+            <!-- 2. ROCKET -->
+            <section id="sec-rocket" class="k-section">
                 <div class="sec-header">
-                    <div class="sec-title">Kontaktlar</div>
-                    <button type="button" class="btn-dark" onclick="openAddContactModal()">Odam qoʻshish</button>
+                    <div class="sec-title">Rocket</div>
                 </div>
-                <div id="contactsListContainer" class="list-stack"></div>
+                <div class="empty-note">Rocket boʻlimi tayyor.</div>
             </section>
 
-            <!-- 3. PROFIL BO'LIMI -->
-            <section id="sec-profil" class="tg-section">
+            <!-- 3. DARENKROS -->
+            <section id="sec-darenkros" class="k-section">
                 <div class="sec-header">
-                    <div class="sec-title">Profil</div>
-                    <button type="button" class="btn-dark" onclick="openEditProfileModal()">Tahrirlash</button>
+                    <div class="sec-title">DarenKros</div>
                 </div>
+                <div class="empty-note">DarenKros boʻlimi tayyor.</div>
+            </section>
 
-                <div class="profile-card">
-                    <div class="profile-top-row">
-                        <div style="display:flex; align-items:center; gap:12px; min-width:0;">
-                            <img id="profilePhotoView" class="profile-avatar-big" src="" alt="Profil" onclick="openEditProfileModal()">
-                            <div style="min-width:0;">
-                                <div id="profileNameView" style="font-size:19px; font-weight:800; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Foydalanuvchi</div>
-                                <div id="profileNikView" style="font-size:13.5px; font-weight:700; color:#333333; margin-top:2px;">@foydalanuvchi</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="info-box">
-                        <div class="info-label">Tavsif</div>
-                        <div id="profileBioView" class="info-val">Tavsif kiritilmagan.</div>
-                    </div>
-
-                    <div class="info-box">
-                        <div class="info-label">Virtual raqam</div>
-                        <div id="profileVirtualPhoneView" class="info-val">+91 748 29 41</div>
-                    </div>
+            <!-- 4. HISOBIM -->
+            <section id="sec-hisobim" class="k-section">
+                <div class="sec-header">
+                    <div class="sec-title">Hisobim</div>
                 </div>
+                <div class="empty-note">Hisobim boʻlimi tayyor.</div>
             </section>
 
         </div>
 
-        <!-- PASTKI 3 TA QORA TUGMA VA BIR-BIRIGA O'XSHAMAYDIGAN QIMIRLAB TURUVCHI PREMIUM SVG STIKERLAR -->
-        <nav class="tg-bottom-nav">
+        <!-- PASTKI 4 TA QIMIRLAB TURUVCHI PREMIUM SVG IKONKA -->
+        <nav class="k-bottom-nav">
             <!-- 1. CHATLAR -->
-            <button type="button" id="navBtn-chatlar" class="tg-nav-btn active" onclick="openSection('chatlar', this)">
-                <span id="chatUnreadBadge" class="sms-count-badge">0</span>
-                <span class="premium-nav-svg">
+            <button type="button" class="k-nav-btn active" onclick="openKSection('chatlar', this)">
+                <span class="k-wiggle-svg">
                     <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5.5 10.5C5.5 7.74 7.74 5.5 10.5 5.5H25.5C28.26 5.5 30.5 7.74 30.5 10.5V21C30.5 23.76 28.26 26 25.5 26H15.5L9.5 31V26H10.5C7.74 26 5.5 23.76 5.5 21V10.5Z" fill="#000000"/>
+                        <defs>
+                            <linearGradient id="kChatGrad" x1="5" y1="5" x2="31" y2="31" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#2c2c2c"/>
+                                <stop offset="100%" stop-color="#000000"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M5.5 10.5C5.5 7.74 7.74 5.5 10.5 5.5H25.5C28.26 5.5 30.5 7.74 30.5 10.5V21C30.5 23.76 28.26 26 25.5 26H15.5L9.5 31V26H10.5C7.74 26 5.5 23.76 5.5 21V10.5Z" fill="url(#kChatGrad)"/>
                         <circle cx="13" cy="15.8" r="1.7" fill="#ffffff"/>
                         <circle cx="18" cy="15.8" r="1.7" fill="#ffffff"/>
                         <circle cx="23" cy="15.8" r="1.7" fill="#ffffff"/>
@@ -734,94 +278,63 @@
                 <span>Chatlar</span>
             </button>
 
-            <!-- 2. KONTAKTLAR -->
-            <button type="button" id="navBtn-kontaktlar" class="tg-nav-btn" onclick="openSection('kontaktlar', this)">
-                <span class="premium-nav-svg">
+            <!-- 2. ROCKET -->
+            <button type="button" class="k-nav-btn" onclick="openKSection('rocket', this)">
+                <span class="k-wiggle-svg">
                     <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="7" y="5" width="21" height="26" rx="4" fill="#000000"/>
-                        <line x1="5" y1="10" x2="9" y2="10" stroke="#000000" stroke-width="2.4" stroke-linecap="round"/>
-                        <line x1="5" y1="18" x2="9" y2="18" stroke="#000000" stroke-width="2.4" stroke-linecap="round"/>
-                        <line x1="5" y1="26" x2="9" y2="26" stroke="#000000" stroke-width="2.4" stroke-linecap="round"/>
-                        <circle cx="18.5" cy="14.5" r="3.4" fill="#ffffff"/>
-                        <path d="M13 24.5C13.8 21.4 15.9 19.8 18.5 19.8C21.1 19.8 23.2 21.4 24 24.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="kRocketGrad" x1="8" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#2e2e2e"/>
+                                <stop offset="100%" stop-color="#000000"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M18 4.5C22.8 8.2 25 13.6 25 19.5V24.5L21 22.5H15L11 24.5V19.5C11 13.6 13.2 8.2 18 4.5Z" fill="url(#kRocketGrad)"/>
+                        <circle cx="18" cy="14.5" r="2.8" fill="#ffffff"/>
+                        <path d="M11 18L7 22.5L11 23V18Z" fill="#000000"/>
+                        <path d="M25 18L29 22.5L25 23V18Z" fill="#000000"/>
+                        <path d="M15.5 26.5C15.5 29.2 16.7 31 18 31.8C19.3 31 20.5 29.2 20.5 26.5H15.5Z" fill="#000000"/>
                     </svg>
                 </span>
-                <span>Kontaktlar</span>
+                <span>Rocket</span>
             </button>
 
-            <!-- 3. PROFIL -->
-            <button type="button" id="navBtn-profil" class="tg-nav-btn" onclick="openSection('profil', this)">
-                <span class="premium-nav-svg">
+            <!-- 3. DARENKROS -->
+            <button type="button" class="k-nav-btn" onclick="openKSection('darenkros', this)">
+                <span class="k-wiggle-svg">
                     <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="5" y="7" width="26" height="22" rx="6" fill="#000000"/>
-                        <circle cx="13.5" cy="16" r="3.2" fill="#ffffff"/>
-                        <path d="M9.5 24.5C10.2 21.8 11.7 20.5 13.5 20.5C15.3 20.5 16.8 21.8 17.5 24.5" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
-                        <line x1="20.5" y1="14.5" x2="27.5" y2="14.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
-                        <line x1="20.5" y1="20.5" x2="25.5" y2="20.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="kDkGrad" x1="5" y1="5" x2="31" y2="31" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#2b2b2b"/>
+                                <stop offset="100%" stop-color="#000000"/>
+                            </linearGradient>
+                        </defs>
+                        <rect x="5.5" y="5.5" width="25" height="25" rx="8" fill="url(#kDkGrad)"/>
+                        <path d="M11.5 12H15.2L19.5 18L15.2 24H11.5L15.8 18L11.5 12Z" fill="#ffffff"/>
+                        <path d="M20.2 12H23.2V17.2L26.8 12H30L25.6 18L30.2 24H26.8L23.2 18.8V24H20.2V12Z" fill="#ffffff"/>
                     </svg>
                 </span>
-                <span>Profil</span>
+                <span>DarenKros</span>
+            </button>
+
+            <!-- 4. HISOBIM -->
+            <button type="button" class="k-nav-btn" onclick="openKSection('hisobim', this)">
+                <span class="k-wiggle-svg">
+                    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="kAccGrad" x1="5" y1="7" x2="31" y2="29" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#2b2b2b"/>
+                                <stop offset="100%" stop-color="#000000"/>
+                            </linearGradient>
+                        </defs>
+                        <rect x="5" y="7.5" width="26" height="21" rx="5.5" fill="url(#kAccGrad)"/>
+                        <rect x="5" y="12.5" width="26" height="3.8" fill="#ffffff"/>
+                        <rect x="9.5" y="20.5" width="8" height="2.6" rx="1.3" fill="#ffffff"/>
+                        <circle cx="25.5" cy="21.8" r="2.2" fill="#ffffff"/>
+                    </svg>
+                </span>
+                <span>Hisobim</span>
             </button>
         </nav>
-    </div>
-
-    <!-- MODAL 1: KONTAKT QO'SHISH -->
-    <div id="addContactModal" class="modal-backdrop">
-        <div class="modal-box">
-            <div class="modal-heading">Kontakt qoʻshish</div>
-
-            <div class="field-wrap">
-                <label for="contactUsernameInput" class="field-title">Username (@ bilan boshlanadi, takrorlanmaydi)</label>
-                <input type="text" id="contactUsernameInput" class="inp-field" maxlength="30" placeholder="@foydalanuvchi_nik">
-            </div>
-
-            <div class="field-wrap">
-                <label for="contactNameInput" class="field-title">Ismi (nom berish)</label>
-                <input type="text" id="contactNameInput" class="inp-field" maxlength="32" placeholder="Odamga nom bering...">
-            </div>
-
-            <div id="addContactErr" class="err-msg"></div>
-
-            <div class="two-btns">
-                <button type="button" class="btn-light-border" onclick="closeAddContactModal()">Bekor qilish</button>
-                <button type="button" class="btn-dark" onclick="saveNewContact()">Saqlash</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL 2: PROFIL TAHRIRLASH -->
-    <div id="editProfileModal" class="modal-backdrop">
-        <div class="modal-box">
-            <div class="modal-heading">Profilni tahrirlash</div>
-
-            <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
-                <img id="editPhotoPreview" class="profile-avatar-big" src="" alt="Rasm">
-                <input type="file" id="editPhotoInput" accept="image/*" style="display:none;" onchange="onProfilePhotoPicked(event)">
-                <button type="button" class="btn-light-border" onclick="document.getElementById('editPhotoInput').click()">Rasm tanlash</button>
-            </div>
-
-            <div class="field-wrap">
-                <label for="editNameInput" class="field-title">Ism</label>
-                <input type="text" id="editNameInput" class="inp-field" maxlength="32" placeholder="Ismingiz...">
-            </div>
-
-            <div class="field-wrap">
-                <label for="editNikInput" class="field-title">Nik (@ bilan boshlanadi, takrorlanmaydi)</label>
-                <input type="text" id="editNikInput" class="inp-field" maxlength="30" placeholder="@username">
-            </div>
-
-            <div class="field-wrap">
-                <label for="editBioInput" class="field-title">Tavsif</label>
-                <textarea id="editBioInput" class="area-field" maxlength="160" placeholder="Oʻzingiz haqingizda tavsif yozing..."></textarea>
-            </div>
-
-            <div id="editProfileErr" class="err-msg"></div>
-
-            <div class="two-btns">
-                <button type="button" class="btn-light-border" onclick="closeEditProfileModal()">Bekor qilish</button>
-                <button type="button" class="btn-dark" onclick="saveProfileChanges()">Saqlash</button>
-            </div>
-        </div>
     </div>
 
     <script>
@@ -831,764 +344,16 @@
             tg.expand();
         }
 
-        const RT_DB_URL = "https://xbox-tanishuv-default-rtdb.firebaseio.com";
-        const ONLINE_WINDOW_MS = 25000;
-
-        const DEFAULT_AVATAR = "data:image/svg+xml;utf8," + encodeURIComponent(`
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
-                <rect width="120" height="120" fill="#eeeeee"/>
-                <circle cx="60" cy="45" r="21" fill="#111111"/>
-                <path d="M24 103C30 80 43 70 60 70C77 70 90 80 96 103" fill="#111111"/>
-            </svg>
-        `);
-
-        const KEYS = {
-            clientId: "tg_clone_client_id_v6",
-            profile: "tg_clone_profile_v6",
-            contacts: "tg_clone_contacts_v6",
-            messages: "tg_clone_messages_v6",
-            unread: "tg_clone_unread_v6",
-            seenMsgIds: "tg_clone_seen_msg_ids_v6"
-        };
-
-        function readStore(key, fallback) {
-            try {
-                const raw = localStorage.getItem(key);
-                const parsed = raw ? JSON.parse(raw) : fallback;
-                return parsed !== null && parsed !== undefined ? parsed : fallback;
-            } catch (e) {
-                return fallback;
-            }
-        }
-
-        function writeStore(key, val) {
-            try {
-                localStorage.setItem(key, JSON.stringify(val));
-            } catch (e) {}
-        }
-
-        function generateUniqueVirtualIndianNumber() {
-            const p1 = String(Math.floor(100 + Math.random() * 900));
-            const p2 = String(Math.floor(10 + Math.random() * 90));
-            const p3 = String(Math.floor(10 + Math.random() * 90));
-            return `+91 ${p1} ${p2} ${p3}`;
-        }
-
-        function normalizeAtUsername(rawInput) {
-            const cleaned = String(rawInput || "")
-                .trim()
-                .replace(/^@+/, "")
-                .replace(/\s+/g, "_")
-                .replace(/[^A-Za-z0-9_]/g, "");
-            if (!cleaned) return "";
-            return "@" + cleaned;
-        }
-
-        function canonUsername(u) {
-            return normalizeAtUsername(u).toLowerCase();
-        }
-
-        let myClientId = readStore(KEYS.clientId, "");
-        if (!myClientId) {
-            myClientId = "u_" + Date.now() + "_" + Math.random().toString(36).slice(2, 7);
-            writeStore(KEYS.clientId, myClientId);
-        }
-
-        function buildDynamicDefaultUser(cid) {
-            const tgUser = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user : null;
-            const suffix = String(cid).replace(/[^a-zA-Z0-9]/g, "").slice(-5) || String(Math.floor(1000 + Math.random() * 8999));
-            if (tgUser && tgUser.username) {
-                return {
-                    name: [tgUser.first_name, tgUser.last_name].filter(Boolean).join(" ") || ("User_" + suffix),
-                    nik: normalizeAtUsername(tgUser.username),
-                    bio: "",
-                    photo: tgUser.photo_url || "",
-                    virtualPhone: generateUniqueVirtualIndianNumber()
-                };
-            }
-            return {
-                name: "Foydalanuvchi " + suffix.slice(-3),
-                nik: "@foydalanuvchi_" + suffix.toLowerCase(),
-                bio: "",
-                photo: "",
-                virtualPhone: generateUniqueVirtualIndianNumber()
-            };
-        }
-
-        const dynInit = buildDynamicDefaultUser(myClientId);
-        let profileData = { ...dynInit, ...readStore(KEYS.profile, {}) };
-        profileData.nik = normalizeAtUsername(profileData.nik) || dynInit.nik;
-        if (!profileData.virtualPhone) profileData.virtualPhone = generateUniqueVirtualIndianNumber();
-        writeStore(KEYS.profile, profileData);
-
-        let contactsList = readStore(KEYS.contacts, []);
-        let livePresencePeers = [];
-        let messagesByContact = readStore(KEYS.messages, {});
-        let unreadSmsCount = Number(readStore(KEYS.unread, 0)) || 0;
-        let seenMsgIds = new Set(readStore(KEYS.seenMsgIds, []));
-
-        let currentOpenChatKey = null;
-        let draftPhotoData = profileData.photo || "";
-
-        // Ovozli xabar (golos)
-        let isHoldingMic = false;
-        let holdMicStream = null;
-        let holdMicRecorder = null;
-        let holdMicChunks = [];
-
-        function setUnreadSmsCount(val) {
-            unreadSmsCount = Math.max(0, Number(val) || 0);
-            writeStore(KEYS.unread, unreadSmsCount);
-            const badge = document.getElementById("chatUnreadBadge");
-            if (!badge) return;
-            if (unreadSmsCount > 0) {
-                badge.textContent = String(unreadSmsCount);
-                badge.classList.add("visible");
-            } else {
-                badge.textContent = "0";
-                badge.classList.remove("visible");
-            }
-        }
-
-        function escapeText(s) {
-            return String(s || "")
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;");
-        }
-
-        function getPeerAtUsername(peer) {
-            return normalizeAtUsername(peer.username || peer.nik || peer.name) || "@foydalanuvchi";
-        }
-
-        function getThreadChannelKey(peerUsername) {
-            const meCanon = canonUsername(profileData.nik) || myClientId;
-            const peerCanon = canonUsername(peerUsername) || "peer";
-            return [meCanon, peerCanon].sort().join("__");
-        }
-
-        // Botda hozir kim bor bo'lsa, kontaktga qo'shmasdan Chatlar ro'yxatiga avtomatik birlashtirish
-        function getAllChatEntries() {
-            const mapByCanon = new Map();
-
-            livePresencePeers.forEach(p => {
-                const nick = getPeerAtUsername(p);
-                const cKey = canonUsername(nick);
-                if (!cKey || cKey === canonUsername(profileData.nik)) return;
-                mapByCanon.set(cKey, {
-                    chatKey: "live__" + cKey,
-                    canonUsername: cKey,
-                    username: nick,
-                    name: p.name || nick.slice(1),
-                    photo: p.photo || DEFAULT_AVATAR,
-                    isLive: true
-                });
-            });
-
-            contactsList.forEach(c => {
-                const nick = getPeerAtUsername(c);
-                const cKey = canonUsername(nick);
-                if (!cKey || cKey === canonUsername(profileData.nik)) return;
-                if (mapByCanon.has(cKey)) {
-                    const existing = mapByCanon.get(cKey);
-                    existing.name = c.name || existing.name;
-                    existing.photo = c.photo || existing.photo || DEFAULT_AVATAR;
-                    existing.chatKey = "cnt__" + c.id;
-                } else {
-                    mapByCanon.set(cKey, {
-                        chatKey: "cnt__" + c.id,
-                        canonUsername: cKey,
-                        username: nick,
-                        name: c.name || nick.slice(1),
-                        photo: c.photo || DEFAULT_AVATAR,
-                        isLive: false
-                    });
-                }
-            });
-
-            return Array.from(mapByCanon.values());
-        }
-
-        function findChatEntryByKey(chatKey) {
-            return getAllChatEntries().find(item => item.chatKey === chatKey) || null;
-        }
-
-        // PROFILNI CHIZISH VA TAHRIRLASH
-        function renderProfileSection() {
-            const imgEl = document.getElementById("profilePhotoView");
-            imgEl.src = profileData.photo || DEFAULT_AVATAR;
-            imgEl.onerror = () => { imgEl.src = DEFAULT_AVATAR; };
-
-            document.getElementById("profileNameView").textContent = profileData.name || "Foydalanuvchi";
-            document.getElementById("profileNikView").textContent = normalizeAtUsername(profileData.nik) || "@foydalanuvchi";
-            document.getElementById("profileBioView").textContent = profileData.bio || "Tavsif kiritilmagan.";
-            document.getElementById("profileVirtualPhoneView").textContent = profileData.virtualPhone || "+91 748 29 41";
-        }
-
-        function openEditProfileModal() {
-            draftPhotoData = profileData.photo || "";
-            const prev = document.getElementById("editPhotoPreview");
-            prev.src = draftPhotoData || DEFAULT_AVATAR;
-            prev.onerror = () => { prev.src = DEFAULT_AVATAR; };
-
-            document.getElementById("editNameInput").value = profileData.name || "";
-            document.getElementById("editNikInput").value = normalizeAtUsername(profileData.nik) || "";
-            document.getElementById("editBioInput").value = profileData.bio || "";
-            document.getElementById("editProfileErr").textContent = "";
-            document.getElementById("editProfileModal").classList.add("open");
-        }
-
-        function closeEditProfileModal() {
-            document.getElementById("editProfileModal").classList.remove("open");
-        }
-
-        function onProfilePhotoPicked(ev) {
-            const file = ev.target.files && ev.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const img = new Image();
-                img.onload = () => {
-                    const canvas = document.createElement("canvas");
-                    let w = img.width, h = img.height, maxSide = 260;
-                    if (w > h) {
-                        if (w > maxSide) { h = Math.round((h * maxSide) / w); w = maxSide; }
-                    } else {
-                        if (h > maxSide) { w = Math.round((w * maxSide) / h); h = maxSide; }
-                    }
-                    canvas.width = w;
-                    canvas.height = h;
-                    canvas.getContext("2d").drawImage(img, 0, 0, w, h);
-                    draftPhotoData = canvas.toDataURL("image/jpeg", 0.85);
-                    document.getElementById("editPhotoPreview").src = draftPhotoData;
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function isUsernameAlreadyUsed(candidateCanon, excludeContactId = null) {
-            if (!candidateCanon) return false;
-            const usedInContacts = contactsList.some(c =>
-                c.id !== excludeContactId &&
-                canonUsername(getPeerAtUsername(c)) === candidateCanon
-            );
-            if (usedInContacts) return true;
-            const usedByOtherLive = livePresencePeers.some(p =>
-                p.clientId && p.clientId !== myClientId &&
-                canonUsername(getPeerAtUsername(p)) === candidateCanon
-            );
-            return usedByOtherLive;
-        }
-
-        function saveProfileChanges() {
-            const errEl = document.getElementById("editProfileErr");
-            const nameVal = document.getElementById("editNameInput").value.trim();
-            const nikRaw = document.getElementById("editNikInput").value;
-            const bioVal = document.getElementById("editBioInput").value.trim();
-
-            if (!nameVal) {
-                errEl.textContent = "Ismni kiriting.";
-                return;
-            }
-
-            const formattedNik = normalizeAtUsername(nikRaw);
-            if (!formattedNik) {
-                errEl.textContent = "@ bilan boshlanadigan username kiriting.";
-                return;
-            }
-
-            if (isUsernameAlreadyUsed(canonUsername(formattedNik))) {
-                errEl.textContent = "Bu username allaqachon boshqa odamda band, takrorlanmaydi.";
-                return;
-            }
-
-            profileData.name = nameVal;
-            profileData.nik = formattedNik;
-            profileData.bio = bioVal;
-            profileData.photo = draftPhotoData || profileData.photo || "";
-
-            writeStore(KEYS.profile, profileData);
-            closeEditProfileModal();
-            renderProfileSection();
-            renderChatsList();
-            sendMyPresenceHeartbeat();
-        }
-
-        // KONTAKT QO'SHISH
-        function openAddContactModal() {
-            document.getElementById("contactUsernameInput").value = "@";
-            document.getElementById("contactNameInput").value = "";
-            document.getElementById("addContactErr").textContent = "";
-            document.getElementById("addContactModal").classList.add("open");
-        }
-
-        function closeAddContactModal() {
-            document.getElementById("addContactModal").classList.remove("open");
-        }
-
-        function saveNewContact() {
-            const errEl = document.getElementById("addContactErr");
-            const userRaw = document.getElementById("contactUsernameInput").value;
-            const nameVal = document.getElementById("contactNameInput").value.trim();
-
-            const formattedUser = normalizeAtUsername(userRaw);
-            if (!formattedUser) {
-                errEl.textContent = "@ bilan boshlanadigan username kiriting.";
-                return;
-            }
-
-            const candidateCanon = canonUsername(formattedUser);
-            if (candidateCanon === canonUsername(profileData.nik)) {
-                errEl.textContent = "Oʻzingizning usernameingizni takrorlab boʻlmaydi.";
-                return;
-            }
-
-            const duplicateContact = contactsList.some(c => canonUsername(getPeerAtUsername(c)) === candidateCanon);
-            if (duplicateContact) {
-                errEl.textContent = "Bu username allaqachon kontaktlarda bor, qayta takrorlanmaydi.";
-                return;
-            }
-
-            if (!nameVal) {
-                errEl.textContent = "Odamga nom bering.";
-                return;
-            }
-
-            const uniqueId = "cnt_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6);
-            const newContact = {
-                id: uniqueId,
-                username: formattedUser,
-                name: nameVal,
-                photo: DEFAULT_AVATAR,
-                createdAt: Date.now()
-            };
-
-            if (!Array.isArray(messagesByContact[uniqueId])) {
-                messagesByContact[uniqueId] = [];
-            }
-            contactsList.unshift(newContact);
-
-            writeStore(KEYS.contacts, contactsList);
-            writeStore(KEYS.messages, messagesByContact);
-
-            closeAddContactModal();
-            renderContactsList();
-            renderChatsList();
-            syncRealtimeMessages();
-        }
-
-        function renderContactsList() {
-            const box = document.getElementById("contactsListContainer");
-            box.innerHTML = "";
-
-            if (!contactsList.length) {
-                box.innerHTML = `<div class="row-card" style="justify-content:center; cursor:default;"><span style="font-size:13px; color:#555555;">Hali kontakt yoʻq. «Odam qoʻshish» tugmasini bosing.</span></div>`;
-                return;
-            }
-
-            contactsList.forEach(c => {
-                const nickLabel = getPeerAtUsername(c);
-                const cKey = canonUsername(nickLabel);
-                const row = document.createElement("div");
-                row.className = "row-card";
-                row.onclick = () => {
-                    const chatNavBtn = document.getElementById("navBtn-chatlar");
-                    openSection("chatlar", chatNavBtn);
-                    openChatByKey("cnt__" + c.id);
-                };
-                row.innerHTML = `
-                    <div style="display:flex; align-items:center; gap:10px; min-width:0; flex:1;">
-                        <img class="avatar-circle" src="${escapeText(c.photo || DEFAULT_AVATAR)}" alt="">
-                        <div style="min-width:0; flex:1;">
-                            <div style="font-size:14.5px; font-weight:800; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeText(c.name)}</div>
-                            <div style="font-size:12px; font-weight:700; color:#333333; margin-top:2px;">${escapeText(nickLabel)}</div>
-                        </div>
-                    </div>
-                    <span class="btn-light-border" style="padding:5px 9px; font-size:11px;">Chat</span>
-                `;
-                const im = row.querySelector("img");
-                if (im) im.onerror = function() { this.src = DEFAULT_AVATAR; };
-                box.appendChild(row);
-            });
-        }
-
-        function getMessagesForCanonUser(cKey) {
-            if (!cKey) return [];
-            if (!Array.isArray(messagesByContact[cKey])) {
-                messagesByContact[cKey] = [];
-            }
-            return messagesByContact[cKey];
-        }
-
-        function renderChatsList() {
-            const box = document.getElementById("chatsListContainer");
-            box.innerHTML = "";
-
-            const entries = getAllChatEntries();
-            if (!entries.length) {
-                box.innerHTML = `<div class="row-card" style="justify-content:center; cursor:default;"><span style="font-size:13px; color:#555555;">Botda hozir boshqa foydalanuvchi kutilyapti...</span></div>`;
-                return;
-            }
-
-            entries.forEach(item => {
-                const msgs = getMessagesForCanonUser(item.canonUsername);
-                let previewText = item.username;
-                if (msgs.length) {
-                    const last = msgs[msgs.length - 1];
-                    if (last.type === "image") previewText = "Rasm";
-                    else if (last.type === "video") previewText = "Video";
-                    else if (last.type === "voice") previewText = "Golos";
-                    else previewText = last.text || "";
-                }
-
-                const row = document.createElement("div");
-                row.className = "row-card";
-                row.onclick = () => openChatByKey(item.chatKey);
-                row.innerHTML = `
-                    <div style="display:flex; align-items:center; gap:10px; min-width:0; flex:1;">
-                        <img class="avatar-circle" src="${escapeText(item.photo || DEFAULT_AVATAR)}" alt="">
-                        <div style="min-width:0; flex:1;">
-                            <div style="font-size:14.5px; font-weight:800; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${escapeText(item.name)}</div>
-                            <div style="font-size:12px; font-weight:600; color:#555555; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-top:2px;">${escapeText(previewText)}</div>
-                        </div>
-                    </div>
-                    <span style="font-size:11.5px; font-weight:700; color:#111111;">${escapeText(item.username)}</span>
-                `;
-                const im = row.querySelector("img");
-                if (im) im.onerror = function() { this.src = DEFAULT_AVATAR; };
-                box.appendChild(row);
-            });
-        }
-
-        function openChatByKey(chatKey) {
-            const entry = findChatEntryByKey(chatKey);
-            if (!entry) return;
-
-            currentOpenChatKey = entry.chatKey;
-            document.getElementById("chatListView").style.display = "none";
-            document.getElementById("chatRoomView").classList.add("open");
-
-            const av = document.getElementById("activeChatAvatar");
-            av.src = entry.photo || DEFAULT_AVATAR;
-            av.onerror = () => { av.src = DEFAULT_AVATAR; };
-
-            document.getElementById("activeChatNick").textContent = entry.username;
-            setUnreadSmsCount(0);
-            renderChatMessages(entry.canonUsername);
-            syncRealtimeMessages();
-        }
-
-        function closeActiveChat() {
-            currentOpenChatKey = null;
-            document.getElementById("chatRoomView").classList.remove("open");
-            document.getElementById("chatListView").style.display = "flex";
-            renderChatsList();
-        }
-
-        function renderChatMessages(cKey) {
-            const stream = document.getElementById("chatMessagesStream");
-            const list = getMessagesForCanonUser(cKey).slice().sort((a, b) => (a.ts || 0) - (b.ts || 0));
-            stream.innerHTML = "";
-
-            list.forEach(m => {
-                const bubble = document.createElement("div");
-                bubble.className = "msg-bubble " + (m.sender === "me" ? "me" : "them");
-
-                if (m.type === "image" && m.mediaUrl) {
-                    const img = document.createElement("img");
-                    img.className = "msg-media-img";
-                    img.src = m.mediaUrl;
-                    bubble.appendChild(img);
-                } else if (m.type === "video" && m.mediaUrl) {
-                    const vid = document.createElement("video");
-                    vid.className = "msg-media-vid";
-                    vid.src = m.mediaUrl;
-                    vid.controls = true;
-                    bubble.appendChild(vid);
-                } else if (m.type === "voice" && m.audioUrl) {
-                    const aud = document.createElement("audio");
-                    aud.className = "msg-voice-player";
-                    aud.src = m.audioUrl;
-                    aud.controls = true;
-                    bubble.appendChild(aud);
-                } else {
-                    bubble.textContent = m.text || "";
-                }
-
-                stream.appendChild(bubble);
-            });
-            stream.scrollTop = stream.scrollHeight;
-        }
-
-        async function publishRealtimeMessage(entry, payload) {
-            if (!entry) return;
-            const msgId = "rtm_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6);
-            const fullMsg = {
-                id: msgId,
-                senderCanon: canonUsername(profileData.nik),
-                sender: "me",
-                type: payload.type || "text",
-                text: payload.text || "",
-                mediaUrl: payload.mediaUrl || "",
-                audioUrl: payload.audioUrl || "",
-                ts: Date.now()
-            };
-
-            seenMsgIds.add(msgId);
-            writeStore(KEYS.seenMsgIds, Array.from(seenMsgIds).slice(-400));
-
-            const list = getMessagesForCanonUser(entry.canonUsername);
-            list.push(fullMsg);
-            writeStore(KEYS.messages, messagesByContact);
-
-            const activeEntry = currentOpenChatKey ? findChatEntryByKey(currentOpenChatKey) : null;
-            if (activeEntry && activeEntry.canonUsername === entry.canonUsername) {
-                renderChatMessages(entry.canonUsername);
-            }
-            renderChatsList();
-
-            const chanKey = getThreadChannelKey(entry.username);
-            try {
-                await fetch(`${RT_DB_URL}/tg_clone_rt_messages/${encodeURIComponent(chanKey)}/${encodeURIComponent(msgId)}.json`, {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(fullMsg)
-                });
-            } catch (e) {}
-        }
-
-        function sendChatMessage() {
-            if (!currentOpenChatKey) return;
-            const entry = findChatEntryByKey(currentOpenChatKey);
-            if (!entry) return;
-            const inp = document.getElementById("chatMsgInput");
-            const txt = inp.value.trim();
-            if (!txt) return;
-            inp.value = "";
-            publishRealtimeMessage(entry, { type: "text", text: txt });
-        }
-
-        function onChatMediaPicked(ev) {
-            if (!currentOpenChatKey) return;
-            const entry = findChatEntryByKey(currentOpenChatKey);
-            const file = ev.target.files && ev.target.files[0];
-            ev.target.value = "";
-            if (!file || !entry) return;
-
-            const isVideo = file.type.startsWith("video/");
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const url = String(e.target.result || "");
-                if (!url) return;
-                publishRealtimeMessage(entry, {
-                    type: isVideo ? "video" : "image",
-                    mediaUrl: url
-                });
-            };
-            reader.readAsDataURL(file);
-        }
-
-        // MIKROFON STIKERIGA BOSIB TURIB GOLOS TASHLASH
-        async function startHoldVoice(ev) {
-            if (!currentOpenChatKey || isHoldingMic) return;
-            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === "undefined") return;
-
-            try {
-                holdMicStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                isHoldingMic = true;
-                holdMicChunks = [];
-                document.getElementById("holdMicBtn").classList.add("recording");
-
-                const rec = new MediaRecorder(holdMicStream);
-                rec.ondataavailable = (e) => {
-                    if (e.data && e.data.size > 0) holdMicChunks.push(e.data);
-                };
-                rec.onstop = () => {
-                    const mime = rec.mimeType || "audio/webm";
-                    const chunksCopy = holdMicChunks.slice();
-                    holdMicChunks = [];
-                    if (holdMicStream) {
-                        holdMicStream.getTracks().forEach(t => t.stop());
-                        holdMicStream = null;
-                    }
-                    if (!chunksCopy.length || !currentOpenChatKey) return;
-                    const targetEntry = findChatEntryByKey(currentOpenChatKey);
-                    if (!targetEntry) return;
-
-                    const blob = new Blob(chunksCopy, { type: mime });
-                    const reader = new FileReader();
-                    reader.onloadend = () => {
-                        const dataUrl = String(reader.result || "");
-                        if (dataUrl) {
-                            publishRealtimeMessage(targetEntry, {
-                                type: "voice",
-                                audioUrl: dataUrl
-                            });
-                        }
-                    };
-                    reader.readAsDataURL(blob);
-                };
-                holdMicRecorder = rec;
-                rec.start();
-            } catch (err) {
-                isHoldingMic = false;
-                document.getElementById("holdMicBtn").classList.remove("recording");
-            }
-        }
-
-        function stopHoldVoice(ev) {
-            if (!isHoldingMic) return;
-            isHoldingMic = false;
-            document.getElementById("holdMicBtn").classList.remove("recording");
-            if (holdMicRecorder && holdMicRecorder.state !== "inactive") {
-                try { holdMicRecorder.stop(); } catch (e) {}
-            }
-            holdMicRecorder = null;
-        }
-
-        // BOTDA KIM BORLIGINI REAL VAQTDA YUBORISH VA OLISH
-        async function sendMyPresenceHeartbeat() {
-            const payload = {
-                clientId: myClientId,
-                username: normalizeAtUsername(profileData.nik),
-                name: profileData.name || "Foydalanuvchi",
-                photo: profileData.photo || DEFAULT_AVATAR,
-                lastSeen: Date.now()
-            };
-            try {
-                await fetch(`${RT_DB_URL}/tg_clone_rt_presence/${encodeURIComponent(myClientId)}.json`, {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload)
-                });
-            } catch (e) {}
-        }
-
-        async function syncPresenceAndMessages() {
-            const now = Date.now();
-            try {
-                const pRes = await fetch(`${RT_DB_URL}/tg_clone_rt_presence.json`);
-                if (pRes.ok) {
-                    const pData = await pRes.json();
-                    if (pData && typeof pData === "object") {
-                        const activePeers = [];
-                        Object.values(pData).forEach(u => {
-                            if (!u || !u.clientId || u.clientId === myClientId) return;
-                            if (!u.lastSeen || (now - Number(u.lastSeen)) > ONLINE_WINDOW_MS) return;
-                            const nick = normalizeAtUsername(u.username);
-                            if (!nick) return;
-                            activePeers.push({
-                                clientId: u.clientId,
-                                username: nick,
-                                name: u.name || nick.slice(1),
-                                photo: u.photo || DEFAULT_AVATAR,
-                                lastSeen: Number(u.lastSeen) || now
-                            });
-                        });
-                        activePeers.sort((a, b) => b.lastSeen - a.lastSeen);
-                        livePresencePeers = activePeers;
-                        renderChatsList();
-                    }
-                }
-            } catch (e) {}
-
-            await syncRealtimeMessages();
-        }
-
-        async function syncRealtimeMessages() {
-            const entries = getAllChatEntries();
-            if (!entries.length) return;
-            const myCanon = canonUsername(profileData.nik);
-            const activeEntry = currentOpenChatKey ? findChatEntryByKey(currentOpenChatKey) : null;
-            let addedUnread = 0;
-            let anyUpdated = false;
-
-            for (const entry of entries) {
-                const chanKey = getThreadChannelKey(entry.username);
-                try {
-                    const res = await fetch(`${RT_DB_URL}/tg_clone_rt_messages/${encodeURIComponent(chanKey)}.json`);
-                    if (!res.ok) continue;
-                    const data = await res.json();
-                    if (!data || typeof data !== "object") continue;
-
-                    const list = getMessagesForCanonUser(entry.canonUsername);
-                    const existingIds = new Set(list.map(m => m.id));
-
-                    Object.values(data).forEach(pkt => {
-                        if (!pkt || !pkt.id || existingIds.has(pkt.id)) return;
-                        const isFromPeer = pkt.senderCanon && pkt.senderCanon !== myCanon;
-                        const localMsg = {
-                            id: pkt.id,
-                            sender: isFromPeer ? "them" : "me",
-                            type: pkt.type || "text",
-                            text: pkt.text || "",
-                            mediaUrl: pkt.mediaUrl || "",
-                            audioUrl: pkt.audioUrl || "",
-                            ts: pkt.ts || Date.now()
-                        };
-                        list.push(localMsg);
-                        existingIds.add(pkt.id);
-                        anyUpdated = true;
-
-                        if (isFromPeer && !seenMsgIds.has(pkt.id)) {
-                            seenMsgIds.add(pkt.id);
-                            const chatSecActive = document.getElementById("sec-chatlar").classList.contains("active");
-                            const viewingNow = chatSecActive && activeEntry && activeEntry.canonUsername === entry.canonUsername;
-                            if (!viewingNow) {
-                                addedUnread += 1;
-                            }
-                        }
-                    });
-                } catch (e) {}
-            }
-
-            if (anyUpdated) {
-                writeStore(KEYS.messages, messagesByContact);
-                writeStore(KEYS.seenMsgIds, Array.from(seenMsgIds).slice(-400));
-                if (addedUnread > 0) {
-                    setUnreadSmsCount(unreadSmsCount + addedUnread);
-                }
-                if (activeEntry) {
-                    renderChatMessages(activeEntry.canonUsername);
-                }
-                renderChatsList();
-            }
-        }
-
-        function openSection(secId, btnEl) {
-            document.querySelectorAll(".tg-nav-btn").forEach(b => b.classList.remove("active"));
+        function openKSection(secId, btnEl) {
+            document.querySelectorAll(".k-nav-btn").forEach(b => b.classList.remove("active"));
             if (btnEl) btnEl.classList.add("active");
-            document.querySelectorAll(".tg-section").forEach(s => s.classList.remove("active"));
+            document.querySelectorAll(".k-section").forEach(s => s.classList.remove("active"));
             const target = document.getElementById("sec-" + secId);
             if (target) target.classList.add("active");
-
-            if (secId === "chatlar") {
-                setUnreadSmsCount(0);
-                const activeEntry = currentOpenChatKey ? findChatEntryByKey(currentOpenChatKey) : null;
-                if (activeEntry) renderChatMessages(activeEntry.canonUsername);
-                else renderChatsList();
-                syncPresenceAndMessages();
-            } else if (secId === "kontaktlar") {
-                renderContactsList();
-            } else if (secId === "profil") {
-                renderProfileSection();
-            }
         }
 
-        setUnreadSmsCount(unreadSmsCount);
-        renderProfileSection();
-        renderContactsList();
-        renderChatsList();
-        sendMyPresenceHeartbeat();
-        syncPresenceAndMessages();
-
-        setInterval(() => { sendMyPresenceHeartbeat(); }, 8000);
-        setInterval(() => { syncPresenceAndMessages(); }, 1500);
-
         setTimeout(() => {
-            const splash = document.getElementById("tgSplash");
+            const splash = document.getElementById("kSplash");
             if (splash) splash.classList.add("fade-out");
         }, 1500);
     </script>
