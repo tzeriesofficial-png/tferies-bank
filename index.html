@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>A C A Z E S</title>
+  <title>acazes</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     * {
@@ -16,160 +16,26 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background-color: #160905;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
+      background-color: #212731;
     }
 
-    .splash-screen {
-      position: relative;
+    .bg-only {
       width: 100%;
       height: 100dvh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 50% 48%, rgba(168, 78, 28, 0.36) 0%, rgba(74, 27, 9, 0.72) 48%, rgba(20, 7, 3, 0.98) 100%),
-        linear-gradient(155deg, #240c05 0%, #4e1c09 42%, #290e05 76%, #120502 100%);
-    }
-
-    /* Diogonal nur chiziqlari va jigarrang porlash */
-    .streak {
-      position: absolute;
-      pointer-events: none;
-      transform-origin: center;
-    }
-
-    .streak-1 {
-      width: 160%;
-      height: 14px;
-      top: 24%;
-      left: -30%;
-      transform: rotate(-36deg);
-      background: linear-gradient(90deg, transparent 0%, rgba(255, 165, 95, 0.12) 30%, rgba(255, 195, 140, 0.55) 55%, transparent 100%);
-      filter: blur(4px);
-    }
-
-    .streak-2 {
-      width: 170%;
-      height: 6px;
-      top: 38%;
-      left: -35%;
-      transform: rotate(-36deg);
-      background: linear-gradient(90deg, transparent 0%, rgba(255, 225, 190, 0.75) 52%, transparent 90%);
-      filter: blur(1.5px);
-    }
-
-    .streak-3 {
-      width: 170%;
-      height: 22px;
-      top: 66%;
-      left: -25%;
-      transform: rotate(36deg);
-      background: linear-gradient(90deg, transparent 5%, rgba(212, 102, 36, 0.45) 50%, transparent 95%);
-      filter: blur(6px);
-    }
-
-    .streak-4 {
-      width: 165%;
-      height: 5px;
-      top: 76%;
-      left: -25%;
-      transform: rotate(36deg);
-      background: linear-gradient(90deg, transparent 10%, rgba(255, 210, 165, 0.65) 55%, transparent 95%);
-      filter: blur(1.5px);
-    }
-
-    /* Orqa plandagi oq geometrik chiziqlar */
-    .bg-lines {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-
-    /* Markaziy A C A Z E S yozuvi va oq chiziqchalar */
-    .center-brand {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      padding: 0 20px;
-      text-align: center;
-    }
-
-    .white-line {
-      width: 160px;
-      height: 2px;
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, #ffffff 50%, rgba(255, 255, 255, 0.08) 100%);
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.45);
-    }
-
-    .brand-title {
-      color: #ffffff;
-      font-size: clamp(28px, 8vw, 44px);
-      font-weight: 800;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.65), 0 0 24px rgba(255, 255, 255, 0.22);
-      padding-left: 0.28em; /* letter-spacing sabab markazni aniq ushlash uchun */
+      background-color: #212731;
     }
   </style>
 </head>
 <body>
-  <main class="splash-screen">
-    <!-- Jigarrang nur chiziqlari -->
-    <div class="streak streak-1"></div>
-    <div class="streak streak-2"></div>
-    <div class="streak streak-3"></div>
-    <div class="streak streak-4"></div>
-
-    <!-- Oq geometrik chiziqlar -->
-    <svg class="bg-lines" viewBox="0 0 400 800" preserveAspectRatio="none" aria-hidden="true">
-      <!-- Yuqori markaziy burchak chizig'i -->
-      <polyline
-        points="95,255 200,155 305,255"
-        fill="none"
-        stroke="#ffffff"
-        stroke-width="2"
-        stroke-opacity="0.85"
-      />
-      <!-- Pastki markaziy burchak chizig'i -->
-      <polyline
-        points="95,545 200,645 305,545"
-        fill="none"
-        stroke="#ffffff"
-        stroke-width="2"
-        stroke-opacity="0.85"
-      />
-      <!-- Yon tomondagi nozik oq chiziqlar -->
-      <line x1="0" y1="120" x2="135" y2="255" stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.45" />
-      <line x1="400" y1="120" x2="265" y2="255" stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.45" />
-      <line x1="0" y1="680" x2="135" y2="545" stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.45" />
-      <line x1="400" y1="680" x2="265" y2="545" stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.45" />
-    </svg>
-
-    <!-- Qoq o'rtadagi yozuv va oq chiziqchalar -->
-    <div class="center-brand">
-      <div class="white-line"></div>
-      <h1 class="brand-title">A C A Z E S</h1>
-      <div class="white-line"></div>
-    </div>
-  </main>
+  <div class="bg-only"></div>
 
   <script>
     if (window.Telegram && window.Telegram.WebApp) {
       const tg = window.Telegram.WebApp;
       tg.ready();
       tg.expand();
-      tg.setHeaderColor("#1b0904");
-      tg.setBackgroundColor("#160905");
+      tg.setHeaderColor("#212731");
+      tg.setBackgroundColor("#212731");
     }
   </script>
 </body>
