@@ -156,7 +156,6 @@
       word-break: break-word;
     }
 
-    /* XONA ICHKI SAHNASI */
     .room-stage {
       display: none;
       flex-direction: column;
@@ -214,7 +213,6 @@
       flex-shrink: 0;
     }
 
-    /* REAL VAQT ODAMLAR SONI PREMIUM SVG STIKER */
     .live-count-pill {
       display: inline-flex;
       align-items: center;
@@ -244,7 +242,6 @@
       cursor: pointer;
     }
 
-    /* TEPADA KIRISH BILDIRISHNOMASI */
     .join-banner {
       display: none;
       align-items: center;
@@ -264,7 +261,6 @@
       display: flex;
     }
 
-    /* 1 TA EGASI O'RINDIG'I + 6 TA STOLCHA (QIMIRLAMAYDI) */
     .seats-panel {
       background: rgba(120, 4, 2, 0.65);
       border: 1px solid rgba(255, 255, 255, 0.24);
@@ -349,7 +345,6 @@
       min-height: 14px;
     }
 
-    /* XONA CHAT MAYDONI */
     .room-chat-box {
       flex: 1;
       min-height: 84px;
@@ -380,7 +375,6 @@
       color: #ffd5d3;
     }
 
-    /* PASTKI BOSHQARUV PANELI: CHAT INPUT + KICHIK MIKROFON + PADARKA */
     .stage-bottom-bar {
       display: flex;
       align-items: center;
@@ -428,7 +422,6 @@
       flex-shrink: 0;
     }
 
-    /* KICHIK MIKROFON (QIMIRLAMAYDI, YOQILGANDA OQ BO'LMAYDI, FAQAT QIZIL CHIZIQ YO'QOLADI) */
     .mic-mini-btn {
       display: none;
       width: 44px;
@@ -459,7 +452,6 @@
       opacity: 0;
     }
 
-    /* PADARKA TUGMASI (MIKROFON OLDIDA, QIMIRLAMAYDI) */
     .gift-open-btn {
       width: 44px;
       height: 44px;
@@ -478,139 +470,70 @@
       height: 22px;
     }
 
-    /* 60 TA PREMIUM SVG PADARKA OYNASI (QIMIRLAMAYDI, FAQAT O'RINDIQDAGILAR TANLANADI) */
-    .gift-modal-backdrop {
+    /* SOVG'A USTIGA BOSGANDA CHIQADIGAN CHIROYLI XABAR OYNASI */
+    .gift-notice-backdrop {
       position: fixed;
       inset: 0;
-      z-index: 95;
-      background: rgba(0, 0, 0, 0.58);
-      backdrop-filter: blur(5px);
+      z-index: 96;
+      background: rgba(0, 0, 0, 0.56);
+      backdrop-filter: blur(6px);
       display: none;
-      align-items: flex-end;
+      align-items: center;
       justify-content: center;
-      padding: 12px;
+      padding: 18px;
     }
 
-    .gift-modal-backdrop.open {
+    .gift-notice-backdrop.open {
       display: flex;
+      animation: fadeTab 0.2s ease;
     }
 
-    .gift-sheet {
+    .gift-notice-card {
       width: 100%;
-      max-width: 460px;
-      max-height: 76dvh;
-      background: #b80a04;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 24px;
-      padding: 14px;
+      max-width: 350px;
+      background: linear-gradient(160deg, #c80b05 0%, #8f0502 100%);
+      border: 1.5px solid rgba(255, 255, 255, 0.36);
+      border-radius: 26px;
+      padding: 24px 20px 20px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+      box-shadow: 0 20px 44px rgba(0, 0, 0, 0.48);
     }
 
-    .gift-sheet-top {
+    .gift-notice-badge {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.34);
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
     }
 
-    .gift-recipients-bar {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 2px 0 4px;
-      scrollbar-width: none;
-    }
-
-    .gift-recipients-bar::-webkit-scrollbar {
-      display: none;
-    }
-
-    .recipient-chip {
-      flex: 0 0 auto;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 10px;
-      border-radius: 13px;
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      background: rgba(90, 2, 0, 0.72);
+    .gift-notice-text {
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.55;
       color: #ffffff;
-      font-size: 12px;
-      font-weight: 800;
-      cursor: pointer;
+      letter-spacing: 0.01em;
     }
 
-    .recipient-chip.selected {
-      background: #ffffff;
-      color: #d60d06;
-      border-color: #ffffff;
-    }
-
-    .recipient-chip-avatar {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      object-fit: cover;
-      background: #9e0803;
-    }
-
-    .gifts-60-grid {
-      flex: 1;
-      overflow-y: auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      padding-right: 2px;
-    }
-
-    .gift-cell {
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      background: rgba(90, 2, 0, 0.65);
-      border-radius: 16px;
-      padding: 10px 6px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      cursor: pointer;
-    }
-
-    .gift-cell.selected {
-      border-color: #ffffff;
-      background: rgba(255, 255, 255, 0.22);
-    }
-
-    .gift-cell svg {
-      width: 30px;
-      height: 30px;
-    }
-
-    .gift-cell-num {
-      font-size: 10px;
-      font-weight: 800;
-      color: rgba(255, 255, 255, 0.88);
-    }
-
-    .send-gift-confirm-btn {
-      width: 100%;
-      padding: 12px;
+    .gift-notice-close-btn {
+      margin-top: 2px;
+      padding: 10px 26px;
       border: none;
-      border-radius: 15px;
+      border-radius: 14px;
       background: #ffffff;
       color: #d60d06;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 900;
       cursor: pointer;
     }
 
-    .send-gift-confirm-btn:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-    }
-
-    /* HONA EGASI BOSGANDA USTMA-UST CHIQADIGAN AMALLAR */
     .seat-action-backdrop {
       position: fixed;
       inset: 0;
@@ -668,7 +591,6 @@
       50% { transform: translateY(-3px) scale(1.04); }
     }
 
-    /* HONA OCHISH MODALI (RASM VA NOM SHART) */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -815,7 +737,6 @@
       cursor: not-allowed;
     }
 
-    /* PROFILM BO'LIMI */
     .profile-header {
       display: flex;
       flex-direction: column;
@@ -886,7 +807,6 @@
       50% { transform: translateY(-3px) rotate(6deg) scale(1.1); }
     }
 
-    /* PASTKI 4 TA MENYU PANELI */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -978,7 +898,6 @@
   </div>
 
   <div class="main-layout">
-    <!-- 1. HONA BO'LIMI -->
     <section class="page-content active" id="page-hona">
       <div id="honaLobbyView">
         <div class="hona-top-bar">
@@ -1006,7 +925,6 @@
         <div class="rooms-grid" id="roomsGrid"></div>
       </div>
 
-      <!-- XONA ICHKI SAHNASI -->
       <div class="room-stage" id="roomStageView">
         <div class="stage-header">
           <div class="stage-room-info">
@@ -1030,16 +948,13 @@
 
         <div class="join-banner" id="joinBanner"></div>
 
-        <!-- 1 TA EGASI O'RINDIG'I + 6 TA STOLCHA -->
         <div class="seats-panel">
           <div class="host-seat-row" id="hostSeatRow"></div>
           <div class="seats-grid-six" id="seatsSixGrid"></div>
         </div>
 
-        <!-- PASTKI CHAT RO'YXATI -->
         <div class="room-chat-box" id="roomChatBox"></div>
 
-        <!-- CHAT KIRITISH + KICHIK MIKROFON + PADARKA -->
         <div class="stage-bottom-bar">
           <form class="room-chat-form" id="roomChatForm" autocomplete="off">
             <input
@@ -1056,7 +971,6 @@
             </button>
           </form>
 
-          <!-- KICHIK MIKROFON (YOQILGANDA OQ BO'LMAYDI, FAQAT QIZIL CHIZIQ YO'QOLADI, QIMIRLAMAYDI) -->
           <button type="button" class="mic-mini-btn" id="micMiniBtn" aria-label="Mic">
             <svg class="mic-mini-svg" viewBox="0 0 28 28" fill="none">
               <rect x="10.2" y="4.2" width="7.6" height="12.2" rx="3.8" fill="#ffffff"/>
@@ -1066,8 +980,7 @@
             </svg>
           </button>
 
-          <!-- PADARKA TUGMASI -->
-          <button type="button" class="gift-open-btn" id="openGiftModalBtn" aria-label="Padarka">
+          <button type="button" class="gift-open-btn" id="openGiftModalBtn" aria-label="Sovg'a">
             <svg class="gift-open-svg" viewBox="0 0 24 24" fill="none">
               <rect x="4" y="10" width="16" height="10" rx="2.5" stroke="#ffffff" stroke-width="2"/>
               <rect x="3" y="7" width="18" height="3.5" rx="1.5" stroke="#ffffff" stroke-width="1.9"/>
@@ -1114,7 +1027,25 @@
       </div>
     </section>
 
-    <!-- HONA EGASI BOSGANDA USTMA-UST CHIQADIGAN AMALLAR -->
+    <!-- SOVG'A USTIGA BOSGANDA CHIQADIGAN CHIROYLI XABAR -->
+    <div class="gift-notice-backdrop" id="giftNoticeBackdrop">
+      <div class="gift-notice-card">
+        <div class="gift-notice-badge">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <rect x="4" y="10" width="16" height="10" rx="2.5" stroke="#ffffff" stroke-width="2"/>
+            <rect x="3" y="7" width="18" height="3.5" rx="1.5" stroke="#ffffff" stroke-width="1.9"/>
+            <path d="M12 7V20" stroke="#ffffff" stroke-width="2"/>
+            <path d="M12 7C12 7 8.5 7 8 4.8C7.6 3.2 9.4 2.5 10.6 3.7L12 5.2L13.4 3.7C14.6 2.5 16.4 3.2 16 4.8C15.5 7 12 7 12 7Z" stroke="#ffffff" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="gift-notice-text">
+          Ushbu boʻlim ishlamayabdi bu bot tesla farzona tarafidan yaratilyabdi.<br />
+          Ushbu boʻlim 24-soat ichida ishlaydi.
+        </div>
+        <button type="button" class="gift-notice-close-btn" id="giftNoticeCloseBtn">Yopish</button>
+      </div>
+    </div>
+
     <div class="seat-action-backdrop" id="seatActionBackdrop">
       <div class="seat-action-stack">
         <button type="button" class="premium-action-btn" id="actionBlockUserBtn">
@@ -1133,23 +1064,6 @@
             <line x1="4.5" y1="4.5" x2="19.5" y2="19.5" stroke="#ff2b24" stroke-width="2.4" stroke-linecap="round"/>
           </svg>
           <span>Mikrofon</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- 60 TA PREMIUM SVG PADARKA OYNASI -->
-    <div class="gift-modal-backdrop" id="giftModalBackdrop">
-      <div class="gift-sheet">
-        <div class="gift-sheet-top">
-          <span class="modal-title">Padarka (60)</span>
-          <button type="button" class="close-btn" id="closeGiftModalBtn">✕</button>
-        </div>
-
-        <div class="gift-recipients-bar" id="giftRecipientsBar"></div>
-        <div class="gifts-60-grid" id="gifts60Grid"></div>
-
-        <button type="button" class="send-gift-confirm-btn" id="sendGiftConfirmBtn" disabled>
-          Tanlash
         </button>
       </div>
     </div>
@@ -1203,7 +1117,6 @@
     </nav>
   </div>
 
-  <!-- HONA OCHISH MODALI (RASM VA NOM SHART) -->
   <div class="modal-backdrop" id="roomModal">
     <div class="modal-card">
       <div class="modal-top">
@@ -1260,7 +1173,6 @@
       document.getElementById("tgPhoto").src = photoUrl;
     }
 
-    // REAL-TIME AUDIO (Web Audio + WebRTC tayyor ulanish)
     let localAudioStream = null;
     let micEnabled = false;
     const micMiniBtn = document.getElementById("micMiniBtn");
@@ -1294,7 +1206,6 @@
       }
     });
 
-    // TABLAR ALMASHINUVI
     const navItems = document.querySelectorAll(".nav-item");
     const pages = document.querySelectorAll(".page-content");
 
@@ -1310,7 +1221,6 @@
       });
     });
 
-    // HONA VA REAL VAQT KANALI (BroadcastChannel + localStorage)
     const STORAGE_KEY = "acazes_hona_rooms_v4";
     const channel = typeof BroadcastChannel !== "undefined" ? new BroadcastChannel("acazes_live_rooms") : null;
 
@@ -1344,17 +1254,12 @@
     const actionStandUpBtn = document.getElementById("actionStandUpBtn");
 
     const openGiftModalBtn = document.getElementById("openGiftModalBtn");
-    const giftModalBackdrop = document.getElementById("giftModalBackdrop");
-    const closeGiftModalBtn = document.getElementById("closeGiftModalBtn");
-    const giftRecipientsBar = document.getElementById("giftRecipientsBar");
-    const gifts60Grid = document.getElementById("gifts60Grid");
-    const sendGiftConfirmBtn = document.getElementById("sendGiftConfirmBtn");
+    const giftNoticeBackdrop = document.getElementById("giftNoticeBackdrop");
+    const giftNoticeCloseBtn = document.getElementById("giftNoticeCloseBtn");
 
     let selectedRoomPhoto = "";
     let activeRoomId = null;
     let targetSeatIndexForAction = null;
-    let selectedRecipientUserId = null;
-    let selectedGiftIndex = null;
     let joinBannerTimer = null;
 
     function loadRooms() {
@@ -1653,7 +1558,7 @@
       activeRoomId = null;
       setMicrophoneLive(false);
       closeSeatActions();
-      giftModalBackdrop.classList.remove("open");
+      giftNoticeBackdrop.classList.remove("open");
       roomStageView.classList.remove("active");
       honaLobbyView.style.display = "block";
       syncMicVisibility();
@@ -1751,7 +1656,6 @@
       });
     }
 
-    // CHAT YUBORISH (60 BELGI LIMIT, ESLATMASIZ)
     roomChatForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const room = getActiveRoom();
@@ -1770,132 +1674,20 @@
       renderActiveRoom();
     });
 
-    // 60 TA PREMIUM SVG PADARKA GENERATORI (QIMIRLAMAYDI, FAQAT O'RINDIQDAGILAR TANLANADI)
-    function createPremiumGiftSvg(idx) {
-      const variant = idx % 6;
-      const num = idx + 1;
-      if (variant === 0) {
-        return `<svg viewBox="0 0 32 32" fill="none"><polygon points="16,3 28,11 23,28 9,28 4,11" stroke="#ffffff" stroke-width="2" fill="rgba(255,255,255,0.16)"/><polygon points="16,8 22,13 19,23 13,23 10,13" fill="#ffffff"/></svg>`;
-      }
-      if (variant === 1) {
-        return `<svg viewBox="0 0 32 32" fill="none"><path d="M5 23L8 9L16 15L24 9L27 23H5Z" stroke="#ffffff" stroke-width="2" fill="rgba(255,255,255,0.18)" stroke-linejoin="round"/><circle cx="8" cy="7" r="1.8" fill="#ffffff"/><circle cx="16" cy="11" r="1.8" fill="#ffffff"/><circle cx="24" cy="7" r="1.8" fill="#ffffff"/></svg>`;
-      }
-      if (variant === 2) {
-        return `<svg viewBox="0 0 32 32" fill="none"><polygon points="16,3 20,11 29,12 22.5,18.2 24.2,27 16,22.6 7.8,27 9.5,18.2 3,12 12,11" stroke="#ffffff" stroke-width="2" fill="rgba(255,255,255,0.2)" stroke-linejoin="round"/></svg>`;
-      }
-      if (variant === 3) {
-        return `<svg viewBox="0 0 32 32" fill="none"><path d="M16 27C16 27 5 20 5 12C5 8.5 7.8 6 11 6C13.2 6 15 7.2 16 8.8C17 7.2 18.8 6 21 6C24.2 6 27 8.5 27 12C27 20 16 27 16 27Z" stroke="#ffffff" stroke-width="2" fill="rgba(255,255,255,0.2)"/></svg>`;
-      }
-      if (variant === 4) {
-        return `<svg viewBox="0 0 32 32" fill="none"><rect x="6" y="13" width="20" height="14" rx="3" stroke="#ffffff" stroke-width="2" fill="rgba(255,255,255,0.16)"/><rect x="4" y="9" width="24" height="4.5" rx="2" stroke="#ffffff" stroke-width="2"/><path d="M16 9V27" stroke="#ffffff" stroke-width="2"/></svg>`;
-      }
-      return `<svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="11" stroke="#ffffff" stroke-width="2" fill="rgba(255,255,255,0.16)"/><path d="M16 9L18.2 13.8L23.5 14.5L19.6 18.1L20.6 23.3L16 20.8L11.4 23.3L12.4 18.1L8.5 14.5L13.8 13.8L16 9Z" fill="#ffffff"/></svg>`;
-    }
-
-    function getSeatedPeople(room) {
-      if (!room) return [];
-      const list = [];
-      if (room.hostOccupant) {
-        list.push(room.hostOccupant);
-      }
-      if (Array.isArray(room.seats)) {
-        room.seats.forEach((s) => {
-          if (s && !list.some((x) => String(x.userId) === String(s.userId))) {
-            list.push(s);
-          }
-        });
-      }
-      return list;
-    }
-
-    function updateGiftConfirmButton() {
-      sendGiftConfirmBtn.disabled = !(selectedRecipientUserId && selectedGiftIndex !== null);
-    }
-
-    function openGiftModal() {
-      const room = getActiveRoom();
-      if (!room) return;
-      const seatedList = getSeatedPeople(room);
-
-      selectedRecipientUserId = seatedList.length > 0 ? String(seatedList[0].userId) : null;
-      selectedGiftIndex = null;
-      giftRecipientsBar.innerHTML = "";
-      gifts60Grid.innerHTML = "";
-
-      seatedList.forEach((person) => {
-        const chip = document.createElement("button");
-        chip.type = "button";
-        chip.className = `recipient-chip ${String(person.userId) === selectedRecipientUserId ? "selected" : ""}`;
-        if (person.photo) {
-          const av = document.createElement("img");
-          av.className = "recipient-chip-avatar";
-          av.src = person.photo;
-          av.alt = "";
-          chip.appendChild(av);
-        }
-        const sp = document.createElement("span");
-        sp.textContent = person.name || "";
-        chip.appendChild(sp);
-
-        chip.addEventListener("click", () => {
-          selectedRecipientUserId = String(person.userId);
-          giftRecipientsBar.querySelectorAll(".recipient-chip").forEach((c) => c.classList.remove("selected"));
-          chip.classList.add("selected");
-          updateGiftConfirmButton();
-        });
-        giftRecipientsBar.appendChild(chip);
-      });
-
-      for (let i = 0; i < 60; i++) {
-        const cell = document.createElement("button");
-        cell.type = "button";
-        cell.className = "gift-cell";
-        cell.innerHTML = `${createPremiumGiftSvg(i)}<span class="gift-cell-num">#${i + 1}</span>`;
-        cell.addEventListener("click", () => {
-          selectedGiftIndex = i;
-          gifts60Grid.querySelectorAll(".gift-cell").forEach((c) => c.classList.remove("selected"));
-          cell.classList.add("selected");
-          updateGiftConfirmButton();
-        });
-        gifts60Grid.appendChild(cell);
-      }
-
-      updateGiftConfirmButton();
-      giftModalBackdrop.classList.add("open");
-    }
-
-    openGiftModalBtn.addEventListener("click", openGiftModal);
-    closeGiftModalBtn.addEventListener("click", () => {
-      giftModalBackdrop.classList.remove("open");
+    openGiftModalBtn.addEventListener("click", () => {
+      giftNoticeBackdrop.classList.add("open");
     });
-    giftModalBackdrop.addEventListener("click", (e) => {
-      if (e.target === giftModalBackdrop) {
-        giftModalBackdrop.classList.remove("open");
+
+    giftNoticeCloseBtn.addEventListener("click", () => {
+      giftNoticeBackdrop.classList.remove("open");
+    });
+
+    giftNoticeBackdrop.addEventListener("click", (e) => {
+      if (e.target === giftNoticeBackdrop) {
+        giftNoticeBackdrop.classList.remove("open");
       }
     });
 
-    sendGiftConfirmBtn.addEventListener("click", () => {
-      const room = getActiveRoom();
-      if (!room || !selectedRecipientUserId || selectedGiftIndex === null) return;
-      const seatedList = getSeatedPeople(room);
-      const targetPerson = seatedList.find((p) => String(p.userId) === selectedRecipientUserId);
-      if (!targetPerson) return;
-
-      const rooms = loadRooms().map((r) => {
-        if (r.id !== room.id) return r;
-        const messages = Array.isArray(r.messages) ? [...r.messages] : [];
-        messages.push({
-          author: fullName,
-          text: `→ ${targetPerson.name} (#${selectedGiftIndex + 1})`
-        });
-        return { ...r, messages: messages.slice(-80) };
-      });
-      saveRooms(rooms);
-      giftModalBackdrop.classList.remove("open");
-      renderActiveRoom();
-    });
-
-    // HONA OCHISH (RASM VA NOM MAJBURIY)
     function validateRoomCreateForm() {
       const hasPhoto = Boolean(selectedRoomPhoto);
       const alias = roomAliasInput.value.trim();
