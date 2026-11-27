@@ -66,7 +66,7 @@
       }
     }
 
-    /* 2. ASOSIY KONTENT MAYDONI — KIRISH KABI #d60d06 FON */
+    /* 2. ASOSIY KONTENT MAYDONI */
     .main-layout {
       width: 100%;
       height: 100dvh;
@@ -80,7 +80,7 @@
     .page-content {
       flex: 1;
       overflow-y: auto;
-      padding: 20px 16px 104px;
+      padding: 24px 16px 104px;
       display: none;
     }
 
@@ -100,49 +100,26 @@
       }
     }
 
-    .section-card {
-      background: rgba(145, 7, 3, 0.55);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-radius: 20px;
-      padding: 16px;
-      margin-bottom: 14px;
-      backdrop-filter: blur(8px);
-    }
-
-    .section-title {
-      font-size: 16px;
-      font-weight: 800;
-      margin-bottom: 6px;
-      color: #ffffff;
-    }
-
-    .section-sub {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.88);
-      line-height: 1.45;
-    }
-
     /* PROFILM BO'LIMI */
     .profile-header {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 22px 16px;
+      padding: 28px 16px;
       background: rgba(135, 6, 2, 0.6);
       border: 1px solid rgba(255, 255, 255, 0.24);
       border-radius: 24px;
-      margin-bottom: 16px;
     }
 
     .avatar-ring {
-      width: 96px;
-      height: 96px;
+      width: 112px;
+      height: 112px;
       border-radius: 50%;
       padding: 3px;
       background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.35) 100%);
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -191,8 +168,6 @@
     }
 
     .verified-check {
-      stroke-dasharray: 28;
-      stroke-dashoffset: 0;
       animation: checkDrawPulse 2s ease-in-out infinite;
     }
 
@@ -214,108 +189,6 @@
         transform: scale(1.08);
         transform-origin: center;
       }
-    }
-
-    .profile-username {
-      margin-top: 4px;
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.82);
-      font-weight: 600;
-    }
-
-    /* STORIES BO'LIMI */
-    .stories-card {
-      background: rgba(135, 6, 2, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.24);
-      border-radius: 22px;
-      padding: 16px;
-    }
-
-    .stories-title {
-      font-size: 14px;
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .stories-list {
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-      scrollbar-width: none;
-    }
-
-    .stories-list::-webkit-scrollbar {
-      display: none;
-    }
-
-    .story-item {
-      flex: 0 0 auto;
-      width: 82px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-    }
-
-    .story-ring {
-      width: 72px;
-      height: 72px;
-      border-radius: 22px;
-      padding: 2.5px;
-      background: linear-gradient(145deg, #ffffff 0%, rgba(255, 255, 255, 0.4) 100%);
-      transition: transform 0.2s ease;
-    }
-
-    .story-item:active .story-ring {
-      transform: scale(0.95);
-    }
-
-    .story-thumb {
-      width: 100%;
-      height: 100%;
-      border-radius: 19px;
-      object-fit: cover;
-      background: #8c0602;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 800;
-      color: #ffffff;
-      text-align: center;
-      padding: 4px;
-    }
-
-    .story-caption {
-      font-size: 11px;
-      font-weight: 700;
-      color: #ffffff;
-      text-align: center;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 82px;
-    }
-
-    .story-viewer {
-      display: none;
-      margin-top: 14px;
-      padding: 12px;
-      border-radius: 16px;
-      background: rgba(95, 4, 1, 0.75);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      font-size: 13px;
-      line-height: 1.45;
-    }
-
-    .story-viewer.show {
-      display: block;
     }
 
     /* 3. PASTKI 4 TA MENYU PANELI */
@@ -444,20 +317,10 @@
   <!-- ASOSIY OYNA -->
   <div class="main-layout">
     <!-- 1. TAXI BO'LIMI -->
-    <section class="page-content active" id="page-taxi">
-      <div class="section-card">
-        <div class="section-title">Taxi</div>
-        <div class="section-sub">A C A Z E S Taxi boʻlimi. Orqa fon kirish qismi kabi #d60d06 rangda.</div>
-      </div>
-    </section>
+    <section class="page-content active" id="page-taxi"></section>
 
     <!-- 2. CHATLAR BO'LIMI -->
-    <section class="page-content" id="page-chats">
-      <div class="section-card">
-        <div class="section-title">Chatlar</div>
-        <div class="section-sub">Xabarlar va yozishmalar boʻlimi.</div>
-      </div>
-    </section>
+    <section class="page-content" id="page-chats"></section>
 
     <!-- 3. PROFILM BO'LIMI -->
     <section class="page-content" id="page-profile">
@@ -467,14 +330,13 @@
             id="tgPhoto"
             class="avatar-img"
             src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><rect width='120' height='120' fill='%23990703'/><circle cx='60' cy='46' r='20' fill='%23ffffff' fill-opacity='0.9'/><path d='M24 102C24 81 40 68 60 68C80 68 96 81 96 102' fill='%23ffffff' fill-opacity='0.9'/></svg>"
-            alt="Telegram profil rasmi"
+            alt=""
           />
         </div>
 
         <div class="profile-name-row">
-          <span class="profile-name" id="tgName">Foydalanuvchi</span>
-          <!-- QIMIRLAB TURADIGAN OQ PREMIUM SVG GALOCHKA -->
-          <span class="verified-badge-wrap" title="Tasdiqlangan">
+          <span class="profile-name" id="tgName"></span>
+          <span class="verified-badge-wrap">
             <svg class="verified-svg" viewBox="0 0 24 24" fill="none">
               <path
                 d="M12 2.2L14.4 4.1L17.4 3.8L18.4 6.7L21.1 8.2L20.3 11.1L21.8 13.8L19.6 15.9L19.5 19L16.5 19.6L14.8 22.1L12 21L9.2 22.1L7.5 19.6L4.5 19L4.4 15.9L2.2 13.8L3.7 11.1L2.9 8.2L5.6 6.7L6.6 3.8L9.6 4.1L12 2.2Z"
@@ -491,31 +353,14 @@
             </svg>
           </span>
         </div>
-
-        <div class="profile-username" id="tgUsername">@telegram</div>
-      </div>
-
-      <!-- PASTROQDA TELEGRAM STORYLAR -->
-      <div class="stories-card">
-        <div class="stories-title">
-          <span>Telegram Storylar</span>
-          <span id="storyCount">0 ta</span>
-        </div>
-        <div class="stories-list" id="storiesList"></div>
-        <div class="story-viewer" id="storyViewer"></div>
       </div>
     </section>
 
     <!-- 4. GURPA BO'LIMI -->
-    <section class="page-content" id="page-group">
-      <div class="section-card">
-        <div class="section-title">Gurpa</div>
-        <div class="section-sub">Guruh va hamkorlar boʻlimi.</div>
-      </div>
-    </section>
+    <section class="page-content" id="page-group"></section>
 
     <!-- PASTKI 4 TA MENYU -->
-    <nav class="bottom-nav" aria-label="Asosiy menyu">
+    <nav class="bottom-nav">
       <div class="nav-grid">
         <button type="button" class="nav-item active" data-target="page-taxi">
           <span class="sticker-wrap">
@@ -581,69 +426,22 @@
       document.getElementById("splash").classList.add("hide");
     }, 1500);
 
-    // Telegram foydalanuvchi ma'lumotlarini olish
     const tgUser = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user : null;
     const urlParams = new URLSearchParams(window.location.search);
 
     const fullName =
       urlParams.get("name") ||
       (tgUser ? [tgUser.first_name, tgUser.last_name].filter(Boolean).join(" ") : "") ||
-      "A C A Z E S User";
+      "";
 
     const photoUrl = urlParams.get("photo") || "";
-    const usernameText = tgUser && tgUser.username ? `@${tgUser.username}` : "Telegram profil";
-
     document.getElementById("tgName").textContent = fullName;
-    document.getElementById("tgUsername").textContent = usernameText;
 
+    const photoEl = document.getElementById("tgPhoto");
     if (photoUrl) {
-      document.getElementById("tgPhoto").src = photoUrl;
+      photoEl.src = photoUrl;
     }
 
-    // Storylar ro'yxati (?stories=... yoki backend/botdan keladigan ro'yxat bilan ulanadi)
-    let userStories = [];
-    const storiesParam = urlParams.get("stories");
-    if (storiesParam) {
-      try {
-        userStories = JSON.parse(decodeURIComponent(storiesParam));
-      } catch (e) {
-        userStories = [];
-      }
-    }
-
-    const storiesList = document.getElementById("storiesList");
-    const storyCount = document.getElementById("storyCount");
-    const storyViewer = document.getElementById("storyViewer");
-
-    storyCount.textContent = `${userStories.length} ta`;
-
-    if (userStories.length === 0) {
-      storiesList.innerHTML = `
-        <div class="section-sub">
-          Hozircha story ulanmagan. Backend/botdan <b>?photo=...&stories=...</b> orqali rasm va storylarni uzatib ulashingiz mumkin.
-        </div>
-      `;
-    } else {
-      userStories.forEach((st, index) => {
-        const item = document.createElement("div");
-        item.className = "story-item";
-        item.innerHTML = `
-          <div class="story-ring">
-            <div class="story-thumb">
-              ${st.image ? `<img src="${st.image}" alt="${st.title || "Story"}" style="width:100%;height:100%;object-fit:cover;border-radius:17px;">` : `<span>Story #${index + 1}</span>`}
-            </div>
-          </div>
-          <div class="story-caption">${st.title || `Story ${index + 1}`}</div>
-        `;
-        item.addEventListener("click", () => {
-          storyViewer.classList.add("show");
-          storyViewer.innerHTML = `<b>${st.title || `Story #${index + 1}`}</b><br>${st.text || "Telegram story koʻrilmoqda"}`;
-        });
-        storiesList.appendChild(item);
-      });
-    }
-
-    // Pastki menyu almashinuvi
     const navItems = document.querySelectorAll(".nav-item");
     const pages = document.querySelectorAll(".page-content");
 
