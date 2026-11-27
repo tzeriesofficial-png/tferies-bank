@@ -52,18 +52,9 @@
     }
 
     @keyframes pulseFloat {
-      0% {
-        transform: translateY(0px) scale(1);
-        letter-spacing: 0.28em;
-      }
-      50% {
-        transform: translateY(-7px) scale(1.04);
-        letter-spacing: 0.33em;
-      }
-      100% {
-        transform: translateY(0px) scale(1);
-        letter-spacing: 0.28em;
-      }
+      0% { transform: translateY(0px) scale(1); letter-spacing: 0.28em; }
+      50% { transform: translateY(-7px) scale(1.04); letter-spacing: 0.33em; }
+      100% { transform: translateY(0px) scale(1); letter-spacing: 0.28em; }
     }
 
     /* 2. ASOSIY KONTENT MAYDONI */
@@ -75,12 +66,13 @@
       display: flex;
       flex-direction: column;
       background-color: #d60d06;
+      position: relative;
     }
 
     .page-content {
       flex: 1;
       overflow-y: auto;
-      padding: 18px 16px 118px;
+      padding: 18px 16px 124px;
       display: none;
     }
 
@@ -90,14 +82,8 @@
     }
 
     @keyframes fadeTab {
-      from {
-        opacity: 0;
-        transform: translateY(6px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* HONA BO'LIMI TEPADAGI UYCHA TUGMASI */
@@ -121,7 +107,7 @@
       cursor: pointer;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
       animation: houseTopFloat 2s ease-in-out infinite;
-      transition: transform 0.16s ease, background 0.2s ease;
+      transition: transform 0.16s ease;
     }
 
     .create-house-btn:active {
@@ -140,21 +126,13 @@
     }
 
     @keyframes houseTopFloat {
-      0%, 100% {
-        transform: translateY(0px) rotate(0deg);
-      }
-      50% {
-        transform: translateY(-3px) rotate(-3deg);
-      }
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-3px) rotate(-3deg); }
     }
 
     @keyframes roofLift {
-      0%, 100% {
-        transform: translateY(0px);
-      }
-      50% {
-        transform: translateY(-1.8px);
-      }
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-1.8px); }
     }
 
     /* OCHILGAN HONALAR RO'YXATI */
@@ -172,7 +150,12 @@
       display: flex;
       flex-direction: column;
       box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
-      animation: fadeTab 0.25s ease;
+      cursor: pointer;
+      transition: transform 0.16s ease;
+    }
+
+    .room-card:active {
+      transform: scale(0.97);
     }
 
     .room-img-box {
@@ -200,6 +183,258 @@
       text-align: center;
       min-height: 38px;
       word-break: break-word;
+    }
+
+    /* XONA ICHKI SAHNASI */
+    .room-stage {
+      display: none;
+      flex-direction: column;
+      gap: 18px;
+      animation: fadeTab 0.24s ease;
+    }
+
+    .room-stage.active {
+      display: flex;
+    }
+
+    .stage-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(125, 4, 2, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 22px;
+      padding: 12px 14px;
+    }
+
+    .stage-room-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .stage-room-thumb {
+      width: 48px;
+      height: 48px;
+      border-radius: 15px;
+      object-fit: cover;
+      border: 1.5px solid rgba(255, 255, 255, 0.45);
+      background: rgba(85, 2, 0, 0.8);
+      flex-shrink: 0;
+    }
+
+    .stage-room-title {
+      font-size: 17px;
+      font-weight: 900;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .leave-room-btn {
+      padding: 9px 13px;
+      border-radius: 13px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(85, 2, 0, 0.75);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* 5 TA PROFESSIONAL QIMIRLOVCHI SVG O'RINDIQ */
+    .seats-panel {
+      background: rgba(120, 4, 2, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 26px;
+      padding: 20px 14px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      box-shadow: inset 0 0 28px rgba(0, 0, 0, 0.2);
+    }
+
+    .seats-row-top {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      width: 100%;
+    }
+
+    .seats-row-bottom {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(96px, 124px));
+      justify-content: center;
+      gap: 18px;
+      width: 100%;
+    }
+
+    .seat-slot {
+      border: none;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .seat-visual {
+      width: 68px;
+      height: 68px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.11);
+      border: 1.5px solid rgba(255, 255, 255, 0.32);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24);
+      animation: seatIdleMove 2.2s ease-in-out infinite;
+      transition: transform 0.18s ease, background 0.22s ease, border-color 0.22s ease;
+    }
+
+    .seat-slot:nth-child(2) .seat-visual { animation-delay: 0.25s; }
+    .seat-slot:nth-child(3) .seat-visual { animation-delay: 0.5s; }
+    .seats-row-bottom .seat-slot:nth-child(1) .seat-visual { animation-delay: 0.75s; }
+    .seats-row-bottom .seat-slot:nth-child(2) .seat-visual { animation-delay: 1s; }
+
+    .seat-slot.occupied .seat-visual {
+      background: #ffffff;
+      border-color: #ffffff;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.32), 0 0 0 3px rgba(255, 255, 255, 0.28);
+      animation: seatActiveBounce 1.7s ease-in-out infinite;
+    }
+
+    .seat-svg {
+      width: 40px;
+      height: 40px;
+      overflow: visible;
+    }
+
+    .seat-cushion {
+      transform-origin: center;
+      animation: cushionPulse 2.2s ease-in-out infinite;
+    }
+
+    .seat-backrest {
+      transform-origin: center;
+      animation: backrestTilt 2.2s ease-in-out infinite;
+    }
+
+    .seat-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .seat-tag {
+      font-size: 11px;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.92);
+      max-width: 92px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    @keyframes seatIdleMove {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-3.5px) rotate(-2deg); }
+    }
+
+    @keyframes seatActiveBounce {
+      0%, 100% { transform: translateY(0px) scale(1.04); }
+      50% { transform: translateY(-4.5px) scale(1.08); }
+    }
+
+    @keyframes cushionPulse {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(1.07); }
+    }
+
+    @keyframes backrestTilt {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(3.5deg); }
+    }
+
+    /* PASTKI MIKROFON STIKERI (FAQAT O'RINDIQQA O'TIRGANDA CHIQADI) */
+    .mic-dock {
+      display: none;
+      position: fixed;
+      bottom: 106px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 60;
+      animation: fadeTab 0.22s ease;
+    }
+
+    .mic-dock.visible {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mic-sticker-btn {
+      width: 68px;
+      height: 68px;
+      border-radius: 24px;
+      border: 2px solid rgba(255, 255, 255, 0.55);
+      background: rgba(110, 3, 1, 0.88);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.36);
+      animation: micStickerMove 1.8s ease-in-out infinite;
+      transition: transform 0.16s ease, background 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .mic-sticker-btn:active {
+      transform: scale(0.93);
+    }
+
+    .mic-sticker-btn.mic-on {
+      background: #ffffff;
+      border-color: #ffffff;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35), 0 0 22px rgba(255, 255, 255, 0.55);
+    }
+
+    .mic-svg {
+      width: 34px;
+      height: 34px;
+      overflow: visible;
+    }
+
+    .mic-capsule {
+      transform-origin: center;
+      animation: micCapsulePulse 1.6s ease-in-out infinite;
+    }
+
+    .mic-slash {
+      opacity: 1;
+      transition: opacity 0.2s ease;
+    }
+
+    .mic-sticker-btn.mic-on .mic-slash {
+      opacity: 0;
+    }
+
+    @keyframes micStickerMove {
+      0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+      50% { transform: translateY(-3px) rotate(-3deg) scale(1.05); }
+    }
+
+    @keyframes micCapsulePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
     }
 
     /* XONA YARATISH MODALI */
@@ -269,7 +504,6 @@
       gap: 8px;
       cursor: pointer;
       overflow: hidden;
-      position: relative;
     }
 
     .pick-photo-label img {
@@ -411,26 +645,16 @@
     }
 
     @keyframes badgeFloatPulse {
-      0%, 100% {
-        transform: translateY(0px) rotate(0deg) scale(1);
-      }
-      50% {
-        transform: translateY(-3px) rotate(6deg) scale(1.1);
-      }
+      0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+      50% { transform: translateY(-3px) rotate(6deg) scale(1.1); }
     }
 
     @keyframes checkDrawPulse {
-      0%, 100% {
-        transform: scale(1);
-        transform-origin: center;
-      }
-      50% {
-        transform: scale(1.08);
-        transform-origin: center;
-      }
+      0%, 100% { transform: scale(1); transform-origin: center; }
+      50% { transform: scale(1.08); transform-origin: center; }
     }
 
-    /* 3. PASTKI 4 TA MENYU PANELI (HONA, CHATLAR, FAMILY, PROFILM) */
+    /* 3. PASTKI 4 TA MENYU PANELI */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -503,21 +727,10 @@
       overflow: visible;
     }
 
-    .svg-stroke-white {
-      stroke: #ffffff;
-    }
-
-    .nav-item.active .svg-stroke-white {
-      stroke: #d60d06;
-    }
-
-    .svg-fill-white {
-      fill: #ffffff;
-    }
-
-    .nav-item.active .svg-fill-white {
-      fill: #d60d06;
-    }
+    .svg-stroke-white { stroke: #ffffff; }
+    .nav-item.active .svg-stroke-white { stroke: #d60d06; }
+    .svg-fill-white { fill: #ffffff; }
+    .nav-item.active .svg-fill-white { fill: #d60d06; }
 
     .anim-float {
       transform-origin: center;
@@ -530,30 +743,18 @@
     }
 
     @keyframes stickerMove {
-      0%, 100% {
-        transform: translateY(0px) rotate(0deg) scale(1);
-      }
-      50% {
-        transform: translateY(-3px) rotate(-3.5deg) scale(1.07);
-      }
+      0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+      50% { transform: translateY(-3px) rotate(-3.5deg) scale(1.07); }
     }
 
     @keyframes innerFloat {
-      0%, 100% {
-        transform: translateY(0px) scale(1);
-      }
-      50% {
-        transform: translateY(-1.5px) scale(1.06);
-      }
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-1.5px) scale(1.06); }
     }
 
     @keyframes innerTilt {
-      0%, 100% {
-        transform: rotate(0deg);
-      }
-      50% {
-        transform: rotate(7deg);
-      }
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(7deg); }
     }
 
     .nav-label {
@@ -574,30 +775,49 @@
   <div class="main-layout">
     <!-- 1. HONA BO'LIMI -->
     <section class="page-content active" id="page-hona">
-      <div class="hona-top-bar">
-        <button type="button" class="create-house-btn" id="openRoomModalBtn" aria-label="Hona yaratish">
-          <svg class="create-house-svg" viewBox="0 0 24 24" fill="none">
-            <path
-              class="roof-anim"
-              d="M3.2 11.2L12 3.8L20.8 11.2"
-              stroke="#ffffff"
-              stroke-width="2.2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M6.2 9.4V18.8C6.2 19.4 6.6 19.8 7.2 19.8H16.8C17.4 19.8 17.8 19.4 17.8 18.8V9.4"
-              stroke="#ffffff"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <rect x="10.2" y="13.5" width="3.6" height="6.3" rx="1" fill="#ffffff" />
-          </svg>
-        </button>
+      <!-- HONALAR RO'YXATI VA YARATISH TUGMASI -->
+      <div id="honaLobbyView">
+        <div class="hona-top-bar">
+          <button type="button" class="create-house-btn" id="openRoomModalBtn" aria-label="Hona ochish">
+            <svg class="create-house-svg" viewBox="0 0 24 24" fill="none">
+              <path
+                class="roof-anim"
+                d="M3.2 11.2L12 3.8L20.8 11.2"
+                stroke="#ffffff"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M6.2 9.4V18.8C6.2 19.4 6.6 19.8 7.2 19.8H16.8C17.4 19.8 17.8 19.4 17.8 18.8V9.4"
+                stroke="#ffffff"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <rect x="10.2" y="13.5" width="3.6" height="6.3" rx="1" fill="#ffffff" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="rooms-grid" id="roomsGrid"></div>
       </div>
 
-      <div class="rooms-grid" id="roomsGrid"></div>
+      <!-- XONA ICHKI SAHNASI (5 TA O'RINDIQ) -->
+      <div class="room-stage" id="roomStageView">
+        <div class="stage-header">
+          <div class="stage-room-info">
+            <img class="stage-room-thumb" id="stageRoomPhoto" src="" alt="" />
+            <div class="stage-room-title" id="stageRoomTitle"></div>
+          </div>
+          <button type="button" class="leave-room-btn" id="leaveRoomBtn">Chiqish</button>
+        </div>
+
+        <div class="seats-panel">
+          <div class="seats-row-top" id="seatsTopRow"></div>
+          <div class="seats-row-bottom" id="seatsBottomRow"></div>
+        </div>
+      </div>
     </section>
 
     <!-- 2. CHATLAR BO'LIMI -->
@@ -640,10 +860,50 @@
       </div>
     </section>
 
-    <!-- PASTKI 4 TA MENYU: HONA, CHATLAR, FAMILY, PROFILM -->
+    <!-- O'RINDIQQA O'TIRGANDA CHIQADIGAN MIKROFON STIKERI -->
+    <div class="mic-dock" id="micDock">
+      <button type="button" class="mic-sticker-btn" id="micStickerBtn" aria-label="Mic">
+        <svg class="mic-svg" viewBox="0 0 28 28" fill="none">
+          <g class="mic-capsule">
+            <rect
+              x="10.2"
+              y="4.2"
+              width="7.6"
+              height="12.2"
+              rx="3.8"
+              fill="#ffffff"
+            />
+            <path
+              d="M7.2 13.2C7.2 16.95 10.25 20 14 20C17.75 20 20.8 16.95 20.8 13.2"
+              stroke="#ffffff"
+              stroke-width="2.1"
+              stroke-linecap="round"
+            />
+            <path
+              d="M14 20V23.8M10.5 23.8H17.5"
+              stroke="#ffffff"
+              stroke-width="2.1"
+              stroke-linecap="round"
+            />
+          </g>
+          <!-- O'CHIQ HOLATDAGI QIZIL CHIZIQ -->
+          <line
+            class="mic-slash"
+            x1="5"
+            y1="5"
+            x2="23"
+            y2="23"
+            stroke="#ff1e16"
+            stroke-width="2.8"
+            stroke-linecap="round"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <!-- PASTKI 4 TA MENYU -->
     <nav class="bottom-nav">
       <div class="nav-grid">
-        <!-- HONA -->
         <button type="button" class="nav-item active" data-target="page-hona">
           <span class="premium-sticker">
             <svg class="premium-svg anim-float" viewBox="0 0 24 24" fill="none">
@@ -655,7 +915,6 @@
           <span class="nav-label">HONA</span>
         </button>
 
-        <!-- CHATLAR -->
         <button type="button" class="nav-item" data-target="page-chats">
           <span class="premium-sticker">
             <svg class="premium-svg anim-tilt" viewBox="0 0 24 24" fill="none">
@@ -668,7 +927,6 @@
           <span class="nav-label">CHATLAR</span>
         </button>
 
-        <!-- FAMILY -->
         <button type="button" class="nav-item" data-target="page-family">
           <span class="premium-sticker">
             <svg class="premium-svg anim-float" viewBox="0 0 24 24" fill="none">
@@ -680,7 +938,6 @@
           <span class="nav-label">FAMILY</span>
         </button>
 
-        <!-- PROFILM -->
         <button type="button" class="nav-item" data-target="page-profile">
           <span class="premium-sticker">
             <svg class="premium-svg anim-float" viewBox="0 0 24 24" fill="none">
@@ -751,6 +1008,32 @@
       document.getElementById("tgPhoto").src = photoUrl;
     }
 
+    // Mikrofon holati (boshida o'chiq, qizil chiziqli)
+    const micDock = document.getElementById("micDock");
+    const micStickerBtn = document.getElementById("micStickerBtn");
+    let micEnabled = false;
+    let seatedIndex = null;
+    let activeRoomId = null;
+
+    function syncMicVisibility() {
+      const onHonaPage = document.getElementById("page-hona").classList.contains("active");
+      const insideRoom = document.getElementById("roomStageView").classList.contains("active");
+      const shouldShow = onHonaPage && insideRoom && seatedIndex !== null;
+      micDock.classList.toggle("visible", shouldShow);
+      if (!shouldShow) {
+        micEnabled = false;
+        micStickerBtn.classList.remove("mic-on");
+      }
+    }
+
+    micStickerBtn.addEventListener("click", () => {
+      micEnabled = !micEnabled;
+      micStickerBtn.classList.toggle("mic-on", micEnabled);
+      if (tg && tg.HapticFeedback) {
+        tg.HapticFeedback.impactOccurred(micEnabled ? "medium" : "light");
+      }
+    });
+
     // Menyu almashinuvi
     const navItems = document.querySelectorAll(".nav-item");
     const pages = document.querySelectorAll(".page-content");
@@ -763,14 +1046,15 @@
         pages.forEach((page) => {
           page.classList.toggle("active", page.id === targetId);
         });
+        syncMicVisibility();
         if (tg && tg.HapticFeedback) {
           tg.HapticFeedback.selectionChanged();
         }
       });
     });
 
-    // HONA YARATISH VA KO'RSATISH (0..10 BELGI TAXALLUS + RASM)
-    const STORAGE_KEY = "acazes_hona_rooms_v1";
+    // HONA YARATISH VA ICHIGA KIRISH
+    const STORAGE_KEY = "acazes_hona_rooms_v2";
     const roomModal = document.getElementById("roomModal");
     const openRoomModalBtn = document.getElementById("openRoomModalBtn");
     const closeRoomModalBtn = document.getElementById("closeRoomModalBtn");
@@ -781,6 +1065,14 @@
     const charCounter = document.getElementById("charCounter");
     const saveRoomBtn = document.getElementById("saveRoomBtn");
     const roomsGrid = document.getElementById("roomsGrid");
+
+    const honaLobbyView = document.getElementById("honaLobbyView");
+    const roomStageView = document.getElementById("roomStageView");
+    const stageRoomPhoto = document.getElementById("stageRoomPhoto");
+    const stageRoomTitle = document.getElementById("stageRoomTitle");
+    const leaveRoomBtn = document.getElementById("leaveRoomBtn");
+    const seatsTopRow = document.getElementById("seatsTopRow");
+    const seatsBottomRow = document.getElementById("seatsBottomRow");
 
     let selectedRoomPhoto = "";
 
@@ -798,6 +1090,126 @@
         localStorage.setItem(STORAGE_KEY, JSON.stringify(rooms));
       } catch (_) {}
     }
+
+    function createSeatSvg() {
+      return `
+        <svg class="seat-svg" viewBox="0 0 40 40" fill="none">
+          <path
+            class="seat-backrest"
+            d="M11 8.5C11 6.8 12.4 5.5 14.1 5.5H25.9C27.6 5.5 29 6.8 29 8.5V19.5H11V8.5Z"
+            stroke="#ffffff"
+            stroke-width="2.2"
+            stroke-linejoin="round"
+          />
+          <rect
+            class="seat-cushion"
+            x="7.5"
+            y="19.5"
+            width="25"
+            height="8"
+            rx="3.5"
+            fill="#ffffff"
+          />
+          <path
+            d="M10.5 27.5V33.5M29.5 27.5V33.5"
+            stroke="#ffffff"
+            stroke-width="2.3"
+            stroke-linecap="round"
+          />
+        </svg>
+      `;
+    }
+
+    function renderFiveSeats() {
+      seatsTopRow.innerHTML = "";
+      seatsBottomRow.innerHTML = "";
+
+      for (let i = 0; i < 5; i++) {
+        const isSeated = seatedIndex === i;
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = `seat-slot ${isSeated ? "occupied" : ""}`;
+
+        const visual = document.createElement("div");
+        visual.className = "seat-visual";
+
+        if (isSeated) {
+          if (photoUrl) {
+            const img = document.createElement("img");
+            img.className = "seat-avatar-img";
+            img.src = photoUrl;
+            img.alt = "";
+            visual.appendChild(img);
+          } else {
+            visual.innerHTML = `
+              <svg class="seat-svg" viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="14" r="6.5" fill="#d60d06"/>
+                <path d="M9 32C9 25.5 13.8 22 20 22C26.2 22 31 25.5 31 32" fill="#d60d06"/>
+              </svg>
+            `;
+          }
+        } else {
+          visual.innerHTML = createSeatSvg();
+        }
+
+        const tag = document.createElement("span");
+        tag.className = "seat-tag";
+        tag.textContent = isSeated ? fullName : `#${i + 1}`;
+
+        btn.appendChild(visual);
+        btn.appendChild(tag);
+
+        btn.addEventListener("click", () => {
+          if (seatedIndex === i) {
+            seatedIndex = null;
+          } else {
+            seatedIndex = i;
+          }
+          renderFiveSeats();
+          syncMicVisibility();
+          if (tg && tg.HapticFeedback) {
+            tg.HapticFeedback.selectionChanged();
+          }
+        });
+
+        if (i < 3) {
+          seatsTopRow.appendChild(btn);
+        } else {
+          seatsBottomRow.appendChild(btn);
+        }
+      }
+    }
+
+    function enterRoom(room) {
+      activeRoomId = room.id;
+      seatedIndex = null;
+      micEnabled = false;
+      micStickerBtn.classList.remove("mic-on");
+
+      stageRoomTitle.textContent = (room.alias || "").slice(0, 10);
+      if (room.photo) {
+        stageRoomPhoto.src = room.photo;
+        stageRoomPhoto.style.display = "block";
+      } else {
+        stageRoomPhoto.removeAttribute("src");
+        stageRoomPhoto.style.display = "none";
+      }
+
+      honaLobbyView.style.display = "none";
+      roomStageView.classList.add("active");
+      renderFiveSeats();
+      syncMicVisibility();
+    }
+
+    leaveRoomBtn.addEventListener("click", () => {
+      activeRoomId = null;
+      seatedIndex = null;
+      micEnabled = false;
+      micStickerBtn.classList.remove("mic-on");
+      roomStageView.classList.remove("active");
+      honaLobbyView.style.display = "block";
+      syncMicVisibility();
+    });
 
     function renderRooms() {
       const rooms = loadRooms();
@@ -821,6 +1233,7 @@
 
         card.appendChild(imgBox);
         card.appendChild(aliasDiv);
+        card.addEventListener("click", () => enterRoom(room));
         roomsGrid.appendChild(card);
       });
     }
@@ -870,21 +1283,25 @@
 
     saveRoomBtn.addEventListener("click", () => {
       const alias = roomAliasInput.value.trim().slice(0, 10);
-      const rooms = loadRooms();
-      rooms.unshift({
+      const newRoom = {
         id: Date.now(),
         photo: selectedRoomPhoto,
         alias: alias
-      });
+      };
+      const rooms = loadRooms();
+      rooms.unshift(newRoom);
       saveRooms(rooms);
       renderRooms();
       roomModal.classList.remove("open");
       if (tg && tg.HapticFeedback) {
         tg.HapticFeedback.notificationOccurred("success");
       }
+      // Ochilishi bilan darhol xona ichiga kiradi
+      enterRoom(newRoom);
     });
 
     renderRooms();
+    syncMicVisibility();
   </script>
 </body>
 </html>
