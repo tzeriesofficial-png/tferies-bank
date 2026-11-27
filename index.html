@@ -1,361 +1,176 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>K</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>A C A Z E S</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        html, body {
-            width: 100%;
-            height: 100%;
-            background-color: #ffffff;
-            color: #000000;
-            overflow: hidden;
-            position: relative;
-        }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #160905;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-        /* KIRISH QISMI: OQ FON, QIMIRLAMAYDIGAN PREMIUM SVG "K" BELGISI */
-        .k-splash-screen {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 1;
-            transition: opacity 0.45s ease;
-            z-index: 60;
-        }
+    .splash-screen {
+      position: relative;
+      width: 100%;
+      height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 48%, rgba(168, 78, 28, 0.36) 0%, rgba(74, 27, 9, 0.72) 48%, rgba(20, 7, 3, 0.98) 100%),
+        linear-gradient(155deg, #240c05 0%, #4e1c09 42%, #290e05 76%, #120502 100%);
+    }
 
-        .k-splash-screen.fade-out {
-            opacity: 0;
-            pointer-events: none;
-        }
+    /* Diogonal nur chiziqlari va jigarrang porlash */
+    .streak {
+      position: absolute;
+      pointer-events: none;
+      transform-origin: center;
+    }
 
-        .k-still-svg-wrap {
-            width: 148px;
-            height: 148px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .streak-1 {
+      width: 160%;
+      height: 14px;
+      top: 24%;
+      left: -30%;
+      transform: rotate(-36deg);
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 165, 95, 0.12) 30%, rgba(255, 195, 140, 0.55) 55%, transparent 100%);
+      filter: blur(4px);
+    }
 
-        .k-still-svg-wrap svg {
-            width: 100%;
-            height: 100%;
-            display: block;
-            overflow: visible;
-        }
+    .streak-2 {
+      width: 170%;
+      height: 6px;
+      top: 38%;
+      left: -35%;
+      transform: rotate(-36deg);
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 225, 190, 0.75) 52%, transparent 90%);
+      filter: blur(1.5px);
+    }
 
-        /* ASOSIY OYNA */
-        .k-main-shell {
-            width: 100%;
-            height: 100%;
-            background-color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+    .streak-3 {
+      width: 170%;
+      height: 22px;
+      top: 66%;
+      left: -25%;
+      transform: rotate(36deg);
+      background: linear-gradient(90deg, transparent 5%, rgba(212, 102, 36, 0.45) 50%, transparent 95%);
+      filter: blur(6px);
+    }
 
-        .k-content-area {
-            flex: 1;
-            width: 100%;
-            overflow-y: auto;
-            padding: 16px 14px;
-        }
+    .streak-4 {
+      width: 165%;
+      height: 5px;
+      top: 76%;
+      left: -25%;
+      transform: rotate(36deg);
+      background: linear-gradient(90deg, transparent 10%, rgba(255, 210, 165, 0.65) 55%, transparent 95%);
+      filter: blur(1.5px);
+    }
 
-        .k-section {
-            display: none;
-            width: 100%;
-            height: 100%;
-        }
+    /* Orqa plandagi oq geometrik chiziqlar */
+    .bg-lines {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
 
-        .k-section.active {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+    /* Markaziy A C A Z E S yozuvi va oq chiziqchalar */
+    .center-brand {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 0 20px;
+      text-align: center;
+    }
 
-        .sec-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-            flex-shrink: 0;
-        }
+    .white-line {
+      width: 160px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0%, #ffffff 50%, rgba(255, 255, 255, 0.08) 100%);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.45);
+    }
 
-        .sec-title {
-            font-size: 20px;
-            font-weight: 800;
-            color: #000000;
-        }
-
-        .empty-note {
-            background: #fafafa;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 16px;
-            padding: 14px;
-            font-size: 13px;
-            font-weight: 600;
-            color: #555555;
-            text-align: center;
-        }
-
-        /* PASTKI 4 TA QIMIRLAB TURUVCHI PREMIUM SVG IKONKALI MENYU */
-        .k-bottom-nav {
-            width: 100%;
-            background-color: #ffffff;
-            border-top: 1px solid rgba(0, 0, 0, 0.12);
-            padding: 8px 8px calc(10px + env(safe-area-inset-bottom));
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
-            flex-shrink: 0;
-        }
-
-        .k-nav-btn {
-            position: relative;
-            background: transparent;
-            border: 1.5px solid transparent;
-            border-radius: 16px;
-            padding: 6px 2px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            color: #000000;
-            font-size: 11px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: background-color 0.2s ease, border-color 0.2s ease;
-        }
-
-        .k-nav-btn.active {
-            background-color: rgba(0, 0, 0, 0.06);
-            border-color: #000000;
-        }
-
-        .k-nav-btn span:last-child {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
-        }
-
-        /* DOIMIY QIMIRLAB TURUVCHI PREMIUM SVG */
-        .k-wiggle-svg {
-            width: 28px;
-            height: 28px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            animation: kIconMove 2.1s ease-in-out infinite;
-            transform-origin: center;
-        }
-
-        .k-nav-btn:nth-child(2) .k-wiggle-svg {
-            animation-delay: 0.25s;
-        }
-
-        .k-nav-btn:nth-child(3) .k-wiggle-svg {
-            animation-delay: 0.5s;
-        }
-
-        .k-nav-btn:nth-child(4) .k-wiggle-svg {
-            animation-delay: 0.75s;
-        }
-
-        @keyframes kIconMove {
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg) scale(1);
-            }
-            35% {
-                transform: translateY(-2.5px) rotate(-6deg) scale(1.07);
-            }
-            70% {
-                transform: translateY(1px) rotate(6deg) scale(1.04);
-            }
-        }
-
-        .k-wiggle-svg svg {
-            width: 100%;
-            height: 100%;
-            display: block;
-            overflow: visible;
-        }
-    </style>
+    .brand-title {
+      color: #ffffff;
+      font-size: clamp(28px, 8vw, 44px);
+      font-weight: 800;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.65), 0 0 24px rgba(255, 255, 255, 0.22);
+      padding-left: 0.28em; /* letter-spacing sabab markazni aniq ushlash uchun */
+    }
+  </style>
 </head>
 <body>
+  <main class="splash-screen">
+    <!-- Jigarrang nur chiziqlari -->
+    <div class="streak streak-1"></div>
+    <div class="streak streak-2"></div>
+    <div class="streak streak-3"></div>
+    <div class="streak streak-4"></div>
 
-    <!-- KIRISH QISMI: QIMIRLAMAYDIGAN PREMIUM SVG "K" BELGISI -->
-    <div id="kSplash" class="k-splash-screen">
-        <div class="k-still-svg-wrap">
-            <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="kSplashGrad" x1="14" y1="14" x2="106" y2="106" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stop-color="#292929"/>
-                        <stop offset="55%" stop-color="#0d0d0d"/>
-                        <stop offset="100%" stop-color="#000000"/>
-                    </linearGradient>
-                </defs>
-                <rect x="12" y="12" width="96" height="96" rx="28" fill="url(#kSplashGrad)"/>
-                <path d="M38 32H52V56.5L77.5 32H95L65.5 59.5L96.5 88H78L52 63.5V88H38V32Z" fill="#ffffff"/>
-                <circle cx="88" cy="30" r="5" fill="#ffffff" opacity="0.25"/>
-            </svg>
-        </div>
+    <!-- Oq geometrik chiziqlar -->
+    <svg class="bg-lines" viewBox="0 0 400 800" preserveAspectRatio="none" aria-hidden="true">
+      <!-- Yuqori markaziy burchak chizig'i -->
+      <polyline
+        points="95,255 200,155 305,255"
+        fill="none"
+        stroke="#ffffff"
+        stroke-width="2"
+        stroke-opacity="0.85"
+      />
+      <!-- Pastki markaziy burchak chizig'i -->
+      <polyline
+        points="95,545 200,645 305,545"
+        fill="none"
+        stroke="#ffffff"
+        stroke-width="2"
+        stroke-opacity="0.85"
+      />
+      <!-- Yon tomondagi nozik oq chiziqlar -->
+      <line x1="0" y1="120" x2="135" y2="255" stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.45" />
+      <line x1="400" y1="120" x2="265" y2="255" stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.45" />
+      <line x1="0" y1="680" x2="135" y2="545" stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.45" />
+      <line x1="400" y1="680" x2="265" y2="545" stroke="#ffffff" stroke-width="1.4" stroke-opacity="0.45" />
+    </svg>
+
+    <!-- Qoq o'rtadagi yozuv va oq chiziqchalar -->
+    <div class="center-brand">
+      <div class="white-line"></div>
+      <h1 class="brand-title">A C A Z E S</h1>
+      <div class="white-line"></div>
     </div>
+  </main>
 
-    <!-- ASOSIY OYNA -->
-    <div id="kMainShell" class="k-main-shell">
-        <div class="k-content-area">
-
-            <!-- 1. CHATLAR -->
-            <section id="sec-chatlar" class="k-section active">
-                <div class="sec-header">
-                    <div class="sec-title">Chatlar</div>
-                </div>
-                <div class="empty-note">Chatlar boʻlimi tayyor.</div>
-            </section>
-
-            <!-- 2. ROCKET -->
-            <section id="sec-rocket" class="k-section">
-                <div class="sec-header">
-                    <div class="sec-title">Rocket</div>
-                </div>
-                <div class="empty-note">Rocket boʻlimi tayyor.</div>
-            </section>
-
-            <!-- 3. DARENKROS -->
-            <section id="sec-darenkros" class="k-section">
-                <div class="sec-header">
-                    <div class="sec-title">DarenKros</div>
-                </div>
-                <div class="empty-note">DarenKros boʻlimi tayyor.</div>
-            </section>
-
-            <!-- 4. HISOBIM -->
-            <section id="sec-hisobim" class="k-section">
-                <div class="sec-header">
-                    <div class="sec-title">Hisobim</div>
-                </div>
-                <div class="empty-note">Hisobim boʻlimi tayyor.</div>
-            </section>
-
-        </div>
-
-        <!-- PASTKI 4 TA QIMIRLAB TURUVCHI PREMIUM SVG IKONKA -->
-        <nav class="k-bottom-nav">
-            <!-- 1. CHATLAR -->
-            <button type="button" class="k-nav-btn active" onclick="openKSection('chatlar', this)">
-                <span class="k-wiggle-svg">
-                    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="kChatGrad" x1="5" y1="5" x2="31" y2="31" gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#2c2c2c"/>
-                                <stop offset="100%" stop-color="#000000"/>
-                            </linearGradient>
-                        </defs>
-                        <path d="M5.5 10.5C5.5 7.74 7.74 5.5 10.5 5.5H25.5C28.26 5.5 30.5 7.74 30.5 10.5V21C30.5 23.76 28.26 26 25.5 26H15.5L9.5 31V26H10.5C7.74 26 5.5 23.76 5.5 21V10.5Z" fill="url(#kChatGrad)"/>
-                        <circle cx="13" cy="15.8" r="1.7" fill="#ffffff"/>
-                        <circle cx="18" cy="15.8" r="1.7" fill="#ffffff"/>
-                        <circle cx="23" cy="15.8" r="1.7" fill="#ffffff"/>
-                    </svg>
-                </span>
-                <span>Chatlar</span>
-            </button>
-
-            <!-- 2. ROCKET -->
-            <button type="button" class="k-nav-btn" onclick="openKSection('rocket', this)">
-                <span class="k-wiggle-svg">
-                    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="kRocketGrad" x1="8" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#2e2e2e"/>
-                                <stop offset="100%" stop-color="#000000"/>
-                            </linearGradient>
-                        </defs>
-                        <path d="M18 4.5C22.8 8.2 25 13.6 25 19.5V24.5L21 22.5H15L11 24.5V19.5C11 13.6 13.2 8.2 18 4.5Z" fill="url(#kRocketGrad)"/>
-                        <circle cx="18" cy="14.5" r="2.8" fill="#ffffff"/>
-                        <path d="M11 18L7 22.5L11 23V18Z" fill="#000000"/>
-                        <path d="M25 18L29 22.5L25 23V18Z" fill="#000000"/>
-                        <path d="M15.5 26.5C15.5 29.2 16.7 31 18 31.8C19.3 31 20.5 29.2 20.5 26.5H15.5Z" fill="#000000"/>
-                    </svg>
-                </span>
-                <span>Rocket</span>
-            </button>
-
-            <!-- 3. DARENKROS -->
-            <button type="button" class="k-nav-btn" onclick="openKSection('darenkros', this)">
-                <span class="k-wiggle-svg">
-                    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="kDkGrad" x1="5" y1="5" x2="31" y2="31" gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#2b2b2b"/>
-                                <stop offset="100%" stop-color="#000000"/>
-                            </linearGradient>
-                        </defs>
-                        <rect x="5.5" y="5.5" width="25" height="25" rx="8" fill="url(#kDkGrad)"/>
-                        <path d="M11.5 12H15.2L19.5 18L15.2 24H11.5L15.8 18L11.5 12Z" fill="#ffffff"/>
-                        <path d="M20.2 12H23.2V17.2L26.8 12H30L25.6 18L30.2 24H26.8L23.2 18.8V24H20.2V12Z" fill="#ffffff"/>
-                    </svg>
-                </span>
-                <span>DarenKros</span>
-            </button>
-
-            <!-- 4. HISOBIM -->
-            <button type="button" class="k-nav-btn" onclick="openKSection('hisobim', this)">
-                <span class="k-wiggle-svg">
-                    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="kAccGrad" x1="5" y1="7" x2="31" y2="29" gradientUnits="userSpaceOnUse">
-                                <stop offset="0%" stop-color="#2b2b2b"/>
-                                <stop offset="100%" stop-color="#000000"/>
-                            </linearGradient>
-                        </defs>
-                        <rect x="5" y="7.5" width="26" height="21" rx="5.5" fill="url(#kAccGrad)"/>
-                        <rect x="5" y="12.5" width="26" height="3.8" fill="#ffffff"/>
-                        <rect x="9.5" y="20.5" width="8" height="2.6" rx="1.3" fill="#ffffff"/>
-                        <circle cx="25.5" cy="21.8" r="2.2" fill="#ffffff"/>
-                    </svg>
-                </span>
-                <span>Hisobim</span>
-            </button>
-        </nav>
-    </div>
-
-    <script>
-        const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
-        if (tg) {
-            tg.ready();
-            tg.expand();
-        }
-
-        function openKSection(secId, btnEl) {
-            document.querySelectorAll(".k-nav-btn").forEach(b => b.classList.remove("active"));
-            if (btnEl) btnEl.classList.add("active");
-            document.querySelectorAll(".k-section").forEach(s => s.classList.remove("active"));
-            const target = document.getElementById("sec-" + secId);
-            if (target) target.classList.add("active");
-        }
-
-        setTimeout(() => {
-            const splash = document.getElementById("kSplash");
-            if (splash) splash.classList.add("fade-out");
-        }, 1500);
-    </script>
+  <script>
+    if (window.Telegram && window.Telegram.WebApp) {
+      const tg = window.Telegram.WebApp;
+      tg.ready();
+      tg.expand();
+      tg.setHeaderColor("#1b0904");
+      tg.setBackgroundColor("#160905");
+    }
+  </script>
 </body>
 </html>
