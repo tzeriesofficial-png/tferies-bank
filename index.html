@@ -80,13 +80,13 @@
     .page-content {
       flex: 1;
       overflow-y: auto;
-      padding: 24px 16px 118px;
+      padding: 18px 16px 118px;
       display: none;
     }
 
     .page-content.active {
       display: block;
-      animation: fadeTab 0.25s ease;
+      animation: fadeTab 0.22s ease;
     }
 
     @keyframes fadeTab {
@@ -98,6 +98,246 @@
         opacity: 1;
         transform: translateY(0);
       }
+    }
+
+    /* HONA BO'LIMI TEPADAGI UYCHA TUGMASI */
+    .hona-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .create-house-btn {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(125, 4, 2, 0.72);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+      animation: houseTopFloat 2s ease-in-out infinite;
+      transition: transform 0.16s ease, background 0.2s ease;
+    }
+
+    .create-house-btn:active {
+      transform: scale(0.93);
+    }
+
+    .create-house-svg {
+      width: 28px;
+      height: 28px;
+      overflow: visible;
+    }
+
+    .roof-anim {
+      transform-origin: center;
+      animation: roofLift 1.8s ease-in-out infinite;
+    }
+
+    @keyframes houseTopFloat {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-3px) rotate(-3deg);
+      }
+    }
+
+    @keyframes roofLift {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-1.8px);
+      }
+    }
+
+    /* OCHILGAN HONALAR RO'YXATI */
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .room-card {
+      background: rgba(125, 4, 2, 0.68);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+      animation: fadeTab 0.25s ease;
+    }
+
+    .room-img-box {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: rgba(90, 2, 0, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .room-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .room-alias {
+      padding: 10px 12px;
+      font-size: 14px;
+      font-weight: 800;
+      color: #ffffff;
+      text-align: center;
+      min-height: 38px;
+      word-break: break-word;
+    }
+
+    /* XONA YARATISH MODALI */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(5px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-card {
+      width: 100%;
+      max-width: 390px;
+      background: #b80a04;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 24px;
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 900;
+      color: #ffffff;
+    }
+
+    .close-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(90, 2, 0, 0.65);
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .pick-photo-label {
+      width: 100%;
+      height: 140px;
+      border-radius: 18px;
+      border: 1.5px dashed rgba(255, 255, 255, 0.45);
+      background: rgba(95, 2, 0, 0.55);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .pick-photo-label img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .pick-photo-label.has-img img {
+      display: block;
+    }
+
+    .pick-photo-label.has-img .pick-hint {
+      display: none;
+    }
+
+    .pick-hint {
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .alias-input-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .alias-input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(90, 2, 0, 0.72);
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      outline: none;
+    }
+
+    .alias-input::placeholder {
+      color: rgba(255, 255, 255, 0.55);
+      font-weight: 500;
+    }
+
+    .char-counter {
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.85);
+      text-align: right;
+    }
+
+    .save-room-btn {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 15px;
+      background: #ffffff;
+      color: #d60d06;
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+
+    .save-room-btn:active {
+      transform: scale(0.98);
     }
 
     /* PROFILM BO'LIMI */
@@ -150,7 +390,6 @@
       letter-spacing: 0.01em;
     }
 
-    /* QIMIRLAB TURADIGAN OQ PREMIUM SVG GALOCHKA */
     .verified-badge-wrap {
       display: inline-flex;
       align-items: center;
@@ -191,7 +430,7 @@
       }
     }
 
-    /* 3. PASTKI KATTA MENYU PANELI (HONA + PREMIUM QIMIRLOVCHI SVG STIKER) */
+    /* 3. PASTKI 4 TA MENYU PANELI (HONA, CHATLAR, FAMILY, PROFILM) */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -207,8 +446,8 @@
 
     .nav-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 6px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 7px;
       background: rgba(125, 4, 2, 0.78);
       padding: 8px;
       border-radius: 22px;
@@ -218,10 +457,10 @@
     .nav-item {
       border: none;
       background: transparent;
-      color: rgba(255, 255, 255, 0.82);
+      color: rgba(255, 255, 255, 0.85);
       border-radius: 16px;
       padding: 9px 4px;
-      min-height: 58px;
+      min-height: 60px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -236,12 +475,12 @@
     }
 
     .nav-item.active {
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.22);
       color: #ffffff;
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.36);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.38);
     }
 
-    .hona-sticker-box {
+    .premium-sticker {
       width: 30px;
       height: 30px;
       border-radius: 10px;
@@ -249,48 +488,78 @@
       align-items: center;
       justify-content: center;
       background: rgba(255, 255, 255, 0.14);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      animation: honaStickerMove 1.9s ease-in-out infinite;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      animation: stickerMove 2s ease-in-out infinite;
     }
 
-    .nav-item.active .hona-sticker-box {
+    .nav-item.active .premium-sticker {
       background: #ffffff;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.24);
     }
 
-    .hona-svg {
+    .premium-svg {
       width: 19px;
       height: 19px;
       overflow: visible;
     }
 
-    .hona-roof {
-      transform-origin: center;
-      animation: roofBounce 1.9s ease-in-out infinite;
+    .svg-stroke-white {
+      stroke: #ffffff;
     }
 
-    @keyframes honaStickerMove {
+    .nav-item.active .svg-stroke-white {
+      stroke: #d60d06;
+    }
+
+    .svg-fill-white {
+      fill: #ffffff;
+    }
+
+    .nav-item.active .svg-fill-white {
+      fill: #d60d06;
+    }
+
+    .anim-float {
+      transform-origin: center;
+      animation: innerFloat 1.8s ease-in-out infinite;
+    }
+
+    .anim-tilt {
+      transform-origin: center;
+      animation: innerTilt 2.1s ease-in-out infinite;
+    }
+
+    @keyframes stickerMove {
       0%, 100% {
         transform: translateY(0px) rotate(0deg) scale(1);
       }
       50% {
-        transform: translateY(-3px) rotate(-4deg) scale(1.08);
+        transform: translateY(-3px) rotate(-3.5deg) scale(1.07);
       }
     }
 
-    @keyframes roofBounce {
+    @keyframes innerFloat {
       0%, 100% {
-        transform: translateY(0px);
+        transform: translateY(0px) scale(1);
       }
       50% {
-        transform: translateY(-1.6px);
+        transform: translateY(-1.5px) scale(1.06);
+      }
+    }
+
+    @keyframes innerTilt {
+      0%, 100% {
+        transform: rotate(0deg);
+      }
+      50% {
+        transform: rotate(7deg);
       }
     }
 
     .nav-label {
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 800;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.02em;
       line-height: 1.15;
     }
   </style>
@@ -303,13 +572,41 @@
 
   <!-- ASOSIY OYNA -->
   <div class="main-layout">
-    <!-- 1. TAXI BO'LIMI -->
-    <section class="page-content active" id="page-taxi"></section>
+    <!-- 1. HONA BO'LIMI -->
+    <section class="page-content active" id="page-hona">
+      <div class="hona-top-bar">
+        <button type="button" class="create-house-btn" id="openRoomModalBtn" aria-label="Hona yaratish">
+          <svg class="create-house-svg" viewBox="0 0 24 24" fill="none">
+            <path
+              class="roof-anim"
+              d="M3.2 11.2L12 3.8L20.8 11.2"
+              stroke="#ffffff"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M6.2 9.4V18.8C6.2 19.4 6.6 19.8 7.2 19.8H16.8C17.4 19.8 17.8 19.4 17.8 18.8V9.4"
+              stroke="#ffffff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <rect x="10.2" y="13.5" width="3.6" height="6.3" rx="1" fill="#ffffff" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="rooms-grid" id="roomsGrid"></div>
+    </section>
 
     <!-- 2. CHATLAR BO'LIMI -->
     <section class="page-content" id="page-chats"></section>
 
-    <!-- 3. PROFILM BO'LIMI -->
+    <!-- 3. FAMILY BO'LIMI -->
+    <section class="page-content" id="page-family"></section>
+
+    <!-- 4. PROFILM BO'LIMI -->
     <section class="page-content" id="page-profile">
       <div class="profile-header">
         <div class="avatar-ring">
@@ -343,53 +640,87 @@
       </div>
     </section>
 
-    <!-- 4. GURPA BO'LIMI -->
-    <section class="page-content" id="page-group"></section>
-
-    <!-- 5. HONA BO'LIMI -->
-    <section class="page-content" id="page-hona"></section>
-
-    <!-- PASTKI KATTA MENYU PANELI -->
+    <!-- PASTKI 4 TA MENYU: HONA, CHATLAR, FAMILY, PROFILM -->
     <nav class="bottom-nav">
       <div class="nav-grid">
-        <button type="button" class="nav-item active" data-target="page-taxi" aria-label="1"></button>
-        <button type="button" class="nav-item" data-target="page-chats" aria-label="2"></button>
-        <button type="button" class="nav-item" data-target="page-profile" aria-label="3"></button>
-        <button type="button" class="nav-item" data-target="page-group" aria-label="4"></button>
-
-        <!-- HONA + QIMIRLOVCHI PREMIUM SVG STIKER -->
-        <button type="button" class="nav-item" data-target="page-hona">
-          <span class="hona-sticker-box">
-            <svg class="hona-svg" viewBox="0 0 24 24" fill="none">
-              <path
-                class="hona-roof"
-                d="M3.5 11.2L12 4L20.5 11.2"
-                stroke="#d60d06"
-                stroke-width="2.2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M6.2 9.5V18.8C6.2 19.4 6.6 19.8 7.2 19.8H16.8C17.4 19.8 17.8 19.4 17.8 18.8V9.5"
-                stroke="#d60d06"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <rect
-                x="10.2"
-                y="13.5"
-                width="3.6"
-                height="6.3"
-                rx="1"
-                fill="#d60d06"
-              />
+        <!-- HONA -->
+        <button type="button" class="nav-item active" data-target="page-hona">
+          <span class="premium-sticker">
+            <svg class="premium-svg anim-float" viewBox="0 0 24 24" fill="none">
+              <path class="svg-stroke-white" d="M3.5 11.2L12 4L20.5 11.2" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+              <path class="svg-stroke-white" d="M6.2 9.5V18.8C6.2 19.4 6.6 19.8 7.2 19.8H16.8C17.4 19.8 17.8 19.4 17.8 18.8V9.5" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect class="svg-fill-white" x="10.3" y="13.5" width="3.4" height="6.3" rx="0.9"/>
             </svg>
           </span>
-          <span class="nav-label">Hona</span>
+          <span class="nav-label">HONA</span>
+        </button>
+
+        <!-- CHATLAR -->
+        <button type="button" class="nav-item" data-target="page-chats">
+          <span class="premium-sticker">
+            <svg class="premium-svg anim-tilt" viewBox="0 0 24 24" fill="none">
+              <path class="svg-stroke-white" d="M4.5 6.8C4.5 5.4 5.6 4.3 7 4.3H17C18.4 4.3 19.5 5.4 19.5 6.8V13.6C19.5 15 18.4 16.1 17 16.1H10.8L6.8 19.7V16.1C5.5 15.8 4.5 14.8 4.5 13.6V6.8Z" stroke-width="1.9" stroke-linejoin="round"/>
+              <circle class="svg-fill-white" cx="9" cy="10.2" r="1.15"/>
+              <circle class="svg-fill-white" cx="12" cy="10.2" r="1.15"/>
+              <circle class="svg-fill-white" cx="15" cy="10.2" r="1.15"/>
+            </svg>
+          </span>
+          <span class="nav-label">CHATLAR</span>
+        </button>
+
+        <!-- FAMILY -->
+        <button type="button" class="nav-item" data-target="page-family">
+          <span class="premium-sticker">
+            <svg class="premium-svg anim-float" viewBox="0 0 24 24" fill="none">
+              <path class="svg-stroke-white" d="M12 19.5C12 19.5 4.5 14.7 4.5 9.1C4.5 6.7 6.4 4.8 8.8 4.8C10.3 4.8 11.5 5.6 12 6.7C12.5 5.6 13.7 4.8 15.2 4.8C17.6 4.8 19.5 6.7 19.5 9.1C19.5 14.7 12 19.5 12 19.5Z" stroke-width="1.9" stroke-linejoin="round"/>
+              <circle class="svg-fill-white" cx="9.2" cy="9.4" r="1.1"/>
+              <circle class="svg-fill-white" cx="14.8" cy="9.4" r="1.1"/>
+            </svg>
+          </span>
+          <span class="nav-label">FAMILY</span>
+        </button>
+
+        <!-- PROFILM -->
+        <button type="button" class="nav-item" data-target="page-profile">
+          <span class="premium-sticker">
+            <svg class="premium-svg anim-float" viewBox="0 0 24 24" fill="none">
+              <circle class="svg-stroke-white" cx="12" cy="8.3" r="3.4" stroke-width="1.9"/>
+              <path class="svg-stroke-white" d="M5.5 19.2C5.5 16.1 8.4 14 12 14C15.6 14 18.5 16.1 18.5 19.2" stroke-width="1.9" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="nav-label">PROFILM</span>
         </button>
       </div>
     </nav>
+  </div>
+
+  <!-- XONA YARATISH OYNASI -->
+  <div class="modal-backdrop" id="roomModal">
+    <div class="modal-card">
+      <div class="modal-top">
+        <span class="modal-title">Hona ochish</span>
+        <button type="button" class="close-btn" id="closeRoomModalBtn">✕</button>
+      </div>
+
+      <label class="pick-photo-label" id="pickPhotoLabel" for="roomPhotoInput">
+        <img id="roomPreviewImg" src="" alt="" />
+        <span class="pick-hint" id="pickPhotoHint">Rasm tanlash</span>
+      </label>
+      <input type="file" id="roomPhotoInput" accept="image/*" hidden />
+
+      <div class="alias-input-wrap">
+        <input
+          type="text"
+          id="roomAliasInput"
+          class="alias-input"
+          maxlength="10"
+          placeholder="Taxallus (0–10 belgi)"
+        />
+        <div class="char-counter" id="charCounter">0 / 10</div>
+      </div>
+
+      <button type="button" class="save-room-btn" id="saveRoomBtn">Ochish</button>
+    </div>
   </div>
 
   <script>
@@ -405,6 +736,7 @@
       document.getElementById("splash").classList.add("hide");
     }, 1500);
 
+    // Profil ma'lumotlari
     const tgUser = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user : null;
     const urlParams = new URLSearchParams(window.location.search);
 
@@ -415,31 +747,144 @@
 
     const photoUrl = urlParams.get("photo") || "";
     document.getElementById("tgName").textContent = fullName;
-
-    const photoEl = document.getElementById("tgPhoto");
     if (photoUrl) {
-      photoEl.src = photoUrl;
+      document.getElementById("tgPhoto").src = photoUrl;
     }
 
+    // Menyu almashinuvi
     const navItems = document.querySelectorAll(".nav-item");
     const pages = document.querySelectorAll(".page-content");
 
     navItems.forEach((btn) => {
       btn.addEventListener("click", () => {
         const targetId = btn.dataset.target;
-
         navItems.forEach((item) => item.classList.remove("active"));
         btn.classList.add("active");
-
         pages.forEach((page) => {
           page.classList.toggle("active", page.id === targetId);
         });
-
         if (tg && tg.HapticFeedback) {
           tg.HapticFeedback.selectionChanged();
         }
       });
     });
+
+    // HONA YARATISH VA KO'RSATISH (0..10 BELGI TAXALLUS + RASM)
+    const STORAGE_KEY = "acazes_hona_rooms_v1";
+    const roomModal = document.getElementById("roomModal");
+    const openRoomModalBtn = document.getElementById("openRoomModalBtn");
+    const closeRoomModalBtn = document.getElementById("closeRoomModalBtn");
+    const roomPhotoInput = document.getElementById("roomPhotoInput");
+    const pickPhotoLabel = document.getElementById("pickPhotoLabel");
+    const roomPreviewImg = document.getElementById("roomPreviewImg");
+    const roomAliasInput = document.getElementById("roomAliasInput");
+    const charCounter = document.getElementById("charCounter");
+    const saveRoomBtn = document.getElementById("saveRoomBtn");
+    const roomsGrid = document.getElementById("roomsGrid");
+
+    let selectedRoomPhoto = "";
+
+    function loadRooms() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (_) {
+        return [];
+      }
+    }
+
+    function saveRooms(rooms) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(rooms));
+      } catch (_) {}
+    }
+
+    function renderRooms() {
+      const rooms = loadRooms();
+      roomsGrid.innerHTML = "";
+      rooms.forEach((room) => {
+        const card = document.createElement("div");
+        card.className = "room-card";
+
+        const imgBox = document.createElement("div");
+        imgBox.className = "room-img-box";
+        if (room.photo) {
+          const img = document.createElement("img");
+          img.src = room.photo;
+          img.alt = room.alias || "";
+          imgBox.appendChild(img);
+        }
+
+        const aliasDiv = document.createElement("div");
+        aliasDiv.className = "room-alias";
+        aliasDiv.textContent = (room.alias || "").slice(0, 10);
+
+        card.appendChild(imgBox);
+        card.appendChild(aliasDiv);
+        roomsGrid.appendChild(card);
+      });
+    }
+
+    function resetModalForm() {
+      selectedRoomPhoto = "";
+      roomPreviewImg.src = "";
+      pickPhotoLabel.classList.remove("has-img");
+      roomPhotoInput.value = "";
+      roomAliasInput.value = "";
+      charCounter.textContent = "0 / 10";
+    }
+
+    openRoomModalBtn.addEventListener("click", () => {
+      resetModalForm();
+      roomModal.classList.add("open");
+    });
+
+    closeRoomModalBtn.addEventListener("click", () => {
+      roomModal.classList.remove("open");
+    });
+
+    roomModal.addEventListener("click", (e) => {
+      if (e.target === roomModal) {
+        roomModal.classList.remove("open");
+      }
+    });
+
+    roomPhotoInput.addEventListener("change", (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        selectedRoomPhoto = String(reader.result || "");
+        roomPreviewImg.src = selectedRoomPhoto;
+        pickPhotoLabel.classList.add("has-img");
+      };
+      reader.readAsDataURL(file);
+    });
+
+    roomAliasInput.addEventListener("input", () => {
+      if (roomAliasInput.value.length > 10) {
+        roomAliasInput.value = roomAliasInput.value.slice(0, 10);
+      }
+      charCounter.textContent = `${roomAliasInput.value.length} / 10`;
+    });
+
+    saveRoomBtn.addEventListener("click", () => {
+      const alias = roomAliasInput.value.trim().slice(0, 10);
+      const rooms = loadRooms();
+      rooms.unshift({
+        id: Date.now(),
+        photo: selectedRoomPhoto,
+        alias: alias
+      });
+      saveRooms(rooms);
+      renderRooms();
+      roomModal.classList.remove("open");
+      if (tg && tg.HapticFeedback) {
+        tg.HapticFeedback.notificationOccurred("success");
+      }
+    });
+
+    renderRooms();
   </script>
 </body>
 </html>
